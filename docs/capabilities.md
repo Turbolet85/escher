@@ -200,6 +200,20 @@ no `screenshot` step and replay holding.
 
 Witnesses: `stand_explore`, escher-driver's explore and recording tests.
 
+### Why an element sits where it does
+
+A layout read in process: `Session::layout` takes a stable id and answers why that element sits where it does at its
+size, read by `BaseDocument::layout_reason` from the layout and style the engine already holds. The answer names the
+placing algorithm (`Block`, `Flex`, `Grid`, `Table`, `Inline`, `Float`, `Absolute`, `Fixed`, `Root`, `Select`,
+`SelectList`), the element it was placed in by stable id and its offset there, each scroll and transform that moves it
+(`Scroll`, `Transform`), and per axis the cause of its size (`Style`, `Min`, `Max`, `FlexGrow`, `FlexShrink`,
+`Stretch`, `Grid`, `Table`, `Replaced`, `Content`, `Layout`) with the computed `size`, `min`, `max` and flex inputs.
+It holds ids, closed words and numbers, never page text or a style value as written. Its `bounds` are the snapshot's.
+One placer is reserved, `App { canvas }`, for a node an app places inside a canvas; nothing produces it yet. The id
+resolves as a call's does, refused `stale` or `not-found`. It runs no step and changes nothing. No verb reaches it yet.
+
+Witnesses: `layout_reason`, `stand_layout`, escher-driver's layout tests.
+
 ### Engine behaviours every document gets
 
 Escher changed the engine, for every document and not the stand alone, in these ways:
@@ -274,6 +288,11 @@ The driver's own refusal texts state three readings that are off:
 - **The boolean model's two limits.** A mixed toggle reads unpressed, and a grammar or spelling error reads invalid.
   These are pinned at unit and engine level only: dioxus-native-dom's unit tests and the engine's accessibility
   checks. No stand screen shows either.
+- **The layout read's size rule.** The cause of a size is a stated rule, first match wins, read at 1/64 px. Vertical
+  writing modes are read on physical axes against the physical properties. A `calc()` length reads its resolved px
+  alone. A size an `aspect-ratio` derives reads `Layout` unless an earlier rule matches, and `Layout` is the reading
+  wherever no rule singles out one cause. A box's offset and its rect are each snapped to 1/64 px, so their sum can sit
+  one unit from the rect. Pinned by `layout_reason` and `stand_layout`.
 - **`text_extent`, which the lint reads.** RTL and vertical text read as left-to-right horizontal lines, and a
   transformed box reads at its client rect. Pinned by `text_extent`. Vertical writing modes are in no default feature
   set.
@@ -375,6 +394,9 @@ Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_st
 
 - A settle verb, or a reply naming the busy source.
 - A producer of the reserved virtual-node id form.
+- A carrier for the layout read: no verb, MCP tool, socket call or kept check reaches `Session::layout`. This absence
+  is provisional, standing until the founder's own word.
+- A producer of the `App { canvas }` placer.
 
 ### Unmeasured
 
@@ -459,6 +481,7 @@ The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*
 coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two legs, and through the binary by
 seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
 proven by `stand_start_in_state`, a `stand_*` file of the same two legs. An exploration is proven by `stand_explore`,
-a `stand_*` file of the same two legs.
+a `stand_*` file of the same two legs. The layout read is proven by `layout_reason` and by `stand_layout`, a
+`stand_*` file of the same two legs.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

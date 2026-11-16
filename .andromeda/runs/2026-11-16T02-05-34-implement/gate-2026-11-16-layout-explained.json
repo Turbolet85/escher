@@ -1,0 +1,1477 @@
+[
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T02:43:33Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-16-layout-explained",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-16-layout-explained · entries 11",
+"logs $TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 182 · rust 9",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L201-204: The gates run the driver's unit test of the conversion and the two new integration targets… (424 chars)",
+"prose L206-207: No boot-path touchpoint: no binary, role or seven_guis source changes, so there is no `rol… (207 chars)",
+"prose L209-215: Each new check is controlled red-before-green (keeps tests S4: decision/mutation-controlle… (639 chars)",
+"prose L217-218: Each control names the edit's text and the case by its test name, as `gate.py control` tak… (126 chars)",
+"prose L220-223: The diff holds no OS-conditional site. The plan still carries the operator's hygiene, push… (360 chars)",
+"  1 unit        green · exit 0 · 2.48s · 1551 B → 1.2.log · cargo test -p escher-driver --locked --lib layout::",
+"  2 integration green · exit 0 · 4.32s · 1759 B → 2.2.log · cargo test -p blitz-tests --locked --test layout_reason",
+"  3 integration green · exit 0 · 21.7s · 718 B → 3.2.log · cargo test -p blitz-tests --locked --test stand_layout",
+"  4 integration green · exit 0 · 0.98s · 734 B → 4.2.log · cargo test -p blitz-tests --locked --test text_extent",
+"  5 integration green · exit 0 · 15.06s · 932 B → 5.2.log · cargo test -p blitz-tests --locked --test stand_actions",
+"  6 lint        green · exit 0 · 344.29s · 153956 B → 6.2.log · bash .github/scripts/ci-leg.sh fast",
+"  7 integration green · exit 0 · 789.88s · 149750 B → 7.log · bash .github/scripts/ci-leg.sh stand-repeat",
+"  8 probe       green · exit 0 · 322.67s · 201803 B → 8.log · bash .github/scripts/ci-leg.sh coverage",
+"  9 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 10 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 11 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 11 · green 8 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-16-layout-explained",
+"plan": "doc:2026-11-16-layout-explained/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/evolve-2026-11-15-session-binary-smoke.json",
+".claude/session-handoff.md",
+"docs/capabilities.md",
+"escher-0.3.0/working-route.md",
+".andromeda/db/log/2026-11-16T00-55-22-session-2026-11-16.ndjson",
+".andromeda/db/log/2026-11-16T00-59-09-2026-11-16-layout-explained.ndjson",
+".andromeda/db/log/2026-11-16T02-02-53-2026-11-16T00-58-04-phase.ndjson",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/cascade-tally.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/evolve-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/fanout-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/founder-forks.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/gate-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/inputs-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/master-desc.txt",
+".andromeda/runs/2026-11-16T00-58-04-phase/matrix-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/p5-card-1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/p5-card-2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/planlint-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rec-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rec-read-2026-11-16-layout-explained.ndjson",
+".andromeda/runs/2026-11-16T00-58-04-phase/relay-1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/relay-2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/relay-3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/route-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rows-packs.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/scope-pin.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tree-query-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T02-05-34-implement/control-1.toml",
+".andromeda/runs/2026-11-16T02-05-34-implement/evolve-2026-11-16-layout-explained.json"
+],
+"rust": [
+"packages/blitz-dom/src/lib.rs",
+"packages/dioxus-native-dom/src/lib.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/blitz-dom/src/layout_reason.rs",
+"packages/escher-driver/src/layout.rs",
+"packages/escher-driver/src/layout_tests.rs",
+"tests/blitz-tests/tests/layout_reason.rs",
+"tests/blitz-tests/tests/stand_layout.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 191,
+"problem": null
+},
+"prose": [
+{
+"from": 201,
+"to": 204,
+"text": "The gates run the driver's unit test of the conversion and the two new integration targets in both layout modes. `text_extent` and `stand_actions` show that the reader precedent and the run path's resolver are unmoved. Then come the pre-push gate, `stand-repeat`, which the new `stand_` target joins, and the coverage leg, where escher-driver's 97 % floor reads `Session::layout` (arch · decision/per-crate-coverage-floors)."
+},
+{
+"from": 206,
+"to": 207,
+"text": "No boot-path touchpoint: no binary, role or seven_guis source changes, so there is no `role = 'smoke'` entry. The stand boots in process in every stand check. No live leg: nothing outside the tree is driven."
+},
+{
+"from": 209,
+"to": 215,
+"text": "Each new check is controlled red-before-green (keeps tests S4: decision/mutation-controlled-tests). After the steps are green, /implement runs three one-shot `gate.py control` runs, never entries: - Rule 4 of step 1's `SizeCause` arm made unreachable in `layout_reason.rs`: the size table's case in `layout_reason`   reads failed. - `at` taken from `final_layout()` in place of the unrounded geometry: stand_layout's offset-equality case reads failed   on a sub-pixel box, or the control reads that no stand box is sub-pixel, recorded as such. - `Session::layout` given a `pump` before its read: stand_layout's no-change case reads failed."
+},
+{
+"from": 217,
+"to": 218,
+"text": "Each control names the edit's text and the case by its test name, as `gate.py control` takes them (gate-contract.md §Control)."
+},
+{
+"from": 220,
+"to": 223,
+"text": "The diff holds no OS-conditional site. The plan still carries the operator's hygiene, push and CI entries: the workspace test leg builds blitz-dom with `writing-mode` and `tracing` on, where the per-package runs above leave them off (test-plan · decision/per-package-green-not-workspace-green), and the cross-OS legs build the new targets on windows and macOS."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib layout::",
+"run_sha8": "6db1db5e",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/1.2.log",
+"bytes": 1551,
+"log_sha8": "24a0ad62",
+"exit": 0,
+"seconds": 2.48,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test layout_reason",
+"run_sha8": "9e21d8c3",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/2.2.log",
+"bytes": 1759,
+"log_sha8": "b0c6864a",
+"exit": 0,
+"seconds": 4.32,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.2.log",
+"bytes": 718,
+"log_sha8": "15f577b8",
+"exit": 0,
+"seconds": 21.7,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_extent",
+"run_sha8": "75f3c306",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/4.2.log",
+"bytes": 734,
+"log_sha8": "33a7353c",
+"exit": 0,
+"seconds": 0.98,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_actions",
+"run_sha8": "085c8aaf",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/5.2.log",
+"bytes": 932,
+"log_sha8": "3dac9e73",
+"exit": 0,
+"seconds": 15.06,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/6.2.log",
+"bytes": 153956,
+"log_sha8": "19ddecb2",
+"exit": 0,
+"seconds": 344.29,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"last line stand-repeat: 3 of 3 rounds green"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/7.log",
+"bytes": 149750,
+"log_sha8": "342f64f2",
+"exit": 0,
+"seconds": 789.88,
+"readings": [
+"exit 0 ✓",
+"last line 'stand-repeat: 3 of 3 rounds green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/8.log",
+"bytes": 201803,
+"log_sha8": "6fb00b08",
+"exit": 0,
+"seconds": 322.67,
+"readings": [
+"exit 0 ✓",
+"contains 'coverage floor: 3 of 3 crates at or above their floors' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.3.0",
+"run_sha8": "4f65eadc",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T02:43:40Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement",
+"--marker",
+"2026-11-16-layout-explained",
+"--n",
+"8",
+"--tail",
+"12"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"8 probe green",
+"run (8c67d572): bash .github/scripts/ci-leg.sh coverage",
+"  exit 0 ✓",
+"  contains 'coverage floor: 3 of 3 crates at or above their floors' ✓",
+"log $TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/8.log · 201803 B · 6fb00b08 · $TMPDIR = /tmp",
+"--- no anchored failure; last 12 non-empty lines ---",
+"wpt/runner/src/test_runners/fuzzy.rs                                 262                 3    98.85%          22                 0   100.00%         154                 0   100.00%           0                 0         -",
+"wpt/runner/src/test_runners/harness_test.rs                          263               206    21.67%          18                15    16.67%         159               135    15.09%           0                 0         -",
+"wpt/runner/src/test_runners/js_wrapper.rs                            137                 4    97.08%          12                 0   100.00%          86                 4    95.35%           0                 0         -",
+"wpt/runner/src/test_runners/mod.rs                                   443               408     7.90%          20                18    10.00%         279               259     7.17%           0                 0         -",
+"wpt/runner/src/test_runners/ref_test.rs                              398               353    11.31%          17                14    17.65%         255               233     8.63%           0                 0         -",
+"wpt/runner/src/test_variants.rs                                      285                 5    98.25%          27                 1    96.30%         207                 3    98.55%           0                 0         -",
+"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+"TOTAL                                                              86166             23075    73.22%        5937              1485    74.99%       54012             14372    73.39%           0                 0         -",
+"packages/escher-driver 5793/5912 = 97.99 % (floor 97 %)",
+"packages/dioxus-native-dom 4164/4633 = 89.88 % (floor 83 %)",
+"packages/blitz-test-harness 1006/1047 = 96.08 % (floor 90 %)",
+"coverage floor: 3 of 3 crates at or above their floors"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T02:45:26Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-16-layout-explained",
+"--controls-file",
+".andromeda/runs/2026-11-16T02-05-34-implement/control-1.toml",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-16-layout-explained · controls 3 · entries 2 (2,3)",
+"logs $TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone 275cfae1 — its process 244999 lives, left",
+"clone ~/.cache/andromeda-control/829f0061 · HEAD b7a30649 · copied 192 · removed 0 · working folder 8 files · free 247.2 G",
+"entry 2 in place green · 36.88s → 2.3.log",
+"entry 3 in place green · 21.17s → 3.3.log",
+"control rule4 · entry 2 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 36.88s · 3.49s → 2.without-rule4.log",
+"control final-layout · entry 3 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 21.17s · 3.3s → 3.without-final-layout.log",
+"control pump · entry 3 · DOES NOT HOLD — in place green, removed green · 21.17s · 39.85s → 3.without-pump.log",
+"control: 2 holds · 0 timeout · 1 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-16-layout-explained",
+"plan": "doc:2026-11-16-layout-explained/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34",
+"clone": "~/.cache/andromeda-control/829f0061",
+"head": "b7a306490729acbcf0ee18487a37c2811f5a2d94",
+"copied": 192,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test layout_reason",
+"run_sha8": "9e21d8c3",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/2.3.log",
+"bytes": 17865,
+"log_sha8": "d1ec0048",
+"exit": 0,
+"seconds": 36.88,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.3.log",
+"bytes": 732,
+"log_sha8": "5038965f",
+"exit": 0,
+"seconds": 21.17,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "rule4",
+"entry": 2,
+"guard": "rule 4 of the SizeCause rule (a definite size equal to px reads Style) made unreachable",
+"cases": [
+"every_size_cause_reads_on_its_fixture_node"
+],
+"edits": [
+{
+"path": "packages/blitz-dom/src/layout_reason.rs",
+"before": "6691ea35",
+"after": "d00f478a"
+}
+],
+"word": "holds",
+"removed": {
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test layout_reason",
+"run_sha8": "9e21d8c3",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/2.without-rule4.log",
+"bytes": 2351,
+"log_sha8": "ced88b79",
+"exit": 101,
+"seconds": 3.49,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "final-layout",
+"entry": 3,
+"guard": "the offset at read from final_layout() (absolute_position) in place of the unrounded geometry",
+"cases": [
+"every_snapshot_node_answers_and_sits_at_its_container_plus_its_offset"
+],
+"edits": [
+{
+"path": "packages/blitz-dom/src/layout_reason.rs",
+"before": "6691ea35",
+"after": "8056fdd2"
+},
+{
+"path": "packages/blitz-dom/src/layout_reason.rs",
+"before": "8056fdd2",
+"after": "57851f05"
+}
+],
+"word": "holds",
+"removed": {
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.without-final-layout.log",
+"bytes": 2300,
+"log_sha8": "c946b4b9",
+"exit": 101,
+"seconds": 3.3,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "pump",
+"entry": 3,
+"guard": "Session::layout runs no pump before its read",
+"cases": [
+"the_read_changes_nothing"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/layout.rs",
+"before": "a25a9a63",
+"after": "62bb7f78"
+}
+],
+"word": "DOES NOT HOLD",
+"removed": {
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.without-pump.log",
+"bytes": 1736,
+"log_sha8": "955a5e1e",
+"exit": 0,
+"seconds": 39.85,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+}
+],
+"removal": "clone removed",
+"at": "pump"
+}
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T02:47:37Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-16-layout-explained",
+"--controls-file",
+".andromeda/runs/2026-11-16T02-05-34-implement/control-2.toml",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-16-layout-explained · controls 1 · entries 1 (3)",
+"logs $TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone 275cfae1 — its process 244999 lives, left",
+"clone ~/.cache/andromeda-control/564bcbdf · HEAD b7a30649 · copied 193 · removed 0 · working folder 8 files · free 247.2 G",
+"entry 3 in place green · 55.52s → 3.4.log",
+"control pump · entry 3 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 55.52s · 39.25s → 3.without-pump.2.log",
+"control: 1 holds · 0 timeout · 0 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-16-layout-explained",
+"plan": "doc:2026-11-16-layout-explained/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34",
+"clone": "~/.cache/andromeda-control/564bcbdf",
+"head": "b7a306490729acbcf0ee18487a37c2811f5a2d94",
+"copied": 193,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.4.log",
+"bytes": 17767,
+"log_sha8": "6871b2c5",
+"exit": 0,
+"seconds": 55.52,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "pump",
+"entry": 3,
+"guard": "Session::layout runs no pump before its read",
+"cases": [
+"the_read_runs_no_pass_that_would_apply_pending_ticks"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/layout.rs",
+"before": "a25a9a63",
+"after": "62bb7f78"
+}
+],
+"word": "holds",
+"removed": {
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.without-pump.2.log",
+"bytes": 1528,
+"log_sha8": "30d6102c",
+"exit": 101,
+"seconds": 39.25,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+}
+],
+"removal": "clone removed",
+"at": "pump"
+}
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T03:06:20Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-16-layout-explained",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement",
+"--only",
+"3,6,7"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-16-layout-explained · entries 11",
+"logs $TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 184 · rust 9",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L201-204: The gates run the driver's unit test of the conversion and the two new integration targets… (424 chars)",
+"prose L206-207: No boot-path touchpoint: no binary, role or seven_guis source changes, so there is no `rol… (207 chars)",
+"prose L209-215: Each new check is controlled red-before-green (keeps tests S4: decision/mutation-controlle… (639 chars)",
+"prose L217-218: Each control names the edit's text and the case by its test name, as `gate.py control` tak… (126 chars)",
+"prose L220-223: The diff holds no OS-conditional site. The plan still carries the operator's hygiene, push… (360 chars)",
+"  3 integration green · exit 0 · 21.28s · 783 B → 3.5.log · cargo test -p blitz-tests --locked --test stand_layout",
+"  6 lint        green · exit 0 · 317.93s · 149980 B → 6.3.log · bash .github/scripts/ci-leg.sh fast",
+"  7 integration green · exit 0 · 777.55s · 149155 B → 7.2.log · bash .github/scripts/ci-leg.sh stand-repeat",
+"not run — excluded · 8: 1-2,4-5,8-11",
+"entries 11 · green 3 · red 0 · recorded 0 · timeout 0 · not-run 8"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-16-layout-explained",
+"plan": "doc:2026-11-16-layout-explained/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/evolve-2026-11-15-session-binary-smoke.json",
+".claude/session-handoff.md",
+"docs/capabilities.md",
+"escher-0.3.0/working-route.md",
+".andromeda/db/log/2026-11-16T00-55-22-session-2026-11-16.ndjson",
+".andromeda/db/log/2026-11-16T00-59-09-2026-11-16-layout-explained.ndjson",
+".andromeda/db/log/2026-11-16T02-02-53-2026-11-16T00-58-04-phase.ndjson",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/a11y-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/arch-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/cascade-tally.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/design-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/evolve-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/fanout-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/founder-forks.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/gate-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/inputs-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/layouts-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/master-desc.txt",
+".andromeda/runs/2026-11-16T00-58-04-phase/matrix-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/obs-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/p5-card-1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/p5-card-2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/planlint-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rec-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rec-read-2026-11-16-layout-explained.ndjson",
+".andromeda/runs/2026-11-16T00-58-04-phase/relay-1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/relay-2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/relay-3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/route-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/rows-packs.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/scope-pin.json",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/security-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-history.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-rows.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-standing.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tests-task.md",
+".andromeda/runs/2026-11-16T00-58-04-phase/tree-query-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T02-05-34-implement/control-1.toml",
+".andromeda/runs/2026-11-16T02-05-34-implement/control-2.toml",
+".andromeda/runs/2026-11-16T02-05-34-implement/evolve-2026-11-16-layout-explained.json",
+".andromeda/runs/2026-11-16T02-05-34-implement/gate-2026-11-16-layout-explained.json"
+],
+"rust": [
+"packages/blitz-dom/src/lib.rs",
+"packages/dioxus-native-dom/src/lib.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/blitz-dom/src/layout_reason.rs",
+"packages/escher-driver/src/layout.rs",
+"packages/escher-driver/src/layout_tests.rs",
+"tests/blitz-tests/tests/layout_reason.rs",
+"tests/blitz-tests/tests/stand_layout.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 193,
+"problem": null
+},
+"prose": [
+{
+"from": 201,
+"to": 204,
+"text": "The gates run the driver's unit test of the conversion and the two new integration targets in both layout modes. `text_extent` and `stand_actions` show that the reader precedent and the run path's resolver are unmoved. Then come the pre-push gate, `stand-repeat`, which the new `stand_` target joins, and the coverage leg, where escher-driver's 97 % floor reads `Session::layout` (arch · decision/per-crate-coverage-floors)."
+},
+{
+"from": 206,
+"to": 207,
+"text": "No boot-path touchpoint: no binary, role or seven_guis source changes, so there is no `role = 'smoke'` entry. The stand boots in process in every stand check. No live leg: nothing outside the tree is driven."
+},
+{
+"from": 209,
+"to": 215,
+"text": "Each new check is controlled red-before-green (keeps tests S4: decision/mutation-controlled-tests). After the steps are green, /implement runs three one-shot `gate.py control` runs, never entries: - Rule 4 of step 1's `SizeCause` arm made unreachable in `layout_reason.rs`: the size table's case in `layout_reason`   reads failed. - `at` taken from `final_layout()` in place of the unrounded geometry: stand_layout's offset-equality case reads failed   on a sub-pixel box, or the control reads that no stand box is sub-pixel, recorded as such. - `Session::layout` given a `pump` before its read: stand_layout's no-change case reads failed."
+},
+{
+"from": 217,
+"to": 218,
+"text": "Each control names the edit's text and the case by its test name, as `gate.py control` takes them (gate-contract.md §Control)."
+},
+{
+"from": 220,
+"to": 223,
+"text": "The diff holds no OS-conditional site. The plan still carries the operator's hygiene, push and CI entries: the workspace test leg builds blitz-dom with `writing-mode` and `tracing` on, where the per-package runs above leave them off (test-plan · decision/per-package-green-not-workspace-green), and the cross-OS legs build the new targets on windows and macOS."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib layout::",
+"run_sha8": "6db1db5e",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test layout_reason",
+"run_sha8": "9e21d8c3",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_layout",
+"run_sha8": "ef3194e5",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/3.5.log",
+"bytes": 783,
+"log_sha8": "ae032b80",
+"exit": 0,
+"seconds": 21.28,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test text_extent",
+"run_sha8": "75f3c306",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_actions",
+"run_sha8": "085c8aaf",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/6.3.log",
+"bytes": 149980,
+"log_sha8": "2d707faa",
+"exit": 0,
+"seconds": 317.93,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"last line stand-repeat: 3 of 3 rounds green"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-16-layout-explained/implement-2026-11-16T02-05-34/7.2.log",
+"bytes": 149155,
+"log_sha8": "1b68b231",
+"exit": 0,
+"seconds": 777.55,
+"readings": [
+"exit 0 ✓",
+"last line 'stand-repeat: 3 of 3 rounds green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": [
+"exit 0",
+"contains coverage floor: 3 of 3 crates at or above their floors"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.3.0",
+"run_sha8": "4f65eadc",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T03:06:46Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-16-layout-explained",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 5 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 10 · listed 10 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 183"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 10,
+"listed": 10,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 183,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T03:06:50Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"escher-session",
+"--comm",
+"rustc",
+"--args",
+"stand_layout",
+"--args",
+"layout_reason",
+"--args",
+"andromeda-control",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement",
+"--marker",
+"2026-11-16-layout-explained"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, escher-session, rustc · args stand_layout, layout_reason, andromeda-control · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"escher-session",
+"rustc"
+],
+"args": [
+"stand_layout",
+"layout_reason",
+"andromeda-control"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.35",
+"sha8": "6e3ac1c3",
+"ts": "2026-11-16T03:08:46Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-16T02-05-34-implement",
+"--marker",
+"2026-11-16-layout-explained"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 190 (runs 180 · evidence 2 · inputs 8) · trails 15 not read · copies 6 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 180,
+"evidence": 2,
+"inputs": 8,
+"trails": 15,
+"copies": 6,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+}
+]

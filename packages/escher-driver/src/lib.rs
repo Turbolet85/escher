@@ -102,6 +102,12 @@
 //! it would be refused with now, or none. A cause is decided by the one check the call's own
 //! run meets, so it is the cause that call would return. It runs no step and changes nothing.
 //!
+//! [`Session::layout`] reads why an element sits where it does at its size, by its stable id
+//! ([`LayoutExplanation`]): the algorithm that placed it, the element it was placed in and at
+//! what offset, each scroll and transform that moves it, and per axis the cause of its size
+//! with the computed inputs — ids, closed words and numbers. It runs no step, changes nothing
+//! and is in process only: no verb reaches it.
+//!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as
 //! the call crossed in, with whether it was accepted, the [`answer_digest`] of its answer and the
@@ -168,6 +174,7 @@ mod fixture;
 mod host;
 mod image;
 mod json;
+mod layout;
 mod lint;
 mod mcp;
 mod recording;
@@ -190,6 +197,7 @@ pub use execute::Outcome;
 pub use explore::{Exploration, ExploredPath, MAX_EXPLORE_STEPS, PathEnding, StepBudget, explore};
 pub use fixture::{Fixture, FixtureStep, ReachError};
 pub use host::{IDLE_EXPIRY, serve};
+pub use layout::{LayoutExplanation, Placement, Placer, ShiftReading};
 pub use lint::{Bounds, Defect, Finding, Reason};
 pub use mcp::serve_mcp;
 pub use recording::{CHECK_FORMAT, Check, MASKED_STAND_IN, Step, answer_digest};

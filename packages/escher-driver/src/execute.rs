@@ -478,6 +478,13 @@ pub(crate) struct Target {
     bounds: (f64, f64, f64, f64),
 }
 
+impl Target {
+    /// The element the call names.
+    pub(crate) fn node(&self) -> NodeId {
+        self.node
+    }
+}
+
 /// The screen of the held instance, its ids recorded.
 fn read_screen(harness: &Harness<DioxusDocument>, seen: &mut SeenIds) -> Snapshot {
     let screen = harness.doc.snapshot();
@@ -532,7 +539,7 @@ pub(crate) fn target_of(
 /// Reads the screen and finds the element `id` names on it, or refuses: as stale when an
 /// earlier screen of the session read the id, as not found when none did. The screen read
 /// here is recorded once that answer is decided.
-fn resolve(
+pub(crate) fn resolve(
     harness: &Harness<DioxusDocument>,
     seen: &mut SeenIds,
     id: &str,

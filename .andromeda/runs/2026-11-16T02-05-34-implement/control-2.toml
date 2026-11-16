@@ -1,0 +1,11 @@
+[[control]]
+id = 'pump'
+entry = 3
+guard = 'Session::layout runs no pump before its read'
+case = 'the_read_runs_no_pass_that_would_apply_pending_ticks'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/layout.rs'
+old = '''        let (screen, target) = resolve(&self.harness, &mut self.seen, id)?;'''
+new = '''        self.harness.pump();
+        let (screen, target) = resolve(&self.harness, &mut self.seen, id)?;'''

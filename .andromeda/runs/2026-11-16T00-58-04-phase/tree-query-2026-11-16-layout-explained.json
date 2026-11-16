@@ -1,0 +1,276 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'get_client_bounding_rect' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 37,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]live_select_list().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 827
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]open_select_list().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 842
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]reconcile_select_list().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 923
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]node_client_rects().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 3127
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/driver/impl#[`EventDriver<'doc, Handler>`]adjust_element_coords().",
+"file": "packages/blitz-dom/src/events/driver.rs",
+"line": 366
+},
+{
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 text_extent/impl#[BaseDocument]text_extent().",
+"file": "packages/blitz-dom/src/text_extent.rs",
+"line": 30
+},
+{
+"caller": "rust-analyzer cargo blitz-vibey-script 0.3.0-beta.4 dom/element/geometry/get_bounding_client_rect().",
+"file": "packages/blitz-vibey-script/src/dom/element/geometry.rs",
+"line": 216
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 events/impl#[NodeHandle][RenderedElementBacking]get_client_rect().",
+"file": "packages/dioxus-native-dom/src/events.rs",
+"line": 222
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot/impl#[`Builder<'_>`]visit().",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 164
+},
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/padding_box().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 452
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 edges().",
+"file": "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs",
+"line": 78
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 inline_fragment_rects/bounding_rect_is_union_of_fragments().",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 67
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 inline_fragment_rects/fragments_include_nested_inline_and_atomic_children().",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 86
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 inline_fragment_rects/block_elements_return_single_rect().",
+"file": "tests/blitz-tests/tests/inline_fragment_rects.rs",
+"line": 116
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 target_edges().",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 107
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 reader_holds_the_target().",
+"file": "tests/blitz-tests/tests/scroll_into_view_nested.rs",
+"line": 116
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 rect().",
+"file": "tests/blitz-tests/tests/scrolled_box_client_rect.rs",
+"line": 106
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_select_lays_out_as_a_box_holding_its_chosen_option().",
+"file": "tests/blitz-tests/tests/select_interaction.rs",
+"line": 131
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_app_writing_selected_on_another_option_re_seeds_the_choice().",
+"file": "tests/blitz-tests/tests/select_interaction.rs",
+"line": 350
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 enter_and_space_open_the_list_and_a_released_space_does_nothing_more().",
+"file": "tests/blitz-tests/tests/select_interaction.rs",
+"line": 386
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_multiple_select_lays_out_its_rows_with_boxes_of_their_own().",
+"file": "tests/blitz-tests/tests/select_interaction.rs",
+"line": 470
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_groups_options_are_chosen_by_a_single_selects_keys_and_shown_alone().",
+"file": "tests/blitz-tests/tests/select_interaction.rs",
+"line": 848
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_multiple_selects_groups_lay_out_and_a_disabled_groups_rows_are_not_chosen().",
+"file": "tests/blitz-tests/tests/select_interaction.rs",
+"line": 903
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 client_point().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 160
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_disabled_inert_hidden_singular_or_empty_select_opens_nothing().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 457
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_box_that_clips_the_select_clips_no_row_and_a_point_outside_reads_what_shows().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 686
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hostile_markup_keeps_every_box_finite_and_panics_nowhere().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 965
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 size_makes_a_multiple_select_that_many_rows_tall_and_a_key_brings_the_next_in().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 998
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_focus_rule_that_moves_the_selects_box_leaves_the_list_a_click_opened().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 1106
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_focus_rule_that_moves_the_selects_box_leaves_the_list_a_click_opened().",
+"file": "tests/blitz-tests/tests/select_popup.rs",
+"line": 1108
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 cells_arrows_clamp_at_the_grids_ends_and_bring_a_cell_into_view().",
+"file": "tests/blitz-tests/tests/stand_keyboard.rs",
+"line": 312
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 controls_lie_inside_the_viewport().",
+"file": "tests/blitz-tests/tests/stand_snapshot.rs",
+"line": 251
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_transformed_box_reads_its_lines_at_its_client_rect().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 181
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 text_selection_anonymous_block/node_center().",
+"file": "tests/blitz-tests/tests/text_selection_anonymous_block.rs",
+"line": 92
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 rect().",
+"file": "tests/blitz-tests/tests/transformed_client_rect.rs",
+"line": 55
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 two_clicks_are_a_double_click_by_the_clock_alone().",
+"file": "tests/blitz-tests/tests/virtual_clock_engine.rs",
+"line": 165
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 rect().",
+"file": "tests/blitz-tests/tests/visible_region_transformed.rs",
+"line": 72
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'to_taffy_style' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 3,
+"result": [
+{
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.4 convert/to_taffy_style_in().",
+"file": "packages/stylo_taffy/src/convert.rs",
+"line": 953
+},
+{
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.4 crate/",
+"file": "packages/stylo_taffy/src/lib.rs",
+"line": 10
+},
+{
+"caller": "rust-analyzer cargo stylo_taffy 0.3.0-beta.4 wrapper/impl#[`Style<Atom<AtomStaticSet>>`][`From<TaffyStyloStyle<T>>`]from().",
+"file": "packages/stylo_taffy/src/wrapper.rs",
+"line": 166
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'text_extent' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 10,
+"result": [
+{
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/truncated().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 516
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 extent().",
+"file": "tests/blitz-tests/tests/stand_bundled_font_families.rs",
+"line": 47
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_clipped_or_off_screen_node_holding_text_reads_truncated_beside_it().",
+"file": "tests/blitz-tests/tests/stand_lint.rs",
+"line": 246
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_line_that_cannot_wrap_reads_wider_than_its_box().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 47
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_wrapped_paragraph_reads_inside_its_box().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 72
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 a_wrapped_paragraph_reads_inside_its_box().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 78
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_element_with_no_inline_content_reads_none().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 99
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_element_with_no_inline_content_reads_none().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 104
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 an_element_with_no_inline_content_reads_none().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 113
+},
+{
+"caller": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 extent().",
+"file": "tests/blitz-tests/tests/text_extent.rs",
+"line": 121
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

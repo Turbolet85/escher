@@ -58,6 +58,10 @@ pub use snapshot_text::{SNAPSHOT_TEXT_BUDGET, TextPart};
 pub use write_once_attr::{CustomWidgetAttr, SubDocumentAttr};
 
 pub use blitz_dom::NodeId;
+pub use blitz_dom::{
+    BoundingRect, FlexInputs, LayoutReason, Length, Placed, PlacedBy, Shift, ShiftBy, SizeCause,
+    SizeKeyword, SizeReason,
+};
 use blitz_dom::{LocalName, Namespace, QualName, ns};
 
 pub(crate) fn qual_name(local_name: &str, namespace: Option<&str>) -> QualName {

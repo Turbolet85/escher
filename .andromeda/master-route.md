@@ -95,3 +95,4 @@
 2026-11-15-browser-corrective · complete · the browser's make_doc_config hand-off proven by its own tests; every browser expect_used allow carries its reason · → chk:2026-11-15-browser-corrective
 2026-11-15-taffy-from-upstream-git · complete · Taffy moved to upstream's git pin e90751fd with #1303 by pick of eight upstream commits, their layout changes ratified; Taffy past #1372 left to its own entry · → chk:2026-11-15-taffy-from-upstream-git
 2026-11-15-session-binary-smoke · complete · a boot-path smoke of escher-session the agent-run contract reaches, named as a plan's role=smoke entry · → chk:2026-11-15-session-binary-smoke
+2026-11-16-layout-explained · pending · Layout explained — why an element sits where it does at its size, from the style and layout chain (v030-11) · → chk:2026-11-16-layout-explained

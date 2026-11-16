@@ -1,0 +1,44 @@
+[[control]]
+id = 'rule4'
+entry = 2
+guard = 'rule 4 of the SizeCause rule (a definite size equal to px reads Style) made unreachable'
+case = 'every_size_cause_reads_on_its_fixture_node'
+
+[[control.edit]]
+path = 'packages/blitz-dom/src/layout_reason.rs'
+old = '''fn clamp_cause(inputs: &Inputs) -> Option<SizeCause> {
+    if inputs.equals(&inputs.size) {
+        return Some(SizeCause::Style);
+    }
+'''
+new = '''fn clamp_cause(inputs: &Inputs) -> Option<SizeCause> {
+'''
+
+[[control]]
+id = 'final-layout'
+entry = 3
+guard = 'the offset at read from final_layout() (absolute_position) in place of the unrounded geometry'
+case = 'every_snapshot_node_answers_and_sits_at_its_container_plus_its_offset'
+
+[[control.edit]]
+path = 'packages/blitz-dom/src/layout_reason.rs'
+old = '''        let origin = (read.laid_out.x + scroll.x, read.laid_out.y + scroll.y);'''
+new = '''        let _ = scroll;
+        let origin = point(read.node.absolute_position(0.0, 0.0));'''
+
+[[control.edit]]
+path = 'packages/blitz-dom/src/layout_reason.rs'
+old = '''            Some(id) => point(self.physical_unrounded_geometry(id).0),'''
+new = '''            Some(id) => point(self.nodes[id].absolute_position(0.0, 0.0)),'''
+
+[[control]]
+id = 'pump'
+entry = 3
+guard = 'Session::layout runs no pump before its read'
+case = 'the_read_changes_nothing'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/layout.rs'
+old = '''        let (screen, target) = resolve(&self.harness, &mut self.seen, id)?;'''
+new = '''        self.harness.pump();
+        let (screen, target) = resolve(&self.harness, &mut self.seen, id)?;'''

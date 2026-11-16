@@ -52,6 +52,8 @@ mod html;
 mod iframe;
 /// Integration of taffy and the DOM.
 mod layout;
+/// Why an element sits where it does at its size.
+mod layout_reason;
 mod mutator;
 mod query_selector;
 mod resolve;
@@ -89,6 +91,10 @@ mod accessibility;
 pub use crate::layout::paint_tree::{HoistedPaintChild, StackingContext, hoisted_child_position};
 pub use crate::layout::replaced::IntrinsicSizes;
 pub use crate::layout::text_transform::{full_size_kana, full_width};
+pub use crate::layout_reason::{
+    FlexInputs, LayoutReason, Length, Placed, PlacedBy, Shift, ShiftBy, SizeCause, SizeKeyword,
+    SizeReason,
+};
 #[cfg(feature = "custom-widget")]
 pub use crate::node::Widget;
 
