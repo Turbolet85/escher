@@ -485,6 +485,9 @@ fn the_command_span_around_a_panicking_call_keeps_its_eight_fields() {
     const FIELDS: [&str; 8] = [
         "verb", "cause", "settled", "busy", "passes", "added", "removed", "changed",
     ];
+    // The capture's dispatchers registered before the recorder: with the recorder alone
+    // registered, another test thread reaching the command span first would cache it `never`.
+    let _ = escher_telemetry::capture(|| ());
     for incremental in [false, true] {
         let at = format!("{}: 0", mode_name(incremental));
         let mut session = hold(incremental);

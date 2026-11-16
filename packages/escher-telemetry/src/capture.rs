@@ -60,14 +60,12 @@ thread_local! {
 }
 
 /// The capture's own dispatcher where the default holds no [`CaptureLayer`]: built once for the
-/// process and never dropped, beside a twin that is never used. While tracing-core holds a
-/// single registered dispatcher it takes a new callsite's interest from the calling thread's
-/// default alone, so a callsite first reached outside a capture under no subscriber would cache
-/// `never` and later captures would miss it; with two always registered, every callsite's
-/// interest is read from every live dispatcher, this one among them.
+/// process and never dropped.
 static SCOPED: OnceLock<[Dispatch; 2]> = OnceLock::new();
 
 fn scoped() -> &'static Dispatch {
+    // The twin is never used: it keeps tracing-core out of its one-dispatcher mode, where a call
+    // site's interest is cached from the calling thread's default alone, as `never` with none.
     let [dispatch, _twin] = SCOPED.get_or_init(|| {
         let build = || Dispatch::new(tracing_subscriber::registry().with(CaptureLayer));
         [build(), build()]
