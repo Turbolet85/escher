@@ -30,7 +30,7 @@ use tracing::{Event, Metadata, Subscriber};
 
 mod fixtures;
 mod session_common;
-use session_common::{advance, click, press, scroll, type_into};
+use session_common::{advance, click, mcp_result_text, press, scroll, type_into};
 
 const PANIC_SENTINEL: &str = "sentinel-panic-payload-7f3a";
 const ERR_SENTINEL: &str = "sentinel-err-text-91c2";
@@ -375,6 +375,13 @@ fn tool_call(id: usize, name: &str, arguments: &str) -> String {
     )
 }
 
+/// Whether an MCP tool result carries `member`, the `caused` member of the line written in
+/// process: the result's text block decoded whole, so a location spelled with `\\` compares as
+/// written.
+fn tool_result_carries(reply: &str, member: &str) -> bool {
+    caused_member(&mcp_result_text(reply)) == Some(member)
+}
+
 #[test]
 fn the_same_caused_crosses_serve_mcp_in_process() {
     for incremental in [false, true] {
@@ -392,13 +399,12 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
             incremental,
         );
         assert!(replies.len() == 3, "{at}: three replies");
-        let text = replies[1].replace(r#"\""#, "\"");
         assert!(
-            text.contains(r#""isError":false"#),
+            replies[1].contains(r#""isError":false"#),
             "{at}: the click's result is no error"
         );
         assert!(
-            text.contains(member.trim_end_matches('}')),
+            tool_result_carries(&replies[1], member),
             "{at}: the tool result carries the same caused"
         );
         assert!(

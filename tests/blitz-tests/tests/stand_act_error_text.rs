@@ -30,7 +30,7 @@ use escher_telemetry::{FIELDS_KEPT, REDACTED, Source};
 
 mod fixtures;
 mod session_common;
-use session_common::{click, type_into};
+use session_common::{click, mcp_result_text, type_into};
 
 const LABEL: &str = "error-text";
 
@@ -675,38 +675,6 @@ fn tool_call(id: usize, name: &str, arguments: &str) -> String {
     )
 }
 
-/// The text block of an MCP tool result, read back from its JSON string.
-fn result_text(reply: &str) -> String {
-    let key = r#""text":""#;
-    let Some(start) = reply.find(key) else {
-        return String::new();
-    };
-    let mut out = String::new();
-    let mut characters = reply[start + key.len()..].chars();
-    while let Some(character) = characters.next() {
-        match character {
-            '"' => break,
-            '\\' => match characters.next() {
-                Some('n') => out.push('\n'),
-                Some('r') => out.push('\r'),
-                Some('t') => out.push('\t'),
-                Some('u') => {
-                    let hex: String = characters.by_ref().take(4).collect();
-                    if let Some(decoded) =
-                        u32::from_str_radix(&hex, 16).ok().and_then(char::from_u32)
-                    {
-                        out.push(decoded);
-                    }
-                }
-                Some(other) => out.push(other),
-                None => break,
-            },
-            other => out.push(other),
-        }
-    }
-    out
-}
-
 const CROSSING: [&str; 2] = ["idx", "warn-button"];
 
 #[test]
@@ -731,7 +699,7 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
         for (index, id) in CROSSING.iter().enumerate() {
             let at = format!("{mode}: {index}");
             let (_, _, line) = answered(&mut session, &click(id), &at);
-            let text = result_text(&replies[index + 1]);
+            let text = mcp_result_text(&replies[index + 1]);
             assert!(
                 replies[index + 1].contains(r#""isError":false"#),
                 "{at}: the result is no error"

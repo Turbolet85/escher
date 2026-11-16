@@ -439,3 +439,37 @@ impl Drop for Host {
         self.kill();
     }
 }
+
+/// The first text block of an MCP tool result, its JSON string decoded whole: every escape read
+/// back, so a `\\` in an answer line (a location as Windows spells it) compares as the line
+/// `Outcome::to_json` wrote.
+pub fn mcp_result_text(reply: &str) -> String {
+    let key = r#""text":""#;
+    let Some(start) = reply.find(key) else {
+        return String::new();
+    };
+    let mut out = String::new();
+    let mut characters = reply[start + key.len()..].chars();
+    while let Some(character) = characters.next() {
+        match character {
+            '"' => break,
+            '\\' => match characters.next() {
+                Some('n') => out.push('\n'),
+                Some('r') => out.push('\r'),
+                Some('t') => out.push('\t'),
+                Some('u') => {
+                    let hex: String = characters.by_ref().take(4).collect();
+                    if let Some(decoded) =
+                        u32::from_str_radix(&hex, 16).ok().and_then(char::from_u32)
+                    {
+                        out.push(decoded);
+                    }
+                }
+                Some(other) => out.push(other),
+                None => break,
+            },
+            other => out.push(other),
+        }
+    }
+    out
+}
