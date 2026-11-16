@@ -2198,6 +2198,81 @@ mod test {
         );
     }
 
+    /// Hit testing before the first resolve reaches elements that have no computed styles
+    /// yet: a pointer already over a window as it opens.
+    #[test]
+    fn hit_testing_before_the_first_resolve() {
+        let mut document = BaseDocument::new(DocumentConfig {
+            viewport: Some(Viewport::new(800, 600, 1.0, ColorScheme::Light)),
+            ..Default::default()
+        });
+        let root_id = document.root_node().id;
+        {
+            let mut mutator = document.mutate();
+            let html = mutator.create_element(qual_name!("html", html), vec![]);
+            mutator.append_children(root_id, &[html]);
+        }
+        // Nothing is laid out yet, so nothing is hit; what matters is that it doesn't panic.
+        assert!(document.hit(10.0, 10.0).is_none());
+    }
+
+    /// A hit on the border of a clipping inline root answers in the inline root's content box,
+    /// the frame its own self hit and its text hits answer in.
+    #[test]
+    fn a_border_hit_on_a_clipping_inline_root_reads_content_box_coordinates() {
+        for incremental in [false, true] {
+            let mut document = BaseDocument::new(DocumentConfig {
+                viewport: Some(Viewport::new(800, 600, 1.0, ColorScheme::Light)),
+                incremental: Some(incremental),
+                ..Default::default()
+            });
+            document.add_user_agent_stylesheet(crate::UserAgentStylesheet::parse(
+                "html, div { display: block }",
+            ));
+            let root_id = document.root_node().id;
+            let div_id = {
+                let mut mutator = document.mutate();
+                let html = mutator.create_element(qual_name!("html"), vec![]);
+                let div = mutator.create_element(
+                    qual_name!("div"),
+                    vec![Attribute {
+                        name: qual_name!("style"),
+                        value: "position: absolute; left: 20px; top: 30px; width: 100px; \
+                                height: 50px; overflow: hidden; border: 5px solid; \
+                                padding: 10px"
+                            .to_string(),
+                    }],
+                );
+                let text = mutator.create_text_node("text");
+                mutator.append_children(div, &[text]);
+                mutator.append_children(html, &[div]);
+                mutator.append_children(root_id, &[html]);
+                div
+            };
+            document.resolve(0.0);
+
+            assert!(
+                document.get_node(div_id).unwrap().flags.is_inline_root(),
+                "the clipping box is no inline root (incremental: {incremental})"
+            );
+
+            // 2px into the left border, 20px down the border box.
+            let hit = document
+                .hit(22.0, 50.0)
+                .expect("a border hit answers nothing");
+            assert_eq!(
+                hit.node_id, div_id,
+                "a border hit answers another node (incremental: {incremental})"
+            );
+            assert!(!hit.is_text, "a border hit reads as text");
+            assert_eq!(
+                (hit.x, hit.y),
+                (2.0 - 15.0, 20.0 - 15.0),
+                "a border hit reads border-box coordinates (incremental: {incremental})"
+            );
+        }
+    }
+
     #[test]
     fn style_property_mutation_copies_blocks_in_rule_tree() {
         let mut document = BaseDocument::new(DocumentConfig {

@@ -20,15 +20,15 @@
 //! [`compute_child_layout_in_own_wm`]: LayoutPassState::compute_child_layout_in_own_wm
 //! [`physicalise_and_round_layout`]: LayoutPassState::physicalise_and_round_layout
 
-use super::{BlockContext, LayoutPassState};
+use super::{BlockContext, LayoutPassState, resolve_calc_value};
 use crate::document::BaseDocument;
 use crate::dom_node_id;
 use crate::node::Node;
 use stylo_taffy::WritingMode;
 use stylo_taffy::WritingModeExt;
 use taffy::{
-    AvailableSpace, AxisStaticEdge, AxisStaticPosition, Layout, LayoutInput, LayoutOutput, NodeId,
-    Point, RoundTree, RunMode, Size, TraversePartialTree,
+    AvailableSpace, AxisStaticEdge, AxisStaticPosition, CoreStyle, Layout, LayoutInput,
+    LayoutOutput, NodeId, Point, ResolveOrZero, RoundTree, RunMode, Size, TraversePartialTree,
 };
 
 impl BaseDocument {
@@ -81,7 +81,7 @@ impl LayoutPassState<'_> {
         let parent_align_axis_is_inline =
             core::mem::replace(&mut self.current_align_axis_is_inline, false);
 
-        let output = if node_wm.is_vertical() == parent_wm.is_vertical() {
+        let mut output = if node_wm.is_vertical() == parent_wm.is_vertical() {
             let mut output = self.compute_child_layout_in_current_wm(node_id, inputs, block_ctx);
             if node_wm.is_vertical() && node_wm.is_vertical_lr() != parent_wm.is_vertical_lr() {
                 // Parallel writing modes with opposite block directions (`vertical-lr` in `vertical-rl`
@@ -96,6 +96,30 @@ impl LayoutPassState<'_> {
         } else {
             self.compute_orthogonal_child_layout(node_id, inputs, parent_wm)
         };
+
+        let node_block_reversed = node_wm.block_left_is_end();
+        let parent_block_reversed = parent_wm.block_left_is_end();
+        let mirror_x = node_block_reversed && !parent_wm.is_vertical();
+        let mirror_y = (node_block_reversed && parent_wm.is_vertical()) ^ parent_block_reversed;
+        if mirror_x || mirror_y {
+            let style = self.nodes[dom_node_id(node_id)].layout_style_in(parent_wm);
+            let border = style
+                .border()
+                .resolve_or_zero(inputs.parent_size.width, resolve_calc_value);
+            let client_size = output.size - border.sum_axes();
+            let overflow = style.overflow();
+            let is_scroll_container =
+                overflow.x.is_scroll_container() || overflow.y.is_scroll_container();
+            output.scrollable_overflow_rect = mirror_overflow(
+                output.scrollable_overflow_rect,
+                client_size,
+                Point {
+                    x: mirror_x,
+                    y: mirror_y,
+                },
+                is_scroll_container,
+            );
+        }
 
         self.layout_wm = parent_wm;
         self.current_align_axis_is_inline = parent_align_axis_is_inline;
@@ -218,7 +242,14 @@ impl LayoutPassState<'_> {
         parent_pos: Point<f32>,
         rounded_parent_pos: Point<f32>,
     ) {
-        let unrounded = physical_layout(self.get_unrounded_layout(node_id), placer_wm, placer_size);
+        let node = &self.doc.nodes[dom_node_id(node_id)];
+        let is_scroll_container = is_scroll_container(node);
+        let unrounded = physical_layout(
+            self.get_unrounded_layout(node_id),
+            placer_wm,
+            placer_size,
+            is_scroll_container,
+        );
 
         let pos = Point {
             x: parent_pos.x + unrounded.location.x,
@@ -262,13 +293,16 @@ impl LayoutPassState<'_> {
             top: from_top(unrounded.padding.top),
             bottom: from_bottom(unrounded.padding.bottom),
         };
-        let overflow = unrounded.scrollable_overflow_rect;
-        layout.scrollable_overflow_rect = taffy::Rect {
-            left: from_left(overflow.left),
-            right: from_left(overflow.right),
-            top: from_top(overflow.top),
-            bottom: from_top(overflow.bottom),
-        };
+        let overflow = unrounded.scrollable_overflow_rect.rect();
+        layout.scrollable_overflow_rect = taffy::ScrollableOverflow::new(
+            taffy::Rect {
+                left: from_left(overflow.left),
+                right: from_left(overflow.right),
+                top: from_top(overflow.top),
+                bottom: from_top(overflow.bottom),
+            },
+            unrounded.scrollable_overflow_rect.is_reversed(),
+        );
 
         let content_box_subpixel_offset = Point {
             x: (pos.x + unrounded.border.left + unrounded.padding.left)
@@ -359,11 +393,135 @@ fn mirror_static_position(position: AxisStaticPosition, extent: f32) -> AxisStat
     }
 }
 
+fn mirror_overflow(
+    overflow: taffy::ScrollableOverflow,
+    client_size: Size<f32>,
+    axes: Point<bool>,
+    is_scroll_container: bool,
+) -> taffy::ScrollableOverflow {
+    let mut rect = overflow.rect();
+    let mut reversed = overflow.is_reversed();
+    if axes.x {
+        let left = client_size.width - rect.right;
+        rect.right = (client_size.width - rect.left).max(0.0);
+        rect.left = left.min(0.0);
+        reversed.x = is_scroll_container && !reversed.x;
+    }
+    if axes.y {
+        let top = client_size.height - rect.bottom;
+        rect.bottom = (client_size.height - rect.top).max(0.0);
+        rect.top = top.min(0.0);
+        reversed.y = is_scroll_container && !reversed.y;
+    }
+    taffy::ScrollableOverflow::new(rect, reversed)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn mirrored_overflow_preserves_both_sides_and_scroll_container_flags() {
+        for is_scroll_container in [false, true] {
+            let original = taffy::ScrollableOverflow::new(
+                taffy::Rect {
+                    left: -96.0,
+                    right: 204.0,
+                    top: -20.0,
+                    bottom: 150.0,
+                },
+                Point { x: false, y: false },
+            );
+            let size = Size {
+                width: 100.0,
+                height: 80.0,
+            };
+            let axes = Point { x: true, y: true };
+            let mirrored = mirror_overflow(original, size, axes, is_scroll_container);
+            assert_eq!(
+                mirrored.rect(),
+                taffy::Rect {
+                    left: -104.0,
+                    right: 196.0,
+                    top: -70.0,
+                    bottom: 100.0
+                }
+            );
+            assert_eq!(
+                mirrored.is_reversed(),
+                Point {
+                    x: is_scroll_container,
+                    y: is_scroll_container
+                }
+            );
+            assert_eq!(
+                mirror_overflow(mirrored, size, axes, is_scroll_container),
+                original
+            );
+        }
+    }
+
+    #[test]
+    fn empty_overflow_remains_without_scrollable_extent_when_mirrored() {
+        let size = Size {
+            width: 100.0,
+            height: 80.0,
+        };
+        let overflow = mirror_overflow(
+            taffy::ScrollableOverflow::ZERO,
+            size,
+            Point { x: true, y: true },
+            true,
+        );
+        let layout = Layout {
+            size,
+            scrollable_overflow_rect: overflow,
+            ..Layout::new()
+        };
+        assert_eq!((layout.scroll_width(), layout.scroll_height()), (0.0, 0.0));
+    }
+}
+
+/// Whether `node` is a scroll container. A node with no computed styles yet (an element hit or
+/// placed before its first restyle) reads as none, never a panic.
+fn is_scroll_container(node: &Node) -> bool {
+    if node
+        .try_stylo_element_data()
+        .and_then(|stylo| stylo.computed_styles())
+        .is_none()
+    {
+        return false;
+    }
+    let overflow = node.layout_style().overflow();
+    overflow.x.is_scroll_container() || overflow.y.is_scroll_container()
+}
+
 /// `logical`, written by a placing algorithm running in `placer_wm` within a box of physical size
 /// `placer_size`, in physical coordinates.
-fn physical_layout(logical: Layout, placer_wm: WritingMode, placer_size: Size<f32>) -> Layout {
+fn physical_layout(
+    logical: Layout,
+    placer_wm: WritingMode,
+    placer_size: Size<f32>,
+    is_scroll_container: bool,
+) -> Layout {
     if !placer_wm.is_vertical() {
         return logical;
+    }
+    let mut overflow = logical.scrollable_overflow_rect.transpose();
+    if !placer_wm.is_vertical_lr() {
+        let client_width = logical.size.height
+            - logical.border.top
+            - logical.border.bottom
+            - logical.scrollbar_size.height;
+        overflow = mirror_overflow(
+            overflow,
+            Size {
+                width: client_width,
+                height: 0.0,
+            },
+            Point { x: true, y: false },
+            is_scroll_container,
+        );
     }
     Layout {
         location: Point {
@@ -376,7 +534,7 @@ fn physical_layout(logical: Layout, placer_wm: WritingMode, placer_size: Size<f3
         },
         size: logical.size.transpose(),
         scrollbar_size: logical.scrollbar_size.transpose(),
-        scrollable_overflow_rect: logical.scrollable_overflow_rect.transpose(),
+        scrollable_overflow_rect: overflow,
         border: placer_wm.physical_rect(logical.border),
         padding: placer_wm.physical_rect(logical.padding),
         margin: placer_wm.physical_rect(logical.margin),
@@ -422,7 +580,12 @@ impl BaseDocument {
         let root_id = self.try_root_element().map(|root| root.id);
         let node = &self.nodes[node_id];
         let (mut pos, placer_wm, placer_size) = self.placer_geometry(node, node_id, root_id);
-        let layout = physical_layout(*node.unrounded_layout(), placer_wm, placer_size);
+        let layout = physical_layout(
+            *node.unrounded_layout(),
+            placer_wm,
+            placer_size,
+            is_scroll_container(node),
+        );
         pos.x += layout.location.x;
         pos.y += layout.location.y;
         (pos, layout)
@@ -451,7 +614,8 @@ impl BaseDocument {
         let (mut pos, grand_wm, grand_size) = self.placer_geometry(placer, placer_id, root_id);
         let logical = placer.unrounded_layout();
         let (location, size) = if grand_wm.is_vertical() {
-            let physical = physical_layout(*logical, grand_wm, grand_size);
+            let physical =
+                physical_layout(*logical, grand_wm, grand_size, is_scroll_container(placer));
             (physical.location, physical.size)
         } else {
             (logical.location, logical.size)

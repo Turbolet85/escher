@@ -1,0 +1,66 @@
+[
+{
+"tool": "fanout",
+"v": "47",
+"sha8": "99a01a5a",
+"ts": "2026-11-16T10:32:37Z",
+"argv": [
+"render",
+"--batch",
+"task",
+"--side",
+"phase",
+"--skill-dir",
+"~/.claude/skills/andromeda-phase",
+"--scope",
+"doc:2026-11-16-taffy-past-1372/scope",
+"--run-dir",
+".andromeda/runs/2026-11-16T09-58-46-phase",
+"--marker",
+"2026-11-16-taffy-past-1372"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 7 (rowtask 7) · batch task · script ./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/task.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-16T09-58-46-phase/scope-pin.json",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/arch-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/security-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/design-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/layouts-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/tests-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/obs-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/a11y-task.md",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/task.workflow.js",
+"./.andromeda/runs/2026-11-16T09-58-46-phase/prompts/task.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "47",
+"sha8": "99a01a5a",
+"ts": "2026-11-16T10:35:48Z",
+"argv": [
+"status",
+"--run-dir",
+".andromeda/runs/2026-11-16T09-58-46-phase",
+"--marker",
+"2026-11-16-taffy-past-1372"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"task · unchecked",
+"VERDICT: 1 batch(es) rendered under .andromeda/runs/2026-11-16T09-58-46-phase/prompts · 1 unchecked: task"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

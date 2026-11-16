@@ -1,0 +1,1205 @@
+diff --git c/Cargo.lock i/Cargo.lock
+index f863d2d17..22eb11c21 100644
+--- c/Cargo.lock
++++ i/Cargo.lock
+@@ -8040,7 +8040,7 @@ dependencies = [
+ [[package]]
+ name = "taffy"
+ version = "0.15.0"
+-source = "git+https://github.com/DioxusLabs/taffy?rev=e90751fdd6cec284ced294a225311b22464c6181#e90751fdd6cec284ced294a225311b22464c6181"
++source = "git+https://github.com/DioxusLabs/taffy?rev=a3997d55bacd1fb6cd12fe31db0be15b20f91528#a3997d55bacd1fb6cd12fe31db0be15b20f91528"
+ dependencies = [
+  "serde",
+  "slotmap",
+diff --git c/Cargo.toml i/Cargo.toml
+index b06e36782..4e59ca508 100644
+--- c/Cargo.toml
++++ i/Cargo.toml
+@@ -102,7 +102,7 @@ dioxus-cli-config = { version = "0.7.3" }
+ dioxus-core-macro = { version = "0.7.3" }
+ 
+ # Taffy + Parley + Fontations
+-taffy = { git = "https://github.com/DioxusLabs/taffy", rev = "e90751fdd6cec284ced294a225311b22464c6181", default-features = false, features = [
++taffy = { git = "https://github.com/DioxusLabs/taffy", rev = "a3997d55bacd1fb6cd12fe31db0be15b20f91528", default-features = false, features = [
+     "std",
+     "flexbox",
+     "flexbox_balance",
+diff --git c/packages/blitz-dom/src/debug.rs i/packages/blitz-dom/src/debug.rs
+index b589b80ed..c7e70df56 100644
+--- c/packages/blitz-dom/src/debug.rs
++++ i/packages/blitz-dom/src/debug.rs
+@@ -94,10 +94,10 @@ impl BaseDocument {
+             y = layout.location.y,
+             width = layout.size.width,
+             height = layout.size.height,
+-            ol = layout.scrollable_overflow_rect.left,
+-            or = layout.scrollable_overflow_rect.right,
+-            ot = layout.scrollable_overflow_rect.top,
+-            ob = layout.scrollable_overflow_rect.bottom,
++            ol = layout.scrollable_overflow_rect.left(),
++            or = layout.scrollable_overflow_rect.right(),
++            ot = layout.scrollable_overflow_rect.top(),
++            ob = layout.scrollable_overflow_rect.bottom(),
+         );
+         println!(
+             "  border: l:{l} r:{r} t:{t} b:{b}",
+diff --git c/packages/blitz-dom/src/events/pointer.rs i/packages/blitz-dom/src/events/pointer.rs
+index 2835170c5..6766cfbb7 100644
+--- c/packages/blitz-dom/src/events/pointer.rs
++++ i/packages/blitz-dom/src/events/pointer.rs
+@@ -190,9 +190,9 @@ fn touch_action_pan_axes(doc: &BaseDocument, node_id: NodeId) -> (bool, bool) {
+             }
+ 
+             let scrolls_x = matches!(style.clone_overflow_x(), Overflow::Scroll | Overflow::Auto)
+-                && node.final_layout().scroll_width() > 0.0;
++                && node.scroll_width() > node.client_width();
+             let scrolls_y = matches!(style.clone_overflow_y(), Overflow::Scroll | Overflow::Auto)
+-                && node.final_layout().scroll_height() > 0.0;
++                && node.scroll_height() > node.client_height();
+             done_x |= scrolls_x;
+             done_y |= scrolls_y;
+ 
+diff --git c/packages/blitz-dom/src/layout/inline/layout.rs i/packages/blitz-dom/src/layout/inline/layout.rs
+index 5269ae42d..e99ebb981 100644
+--- c/packages/blitz-dom/src/layout/inline/layout.rs
++++ i/packages/blitz-dom/src/layout/inline/layout.rs
+@@ -16,7 +16,7 @@ use taffy::{
+ #[cfg(feature = "floats")]
+ use parley::YieldData;
+ #[cfg(feature = "floats")]
+-use taffy::{BlockItemStyle as _, Clear, Float, prelude::TaffyMaxContent};
++use taffy::{BlockItemStyle as _, Clear, Float, FloatInsets, prelude::TaffyMaxContent};
+ 
+ use stylo_taffy::StyleFlags;
+ 
+@@ -326,6 +326,9 @@ impl LayoutPassState<'_> {
+         };
+ 
+         let suppresses_baseline = style.contain().suppresses_baseline();
++        let overflow = style.overflow();
++        let is_scroll_container =
++            overflow.x.is_scroll_container() || overflow.y.is_scroll_container();
+         drop(style);
+ 
+         // Short circuit if inline context contains no text or inline boxes
+@@ -625,8 +628,10 @@ impl LayoutPassState<'_> {
+         #[cfg(feature = "floats")]
+         let outer_block_ctx = block_ctx;
+         #[cfg(feature = "floats")]
+-        let mut block_ctx =
+-            outer_block_ctx.sub_context(container_pb.top, [container_pb.left, container_pb.right]);
++        let mut block_ctx = outer_block_ctx.sub_context(
++            container_pb.top,
++            FloatInsets::new(container_pb.left, container_pb.right),
++        );
+         // block_ctx.apply_content_box_inset([container_pb.left, container_pb.right]);
+ 
+         if inputs.run_mode == taffy::RunMode::ComputeSize
+@@ -676,7 +681,7 @@ impl LayoutPassState<'_> {
+         #[cfg(feature = "floats")]
+         {
+             let mut breaker = inline_layout.layout.break_lines();
+-            let initial_slot = block_ctx.find_content_slot(0.0, Clear::None, None);
++            let initial_slot = block_ctx.find_content_slot(0.0, 0.0, Clear::None, None);
+             let mut has_active_floats = initial_slot.segment_id.is_some();
+             let state = breaker.state_mut();
+             state.set_layout_max_advance(width);
+@@ -702,7 +707,7 @@ impl LayoutPassState<'_> {
+ 
+                             let min_y = state.line_y() / scale as f64;
+                             let next_slot =
+-                                block_ctx.find_content_slot(min_y as f32, Clear::None, None);
++                                block_ctx.find_content_slot(min_y as f32, 0.0, Clear::None, None);
+                             has_active_floats = next_slot.segment_id.is_some();
+ 
+                             state.set_line_max_advance(next_slot.width * scale);
+@@ -760,7 +765,7 @@ impl LayoutPassState<'_> {
+ 
+                         let min_y = state.line_y() / scale as f64; //.max(pos.y as f64);
+                         let next_slot =
+-                            block_ctx.find_content_slot(min_y as f32, Clear::None, None);
++                            block_ctx.find_content_slot(min_y as f32, 0.0, Clear::None, None);
+                         has_active_floats = next_slot.segment_id.is_some();
+ 
+                         state.set_line_max_advance(next_slot.width * scale);
+@@ -1151,12 +1156,30 @@ impl LayoutPassState<'_> {
+                     width: content_width,
+                     height: measured_size.height,
+                 } + padding.sum_axes();
+-                taffy::Rect {
++                let mut rect = taffy::Rect {
+                     left: 0.0,
+                     right: content_extent.width,
+                     top: 0.0,
+                     bottom: content_extent.height + block_offset.max(0.0),
++                };
++                let client_width =
++                    final_size.width - border.left - border.right - scrollbar_gutter.x;
++                let is_rtl = container_direction.is_rtl();
++                if is_rtl {
++                    rect.left = (client_width - rect.right).min(0.0);
++                    rect.right = client_width.max(0.0);
+                 }
++                if is_scroll_container {
++                    rect.left = if is_rtl { rect.left } else { 0.0 };
++                    rect.top = 0.0;
++                }
++                taffy::ScrollableOverflow::new(
++                    rect,
++                    taffy::Point {
++                        x: is_scroll_container && is_rtl,
++                        y: false,
++                    },
++                )
+             },
+             baselines: taffy::Baselines {
+                 first: first_baseline,
+diff --git c/packages/blitz-dom/src/layout/mod.rs i/packages/blitz-dom/src/layout/mod.rs
+index 6d73fd922..8659cd65c 100644
+--- c/packages/blitz-dom/src/layout/mod.rs
++++ i/packages/blitz-dom/src/layout/mod.rs
+@@ -567,14 +567,16 @@ impl LayoutPassState<'_> {
+                     }
+ 
+                     // HACK: Cap scrollable overflow at node size to prevent scrolling
+-                    output.scrollable_overflow_rect.left = 0.0;
+-                    output.scrollable_overflow_rect.top = 0.0;
+-                    output.scrollable_overflow_rect.right =
+-                        output.scrollable_overflow_rect.right.min(output.size.width);
+-                    output.scrollable_overflow_rect.bottom = output
+-                        .scrollable_overflow_rect
+-                        .bottom
+-                        .min(output.size.height);
++                    let overflow = output.scrollable_overflow_rect;
++                    output.scrollable_overflow_rect = taffy::ScrollableOverflow::new(
++                        taffy::Rect {
++                            left: 0.0,
++                            top: 0.0,
++                            right: overflow.right().min(output.size.width),
++                            bottom: overflow.bottom().min(output.size.height),
++                        },
++                        output.scrollable_overflow_rect.is_reversed(),
++                    );
+ 
+                     return output;
+                 }
+@@ -732,12 +734,12 @@ impl LayoutContainingBlock for LayoutPassState<'_> {
+ impl taffy::CacheTree for LayoutPassState<'_> {
+     #[inline]
+     fn cache_get(
+-        &mut self,
++        &self,
+         node_id: NodeId,
+         inputs: &taffy::LayoutInput,
+     ) -> Option<taffy::LayoutOutput> {
+-        self.node_from_id_mut(node_id)
+-            .try_layout_data_mut()?
++        self.node_from_id(node_id)
++            .try_layout_data()?
+             .cache
+             .get(inputs)
+     }
+diff --git c/packages/blitz-dom/src/layout/replaced.rs i/packages/blitz-dom/src/layout/replaced.rs
+index 04bd61e30..11829b55e 100644
+--- c/packages/blitz-dom/src/layout/replaced.rs
++++ i/packages/blitz-dom/src/layout/replaced.rs
+@@ -82,8 +82,8 @@ pub fn compute_replaced_layout(
+         Size::ZERO
+     };
+ 
+-    // The scrollable overflow rect is measured from the scroll origin at the
+-    // padding-box corner: the content-box size offset by the start padding. A
++    // The scrollable overflow rect is measured from the client area's
++    // top-left corner: the content-box size offset by the start padding. A
+     // scroll container's own padding at the end of the content is part of its
+     // scrollable overflow region, so it is included. Boxes that are not scroll
+     // containers do not extend their overflow region by their own padding.
+@@ -95,24 +95,35 @@ pub fn compute_replaced_layout(
+     let overflow_rect_for = |content_box_size: Size<f32>| {
+         let start_padding = if is_rtl { padding.right } else { padding.left };
+         let end_padding = if is_rtl { padding.left } else { padding.right };
+-        taffy::Rect {
+-            left: 0.0,
+-            right: start_padding
+-                + content_box_size.width
+-                + if is_scroll_container {
+-                    end_padding
++        let client_width = content_box_size.width + padding.left + padding.right;
++        taffy::ScrollableOverflow::new(
++            taffy::Rect {
++                left: 0.0,
++                right: if is_rtl {
++                    client_width
+                 } else {
+-                    0.0
++                    start_padding
++                        + content_box_size.width
++                        + if is_scroll_container {
++                            end_padding
++                        } else {
++                            0.0
++                        }
+                 },
+-            top: 0.0,
+-            bottom: padding.top
+-                + content_box_size.height
+-                + if is_scroll_container {
+-                    padding.bottom
+-                } else {
+-                    0.0
+-                },
+-        }
++                top: 0.0,
++                bottom: padding.top
++                    + content_box_size.height
++                    + if is_scroll_container {
++                        padding.bottom
++                    } else {
++                        0.0
++                    },
++            },
++            taffy::Point {
++                x: is_scroll_container && is_rtl,
++                y: false,
++            },
++        )
+     };
+ 
+     // Return early if both width and height are known
+diff --git c/packages/blitz-dom/src/layout/writing_mode.rs i/packages/blitz-dom/src/layout/writing_mode.rs
+index fb36bd2f3..0c5131bd4 100644
+--- c/packages/blitz-dom/src/layout/writing_mode.rs
++++ i/packages/blitz-dom/src/layout/writing_mode.rs
+@@ -20,15 +20,15 @@
+ //! [`compute_child_layout_in_own_wm`]: LayoutPassState::compute_child_layout_in_own_wm
+ //! [`physicalise_and_round_layout`]: LayoutPassState::physicalise_and_round_layout
+ 
+-use super::{BlockContext, LayoutPassState};
++use super::{BlockContext, LayoutPassState, resolve_calc_value};
+ use crate::document::BaseDocument;
+ use crate::dom_node_id;
+ use crate::node::Node;
+ use stylo_taffy::WritingMode;
+ use stylo_taffy::WritingModeExt;
+ use taffy::{
+-    AvailableSpace, AxisStaticEdge, AxisStaticPosition, Layout, LayoutInput, LayoutOutput, NodeId,
+-    Point, RoundTree, RunMode, Size, TraversePartialTree,
++    AvailableSpace, AxisStaticEdge, AxisStaticPosition, CoreStyle, Layout, LayoutInput,
++    LayoutOutput, NodeId, Point, ResolveOrZero, RoundTree, RunMode, Size, TraversePartialTree,
+ };
+ 
+ impl BaseDocument {
+@@ -81,7 +81,7 @@ impl LayoutPassState<'_> {
+         let parent_align_axis_is_inline =
+             core::mem::replace(&mut self.current_align_axis_is_inline, false);
+ 
+-        let output = if node_wm.is_vertical() == parent_wm.is_vertical() {
++        let mut output = if node_wm.is_vertical() == parent_wm.is_vertical() {
+             let mut output = self.compute_child_layout_in_current_wm(node_id, inputs, block_ctx);
+             if node_wm.is_vertical() && node_wm.is_vertical_lr() != parent_wm.is_vertical_lr() {
+                 // Parallel writing modes with opposite block directions (`vertical-lr` in `vertical-rl`
+@@ -97,6 +97,30 @@ impl LayoutPassState<'_> {
+             self.compute_orthogonal_child_layout(node_id, inputs, parent_wm)
+         };
+ 
++        let node_block_reversed = node_wm.block_left_is_end();
++        let parent_block_reversed = parent_wm.block_left_is_end();
++        let mirror_x = node_block_reversed && !parent_wm.is_vertical();
++        let mirror_y = (node_block_reversed && parent_wm.is_vertical()) ^ parent_block_reversed;
++        if mirror_x || mirror_y {
++            let style = self.nodes[dom_node_id(node_id)].layout_style_in(parent_wm);
++            let border = style
++                .border()
++                .resolve_or_zero(inputs.parent_size.width, resolve_calc_value);
++            let client_size = output.size - border.sum_axes();
++            let overflow = style.overflow();
++            let is_scroll_container =
++                overflow.x.is_scroll_container() || overflow.y.is_scroll_container();
++            output.scrollable_overflow_rect = mirror_overflow(
++                output.scrollable_overflow_rect,
++                client_size,
++                Point {
++                    x: mirror_x,
++                    y: mirror_y,
++                },
++                is_scroll_container,
++            );
++        }
++
+         self.layout_wm = parent_wm;
+         self.current_align_axis_is_inline = parent_align_axis_is_inline;
+         output
+@@ -218,7 +242,14 @@ impl LayoutPassState<'_> {
+         parent_pos: Point<f32>,
+         rounded_parent_pos: Point<f32>,
+     ) {
+-        let unrounded = physical_layout(self.get_unrounded_layout(node_id), placer_wm, placer_size);
++        let node = &self.doc.nodes[dom_node_id(node_id)];
++        let is_scroll_container = is_scroll_container(node);
++        let unrounded = physical_layout(
++            self.get_unrounded_layout(node_id),
++            placer_wm,
++            placer_size,
++            is_scroll_container,
++        );
+ 
+         let pos = Point {
+             x: parent_pos.x + unrounded.location.x,
+@@ -262,13 +293,16 @@ impl LayoutPassState<'_> {
+             top: from_top(unrounded.padding.top),
+             bottom: from_bottom(unrounded.padding.bottom),
+         };
+-        let overflow = unrounded.scrollable_overflow_rect;
+-        layout.scrollable_overflow_rect = taffy::Rect {
+-            left: from_left(overflow.left),
+-            right: from_left(overflow.right),
+-            top: from_top(overflow.top),
+-            bottom: from_top(overflow.bottom),
+-        };
++        let overflow = unrounded.scrollable_overflow_rect.rect();
++        layout.scrollable_overflow_rect = taffy::ScrollableOverflow::new(
++            taffy::Rect {
++                left: from_left(overflow.left),
++                right: from_left(overflow.right),
++                top: from_top(overflow.top),
++                bottom: from_top(overflow.bottom),
++            },
++            unrounded.scrollable_overflow_rect.is_reversed(),
++        );
+ 
+         let content_box_subpixel_offset = Point {
+             x: (pos.x + unrounded.border.left + unrounded.padding.left)
+@@ -359,12 +393,136 @@ fn mirror_static_position(position: AxisStaticPosition, extent: f32) -> AxisStat
+     }
+ }
+ 
++fn mirror_overflow(
++    overflow: taffy::ScrollableOverflow,
++    client_size: Size<f32>,
++    axes: Point<bool>,
++    is_scroll_container: bool,
++) -> taffy::ScrollableOverflow {
++    let mut rect = overflow.rect();
++    let mut reversed = overflow.is_reversed();
++    if axes.x {
++        let left = client_size.width - rect.right;
++        rect.right = (client_size.width - rect.left).max(0.0);
++        rect.left = left.min(0.0);
++        reversed.x = is_scroll_container && !reversed.x;
++    }
++    if axes.y {
++        let top = client_size.height - rect.bottom;
++        rect.bottom = (client_size.height - rect.top).max(0.0);
++        rect.top = top.min(0.0);
++        reversed.y = is_scroll_container && !reversed.y;
++    }
++    taffy::ScrollableOverflow::new(rect, reversed)
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++
++    #[test]
++    fn mirrored_overflow_preserves_both_sides_and_scroll_container_flags() {
++        for is_scroll_container in [false, true] {
++            let original = taffy::ScrollableOverflow::new(
++                taffy::Rect {
++                    left: -96.0,
++                    right: 204.0,
++                    top: -20.0,
++                    bottom: 150.0,
++                },
++                Point { x: false, y: false },
++            );
++            let size = Size {
++                width: 100.0,
++                height: 80.0,
++            };
++            let axes = Point { x: true, y: true };
++            let mirrored = mirror_overflow(original, size, axes, is_scroll_container);
++            assert_eq!(
++                mirrored.rect(),
++                taffy::Rect {
++                    left: -104.0,
++                    right: 196.0,
++                    top: -70.0,
++                    bottom: 100.0
++                }
++            );
++            assert_eq!(
++                mirrored.is_reversed(),
++                Point {
++                    x: is_scroll_container,
++                    y: is_scroll_container
++                }
++            );
++            assert_eq!(
++                mirror_overflow(mirrored, size, axes, is_scroll_container),
++                original
++            );
++        }
++    }
++
++    #[test]
++    fn empty_overflow_remains_without_scrollable_extent_when_mirrored() {
++        let size = Size {
++            width: 100.0,
++            height: 80.0,
++        };
++        let overflow = mirror_overflow(
++            taffy::ScrollableOverflow::ZERO,
++            size,
++            Point { x: true, y: true },
++            true,
++        );
++        let layout = Layout {
++            size,
++            scrollable_overflow_rect: overflow,
++            ..Layout::new()
++        };
++        assert_eq!((layout.scroll_width(), layout.scroll_height()), (0.0, 0.0));
++    }
++}
++
++/// Whether `node` is a scroll container. A node with no computed styles yet (an element hit or
++/// placed before its first restyle) reads as none, never a panic.
++fn is_scroll_container(node: &Node) -> bool {
++    if node
++        .try_stylo_element_data()
++        .and_then(|stylo| stylo.computed_styles())
++        .is_none()
++    {
++        return false;
++    }
++    let overflow = node.layout_style().overflow();
++    overflow.x.is_scroll_container() || overflow.y.is_scroll_container()
++}
++
+ /// `logical`, written by a placing algorithm running in `placer_wm` within a box of physical size
+ /// `placer_size`, in physical coordinates.
+-fn physical_layout(logical: Layout, placer_wm: WritingMode, placer_size: Size<f32>) -> Layout {
++fn physical_layout(
++    logical: Layout,
++    placer_wm: WritingMode,
++    placer_size: Size<f32>,
++    is_scroll_container: bool,
++) -> Layout {
+     if !placer_wm.is_vertical() {
+         return logical;
+     }
++    let mut overflow = logical.scrollable_overflow_rect.transpose();
++    if !placer_wm.is_vertical_lr() {
++        let client_width = logical.size.height
++            - logical.border.top
++            - logical.border.bottom
++            - logical.scrollbar_size.height;
++        overflow = mirror_overflow(
++            overflow,
++            Size {
++                width: client_width,
++                height: 0.0,
++            },
++            Point { x: true, y: false },
++            is_scroll_container,
++        );
++    }
+     Layout {
+         location: Point {
+             x: if placer_wm.is_vertical_lr() {
+@@ -376,7 +534,7 @@ fn physical_layout(logical: Layout, placer_wm: WritingMode, placer_size: Size<f3
+         },
+         size: logical.size.transpose(),
+         scrollbar_size: logical.scrollbar_size.transpose(),
+-        scrollable_overflow_rect: logical.scrollable_overflow_rect.transpose(),
++        scrollable_overflow_rect: overflow,
+         border: placer_wm.physical_rect(logical.border),
+         padding: placer_wm.physical_rect(logical.padding),
+         margin: placer_wm.physical_rect(logical.margin),
+@@ -422,7 +580,12 @@ impl BaseDocument {
+         let root_id = self.try_root_element().map(|root| root.id);
+         let node = &self.nodes[node_id];
+         let (mut pos, placer_wm, placer_size) = self.placer_geometry(node, node_id, root_id);
+-        let layout = physical_layout(*node.unrounded_layout(), placer_wm, placer_size);
++        let layout = physical_layout(
++            *node.unrounded_layout(),
++            placer_wm,
++            placer_size,
++            is_scroll_container(node),
++        );
+         pos.x += layout.location.x;
+         pos.y += layout.location.y;
+         (pos, layout)
+@@ -451,7 +614,8 @@ impl BaseDocument {
+         let (mut pos, grand_wm, grand_size) = self.placer_geometry(placer, placer_id, root_id);
+         let logical = placer.unrounded_layout();
+         let (location, size) = if grand_wm.is_vertical() {
+-            let physical = physical_layout(*logical, grand_wm, grand_size);
++            let physical =
++                physical_layout(*logical, grand_wm, grand_size, is_scroll_container(placer));
+             (physical.location, physical.size)
+         } else {
+             (logical.location, logical.size)
+diff --git c/packages/blitz-dom/src/mutator.rs i/packages/blitz-dom/src/mutator.rs
+index 9827ef461..f6a46b465 100644
+--- c/packages/blitz-dom/src/mutator.rs
++++ i/packages/blitz-dom/src/mutator.rs
+@@ -2198,6 +2198,24 @@ mod test {
+         );
+     }
+ 
++    /// Hit testing before the first resolve reaches elements that have no computed styles
++    /// yet: a pointer already over a window as it opens.
++    #[test]
++    fn hit_testing_before_the_first_resolve() {
++        let mut document = BaseDocument::new(DocumentConfig {
++            viewport: Some(Viewport::new(800, 600, 1.0, ColorScheme::Light)),
++            ..Default::default()
++        });
++        let root_id = document.root_node().id;
++        {
++            let mut mutator = document.mutate();
++            let html = mutator.create_element(qual_name!("html", html), vec![]);
++            mutator.append_children(root_id, &[html]);
++        }
++        // Nothing is laid out yet, so nothing is hit; what matters is that it doesn't panic.
++        assert!(document.hit(10.0, 10.0).is_none());
++    }
++
+     #[test]
+     fn style_property_mutation_copies_blocks_in_rule_tree() {
+         let mut document = BaseDocument::new(DocumentConfig {
+diff --git c/packages/blitz-dom/src/node/node.rs i/packages/blitz-dom/src/node/node.rs
+index be09f2cb9..4ce5ff5b0 100644
+--- c/packages/blitz-dom/src/node/node.rs
++++ i/packages/blitz-dom/src/node/node.rs
+@@ -17,7 +17,6 @@ use std::fmt::Write;
+ use std::ops::Deref;
+ use std::sync::Arc;
+ use std::sync::atomic::{AtomicBool, Ordering};
+-#[cfg(feature = "writing-mode")]
+ use style::computed_values::flex_direction::T as FlexDirection;
+ use style::computed_values::isolation::T as Isolation;
+ use style::computed_values::white_space_collapse::T as WhiteSpaceCollapse;
+@@ -35,6 +34,7 @@ use style::values::generics::transform::{Scale, Translate};
+ use style::values::specified::box_::{DisplayInside, DisplayOutside};
+ use style_dom::ElementState;
+ use style_traits::values::ToCss;
++use stylo_taffy::WritingModeExt;
+ use taffy::{Cache, prelude::Layout};
+ use thin_vec::ThinVec;
+ 
+@@ -215,6 +215,17 @@ impl Node {
+         }
+     }
+ 
++    /// This node's layout output state, if it has been allocated. Returns
++    /// `None` for node kinds which do not participate in layout.
++    #[inline]
++    pub fn try_layout_data(&self) -> Option<&LayoutData> {
++        match &self.data {
++            NodeData::Element(data) | NodeData::AnonymousBlock(data) => data.layout_data.as_deref(),
++            NodeData::Document(data) => data.layout_data.as_deref(),
++            _ => None,
++        }
++    }
++
+     /// Mutable access to this node's layout output state, if it has been
+     /// allocated. Never allocates. Returns `None` for node kinds which do not
+     /// participate in layout.
+@@ -1501,11 +1512,39 @@ impl Node {
+         let matches_self =
+             !(own_x < 0.0 || own_x > size.width || own_y < 0.0 || own_y > size.height);
+ 
+-        let overflow_rect = self.final_layout().scrollable_overflow_rect;
+-        let matches_content = !(x < 0.0
+-            || x > overflow_rect.right + self.scroll_offset().x as f32
+-            || y < 0.0
+-            || y > overflow_rect.bottom + self.scroll_offset().y as f32);
++        let layout = self.final_layout();
++        let overflow_rect = layout.scrollable_overflow_rect;
++        // Not `layout_style()`: hit testing also reaches elements that have no computed styles
++        // yet (a pointer event before the first resolve). Those count as left-to-right.
++        let is_rtl = self.primary_styles().is_some_and(|style| {
++            style.clone_direction() == style::computed_values::direction::T::Rtl
++        });
++        let (gutter_left, gutter_top) = (is_rtl, false);
++        #[cfg(feature = "writing-mode")]
++        let (gutter_left, gutter_top) = {
++            let wm = self.layout_data().writing_mode;
++            if wm.swaps_axes() {
++                (wm.block_left_is_end(), wm.direction().is_rtl())
++            } else {
++                (gutter_left, gutter_top)
++            }
++        };
++        let client_x = layout.border.left
++            + if gutter_left {
++                layout.scrollbar_size.width
++            } else {
++                0.0
++            };
++        let client_y = layout.border.top
++            + if gutter_top {
++                layout.scrollbar_size.height
++            } else {
++                0.0
++            };
++        let matches_content = !(x < overflow_rect.left() + client_x
++            || x > overflow_rect.right() + client_x
++            || y < overflow_rect.top() + client_y
++            || y > overflow_rect.bottom() + client_y);
+ 
+         let matches_hoisted_content = match &self.stacking_context {
+             Some(sc) => {
+@@ -2002,15 +2041,94 @@ impl Node {
+     /// CSSOM View's `scrollWidth`: the width of the node's content, including
+     /// content not visible due to overflow
+     pub fn scroll_width(&self) -> f32 {
+-        self.client_width()
+-            .max(self.final_layout().scrollable_overflow_rect.right)
++        self.cssom_scroll_size().width
+     }
+ 
+     /// CSSOM View's `scrollHeight`: the height of the node's content, including
+     /// content not visible due to overflow
+     pub fn scroll_height(&self) -> f32 {
+-        self.client_height()
+-            .max(self.final_layout().scrollable_overflow_rect.bottom)
++        self.cssom_scroll_size().height
++    }
++
++    fn cssom_scroll_size(&self) -> taffy::Size<f32> {
++        let layout = self.final_layout();
++        if self.primary_styles().is_none() {
++            return taffy::Size {
++                width: self.client_width() + layout.scroll_width(),
++                height: self.client_height() + layout.scroll_height(),
++            };
++        }
++        let overflow = taffy::CoreStyle::overflow(&self.layout_style());
++        if overflow.x.is_scroll_container() || overflow.y.is_scroll_container() {
++            return taffy::Size {
++                width: self.client_width() + layout.scroll_width(),
++                height: self.client_height() + layout.scroll_height(),
++            };
++        }
++
++        // Non-scroll containers retain both sides for propagation and hit testing, but do not
++        // carry scroll-origin flags. CSSOM still measures their scrolling area from its origin.
++        let mut inline = false;
++        let mut block = false;
++        let mut vertical = false;
++        if let Some(style) = self.primary_styles() {
++            let wm = style.writing_mode;
++            inline = wm.direction().is_rtl();
++            block = wm.block_left_is_end();
++            vertical = wm.swaps_axes();
++            if self.taffy_display() == taffy::Display::Flex {
++                let position = style.get_position();
++                let row = matches!(
++                    position.flex_direction,
++                    FlexDirection::Row | FlexDirection::RowReverse
++                );
++                let reverse = matches!(
++                    position.flex_direction,
++                    FlexDirection::RowReverse | FlexDirection::ColumnReverse
++                );
++                let wrap_reverse = position
++                    .flex_wrap
++                    .contains(style::values::computed::FlexWrap::WRAP_REVERSE);
++                inline ^= if row { reverse } else { wrap_reverse };
++                block ^= if row { wrap_reverse } else { reverse };
++            }
++        }
++        let (reverse_x, reverse_y) = if vertical {
++            (block, inline)
++        } else {
++            (inline, block)
++        };
++        let overflow = layout.scrollable_overflow_rect;
++        taffy::Size {
++            width: if reverse_x {
++                self.client_width() - overflow.left()
++            } else {
++                self.client_width().max(overflow.right())
++            },
++            height: if reverse_y {
++                self.client_height() - overflow.top()
++            } else {
++                self.client_height().max(overflow.bottom())
++            },
++        }
++    }
++
++    /// Signed CSSOM scroll offsets, with zero at the initial scroll position.
++    pub(crate) fn scroll_range(&self) -> (crate::Point<f64>, crate::Point<f64>) {
++        let layout = self.final_layout();
++        let reversed = layout.scrollable_overflow_rect.is_reversed();
++        let width = layout.scroll_width() as f64;
++        let height = layout.scroll_height() as f64;
++        (
++            crate::Point {
++                x: if reversed.x { -width } else { 0.0 },
++                y: if reversed.y { -height } else { 0.0 },
++            },
++            crate::Point {
++                x: if reversed.x { 0.0 } else { width },
++                y: if reversed.y { 0.0 } else { height },
++            },
++        )
+     }
+ 
+     /// Does the node generate any boxes? (e.g. `getClientRects()` returns an empty
+diff --git c/packages/blitz-dom/src/node/scrollbar.rs i/packages/blitz-dom/src/node/scrollbar.rs
+index bef3b3419..931ed13d5 100644
+--- c/packages/blitz-dom/src/node/scrollbar.rs
++++ i/packages/blitz-dom/src/node/scrollbar.rs
+@@ -88,11 +88,11 @@ impl Node {
+         let (overflow, scroll_extent) = match axis {
+             AbsoluteAxis::Horizontal => (
+                 style.clone_overflow_x(),
+-                self.final_layout().scroll_width() as f64,
++                (self.scroll_width() - self.client_width()) as f64,
+             ),
+             AbsoluteAxis::Vertical => (
+                 style.clone_overflow_y(),
+-                self.final_layout().scroll_height() as f64,
++                (self.scroll_height() - self.client_height()) as f64,
+             ),
+         };
+         match overflow {
+@@ -125,10 +125,10 @@ impl Node {
+         const THUMB_MARGIN: f64 = 2.0;
+         const MIN_THUMB_LENGTH: f64 = 32.0;
+ 
+-        let layout = self.final_layout();
+-        let scroll_extent = match axis {
+-            AbsoluteAxis::Horizontal => layout.scroll_width() as f64,
+-            AbsoluteAxis::Vertical => layout.scroll_height() as f64,
++        let (min, max) = self.scroll_range();
++        let (scroll_extent, scroll_min) = match axis {
++            AbsoluteAxis::Horizontal => (max.x - min.x, min.x),
++            AbsoluteAxis::Vertical => (max.y - min.y, min.y),
+         };
+         if scroll_extent <= 0.5 {
+             return None;
+@@ -147,7 +147,7 @@ impl Node {
+         let thumb_len = (viewport_len * viewport_len / (viewport_len + scroll_extent))
+             .max(MIN_THUMB_LENGTH)
+             .min(viewport_len);
+-        let progress = (scroll_offset / scroll_extent).clamp(0.0, 1.0);
++        let progress = ((scroll_offset - scroll_min) / scroll_extent).clamp(0.0, 1.0);
+         // Round a sub-pixel displacement up to a whole pixel so any nonzero
+         // scroll visibly moves the thumb off the origin.
+         let thumb_start = match progress * (viewport_len - thumb_len) {
+@@ -179,12 +179,12 @@ impl Node {
+         let port = self.scrollport();
+         let (scroll_extent, viewport_len, thumb_len) = match axis {
+             AbsoluteAxis::Horizontal => (
+-                self.final_layout().scroll_width() as f64,
++                (self.scroll_width() - self.client_width()) as f64,
+                 port.width(),
+                 thumb.width(),
+             ),
+             AbsoluteAxis::Vertical => (
+-                self.final_layout().scroll_height() as f64,
++                (self.scroll_height() - self.client_height()) as f64,
+                 port.height(),
+                 thumb.height(),
+             ),
+diff --git c/packages/blitz-dom/src/scrolling.rs i/packages/blitz-dom/src/scrolling.rs
+index 787e8c4b3..e54ac9403 100644
+--- c/packages/blitz-dom/src/scrolling.rs
++++ i/packages/blitz-dom/src/scrolling.rs
+@@ -153,7 +153,7 @@ impl BaseDocument {
+         }
+ 
+         let include_hidden = request.source == ScrollSource::Programmatic;
+-        let (current, max) = self.scroll_state(target, include_hidden);
++        let (current, min, max) = self.scroll_state(target, include_hidden);
+         let unclamped = match request.amount {
+             ScrollAmount::To(to) => to,
+             ScrollAmount::By(by) => Point {
+@@ -162,8 +162,8 @@ impl BaseDocument {
+             },
+         };
+         let end = Point {
+-            x: unclamped.x.clamp(0.0, max.x),
+-            y: unclamped.y.clamp(0.0, max.y),
++            x: unclamped.x.clamp(min.x, max.x),
++            y: unclamped.y.clamp(min.y, max.y),
+         };
+ 
+         if self.should_scroll_smoothly(target, request.behavior) {
+@@ -304,13 +304,8 @@ impl BaseDocument {
+                     let event = BlitzScrollEvent {
+                         scroll_top: offset.y,
+                         scroll_left: offset.x,
+-                        scroll_width: layout.size.width.max(layout.scrollable_overflow_rect.right)
+-                            as i32,
+-                        scroll_height: layout
+-                            .size
+-                            .height
+-                            .max(layout.scrollable_overflow_rect.bottom)
+-                            as i32,
++                        scroll_width: layout.size.width.max(root.scroll_width()) as i32,
++                        scroll_height: layout.size.height.max(root.scroll_height()) as i32,
+                         client_width: (self.viewport.window_size.0 as f64 / scale) as i32,
+                         client_height: (self.viewport.window_size.1 as f64 / scale) as i32,
+                     };
+@@ -331,13 +326,15 @@ impl BaseDocument {
+                     return false;
+                 }
+ 
++                let scroll_width = node.scroll_width();
++                let scroll_height = node.scroll_height();
+                 let layout = *node.final_layout();
+                 self.nodes.bump_geometry_generation();
+                 let event = BlitzScrollEvent {
+                     scroll_top: offset.y,
+                     scroll_left: offset.x,
+-                    scroll_width: layout.scroll_width() as i32,
+-                    scroll_height: layout.scroll_height() as i32,
++                    scroll_width: scroll_width as i32,
++                    scroll_height: scroll_height as i32,
+                     client_width: layout.size.width as i32,
+                     client_height: layout.size.height as i32,
+                 };
+@@ -432,15 +429,15 @@ impl BaseDocument {
+     /// Duration (in milliseconds) of an animated scroll.
+     const SMOOTH_SCROLL_DURATION_MS: f64 = 300.0;
+ 
+-    /// Returns the current scroll offset and the maximum scroll offset (the minimum is
+-    /// always `0`) for the given scroll target. `include_hidden` controls whether
++    /// Returns the current, minimum and maximum scroll offsets for the given
++    /// scroll target. `include_hidden` controls whether
+     /// `overflow: hidden` axes count as scrollable (they do for programmatic scrolls,
+     /// which apply to any scrolling box, but not for user scrolls).
+     pub(crate) fn scroll_state(
+         &self,
+         target: ScrollTarget,
+         include_hidden: bool,
+-    ) -> (Point<f64>, Point<f64>) {
++    ) -> (Point<f64>, Point<f64>, Point<f64>) {
+         match self.canonical_scroll_target(target) {
+             ScrollTarget::Viewport => {
+                 // The viewport scrolls the root element's scrollable overflow, which includes
+@@ -451,12 +448,8 @@ impl BaseDocument {
+                     Some(root) => {
+                         let layout = root.final_layout();
+                         (
+-                            layout.size.width.max(layout.scrollable_overflow_rect.right) as f64,
+-                            layout
+-                                .size
+-                                .height
+-                                .max(layout.scrollable_overflow_rect.bottom)
+-                                as f64,
++                            layout.size.width.max(root.scroll_width()) as f64,
++                            layout.size.height.max(root.scroll_height()) as f64,
+                         )
+                     }
+                     None => (0.0, 0.0),
+@@ -468,11 +461,11 @@ impl BaseDocument {
+                     x: (content_width - window_width).max(0.0),
+                     y: (content_height - window_height).max(0.0),
+                 };
+-                (self.viewport_scroll(), max)
++                (self.viewport_scroll(), Point::ZERO, max)
+             }
+             ScrollTarget::Node(node_id) => {
+                 let Some(node) = self.nodes.get(node_id) else {
+-                    return (Point::ZERO, Point::ZERO);
++                    return (Point::ZERO, Point::ZERO, Point::ZERO);
+                 };
+ 
+                 // An axis with a non-scrolling overflow value has no scrollable range, even
+@@ -491,17 +484,22 @@ impl BaseDocument {
+                         )
+                     })
+                     .unwrap_or((false, false));
++                let (min, max) = node.scroll_range();
++                let min = Point {
++                    x: if can_x_scroll { min.x } else { 0.0 },
++                    y: if can_y_scroll { min.y } else { 0.0 },
++                };
+                 let max = Point {
+                     x: match can_x_scroll {
+-                        true => node.final_layout().scroll_width() as f64,
++                        true => max.x,
+                         false => 0.0,
+                     },
+                     y: match can_y_scroll {
+-                        true => node.final_layout().scroll_height() as f64,
++                        true => max.y,
+                         false => 0.0,
+                     },
+                 };
+-                (*node.scroll_offset(), max)
++                (*node.scroll_offset(), min, max)
+             }
+         }
+     }
+@@ -678,8 +676,8 @@ impl BaseDocument {
+         };
+ 
+         for box_id in self.containing_block_chain(node_id) {
+-            let (current, max) = self.scroll_state(ScrollTarget::Node(box_id), true);
+-            if max == Point::ZERO {
++            let (current, min, max) = self.scroll_state(ScrollTarget::Node(box_id), true);
++            if min == Point::ZERO && max == Point::ZERO {
+                 continue;
+             }
+             let (Some(offset), Some(scroller)) =
+diff --git c/tests/blitz-tests/tests/display_contents.rs i/tests/blitz-tests/tests/display_contents.rs
+index 72933d564..1242455f5 100644
+--- c/tests/blitz-tests/tests/display_contents.rs
++++ i/tests/blitz-tests/tests/display_contents.rs
+@@ -81,7 +81,8 @@ fn scroller_wrapping_contents_gets_full_scroll_size() {
+         "content inside the contents wrapper must size normally"
+     );
+     assert_eq!(
+-        ls.scrollable_overflow_rect.bottom, 1000.0,
++        ls.scrollable_overflow_rect.bottom(),
++        1000.0,
+         "the scroller's scrollable content size must include the hoisted content"
+     );
+ }
+diff --git c/tests/blitz-tests/tests/inline_box_scrollable_overflow.rs i/tests/blitz-tests/tests/inline_box_scrollable_overflow.rs
+index 9d85f8c2c..276feb6a8 100644
+--- c/tests/blitz-tests/tests/inline_box_scrollable_overflow.rs
++++ i/tests/blitz-tests/tests/inline_box_scrollable_overflow.rs
+@@ -3,7 +3,7 @@
+ //! overflow rect computed by their own layout algorithm, so that `scrollWidth`
+ //! / `scrollHeight` report their overflowing content.
+ 
+-use blitz_dom::DocumentConfig;
++use blitz_dom::{DocumentConfig, ScrollBehavior};
+ use blitz_html::{HtmlDocument, HtmlProvider};
+ use blitz_traits::shell::{ColorScheme, Viewport};
+ use std::sync::Arc;
+@@ -39,3 +39,184 @@ fn inline_flex_scroller_reports_overflowing_items() {
+     assert_eq!(scroll_size("#block"), (370.0, 130.0));
+     assert_eq!(scroll_size("#inline"), scroll_size("#block"));
+ }
++
++fn reverse_scroll_doc(style: &str, items: &str) -> HtmlDocument {
++    let mut doc = HtmlDocument::from_html(
++        &format!(
++            r#"<html><body style="margin:0">
++            <div id="scroller" style="display:flex;width:100px;height:100px;overflow:auto;{style}">{items}</div>
++            </body></html>"#
++        ),
++        DocumentConfig {
++            viewport: Some(Viewport::new(800, 600, 1.0, ColorScheme::Light)),
++            html_parser_provider: Some(Arc::new(HtmlProvider) as _),
++            ..Default::default()
++        },
++    );
++    doc.resolve(0.0);
++    doc
++}
++
++#[test]
++fn non_scroll_containers_measure_overflow_from_the_cssom_origin() {
++    for overflow in ["visible", "clip"] {
++        for (style, expected) in [
++            ("display:flow-root;direction:rtl", (204.0, 201.0)),
++            ("display:grid;direction:rtl", (204.0, 201.0)),
++            ("display:flex;direction:rtl", (184.0, 201.0)),
++            (
++                "display:flex;direction:rtl;flex-direction:row-reverse",
++                (196.0, 201.0),
++            ),
++            ("display:flow-root;direction:ltr", (216.0, 201.0)),
++        ] {
++            let doc = reverse_scroll_doc(
++                &format!(
++                    "{style};width:80px;height:80px;overflow:{overflow};padding:1px 4px 8px 16px;border-style:solid;border-width:1px 50px 40px 4px"
++                ),
++                r#"<div style="margin:-100px;width:300px;height:300px"></div>"#,
++            );
++            let id = doc.query_selector("#scroller").unwrap().unwrap();
++            let node = doc.get_node(id).unwrap();
++            assert_eq!(
++                (node.scroll_width(), node.scroll_height()),
++                expected,
++                "{style} {overflow}"
++            );
++            assert_eq!(
++                node.final_layout().scrollable_overflow_rect.is_reversed(),
++                taffy::Point { x: false, y: false }
++            );
++        }
++    }
++    let doc = reverse_scroll_doc("display:flow-root;direction:rtl;overflow:visible", "");
++    let id = doc.query_selector("#scroller").unwrap().unwrap();
++    assert_eq!(doc.get_node(id).unwrap().scroll_width(), 100.0);
++}
++
++#[test]
++fn reversed_flex_origins_scroll_to_negative_offsets_and_hit_the_painted_child() {
++    for (style, horizontal) in [
++        ("flex-wrap:wrap-reverse", false),
++        ("flex-direction:column-reverse", false),
++        ("flex-direction:row-reverse", true),
++        ("direction:rtl", true),
++        ("flex-direction:column;flex-wrap:wrap-reverse", true),
++    ] {
++        let items = if style.contains("wrap") {
++            r#"<div id="first" style="flex:none;width:100px;height:100px"></div><div id="last" style="flex:none;width:100px;height:100px"></div>"#
++        } else if horizontal {
++            r#"<div id="first" style="flex:none;width:200px;height:100px"></div>"#
++        } else {
++            r#"<div id="first" style="flex:none;width:100px;height:200px"></div>"#
++        };
++        let mut doc = reverse_scroll_doc(style, items);
++        let id = doc.query_selector("#scroller").unwrap().unwrap();
++        let node = doc.get_node(id).unwrap();
++        assert_eq!(
++            (node.scroll_offset().x, node.scroll_offset().y),
++            (0.0, 0.0),
++            "{style}"
++        );
++        assert_eq!(
++            if horizontal {
++                node.scroll_width()
++            } else {
++                node.scroll_height()
++            },
++            200.0,
++            "{style}"
++        );
++        doc.scroll_by(id, -1000.0, -1000.0, ScrollBehavior::Instant);
++        let node = doc.get_node(id).unwrap();
++        assert_eq!(
++            if horizontal {
++                node.scroll_offset().x
++            } else {
++                node.scroll_offset().y
++            },
++            -100.0,
++            "{style}"
++        );
++        let expected = doc
++            .query_selector(if style.contains("wrap") {
++                "#last"
++            } else {
++                "#first"
++            })
++            .unwrap()
++            .unwrap();
++        assert_eq!(
++            doc.element_from_point(50.0, 50.0),
++            Some(expected),
++            "{style}"
++        );
++        doc.scroll_by(id, 1000.0, 1000.0, ScrollBehavior::Instant);
++        let node = doc.get_node(id).unwrap();
++        assert_eq!(
++            (node.scroll_offset().x, node.scroll_offset().y),
++            (0.0, 0.0),
++            "{style}"
++        );
++    }
++}
++
++#[test]
++fn normal_origin_negative_overflow_stays_unreachable() {
++    let mut doc = reverse_scroll_doc(
++        "align-items:flex-end",
++        r#"<div style="flex:none;width:100px;height:200px"></div>"#,
++    );
++    let id = doc.query_selector("#scroller").unwrap().unwrap();
++    assert_eq!(doc.get_node(id).unwrap().scroll_height(), 100.0);
++    doc.scroll_by(id, 0.0, -1000.0, ScrollBehavior::Instant);
++    assert_eq!(doc.get_node(id).unwrap().scroll_offset().y, 0.0);
++}
++
++#[test]
++fn empty_reversed_scroller_and_clipped_overflow_cannot_scroll() {
++    for (style, items) in [
++        ("flex-wrap:wrap-reverse", ""),
++        (
++            "flex-direction:column-reverse;overflow:clip",
++            r#"<div style="flex:none;height:200px;width:100px"></div>"#,
++        ),
++    ] {
++        let mut doc = reverse_scroll_doc(style, items);
++        let id = doc.query_selector("#scroller").unwrap().unwrap();
++        doc.scroll_by(id, -1000.0, -1000.0, ScrollBehavior::Instant);
++        let node = doc.get_node(id).unwrap();
++        assert_eq!((node.scroll_offset().x, node.scroll_offset().y), (0.0, 0.0));
++    }
++}
++
++#[test]
++fn negative_margins_do_not_extend_normal_origin_scroll_dimensions() {
++    let doc = reverse_scroll_doc(
++        "flex-direction:column;height:auto;padding:10px 20px;overflow:visible",
++        &r#"<div style="flex:none;width:20px;height:20px;margin:-5px -7px"></div>"#.repeat(4),
++    );
++    let id = doc.query_selector("#scroller").unwrap().unwrap();
++    let node = doc.get_node(id).unwrap();
++    assert_eq!(node.client_height(), 60.0);
++    assert_eq!(node.scroll_width(), node.client_width());
++    assert_eq!(node.scroll_height(), node.client_height());
++}
++
++#[test]
++fn rtl_negative_margin_scroll_width_comes_from_taffy() {
++    let doc = reverse_scroll_doc(
++        "display:flow-root;direction:rtl;width:80px;height:80px;overflow:hidden;padding:1px 4px 8px 16px;border-style:solid;border-width:1px 50px 40px 4px",
++        r#"<div style="margin:-100px;width:300px;height:300px"></div>"#,
++    );
++    let id = doc.query_selector("#scroller").unwrap().unwrap();
++    let node = doc.get_node(id).unwrap();
++    let layout = node.final_layout();
++    assert_eq!(
++        node.client_width() + layout.scroll_width(),
++        204.0,
++        "Taffy output: {:?}; Blitz scrollWidth: {}",
++        layout,
++        node.scroll_width(),
++    );
++}
+diff --git c/tests/blitz-tests/tests/pre_overflow_scroll.rs i/tests/blitz-tests/tests/pre_overflow_scroll.rs
+index 3e661d1ce..61b4575ef 100644
+--- c/tests/blitz-tests/tests/pre_overflow_scroll.rs
++++ i/tests/blitz-tests/tests/pre_overflow_scroll.rs
+@@ -28,7 +28,7 @@ fn wide_pre_makes_scroller_scrollable() {
+     let pre_id = doc.query_selector("#pre").unwrap().expect("#pre");
+     let pre_layout = doc.get_node(pre_id).unwrap().final_layout();
+     assert!(
+-        pre_layout.scrollable_overflow_rect.right > pre_layout.size.width,
++        pre_layout.scrollable_overflow_rect.right() > pre_layout.size.width,
+         "expected the pre's content to overflow its border box, got size={:?} scrollable_overflow_rect={:?}",
+         pre_layout.size,
+         pre_layout.scrollable_overflow_rect
+diff --git c/wpt/runner/src/test_runners/attr_test.rs i/wpt/runner/src/test_runners/attr_test.rs
+index 84f162e16..f6346e473 100644
+--- c/wpt/runner/src/test_runners/attr_test.rs
++++ i/wpt/runner/src/test_runners/attr_test.rs
+@@ -187,16 +187,12 @@ pub fn check_node_layout(doc: &BaseDocument, node_id: NodeId) -> Vec<String> {
+ 
+                         "data-expected-client-width" => check_attr(name, value, client_width),
+                         "data-expected-client-height" => check_attr(name, value, client_height),
+-                        "data-expected-scroll-width" => check_attr(
+-                            name,
+-                            value,
+-                            client_width.max(layout.scrollable_overflow_rect.right),
+-                        ),
+-                        "data-expected-scroll-height" => check_attr(
+-                            name,
+-                            value,
+-                            client_height.max(layout.scrollable_overflow_rect.bottom),
+-                        ),
++                        "data-expected-scroll-width" => {
++                            check_attr(name, value, node.scroll_width())
++                        }
++                        "data-expected-scroll-height" => {
++                            check_attr(name, value, node.scroll_height())
++                        }
+                         "data-expected-bounding-client-rect-width" => {
+                             check_attr(name, value, layout.size.width)
+                         }
