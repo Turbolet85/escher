@@ -21,7 +21,7 @@
 //!
 //! The level filter is read from `RUST_LOG` and defaults to `warn`. It filters the sink alone:
 //! the same subscriber holds a [`CaptureLayer`], which sees every level and prints nothing, for
-//! [`capture`]'s per-step counts.
+//! [`capture()`]'s per-step counts.
 
 #![deny(missing_docs)]
 
