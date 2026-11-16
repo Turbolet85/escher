@@ -317,6 +317,7 @@ mod tests {
         );
         assert_eq!(decide("blitz_net", "url"), Verdict::Redact);
         assert_eq!(decide("escher_driver", "password"), Verdict::Redact);
+        assert_eq!(decide("escher_driver", "error"), Verdict::Redact);
     }
 
     #[test]

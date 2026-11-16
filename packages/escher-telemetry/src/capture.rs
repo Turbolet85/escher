@@ -9,8 +9,8 @@
 //! focus move below that — and escher's own ([`ESCHER_TARGET_PREFIXES`]) never.
 //!
 //! Every admitted record keeps its target, level, message, fields and location. A field named in
-//! [`CONTENT_FIELDS`] keeps its name and [`REDACTED`] in place of its value, whatever the
-//! source; the message and every other field are kept. Each text is cut at [`TEXT_CUT`] bytes,
+//! [`ANSWER_HIDDEN_FIELDS`] keeps its name and [`REDACTED`] in place of its value, whatever the
+//! source; a field named `error`, the message and every other field are kept as written. Each text is cut at [`TEXT_CUT`] bytes,
 //! the bytes cut counted beside it, a record keeps at most [`FIELDS_KEPT`] fields and a capture
 //! at most [`RECORDS_KEPT`] records and panics, the rest counted. Nothing here prints, logs or
 //! fields what it keeps: it is read back through [`Captured`] alone.
@@ -25,7 +25,7 @@ use tracing::{Dispatch, Event, Level, Subscriber};
 use tracing_log::NormalizeEvent;
 use tracing_subscriber::layer::{Context, Layer, SubscriberExt};
 
-use crate::format::{CONTENT_FIELDS, ENGINE_TARGET_PREFIXES, ESCHER_TARGET_PREFIXES, REDACTED};
+use crate::format::{ENGINE_TARGET_PREFIXES, ESCHER_TARGET_PREFIXES, REDACTED};
 
 /// Target prefixes of the UI framework's crates: a record from one of them is admitted only at
 /// `warn` and `error`, since they log at `trace` on every re-render and signal write.
@@ -53,6 +53,25 @@ pub const FIELDS_KEPT: usize = 8;
 /// The records, and separately the panics, a capture keeps at most; the rest are counted. At
 /// most 2 admitted records crossed one measured step.
 pub const RECORDS_KEPT: usize = 16;
+
+/// The field names a kept record reads as [`REDACTED`]: the sink's
+/// [`CONTENT_FIELDS`](crate::CONTENT_FIELDS) without `error`, written out so a change to the
+/// sink's set never moves the answer. A field named `error` is kept as written, since a failure
+/// record carries its text there (a ratified boundary widening); the sink's own set and lines are
+/// unchanged.
+pub(crate) const ANSWER_HIDDEN_FIELDS: &[&str] = &[
+    "url",
+    "href",
+    "src",
+    "html",
+    "text",
+    "value",
+    "attrs",
+    "path",
+    "request",
+    "panic.payload",
+    "password",
+];
 
 /// Where a kept record came from.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -148,7 +167,8 @@ impl Text {
 pub struct KeptField {
     /// The field's name.
     pub name: String,
-    /// Its value, or [`REDACTED`] where the name is in [`CONTENT_FIELDS`].
+    /// Its value, or [`REDACTED`] where the name is in [`ANSWER_HIDDEN_FIELDS`]; a field named
+    /// `error` keeps its value.
     pub value: Text,
 }
 
@@ -273,7 +293,7 @@ impl Values {
         } else if self.fields.len() >= FIELDS_KEPT {
             self.fields_past = self.fields_past.saturating_add(1);
         } else {
-            let value = if CONTENT_FIELDS.contains(&name) {
+            let value = if ANSWER_HIDDEN_FIELDS.contains(&name) {
                 Text {
                     text: REDACTED.to_string(),
                     cut: 0,
@@ -637,6 +657,45 @@ mod tests {
                 .map(|field| (field.name.as_str(), field.value.text.as_str()))
                 .collect();
             assert_eq!(kept, fields, "row {row}");
+        }
+    }
+
+    #[test]
+    fn of_the_sinks_content_names_error_alone_keeps_its_text() {
+        let ((), captured) = capture(|| {
+            tracing::warn!(target: "stand_app", url = "logged", "row");
+            tracing::warn!(target: "stand_app", href = "logged", "row");
+            tracing::warn!(target: "stand_app", src = "logged", "row");
+            tracing::warn!(target: "stand_app", html = "logged", "row");
+            tracing::warn!(target: "stand_app", text = "logged", "row");
+            tracing::warn!(target: "stand_app", value = "logged", "row");
+            tracing::warn!(target: "stand_app", attrs = "logged", "row");
+            tracing::warn!(target: "stand_app", path = "logged", "row");
+            tracing::warn!(target: "stand_app", request = "logged", "row");
+            tracing::warn!(target: "stand_app", error = "logged", "row");
+            tracing::event!(target: "stand_app", Level::WARN, { panic.payload = "logged" }, "row");
+            tracing::warn!(target: "stand_app", password = "logged", "row");
+        });
+        let rows: [(&str, &str); 12] = [
+            ("url", "[redacted]"),
+            ("href", "[redacted]"),
+            ("src", "[redacted]"),
+            ("html", "[redacted]"),
+            ("text", "[redacted]"),
+            ("value", "[redacted]"),
+            ("attrs", "[redacted]"),
+            ("path", "[redacted]"),
+            ("request", "[redacted]"),
+            ("error", "logged"),
+            ("panic.payload", "[redacted]"),
+            ("password", "[redacted]"),
+        ];
+        assert_eq!(rows.len(), 12);
+        assert_eq!(captured.records().len(), rows.len());
+        for (row, (record, (name, value))) in captured.records().iter().zip(rows).enumerate() {
+            assert_eq!(record.fields.len(), 1, "row {row}");
+            assert_eq!(record.fields[0].name, name, "row {row}");
+            assert_eq!(record.fields[0].value.text, value, "row {row}");
         }
     }
 

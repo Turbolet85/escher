@@ -99,3 +99,4 @@
 2026-11-16-errors-with-the-action · complete · an acting call's answer carries the panic, error or handler log its step caused, by node and handler; scrub held · → chk:2026-11-16-errors-with-the-action
 2026-11-16-taffy-past-1372 · complete · Taffy past #1372 — upstream's reversed scroll origins and five Taffy bumps to git a3997d55, escher's bounds, hit and into-view readings held · → chk:2026-11-16-taffy-past-1372
 2026-11-16-error-text-in-the-answer · complete · Error text in the answer — caused carries each record's message, location and cause chain from every source, scrubbed by field name and bounded by measurement · → chk:2026-11-16-error-text-in-the-answer
+2026-11-16-error-field-in-the-answer · pending · a `caused` item's `error` field shows its text — the answer's own scrub set without `error`, the sink's lines unchanged · → chk:2026-11-16-error-field-in-the-answer

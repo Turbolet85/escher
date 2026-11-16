@@ -14,12 +14,20 @@
 //! crosses `serve_mcp` in process, the session socket (unix: a host child of this test binary)
 //! and a kept check that replays holding, a copy with a cut changed stopping at its step naming
 //! `caused`. Under escher's own sink at `trace` no sentinel, payload or raw `href` reaches a line.
+//! A field named `error` crosses as its author wrote it: a handler's failed parse logged with its
+//! error in `error` answers the parse's own text there, beside a `url` and a `path` read
+//! `[redacted]`, on every carrier; and in a build with the engine's `tracing`, a stylesheet whose
+//! fetch fails answers the engine's `Resource load failed` item with the fetch's error text in
+//! `error`, while the sink's line for that record prints `error=[redacted]` and `url=[redacted]`
+//! and no error text reaches a sink line.
 //! A failure message names a layout mode, a build and an index only.
 
 use std::fmt;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 
+use blitz_test_harness::{Harness, HarnessOptions};
+use blitz_traits::net::{NetHandler, NetProvider, Request};
 use dioxus::prelude::*;
 use dioxus_core::{CapturedError, ErrorContext};
 use dioxus_native_dom::{Boundary, MASKED_VALUE};
@@ -27,6 +35,7 @@ use escher_driver::{
     Call, Caused, CausedKind, CausedLevel, CausedPast, Outcome, Session, serve_mcp,
 };
 use escher_telemetry::{FIELDS_KEPT, REDACTED, Source};
+use seven_guis::stand;
 
 mod fixtures;
 mod session_common;
@@ -44,6 +53,15 @@ const UNWRAP_PAYLOAD: &str =
 const LOAD_ERROR: &str = "could not load the booking form";
 const SETTINGS_ERROR: &str = "invalid value for setting `seats`";
 const PARSE_ERROR: &str = "invalid digit found in string";
+const PARSE_WARN_MESSAGE: &str = "seats not read";
+const URL_SENTINEL: &str = "sentinel-url-field-8d1a";
+const PATH_SENTINEL: &str = "sentinel-path-field-5b2e";
+/// The fetch the engine page's click starts, and the error text the failing stand-in answers it
+/// with: a failed fetch's URL inside its error text.
+const FAILING_URL: &str = "http://fail.test/sheet.css";
+const FETCH_ERROR: &str = "connection refused: http://fail.test/sheet.css";
+const LOAD_FAILED_MESSAGE: &str = "Resource load failed";
+const ENGINE_DOC_TARGET: &str = "blitz_dom::document";
 const LINK_MESSAGE: &str = "Clicked link's href is not parseable as a url";
 const STYLE_MESSAGE: &str = "Invalid property value";
 const FLOOD_RECORDS: usize = 40;
@@ -118,6 +136,17 @@ fn unwrap_parse() {
 
 fn warn_booking() {
     tracing::warn!(seats = 4, password = PASSWORD_SENTINEL, "{WARN_MESSAGE}");
+}
+
+fn warn_parse() {
+    if let Err(error) = "4x".parse::<u32>() {
+        tracing::warn!(
+            error = %error,
+            url = URL_SENTINEL,
+            path = PATH_SENTINEL,
+            "{PARSE_WARN_MESSAGE}"
+        );
+    }
 }
 
 fn flood() {
@@ -202,12 +231,51 @@ fn real_failures() -> Element {
                 oninput: move |evt| tracing::info!(value = %evt.value(), "password typed"),
             }
             button { id: "flood", onclick: move |_| flood(), "Flood" }
+            button { id: "parse-warn", onclick: move |_| warn_parse(), "Parse" }
         }
     }
 }
 
 fn hold(incremental: bool) -> Session {
     fixtures::hold(LABEL, real_failures, incremental)
+}
+
+/// A button whose click links a stylesheet the failing stand-in will not fetch.
+fn failing_load_page() -> Element {
+    let mut linked = use_signal(|| false);
+    rsx! {
+        div { id: "fx-root",
+            button { id: "fx-load", onclick: move |_| linked.set(true), "Load" }
+            if linked() {
+                link { rel: "stylesheet", href: FAILING_URL }
+            }
+        }
+    }
+}
+
+/// A `NetProvider` that fails every request at once, its error text holding the request's URL.
+struct FailingNet;
+
+impl NetProvider for FailingNet {
+    fn fetch(&self, _doc_id: usize, request: Request, handler: Box<dyn NetHandler>) {
+        let url = request.url.to_string();
+        let error = format!("connection refused: {url}");
+        handler.error(url, error);
+    }
+}
+
+/// A session on the failing-load page, its loads fetched through [`FailingNet`].
+fn hold_failing(incremental: bool) -> Session {
+    Session::start(LABEL, || {
+        Harness::from_vdom(
+            VirtualDom::new(failing_load_page),
+            HarnessOptions {
+                net_provider: Some(Arc::new(FailingNet)),
+                ..stand::options(incremental)
+            },
+        )
+    })
+    .expect("the label is one of the closed set")
 }
 
 /// The `caused` and `caused_past` of an accepted acting answer, and its written line.
@@ -560,7 +628,95 @@ fn every_failure(session: &mut Session, mode: &str) -> Vec<String> {
     );
     lines.push(line);
 
+    // 8: a failed parse logged with its error in a field named error, beside a url and a path.
+    let at = format!("{mode} {build}: 8");
+    let (caused, _, line) = answered(session, &click("parse-warn"), &at);
+    the_parse_warn(&caused, &line, &at);
+    lines.push(line);
+
     lines
+}
+
+/// Asserts the parse warn's one item: its `error` field whole, its `url` and `path` hidden.
+#[track_caller]
+fn the_parse_warn(caused: &[Caused], line: &str, at: &str) {
+    assert!(caused.len() == 1, "{at}: one item");
+    let item = &caused[0];
+    assert!(
+        item.kind == CausedKind::Log
+            && item.level == CausedLevel::Warn
+            && item.source == Some(Source::App)
+            && item.target.as_deref() == Some(module_path!()),
+        "{at}: an app warn record under this crate's target"
+    );
+    tied_to(caused, "parse-warn", at);
+    assert!(
+        item.message.text == PARSE_WARN_MESSAGE,
+        "{at}: its message whole"
+    );
+    assert!(
+        field(item, "error") == Some(PARSE_ERROR),
+        "{at}: error whole"
+    );
+    assert!(field(item, "url") == Some(REDACTED), "{at}: url hidden");
+    assert!(field(item, "path") == Some(REDACTED), "{at}: path hidden");
+    assert!(
+        line.contains(
+            r#"{"name":"error","value":"invalid digit found in string"},{"name":"url","value":"[redacted]"},{"name":"path","value":"[redacted]"}"#
+        ),
+        "{at}: the fields written, error whole"
+    );
+    assert!(
+        !line.contains(URL_SENTINEL) && !line.contains(PATH_SENTINEL),
+        "{at}: the sentinels occur 0 times"
+    );
+}
+
+/// Clicks the failing-load page's button, asserting the click is accepted and settled, and
+/// returns what it caused and its written line.
+#[track_caller]
+fn failing_load(session: &mut Session, at: &str) -> (Vec<Caused>, String) {
+    let outcome = session
+        .run(&click("fx-load"))
+        .unwrap_or_else(|_| panic!("{at}: the click is accepted"));
+    let line = outcome.to_json();
+    match outcome {
+        Outcome::Acted {
+            settled, caused, ..
+        } => {
+            assert!(settled, "{at}: the failed load ends the step settled");
+            (caused, line)
+        }
+        _ => panic!("{at}: an acting answer"),
+    }
+}
+
+#[test]
+fn a_failed_fetch_answers_its_error_text_in_the_engines_error_field() {
+    for incremental in [false, true] {
+        let at = format!("{} {}: 0", mode_name(incremental), build_name());
+        let mut session = hold_failing(incremental);
+        let (caused, line) = failing_load(&mut session, &at);
+        if let Some(item) = the_engine_item(&caused, ENGINE_DOC_TARGET, LOAD_FAILED_MESSAGE, &at) {
+            assert!(
+                field(item, "error") == Some(FETCH_ERROR),
+                "{at}: error holds the fetch's text"
+            );
+            assert!(field(item, "url") == Some(REDACTED), "{at}: url hidden");
+            assert!(
+                field(item, "waiting_nodes") == Some("0"),
+                "{at}: waiting_nodes whole"
+            );
+            writes(&line, "message", LOAD_FAILED_MESSAGE, &at);
+            assert!(
+                line.contains(&format!(
+                    r#"{{"name":"error","value":{}}}"#,
+                    written(FETCH_ERROR)
+                )),
+                "{at}: the error field written whole"
+            );
+        }
+    }
 }
 
 #[test]
@@ -675,7 +831,7 @@ fn tool_call(id: usize, name: &str, arguments: &str) -> String {
     )
 }
 
-const CROSSING: [&str; 2] = ["idx", "warn-button"];
+const CROSSING: [&str; 3] = ["idx", "warn-button", "parse-warn"];
 
 #[test]
 fn the_same_caused_crosses_serve_mcp_in_process() {
@@ -778,7 +934,12 @@ fn a_kept_check_replays_its_caused_and_a_changed_cut_stops_naming_caused() {
     use escher_driver::Check;
     use session_common::state_dir;
 
-    let calls = [click("idx"), click("warn-button"), click("flood")];
+    let calls = [
+        click("idx"),
+        click("warn-button"),
+        click("parse-warn"),
+        click("flood"),
+    ];
     for incremental in [false, true] {
         let at = format!("{}: 0", mode_name(incremental));
         let dir = state_dir(&format!("aet-check-{}", mode_name(incremental)));
@@ -804,6 +965,10 @@ fn a_kept_check_replays_its_caused_and_a_changed_cut_stops_naming_caused() {
             text.contains(WARN_MESSAGE),
             "{at}: the kept answer holds the message"
         );
+        assert!(
+            text.contains(PARSE_ERROR),
+            "{at}: the kept answer holds the error field's text"
+        );
 
         let check = Check::from_bytes(&bytes).unwrap_or_else(|_| panic!("{at}: the check reads"));
         let replay = check.replay(&mut hold(incremental));
@@ -826,7 +991,7 @@ fn a_kept_check_replays_its_caused_and_a_changed_cut_stops_naming_caused() {
         let change = replay
             .change()
             .unwrap_or_else(|| panic!("{at}: the changed check stops"));
-        assert!(change.step() == 2, "{at}: it stops at the flood's step");
+        assert!(change.step() == 3, "{at}: it stops at the flood's step");
         assert!(change.keys() == ["caused"], "{at}: naming caused");
     }
 }
@@ -862,6 +1027,10 @@ fn no_sentinel_payload_or_raw_href_reaches_the_sinks_lines() {
         WARN_MESSAGE,
         "notacolour",
         "qqqqqqqq",
+        PARSE_ERROR,
+        URL_SENTINEL,
+        PATH_SENTINEL,
+        FETCH_ERROR,
     ];
     // The capture's dispatchers registered before the sink: with the sink alone registered,
     // another test thread reaching a call site first would cache it from its own default.
@@ -882,6 +1051,8 @@ fn no_sentinel_payload_or_raw_href_reaches_the_sinks_lines() {
             answered(&mut session, &click("flood"), &at);
             let mut root = hold(incremental);
             answered(&mut root, &click("root-err"), &format!("{mode}: root"));
+            let mut failing = hold_failing(incremental);
+            failing_load(&mut failing, &format!("{mode}: failing load"));
         });
         let written = lines
             .0
@@ -898,6 +1069,31 @@ fn no_sentinel_payload_or_raw_href_reaches_the_sinks_lines() {
             assert!(
                 written.matches(needle).count() == 0,
                 "{mode} {}: needle {index} occurs 0 times",
+                build_name()
+            );
+        }
+        let error_pair = format!("error={REDACTED}");
+        let engine_lines: Vec<&str> = written
+            .lines()
+            .filter(|line| {
+                line.contains(&format!(" {ENGINE_DOC_TARGET} ")) && line.contains(&error_pair)
+            })
+            .collect();
+        if blitz_dom::TRACING_COMPILED {
+            assert!(
+                engine_lines.len() == 1,
+                "{mode} {}: one engine line for the failed load",
+                build_name()
+            );
+            assert!(
+                engine_lines[0].contains(&format!("url={REDACTED}")),
+                "{mode} {}: its url redacted",
+                build_name()
+            );
+        } else {
+            assert!(
+                engine_lines.is_empty(),
+                "{mode} {}: no engine line in this build",
                 build_name()
             );
         }

@@ -1,0 +1,58 @@
+[[control]]
+id = 'answer-err-unit'
+entry = 1
+guard = 'error added back to the answer set ANSWER_HIDDEN_FIELDS in capture.rs'
+case = 'of_the_sinks_content_names_error_alone_keeps_its_text'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/capture.rs'
+old = '''
+    "panic.payload",
+    "password",
+];'''
+new = '''
+    "panic.payload",
+    "password",
+    "error",
+];'''
+
+[[control]]
+id = 'answer-err-stand'
+entry = 3
+guard = 'error added back to the answer set ANSWER_HIDDEN_FIELDS in capture.rs'
+case = 'each_failure_answers_what_failed_where_and_from_which_source'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/capture.rs'
+old = '''
+    "panic.payload",
+    "password",
+];'''
+new = '''
+    "panic.payload",
+    "password",
+    "error",
+];'''
+
+[[control]]
+id = 'sink-err'
+entry = 1
+guard = 'error removed from the sink set CONTENT_FIELDS in format.rs'
+case = 'content_fields_redact_for_any_target'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/format.rs'
+old = '''
+    "request",
+    "error",
+    "panic.payload",'''
+new = '''
+    "request",
+    "panic.payload",'''
+
+[[control]]
+id = 'capture-sink-set'
+entry = 4
+guard = 'the capture judging fields by the sink set CONTENT_FIELDS again in Values::keep'
+case = 'a_failed_fetch_answers_its_error_text_in_the_engines_error_field'
+[[control.edit]]
+path = 'packages/escher-telemetry/src/capture.rs'
+old = '''let value = if ANSWER_HIDDEN_FIELDS.contains(&name) {'''
+new = '''let value = if crate::format::CONTENT_FIELDS.contains(&name) {'''

@@ -191,12 +191,12 @@ const CAUSED: FieldSpec = FieldSpec {
            reached, left out where it reached none; on a bubbling dispatch an ancestor's reads \
            as the first handler's. Every text is cut at 1024 bytes, a cut one followed by cut, \
            the bytes cut. A field named url, href, src, html, text, value, attrs, path, \
-           request, error, panic.payload or password reads [redacted], the same for every \
-           source; every message crosses as its author wrote it, and holds what its author \
-           wrote into it. An engine record exists only in a build that compiled the engine's \
-           tracing, a `log` crate record is read only in a process whose telemetry bridged it, \
-           and an app that provides its own error boundary factory shadows the session's, so an \
-           error its boundaries take is not reported",
+           request, panic.payload or password reads [redacted], the same for every source; a \
+           field named error and every message cross as their author wrote them, and hold what \
+           their author wrote into them, such as a failed fetch's URL. An engine record exists \
+           only in a build that compiled the engine's tracing, a `log` crate record is read \
+           only in a process whose telemetry bridged it, and an app that provides its own error \
+           boundary factory shadows the session's, so an error its boundaries take is not reported",
 };
 
 const CAUSED_PAST: FieldSpec = FieldSpec {

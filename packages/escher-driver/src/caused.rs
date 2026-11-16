@@ -4,8 +4,9 @@
 //! `warn` and above — with its source, target, message, location and fields, each tied to the
 //! first handler the step's dispatches reached.
 //!
-//! The text is what escher-telemetry's capture kept: a field named in the sink's content set
-//! reads `[redacted]`, and each text is cut at [`escher_telemetry::TEXT_CUT`] bytes with the bytes cut said. An
+//! The text is what escher-telemetry's capture kept: a field named in the answer's own set, the
+//! sink's content set without `error`, reads `[redacted]`, a field named `error` crosses as its
+//! author wrote it, and each text is cut at [`escher_telemetry::TEXT_CUT`] bytes with the bytes cut said. An
 //! answer keeps at most [`CAUSED_KEPT`] items and counts the rest by kind and source.
 
 use dioxus_native_dom::{Boundary, BoundaryMark, DioxusDocument, ReachedHandler};
@@ -125,7 +126,8 @@ pub struct Caused {
     pub chain: Vec<Text>,
     /// The causes past [`CHAIN_KEPT`].
     pub chain_past: u32,
-    /// A log record's fields, a content-named one's value `[redacted]`.
+    /// A log record's fields, a content-named one's value `[redacted]` and one named `error`
+    /// kept as written.
     pub fields: Vec<KeptField>,
     /// A log record's fields past the bound.
     pub fields_past: u32,
