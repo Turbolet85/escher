@@ -1,0 +1,63 @@
+[
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "4b604245",
+"ts": "2026-11-16T09:51:06Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-16-errors-with-the-action",
+"--date",
+"2026-11-16",
+"--run-dir",
+".andromeda/runs/2026-11-16T08-47-42-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-16-errors-with-the-action carries no freight (already compact)",
+"dry-run · would flip 2026-11-16-errors-with-the-action pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "4b604245",
+"ts": "2026-11-16T09:51:10Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-16-errors-with-the-action",
+"--date",
+"2026-11-16",
+"--run-dir",
+".andromeda/runs/2026-11-16T08-47-42-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin listing NOT DERIVED -- 2026-11-16-errors-with-the-action carries no freight (already compact)",
+"flip 2026-11-16-errors-with-the-action pending -> complete · tx 1417",
+"compacted 0 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T04-48-25-2026-11-16-errors-with-the-action.ndjson",
+"./.andromeda/master-route.md"
+],
+"before": null,
+"after": null
+}
+]

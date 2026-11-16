@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-16 — Rustdoc runs only in the doc leg
+The `fast` leg runs no rustdoc, and a chunk's gate block holds a `doc` entry only if its plan writes one. So a broken intra-doc link passes every local gate and reads red only in CI's Documentation job, under `-D rustdoc::broken-intra-doc-links`, which `-D warnings` implies. One case: a link naming both a function and a module of the same name (`[`capture`]`). A change to a crate's doc comments or intra-doc links runs `bash .github/scripts/ci-leg.sh doc` before the push, and a plan that edits them lists that leg as a gate entry. To make such a link unambiguous, name the function as `[`capture()`]`.
+
+---
+
+## 2026-11-16 — Reproduce a CI red on the host before fixing it
+When a CI job reads red on a check that is green locally, first reproduce the red on the dev host by forcing the order or condition the job hit, in a temporary test that is removed afterwards. Then fix the cause where it lives, and prove the fix against the same forced reproduction. Never add a timing sleep or a retry. The reproduction also tests a proposed fix before it lands. On escher it showed that rebuilding tracing-core's interest cache at the recorder still read red: the `never` was cached after the rebuild. Registering the capture's dispatchers before the recorder read green.
+
+---
+
 ## 2026-11-14 — A libtest name filter is a substring match
 `cargo test -p {crate} -- {module}::tests` selects every test whose path CONTAINS that string, so a filter for `history::tests` also runs `browser_history::tests`. A gate entry that means one module either passes `--exact` with full test paths, or runs the whole crate and asserts the names it expects (`contains … ok` atoms), as the browser crate's unit entry does. A pass count read off a substring filter counts the neighbour module's tests too.
 

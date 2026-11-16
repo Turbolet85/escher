@@ -1,0 +1,220 @@
+[
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "4943775a",
+"ts": "2026-11-16T08:49:13Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-16T08-47-42-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-16T08-47-42-wrap",
+"--marker",
+"2026-11-16-errors-with-the-action"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 4c8ac67a (pre-pass — HEAD)",
+"caused · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"field-kinds · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"drv-tests · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"tel-tests · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"reached-tests · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"json-table · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"fw-targets · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"err-boundary · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"drv-edge · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a",
+"prov-f1 · control UNFIRED over the seven masters (bodies and sets) at 4c8ac67a"
+],
+"stderr": "control: caused, field-kinds, drv-tests, tel-tests, reached-tests, json-table, fw-targets, err-boundary, drv-edge, prov-f1 never fired over the seven masters' pre-pass text, bodies and sets (4c8ac67a) — no master holds them: re-fire with --pattern acting-fields --pattern targets --pattern explore-path --pattern dispatcher --pattern envfilter --pattern no-sink; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "4943775a",
+"ts": "2026-11-16T08:49:22Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-16T08-47-42-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-16T08-47-42-wrap",
+"--marker",
+"2026-11-16-errors-with-the-action",
+"--pattern",
+"acting-fields",
+"--pattern",
+"targets",
+"--pattern",
+"explore-path",
+"--pattern",
+"dispatcher",
+"--pattern",
+"envfilter",
+"--pattern",
+"no-sink"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 4c8ac67a (pre-pass — HEAD)",
+"architecture · 14 rows over 1 files · new 0 · standing 14 · 6 patterns",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"layout-templates · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 4 rows over 1 files · new 0 · standing 4 · 3 patterns",
+"obs-plan · 6 rows over 1 files · new 0 · standing 6 · 3 patterns",
+"a11y-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (6 patterns) · 65 rows over 22 files",
+"per class · new 0/0 · standing 29/6 · leaf 32/15 · curation 4/1 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-16T08-47-42-wrap/sweep-pre-pass-1.1.txt · 81 lines · 9444 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-16T08-47-42-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "4c8ac67abd669296ad6f24411904e1e29347c9e5",
+"how": "pre-pass — HEAD",
+"counts": {
+"acting-fields": {
+"new": 0,
+"standing": 9,
+"leaf": 9,
+"curation": 1,
+"base": 0
+},
+"targets": {
+"new": 0,
+"standing": 4,
+"leaf": 13,
+"curation": 0,
+"base": 0
+},
+"explore-path": {
+"new": 0,
+"standing": 3,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"dispatcher": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 1,
+"base": 0
+},
+"envfilter": {
+"new": 0,
+"standing": 4,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"no-sink": {
+"new": 0,
+"standing": 8,
+"leaf": 5,
+"curation": 2,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 14,
+"files": 1,
+"new": 0,
+"standing": 14,
+"patterns": 6
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 3
+},
+"obs-plan": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 3
+},
+"a11y-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+}
+},
+"per_master": {
+"acting-fields": {
+"architecture": 6,
+"layout-templates": 1,
+"test-plan": 1,
+"a11y-plan": 1
+},
+"targets": {
+"architecture": 1,
+"test-plan": 2,
+"a11y-plan": 1
+},
+"explore-path": {
+"architecture": 1,
+"test-plan": 1,
+"obs-plan": 1
+},
+"dispatcher": {
+"architecture": 1
+},
+"envfilter": {
+"architecture": 2,
+"obs-plan": 2
+},
+"no-sink": {
+"architecture": 3,
+"security-plan": 2,
+"obs-plan": 3
+}
+},
+"forms": {
+"acting-fields": [
+{
+"form": "5 acting verbs",
+"from": "five"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]
