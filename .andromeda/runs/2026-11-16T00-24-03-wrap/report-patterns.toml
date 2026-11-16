@@ -1,0 +1,27 @@
+[[pattern]]
+id = 'sel'
+regex = 'stand\W{1,10}all\b|run selections|selection word'
+
+[[pattern]]
+id = 'pkg'
+regex = '-p blitz-tests'
+
+[[pattern]]
+id = 'cases'
+regex = 'test_agent_run|\b14 (contract )?(tests|cases)\b'
+
+[[pattern]]
+id = 'ciscripts'
+regex = 'ci-scripts|\b112 tests\b'
+
+[[pattern]]
+id = 'smoke'
+regex = 'boot-path smoke|role = .smoke|role=smoke'
+
+[[pattern]]
+id = 'notpart'
+regex = 'five-command agent-run|not part of the five-command'
+
+[[pattern]]
+id = 'noproc'
+regex = 'agent-run-holds-no-process|holds no process'

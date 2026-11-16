@@ -1,0 +1,886 @@
+[
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:25:33Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-15-session-binary-smoke",
+"--section-file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-15-session-binary-smoke/report rev 2 · 10 new · 0 revised · 0 retired · 30 kept · tx 1253"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:25:33Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-15-session-binary-smoke",
+"--section-file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-15-session-binary-smoke/report rev 3 · 8 new · 0 revised · 0 retired · 40 kept · tx 1254"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:25:52Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cites-land-2026-11-15-session-binary-smoke.ndjson",
+"--base",
+"4263cec1f77b96da941db4e829cded1c91252633",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:25:56Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cites-land-2026-11-15-session-binary-smoke.ndjson",
+"--base",
+"4263cec1f77b96da941db4e829cded1c91252633",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 1256"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:27:35Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1498 · packs 15 · pack 100 · 372857 B",
+"security-plan: rows 550 · packs 6 · pack 100 · 156337 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29783 B",
+"test-plan: rows 605 · packs 7 · pack 100 · 166215 B",
+"obs-plan: rows 276 · packs 3 · pack 100 · 74070 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3425 row(s) · 38 pack(s) · 2 draw(s) a pack · pin 1256"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-16T00-24-03-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:34:24Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1498 · packs 15 · picked 2 (0 by every draw) · standing 0 · 57490 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 550 · packs 6 · picked 13 (9 by every draw) · standing 0 · 87139 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"layout-templates: rows 120 · packs 2 · picked 6 (4 by every draw) · standing 0 · 12274 B",
+"test-plan: rows 605 · packs 7 · picked 24 (14 by every draw) · standing 0 · 113072 B",
+"obs-plan: rows 276 · packs 3 · picked 8 (6 by every draw) · standing 0 · 31064 B",
+"a11y-plan: rows 240 · packs 3 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"rows-union: 7 master(s) · picked 53 of 3425 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-16T00-24-03-wrap/arch-rows.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/arch-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/security-rows.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/security-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/design-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/tests-rows.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/tests-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/obs-rows.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/obs-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/agent-run-run-selections/session · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/agent-run-session-reaches-seven-guis · rejected",
+"decision/agent-run-empty-run-never-passes · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-15-session-binary-smoke — Input Validation: 2 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/agent-run-selection-allowlist · rule: was «agent-run.sh exits 2 with usage before any cargo call on an unknown verb, a wrong argument count or a selection other than `stand`, `all` or an existing test-file stem matching `^[a-z0-9_]+$`.»; now «agent-run.sh exits 2 with usage before any cargo call on an unknown verb, a wrong argument count or a selection other than the fixed words `stand`, `all` or `session`, matched before the file-stem arm, or an existing test-file stem matching `^[a-z0-9_]+$`.»\n~ contract/agent-run-cli/2 · promise: was «A verb outside boot run status cleanup logs, a wrong argument count, or a selection other than stand, all or an existing test-file stem prints usage and exits 2 before any cargo call.»; now «A verb outside boot run status cleanup logs, a wrong argument count, or a selection other than stand, all, session or an existing test-file stem prints usage and exits 2 before any cargo call.»\n**Why:** decision/agent-run-selection-allowlist: The run verb takes a fourth closed selection word, `session`, matched before the file-stem arm, so the allowlist row must name it among the accepted selections.\ncontract/agent-run-cli/2: The run selections moved from stand, all or a file name to stand, all, session or a file name, so the exit-2 promise must name `session` as an accepted selection.\n**Ref:** .andromeda/runs/2026-11-16T00-24-03-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-15-session-binary-smoke — Surface: cli: 1 row(s)\n**Section:** Surface: cli\n**Change:** ~ contract/agent-run-cli/usage · promise: was «agent-run.sh <verb> [selection], run from the repository root, with verbs boot, run, status, cleanup, logs and run selections stand, all or a blitz-tests file name.»; now «agent-run.sh <verb> [selection], run from the repository root, with verbs boot, run, status, cleanup, logs and run selections stand, all, session or a blitz-tests file name; session is a closed word matched before a file name and runs the escher-session binary's flows in seven_guis.»\n**Why:** contract/agent-run-cli/usage: The run verb gained a fourth selection word, session, a closed word matched before the file arm and named in the usage line, so the usage row's list of selections must name it.\n**Ref:** .andromeda/runs/2026-11-16T00-24-03-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/session-smoke-through-agent-run · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-15-session-binary-smoke — 3. Test Harness Contract: 4 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** + contract/agent-run-selection/session — agent-run run selection · session\n~ contract/agent-run-verbs/run · promise: was «run {selection} runs cargo test -p blitz-tests --locked with merged output to run.log, truncated at the run's start, sets status.json's run state running then passed or failed, and parses libtest's pretty lines into events.»; now «run {selection} runs cargo test --locked, -p blitz-tests under stand, all and a file name and -p seven_guis --test cli_flow under session, merged output to run.log truncated at its start, sets status.json's run state running then passed or failed, and parses libtest's pretty lines into events.»\n~ decision/agent-run-holds-no-process · except: was «stand_session_lifecycle and stand_session_quiet start and stop a session host process and its Unix-domain socket, a surface of the session library, not of this contract»; now «stand_session_lifecycle, stand_session_quiet and the session selection's cli_flow flows start and stop a session host process and its socket, a surface of the session library, not of this contract»\n~ decision/test-data-is-code · rule: was «Nothing is seeded for the agent-run contract: the fixtures are code compiled into each target by `boot`, so `boot` is the bootstrap.»; now «Nothing is seeded for the agent-run contract: the fixtures are code compiled into their targets, by boot for the blitz-tests targets and by the run's own cargo call for the session selection's seven_guis target.»\n**Why:** contract/agent-run-selection/session: The run verb takes a fourth selection word, session, beside stand, all and a file name, and no selection row states it.\ncontract/agent-run-verbs/run: The run verb now reaches two packages, seven_guis under the session selection alone, so a promise of cargo test -p blitz-tests for every run is false.\ndecision/agent-run-holds-no-process: The session selection runs seven_guis' cli_flow flows, whose own session hosts the script neither starts nor holds, so the exception must name them beside the two stand checks.\ndecision/test-data-is-code: boot still builds blitz-tests alone while run session's cargo call builds seven_guis, so fixtures compiled into each target by boot is no longer true of every target.\n**Ref:** .andromeda/runs/2026-11-16T00-24-03-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/agent-run-events/run-end · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:30Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-15-session-binary-smoke — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ overview/session-lifecycle · text: was «The session checks drive one headless app instance held by one process, and a lifecycle another process drives, with the calls it sends, over a Unix-domain socket. The session is not part of the five-command agent-run contract, which starts and binds nothing.»; now «The session checks drive one headless app instance held by one process, and a lifecycle another process drives, with the calls it sends, over a Unix-domain socket. The session is no verb of the five-command agent-run contract, which itself starts and binds nothing; its run session selection runs the session binary's cli_flow flows as tests, their hosts started by the flows.»\n**Why:** overview/session-lifecycle: The plan's expected amendment restates «The session is not part of the five-command agent-run contract» now that run session runs the session binary's flows through the contract.\n**Ref:** .andromeda/runs/2026-11-16T00-24-03-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:34Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/agent-run-session-reaches-seven-guis · rejected",
+"decision/agent-run-empty-run-never-passes · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 1257 · 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:34Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1258 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:34Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/session-smoke-through-agent-run · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 1259 · 4 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:37:35Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-16T00-24-03-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1260 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+".andromeda/runs/2026-11-16T00-24-03-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:47Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 6 · 0 new · 1 revised · 0 retired · tx 1261"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:47Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 17 · 0 new · 1 revised · 0 retired · tx 1262"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:48Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 19 · 0 new · 1 revised · 0 retired · tx 1263"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:49Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 12 · 0 new · 1 revised · 0 retired · tx 1264"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:49Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 10 · 0 new · 2 revised · 0 retired · tx 1265"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:50Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 14 · 0 new · 2 revised · 0 retired · tx 1266"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:51Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 21 · 0 new · 1 revised · 0 retired · tx 1267"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:39:51Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 6 · 0 new · 3 revised · 0 retired · tx 1268"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:42:02Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap",
+"--marker",
+"2026-11-15-session-binary-smoke"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1272 · run-llsaonuo … run-llsaonuo"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-15T23-04-20-2026-11-15-session-binary-smoke.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.49",
+"sha8": "cbc4ff60",
+"ts": "2026-11-16T00:49:23Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-15-session-binary-smoke",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 6 file(s) of 2026-11-15-session-binary-smoke"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

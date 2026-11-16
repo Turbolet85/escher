@@ -1,2 +1,0 @@
-@none
-reason: The chunk moves the Taffy dependency from the registry to upstream's git pin and passes the node's id as the float id at the one place_floated_box call. It adds no UI element and no interactive surface, a11y n/a (fct-qhh4lzxt). It changes neither the a11y violation schema nor the obs log schema (fct-xe24uxkv). The a11y tallies did not move (fct-w2vkm3xa). The report leaves every a11y-plan row true, the picker-marked stale rows included, so no row is owed.

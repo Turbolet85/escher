@@ -1,1 +1,0 @@
---chunk=Session-binary smoke Take up «Session-binary smoke» ahead of «Taffy past #1372»: that entry waits for a word only the founder gives, and he is away. While he is away raise no dialog: a fork that is his goes to founder-forks.md and the step stops there; a technical fork comes to me.

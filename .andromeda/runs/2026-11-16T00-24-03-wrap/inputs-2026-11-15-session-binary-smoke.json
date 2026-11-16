@@ -1,0 +1,179 @@
+[
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "0150035c",
+"ts": "2026-11-16T00:24:21Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-15-session-binary-smoke",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, invocation of /andromeda-phase",
+"I1 cited scope.md:6 · research.md:11 · research.md:109 · plan.md:193 · report.md:45",
+"I2 n/a — a message has no live source · copy message · message: the operator, P4 question dialog",
+"I2 cited plan.md:16 · plan.md:194 · plan.md:209 · report.md:46",
+"inputs: 2 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "0150035c",
+"ts": "2026-11-16T00:24:27Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-15-session-binary-smoke",
+"--message-file",
+".andromeda/runs/2026-11-16T00-24-03-wrap/relay-1.md",
+"--origin",
+"the operator, invocation of /andromeda-wrap-session",
+"--kind",
+"relay",
+"--why",
+"the founder away: no dialog; his forks to founder-forks.md, the step stopping there; technical forks to the operator",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, invocation of /andromeda-wrap-session",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, invocation of /andromeda-wrap-session",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "9ade5aa0e1d2827130d9e0269e025ce86ccbfd267b6af08a741ce73e712285af",
+"copy": "I3-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-16T00:24:26Z",
+"step": "wrap",
+"why": "the founder away: no dialog; his forks to founder-forks.md, the step stopping there; technical forks to the operator"
+}
+},
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "0150035c",
+"ts": "2026-11-16T00:24:27Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-15-session-binary-smoke",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, invocation of /andromeda-phase",
+"I1 cited scope.md:6 · research.md:11 · research.md:109 · plan.md:193 · report.md:45",
+"I2 n/a — a message has no live source · copy message · message: the operator, P4 question dialog",
+"I2 cited plan.md:16 · plan.md:194 · plan.md:209 · report.md:46",
+"I3 n/a — a message has no live source · copy message · message: the operator, invocation of /andromeda-wrap-session",
+"I3 UNCITED",
+"inputs: 3 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 3,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 1,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "0150035c",
+"ts": "2026-11-16T00:25:34Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-15-session-binary-smoke",
+"--run-dir",
+".andromeda/runs/2026-11-16T00-24-03-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, invocation of /andromeda-phase",
+"I1 cited scope.md:6 · research.md:11 · research.md:109 · plan.md:193 · report.md:45",
+"I2 n/a — a message has no live source · copy message · message: the operator, P4 question dialog",
+"I2 cited plan.md:16 · plan.md:194 · plan.md:209 · report.md:46",
+"I3 n/a — a message has no live source · copy message · message: the operator, invocation of /andromeda-wrap-session",
+"I3 cited report.md:127 · report.md:141",
+"inputs: 3 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 3,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 3
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

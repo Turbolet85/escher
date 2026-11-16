@@ -38,7 +38,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 ## Running tests
 - **One file:** `cargo test -p blitz-tests --test {name}`
 - **One crate:** `cargo test -p {crate}`
-- **Agent-driven (stand checks · blitz-tests):** `bash scripts/agent-run.sh boot`, then `run stand` · `run all` · `run {name}` — JSON-line results, exit `0`/`1`/`2`/`3` (test-plan §3; `.claude/rules/verification-harness.md`)
+- **Agent-driven (stand checks · blitz-tests):** `bash scripts/agent-run.sh boot`, then `run stand` · `run all` · `run {name}`, or `run session` (`cargo test -p seven_guis --locked --test cli_flow`, the session binary's flows) — JSON-line results, exit `0`/`1`/`2`/`3` (test-plan §3; `.claude/rules/verification-harness.md`)
 - **Cold-agent pipe (one live model session — operator host only, never in CI):** `bash scripts/cold-agent.sh run stand` (after `cargo build --locked -p seven_guis --bin escher-session` — the pipe builds nothing; `run counter` a usage error) → `target/cold-agent/verdict.json`; its contract tests run in the `ci-scripts` leg under a `claude` shim and a fake `target/debug/escher-session` (`.github/scripts/test_cold_agent.py`)
 - **Whole workspace (CI leg):** `cargo test --workspace --locked` — or `bash .github/scripts/ci-leg.sh test`, exactly as CI runs it
 - **Before a push:** `bash .github/scripts/ci-leg.sh fast` (fmt → clippy → test → CI scripts → embolden, stopping at the first red); a paint change under the OS-gated `blitz-paint/font-embolden` has its local witness in `embolden`, `cargo test -p blitz-tests --locked --no-fail-fast --features blitz-paint/font-embolden --test select_popup_painted`, a leg with no CI job of its own, macOS exercising the feature there
