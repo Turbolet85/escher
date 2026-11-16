@@ -97,4 +97,4 @@
 2026-11-15-session-binary-smoke · complete · a boot-path smoke of escher-session the agent-run contract reaches, named as a plan's role=smoke entry · → chk:2026-11-15-session-binary-smoke
 2026-11-16-layout-explained · complete · Layout explained — why an element sits where it does at its size, from the style and layout chain (v030-11) · → chk:2026-11-16-layout-explained
 2026-11-16-errors-with-the-action · complete · an acting call's answer carries the panic, error or handler log its step caused, by node and handler; scrub held · → chk:2026-11-16-errors-with-the-action
-2026-11-16-taffy-past-1372 · pending · Taffy past #1372 — upstream's reversed scroll origins and five Taffy bumps to git a3997d55, escher's bounds, hit and into-view readings held · → chk:2026-11-16-taffy-past-1372
+2026-11-16-taffy-past-1372 · complete · Taffy past #1372 — upstream's reversed scroll origins and five Taffy bumps to git a3997d55, escher's bounds, hit and into-view readings held · → chk:2026-11-16-taffy-past-1372

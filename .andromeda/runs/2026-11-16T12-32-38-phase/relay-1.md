@@ -1,1 +1,0 @@
-Taffy past #1372 (chk-fxsp66ya). The take is already measured: read .andromeda/runs/2026-11-16T09-58-46-phase/measurement.md and take.patch in the same dir and do not re-measure; the trial worktree target/tmp/trial-taffy-1372 stands for it. That run dir is dead (its promotion was cancelled): start a new run dir, its first render with --fresh. Size the take at P5.

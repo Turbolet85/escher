@@ -1,0 +1,2 @@
+@none
+reason: The chunk bumps Taffy and takes upstream's reversed scroll origins, the CSSOM scroll size, the scroll_state triple and the clip stop's content-box hit frame (fct-w7kvqm7c, fct-vduzvhfi); it adds no interactive UI element, no a11y violation schema and no log site, span or field (fct-w7kvqm7c, fct-oi7xanpr, fct-v6saqvfr), the a11y leg reads 14 · 115 · 0 unmoved (fct-r6rg3azk), and no picked a11y-plan row is made false or incomplete by it, so D-a11y-surface and D-a11y-obs-schema find no drift and no row is owed.

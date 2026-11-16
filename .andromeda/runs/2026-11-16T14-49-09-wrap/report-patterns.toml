@@ -1,0 +1,35 @@
+[[pattern]]
+id = 'taffy-pin'
+regex = 'e90751fd|a3997d55|taffy[^\n]{0,30}\brev\b|engine-dependency-pins'
+ignore_case = true
+
+[[pattern]]
+id = 'test-tally'
+regex = '242 · 15[01]1|\b1501\b|\b1511\b'
+
+[[pattern]]
+id = 'ibso-target'
+regex = 'inline_box_scrollable_overflow'
+
+[[pattern]]
+id = 'agent-run-all'
+regex = '\b845 passed|\b851 passed|\b845\b|\b851\b'
+
+[[pattern]]
+id = 'deferred-bumps'
+regex = '#1372|deferred-upstream-dependency-bumps|Taffy past|later (Taffy )?bumps'
+ignore_case = true
+
+[[pattern]]
+id = 'reversed-origin'
+regex = 'reversed scroll origin|ScrollableOverflow|reversed origin|upstream-take-engine-changes'
+ignore_case = true
+
+[[pattern]]
+id = 'hit-clip-frame'
+regex = 'hit_inner|content_box_offset|hit-stops-at-paint-clip|content-box coordinates'
+ignore_case = true
+
+[[pattern]]
+id = 'scroll-state'
+regex = 'scroll_state|try_layout_data|contract/scroll-hit'
