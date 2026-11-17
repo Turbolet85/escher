@@ -295,14 +295,22 @@ mod tests {
         same_net_provider: bool,
         has_navigation_provider: bool,
         current_url: Option<String>,
+        abort: bool,
+        same_shell_provider: bool,
+        has_html_parser_provider: bool,
+        has_font_ctx: bool,
+        carries_the_abort: bool,
+        style_threading: StyleThreading,
     }
 
     fn config_app() -> Element {
         let probe = consume_context::<Rc<RefCell<Probe>>>();
-        let (page, target) = {
+        let (page, target, abort) = {
             let probe = probe.borrow();
-            (probe.page, probe.target)
+            (probe.page, probe.target, probe.abort)
         };
+        let shell = consume_context::<Arc<dyn ShellProvider>>();
+        let controller = abort.then(AbortController::default);
         let history = Store::new_maybe_sync(History::new(Request::get(
             Url::parse("https://initial.example/").expect("fixture initial parses"),
         )));
@@ -312,7 +320,9 @@ mod tests {
             Arc::clone(&net_provider),
             history,
             FontContext::default(),
-            None,
+            controller
+                .as_ref()
+                .map(|controller| controller.signal.clone()),
         );
 
         let mut probe = probe.borrow_mut();
@@ -321,6 +331,19 @@ mod tests {
             Arc::as_ptr(provider).cast::<()>() == Arc::as_ptr(&net_provider).cast::<()>()
         });
         probe.has_navigation_provider = config.navigation_provider.is_some();
+        probe.same_shell_provider = config.shell_provider.as_ref().is_some_and(|provider| {
+            Arc::as_ptr(provider).cast::<()>() == Arc::as_ptr(&shell).cast::<()>()
+        });
+        probe.has_html_parser_provider = config.html_parser_provider.is_some();
+        probe.has_font_ctx = config.font_ctx.is_some();
+        probe.style_threading = config.style_threading;
+        if let Some(controller) = controller {
+            controller.abort();
+            probe.carries_the_abort = config
+                .abort_signal
+                .as_ref()
+                .is_some_and(AbortSignal::aborted);
+        }
         if let Some(provider) = &config.navigation_provider {
             let target = Url::parse(target).expect("fixture target parses");
             provider.navigate_to(NavigationOptions::new(target, None, 0));
@@ -330,9 +353,14 @@ mod tests {
     }
 
     fn probe_config(page: &'static str, target: &'static str) -> Probe {
+        probe_config_with(page, target, false)
+    }
+
+    fn probe_config_with(page: &'static str, target: &'static str, abort: bool) -> Probe {
         let probe = Rc::new(RefCell::new(Probe {
             page,
             target,
+            abort,
             ..Probe::default()
         }));
         let shell: Arc<dyn ShellProvider> = Arc::new(NoShell);
@@ -385,6 +413,40 @@ mod tests {
             probe.current_url.as_deref(),
             Some("file:///tmp/other.html"),
             "current url"
+        );
+    }
+
+    #[test]
+    fn config_carries_the_root_shell_provider() {
+        let probe = probe_config("https://example.com/", "https://example.org/");
+        assert!(probe.same_shell_provider, "shell_provider");
+    }
+
+    #[test]
+    fn config_carries_an_html_parser_provider() {
+        let probe = probe_config("https://example.com/", "https://example.org/");
+        assert!(probe.has_html_parser_provider, "html_parser_provider");
+    }
+
+    #[test]
+    fn config_carries_the_font_context() {
+        let probe = probe_config("https://example.com/", "https://example.org/");
+        assert!(probe.has_font_ctx, "font_ctx");
+    }
+
+    #[test]
+    fn config_carries_the_passed_abort_signal() {
+        let probe = probe_config_with("https://example.com/", "https://example.org/", true);
+        assert!(probe.carries_the_abort, "abort_signal");
+    }
+
+    #[test]
+    fn config_runs_style_in_parallel() {
+        let probe = probe_config("https://example.com/", "https://example.org/");
+        assert_eq!(
+            probe.style_threading,
+            StyleThreading::Parallel,
+            "style_threading"
         );
     }
 }
