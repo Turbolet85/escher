@@ -1,0 +1,31 @@
+## After implement
+- **Report:** 2026-11-17T18-06-18-implement — the newest implement run of 2026-11-17-answer-writer-by-family (`rec.py runs --kind '*-implement' --file '*-2026-11-17-answer-writer-by-family.json'`, its one run line), its outcome `green`.
+- **Commits:** `20397bdde chore(2026-11-17-answer-writer-by-family): operator pre-CI commit, for the run this chunk's verdict reads`. The one commit since last_wrap besides it, `d875c3d22`, is the previous chunk's wrap commit and the base (`git log --format='%h %s' d875c3d22..HEAD` reads this one line).
+- **Operator pass:** run, by the operator's directive of 2026-11-17 (`{work_dir}/evidence/operator-pass.md`).
+  - Entry 13 (`gate.py hygiene`): green, `hygiene: clean — read 182 …`.
+  - The pre-CI commit `20397bdde`, then `ci-leg.sh fast` at that commit: exit 0.
+  - Entry 14 (push): exit 0, `d875c3d22..20397bdde  build/escher-0.3.0 -> build/escher-0.3.0`.
+  - Entry 15 (`ci.py conclusion --sha HEAD --wait 2700`): CI#44148794869 on `20397bddec64fb18eda68244c6faee4222b04dbc`. Attempt 1 red (`Test (ios)=cancelled`, no runner, `steps: []`). Attempt 2 red, the same way. Attempt 3 green, `verdict: green · checks 17/17`, `Test (ios)` success with 12 steps.
+  - Coverage report job (attempt 1, success): escher-driver 97.68 % (5477/5607), floor 97 %. The split files: `json.rs` 99.60 %, `json/layout.rs` 98.91 %, the other six children 100 %.
+  - The pass's end: green at attempt 3, no fix commit.
+- **Changes after implement:** none. The pass ran no fix commit, and the wrap directed no edit.
+- **Inputs:** `inputs.py verify` reads `inputs: absent — no external input snapshotted`. The wrap's invocation carries one rule for the leaves step, read in this wrap's conversation: a comparer whose output the apply refuses is re-spawned by `fanout.py render … --respawn {its name}`; a refused render stops the wrap; no hand edit of a leaf. It moves no fact above.
+- **Scope:** none. `gate.py scope` reads `clean — changed 9 · listed 9 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 187`.
+- **Sweep reach:** the trail is `.andromeda/runs/2026-11-17T19-37-35-wrap/cascade-2026-11-17-answer-writer-by-family-pre-pass.json`.
+  - `json-inline` (the `json.rs` inline test count, `json::tests`, `json_tests`): the first firing refused, `control UNFIRED over the seven masters (bodies and sets) at 20397bdd`. That refusal is the basis of its master zero: no master states the count. The leaf sites stand in the other two patterns' rows.
+  - `drv-test-split` (escher-driver's inline and `#[path]` test counts): standing 3, all architecture (`architecture.md:537` `dec-vgbxmrrg`, `:549` `dec-vgia6s6q`, `:1597` `dec-rlfpyplu`). Each is a true rule about a `#[path]` test child, sharing the token: 3 no-change. Leaf rows 10 (the cascade's): `escher-driver.md:60` and `tests-summary.md:24` stale, as implement's report names them. The others are true claims of other crates or rules.
+  - `json-writer` (the writer written by hand in `json.rs`): standing 3. `architecture.md:604` `dec-x7q2jlys` «Every driver answer is written by hand in a crate-private module …» still holds: `json` and its seven children are crate-private. `architecture.md:622` `dec-neyqa5ar` (a PNG's base64) and `a11y-plan.md:11` `dec-3z3w6342` (the capability statement) are other subjects sharing the token. So 3 no-change. Leaf rows 4: `escher-driver.md:12` true; `escher-driver.md:20` another subject; `escher-driver.md:60` and `tests-summary.md:24` stale, the same two lines.
+  - Expected amendments: the plan lists none to a master row. Its leaf re-counts are the cascade's: owner none of the masters.
+  - Sweep reach: 2 patterns · 3 moved facts, 3 with a pattern (the report's own count; `json-inline` is named by its refusal) · by line 0 lines · 0 offsets.
+- **Outcome, final:**
+  - supersedes «(ci) **Not yet read.** This is the operator pass's entry (`ci.py conclusion --sha HEAD --wait 2700`), together with the escher-driver coverage floor of 97 %.»: **Met.** CI#44148794869 reads green 17/17 on `20397bdde` at attempt 3, and escher-driver's coverage reads 97.68 % against its 97 % floor.
+  - supersedes «`python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene` — not run — leg operator»: green, by the pass record.
+  - supersedes «`git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.3.0` — not run — leg operator»: green, exit 0, by the pass record.
+  - supersedes «`python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2700` — not run — leg operator»: green at attempt 3 over two recorded reds the read no longer holds. `Test (ios)` was cancelled with no runner and no step in attempts 1 and 2 of CI#44148794869, and the job had no diagnostic line. These were recorded before each re-run (the pass record) and routed at P5.
+  - watches: none folded.
+  - The outcome basis: Setup 4's commit list (`20397bdde` alone), the final HEAD's CI run CI#44148794869 in `{work_dir}/evidence/operator-pass.md`, and implement's report for the rest.
+- **Decisions & corrections after implement:**
+  - The operator's directive (2026-11-17) for the pass: run each entry by hand in plan order; re-run a job that no runner took once with `gh run rerun --failed`; stop on any red. The evidence is `operator-pass.md` §header.
+  - The operator's second directive (2026-11-17), after the pass stopped at attempt 2: re-run the iOS job again, and allow one further re-run if it is again cancelled with no runner. A red on anything but a missing runner stops the pass. The evidence is `operator-pass.md` §«The operator's second directive».
+  - A recurrence: a CI job cancelled with no runner acquired. It happened in this chunk's run (`Test (ios)`, twice) and in the previous chunk's (macOS and iOS, attempt 1, handoff of 2026-11-17). Both were re-run, not fixed.
+- **Process hygiene, re-measured:** `gate.py census --comm escher-session --comm cargo --comm rustc --comm seven_guis_native` reads `census: none running`.

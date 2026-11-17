@@ -1,0 +1,11 @@
+[[pattern]]
+id = 'json-inline'
+regex = '''json\.rs`?\s{1,2}\d+\b|json::tests|json_tests'''
+
+[[pattern]]
+id = 'drv-test-split'
+regex = '''\b\d+ (tests )?inline\b|in (those )?(four|\d+) (`#\[path\]` )?(test )?files|#\[path\]'''
+
+[[pattern]]
+id = 'json-writer'
+regex = '''written by hand in|json\.rs'''

@@ -1,0 +1,122 @@
+[
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "363967fd",
+"ts": "2026-11-17T19:38:24Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-17T19-37-35-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-17T19-37-35-wrap",
+"--marker",
+"2026-11-17-answer-writer-by-family"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 20397bdd (pre-pass — HEAD)",
+"json-inline · control UNFIRED over the seven masters (bodies and sets) at 20397bdd"
+],
+"stderr": "control: json-inline never fired over the seven masters' pre-pass text, bodies and sets (20397bdd) — no master holds them: re-fire with --pattern drv-test-split --pattern json-writer; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "363967fd",
+"ts": "2026-11-17T19:38:30Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-17T19-37-35-wrap/report-patterns.toml",
+"--pattern",
+"drv-test-split",
+"--pattern",
+"json-writer",
+"--run-dir",
+".andromeda/runs/2026-11-17T19-37-35-wrap",
+"--marker",
+"2026-11-17-answer-writer-by-family"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 20397bdd (pre-pass — HEAD)",
+"architecture · 5 rows over 1 files · new 0 · standing 5 · 2 patterns",
+"a11y-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (2 patterns) · 21 rows over 8 files",
+"per class · new 0/0 · standing 6/2 · leaf 14/5 · curation 1/1 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-17T19-37-35-wrap/sweep-pre-pass-1.1.txt · 28 lines · 3154 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T19-37-35-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "20397bddec64fb18eda68244c6faee4222b04dbc",
+"how": "pre-pass — HEAD",
+"counts": {
+"drv-test-split": {
+"new": 0,
+"standing": 3,
+"leaf": 10,
+"curation": 1,
+"base": 0
+},
+"json-writer": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 2
+},
+"a11y-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"drv-test-split": {
+"architecture": 3
+},
+"json-writer": {
+"architecture": 2,
+"a11y-plan": 1
+}
+},
+"forms": {
+"drv-test-split": [
+{
+"form": "in (those )?(4|d+) (`#[path]` )?(test )?files",
+"from": "four"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]
