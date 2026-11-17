@@ -1,2 +1,0 @@
-@none
-reason: The chunk changed only which field names a caused item's answer hides (error now crosses as written) and caused's result-field help text inside the same help line; every picked design-system row (one JSON line per command, help and MCP tool results as that line, no colour or ESC byte) still holds, no new UI element was rendered (Coverage tokens n/a, fct-jlhi4rif), and the task brings no new fact for this master (fct-tylyvsk5, fct-vk5mjci2, fct-lcn6twlz).

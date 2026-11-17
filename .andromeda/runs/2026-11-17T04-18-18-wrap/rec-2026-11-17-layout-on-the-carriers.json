@@ -1,0 +1,1321 @@
+[
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:20:55Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-17-layout-on-the-carriers",
+"--section-file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-17-layout-on-the-carriers/report rev 2 · 10 new · 0 revised · 0 retired · 67 kept · tx 1637"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:20:55Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-17-layout-on-the-carriers",
+"--section-file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-17-layout-on-the-carriers/report rev 3 · 63 new · 0 revised · 0 retired · 77 kept · tx 1638"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:21:15Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cites-land-2026-11-17-layout-on-the-carriers.ndjson",
+"--base",
+"0d4b8843e4e0782a2a7aa1dc9f8aea11985000cd",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:21:20Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cites-land-2026-11-17-layout-on-the-carriers.ndjson",
+"--base",
+"0d4b8843e4e0782a2a7aa1dc9f8aea11985000cd",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 1640"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:23:39Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1521 · packs 16 · pack 100 · 380871 B",
+"security-plan: rows 553 · packs 6 · pack 100 · 158165 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29902 B",
+"test-plan: rows 616 · packs 7 · pack 100 · 170628 B",
+"obs-plan: rows 279 · packs 3 · pack 100 · 76332 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3465 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 1640"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T04-18-18-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:37:12Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1521 · packs 16 · picked 68 (33 by every draw) · standing 0 · 153603 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 553 · packs 6 · picked 64 (35 by every draw) · standing 0 · 110014 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 31 (18 by every draw) · standing 0 · 23978 B",
+"layout-templates: rows 120 · packs 2 · picked 10 (6 by every draw) · standing 0 · 26081 B",
+"test-plan: rows 616 · packs 7 · picked 61 (34 by every draw) · standing 0 · 122770 B",
+"obs-plan: rows 279 · packs 3 · picked 23 (19 by every draw) · standing 0 · 63003 B",
+"a11y-plan: rows 240 · packs 3 · picked 19 (9 by every draw) · standing 0 · 27846 B",
+"rows-union: 7 master(s) · picked 276 of 3465 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T04-18-18-wrap/arch-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/arch-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/security-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/security-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/design-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/design-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/tests-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/tests-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/obs-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/obs-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:43:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session/layout · rejected",
+"decision/cold-agent-pipe-fourteen-verbs · rejected",
+"fit: fits 19 · not_master 0 · stands 0",
+"## 2026-11-17-layout-on-the-carriers — Standard Contracts: 4 row(s) (1 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/verb-table/order · promise: was «The verb table holds fourteen verbs, `graph` listed after `lint` and `actions` after `graph`.»; now «The verb table holds fifteen verbs, `graph` listed after `lint`, `actions` after `graph` and `layout` after `actions`.»\n~ contract/driver-session/command-schema · promise: was «The command and refusal schema is stated once as 'static data: fourteen verbs, eight closed causes.»; now «The command and refusal schema is stated once as 'static data: fifteen verbs, eight closed causes.»\n~ contract/mcp-server/tools-list · promise: was «The fourteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.»; now «The fifteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.»\n~ contract/kept-check/kept-verbs · promise: was «Only calls of the ten instance verbs are kept, `lint`, `graph` and `actions` among them with their answers whole; any other call is not kept.»; now «Only calls of the eleven instance verbs are kept, `lint`, `graph`, `actions` and `layout` among them with their answers whole; any other call is not kept.»\n**Why:** contract/verb-table/order: The verb table gained `layout` after `actions`, fifteen verbs, so the row's count and order no longer hold.\ncontract/driver-session/command-schema: The schema now states fifteen verbs, the row holding that count.\ncontract/mcp-server/tools-list: The MCP listing now names fifteen tools, `layout` after `actions`, the row holding that count.\ncontract/kept-check/kept-verbs: `layout` joined the instance verbs, eleven now, and a kept check keeps its answer and replays it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Standard Contracts: 3 row(s) (2 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/kept-check-reader/strict-read · promise: was «A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the ten instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.»; now «A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the eleven instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.»\n~ contract/driver-explore/explored-verbs · promise: was «The verbs explored are the actions table's target verbs less any whose result holds an image-kind field, selected by the field's kind and never its name; today click, type and scroll.»; now «The verbs explored are the actions table's target verbs less any whose result holds an image or a layout reading field (png, rect, placement, shifts or size kind), selected by the field's kind and never its name; today click, type and scroll.»\n~ contract/actions-verb/target-verbs · promise: was «For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot`.»; now «For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout`, `layout` with no cause.»\n**Why:** contract/kept-check-reader/strict-read: The reader now admits the eleven instance verbs, `layout` among them, the row holding that count. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ncontract/driver-explore/explored-verbs: The explored-verbs rule now also leaves out a verb with a layout reading field, so `layout` is not explored.\ncontract/actions-verb/target-verbs: Every listed node now carries `layout` fifth with no cause, so the row's list of target verbs is incomplete.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Standard Contracts: 7 row(s) (3 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/driver-session/layout · promise: was «An in-process read answering a LayoutExplanation of String ids, closed words and numbers with no NodeId; it resolves its id as the run path does, refusing stale or not-found, records the screen's ids, runs no step, pump, tick or settle and opens no span.»; now «A read answering a LayoutExplanation of String ids, closed words and numbers with no NodeId, in process or by the layout verb inside its call's command span; it resolves its id as the run path does, refusing stale or not-found, runs no step, pump, tick or settle and opens no span of its own.»\n− decision/layout-read-in-process-only → decision/layout-answer-crossing: The `layout` verb now reaches the driver's layout read on the session socket, the command line, MCP and a kept check.\n+ decision/layout-answer-crossing — Layout answer crosses the carriers\n+ contract/driver-verbs/layout — driver verbs · layout\n+ contract/answer-json/layout — answer JSON · layout\n+ contract/answer-json/layout-placing — answer JSON · layout placing word\n+ contract/answer-json/layout-shift — answer JSON · layout shift word\n**Why:** contract/driver-session/layout: The read is now also reached by the `layout` verb through the run path, inside the call's command span, so «in-process read» no longer holds. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ndecision/layout-read-in-process-only: `Outcome::Layout` and its run arm make the in-process-only decision false, and the carriers' crossing replaces it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ndecision/layout-answer-crossing: The fifteenth verb carries the layout read on every ratified carrier, the heir of the retired in-process-only decision. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ncontract/driver-verbs/layout: The verb table gained `layout`, and the per-verb rows of driver verbs hold none for it.\ncontract/answer-json/layout: The layout answer's written form is a new answer shape every carrier writes, and answer JSON holds no row for it.\ncontract/answer-json/layout-placing: The layout answer writes a closed set of placing words, a contract at the answer's boundary.\ncontract/answer-json/layout-shift: The layout answer writes a closed set of shift words, a contract at the answer's boundary.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Standard Contracts: 4 row(s) (4 of 4)\n**Section:** Standard Contracts\n**Change:** + contract/answer-json/layout-size-cause — answer JSON · layout size cause word\n+ contract/answer-json/layout-length — answer JSON · layout length\n+ contract/answer-json/layout-fallback — answer JSON · layout fallback words\n+ contract/driver-session/layout-unexplained — escher-driver session · unexplained placer\n**Why:** contract/answer-json/layout-size-cause: The layout answer writes a closed set of size cause words, a contract at the answer's boundary.\ncontract/answer-json/layout-length: The layout answer writes a closed set of length forms, a contract at the answer's boundary.\ncontract/answer-json/layout-fallback: The engine's layout sets are non-exhaustive, and the answer promises a fallback word for each in place of a panic.\ncontract/driver-session/layout-unexplained: `Placer::Unexplained` replaced a block placer for such an element, a promise of the layout read no row states.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Established Decisions: 2 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/no-node-id-across-session · rule: was «Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, closed words, booleans and counts cross a driver session, never a `NodeId`.»; now «Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.»\n~ decision/select-list-crossing · rule: was «The select list crosses the ratified carriers only as a row's own bounds in the snapshot and the diff, differs naming bounds, and as pixels in a screenshot, with no new carrier, exit, cause, session error, node key, log field or span.»; now «The select list crosses the ratified carriers only as a row's own bounds in the snapshot and the diff, differs naming bounds, the placing words select and select-list in a layout answer, and as pixels in a screenshot, with no new carrier, exit, cause, session error, node key, log field or span.»\n**Why:** decision/no-node-id-across-session: The layout answer now crosses a session holding ids, closed words and numbers, which the row's list leaves out. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ndecision/select-list-crossing: The layout answer writes the placing words `select` and `select-list` on every carrier, so «only» in the row no longer holds. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"patterns: none: 11 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 20 operation(s) · 5 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:43:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/layout-answer-crossing · rejected",
+"decision/layout-answer-closed-words · rejected",
+"decision/cold-agent-verbs-without-layout · rejected",
+"fit: fits 8 · not_master 0 · stands 0",
+"## 2026-11-17-layout-on-the-carriers — Input Validation: 4 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/socket-carries-screen-reading · rule: was «An answer carries what the screen reads, ids, accessible names, control values with password and file input masked, snapshot text, diff, lint findings, UI graph, and an acting step's caused text scrubbed by the answer's own field names, error kept, never a NodeId or an attribute value as typed.»; now «An answer carries what the screen reads: ids, accessible names, control values, password and file input masked, snapshot text, diff, lint findings, UI graph, layout readings and an acting step's caused text scrubbed by its own field names, error kept, never a NodeId or an attribute value as typed.»\n~ decision/session-layout-read-in-process · rule: was «The session's layout read takes its id from Rust code alone, resolves it through the run path's id resolution refusing stale or not-found, runs no step, pump, tick or settle, and answers stable id strings, closed words and numbers, never a NodeId, text or value.»; now «The session's layout read, in process or through the layout verb on any ratified carrier, resolves its id through the run path's id resolution refusing stale or not-found, runs no step, pump, tick or settle, and answers stable id strings, closed words and numbers, never a NodeId, text or value.»\n~ contract/recorded-check/tool · promise: was «One of the ten instance verbs.»; now «One of the eleven instance verbs.»\n+ contract/driver-verbs/layout — Driver verbs · layout\n**Why:** decision/socket-carries-screen-reading: The layout answer now crosses the session socket as a fifteenth verb's answer, so the row's list of what an answer carries must name it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ndecision/session-layout-read-in-process: The read no longer takes its id from Rust code alone: the layout verb's run arm calls it with a carrier-supplied id, so the in-process-only statement is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ncontract/recorded-check/tool: The instance verbs moved from ten to eleven with layout, and the cell holds that count. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ncontract/driver-verbs/layout: A new instance verb with one validated id argument is a new external-input surface, and its promise stands beside the actions and graph verb rows.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Threat Model Summary: 2 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/select-list-crossing · rule: was «The select list crosses the ratified carriers only as a row's own bounds in the snapshot and the diff and as pixels in a shot; node state holds no field of it and no expanded node key stands.»; now «The select list crosses the ratified carriers only as a row's own bounds in the snapshot, the diff and a layout answer, as the layout answer's select-list placing word, and as pixels in a shot; node state holds no field of it and no expanded node key stands.»\n~ contract/actions-answer/verbs · promise: was «A list of entries each holding verb, a word of the verb table, and cause, a closed cause word.»; now «A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed node carries layout with no cause.»\n**Why:** decision/select-list-crossing: The layout answer's closed placing words include select-list, so a list row now also crosses as a layout reading and the row's only-list is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ncontract/actions-answer/verbs: Every actions node now lists the layout verb with no cause, so the promise that each entry holds a cause no longer holds.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Logging & Monitoring: 1 row(s)\n**Section:** Logging & Monitoring\n**Change:** ~ contract/command-span/verb · promise: was «Records the instance-level verb; a graph or actions call records the verb alone, plus cause when refused.»; now «Records the instance-level verb; a graph, actions or layout call records the verb alone, plus cause when refused.»\n**Why:** contract/command-span/verb: An accepted layout call's span records verb alone and a refused one verb and cause, so the list of non-acting verbs must name layout.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — Data Protection: 1 row(s)\n**Section:** Data Protection\n**Change:** + decision/kept-check-layout-answer — Kept check holds the layout answer\n**Why:** decision/kept-check-layout-answer: A kept check now holds layout steps at rest, and the data-protection rows name each answer a kept check holds as for graph and actions. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"patterns: none: 6 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 8 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:01Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session/layout · rejected",
+"decision/cold-agent-pipe-fourteen-verbs · rejected",
+"fit: fits 19 · not_master 0 · stands 0",
+"landed tx 1641 · 20 operation(s) · 5 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/layout-answer-crossing · rejected",
+"decision/layout-answer-closed-words · rejected",
+"decision/cold-agent-verbs-without-layout · rejected",
+"fit: fits 8 · not_master 0 · stands 0",
+"landed tx 1642 · 8 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/session-run/layout-unexplained · rejected",
+"contract/cli-layout/output · rejected",
+"contract/mcp-layout/parity · rejected",
+"fit: fits 11 · not_master 0 · stands 0",
+"## 2026-11-17-layout-on-the-carriers — 1. Test Scope Summary: 1 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** ~ contract/mcp-server/tools-list · promise: was «tools/list offers the fourteen verbs in order.»; now «tools/list offers the fifteen verbs in order, `layout` after `actions` and `help` last.»\n**Why:** contract/mcp-server/tools-list: The MCP tools listed moved from fourteen to fifteen with `layout` after `actions`, so the row's fourteen is false.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 3. Test Harness Contract: 3 row(s) (1 of 2)\n**Section:** 3. Test Harness Contract\n**Change:** ~ contract/escher-session-command-line/command-form · promise: was «`escher-session <verb> … --session <dir>` is the whole command line, fourteen verbs; the instance-level verbs take their arguments as flags spelt as the schema spells them (`--id`, `--text`, `--key`, `--ms` and `--part` each with one value, `--shift` bare).»; now «`escher-session <verb> … --session <dir>` is the whole command line, fifteen verbs; the instance-level verbs take their arguments as flags spelt as the schema spells them (`--id`, `--text`, `--key`, `--ms` and `--part` each with one value, `--shift` bare).»\n~ contract/escher-session-command-line/usage-line · promise: was «The usage line reads `snapshot [--part <part>]`, `start <app> [--record <dir>]`, `host role: serve <app> --session <dir> [--record <dir>]`, `mcp role: mcp [--record <dir>]` and `coverage role: coverage <app> <check>...`, listing `graph` after `lint` and `help` after `stop`.»; now «Usage reads `snapshot [--part <part>]`, `start <app> [--record <dir>]`, `host role: serve <app> --session <dir> [--record <dir>]`, `mcp role: mcp [--record <dir>]` and `coverage role: coverage <app> <check>...`, with `graph` after `lint`, `layout --id <id>` after `actions` and `help` after `stop`.»\n~ contract/driver-session/reading-verbs · promise: was «`snapshot`, `screenshot`, `lint` and `graph` run no step and wait on nothing.»; now «`snapshot`, `screenshot`, `lint`, `graph` and `layout` run no step and wait on nothing.»\n**Why:** contract/escher-session-command-line/command-form: The driver verbs moved from fourteen to fifteen with `layout`, so the command line's verb count in the row is false.\ncontract/escher-session-command-line/usage-line: The usage line gained `layout --id <id>` after `actions`, so the row's listing of the line is incomplete.\ncontract/driver-session/reading-verbs: The reading verbs gained `layout`, a verb that runs no step and changes nothing, so the row's set of reading verbs is incomplete.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 3. Test Harness Contract: 1 row(s) (2 of 2)\n**Section:** 3. Test Harness Contract\n**Change:** ~ decision/socket-carries-commands · rule: was «The session socket carries a call's element id and typed text in, and ids, accessible names, control values (a password's or file input's as the fixed mask), the snapshot's text, the diff, a step's caused with its error text, and lint findings out.»; now «The session socket carries a call's element id and typed text in, and ids, accessible names, control values (a password's or file input's as the fixed mask), the snapshot's text, the diff, a step's caused with its error text, lint findings and layout answers out.»\n**Why:** decision/socket-carries-commands: The layout answer now crosses the socket as the `layout` verb's answer, so the row's list of what the socket carries out is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 4. Unit Test Strategy: 1 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** ~ contract/driver-verbs/verb-table · promise: was «Fourteen verbs in a stated order at three levels — `instance`, `session`, `tool` — each with help, arguments and at least one result field.»; now «Fifteen verbs in a stated order at three levels — `instance`, `session`, `tool` — each with help, arguments and at least one result field.»\n**Why:** contract/driver-verbs/verb-table: The verb table now holds fifteen verbs with `layout` after `actions`, so the row's fourteen is false.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 5. Integration Test Strategy: 2 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ contract/session-layout/changes-nothing · promise: was «A layout read changes nothing: no change is pending, the snapshot, focus, diff and clock are unchanged, an open list stays open and delivered Timer ticks stay unapplied, in both layout modes.»; now «A layout read, in process or through the `layout` verb, changes nothing: no change is pending, the snapshot, focus, diff and clock are unchanged, an open list stays open and delivered Timer ticks stay unapplied, in both layout modes.»\n+ contract/session-run/layout-answer — escher_driver Session · layout verb answer\n**Why:** contract/session-layout/changes-nothing: The layout read is now reached by the `layout` verb through the call path, and its no-change promise holds over the verb too, so the row must name it.\ncontract/session-run/layout-answer: The chunk adds the `layout` verb read through the session's call path, a contract at the driver's boundary no row states.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 6. E2E Test Strategy: 1 row(s)\n**Section:** 6. E2E Test Strategy\n**Change:** ~ contract/mcp-tools-list/order · promise: was «`tools/list` offers the fourteen verbs in order, `graph` after `lint` and `actions` after `graph`.»; now «`tools/list` offers the fifteen verbs in order, `graph` after `lint`, `actions` after `graph`, `layout` after `actions` and `help` last.»\n**Why:** contract/mcp-tools-list/order: The MCP tools listed moved from fourteen to fifteen with `layout` after `actions`, so the row's fourteen is false.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** + decision/cold-agent-verbs-without-layout — Cold-agent pipe's verb list without layout\n**Why:** decision/cold-agent-verbs-without-layout: The driver gained a fifteenth verb while the cold-agent pipe stays at fourteen by a provisional choice no row states.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** + decision/count-and-rename-sweeps — Verb-count and test-rename sweeps\n**Why:** decision/count-and-rename-sweeps: The chunk met a missed numeric pin and a missed renamed witness, giving a convention for future count changes and renames no row states.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"patterns: none: 8 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 11 operation(s) · 8 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-layout/placed-by · rejected",
+"contract/escher-session-layout/shifts-by · rejected",
+"contract/escher-session-layout/size-by · rejected",
+"contract/escher-session-layout/length · rejected",
+"decision/layout-words-fall-back · rejected",
+"contract/escher-session-layout/unexplained · rejected",
+"contract/escher-session-layout/changes-nothing · rejected",
+"contract/escher-session-layout/carriers · rejected",
+"decision/explorer-verbs-by-field-kind · rejected",
+"decision/cold-agent-pipe-verbs-fourteen · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-17-layout-on-the-carriers — Surface: cli: 4 row(s)\n**Section:** Surface: cli\n**Change:** ~ contract/escher-session-command/form · promise: was «Every command is escher-session <verb> [arguments] --session <dir> over the fourteen verbs of the driver's verb table, --session exactly once on every command but help.»; now «Every command is escher-session <verb> [arguments] --session <dir> over the fifteen verbs of the driver's verb table, --session exactly once on every command but help.»\n~ contract/escher-session-mcp/tools · promise: was «Lists the fourteen verbs of the verb table as tools in order, help last, each description the verb's help then \". Returns: \" and its result fields.»; now «Lists the fifteen verbs of the verb table as tools in order, layout after actions and help last, each description the verb's help then \". Returns: \" and its result fields.»\n~ decision/no-caller-input-echoed · except: was «»; now «The layout answer's id field names the element the call's id named.»\n+ contract/escher-session-layout/answer — escher-session layout · answer\n**Why:** contract/escher-session-command/form: The verb table grew from fourteen to fifteen verbs with layout, so the command form's verb count must follow.\ncontract/escher-session-mcp/tools: The MCP tools listed moved from fourteen to fifteen with layout after actions, so the listing's promise must follow.\ndecision/no-caller-input-echoed: The layout answer always writes the id it was asked for as its first field, so the ban on writing back caller input now has this named exception. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\ncontract/escher-session-layout/answer: The chunk adds the fifteenth verb layout with this answer form, a new contract at the command line no row states.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 8 · not_master 0 · stands 0",
+"## 2026-11-17-layout-on-the-carriers — 4. Span / Trace Coverage: 1 row(s)\n**Section:** 4. Span / Trace Coverage\n**Change:** ~ decision/layout-read-opens-no-span · rule: was «The driver's in-process layout read opens no span and emits no event, runs outside the command span, and writes no escher_ line at TRACE.»; now «The driver's layout read opens no span and emits no event of its own: read in process it writes no escher_ line at TRACE, and reached by the layout verb it runs inside that call's command span.»\n**Why:** decision/layout-read-opens-no-span: The layout verb now reaches the read through the session's run, so the read no longer runs outside the command span, and the row must say it runs inside the layout call's span while opening none of its own.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 6. Log Coverage: 2 row(s)\n**Section:** 6. Log Coverage\n**Change:** ~ contract/command-span/verb · promise: was «The verb table's own word for a known verb, run or refused, one of its fourteen words; never the caller's verb text; unrecorded for a verb the table lacks; the three session-level words and the tool-level help appear only beside the cause unknown-verb.»; now «The verb table's own word for a known verb, run or refused, one of its fifteen words; never the caller's verb text; unrecorded for a verb the table lacks; the three session-level words and the tool-level help appear only beside the cause unknown-verb.»\n+ contract/command-span/layout — The driver's command span · layout\n**Why:** contract/command-span/verb: The verb table grew from fourteen to fifteen words with layout, so the count the promise states moved.\ncontract/command-span/layout: The new layout verb's command span records verb alone when accepted and verb and cause when refused, a per-verb line contract like those of graph, lint and actions.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 4. Span / Trace Coverage: 2 row(s)\n**Section:** 4. Span / Trace Coverage\n**Change:** ~ contract/tool-call-span/tool · promise: was «The verb table's word for the tool, one of its fourteen; unrecorded for an unknown tool.»; now «The verb table's word for the tool, one of its fifteen; unrecorded for an unknown tool.»\n~ contract/command-span/settled · promise: was «Recorded from an acting verb's outcome only; snapshot, screenshot, lint, graph, actions and a part read record verb alone, and a refusal records verb and cause alone.»; now «Recorded from an acting verb's outcome only; snapshot, screenshot, lint, graph, actions, layout and a part read record verb alone, and a refusal records verb and cause alone.»\n**Why:** contract/tool-call-span/tool: The MCP tools and the verb table grew from fourteen to fifteen with layout, so the count the promise states moved.\ncontract/command-span/settled: The layout outcome joins the non-acting outcomes whose command span records verb alone, so the promise's list of verb-alone reads must name it.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 3. Observability Harness Contract: 1 row(s)\n**Section:** 3. Observability Harness Contract\n**Change:** ~ decision/sink-host-read-at-trace · rule: was «A sink-installing host and its mcp role are read at trace under both builds, and must show no id, name or typed-sentinel needle in what they write.»; now «A sink-installing host and its mcp role are read at trace under both builds, and must show no id, name, typed-sentinel or layout-answer key needle in what they write.»\n**Why:** decision/sink-host-read-at-trace: The trace reads of the host and the mcp role now also hold the layout answer's keys out of the log, so the row's needle set is incomplete without them.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"## 2026-11-17-layout-on-the-carriers — 8. PII Scrubbing & Compliance: 2 row(s)\n**Section:** 8. PII Scrubbing & Compliance\n**Change:** + contract/layout-answer/content — the layout answer (layout) · content\n+ contract/layout-answer/logging — the layout answer (layout) · logging\n**Why:** contract/layout-answer/content: The new layout answer is a carrier of screen reading whose content class is a privacy contract, stated like the actions and graph answers' content rows.\ncontract/layout-answer/logging: The layout answer now crosses four carriers and rests in a kept check, and the rule that it is an answer and never a log or span value must stand as its own contract. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Глагол `layout --id` (Recommended)» (the card confirmed by the operator, 2026-11-17)\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"patterns: none: 5 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 8 operation(s) · 5 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/layout-line/content · rejected",
+"contract/layout-line/no-box · rejected",
+"contract/driver-verbs-and-virtual-clock/layout · rejected",
+"decision/cold-agent-pipe-leaves-out-layout · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-17-layout-on-the-carriers — Surface: desktop-native: 2 row(s)\n**Section:** Surface: desktop-native\n**Change:** + contract/escher-session-commands/layout-answer — escher-session commands · layout answer\n+ contract/escher-session-commands/layout-arguments — escher-session commands · layout arguments\n**Why:** contract/escher-session-commands/layout-answer: The chunk adds the layout command on every carrier with its one-line answer, and no row of escher-session commands states its shape.\ncontract/escher-session-commands/layout-arguments: The new layout command's argument contract stands beside those of actions and graph, and a missing id is refused malformed, not a usage ending.\n**Ref:** .andromeda/runs/2026-11-17T04-18-18-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/layout-verb-changes-nothing · rejected",
+"contract/layout-answer/fields · rejected",
+"contract/layout-answer/unexplained · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:08Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/session-run/layout-unexplained · rejected",
+"contract/cli-layout/output · rejected",
+"contract/mcp-layout/parity · rejected",
+"fit: fits 11 · not_master 0 · stands 0",
+"landed tx 1643 · 11 operation(s) · 8 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:08Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-layout/placed-by · rejected",
+"contract/escher-session-layout/shifts-by · rejected",
+"contract/escher-session-layout/size-by · rejected",
+"contract/escher-session-layout/length · rejected",
+"decision/layout-words-fall-back · rejected",
+"contract/escher-session-layout/unexplained · rejected",
+"contract/escher-session-layout/changes-nothing · rejected",
+"contract/escher-session-layout/carriers · rejected",
+"decision/explorer-verbs-by-field-kind · rejected",
+"decision/cold-agent-pipe-verbs-fourteen · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 1644 · 4 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:09Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 8 · not_master 0 · stands 0",
+"landed tx 1645 · 8 operation(s) · 5 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:44:09Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-17T04-18-18-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/layout-line/content · rejected",
+"contract/layout-line/no-box · rejected",
+"contract/driver-verbs-and-virtual-clock/layout · rejected",
+"decision/cold-agent-pipe-leaves-out-layout · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 1646 · 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+".andromeda/runs/2026-11-17T04-18-18-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:27Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 11 · 0 new · 1 revised · 0 retired · tx 1647"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:27Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-telemetry.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__services__escher-telemetry.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-telemetry.md rev 13 · 0 new · 3 revised · 0 retired · tx 1648"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/services/escher-telemetry.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:28Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 26 · 0 new · 4 revised · 0 retired · tx 1649"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:28Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 17 · 0 new · 12 revised · 0 retired · tx 1650"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:29Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 14 · 0 new · 3 revised · 0 retired · tx 1651"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:30Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 7 · 0 new · 1 revised · 0 retired · tx 1652"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:30Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 15 · 0 new · 2 revised · 0 retired · tx 1653"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:31Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 14 · 0 new · 2 revised · 0 retired · tx 1654"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:31Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 22 · 0 new · 4 revised · 0 retired · tx 1655"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:32Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 25 · 0 new · 2 revised · 0 retired · tx 1656"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:32Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 19 · 0 new · 3 revised · 0 retired · tx 1657"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:33Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 26 · 0 new · 1 revised · 0 retired · tx 1658"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:48:34Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 9 · 0 new · 1 revised · 0 retired · tx 1659"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:51:38Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 2 record(s) · 2 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:51:42Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2 record(s) · 2 edge(s) · tx 1663 · cry-z5mhsw7h … cry-npoxtx67"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:51:57Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/route-batch-2.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:51:57Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/route-batch-2.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1664 · cry-42wl4qtm … cry-42wl4qtm"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T04:52:14Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T04-18-18-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap",
+"--marker",
+"2026-11-17-layout-on-the-carriers"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1666 · run-tcxe4ppm … run-tcxe4ppm"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T01-42-41-2026-11-17-layout-on-the-carriers.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T05:16:30Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-17-layout-on-the-carriers",
+"--run-dir",
+".andromeda/runs/2026-11-17T04-18-18-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 8 file(s) of 2026-11-17-layout-on-the-carriers"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

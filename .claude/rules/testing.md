@@ -19,7 +19,7 @@ Path-scoped rules for test files. Source: `.andromeda/test-plan.md` §2 §4 §5 
 
 ## File and naming conventions
 - Each integration file opens with a `//!` doc naming the behaviour and any guarded bug; regression tests cite the upstream issue/PR URL and the real page that exposed it. `docs/capabilities.md` ends on `## Where each claim is proven`, naming the check behind each claim it makes — the stand checks among them — and only its names and counts are pinned, so a check renamed or moved changes that section by hand.
-- Descriptive snake_case test names; `#[track_caller]` on assertion helpers.
+- Descriptive snake_case test names; `#[track_caller]` on assertion helpers. A test rename sweeps the old name held as a string literal (a requirement's witness among them), and a change of the driver's verb count sweeps the tests and examples for pins of the verb table's length and of its indices.
 - Assert first that the fixture produces the condition under test, then the behaviour; a new check is controlled — a named mutation of what it guards turns it red, and the restored tree reads green again; a check never derives its expected value from the constant its mutation control changes, but pins the measured value as a literal; a control that removes a bound loosens it to twice the budget rather than removing it, so the mutated run stays bounded; a control of a read that must change nothing gives the read pending work that a pass would apply, so a read that ran a pass would be seen (a pump on a settled screen is invisible).
 
 ## Determinism

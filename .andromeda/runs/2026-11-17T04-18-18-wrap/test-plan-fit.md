@@ -1,0 +1,11 @@
+@fit n=1 row=contract/mcp-server/tools-list sha=9f0dfba935b3 v=fits type=3
+@fit n=2 row=contract/escher-session-command-line/command-form sha=468420ad7271 v=fits type=3
+@fit n=3 row=contract/escher-session-command-line/usage-line sha=ec5ddd6a60d2 v=fits type=3
+@fit n=4 row=contract/driver-session/reading-verbs sha=74ab4adc0849 v=fits type=3
+@fit n=5 row=contract/driver-verbs/verb-table sha=f58bb3c5da3b v=fits type=3
+@fit n=6 row=contract/session-layout/changes-nothing sha=3a292ab65fa6 v=fits type=3
+@fit n=7 row=contract/mcp-tools-list/order sha=e75599764a31 v=fits type=3
+@fit n=8 row=decision/socket-carries-commands sha=15600f2c4d16 v=fits type=1
+@fit n=9 row=contract/session-run/layout-answer sha=7e26e835a5d5 v=fits type=3
+@fit n=10 row=decision/cold-agent-verbs-without-layout sha=ad44a91c99b7 v=fits type=1
+@fit n=11 row=decision/count-and-rename-sweeps sha=63bbb3893202 v=fits type=1

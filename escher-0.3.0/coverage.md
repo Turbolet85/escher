@@ -1,15 +1,12 @@
 # Coverage — escher-0.3.0
 
-verified 14/17 · deferred 0 · planned 2 · implemented 1 · unclaimed 2
-
-## implemented (1)
-- v030-11 · Layout explained · 2026-11-17-layout-on-the-carriers
+verified 15/17 · deferred 0 · planned 2 · implemented 0 · unclaimed 2
 
 ## planned, unclaimed (2)
 - v030-12 · A component in isolation
 - v030-15 · Cold-agent bar
 
-## verified (14)
+## verified (15)
 - v030-01 · Codebase health · 2026-10-26-codebase-health
 - v030-02 · The version on the GitHub page · 2026-10-27-readme-and-records
 - v030-03 · Upstream sync · 2026-10-27-upstream-sync-engine-debts
@@ -20,6 +17,7 @@ verified 14/17 · deferred 0 · planned 2 · implemented 1 · unclaimed 2
 - v030-08 · Start in a state · 2026-11-14-start-in-a-state
 - v030-09 · Auto-exploration · 2026-11-14-auto-exploration
 - v030-10 · Errors with the action · 2026-11-16-errors-with-the-action
+- v030-11 · Layout explained · 2026-11-17-layout-on-the-carriers
 - v030-13 · Seeded randomness · 2026-11-14-seeded-randomness
 - v030-14 · Bundled fonts · 2026-11-14-bundled-fonts
 - v030-16 · Records kept true · 2026-10-27-readme-and-records

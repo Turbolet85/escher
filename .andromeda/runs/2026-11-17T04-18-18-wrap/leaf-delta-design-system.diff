@@ -1,0 +1,7 @@
+--- a/.andromeda/design-system.md
++++ b/.andromeda/design-system.md
+@@ -96,2 +96,4 @@
+ contract/escher-session-commands/help · escher-session commands · help — help answers the tool's self-description as one uncoloured line of JSON on stdout with no ESC byte, status 0, reaching no session.
++contract/escher-session-commands/layout-answer · escher-session commands · layout answer — layout --id answers one uncoloured line of JSON {id, bounds, laid_out, placed, shifts, width, height} on stdout, status 0, the same on the session socket's call, over the mcp role and in a kept check; bounds and laid_out read x, y, width, height, an optional key left out when absent.
++contract/escher-session-commands/layout-arguments · escher-session commands · layout arguments — layout takes one required --id; a missing id, an id past the id bound or a second argument is refused malformed, status 1.
+ contract/escher-session-commands/screenshot · escher-session commands · screenshot [--id] — screenshot answers one uncoloured line {"width":…,"height":…,"png":"<base64>"} on stdout with no ESC byte, status 0, the image as base64 text inside the line.

@@ -1,3 +1,0 @@
-The operator's directive at the take-up (the /andromeda-phase invocation, 2026-11-17), verbatim:
-
-Layout on the carriers (chk-2cgpkejy). The founder ruled its form: ~/dev/projects/additional/escher-overseer/relays/morning-answers-founder-2026-11-16.md item 3, the verb layout --id on every ratified carrier; snap it as an input and do not ask that fork again. It claims v030-11 and retires decision/layout-read-in-process-only. The founder is away tonight: a fork that is his goes to founder-forks.md with its most conservative option taken, no dialog for it. The row behind cry-2dk6n44y stays held, this chunk does not land it. List the doc leg in the gate block.
