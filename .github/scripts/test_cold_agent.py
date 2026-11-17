@@ -20,7 +20,7 @@ MARKER = "cold-agent-reply-marker"
 ARGUMENT_MARKER = "cold-agent-argument-marker"
 ANSWER_MARKER = "cold-agent-answer-marker"
 CHECK_MARKER = "cold-agent-check-marker"
-VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "start", "status", "stop", "help"]
+VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "layout", "start", "status", "stop", "help"]
 TOOLS = ["mcp__escher__" + verb for verb in VERBS]
 APPS = ("counter", "flight-booker", "timer", "crud", "cells", "load")
 STAND_IDS = ("counter-", "flight-", "timer-", "crud-", "cell-", "load-", "task-header", "id=")
@@ -82,7 +82,7 @@ LEFT = {"tool": "mcp__escher__press", "arguments": {"key": "arrowleft"}}
 STOP = {"tool": "mcp__escher__stop"}
 HELP = {"tool": "mcp__escher__help"}
 
-# The fake stands in for the built `escher-session`: its `mcp` role answers the fourteen tools, holds one app at a
+# The fake stands in for the built `escher-session`: its `mcp` role answers the fifteen tools, holds one app at a
 # time, answers a snapshot with the scenario's screen for that app indexed by its count of accepted acting calls — a
 # paged app's as the JSON line of the part asked, its lines cut into the scenario's count of parts — writes one
 # tool_call span line per tools/call on stderr when RUST_LOG=info, as escher's sink does, and under `--record <dir>`
@@ -143,6 +143,10 @@ def call(name, arguments):
         return "accepted", '{"nodes":[],"states":[]}'
     if name == "actions":
         return "accepted", '{"nodes":[]}'
+    if name == "layout":
+        return "accepted", ('{"id":"counter-value","bounds":[314,309,60,28],"laid_out":[314,309,60,28],'
+                            '"placed":{"by":"block","at":[0,0]},"shifts":[],'
+                            '"width":{"by":"content"},"height":{"by":"content"}}')
     if any(value in refuse for value in arguments.values()):
         return "refused", '{"refused":{"cause":"covered"}}'
     acts += 1
@@ -457,6 +461,24 @@ class ColdAgentPipeTest(unittest.TestCase):
                 verdict = self.assert_failed_with(self.run_scenario(flow(**shape), **knobs), ["capability-unused"])
                 self.assertEqual(verdict[field], 0)
                 self.assertEqual(verdict["tasks_met"], list(APPS))
+
+    def test_a_layout_read_is_an_uncounted_read_in_the_run_and_in_the_check(self):
+        calls = flow()
+        calls.insert(1, {"tool": "mcp__escher__layout", "arguments": {"id": "counter-value"}})
+        check = stand_check()
+        check.insert(1, {"tool": "layout", "arguments": {"id": "counter-value"}})
+        verdict = self.assert_passed(self.run_scenario(calls, check=check))
+        self.assertNotIn("layout_calls", verdict)
+        self.assertEqual(
+            [verdict[k] for k in ("tool_calls", "wrong_calls", "tasks_met", "check_steps", "check_passed",
+                                  "check_can_fail")],
+            [len(calls), 0, list(APPS), len(check), True, True],
+        )
+        self.assertIn("mcp__escher__layout", verdict["session_tools"])
+        short = flow(counter_clicks=2)
+        short.insert(1, {"tool": "mcp__escher__layout", "arguments": {"id": "counter-value"}})
+        verdict = self.assert_failed_with(self.run_scenario(short, check=check), ["task-unmet"])
+        self.assertEqual(verdict["tasks_met"], list(APPS[1:]))
 
     def test_a_start_that_left_no_kept_check_fails(self):
         for knobs, recorded in (({"no_record": True}, 0), ({"record_as": "counter"}, len(APPS))):

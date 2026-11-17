@@ -356,4 +356,17 @@ mod tests {
         assert_eq!(doc.boundary_marks(), before);
         assert_eq!(format!("{:?}", before[0]), "BoundaryMark(Own)");
     }
+
+    #[test]
+    fn a_document_built_after_the_first_build_reads_the_root_boundarys_error() {
+        fn app() -> Element {
+            Err(CapturedError::from_display("failed").into())
+        }
+        let mut vdom = VirtualDom::new(app);
+        vdom.rebuild_in_place();
+        let doc = DioxusDocument::new(vdom, DocumentConfig::default());
+        let marks = doc.boundary_marks();
+        assert_eq!(marks.len(), 1, "the root boundary read once");
+        assert_eq!(marks[0].read().boundary, Boundary::Root);
+    }
 }

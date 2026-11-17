@@ -29,3 +29,7 @@ color = { workspace = true }
 # Other dependencies
 keyboard-types = { workspace = true }
 smol_str = { workspace = true }
+
+[dev-dependencies]
+# The UI graph the constructor's own test reads is behind this feature.
+dioxus-native-dom = { workspace = true, features = ["accessibility"] }

@@ -1,3 +1,4 @@
+use std::rc::Rc;
 use std::sync::Arc;
 use std::time::Duration;
 
@@ -8,7 +9,10 @@ use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::events::UiEvent;
 use blitz_traits::net::NetProvider;
 use blitz_traits::shell::{ColorScheme, Viewport};
-use dioxus_core::{Element, ScopeId, VirtualDom};
+use dioxus_core::{
+    ComponentFunction, DynamicNode, Element, Properties, ScopeId, Template, TemplateNode,
+    VComponent, VNode, VirtualDom, use_hook,
+};
 use dioxus_native_dom::{DEFAULT_SEED, DioxusDocument, SeededRandom};
 
 use crate::settle::LoadCounter;
@@ -109,6 +113,21 @@ impl Harness<DioxusDocument> {
         Self::from_vdom(VirtualDom::new(app), HarnessOptions::default())
     }
 
+    /// Build a document holding `component` alone, rendered with the props `props` makes, with
+    /// `options`: the virtual DOM [`vdom_alone`] makes, built through [`from_vdom`](Self::from_vdom), so it reads
+    /// the harness's clock and the run seed; no other root context is provided.
+    pub fn from_component_alone<C, P, M: 'static>(
+        component: C,
+        props: impl Fn() -> P + 'static,
+        options: HarnessOptions,
+    ) -> Self
+    where
+        C: ComponentFunction<P, M> + Clone,
+        P: Properties + 'static,
+    {
+        Self::from_vdom(vdom_alone(component, props), options)
+    }
+
     /// Build a document from `vdom` with `options`.
     ///
     /// The document reads the harness's clock and one run seed: the [`SeededRandom`] the vdom's
@@ -132,6 +151,49 @@ impl Harness<DioxusDocument> {
         harness.pump();
         harness
     }
+}
+
+/// A virtual DOM holding `component` alone, rendered with the props `props` makes, not yet built.
+///
+/// The component is mounted as the one child of an anonymous root, named by its type path as
+/// `rsx!` names a child component, so its stable element ids and its UI graph name it as they do
+/// inside its app. `props` runs once, in the anonymous root's scope at its first render, so props
+/// that need a runtime to be made (an `EventHandler`, an `Element`) live as long as the document.
+/// A caller provides root contexts on it (`VirtualDom::with_root_context`) before handing it to
+/// [`Harness::from_vdom`].
+pub fn vdom_alone<C, P, M: 'static>(component: C, props: impl Fn() -> P + 'static) -> VirtualDom
+where
+    C: ComponentFunction<P, M> + Clone,
+    P: Properties + 'static,
+{
+    let child = move || props().into_vcomponent(component.clone());
+    VirtualDom::new_with_props(
+        alone_root,
+        AloneRoot {
+            child: Rc::new(child),
+        },
+    )
+}
+
+/// The anonymous root's props: what makes the one component it mounts.
+#[derive(Clone)]
+struct AloneRoot {
+    child: Rc<dyn Fn() -> VComponent>,
+}
+
+/// Renders exactly one dynamic node, the mounted component, as `rsx!` renders a lone child.
+fn alone_root(props: AloneRoot) -> Element {
+    let child = use_hook(|| (props.child)());
+    Ok(VNode::new(
+        None,
+        Template {
+            roots: &[TemplateNode::Dynamic { id: 0 }],
+            node_paths: &[&[0]],
+            attr_paths: &[],
+        },
+        Box::new([DynamicNode::Component(child)]),
+        Box::new([]),
+    ))
 }
 
 impl<D: Document> Harness<D> {
@@ -244,5 +306,69 @@ impl<D: Document> Harness<D> {
         ));
         drop(doc);
         self.pump();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use dioxus_core::VText;
+
+    /// A tiny component's props, built by hand: the text its one paragraph shows.
+    #[derive(Clone, PartialEq)]
+    struct Label(&'static str);
+
+    impl Properties for Label {
+        type Builder = ();
+        fn builder() -> Self::Builder {}
+        fn memoize(&mut self, other: &Self) -> bool {
+            self == other
+        }
+    }
+
+    #[allow(non_snake_case)]
+    fn Tiny(props: Label) -> Element {
+        Ok(VNode::new(
+            None,
+            Template {
+                roots: &[TemplateNode::Element {
+                    tag: "p",
+                    namespace: None,
+                    attrs: &[],
+                    children: &[TemplateNode::Dynamic { id: 0 }],
+                }],
+                node_paths: &[&[0, 0]],
+                attr_paths: &[],
+            },
+            Box::new([DynamicNode::Text(VText::new(props.0))]),
+            Box::new([]),
+        ))
+    }
+
+    #[test]
+    fn a_component_alone_reads_its_props_and_its_name() {
+        let harness =
+            Harness::from_component_alone(Tiny, || Label("given"), HarnessOptions::default());
+        assert!(
+            harness.text_content("p") == "given",
+            "the paragraph shows the given props"
+        );
+        let paragraph = harness.query("p").expect("the paragraph is mounted");
+        let id = harness
+            .doc
+            .element_id(paragraph)
+            .expect("the paragraph has an id");
+        assert!(
+            id.starts_with("Tiny/"),
+            "the unkeyed id opens with the name"
+        );
+        let graph = harness.doc.graph();
+        assert!(
+            graph
+                .nodes
+                .iter()
+                .any(|node| node.id == id && node.component.as_deref() == Some("Tiny")),
+            "the graph names the component"
+        );
     }
 }

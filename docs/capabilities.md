@@ -201,6 +201,14 @@ no `screenshot` step and replay holding.
 
 Witnesses: `stand_explore`, escher-driver's explore and recording tests.
 
+### A component alone
+
+One component renders alone with the props its caller gives, in process only and on no carrier, through
+`Harness::from_component_alone` or the stand's `seven_guis::stand::boot_alone` at the stand's viewport, font and
+seed, and its reading matches the same component's reading inside its app.
+
+Witnesses: `stand_component_alone`, blitz-test-harness's constructor test.
+
 ### Why an element sits where it does
 
 `layout --id <id>` answers why that element sits where it does at its size, on every carrier — the session socket,

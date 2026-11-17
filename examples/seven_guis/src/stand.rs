@@ -8,9 +8,10 @@ use std::sync::Arc;
 use std::thread;
 use std::time::Duration;
 
-use blitz_test_harness::{Harness, HarnessOptions};
+use blitz_test_harness::{Harness, HarnessOptions, vdom_alone};
 use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use blitz_traits::shell::ColorScheme;
+use dioxus_native::prelude::dioxus_core::{ComponentFunction, Properties};
 use dioxus_native::prelude::*;
 use dioxus_native::{DioxusDocument, FontContext, build_single_font_ctx};
 use escher_driver::{Fixture, FixtureStep, ReachError, Session, SessionError};
@@ -177,6 +178,22 @@ struct StandRoot {
 fn stand_root(props: StandRoot) -> Element {
     use_hook(|| provide_context(props.ticks.clone()));
     task_in_shell(props.task.task(), EventHandler::new(|_| {}))
+}
+
+/// Boot `component` alone, rendered with the props `props` makes, in a fresh document at
+/// `options`, with no shell, task or markup around it. Its root provides what the stand's root provides, a
+/// [`TimerTicks`] nobody drives, so a task reads its contexts as it does on the stand.
+pub fn boot_alone<C, P, M: 'static>(
+    component: C,
+    props: impl Fn() -> P + 'static,
+    options: HarnessOptions,
+) -> Harness<DioxusDocument>
+where
+    C: ComponentFunction<P, M> + Clone,
+    P: Properties + 'static,
+{
+    let vdom = vdom_alone(component, props).with_root_context(TimerTicks::default());
+    Harness::from_vdom(vdom, options)
 }
 
 /// Boot Cells in a fresh document. Cells is no [`LeanTask`]: its screen passes the snapshot

@@ -101,3 +101,4 @@
 2026-11-16-error-text-in-the-answer · complete · Error text in the answer — caused carries each record's message, location and cause chain from every source, scrubbed by field name and bounded by measurement · → chk:2026-11-16-error-text-in-the-answer
 2026-11-16-error-field-in-the-answer · complete · a `caused` item's `error` field shows its text — the answer's own scrub set without `error`, the sink's lines unchanged · → chk:2026-11-16-error-field-in-the-answer
 2026-11-17-layout-on-the-carriers · complete · the fifteenth verb `layout --id` on every ratified carrier, stable ids, closed words and numbers out, changing nothing · → chk:2026-11-17-layout-on-the-carriers
+2026-11-17-a-component-in-isolation · pending · A component in isolation — one component rendered alone with given props at the stand's viewport and font, read as inside its app; `layout` joins the cold-agent pipe · → chk:2026-11-17-a-component-in-isolation
