@@ -34,3 +34,6 @@
 - `host-linux.md` is 9 template lines behind (U04 `noted`). Regenerating it is the operator's word.
 - `target/tmp/trial-pas` and `target/tmp/escher-session.head` are left for the operator to remove. `target/` was last read at 690 GB, and a clean is due.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-17 19:06:13

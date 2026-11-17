@@ -1,0 +1,2 @@
+old: - `CI d875c3d22: verdict not yet available`. It is the last wrap's chunk commit; its verdict is unread, never folded as green, and is re-read at P3 and before this chunk's push.
+new: - `CI d875c3d22: verdict not yet available` at Setup. It is the last wrap's chunk commit. [premise-corrected at P5: re-read (`ci.py conclusion`, trail `ci-2026-11-17-answer-writer-by-family.json`): green, checks 17/17, wall 2037 s, CI#44135719268 completed/success]
