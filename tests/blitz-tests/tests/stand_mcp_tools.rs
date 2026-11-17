@@ -24,6 +24,10 @@
 //! block, the line of the graph `DioxusDocument::graph` reads on a session booted the same way,
 //! and its `tool_call` span holds `graph` and parents one command that records `verb` alone; an
 //! `actions` tool result is the same, the line of the nodes `Session::actions` reads. A
+//! `layout` tool result on each lean task is one text block, the line `Session::run` writes for
+//! the same id on a session booted the same way; one with no id is refused malformed and one
+//! naming no element not-found, and the accepted call's `tool_call` parents one command that
+//! records `verb` alone, the not-found one's `verb` and `cause`. A
 //! `help`
 //! tool call is answered by the server, with or without a held session: its text is the tool's
 //! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
@@ -42,7 +46,7 @@ use tracing::{Event, Metadata, Subscriber};
 
 mod fixtures;
 mod session_common;
-use session_common::{click, hold, screenshot, shot, slug, snapshot};
+use session_common::{click, hold, layout, screenshot, shot, slug, snapshot};
 
 /// The lean tasks, as the binary hands them to the server.
 const TASKS: [LeanTask; 4] = [
@@ -789,6 +793,116 @@ fn an_actions_tool_call_answers_the_readers_nodes_and_parents_a_command_recordin
             Outcome::Actions { nodes }.to_json()
         },
     );
+}
+
+#[test]
+fn a_layout_tool_call_answers_the_runs_line_and_parents_a_command_recording_its_verb_alone() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        for (row, task) in TASKS.into_iter().enumerate() {
+            let (mut direct, _ticks) = hold(task, incremental);
+            let id = direct
+                .harness()
+                .doc
+                .snapshot()
+                .nodes()
+                .map(|node| node.id.clone())
+                .find(|id| id.contains('-') && !id.contains(['"', '\\']))
+                .unwrap_or_else(|| panic!("{mode}: task {row}: a node with a plain author key"));
+            let expected = direct
+                .run(&layout(&id))
+                .map(|outcome| outcome.to_json())
+                .unwrap_or_else(|_| panic!("{mode}: task {row}: the run answers"));
+
+            let start = format!(r#"{{"app":"{}"}}"#, slug(task));
+            let requests = [
+                tool_call(1, "start", &start),
+                tool_call(2, "layout", &format!(r#"{{"id":"{id}"}}"#)),
+                tool_call(3, "layout", "{}"),
+                tool_call(4, "layout", &format!(r#"{{"id":"{NOBODY}"}}"#)),
+                tool_call(5, "stop", "{}"),
+            ];
+            let recorder = Recorder::default();
+            let replies = tracing::subscriber::with_default(recorder.clone(), || {
+                serve(&requests, incremental)
+            });
+            assert_eq!(replies.len(), 5, "{mode}: task {row}: one reply per call");
+            assert!(
+                result(&replies[1]) == (false, expected),
+                "{mode}: task {row}: the text block is the line the run writes"
+            );
+            let (is_error, text) = result(&replies[2]);
+            assert!(
+                is_error && remedied(&text) == Some(Cause::Malformed),
+                "{mode}: task {row}: a layout with no id is refused malformed"
+            );
+            let (is_error, text) = result(&replies[3]);
+            assert!(
+                is_error && remedied(&text) == Some(Cause::NotFound),
+                "{mode}: task {row}: a layout naming no element is refused not-found"
+            );
+
+            let recorded = recorder.0.lock().unwrap();
+            let calls: Vec<usize> = recorded
+                .spans
+                .iter()
+                .enumerate()
+                .filter(|(_, seen)| {
+                    seen.name == "tool_call"
+                        && seen
+                            .fields
+                            .iter()
+                            .any(|(field, value)| *field == "tool" && value == "layout")
+                })
+                .map(|(at, _)| at)
+                .collect();
+            assert_eq!(
+                calls.len(),
+                3,
+                "{mode}: task {row}: one tool_call per layout"
+            );
+            let ending = |at: usize| {
+                recorded.spans[at]
+                    .fields
+                    .iter()
+                    .find(|(field, _)| *field == "ending")
+                    .map(|(_, value)| value.clone())
+            };
+            assert!(
+                ending(calls[0]).as_deref() == Some("accepted")
+                    && ending(calls[2]).as_deref() == Some("refused"),
+                "{mode}: task {row}: the endings read accepted and refused"
+            );
+            let children = |at: usize| -> Vec<&Seen> {
+                recorded
+                    .spans
+                    .iter()
+                    .filter(|seen| seen.name == "command" && seen.parent == Some(at))
+                    .collect()
+            };
+            let accepted = children(calls[0]);
+            assert!(
+                accepted.len() == 1
+                    && !accepted[0].fields.is_empty()
+                    && accepted[0]
+                        .fields
+                        .iter()
+                        .all(|(field, value)| *field == "verb" && value == "layout"),
+                "{mode}: task {row}: the accepted layout's command records its verb alone"
+            );
+            let not_found = children(calls[2]);
+            let mut fields: Vec<(&str, &str)> = not_found
+                .iter()
+                .flat_map(|seen| seen.fields.iter())
+                .map(|(field, value)| (*field, value.as_str()))
+                .collect();
+            fields.sort_unstable();
+            assert!(
+                not_found.len() == 1 && fields == [("cause", "not-found"), ("verb", "layout")],
+                "{mode}: task {row}: the refused layout's command records its verb and cause"
+            );
+        }
+    }
 }
 
 /// On each lean task in both layout modes, a tool call of `verb`, a read that takes no

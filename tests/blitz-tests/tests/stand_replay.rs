@@ -12,7 +12,10 @@
 //! it was and does not hold. *A kept `actions` step replays*: a Counter session recorded in
 //! process with an `actions` step before and after a click holds on a fresh Counter, all four
 //! steps run, and a copy whose last `actions` answer reads one node's `keyed` flipped stops at
-//! that step, naming `nodes`. A failure message names the layout mode, the check's file and a
+//! that step, naming `nodes`. *A kept `layout` step replays* the same way: a `layout` of the
+//! Counter's button before and after a click holds on a fresh Counter, and a copy whose last
+//! `layout` answer reads another placing word stops at that step, naming `placed`. A failure
+//! message names the layout mode, the check's file and a
 //! step index, never an id, a name or a reading.
 
 use dioxus::prelude::*;
@@ -324,6 +327,77 @@ fn a_kept_actions_step_replays_and_a_changed_one_stops_naming_nodes() {
         assert!(
             change.keys() == ["nodes"],
             "{mode}: step 3 differs in its nodes"
+        );
+    }
+}
+
+/// A Counter session recorded in process, with a `layout` step of its button before and after
+/// a click, read back and replayed on a fresh Counter; then the same bytes with the last
+/// `layout` answer's placing word changed.
+#[cfg(unix)]
+#[test]
+fn a_kept_layout_step_replays_and_a_changed_one_stops_naming_placed() {
+    use session_common::{click, layout, snapshot, state_dir};
+
+    const PLACED: &str = r#""placed":{"by":""#;
+    for incremental in [false, true] {
+        let mode = mode_name(incremental);
+        let dir = state_dir(&format!("replay-layout-{mode}"));
+        let _ = std::fs::remove_dir_all(&dir);
+        {
+            let (session, _ticks) = hold(LeanTask::Counter, incremental);
+            let mut session = session.recording_into(&dir).expect("the recording starts");
+            for call in [snapshot(), layout(BUTTON), click(BUTTON), layout(BUTTON)] {
+                assert!(session.run(&call).is_ok(), "{mode}: each step is accepted");
+            }
+            assert!(!session.recording_failed(), "{mode}: the recording stands");
+        }
+        let bytes = std::fs::read(dir.join("check-1.json")).expect("the check is kept");
+        let _ = std::fs::remove_dir_all(&dir);
+
+        let check = Check::from_bytes(&bytes).expect("the kept check reads");
+        let verbs: Vec<&str> = check
+            .steps()
+            .iter()
+            .map(|step| step.call().verb.as_str())
+            .collect();
+        assert!(
+            verbs == ["snapshot", "layout", "click", "layout"],
+            "{mode}: the four steps are kept"
+        );
+        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
+        let replay = check.replay(&mut session);
+        assert!(replay.holds(), "{mode}: the replay holds");
+        assert!(replay.ran() == 4, "{mode}: all four steps ran");
+
+        let text = std::str::from_utf8(&bytes).expect("a check is text");
+        let last = text.rfind(r#""tool":"layout""#).expect("a layout step");
+        let word_at = last
+            + text[last..]
+                .find(PLACED)
+                .expect("the last layout answer reads its placing word")
+            + PLACED.len();
+        let word_end = word_at + text[word_at..].find('"').expect("the word ends");
+        let other = if &text[word_at..word_end] == "grid" {
+            "table"
+        } else {
+            "grid"
+        };
+        let changed = format!("{}{other}{}", &text[..word_at], &text[word_end..]);
+        let check = Check::from_bytes(changed.as_bytes()).expect("the changed check reads");
+        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
+        let replay = check.replay(&mut session);
+        assert!(!replay.holds(), "{mode}: the changed check does not hold");
+        let change = replay.change().expect("a step changed");
+        assert!(change.step() == 3, "{mode}: it stops at step 3");
+        assert!(replay.ran() == 4, "{mode}: every step before step 3 held");
+        assert!(
+            change.accepted_then() && change.accepted_now(),
+            "{mode}: step 3 accepted then and now"
+        );
+        assert!(
+            change.keys() == ["placed"],
+            "{mode}: step 3 differs in its placement"
         );
     }
 }

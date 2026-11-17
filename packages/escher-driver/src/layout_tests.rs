@@ -113,6 +113,8 @@ fn an_unexplained_element_reads_its_bounds_and_layout_causes() {
         height: 4.0,
     };
     let explained = unexplained("group", bounds);
+    assert_eq!(explained.placed.placer, Placer::Unexplained);
+    assert_ne!(explained.placed.placer, Placer::Engine(PlacedBy::Block));
     assert_eq!(explained.bounds, bounds);
     assert_eq!(explained.laid_out, bounds);
     assert_eq!(explained.placed.container, None);
@@ -129,7 +131,7 @@ fn the_reserved_app_placer_is_spelled_and_matched() {
     };
     let canvas = match &placer {
         Placer::App { canvas } => Some(canvas.as_str()),
-        Placer::Engine(_) => None,
+        Placer::Engine(_) | Placer::Unexplained => None,
     };
     assert_eq!(canvas, Some("board"));
     assert_ne!(placer, Placer::Engine(PlacedBy::Block));

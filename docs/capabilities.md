@@ -31,10 +31,10 @@ checks it with `validate` before anything runs. The same session is carried four
 
 A kept check is a fifth medium, at rest (see Session recording and replay below).
 
-The schema holds fourteen verbs in three levels:
+The schema holds fifteen verbs in three levels:
 
 - asked of the held instance: `snapshot` · `click` · `type` · `press` · `advance` · `scroll` · `screenshot` · `lint` ·
-  `graph` · `actions`;
+  `graph` · `actions` · `layout`;
 - asked of the session: `start` · `status` · `stop`;
 - asked of the tool itself: `help`.
 
@@ -141,7 +141,8 @@ Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task
 snapshot's order: a focusable element, one of an interactive role, one carrying a handler now (read from the vdom,
 `mounted` left out), or one an owner's handler serves, as a select serves its options and groups. Each node names its
 stable id, its owner and `keyed`, whether its id is an author key. It also names each verb a call can name it by:
-the verb table's instance verbs that take an id, today `click` · `type` · `scroll` · `screenshot`. A verb that would
+the verb table's instance verbs that take an id, today `click` · `type` · `scroll` · `screenshot` · `layout`, `layout`
+always without a cause. A verb that would
 be accepted now carries no cause. One that would be refused carries the cause the call would return, decided by the
 same check the call's own run meets before it acts, so the two agree by construction. `unkeyed_actionable` reads the
 same actionable rule, its listener reading the current handlers. At boot the six served screens list 2, 7, 3, 11, 678
@@ -191,8 +192,8 @@ Witnesses: `stand_start_in_state`, escher-driver's fixture tests.
 A breadth-first exploration in process: `escher_driver::explore` takes a boot and a step budget, from 1 to 10,000
 acting calls, and drives every action the `actions` reader offers on each screen it reaches. Each path of calls runs
 on a fresh session the boot starts, every call through `Session::run`, and the call driven for a node is the one
-`actions` judged. The verbs are the table's id-taking instance verbs whose result holds no image: today `click`,
-`type` and `scroll`. A screen reached before is not explored again. The report names each path's calls and how it
+`actions` judged. The verbs are the table's id-taking instance verbs whose result holds no image and no layout
+reading, read by field kind: today `click`, `type` and `scroll`. A screen reached before is not explored again. The report names each path's calls and how it
 ended: accepted, refused by its cause, a caught panic (`Panicked`), or a re-reach that diverged. A refused or panicked
 path is not explored further, and the exploration goes on. Given a directory, each path is kept as an owner-only check,
 whose opening record now states its format, `"format":1`, a check without one reading as format 1. The checks hold
@@ -202,17 +203,24 @@ Witnesses: `stand_explore`, escher-driver's explore and recording tests.
 
 ### Why an element sits where it does
 
-A layout read in process: `Session::layout` takes a stable id and answers why that element sits where it does at its
-size, read by `BaseDocument::layout_reason` from the layout and style the engine already holds. The answer names the
+`layout --id <id>` answers why that element sits where it does at its size, on every carrier — the session socket,
+the command line, MCP and a kept check — and in process as `Session::layout`, read by `BaseDocument::layout_reason`
+from the layout and style the engine already holds. The answer names the
 placing algorithm (`Block`, `Flex`, `Grid`, `Table`, `Inline`, `Float`, `Absolute`, `Fixed`, `Root`, `Select`,
 `SelectList`), the element it was placed in by stable id and its offset there, each scroll and transform that moves it
 (`Scroll`, `Transform`), and per axis the cause of its size (`Style`, `Min`, `Max`, `FlexGrow`, `FlexShrink`,
 `Stretch`, `Grid`, `Table`, `Replaced`, `Content`, `Layout`) with the computed `size`, `min`, `max` and flex inputs.
 It holds ids, closed words and numbers, never page text or a style value as written. Its `bounds` are the snapshot's.
-One placer is reserved, `App { canvas }`, for a node an app places inside a canvas; nothing produces it yet. The id
-resolves as a call's does, refused `stale` or `not-found`. It runs no step and changes nothing. No verb reaches it yet.
+An element the snapshot lists for which the engine reads no reason, such as one styled `display: contents`, which
+has no box of its own, is placed by `unexplained` at its snapshot bounds, in no container. One placer is reserved,
+`App { canvas }`, for a node an app places inside a canvas; nothing produces it yet. The id resolves as a call's
+does, refused `stale` or `not-found`. It runs no step and changes nothing, waits on no load and leaves one `command`
+line recording its verb, and, refused, its cause. Written as one line of JSON, its words are kebab-case (`flex`,
+`select-list`, `flex-grow`, `min-content`) and a computed length is a word or an object keyed `px`, `percent` or
+`calc`. Its stated limits are the engine read's: a node with a transform reads the bounding box of its mapped box.
 
-Witnesses: `layout_reason`, `stand_layout`, escher-driver's layout tests.
+Witnesses: `layout_reason`, `stand_layout`, `stand_mcp_tools`, `stand_replay`, seven_guis' `cli_commands` and
+`mcp_server`, escher-driver's layout and JSON tests.
 
 ### Engine behaviours every document gets
 
@@ -340,7 +348,7 @@ The driver's own refusal texts state three readings that are off:
   read in parts, as `snapshot`'s is, would add an argument and is next-version work, owned by the residual row
   `res-7cc5bi4k` (target: next).
 - **An unpaged actions answer.** `actions` takes no argument and answers the whole screen at once. Cells at boot reads
-  106,088 bytes for 678 nodes, held only by the answer bound. A `click` in the overlay scrollbar band of a box just
+  118,292 bytes for 678 nodes, held only by the answer bound. A `click` in the overlay scrollbar band of a box just
   scrolled reads accepted and dispatches nothing until the scrollbar fades.
 - **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled;
   `press` holds no Ctrl, so a set of rows that are not adjacent cannot be built through the driver. A controlled app must
@@ -448,7 +456,8 @@ A tool result carries:
 - a lint's findings: ids, closed defect words and numbers;
 - a UI graph: ids, component names, registered state names, handler event names, closed flag words and booleans, never
   a state's value;
-- an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text.
+- an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text;
+- a layout answer: ids, closed words and numbers, never page text or a style value as written.
 
 No description crosses any driver carrier, since descriptions go to the platform adapter only.
 
@@ -482,6 +491,7 @@ coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two
 seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
 proven by `stand_start_in_state`, a `stand_*` file of the same two legs. An exploration is proven by `stand_explore`,
 a `stand_*` file of the same two legs. The layout read is proven by `layout_reason` and by `stand_layout`, a
-`stand_*` file of the same two legs.
+`stand_*` file of the same two legs, and the `layout` verb on every carrier by `stand_layout`, `stand_mcp_tools`,
+`stand_replay` and seven_guis' `cli_commands` and `mcp_server`.
 
 The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.

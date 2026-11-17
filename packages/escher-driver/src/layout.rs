@@ -52,6 +52,9 @@ pub struct Placement {
 pub enum Placer {
     /// The engine, by the algorithm named.
     Engine(PlacedBy),
+    /// Nothing the engine reads: an element the snapshot lists for which the engine reads no
+    /// layout reason, such as one with no box of its own.
+    Unexplained,
     /// The app, inside the canvas element named by its stable id. Reserved: nothing places a
     /// node so yet.
     App {
@@ -80,7 +83,7 @@ impl Session {
     /// The id resolves as a call's does: the screen is read once and its ids recorded, and an
     /// id it does not read is refused [`Cause::Stale`](crate::Cause::Stale) when an earlier
     /// screen read it, else [`Cause::NotFound`](crate::Cause::NotFound). It runs no step and
-    /// changes nothing; it is reached by no verb.
+    /// changes nothing. The `layout` verb reaches it through [`Session::run`].
     pub fn layout(&mut self, id: &str) -> Result<LayoutExplanation, Refusal> {
         let (screen, target) = resolve(&self.harness, &mut self.seen, id)?;
         let node = target.node();
@@ -147,8 +150,9 @@ fn bounds_of(rect: BoundingRect) -> Bounds {
     }
 }
 
-/// The reading of an element the snapshot lists that the engine reads no reason for: placed
-/// by the engine at its snapshot `bounds`, in no container, both causes [`SizeCause::Layout`].
+/// The reading of an element the snapshot lists that the engine reads no reason for:
+/// [`Placer::Unexplained`] at its snapshot `bounds`, in no container, both causes
+/// [`SizeCause::Layout`].
 pub(crate) fn unexplained(id: &str, bounds: Bounds) -> LayoutExplanation {
     let layout = |px: f64| SizeReason {
         px,
@@ -163,7 +167,7 @@ pub(crate) fn unexplained(id: &str, bounds: Bounds) -> LayoutExplanation {
         bounds,
         laid_out: bounds,
         placed: Placement {
-            placer: Placer::Engine(PlacedBy::Block),
+            placer: Placer::Unexplained,
             container: None,
             at: (0.0, 0.0),
             relative: None,

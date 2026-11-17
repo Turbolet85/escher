@@ -4,7 +4,10 @@
 use std::fmt::Write as _;
 
 use blitz_test_harness::Busy;
-use dioxus_native_dom::{DiffNode, GraphNode, GraphState, Reading, SnapshotDiff, WriteFlag};
+use dioxus_native_dom::{
+    DiffNode, GraphNode, GraphState, Length, PlacedBy, Reading, ShiftBy, SizeCause, SizeKeyword,
+    SizeReason, SnapshotDiff, WriteFlag,
+};
 
 use crate::actions::ActionNode;
 use crate::caused::{Caused, CausedKind, CausedPast, boundary_word};
@@ -13,6 +16,7 @@ use crate::coverage::Coverage;
 use crate::error::SessionError;
 use crate::execute::{Outcome, busy_word};
 use crate::image;
+use crate::layout::{LayoutExplanation, Placement, Placer, ShiftReading};
 use crate::lint::{Bounds, Finding, Reason};
 use crate::refusal::Refusal;
 use crate::schema::NODE_FIELDS;
@@ -503,6 +507,169 @@ fn finding(finding: &Finding) -> String {
     object.end()
 }
 
+/// The word a placer is written as. A member the engine's set gains after this writer reads as
+/// `unexplained`: the driver reads no reason it can name for it.
+fn placer_word(placer: &Placer) -> &'static str {
+    match placer {
+        Placer::Engine(by) => match by {
+            PlacedBy::Block => "block",
+            PlacedBy::Flex => "flex",
+            PlacedBy::Grid => "grid",
+            PlacedBy::Table => "table",
+            PlacedBy::Inline => "inline",
+            PlacedBy::Float => "float",
+            PlacedBy::Absolute => "absolute",
+            PlacedBy::Fixed => "fixed",
+            PlacedBy::Root => "root",
+            PlacedBy::Select => "select",
+            PlacedBy::SelectList => "select-list",
+            _ => "unexplained",
+        },
+        Placer::Unexplained => "unexplained",
+        Placer::App { .. } => "app",
+    }
+}
+
+/// The word a shift is written as. A member the engine's set gains after this writer reads as
+/// `transform`, the move that maps the box rather than offsetting it.
+fn shift_word(by: ShiftBy) -> &'static str {
+    match by {
+        ShiftBy::Scroll => "scroll",
+        _ => "transform",
+    }
+}
+
+/// The word a size cause is written as. A member the engine's set gains after this writer reads
+/// as `layout`, the cause that singles out none.
+fn cause_word(by: SizeCause) -> &'static str {
+    match by {
+        SizeCause::Style => "style",
+        SizeCause::Min => "min",
+        SizeCause::Max => "max",
+        SizeCause::FlexGrow => "flex-grow",
+        SizeCause::FlexShrink => "flex-shrink",
+        SizeCause::Stretch => "stretch",
+        SizeCause::Grid => "grid",
+        SizeCause::Table => "table",
+        SizeCause::Replaced => "replaced",
+        SizeCause::Content => "content",
+        _ => "layout",
+    }
+}
+
+/// The word a sizing keyword is written as. A member the engine's set gains after this writer
+/// reads as `auto`.
+fn keyword_word(keyword: SizeKeyword) -> &'static str {
+    match keyword {
+        SizeKeyword::MinContent => "min-content",
+        SizeKeyword::MaxContent => "max-content",
+        SizeKeyword::FitContent => "fit-content",
+        SizeKeyword::Stretch => "stretch",
+        _ => "auto",
+    }
+}
+
+/// A computed length: a word, or an object keyed `px`, `percent` or `calc`. A member the
+/// engine's set gains after this writer reads as `"auto"`.
+fn length(value: &Length) -> String {
+    let word = |word: &str| {
+        let mut text = String::new();
+        string(&mut text, word);
+        text
+    };
+    let keyed = |key: &str, amount: f32| {
+        let mut object = Object::new();
+        ratio(object.member(key), amount);
+        object.end()
+    };
+    match value {
+        Length::None => word("none"),
+        Length::Px(px) => keyed("px", *px),
+        Length::Percent(percent) => keyed("percent", *percent),
+        Length::Calc { px } => keyed("calc", *px),
+        Length::Keyword(keyword) => word(keyword_word(*keyword)),
+        _ => word("auto"),
+    }
+}
+
+/// A box as an object keyed `x`, `y`, `width` and `height`.
+fn box_object(rect: Bounds) -> String {
+    let mut object = Object::new();
+    number(object.member("x"), rect.x);
+    number(object.member("y"), rect.y);
+    number(object.member("width"), rect.width);
+    number(object.member("height"), rect.height);
+    object.end()
+}
+
+/// An offset as an object keyed `x` and `y`.
+fn offset((x, y): (f64, f64)) -> String {
+    let mut object = Object::new();
+    number(object.member("x"), x);
+    number(object.member("y"), y);
+    object.end()
+}
+
+/// A layout answer's `placed`, keyed as the field's help names.
+fn placement(placed: &Placement) -> String {
+    let mut object = Object::new();
+    object.text("by", placer_word(&placed.placer));
+    if let Some(container) = &placed.container {
+        object.text("container", container);
+    }
+    if let Placer::App { canvas } = &placed.placer {
+        object.text("canvas", canvas);
+    }
+    object.json("at", &offset(placed.at));
+    if let Some(relative) = placed.relative {
+        object.json("relative", &offset(relative));
+    }
+    object.end()
+}
+
+/// One entry of a layout answer's `shifts`, keyed as the field's help names.
+fn shift(shift: &ShiftReading) -> String {
+    let mut object = Object::new();
+    object.text("by", shift_word(shift.by));
+    if let Some(holder) = &shift.holder {
+        object.text("holder", holder);
+    }
+    number(object.member("dx"), shift.dx);
+    number(object.member("dy"), shift.dy);
+    object.end()
+}
+
+/// A layout answer's `width` or `height`, keyed as the field's help names.
+fn size(reason: &SizeReason) -> String {
+    let mut object = Object::new();
+    number(object.member("px"), reason.px);
+    object.text("by", cause_word(reason.by));
+    object.json("size", &length(&reason.size));
+    object.json("min", &length(&reason.min));
+    object.json("max", &length(&reason.max));
+    if let Some(flex) = &reason.flex {
+        let mut inputs = Object::new();
+        inputs.json("basis", &length(&flex.basis));
+        ratio(inputs.member("grow"), flex.grow);
+        ratio(inputs.member("shrink"), flex.shrink);
+        object.json("flex", &inputs.end());
+    }
+    object.end()
+}
+
+/// What `layout` returns, keyed as its result fields.
+fn layout_answer(explanation: &LayoutExplanation) -> String {
+    let mut object = Object::new();
+    object.text("id", &explanation.id);
+    object.json("bounds", &box_object(explanation.bounds));
+    object.json("laid_out", &box_object(explanation.laid_out));
+    object.json("placed", &placement(&explanation.placed));
+    object.json("shifts", &list(explanation.shifts.iter().map(shift)));
+    object.json("width", &size(&explanation.width));
+    object.json("height", &size(&explanation.height));
+    object.end()
+}
+
 /// What `screenshot` returns without its image: the line an MCP tool result carries beside the
 /// image itself.
 impl Coverage {
@@ -606,6 +773,7 @@ impl Outcome {
                 object.json("nodes", &list(nodes.iter().map(action_node)));
                 object.end()
             }
+            Outcome::Layout { explanation } => layout_answer(explanation),
         }
     }
 }
@@ -1084,6 +1252,56 @@ mod tests {
         ]
     }
 
+    /// An explanation holding every optional key: a container, a relative inset, a shift by a
+    /// holder and one by the viewport, a flex input on its width.
+    fn an_explanation() -> LayoutExplanation {
+        use dioxus_native_dom::FlexInputs;
+        let reason = |px, by, size, flex| SizeReason {
+            px,
+            by,
+            size,
+            min: Length::Auto,
+            max: Length::None,
+            flex,
+        };
+        LayoutExplanation {
+            id: "save".to_string(),
+            bounds: rect(8.0, 20.5, 120.0, 32.0),
+            laid_out: rect(8.0, 40.5, 120.0, 32.0),
+            placed: Placement {
+                placer: Placer::Engine(PlacedBy::Flex),
+                container: Some("toolbar".to_string()),
+                at: (8.0, 0.5),
+                relative: Some((0.0, 2.0)),
+            },
+            shifts: vec![
+                ShiftReading {
+                    by: ShiftBy::Scroll,
+                    holder: Some("list".to_string()),
+                    dx: 0.0,
+                    dy: -20.0,
+                },
+                ShiftReading {
+                    by: ShiftBy::Scroll,
+                    holder: None,
+                    dx: 0.0,
+                    dy: 0.0,
+                },
+            ],
+            width: reason(
+                120.0,
+                SizeCause::FlexGrow,
+                Length::Auto,
+                Some(FlexInputs {
+                    basis: Length::Px(80.0),
+                    grow: 1.0,
+                    shrink: 0.5,
+                }),
+            ),
+            height: reason(32.0, SizeCause::Style, Length::Px(32.0), None),
+        }
+    }
+
     fn a_graph() -> UiGraph {
         let write = |state: &str, declared, confirmed, flag| GraphWrite {
             state: state.to_string(),
@@ -1368,8 +1586,37 @@ mod tests {
                     r#"{"id":"/div:0","keyed":false,"verbs":[]}]}"#,
                 ),
             ),
+            (
+                Outcome::Layout {
+                    explanation: an_explanation(),
+                },
+                &schema::LAYOUT,
+                &[][..],
+                concat!(
+                    r#"{"id":"save","bounds":{"x":8,"y":20.5,"width":120,"height":32},"#,
+                    r#""laid_out":{"x":8,"y":40.5,"width":120,"height":32},"#,
+                    r#""placed":{"by":"flex","container":"toolbar","at":{"x":8,"y":0.5},"relative":{"x":0,"y":2}},"#,
+                    r#""shifts":[{"by":"scroll","holder":"list","dx":0,"dy":-20},{"by":"scroll","dx":0,"dy":0}],"#,
+                    r#""width":{"px":120,"by":"flex-grow","size":"auto","min":"auto","max":"none","flex":{"basis":{"px":80},"grow":1,"shrink":0.5}},"#,
+                    r#""height":{"px":32,"by":"style","size":{"px":32},"min":"auto","max":"none"}}"#,
+                ),
+            ),
+            (
+                Outcome::Layout {
+                    explanation: crate::layout::unexplained("group", rect(1.0, 2.0, 3.0, 4.0)),
+                },
+                &schema::LAYOUT,
+                &[][..],
+                concat!(
+                    r#"{"id":"group","bounds":{"x":1,"y":2,"width":3,"height":4},"#,
+                    r#""laid_out":{"x":1,"y":2,"width":3,"height":4},"#,
+                    r#""placed":{"by":"unexplained","at":{"x":0,"y":0}},"shifts":[],"#,
+                    r#""width":{"px":3,"by":"layout","size":"auto","min":"auto","max":"none"},"#,
+                    r#""height":{"px":4,"by":"layout","size":"auto","min":"auto","max":"none"}}"#,
+                ),
+            ),
         ];
-        assert_eq!(rows.len(), 17);
+        assert_eq!(rows.len(), 19);
         for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
             let line = outcome.to_json();
             assert!(line == json, "row {row}");
@@ -1383,6 +1630,135 @@ mod tests {
         let without = shot_without_image(369, 420);
         assert_eq!(without, r#"{"width":369,"height":420}"#);
         assert_eq!(keys(&without), field_names(&schema::SCREENSHOT, &["png"]));
+    }
+
+    #[test]
+    fn every_layout_word_is_written_once() {
+        let placers = [
+            (Placer::Engine(PlacedBy::Block), "block"),
+            (Placer::Engine(PlacedBy::Flex), "flex"),
+            (Placer::Engine(PlacedBy::Grid), "grid"),
+            (Placer::Engine(PlacedBy::Table), "table"),
+            (Placer::Engine(PlacedBy::Inline), "inline"),
+            (Placer::Engine(PlacedBy::Float), "float"),
+            (Placer::Engine(PlacedBy::Absolute), "absolute"),
+            (Placer::Engine(PlacedBy::Fixed), "fixed"),
+            (Placer::Engine(PlacedBy::Root), "root"),
+            (Placer::Engine(PlacedBy::Select), "select"),
+            (Placer::Engine(PlacedBy::SelectList), "select-list"),
+            (Placer::Unexplained, "unexplained"),
+            (
+                Placer::App {
+                    canvas: "board".to_string(),
+                },
+                "app",
+            ),
+        ];
+        assert_eq!(placers.len(), 13);
+        let shifts = [
+            (ShiftBy::Scroll, "scroll"),
+            (ShiftBy::Transform, "transform"),
+        ];
+        assert_eq!(shifts.len(), 2);
+        let causes = [
+            (SizeCause::Style, "style"),
+            (SizeCause::Min, "min"),
+            (SizeCause::Max, "max"),
+            (SizeCause::FlexGrow, "flex-grow"),
+            (SizeCause::FlexShrink, "flex-shrink"),
+            (SizeCause::Stretch, "stretch"),
+            (SizeCause::Grid, "grid"),
+            (SizeCause::Table, "table"),
+            (SizeCause::Replaced, "replaced"),
+            (SizeCause::Content, "content"),
+            (SizeCause::Layout, "layout"),
+        ];
+        assert_eq!(causes.len(), 11);
+        let lengths = [
+            (Length::Auto, r#""auto""#),
+            (Length::None, r#""none""#),
+            (Length::Px(12.5), r#"{"px":12.5}"#),
+            (Length::Percent(50.0), r#"{"percent":50}"#),
+            (Length::Calc { px: 0.1 }, r#"{"calc":0.1}"#),
+            (Length::Keyword(SizeKeyword::MinContent), r#""min-content""#),
+            (Length::Keyword(SizeKeyword::MaxContent), r#""max-content""#),
+            (Length::Keyword(SizeKeyword::FitContent), r#""fit-content""#),
+            (Length::Keyword(SizeKeyword::Stretch), r#""stretch""#),
+        ];
+        assert_eq!(lengths.len(), 9);
+
+        let mut words: Vec<String> = Vec::new();
+        for (row, (placer, word)) in placers.iter().enumerate() {
+            assert!(placer_word(placer) == *word, "placer row {row}");
+            let placed = placement(&Placement {
+                placer: placer.clone(),
+                container: None,
+                at: (0.0, 0.0),
+                relative: None,
+            });
+            assert!(
+                placed.starts_with(&format!(r#"{{"by":"{word}""#)),
+                "placer row {row}"
+            );
+            words.push(format!("placer {word}"));
+        }
+        let app = placement(&Placement {
+            placer: placers[12].0.clone(),
+            container: Some("page".to_string()),
+            at: (1.0, 2.0),
+            relative: None,
+        });
+        assert_eq!(
+            app,
+            r#"{"by":"app","container":"page","canvas":"board","at":{"x":1,"y":2}}"#
+        );
+        for (row, (by, word)) in shifts.into_iter().enumerate() {
+            assert!(shift_word(by) == word, "shift row {row}");
+            words.push(format!("shift {word}"));
+        }
+        for (row, (by, word)) in causes.into_iter().enumerate() {
+            assert!(cause_word(by) == word, "cause row {row}");
+            words.push(format!("cause {word}"));
+        }
+        for (row, (value, json)) in lengths.iter().enumerate() {
+            assert!(length(value) == *json, "length row {row}");
+            words.push(format!("length {json}"));
+        }
+        // No word is written for two members of one set.
+        let total = words.len();
+        words.sort();
+        words.dedup();
+        assert_eq!((total, words.len()), (35, 35));
+        // Every word the writer writes is named in the help of the field that carries it.
+        let help = |name: &str| {
+            schema::LAYOUT
+                .fields
+                .iter()
+                .find(|field| field.name == name)
+                .map_or("", |field| field.help)
+        };
+        for (_, word) in &placers {
+            assert!(help("placed").contains(word), "{word}");
+        }
+        for (_, word) in shifts {
+            assert!(help("shifts").contains(word), "{word}");
+        }
+        for (_, word) in causes {
+            assert!(help("width").contains(word), "{word}");
+        }
+        for word in [
+            "auto",
+            "none",
+            "min-content",
+            "max-content",
+            "fit-content",
+            "stretch",
+            "px",
+            "percent",
+            "calc",
+        ] {
+            assert!(help("width").contains(word), "{word}");
+        }
     }
 
     #[test]

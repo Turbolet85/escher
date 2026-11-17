@@ -1,9 +1,9 @@
 //! The `escher-session` host, its telemetry sink installed, writes nothing a command handled to
 //! stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no typed text and no
 //! image byte — while a hosted `snapshot`, `click`, `type`, two `screenshot`s, the whole
-//! screen and one element, a `lint`, a `snapshot` of part 1, a `graph` and an `actions` run on it
-//! — and no component or registered state name the graph answered and no id the actions read
-//! listed; and each call it runs leaves
+//! screen and one element, a `lint`, a `snapshot` of part 1, a `graph`, an `actions` and a
+//! `layout` run on it — and no component or registered state name the graph answered, no id the
+//! actions read listed and no key of the layout answer; and each call it runs leaves
 //! exactly one command-span line there. Guards a measured leak: the sink printed records from
 //! third-party targets as written, which put every author key of the screen on stderr at
 //! `debug` and each row's name and each label's text at `trace`. The check reads the host as
@@ -546,7 +546,7 @@ fn host_flow(name: &str, record: bool) {
     assert_eq!(hello.pid, host.0.id(), "the binary itself answers");
     assert_eq!(hello.label, "crud");
 
-    // Nine calls run on the host's own instance. Each answer is checked for what it must
+    // Ten calls run on the host's own instance. Each answer is checked for what it must
     // hold, so the absences read below are of things the host did handle.
     let text = |value: &str| ArgValue::Text(value.to_string());
     let calls = [
@@ -588,6 +588,10 @@ fn host_flow(name: &str, record: bool) {
         Call {
             verb: "actions".to_string(),
             args: Vec::new(),
+        },
+        Call {
+            verb: "layout".to_string(),
+            args: vec![("id".to_string(), text("crud-list"))],
         },
     ];
     let answers: Vec<String> = calls
@@ -647,6 +651,14 @@ fn host_flow(name: &str, record: bool) {
             .all(|needle| answers[8].contains(&format!("\"{needle}\""))),
         "the actions answer holds its listed ids"
     );
+    const LAYOUT_KEYS: [&str; 3] = ["laid_out", "placed", "shifts"];
+    assert!(
+        answers[9].starts_with(r#"{"id":"crud-list","bounds":{"#)
+            && LAYOUT_KEYS
+                .iter()
+                .all(|key| answers[9].contains(&format!("\"{key}\""))),
+        "the layout answer holds its element's reading"
+    );
 
     stop(&dir).expect("the session stops");
 
@@ -697,6 +709,14 @@ fn host_flow(name: &str, record: bool) {
     let listed_found = found(&stderr, &listed);
     let sentinels = stderr.matches(SENTINEL).count();
     let image_bytes = occurrences(&stderr, &images);
+    let layout_keys: usize = LAYOUT_KEYS
+        .iter()
+        .map(|key| stderr.matches(&format!("\"{key}\"")).count())
+        .sum();
+    assert!(
+        layout_keys == 0,
+        "{layout_keys} occurrences of a layout answer's key found in {lines} stderr lines"
+    );
     assert!(
         ids_found == 0
             && names_found == 0

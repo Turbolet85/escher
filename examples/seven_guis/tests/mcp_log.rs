@@ -2,8 +2,8 @@
 //! tool call handled to stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no
 //! typed text and no image byte — while a CRUD flow runs through it by tool calls, a `type`, two
 //! `screenshot`s, the whole screen and one element, a `lint`, a `snapshot` of part 1, a `graph`
-//! and an `actions` among them, nor any component or registered state name the graph answered
-//! nor any id the actions read listed — and
+//! and an `actions` among them, and a `layout`, nor any component or registered state name the
+//! graph answered nor any id the actions read listed nor any key of the layout answer — and
 //! each tool call leaves exactly one `tool_call` line there, holding only its `tool` and its
 //! `ending` beside the sink's own fields, and each call run on the held instance one `command`
 //! line. Stdout holds protocol lines only. The check reads the binary as its own build makes
@@ -47,6 +47,9 @@ const TOOL_CALL_FIELDS: [&str; 6] = [
 
 /// The words a `tool_call` line's `ending` may hold.
 const ENDINGS: [&str; 3] = ["accepted", "refused", "error"];
+
+/// Keys only a layout answer writes, each quoted as the answer writes it.
+const LAYOUT_KEYS: [&str; 3] = ["laid_out", "placed", "shifts"];
 
 fn tool_call(id: u32, name: &str, arguments: &str) -> String {
     format!(
@@ -164,9 +167,10 @@ fn mcp_flow(record: Option<&std::path::Path>) {
         ("snapshot", r#"{"part":1}"#.to_string(), true, false),
         ("graph", "{}".to_string(), true, false),
         ("actions", "{}".to_string(), true, false),
+        ("layout", r#"{"id":"crud-list"}"#.to_string(), true, false),
         ("stop", "{}".to_string(), false, false),
     ];
-    assert_eq!(calls.len(), 12);
+    assert_eq!(calls.len(), 13);
     for (index, (name, arguments, _, is_error)) in calls.iter().enumerate() {
         let id = index as u32 + 2;
         speaker.send(tool_call(id, name, arguments).as_bytes());
@@ -236,6 +240,15 @@ fn mcp_flow(record: Option<&std::path::Path>) {
                     .all(|needle| text.contains(&format!("\"{needle}\"")))
         }),
         "the actions result holds its listed ids"
+    );
+    assert!(
+        string_at(&replies[12], "text").is_some_and(|text| {
+            text.starts_with(r#"{"id":"crud-list","bounds":{"#)
+                && LAYOUT_KEYS
+                    .iter()
+                    .all(|key| text.contains(&format!("\"{key}\"")))
+        }),
+        "the layout result holds its element's reading"
     );
 
     let spoke = speaker.close();
@@ -318,6 +331,14 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
     let graph_found = found(&stderr, &graph);
     let listed_found = found(&stderr, &listed);
+    let layout_keys: usize = LAYOUT_KEYS
+        .iter()
+        .map(|key| stderr.matches(&format!("\"{key}\"")).count())
+        .sum();
+    assert!(
+        layout_keys == 0,
+        "{layout_keys} occurrences of a layout answer's key found in {lines} stderr lines"
+    );
     let sentinels = stderr.matches(SENTINEL).count();
     let nobodies = stderr.matches(NOBODY).count();
     let image_bytes = occurrences(&stderr, &images);

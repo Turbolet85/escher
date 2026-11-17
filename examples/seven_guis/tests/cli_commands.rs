@@ -1,5 +1,5 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
-//! each of the ten verbs answer one line of uncoloured JSON on stdout and end with a status
+//! each of the eleven verbs answer one line of uncoloured JSON on stdout and end with a status
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the six
 //! served tasks — the four lean tasks, Cells and the load page — starts, answers and stops, and
 //! the usage line names the six. The snapshot's
@@ -7,7 +7,9 @@
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
 //! counter answers one line whose `findings` is empty, and a graph on it one line naming the
 //! counter's component, its click handler and the state it is declared to write, and an actions
-//! read on it one line listing its button with every verb accepted. A Counter session kept
+//! read on it one line listing its button with every verb accepted, and a layout of its button
+//! one line of the table's layout fields, an unread id refused `not-found` and a layout with no
+//! id refused `malformed`, neither writing back what the line named. A Counter session kept
 //! through `start --record`, its button clicked, read back by `coverage counter <check>` answers
 //! one line leaving the back button alone; a file that is no check is refused `malformed` with
 //! nothing of its path written back, and `coverage` on an app the binary does not boot is a usage
@@ -139,7 +141,7 @@ impl Session {
 
 #[test]
 fn each_task_starts_answers_and_stops() {
-    assert_eq!(VERBS.len(), 14);
+    assert_eq!(VERBS.len(), 15);
     for (index, task) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
@@ -502,7 +504,7 @@ fn actions_answers_one_line_of_the_actionable_nodes() {
     let answer = counter.accepted(&["actions"]);
     assert!(keys(&answer) == fields("actions"), "the read's fields");
     assert!(
-        answer.contains(r#"{"id":"counter-increment","keyed":true,"verbs":[{"verb":"click"},{"verb":"type"},{"verb":"scroll"},{"verb":"screenshot"}]}"#),
+        answer.contains(r#"{"id":"counter-increment","keyed":true,"verbs":[{"verb":"click"},{"verb":"type"},{"verb":"scroll"},{"verb":"screenshot"},{"verb":"layout"}]}"#),
         "the button's node reads keyed with every verb accepted"
     );
     let ran = counter.run(&["actions", "--id", NOBODY]);
@@ -515,6 +517,36 @@ fn actions_answers_one_line_of_the_actionable_nodes() {
     assert!(
         !ran.line().contains(NOBODY) && ran.stderr.is_empty(),
         "the refusal writes back nothing the line named"
+    );
+    counter.stop();
+}
+
+#[test]
+fn layout_answers_one_line_of_the_elements_placement_and_sizes() {
+    let counter = Session::start("cc-layout", "counter");
+    let answer = counter.accepted(&["layout", "--id", "counter-increment"]);
+    assert!(keys(&answer) == fields("layout"), "the layout's fields");
+    assert!(
+        answer.starts_with(r#"{"id":"counter-increment","bounds":{"x":"#),
+        "the answer names the element it explains"
+    );
+    assert!(
+        answer.contains(r#""placed":{"by":""#) && answer.contains(r#""width":{"px":"#),
+        "the answer holds the placement and the width's cause"
+    );
+    let ran = counter.run(&["layout", "--id", NOBODY]);
+    assert_eq!(ran.status, Some(1), "an unread id ends refused");
+    assert_eq!(remedied(ran.line()), "not-found");
+    assert!(
+        !ran.line().contains(NOBODY) && ran.stderr.is_empty(),
+        "the refusal writes back nothing the line named"
+    );
+    let ran = counter.run(&["layout"]);
+    assert_eq!(ran.status, Some(1), "a layout with no id ends refused");
+    assert_eq!(remedied(ran.line()), "malformed");
+    assert!(
+        ran.stderr.is_empty(),
+        "the refusal writes nothing to stderr"
     );
     counter.stop();
 }

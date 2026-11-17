@@ -7,7 +7,7 @@ use blitz_test_harness::Busy;
 
 use super::*;
 
-const VERB_NAMES: [&str; 14] = [
+const VERB_NAMES: [&str; 15] = [
     "snapshot",
     "click",
     "type",
@@ -18,6 +18,7 @@ const VERB_NAMES: [&str; 14] = [
     "lint",
     "graph",
     "actions",
+    "layout",
     "start",
     "status",
     "stop",
@@ -25,13 +26,13 @@ const VERB_NAMES: [&str; 14] = [
 ];
 
 #[test]
-fn the_fourteen_verbs_are_named_in_order_each_at_its_level() {
-    assert_eq!(VERBS.len(), 14);
+fn the_fifteen_verbs_are_named_in_order_each_at_its_level() {
+    assert_eq!(VERBS.len(), 15);
     let names: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
     assert_eq!(names, VERB_NAMES);
     let levels: Vec<Level> = VERBS.iter().map(|verb| verb.level).collect();
     let stated = [
-        [Level::Instance; 10].as_slice(),
+        [Level::Instance; 11].as_slice(),
         &[Level::Session; 3],
         &[Level::Tool; 1],
     ]
@@ -50,7 +51,7 @@ fn the_fourteen_verbs_are_named_in_order_each_at_its_level() {
 
 #[test]
 fn every_verb_states_its_help_its_arguments_and_a_result() {
-    assert_eq!(VERBS.len(), 14);
+    assert_eq!(VERBS.len(), 15);
     let field_help = |verb: &VerbSpec, name: &str| {
         verb.fields
             .iter()
@@ -205,7 +206,7 @@ fn a_verb_is_found_by_its_exact_name_only() {
 fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
     const ACTING: [&str; 5] = ["settled", "busy", "added", "removed", "changed"];
     type Args = &'static [(&'static str, ArgKind, bool)];
-    let rows: [(&str, Args, Vec<&str>); 14] = [
+    let rows: [(&str, Args, Vec<&str>); 15] = [
         (
             "snapshot",
             &[("part", ArgKind::Part, false)],
@@ -244,6 +245,13 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("lint", &[], vec!["findings"]),
         ("graph", &[], vec!["nodes", "states"]),
         ("actions", &[], vec!["nodes"]),
+        (
+            "layout",
+            &[("id", ArgKind::Id, true)],
+            vec![
+                "id", "bounds", "laid_out", "placed", "shifts", "width", "height",
+            ],
+        ),
         (
             "start",
             &[("app", ArgKind::Name, true)],
@@ -312,6 +320,13 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("graph.nodes", FieldKind::GraphNodes),
         ("actions.nodes", FieldKind::ActionNodes),
         ("states", FieldKind::GraphStates),
+        ("layout.id", FieldKind::Text),
+        ("bounds", FieldKind::Rect),
+        ("laid_out", FieldKind::Rect),
+        ("placed", FieldKind::Placement),
+        ("shifts", FieldKind::Shifts),
+        ("layout.width", FieldKind::Size),
+        ("layout.height", FieldKind::Size),
         ("verbs", FieldKind::Entries),
         ("node_keys", FieldKind::Entries),
         ("key_names", FieldKind::Words),
@@ -320,7 +335,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ("exit_statuses", FieldKind::Entries),
         ("session_errors", FieldKind::Entries),
     ];
-    assert_eq!(field_kinds.len(), 31);
+    assert_eq!(field_kinds.len(), 38);
     for verb in VERBS {
         for field in verb.fields {
             // A name two verbs give fields of different kinds is stated per verb.
@@ -393,8 +408,12 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         (FieldKind::GraphNodes, "graph-nodes"),
         (FieldKind::GraphStates, "graph-states"),
         (FieldKind::ActionNodes, "action-nodes"),
+        (FieldKind::Rect, "rect"),
+        (FieldKind::Placement, "placement"),
+        (FieldKind::Shifts, "shifts"),
+        (FieldKind::Size, "size"),
     ];
-    assert_eq!(field_kind_names.len(), 13);
+    assert_eq!(field_kind_names.len(), 17);
     for (kind, name) in field_kind_names {
         assert_eq!(kind.name(), name);
     }

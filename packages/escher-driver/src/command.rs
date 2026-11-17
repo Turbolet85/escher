@@ -182,6 +182,11 @@ pub enum Command {
     Graph,
     /// Read what each actionable element of the screen can take now.
     Actions,
+    /// Read why the element `id` names sits where it does at its size.
+    Layout {
+        /// The element's id.
+        id: String,
+    },
 }
 
 impl Command {
@@ -198,6 +203,7 @@ impl Command {
             Command::Lint => &schema::LINT,
             Command::Graph => &schema::GRAPH,
             Command::Actions => &schema::ACTIONS,
+            Command::Layout { .. } => &schema::LAYOUT,
         }
     }
 }
@@ -279,6 +285,9 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
         ("lint", []) => Ok(Command::Lint),
         ("graph", []) => Ok(Command::Graph),
         ("actions", []) => Ok(Command::Actions),
+        ("layout", [Some(Admitted::Id(id))]) => Ok(Command::Layout {
+            id: (*id).to_owned(),
+        }),
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),
     }
@@ -527,6 +536,18 @@ mod tests {
             (call("lint", &[]), Command::Lint),
             (call("graph", &[]), Command::Graph),
             (call("actions", &[]), Command::Actions),
+            (
+                call("layout", &[("id", text("counter-increment"))]),
+                Command::Layout {
+                    id: "counter-increment".to_string(),
+                },
+            ),
+            (
+                call("layout", &[("id", text(&widest_id))]),
+                Command::Layout {
+                    id: widest_id.clone(),
+                },
+            ),
         ];
         let keys = [
             ("tab", Key::Tab),
@@ -554,7 +575,7 @@ mod tests {
     #[test]
     fn an_admitted_call_becomes_its_command() {
         let rows = admitted_rows();
-        assert_eq!(rows.len(), 35);
+        assert_eq!(rows.len(), 37);
         for (row, (call, command)) in rows.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
         }
@@ -650,7 +671,7 @@ mod tests {
         }
 
         let instance = admitted_rows();
-        assert_eq!(instance.len(), 35);
+        assert_eq!(instance.len(), 37);
         for (row, (call, command)) in instance.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
             assert!(validate_session(call) == Err(unknown), "row {row}");
@@ -718,6 +739,16 @@ mod tests {
             (call("lint", &[id()]), Fault::Unnamed),
             (call("graph", &[id()]), Fault::Unnamed),
             (call("actions", &[id()]), Fault::Unnamed),
+            (call("layout", &[]), Fault::Missing("id")),
+            (
+                call("layout", &[id(), ("text", text("Ada"))]),
+                Fault::Unnamed,
+            ),
+            (call("layout", &[id(), id()]), Fault::Repeated("id")),
+            (
+                call("layout", &[("id", text(&"i".repeat(MAX_ID_BYTES + 1)))]),
+                Fault::OutOfBound("id"),
+            ),
             (call("screenshot", &[("text", text("Ada"))]), Fault::Unnamed),
             (call("screenshot", &[id(), id()]), Fault::Repeated("id")),
             (
@@ -829,7 +860,7 @@ mod tests {
                 Fault::OutOfBound("key"),
             ),
         ];
-        assert_eq!(rows.len(), 48);
+        assert_eq!(rows.len(), 52);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }
@@ -901,7 +932,7 @@ mod tests {
             }
         }
         let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-        assert_eq!(table.len(), 14);
+        assert_eq!(table.len(), 15);
         assert_eq!(reached, table);
         let at = |level: Level| {
             schema::VERBS
@@ -911,7 +942,7 @@ mod tests {
         };
         assert_eq!(
             (at(Level::Instance), at(Level::Session), at(Level::Tool)),
-            (10, 3, 1)
+            (11, 3, 1)
         );
     }
 }

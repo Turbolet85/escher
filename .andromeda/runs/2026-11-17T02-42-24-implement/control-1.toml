@@ -1,0 +1,48 @@
+[[control]]
+id = 'unexplained'
+entry = 1
+guard = 'the unexplained word: unexplained() answers Placer::Engine(PlacedBy::Block) again'
+case = 'an_unexplained_element_reads_its_bounds_and_layout_causes'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/layout.rs'
+old = '''            placer: Placer::Unexplained,'''
+new = '''            placer: Placer::Engine(PlacedBy::Block),'''
+
+[[control]]
+id = 'verb-pumps'
+entry = 2
+guard = 'the verb runs no pass: the Command::Layout arm pumps the harness before the read'
+case = 'the_verb_changes_nothing_and_leaves_delivered_ticks_unapplied'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/execute.rs'
+old = '''            Command::Layout { ref id } => Ok(Outcome::Layout {
+                explanation: self.layout(id)?,
+            }),'''
+new = '''            Command::Layout { ref id } => {
+                self.harness.pump();
+                Ok(Outcome::Layout {
+                    explanation: self.layout(id)?,
+                })
+            }'''
+
+[[control]]
+id = 'explore-by-kind'
+entry = 1
+guard = 'exploration filter by kind: explorable checks the image kind alone again'
+case = 'the_verbs_explored_are_the_tables_target_verbs_with_no_image_and_no_layout_reading'
+
+[[control.edit]]
+path = 'packages/escher-driver/src/explore.rs'
+old = '''    !verb.fields.iter().any(|field| {
+        matches!(
+            field.kind,
+            FieldKind::Png
+                | FieldKind::Rect
+                | FieldKind::Placement
+                | FieldKind::Shifts
+                | FieldKind::Size
+        )
+    })'''
+new = '''    !verb.fields.iter().any(|field| field.kind == FieldKind::Png)'''

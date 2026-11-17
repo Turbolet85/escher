@@ -169,6 +169,14 @@ fn a_line_is_read_by_its_rules_in_order() {
         (&["graph", "--session", DIR], instance("graph", &[])),
         (&["actions", "--session", DIR], instance("actions", &[])),
         (
+            &["layout", "--id", "counter-increment", "--session", DIR],
+            instance("layout", &[("id", text("counter-increment"))]),
+        ),
+        (
+            &["layout", "--session", DIR, "--id", "form//input[2]: a b"],
+            instance("layout", &[("id", text("form//input[2]: a b"))]),
+        ),
+        (
             &["click", "--id", "save", "--session", DIR],
             instance("click", &[("id", text("save"))]),
         ),
@@ -456,7 +464,7 @@ fn a_line_is_read_by_its_rules_in_order() {
         // `start` on an app the binary does not boot.
         (&["start", "timer", "--session", DIR], Line::Usage),
     ];
-    assert_eq!(rows.len(), 109);
+    assert_eq!(rows.len(), 111);
     for (row, (words, read)) in rows.into_iter().enumerate() {
         assert!(line(words) == read, "row {row}");
     }
@@ -572,8 +580,8 @@ fn the_usage_line_is_built_from_the_table_and_the_apps() {
         usage(&APPS),
         "usage: <command> --session <dir>; commands: snapshot [--part <part>] | click --id \
          <id> | type --id <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
-         scroll --id <id> | screenshot [--id <id>] | lint | graph | actions | start <app> [--record <dir>] \
-         | status | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
+         scroll --id <id> | screenshot [--id <id>] | lint | graph | actions | layout --id <id> | start <app> \
+         [--record <dir>] | status | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
          [--record <dir>]; coverage role: coverage <app> <check>...; apps: counter | flight-booker"
     );
     for verb in VERBS {

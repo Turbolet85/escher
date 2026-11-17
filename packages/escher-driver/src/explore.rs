@@ -7,8 +7,9 @@
 //! no earlier path reached adds one child per actionable node and explored verb of that screen.
 //!
 //! The verbs explored are the instance verbs the `actions` reader judges a node by, less any verb
-//! whose result holds an image, read from the verb table; the call driven for a node is the call
-//! `actions` judged. Nothing here names a verb.
+//! whose result holds an image or a layout reading (a box, a placement, shifts or a size), read
+//! from the verb table by field kind; the call driven for a node is the call `actions` judged.
+//! Nothing here names a verb.
 //!
 //! Exploration is in process only: no verb, role, argument or carrier reaches it. It follows no
 //! navigation of its own — a session navigates only as its boot configured it — and reads the
@@ -151,9 +152,20 @@ pub fn explore(
     Ok(exploration)
 }
 
-/// Whether exploration drives `verb`: none of its result fields holds an image.
+/// Whether exploration drives `verb`: none of its result fields holds an image or a layout
+/// reading. A verb answering either reads the screen and changes nothing, so a path ending on
+/// it reaches no new screen.
 fn explorable(verb: &VerbSpec) -> bool {
-    !verb.fields.iter().any(|field| field.kind == FieldKind::Png)
+    !verb.fields.iter().any(|field| {
+        matches!(
+            field.kind,
+            FieldKind::Png
+                | FieldKind::Rect
+                | FieldKind::Placement
+                | FieldKind::Shifts
+                | FieldKind::Size
+        )
+    })
 }
 
 /// The verbs exploration drives, in the table's order.

@@ -91,6 +91,16 @@ pub enum FieldKind {
     GraphStates,
     /// A list of actionable nodes, each keyed as its field's help names.
     ActionNodes,
+    /// A box, keyed x, y, width and height, in CSS pixels.
+    Rect,
+    /// What placed an element, in which element and at what offset, keyed as its field's help
+    /// names.
+    Placement,
+    /// A list of the boxes that move an element from where layout put it, each keyed as its
+    /// field's help names.
+    Shifts,
+    /// The cause of one axis's size with its computed inputs, keyed as its field's help names.
+    Size,
 }
 
 impl FieldKind {
@@ -110,6 +120,10 @@ impl FieldKind {
             FieldKind::GraphNodes => "graph-nodes",
             FieldKind::GraphStates => "graph-states",
             FieldKind::ActionNodes => "action-nodes",
+            FieldKind::Rect => "rect",
+            FieldKind::Placement => "placement",
+            FieldKind::Shifts => "shifts",
+            FieldKind::Size => "size",
         }
     }
 }

@@ -506,6 +506,83 @@ pub(crate) const ACTIONS: VerbSpec = VerbSpec {
     }],
 };
 
+pub(crate) const LAYOUT: VerbSpec = VerbSpec {
+    name: "layout",
+    level: Level::Instance,
+    help: "reads why the element an id names sits where it does at its size, from the layout \
+           and the style that placed it: what placed it, in which element and at what offset, \
+           each box that moves it from there, and the cause of its width and of its height with \
+           the computed inputs; every element named by its id, every reading a closed word or a \
+           number, never a style's text; an element the snapshot lists for which the engine reads \
+           no reason, such as one with no box of its own, is placed by unexplained at its \
+           snapshot bounds; it runs no step and changes nothing",
+    args: &[ArgSpec {
+        name: "id",
+        kind: ArgKind::Id,
+        required: true,
+        help: "the id of the element to explain, as a snapshot lists it",
+    }],
+    fields: &[
+        FieldSpec {
+            name: "id",
+            kind: FieldKind::Text,
+            always: true,
+            help: "the id of the element explained",
+        },
+        FieldSpec {
+            name: "bounds",
+            kind: FieldKind::Rect,
+            always: true,
+            help: "where it stands, as a snapshot's bounds: x, y, width and height, in pixels",
+        },
+        FieldSpec {
+            name: "laid_out",
+            kind: FieldKind::Rect,
+            always: true,
+            help: "the same box before any transform on its chain: x, y, width and height, in \
+                   pixels",
+        },
+        FieldSpec {
+            name: "placed",
+            kind: FieldKind::Placement,
+            always: true,
+            help: "what placed it, keyed by, the placing word: block, flex, grid, table, inline, \
+                   float, absolute, fixed, root, select, select-list or unexplained, or app for \
+                   an element the app places inside a canvas; container, the id of the element \
+                   whose box it was placed in, left out for the root and where that element has \
+                   no id; canvas, the canvas element's id, with app alone; at, the offset of its \
+                   border box from its container's, keyed x and y; and relative, the \
+                   position: relative inset at includes, keyed x and y, left out where none \
+                   applies",
+        },
+        FieldSpec {
+            name: "shifts",
+            kind: FieldKind::Shifts,
+            always: true,
+            help: "each box that moves it from where layout put it, innermost first, then the \
+                   viewport; each keyed by, scroll or transform; holder, the id of the box that \
+                   moves it, left out for the viewport and where that box has no id; and dx and \
+                   dy, the move, in pixels",
+        },
+        FieldSpec {
+            name: "width",
+            kind: FieldKind::Size,
+            always: true,
+            help: "the cause of its width, keyed px, the width; by, the cause: style, min, max, \
+                   flex-grow, flex-shrink, stretch, grid, table, replaced, content or layout; \
+                   size, min and max, the computed sizes, each auto, none, min-content, \
+                   max-content, fit-content or stretch, or an object keyed px, percent or calc; \
+                   and flex, keyed basis, grow and shrink, left out outside a flex container",
+        },
+        FieldSpec {
+            name: "height",
+            kind: FieldKind::Size,
+            always: true,
+            help: "the cause of its height, keyed as width's",
+        },
+    ],
+};
+
 const LABEL: FieldSpec = FieldSpec {
     name: "label",
     kind: FieldKind::Text,
@@ -627,11 +704,11 @@ pub(crate) const HELP: VerbSpec = VerbSpec {
     ],
 };
 
-/// The verb set, in the schema's order: the ten verbs asked of the held instance, the three
+/// The verb set, in the schema's order: the eleven verbs asked of the held instance, the three
 /// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, ACTIONS, START, STATUS,
-    STOP, HELP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, ACTIONS, LAYOUT, START,
+    STATUS, STOP, HELP,
 ];
 
 /// One way a run of the command line ends: its status, its name and what it means.

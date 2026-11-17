@@ -17,6 +17,7 @@ use crate::actions::ActionNode;
 use crate::caused::{Caused, CausedPast, StepReading, caused};
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
+use crate::layout::LayoutExplanation;
 use crate::lint::Finding;
 use crate::refusal::{Cause, Refusal};
 use crate::schema::{self, BUSY_CLASSES};
@@ -122,6 +123,12 @@ pub enum Outcome {
         /// as [`Session::actions`](crate::Session::actions) reads it.
         nodes: Vec<ActionNode>,
     },
+    /// What `layout` returns.
+    Layout {
+        /// Why the element sits where it does at its size, as
+        /// [`Session::layout`](crate::Session::layout) reads it.
+        explanation: LayoutExplanation,
+    },
 }
 
 /// States the fields of a command's span once: the span that carries them, and the table of
@@ -173,7 +180,9 @@ impl Session {
     /// stands, or its refusal. Nor does `graph`, which answers the screen's UI graph
     /// ([`DioxusDocument::graph`]) as it stands, recording every id it reads, nor `actions`,
     /// which answers [`Session::actions`](crate::Session::actions): each actionable element
-    /// with the cause the one check below would refuse each of its verbs with now.
+    /// with the cause the one check below would refuse each of its verbs with now, nor `layout`,
+    /// which answers [`Session::layout`](crate::Session::layout) for the element an id names, or
+    /// its refusal.
     ///
     /// An acting verb takes the screen's snapshot, runs its step, settles the instance
     /// ([`Harness::settle`]) and takes the snapshot again; its outcome carries the diff of the
@@ -237,6 +246,9 @@ impl Session {
             Command::Graph => Ok(graph(harness, seen)),
             Command::Actions => Ok(Outcome::Actions {
                 nodes: self.actions(),
+            }),
+            Command::Layout { ref id } => Ok(Outcome::Layout {
+                explanation: self.layout(id)?,
             }),
         }
     }
@@ -446,7 +458,8 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             | Outcome::Shot { .. }
             | Outcome::Linted { .. }
             | Outcome::Graphed { .. }
-            | Outcome::Actions { .. },
+            | Outcome::Actions { .. }
+            | Outcome::Layout { .. },
         ) => return,
         Ok(
             Outcome::Acted {
@@ -603,7 +616,8 @@ impl Cleared {
 }
 
 /// The one check an id-taking `command` meets once its `target` resolves, in its verb's order,
-/// before its arm acts: `click` and `type` the three of [`action_point`]; `scroll` none; a
+/// before its arm acts: `click` and `type` the three of [`action_point`]; `scroll` and `layout`
+/// none; a
 /// `screenshot` of an element out of view, then one whose visible part holds no pixel, then an
 /// app with no font it can paint text with. [`Session::run`](crate::Session::run)'s arms and
 /// [`Session::actions`](crate::Session::actions) both decide through it, so the read names the
@@ -628,6 +642,7 @@ pub(crate) fn check_target(
             }
             Ok(Cleared::Rect(rect))
         }
+        Command::Layout { .. } => Ok(Cleared::Free),
         _ => Ok(Cleared::Free),
     }
 }
@@ -850,7 +865,7 @@ mod tests {
             .flat_map(|verb| verb.args)
             .map(|argument| argument.name)
             .collect();
-        assert_eq!(arguments.len(), 10);
+        assert_eq!(arguments.len(), 11);
         for (row, field) in SPAN_FIELDS.iter().enumerate() {
             assert!(!arguments.contains(field), "row {row}");
         }

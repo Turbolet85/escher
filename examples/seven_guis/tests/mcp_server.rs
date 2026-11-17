@@ -1,10 +1,11 @@
 //! The `escher-session` binary in its `mcp` role, run as a child the way an MCP client runs it:
 //! it answers `initialize` in the revision asked for and `2025-11-25` to one it does not speak,
-//! lists exactly the fourteen verbs of the driver's table as tools, `screenshot`, `lint`,
-//! `graph` and `actions` before `start` and `help` last, answers a `screenshot` tool call with an
+//! lists exactly the fifteen verbs of the driver's table as tools, `screenshot`, `lint`,
+//! `graph`, `actions` and `layout` before `start` and `help` last, answers a `screenshot` tool call with an
 //! image block, then a text block, a `lint` tool call on a fresh Counter with the line of its
 //! empty findings, a `graph` tool call with the line of its UI graph, an `actions` tool call with
-//! the line of its actionable nodes,
+//! the line of its actionable nodes, a `layout` tool call with the same bytes the command line's
+//! `layout` writes for the same id on a fresh Counter,
 //! answers `help` — first after
 //! `initialize`, before any `start` — with the tool's description of itself, the same bytes the
 //! command line's `help` writes, and completes the Counter flow by tool calls alone — `start`, a
@@ -125,19 +126,20 @@ fn the_mcp_role_completes_the_counter_flow_by_tool_calls_alone() {
         "tools/list answers the tools"
     );
     let verbs: Vec<&str> = VERBS.iter().map(|verb| verb.name).collect();
-    assert_eq!(verbs.len(), 14);
+    assert_eq!(verbs.len(), 15);
     assert!(
         names(&listing) == verbs,
-        "the tools are the table's fourteen verbs in its order"
+        "the tools are the table's fifteen verbs in its order"
     );
     let at = |name: &str| verbs.iter().position(|verb| *verb == name);
     assert!(
         at("screenshot") < at("lint")
             && at("lint") < at("graph")
             && at("graph").map(|at| at + 1) == at("actions")
-            && at("actions") < at("start")
+            && at("actions").map(|at| at + 1) == at("layout")
+            && at("layout") < at("start")
             && at("help") == Some(verbs.len() - 1),
-        "screenshot, lint, graph and actions stand before start, and help last"
+        "screenshot, lint, graph, actions and layout stand before start, and help last"
     );
     let described = listing
         .split_once(r#"{"name":"screenshot","description":""#)
@@ -370,7 +372,7 @@ fn an_actions_tool_call_answers_its_line_of_the_actionable_nodes() {
     let actioned = accepted(&mut speaker, 2, "actions", "{}");
     assert!(
         actioned.starts_with(r#"{"nodes":["#)
-            && actioned.contains(r#"{"id":"counter-increment","keyed":true,"verbs":[{"verb":"click"},{"verb":"type"},{"verb":"scroll"},{"verb":"screenshot"}]}"#),
+            && actioned.contains(r#"{"id":"counter-increment","keyed":true,"verbs":[{"verb":"click"},{"verb":"type"},{"verb":"scroll"},{"verb":"screenshot"},{"verb":"layout"}]}"#),
         "a fresh Counter's read lists its button with every verb accepted"
     );
     let (is_error, refused) = call(
@@ -428,6 +430,56 @@ fn help_reads_the_same_bytes_through_mcp_and_the_command_line() {
         "help reads {} bytes through mcp and {} through the command line",
         through_mcp.len(),
         ran.line().len()
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn a_layout_reads_the_same_through_mcp_and_the_command_line() {
+    use common::{Started, clear, client, state_dir, text};
+
+    let mut speaker = mcp();
+    accepted(&mut speaker, 1, "start", r#"{"app":"counter"}"#);
+    let through_mcp = accepted(&mut speaker, 2, "layout", r#"{"id":"counter-increment"}"#);
+    let (is_error, refused) = call(&mut speaker, 3, "layout", "{}");
+    assert!(
+        is_error && cause(&refused) == Some("malformed"),
+        "a layout with no id is one text block naming its cause"
+    );
+    accepted(&mut speaker, 4, "stop", "{}");
+    assert_eq!(
+        speaker.close().status,
+        Some(0),
+        "the mcp role ends with status 0"
+    );
+
+    let dir = state_dir("ms-layout");
+    clear(&dir);
+    let at = text(&dir);
+    let ran = client(BINARY, &["start", "counter", "--session", at]);
+    assert_eq!(ran.status, Some(0), "the command line starts a session");
+    let _started = Started {
+        dir: dir.clone(),
+        pid: number(ran.line(), "pid"),
+    };
+    let ran = client(
+        BINARY,
+        &["layout", "--id", "counter-increment", "--session", at],
+    );
+    assert_eq!(ran.status, Some(0), "the command line explains the button");
+    let through_command_line = ran.line().to_string();
+    let ran = client(BINARY, &["stop", "--session", at]);
+    assert_eq!(ran.status, Some(0), "the command line stops the session");
+
+    assert!(
+        through_mcp.starts_with(r#"{"id":"counter-increment","#),
+        "the layout read through mcp is the button's"
+    );
+    assert!(
+        through_mcp == through_command_line,
+        "the layout reads {} bytes through mcp and {} through the command line",
+        through_mcp.len(),
+        through_command_line.len()
     );
 }
 

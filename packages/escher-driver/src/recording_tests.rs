@@ -189,12 +189,27 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             }),
         ),
         (
+            call("layout", &[("id", text("go"))]),
+            false,
+            Ok(Outcome::Layout {
+                explanation: crate::layout::unexplained(
+                    "go",
+                    Bounds {
+                        x: 8.0,
+                        y: 8.0,
+                        width: 40.0,
+                        height: 20.0,
+                    },
+                ),
+            }),
+        ),
+        (
             call("click", &[("id", ArgValue::Number(7))]),
             false,
             not_found,
         ),
     ];
-    assert_eq!(calls.len(), 12);
+    assert_eq!(calls.len(), 13);
     for (row, (call, masked, answer)) in calls.iter().enumerate() {
         assert!(recording.record(call, *masked, answer), "row {row}");
     }
@@ -237,6 +252,10 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             .get("cause")
             .is_none()
     );
+    // A layout answer is kept whole.
+    assert_eq!(check.steps()[11].call().verb, "layout");
+    assert!(check.steps()[11].answer()["placed"]["by"] == "unexplained");
+    assert!(check.steps()[11].answer()["width"]["px"] == 40.0);
     let text = String::from_utf8(bytes).expect("the check is text");
     assert!(text.starts_with(
         "[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"},\"format\":1},\n"

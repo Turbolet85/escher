@@ -1,9 +1,11 @@
 # Coverage — escher-0.3.0
 
-verified 14/17 · deferred 0 · planned 3 · implemented 0 · unclaimed 3
+verified 14/17 · deferred 0 · planned 2 · implemented 1 · unclaimed 2
 
-## planned, unclaimed (3)
-- v030-11 · Layout explained
+## implemented (1)
+- v030-11 · Layout explained · 2026-11-17-layout-on-the-carriers
+
+## planned, unclaimed (2)
 - v030-12 · A component in isolation
 - v030-15 · Cold-agent bar
 

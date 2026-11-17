@@ -396,7 +396,7 @@ fn listed(verb: &VerbSpec) -> (Vec<&'static str>, Vec<&'static str>, Vec<&'stati
 }
 
 #[test]
-fn the_listing_is_the_fourteen_verbs_of_the_table() {
+fn the_listing_is_the_fifteen_verbs_of_the_table() {
     let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&tool_list(&APPS)) else {
         panic!("the listing is an object");
     };
@@ -405,7 +405,7 @@ fn the_listing_is_the_fourteen_verbs_of_the_table() {
     };
     assert_eq!(result.len(), 1, "no member beside the tools, no cursor");
     assert_eq!(tools.len(), VERBS.len());
-    assert_eq!(VERBS.len(), 14);
+    assert_eq!(VERBS.len(), 15);
     assert_eq!(
         tools.last().map(|tool| &tool["name"]),
         Some(&Value::from("help"))
@@ -416,6 +416,24 @@ fn the_listing_is_the_fourteen_verbs_of_the_table() {
     assert_eq!(graph, lint.map(|at| at + 1), "graph right after lint");
     let actions = names.iter().position(|name| **name == "actions");
     assert_eq!(actions, graph.map(|at| at + 1), "actions right after graph");
+    let layout = names.iter().position(|name| **name == "layout");
+    assert_eq!(
+        layout,
+        actions.map(|at| at + 1),
+        "layout right after actions"
+    );
+    let Some(layout_tool) = layout.and_then(|at| tools.get(at)) else {
+        panic!("the listing holds layout");
+    };
+    assert_eq!(
+        layout_tool["inputSchema"]["required"],
+        Value::from(vec!["id"]),
+        "layout requires its id"
+    );
+    assert_eq!(
+        layout_tool["inputSchema"]["properties"]["id"]["type"],
+        "string"
+    );
     for (row, (listed_tool, verb)) in tools.iter().zip(VERBS).enumerate() {
         assert!(listed_tool["name"] == verb.name, "row {row}");
         assert_described(row, listed_tool, verb);

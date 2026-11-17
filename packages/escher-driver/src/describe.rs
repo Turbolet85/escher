@@ -142,12 +142,24 @@ mod tests {
             .collect();
         assert!(at.windows(2).all(|pair| pair[0] < pair[1]));
         assert!(text.starts_with("{\"verbs\":["));
-        let counts = [14, 14, 12, 3, 8, 4, 15];
+        let counts = [15, 14, 12, 3, 8, 4, 15];
         for (row, (key, count)) in keys.iter().zip(counts).enumerate() {
             assert!(entries(&document, key).len() == count, "row {row}");
         }
         // The image's field kind and the eighth cause, with its remedy.
         assert!(text.contains(r#"{"name":"png","kind":"png","always":true,"#));
+        // The four kinds of the layout answer.
+        for (name, kind) in [
+            ("bounds", "rect"),
+            ("laid_out", "rect"),
+            ("placed", "placement"),
+            ("shifts", "shifts"),
+            ("width", "size"),
+            ("height", "size"),
+        ] {
+            let written = format!(r#"{{"name":"{name}","kind":"{kind}","always":true,"#);
+            assert!(text.contains(&written), "{name}");
+        }
         assert!(text.contains(
             r#"{"name":"fonts-unavailable","meaning":"the app this session holds has no font it can paint text with","remedy":"boot the app with a font it can decode"}"#
         ));

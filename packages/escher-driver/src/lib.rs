@@ -28,9 +28,9 @@
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
 //! anything runs, and every refusal names one of eight [`Cause`]s ([`CAUSES`]) with a fixed
-//! remedy. Fourteen verbs stand in
-//! three levels. Ten are asked of the held instance: `snapshot`, `click`, `type`, `press`,
-//! `advance`, `scroll`, `screenshot`, `lint`, `graph` and `actions`. Three are asked of the session itself — `start`, `status` and
+//! remedy. Fifteen verbs stand in
+//! three levels. Eleven are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance`, `scroll`, `screenshot`, `lint`, `graph`, `actions` and `layout`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
 //! and a session runs none of them.
 //!
@@ -105,8 +105,11 @@
 //! [`Session::layout`] reads why an element sits where it does at its size, by its stable id
 //! ([`LayoutExplanation`]): the algorithm that placed it, the element it was placed in and at
 //! what offset, each scroll and transform that moves it, and per axis the cause of its size
-//! with the computed inputs — ids, closed words and numbers. It runs no step, changes nothing
-//! and is in process only: no verb reaches it.
+//! with the computed inputs — ids, closed words and numbers; an element the snapshot lists for
+//! which the engine reads no reason is placed by [`Placer::Unexplained`]. It runs no step and
+//! changes nothing. The verb `layout` answers it for the element its `id` names
+//! ([`Outcome::Layout`]) on every surface, and a recorded session keeps it as it keeps every
+//! answer.
 //!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as

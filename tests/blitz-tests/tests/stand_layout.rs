@@ -8,19 +8,31 @@
 //! The read changes nothing — no change pending, the snapshot, both focus readings and the clock
 //! unmoved, an open select list still open, a delivered Timer tick still unapplied — refuses an
 //! id no screen read `not-found` and a deleted row's id `stale`, and writes no line under an
-//! `escher_` target at TRACE. A failure message names a layout mode, a task and an index only.
+//! `escher_` target at TRACE.
+//!
+//! The `layout` verb, through `Session::run`: on each served screen it answers every snapshot
+//! node with the explanation `Session::layout` reads; it refuses an unread id `not-found` and a
+//! deleted row's id `stale` with nothing changed; and with Timer ticks delivered and unapplied it
+//! leaves the snapshot, both focus readings, the next diff and the clock unchanged and the ticks
+//! unapplied. On a fixture page an element styled `display: contents`, which the snapshot lists
+//! and the engine reads no reason for, answers `Placer::Unexplained` at its snapshot bounds. A
+//! failure message names a layout mode, a task and an index only.
 
 use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex};
 
+use dioxus::prelude::*;
 use dioxus_native_dom::{NodeId, PlacedBy, ShiftBy, SizeCause, SnapshotNode};
 use escher_driver::{Cause, LayoutExplanation, Placer, Session};
 use seven_guis::stand::{self, LeanTask};
 use tracing::span::{Attributes, Id, Record};
 use tracing::{Event, Metadata, Subscriber};
 
+mod fixtures;
 mod session_common;
-use session_common::{act, click, focused, hold, scroll, slug};
+use session_common::{
+    act, click, explained, focused, hold, layout, refused_unchanged, scroll, slug,
+};
 
 /// The six screens the stand serves, by the label each session is started with.
 const SERVED: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
@@ -334,6 +346,157 @@ fn an_unread_id_is_not_found_and_a_deleted_rows_id_stale() {
         assert!(
             session.layout("crud-person-1").err().map(|r| r.cause()) == Some(Cause::Stale),
             "{at}: the deleted row's id is stale"
+        );
+    }
+}
+
+#[test]
+fn the_verb_answers_what_the_in_process_read_reads_for_every_node() {
+    for incremental in [false, true] {
+        for (row, label) in SERVED.into_iter().enumerate() {
+            let at = format!("incremental={incremental} task {row}");
+            let mut session = hold_served(label, incremental);
+            let ids: Vec<String> = session
+                .harness()
+                .doc
+                .snapshot()
+                .nodes()
+                .map(|node| node.id.clone())
+                .collect();
+            assert!(!ids.is_empty(), "{at}: the screen lists nodes");
+            for (index, id) in ids.iter().enumerate() {
+                let through_the_verb = explained(&mut session, &layout(id));
+                let in_process = session.layout(id).ok();
+                assert!(
+                    through_the_verb.is_some() && through_the_verb == in_process,
+                    "{at} node {index}: the verb answers the read"
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn the_verb_refuses_an_unread_id_not_found_and_a_deleted_rows_id_stale_changing_nothing() {
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental} crud");
+        let (mut session, _ticks) = hold(LeanTask::Crud, incremental);
+        let (cause, unchanged) = refused_unchanged(&mut session, &layout("layout-no-such-id"));
+        assert!(
+            cause == Some(Cause::NotFound) && unchanged,
+            "{at}: an unread id is not found, nothing changed"
+        );
+        assert!(
+            explained(&mut session, &layout("crud-person-1")).is_some(),
+            "{at}: the row answers"
+        );
+        assert!(
+            act(&mut session, &click("crud-person-1")).is_some(),
+            "{at}: the row is selected"
+        );
+        assert!(
+            act(&mut session, &click("crud-delete")).is_some(),
+            "{at}: the row is deleted"
+        );
+        let (cause, unchanged) = refused_unchanged(&mut session, &layout("crud-person-1"));
+        assert!(
+            cause == Some(Cause::Stale) && unchanged,
+            "{at}: the deleted row's id is stale, nothing changed"
+        );
+    }
+}
+
+#[test]
+fn the_verb_changes_nothing_and_leaves_delivered_ticks_unapplied() {
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental} timer");
+        let (mut session, ticks) = hold(LeanTask::Timer, incremental);
+        session.harness_mut().base_mut().take_changed_nodes();
+        ticks.deliver(5);
+        let before = (session.harness().doc.snapshot(), focused(&session));
+        let time = session.harness().time();
+        let ids: Vec<String> = before.0.nodes().map(|node| node.id.clone()).collect();
+        assert!(!ids.is_empty(), "{at}: the screen lists nodes");
+        for (index, id) in ids.iter().enumerate() {
+            assert!(
+                explained(&mut session, &layout(id)).is_some(),
+                "{at}: node {index} answers"
+            );
+        }
+        let after = (session.harness().doc.snapshot(), focused(&session));
+        assert!(
+            before == after && before.0.diff(&after.0).is_empty(),
+            "{at}: the snapshot, the focus readings and the diff are unchanged"
+        );
+        assert!(
+            !session.harness().base().has_changes(),
+            "{at}: the verb marks no change"
+        );
+        assert!(
+            session.harness().time() == time,
+            "{at}: the clock is unmoved"
+        );
+        session.harness_mut().pump();
+        assert!(
+            session.harness().doc.snapshot() != after.0,
+            "{at}: a pass applies the ticks the verb left pending"
+        );
+    }
+}
+
+/// A page whose group is styled `display: contents`: it has no box of its own, and the
+/// accessibility tree keeps it by its role and its name.
+fn contents_group() -> Element {
+    rsx! {
+        div {
+            id: "page",
+            div {
+                id: "group",
+                role: "group",
+                "aria-label": "Choices",
+                style: "display: contents",
+                button { id: "inside", "One" }
+            }
+        }
+    }
+}
+
+#[test]
+fn an_element_with_no_box_the_snapshot_lists_answers_unexplained() {
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental} contents");
+        let mut session = fixtures::hold("contents", contents_group, incremental);
+        let listed = session
+            .harness()
+            .doc
+            .snapshot()
+            .nodes()
+            .find(|node| node.id == "group")
+            .cloned();
+        let Some(listed) = listed else {
+            panic!("{at}: the snapshot lists the group");
+        };
+        let Some(explanation) = explained(&mut session, &layout("group")) else {
+            panic!("{at}: the group answers");
+        };
+        assert!(
+            explanation.placed.placer == Placer::Unexplained,
+            "{at}: the group is placed by unexplained"
+        );
+        assert!(
+            (explanation.bounds.x, explanation.bounds.y) == (listed.bounds.x, listed.bounds.y)
+                && (explanation.bounds.width, explanation.bounds.height)
+                    == (listed.bounds.width, listed.bounds.height),
+            "{at}: at its snapshot bounds"
+        );
+        assert!(
+            explanation.placed.container.is_none() && explanation.shifts.is_empty(),
+            "{at}: in no container, moved by nothing"
+        );
+        let line = escher_driver::Outcome::Layout { explanation }.to_json();
+        assert!(
+            line.contains(r#""placed":{"by":"unexplained","#),
+            "{at}: written unexplained"
         );
     }
 }
