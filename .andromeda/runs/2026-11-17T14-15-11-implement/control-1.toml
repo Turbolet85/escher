@@ -1,0 +1,15 @@
+[[control]]
+id = "scroll-clamp"
+entry = 9
+guard = "e5305a4c1's clamp of a node's scroll offset when its final layout is written (set_final_layout's clamp_node_scroll_offset call) removed"
+case = "a_row_past_the_list_is_refused_scrolled_into_view_and_then_clicked"
+
+[[control.edit]]
+path = "packages/blitz-dom/src/layout/mod.rs"
+old = '''
+        *self.node_from_id_mut(node_id).final_layout_mut() = *layout;
+        self.clamp_node_scroll_offset(dom_node_id(node_id));
+'''
+new = '''
+        *self.node_from_id_mut(node_id).final_layout_mut() = *layout;
+'''

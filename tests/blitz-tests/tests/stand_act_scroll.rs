@@ -2,8 +2,9 @@
 //! can be followed, and its result says when it could not. In both layout modes. *On the
 //! stand's CRUD task:* the driver creates rows until one lies past the list's box; a `click` on
 //! that row is refused `off-screen`; `scroll` naming it returns settled and in view, the row
-//! now inside the list's box; a `click` on it is then accepted and selects it; and the first
-//! row, scrolled out the other way, is refused in its turn. *On a fixture whose viewport
+//! now inside the list's box; a `click` on it is then accepted and selects it; and once that
+//! row is deleted the list's offset is clamped to its shrunken content, back at the top, so the
+//! first row lies inside the list's box again and takes a click. *On a fixture whose viewport
 //! scrolls:* `scroll` brings a far button inside the viewport and a `click` on it lands. *On a
 //! fixture no scroll can reach* — a button above the document's origin — `scroll` runs, says
 //! the button is not in view, and a `click` on it is still refused. A `scroll` naming a target
@@ -246,13 +247,16 @@ fn a_row_past_the_list_is_refused_scrolled_into_view_and_then_clicked() {
         );
 
         assert!(
-            !inside(centre(&session, "crud-person-0"), list),
-            "{mode}: the first row's centre now lies outside the list's box"
+            scroll_offset(&session, "crud-list") == 0.0,
+            "{mode}: the delete shrank the list's content, and its offset is clamped back to the top"
         );
-        let (cause, unchanged) = refused_unchanged(&mut session, &click("crud-person-0"));
         assert!(
-            cause == Some(Cause::OffScreen) && unchanged,
-            "{mode}: the first row, scrolled out the other way, is refused off-screen"
+            inside(centre(&session, "crud-person-0"), list),
+            "{mode}: the first row's centre lies inside the list's box again"
+        );
+        assert!(
+            act(&mut session, &click("crud-person-0")).is_some_and(|clicked| clicked.settled),
+            "{mode}: the first row, back in view, takes the click"
         );
     }
 }

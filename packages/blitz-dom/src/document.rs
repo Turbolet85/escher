@@ -4,7 +4,8 @@ use crate::layout::construct::ConstructionTask;
 use crate::layout::damage::ALL_DAMAGE;
 use crate::mutator::ViewportMut;
 use crate::net::{
-    Resource, ResourceHandler, ResourceLoadResponse, StylesheetHandler, StylesheetLoader,
+    ImageHandler, Resource, ResourceHandler, ResourceLoadResponse, StylesheetHandler,
+    StylesheetLoader,
 };
 use crate::node::{
     ImageData, NodeFlags, RasterImageData, SelectListRow, SelectListView, SpecialElementData,
@@ -659,6 +660,36 @@ impl BaseDocument {
     /// when `&self` would conflict with a held `&mut` borrow on a field.
     pub(crate) fn build_request(&self, url: url::Url) -> Request {
         crate::net::stamped_request(url, self.abort_signal.as_ref(), &self.url)
+    }
+
+    /// Fetch the image at `url` for `node_id`, unless it is already being fetched,
+    /// in which case `node_id` is queued for it. Callers check `image_cache` first.
+    pub(crate) fn fetch_image(&mut self, url: url::Url, node_id: NodeId, image_type: ImageType) {
+        let waiting = (node_id, image_type);
+        if let Some(waiting_list) = self.pending_images.get_mut(url.as_str()) {
+            #[cfg(feature = "tracing")]
+            tracing::info!("Image {url} already pending, queueing node {node_id}");
+            if !waiting_list.contains(&waiting) {
+                waiting_list.push(waiting);
+            }
+            return;
+        }
+
+        #[cfg(feature = "tracing")]
+        tracing::info!("Fetching image {url}");
+        self.pending_images
+            .insert(url.as_str().to_string(), vec![waiting]);
+        self.net_provider.fetch(
+            self.id(),
+            self.build_request(url),
+            ResourceHandler::boxed(
+                self.tx.clone(),
+                self.id(),
+                None, // Don't pass node_id, we'll handle it via pending_images
+                self.shell_provider.clone(),
+                ImageHandler::new(image_type),
+            ),
+        );
     }
 
     pub fn favicon_url(&self) -> Option<String> {
@@ -2717,7 +2748,6 @@ impl BaseDocument {
             self.media_type.clone(),
             self.font_ctx.clone(),
         ));
-        self.scroll_viewport_by(0.0, 0.0); // Clamp scroll offset
 
         // Text is shaped at a specific scale factor, so cached inline layouts
         // must be invalidated when the scale changes, as must every node's

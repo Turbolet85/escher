@@ -23,3 +23,6 @@
 - `host-linux.md` is 9 template lines behind (U04 `noted`). Regenerating it is the operator's word.
 - `target/` reads 690 GB (190 GB free on the drive); a clean is due soon.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-17 15:15:01

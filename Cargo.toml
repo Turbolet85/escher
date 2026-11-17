@@ -118,14 +118,14 @@ skrifa = { version = "0.44", default-features = false, features = [
 ] } # Should match parley and vello versions
 
 # AnyRender
-anyrender = { version = "0.14.0" }
-anyrender_serialize = { version = "0.8.0" }
-anyrender_skia = { version = "0.12.0" }
-anyrender_vello = { version = "0.15.0" }
-anyrender_vello_cpu = { version = "0.18.0" }
-anyrender_vello_hybrid = { version = "0.11.0" }
-anyrender_svg = { version = "0.15.0" }
-wgpu_context = { version = "0.10.0" }
+anyrender = { version = "0.15.0" }
+anyrender_serialize = { version = "0.9.0" }
+anyrender_skia = { version = "0.13.0" }
+anyrender_vello = { version = "0.16.0" }
+anyrender_vello_cpu = { version = "0.19.0" }
+anyrender_vello_gpu = { version = "0.12.0" }
+anyrender_svg = { version = "0.16.0" }
+wgpu_context = { version = "0.11.0" }
 
 # Linebender + Fontations + WGPU + SVG
 color = "0.3"
@@ -133,7 +133,7 @@ linebender_resource_handle = "0.1"
 peniko = "0.6.0"
 kurbo = "0.13.1"
 wgpu = "30"
-usvg = "0.48.1"
+usvg = "0.50.0"
 svgtypes = "0.16.1" # Should match usvg's version
 
 # Windowing & Input
@@ -271,7 +271,7 @@ log-phase-times = ["dioxus-native/log-phase-times"]
 anyrender = { workspace = true }
 anyrender_vello = { workspace = true }
 anyrender_vello_cpu = { workspace = true, features = ["multithreading"] }
-anyrender_vello_hybrid = { workspace = true }
+anyrender_vello_gpu = { workspace = true }
 blitz-dom = { workspace = true, features = ["default"] }
 blitz-html = { workspace = true }
 blitz-traits = { workspace = true }
@@ -282,7 +282,7 @@ blitz-vibey-script = { workspace = true }
 blitz = { workspace = true, features = ["net"] }
 dioxus = { workspace = true }
 dioxus-native = { workspace = true, features = [
-    "vello-hybrid",
+    "vello-gpu",
     "floats",
     "svg",
     "prelude",
@@ -297,10 +297,10 @@ peniko = { workspace = true }
 color = { workspace = true }
 env_logger = "0.11"
 tracing-subscriber = "0.3"
-vello = "0.11"
-vello_cpu = "0.3"
-vello_gpu = "0.3"
-vello_common = "0.3"
+vello = "0.12"
+vello_cpu = "0.4"
+vello_gpu = "0.4"
+vello_common = "0.4"
 wgpu = { workspace = true }
 wgpu_context = { workspace = true }
 rustc-hash = { workspace = true }
@@ -310,7 +310,7 @@ rustc-hash = { workspace = true }
 # anyrender_skia = { path = "../anyrender/crates/anyrender_skia" }
 # anyrender_vello = { path = "../anyrender/crates/anyrender_vello" }
 # anyrender_vello_cpu = { path = "../anyrender/crates/anyrender_vello_cpu" }
-# anyrender_vello_hybrid = { path = "../anyrender/crates/anyrender_vello_hybrid" }
+# anyrender_vello_gpu = { path = "../anyrender/crates/anyrender_vello_gpu" }
 # anyrender_svg = { path = "../anyrender/crates/anyrender_svg" }
 # wgpu_context = { path = "../anyrender/crates/wgpu_context" }
 

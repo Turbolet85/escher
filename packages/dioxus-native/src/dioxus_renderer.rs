@@ -18,9 +18,9 @@ cfg_if::cfg_if! {
         use anyrender_skia::SkiaWindowRenderer as InnerRenderer;
     } else if #[cfg(feature = "skia-raster-base")] {
         use anyrender_skia::raster::SkiaRasterWindowRenderer as InnerRenderer;
-    } else if #[cfg(feature = "vello-hybrid")] {
-        pub use anyrender_vello_hybrid::{
-            VelloHybridRendererOptions as InnerRendererOptions, VelloHybridWindowRenderer as InnerRenderer,
+    } else if #[cfg(feature = "vello-gpu")] {
+        pub use anyrender_vello_gpu::{
+            VelloGpuRendererOptions as InnerRendererOptions, VelloGpuWindowRenderer as InnerRenderer,
             wgpu::{Features, Limits},
         };
     } else {
@@ -30,7 +30,7 @@ cfg_if::cfg_if! {
 
 /// Renderer configuration for [`DioxusNativeWindowRenderer`].
 ///
-/// Fields that only apply to the GPU-backed `vello`/`vello-hybrid` renderers
+/// Fields that only apply to the GPU-backed `vello`/`vello-gpu` renderers
 /// (`features`/`limits`) are only present when one of those features is enabled.
 #[derive(Default)]
 pub struct RendererOptions {
@@ -39,10 +39,10 @@ pub struct RendererOptions {
     /// Alpha mode used when compositing the window surface.
     pub alpha_mode: Option<CompositeAlphaMode>,
     /// wgpu features to request from the GPU adapter.
-    #[cfg(any(feature = "vello", feature = "vello-hybrid"))]
+    #[cfg(any(feature = "vello", feature = "vello-gpu"))]
     pub features: Option<Features>,
     /// wgpu limits to request from the GPU adapter.
-    #[cfg(any(feature = "vello", feature = "vello-hybrid"))]
+    #[cfg(any(feature = "vello", feature = "vello-gpu"))]
     pub limits: Option<Limits>,
 }
 
@@ -62,7 +62,7 @@ impl DioxusNativeWindowRenderer {
         Self::with_options(RendererOptions::default())
     }
 
-    #[cfg(any(feature = "vello-hybrid", feature = "vello"))]
+    #[cfg(any(feature = "vello-gpu", feature = "vello"))]
     pub fn with_features_and_limits(features: Option<Features>, limits: Option<Limits>) -> Self {
         Self::with_options(RendererOptions {
             features,
@@ -76,14 +76,14 @@ impl DioxusNativeWindowRenderer {
     /// `base_color` and `alpha_mode` are forwarded to the active renderer via
     /// [`anyrender::RendererConfig`]; renderers that don't support a particular
     /// option simply ignore it. `features`/`limits` are only applied by the
-    /// GPU-backed `vello`/`vello-hybrid` renderers.
+    /// GPU-backed `vello`/`vello-gpu` renderers.
     pub fn with_options(options: RendererOptions) -> Self {
         let mut config = RendererConfig::default();
         config.base_color = options.base_color;
         config.composite_alpha_mode = options.alpha_mode;
 
         cfg_if::cfg_if! {
-            if #[cfg(any(feature = "vello", feature = "vello-hybrid"))] {
+            if #[cfg(any(feature = "vello", feature = "vello-gpu"))] {
                 let mut inner_options: InnerRendererOptions = config.into();
                 if let Some(features) = options.features {
                     inner_options = inner_options.features(features);

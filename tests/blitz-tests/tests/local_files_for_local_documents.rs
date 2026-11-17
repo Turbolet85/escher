@@ -3,8 +3,8 @@
 //! Every request blitz-dom builds carries the URL of the document that loads it as its
 //! `initiator`, and blitz-net's `file:` branch serves a `file:` URL only to a `file:`
 //! document or to a request no document made. So an `http:` page's `file:` stylesheet,
-//! `@import`, image and iframe read nothing from disk, while the same page as a `file:`
-//! document reads them all.
+//! `@import`, image, svg `<image>` and iframe read nothing from disk, while the same page as
+//! a `file:` document reads them all.
 
 use blitz_dom::BaseDocument;
 use blitz_test_harness::{Harness, HarnessOptions};
@@ -87,6 +87,7 @@ fn every_engine_request_carries_its_document_as_initiator() {
 <div id="bg"></div>
 <img src="file:///stamp/img.png">
 <iframe src="file:///stamp/frame.html"></iframe>
+<svg width="10" height="10"><image href="file:///stamp/svgimg.png" width="10" height="10"/></svg>
 </body>
 </html>"#
     );
@@ -104,6 +105,10 @@ fn every_engine_request_carries_its_document_as_initiator() {
         );
         harness.pump();
         assert_eq!(harness.base().url().as_str(), REMOTE_PAGE);
+        assert!(
+            harness.query("svg").is_some(),
+            "the page holds an inline svg (incremental: {incremental})"
+        );
         assert!(
             harness.base().author_stylesheets().count() >= 2,
             "the linked sheet was applied, so it can be reloaded (incremental: {incremental})"
@@ -123,8 +128,9 @@ fn every_engine_request_carries_its_document_as_initiator() {
             "import.css",
             "link.css",
             "link.css",
+            "svgimg.png",
         ];
-        assert_eq!(expected.len(), 7);
+        assert_eq!(expected.len(), 8);
         assert_eq!(kinds, expected, "incremental: {incremental}");
         for (url, initiator) in requests.iter() {
             assert_eq!(

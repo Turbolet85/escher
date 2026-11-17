@@ -109,12 +109,23 @@ class CiWorkflowTest(unittest.TestCase):
         cls.jobs = cls.ci["jobs"]
         cls.text = (WORKFLOWS / "ci.yml").read_text(encoding="utf-8")
 
-    def test_only_stand_repeat_frees_disk(self):
+    def test_free_disk_only_on_test_and_stand_repeat(self):
         def free_disk_steps(job):
             return [step for step in job["steps"] if "free-disk-space" in str(step.get("uses", ""))]
 
         self.assertEqual(free_disk_steps(self.jobs["matrix_test"]), [])
         self.assertEqual(len(free_disk_steps(self.jobs["stand-repeat"])), 1)
+        self.assertEqual(len(free_disk_steps(self.jobs["test-features-default"])), 1)
+
+    def test_test_job_reads_its_disk(self):
+        steps = self.jobs["test-features-default"]["steps"]
+        runs = [str(step.get("run", "")).strip() for step in steps]
+        leg = runs.index("bash .github/scripts/ci-leg.sh test")
+        before = [i for i, run in enumerate(runs[:leg]) if run == "df -h"]
+        after = [leg + 1 + i for i, run in enumerate(runs[leg + 1 :]) if run == "df -h"]
+        self.assertEqual(len(before), 1)
+        self.assertEqual(len(after), 1)
+        self.assertEqual(steps[after[0]].get("if"), "always()")
 
     def test_a_push_triggers_build_branches(self):
         self.assertIn("build/**", triggers(self.ci)["push"]["branches"])

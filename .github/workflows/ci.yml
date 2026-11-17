@@ -83,12 +83,23 @@ jobs:
       - uses: dtolnay/rust-toolchain@7e38f4b43b4db5c8dd498af069a4f6196df1d067 # master
         with:
           toolchain: stable
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        with:
+          android: true
+          large-packages: false
+          swap-storage: false
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
         with:
           shared-key: workspace-test
           save-if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/build/') }}
       - run: bash .github/scripts/apt-install.sh libfontconfig1-dev
+      - name: Disk before the test leg
+        run: df -h
       - run: bash .github/scripts/ci-leg.sh test
+      - name: Disk after the test leg
+        if: always()
+        run: df -h
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()
         with:

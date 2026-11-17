@@ -16,7 +16,7 @@ _Mirrors `doc:architecture` §Stack and Technologies (citations live there). A c
 | HTML / XML parsing | html5ever 0.40.1, markup5ever 0.40.0, xml5ever 0.40.0 |
 | Layout | Taffy 0.15 (upstream's git source, pinned to one revision — the one crate allowed a git source; std, flexbox, flexbox_balance, grid, block_layout, content_size, calc, detailed_layout_info) via `stylo_taffy` |
 | Text & fonts | Parley 0.12 (registry), skrifa 0.44, fontique; ICU4X 2.3 (icu_casemap, icu_locale_core, icu_properties, icu_segmenter) with writeable 0.6 — icu_casemap and writeable behind blitz-dom's default `text-transform-icu`; `wuff` for WOFF/WOFF2 |
-| Rendering | anyrender 0.14.0 + anyrender_vello / _vello_cpu / _vello_hybrid / _skia / _svg / _serialize; wgpu 30 |
+| Rendering | anyrender 0.15.0 + anyrender_vello / _vello_cpu / _vello_gpu / _skia / _svg / _serialize; wgpu 30 |
 | Graphics | color 0.3, peniko 0.6.0, kurbo 0.13.1, usvg 0.48.1, svgtypes 0.16.1, euclid 0.22, app_units 0.7.5 |
 | Windowing & input | winit `=0.31.0-beta.3`, raw-window-handle 0.6, arboard 3.4.1, rfd 0.17.1, keyboard-types 0.8 (lock 0.8.3; Dioxus 0.7.3 carries its own 0.7, so two versions stand in the graph), cursor-icon 1 |
 | Accessibility | accesskit 0.25; accesskit_xplat (windows 0.35, macos 0.27, unix 0.24, android 0.9) |

@@ -18,7 +18,7 @@ _From `doc:architecture`, the `justfile` and `.github/workflows/ci.yml`. The 5 m
 - `cargo build --workspace --locked` — every crate (dev profile, `debug = "line-tables-only"`); the `build` leg
 - `cargo check --workspace` / `just check`
 - `cargo build -p counter --locked` — the counter example
-- `cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked` — stand as wasm
+- `cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features vello-gpu --locked` — stand as wasm
 - `just small` — size-profile counter build
 
 ## Testing
@@ -64,7 +64,7 @@ _From `doc:architecture`, the `justfile` and `.github/workflows/ci.yml`. The 5 m
 - `just todomvc` · `just browser` · `just open {path}` (rdme) · `just screenshot {url}`
 - `cargo run --example {name}` — root examples (box_shadow, custom_widget, flex, form, gradient, html, inline, inner_html, mutations, multi_doc (reading `MULTI_DOC_N`, `MULTI_DOC_SEQ` and `MULTI_DOC_FLAT`), outline, paint_bench, preact_script, restyle, screenshot, svg, svg_native, transforms, url)
 - `cargo run --release --example screenshot -- {url} [width]` — headless render to `examples/output/*.png`
-- `cargo run --release --example paint_bench -- <url> [w] [h] [scale] [iters] [vello|cpu|hybrid]`
+- `cargo run --release --example paint_bench -- <url> [w] [h] [scale] [iters] [vello|cpu|gpu]`
 - `just wasm-serve seven_guis` — Trunk dev server for a wasm example
 
 ## Release

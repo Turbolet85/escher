@@ -102,3 +102,4 @@
 2026-11-16-error-field-in-the-answer · complete · a `caused` item's `error` field shows its text — the answer's own scrub set without `error`, the sink's lines unchanged · → chk:2026-11-16-error-field-in-the-answer
 2026-11-17-layout-on-the-carriers · complete · the fifteenth verb `layout --id` on every ratified carrier, stable ids, closed words and numbers out, changing nothing · → chk:2026-11-17-layout-on-the-carriers
 2026-11-17-a-component-in-isolation · complete · A component in isolation — one component rendered alone with given props at the stand's viewport and font, read as inside its app; `layout` joins the cold-agent pipe · → chk:2026-11-17-a-component-in-isolation
+2026-11-17-upstream-sync-ahead-of-polish-and-ship · pending · upstream/main merged past ea07ee716 ahead of Epoch 6, the CI disk reds given a line · → chk:2026-11-17-upstream-sync-ahead-of-polish-and-ship

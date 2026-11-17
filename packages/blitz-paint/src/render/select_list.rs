@@ -60,6 +60,7 @@ impl BlitzDomPainter<'_, '_> {
             Color::from_rgba8(255, 255, 255, 255),
             None,
             &bounds,
+            anyrender::AntiAliasing::Enabled,
         );
         if let Some(styles) = self
             .dom
@@ -70,7 +71,14 @@ impl BlitzDomPainter<'_, '_> {
                 .clone_background_color()
                 .resolve_to_absolute(&styles.clone_color())
                 .as_srgb_color();
-            scene.fill(Fill::NonZero, Affine::IDENTITY, background, None, &bounds);
+            scene.fill(
+                Fill::NonZero,
+                Affine::IDENTITY,
+                background,
+                None,
+                &bounds,
+                anyrender::AntiAliasing::Enabled,
+            );
         }
         let width = SelectListView::BORDER_WIDTH * self.scale;
         scene.stroke(
@@ -79,6 +87,7 @@ impl BlitzDomPainter<'_, '_> {
             fixed(SelectListView::BORDER),
             None,
             &bounds.inset(-width / 2.0),
+            anyrender::AntiAliasing::Enabled,
         );
     }
 
@@ -95,6 +104,7 @@ impl BlitzDomPainter<'_, '_> {
                 fixed(SelectListView::HIGHLIGHT_BACKGROUND),
                 None,
                 &bounds,
+                anyrender::AntiAliasing::Enabled,
             );
         }
         let Some(layout) = self.dom.select_row_layout(row.node, &row.label) else {
@@ -150,6 +160,7 @@ impl BlitzDomPainter<'_, '_> {
             color.multiply_alpha(opacity),
             None,
             &thumb.to_rounded_rect(thumb.width() / 2.0),
+            anyrender::AntiAliasing::Enabled,
         );
     }
 }

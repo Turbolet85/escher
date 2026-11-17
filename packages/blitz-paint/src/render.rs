@@ -227,7 +227,14 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                 (self.initial_x, self.initial_y),
                 (bg_width as f64, bg_height as f64),
             );
-            scene.fill(Fill::NonZero, Affine::IDENTITY, bg_color, None, &rect);
+            scene.fill(
+                Fill::NonZero,
+                Affine::IDENTITY,
+                bg_color,
+                None,
+                &rect,
+                anyrender::AntiAliasing::Enabled,
+            );
         }
 
         // The root clip rectangle is the viewport (in screen coordinates, with the
@@ -527,8 +534,10 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                 // Save it so that the mask can be drawn untransformed by scroll offsets.
                 let unscrolled_transform = cx.transform;
 
-                let filter = convert_filters(&effects.filter.0).map(Arc::new);
-                let backdrop_filter = convert_filters(&effects.backdrop_filter.0).map(Arc::new);
+                let border_box = cx.frame.border_box_path().bounding_box();
+                let filter = convert_filters(&effects.filter.0, border_box).map(Arc::new);
+                let backdrop_filter =
+                    convert_filters(&effects.backdrop_filter.0, border_box).map(Arc::new);
 
                 // Adjust effect layer clip by filter expansion area
                 //
@@ -543,7 +552,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                     .map(|f| f.expansion_rect())
                     .unwrap_or(Rect::ZERO);
 
-                let mut effect_layer_clip = cx.frame.border_box_path().bounding_box();
+                let mut effect_layer_clip = border_box;
                 effect_layer_clip.x0 += filter_expansion_area.x0;
                 effect_layer_clip.y0 += filter_expansion_area.y0;
                 effect_layer_clip.x1 += filter_expansion_area.x1;
@@ -848,6 +857,7 @@ impl ElementCx<'_, '_> {
                     track_color.multiply_alpha(opacity),
                     None,
                     &track_rect,
+                    anyrender::AntiAliasing::Enabled,
                 );
             }
 
@@ -872,6 +882,7 @@ impl ElementCx<'_, '_> {
                 color.multiply_alpha(opacity),
                 None,
                 &rect.to_rounded_rect(radius),
+                anyrender::AntiAliasing::Enabled,
             );
             // Contrast stroke, default thumbs only: an author-specified
             // scrollbar-color is rendered exactly as given.
@@ -884,6 +895,7 @@ impl ElementCx<'_, '_> {
                     stroke_color.multiply_alpha(opacity),
                     None,
                     &stroke_rect.to_rounded_rect(radius - stroke_width / 2.0),
+                    anyrender::AntiAliasing::Enabled,
                 );
             }
         }
@@ -981,6 +993,7 @@ impl ElementCx<'_, '_> {
                         SELECTION_COLOR,
                         None,
                         &convert_rect(rect),
+                        anyrender::AntiAliasing::Enabled,
                     );
                 }
                 if let Some(cursor) = input_data.editor.cursor_geometry(1.5) {
@@ -990,6 +1003,7 @@ impl ElementCx<'_, '_> {
                         self.caret_color(),
                         None,
                         &convert_rect(&cursor),
+                        anyrender::AntiAliasing::Enabled,
                     );
                 };
             }
@@ -1068,6 +1082,7 @@ impl ElementCx<'_, '_> {
                     SELECTION_COLOR,
                     None,
                     &convert_rect(rect),
+                    anyrender::AntiAliasing::Enabled,
                 );
             }
             if editor.is_cursor_visible() {
@@ -1077,6 +1092,7 @@ impl ElementCx<'_, '_> {
                     self.caret_color(),
                     None,
                     &convert_rect(&caret),
+                    anyrender::AntiAliasing::Enabled,
                 );
             }
         }
@@ -1408,7 +1424,14 @@ impl ElementCx<'_, '_> {
                 taffy::Display::None => Color::new([0.0, 0.0, 1.0, 1.0]),
             };
 
-            scene.stroke(&stroke, self.transform, stroke_color, None, &shape);
+            scene.stroke(
+                &stroke,
+                self.transform,
+                stroke_color,
+                None,
+                &shape,
+                anyrender::AntiAliasing::Enabled,
+            );
         }
     }
 }

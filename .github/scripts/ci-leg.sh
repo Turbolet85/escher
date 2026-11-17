@@ -33,8 +33,8 @@ run_leg() {
     wasm)
         # examples/wasm_hello is a standalone workspace with no Cargo.lock, so it cannot take --locked.
         (cd examples/wasm_hello && cargo build --target wasm32-unknown-unknown) &&
-            cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked &&
-            cargo build -p todomvc --lib --target wasm32-unknown-unknown --no-default-features --features hybrid --locked
+            cargo build -p seven_guis --lib --target wasm32-unknown-unknown --no-default-features --features vello-gpu --locked &&
+            cargo build -p todomvc --lib --target wasm32-unknown-unknown --no-default-features --features vello-gpu --locked
         ;;
     doc) cargo doc --workspace --no-deps --locked ;;
     audit) cargo deny --locked --workspace --all-features check advisories licenses ;;
