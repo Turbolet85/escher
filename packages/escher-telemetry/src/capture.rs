@@ -9,7 +9,7 @@
 //! focus move below that — and escher's own ([`ESCHER_TARGET_PREFIXES`]) never.
 //!
 //! Every admitted record keeps its target, level, message, fields and location. A field named in
-//! [`ANSWER_HIDDEN_FIELDS`] keeps its name and [`REDACTED`] in place of its value, whatever the
+//! `ANSWER_HIDDEN_FIELDS` keeps its name and [`REDACTED`] in place of its value, whatever the
 //! source; a field named `error`, the message and every other field are kept as written. Each text is cut at [`TEXT_CUT`] bytes,
 //! the bytes cut counted beside it, a record keeps at most [`FIELDS_KEPT`] fields and a capture
 //! at most [`RECORDS_KEPT`] records and panics, the rest counted. Nothing here prints, logs or
@@ -167,7 +167,7 @@ impl Text {
 pub struct KeptField {
     /// The field's name.
     pub name: String,
-    /// Its value, or [`REDACTED`] where the name is in [`ANSWER_HIDDEN_FIELDS`]; a field named
+    /// Its value, or [`REDACTED`] where the name is in `ANSWER_HIDDEN_FIELDS`; a field named
     /// `error` keeps its value.
     pub value: Text,
 }
