@@ -1,0 +1,134 @@
+[
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T11:39:19Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T11-37-28-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T11-37-28-wrap",
+"--marker",
+"no-marker",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 2 record(s) · 2 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T11:39:24Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T11-37-28-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T11-37-28-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2 record(s) · 2 edge(s) · tx 1753 · chk-br6huuk6 … cry-gvojtiwf"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-12T14-22-05-no-marker.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T11:39:48Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T11-37-28-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T11-37-28-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1754 · run-vafpwpuo … run-vafpwpuo"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-12T14-22-05-no-marker.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T11:40:11Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T11-37-28-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"outputs land: no field payload in the run — nothing to land"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T11:40:16Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T11-37-28-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"sealed 2026-11-17T07-23-07-wrap · 175 file(s) · 2026-11-17T07-23-07-wrap.parquet · tx 1755 · 175 removed · 209 set aside",
+"sealed 2026-11-17T08-58-13-evolve-diagnose · 3 file(s) · 2026-11-17T08-58-13-evolve-diagnose.parquet · tx 1756 · 3 removed · 0 set aside",
+"sealed 2026-11-17T09-07-31-code-audit · 44 file(s) · 2026-11-17T09-07-31-code-audit.parquet · tx 1757 · 44 removed · 0 set aside",
+"seal · 3 run(s) · own 2026-11-17T11-37-28-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
