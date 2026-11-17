@@ -1,3 +1,0 @@
-Answer to Q1 (the widening card): «Apply all 14 (Recommended)»
-
-The founder's ruling, given by dialog in the overseer session just now and relayed by the overseer: his chosen label «Применить все 14 (Recommended)». He also ruled a follow-up, his label «Открыть error в caused (Recommended)»: a small chunk gives the caused answer its own scrub set without the name error, the other names staying hidden and the sink's stderr lines unchanged. Place it as a new route entry right after this one at the route-resolve; its text is in ~/dev/projects/additional/escher-overseer/relays/error-field-founder-2026-11-16.md.

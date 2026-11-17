@@ -1,0 +1,1110 @@
+[
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T00:49:17Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-16-error-field-in-the-answer",
+"--section-file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-16-error-field-in-the-answer/report rev 2 · 10 new · 0 revised · 0 retired · 27 kept · tx 1572"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T00:49:17Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-16-error-field-in-the-answer",
+"--section-file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-16-error-field-in-the-answer/report rev 3 · 14 new · 0 revised · 0 retired · 37 kept · tx 1573"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T00:49:44Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cites-land-2026-11-16-error-field-in-the-answer.ndjson",
+"--base",
+"21a5bacbf26a8804573473c976a40dd06f099c5d",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T00:49:48Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cites-land-2026-11-16-error-field-in-the-answer.ndjson",
+"--base",
+"21a5bacbf26a8804573473c976a40dd06f099c5d",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 1575"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T00:51:42Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1521 · packs 16 · pack 100 · 380827 B",
+"security-plan: rows 553 · packs 6 · pack 100 · 158047 B",
+"design-system: rows 136 · packs 2 · pack 100 · 37294 B",
+"layout-templates: rows 120 · packs 2 · pack 100 · 29902 B",
+"test-plan: rows 615 · packs 7 · pack 100 · 170161 B",
+"obs-plan: rows 279 · packs 3 · pack 100 · 76192 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3464 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 1575"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T00-47-21-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:00:49Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1521 · packs 16 · picked 16 (9 by every draw) · standing 0 · 155066 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 553 · packs 6 · picked 21 (13 by every draw) · standing 0 · 99215 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 136 · packs 2 · picked 6 (0 by every draw) · standing 0 · 18635 B",
+"layout-templates: rows 120 · packs 2 · picked 9 (4 by every draw) · standing 0 · 26095 B",
+"test-plan: rows 615 · packs 7 · picked 49 (30 by every draw) · standing 0 · 139822 B",
+"obs-plan: rows 279 · packs 3 · picked 19 (13 by every draw) · standing 0 · 52777 B",
+"a11y-plan: rows 240 · packs 3 · picked 1 (1 by every draw) · standing 0 · 19219 B",
+"rows-union: 7 master(s) · picked 121 of 3464 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T00-47-21-wrap/arch-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/arch-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/security-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/security-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/design-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/design-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/tests-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/tests-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/obs-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/obs-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:40Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/acting-verb-results/caused-fields · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-16-error-field-in-the-answer — Standard Contracts: 1 row(s)\n**Section:** Standard Contracts\n**Change:** ~ decision/no-echo-of-typed-input · except: was «caused carries an app's own messages and fields as their author wrote them, scrubbed by field name, so an app that writes typed text into a record echoes it.»; now «caused carries an app's own messages and fields as their author wrote them, error included, scrubbed by the answer's own hidden field names, so an app that writes typed text into a record echoes it.»\n**Why:** decision/no-echo-of-typed-input: The per-step capture now judges a caused field by the answer's own hidden set with error kept as written, so the exception's «scrubbed by field name» no longer names the set that scrubs and must say error crosses. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:41Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-16-error-field-in-the-answer — Standard Contracts: 1 row(s)\n**Section:** Standard Contracts\n**Change:** ~ contract/acting-verb-results/caused · promise: was «Present only when the step caused something: an item per panic, error or record: kind, level, source, target, message cut at 1024 bytes, location, an error's boundary and chain, a log's scrubbed fields, first reached handler; panics, then errors new since the boundary marks, then records; 16 kept»; now «Present only when the step caused something: an item per panic, error or record: kind, level, source, target, message cut at 1024 bytes, location, an error's boundary and chain, a log's fields, error kept, first reached handler; panics, then errors new since the boundary marks, then records; 16 kept»\n**Why:** contract/acting-verb-results/caused: The plan's expected amendment: a caused item's field named error now crosses as written, so «a log's scrubbed fields» must say the error field is kept. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:41Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session-reply/no-attribute-text · rejected (Q2)",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-16-error-field-in-the-answer — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/caused-text-crossing · rule: was «Each acting verb's answer carries caused on every ratified carrier only when the step caused something: one item per panic, boundary error and kept record, holding its message, location, boundary, cause chain and fields, a content-named field read as redacted.»; now «Each acting verb's answer carries caused on every ratified carrier when the step caused something: one item per panic, boundary error and kept record with its message, location, boundary, cause chain and fields, error as written within the text bound, every other content-named field redacted.»\n**Why:** decision/caused-text-crossing: The answer's capture now hides its own eleven field names and keeps a caused item's error field as written, cut at the text bound, while the sink still redacts error, so the row's «a content-named field read as redacted» no longer holds for error. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"## 2026-11-16-error-field-in-the-answer — Input Validation: 2 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/mask-holds-on-every-carrier · except: was «A caused item's message holds what its author wrote; only a content-named field in it reads as redacted.»; now «A caused item's message and its error field hold what their author wrote; every other content-named field in it reads as redacted.»\n~ decision/socket-carries-screen-reading · rule: was «An answer carries what the screen reads, ids, accessible names, control values with password and file input masked, snapshot text, diff, lint findings, UI graph, and an acting step's caused text scrubbed by field name, never a NodeId or an attribute value as typed.»; now «An answer carries what the screen reads, ids, accessible names, control values with password and file input masked, snapshot text, diff, lint findings, UI graph, and an acting step's caused text scrubbed by the answer's own field names, error kept, never a NodeId or an attribute value as typed.»\n**Why:** decision/mask-holds-on-every-carrier: A caused item's error field now crosses every answer carrier as written, so the exception must name it beside the message. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\ndecision/socket-carries-screen-reading: The caused text is now scrubbed by the answer's own hidden field set, error not among it, rather than by the sink's content names the row implied. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"## 2026-11-16-error-field-in-the-answer — Logging & Monitoring: 1 row(s)\n**Section:** Logging & Monitoring\n**Change:** ~ decision/escher-telemetry-allowlist-sink · except: was «The scrubbing reaches that sink and escher's scoped capture only: upstream's fmt::init subscribers, env_logger and the panic hook stay unscrubbed.»; now «The sink's scrubbing reaches that sink only, escher's scoped capture hiding its own field set: upstream's fmt::init subscribers, env_logger and the panic hook stay unscrubbed.»\n**Why:** decision/escher-telemetry-allowlist-sink: The scoped capture no longer reads the sink's content-named set but its own answer set, so the exception can no longer say one scrubbing reaches both. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:41Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/answer-hidden-field-set · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-16-error-field-in-the-answer — 7. Error Capture & Reporting: 1 row(s)\n**Section:** 7. Error Capture & Reporting\n**Change:** ~ contract/telemetry-scrub-set/error · promise: was «An `error` field is in the scrub set, so the sink prints its value as `[redacted]` and the scoped capture keeps it as `[redacted]` in a caused item; a failed fetch's error text reaches no carrier as a field value.»; now «An `error` field is in the sink's scrub set, so the sink prints its value as `[redacted]`; the scoped capture keeps it in a caused item as written, cut at the text bound, so a failed fetch's error text crosses the answer carriers as a field value.»\n**Why:** contract/telemetry-scrub-set/error: The capture now judges a caused item's fields by the answer's own hidden set without `error`, so the row's claim that the capture keeps `error` as `[redacted]` and that the error text reaches no carrier is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"## 2026-11-16-error-field-in-the-answer — 8. PII Scrubbing & Compliance: 1 row(s)\n**Section:** 8. PII Scrubbing & Compliance\n**Change:** ~ decision/scrub-by-field-name · rule: was «Scrubbing is by field name, in escher's own sink, a closed span's line judged pair by pair by the same rule, and in the scoped capture for every source, where a content-named field reads [redacted] and the message and other fields are kept as written.»; now «Scrubbing is by field name: in escher's own sink by the content-named set, a closed span's line judged pair by pair by the same rule, and in the scoped capture for every source by the answer's own hidden set; a scrubbed field reads [redacted], the message and other fields kept as written.»\n**Why:** decision/scrub-by-field-name: The capture no longer reads the sink's content-named set but its own hidden set without `error`, so a content-named field no longer always reads [redacted] in a caused item. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"## 2026-11-16-error-field-in-the-answer — 3. Observability Harness Contract: 1 row(s)\n**Section:** 3. Observability Harness Contract\n**Change:** ~ decision/answers-echo-nothing-typed · except: was «A caused item's message, chain and kept fields hold what their author wrote, a content-named field's value reading [redacted].»; now «A caused item's message, chain and kept fields hold what their author wrote, a field of the answer's own hidden set reading [redacted] and an error field shown as written, cut at the text bound.»\n**Why:** decision/answers-echo-nothing-typed: A caused item's `error` field, content-named for the sink, now crosses as written, so the exception's «a content-named field's value reading [redacted]» no longer holds. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-16, inputs#I1: «Открыть error в caused (Recommended)»; card confirmed by operator, 2026-11-17\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:42Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-16-error-field-in-the-answer — 7. Test Data & Fixtures: 1 row(s)\n**Section:** 7. Test Data & Fixtures\n**Change:** ~ decision/stand-boots-offline · except: was «The stand load page's boot, which supplies the self-answering LoadNet stand-in, answering one fixed sheet from its own thread after a delay.»; now «The stand load page's boot, with its self-answering LoadNet stand-in answering one fixed sheet after a delay, and the error-text check's failing page, whose FailingNet stand-in fails its fetch.»\n**Why:** decision/stand-boots-offline: The chunk adds a stand boot holding a failing network stand-in, so a load page is no longer the one stand boot that keeps a network provider.\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"## 2026-11-16-error-field-in-the-answer — 7. Test Data & Fixtures: 1 row(s)\n**Section:** 7. Test Data & Fixtures\n**Change:** ~ decision/stand-load-page-fixed-answer · rule: was «The stand load page's checks rely on its stand-in network answering the fixed URL with fixed bytes after a fixed delay, every other stand boot having no network provider.»; now «The stand load page's checks rely on its stand-in network answering the fixed URL with fixed bytes after a fixed delay, every other stand boot having no network provider but the error-text check's failing page, whose stand-in fails its fetch.»\n**Why:** decision/stand-load-page-fixed-answer: The chunk adds a second stand boot with a network stand-in, so «every other stand boot having no network provider» no longer holds as written.\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"## 2026-11-16-error-field-in-the-answer — 9. CI Integration: 1 row(s)\n**Section:** 9. CI Integration\n**Change:** + decision/doc-leg-gates-public-doc-edits — Doc leg gates a public doc comment edit\n**Why:** decision/doc-leg-gates-public-doc-edits: The chunk's public doc comments linked a crate-private item, green on every local gate and red only in CI's Documentation job, and no test-plan row yet states that the doc leg gates such an edit.\n**Ref:** .andromeda/runs/2026-11-17T00-47-21-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:42Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-caused/error · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/acting-verb-results/caused-fields · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1576 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1577 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session-reply/no-attribute-text · rejected (Q2)",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 1578 · 4 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/answer-hidden-field-set · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 1579 · 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:04:48Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T00-47-21-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 1580 · 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+".andromeda/runs/2026-11-17T00-47-21-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:35Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-telemetry.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__services__escher-telemetry.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-telemetry.md rev 12 · 0 new · 1 revised · 0 retired · tx 1581"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/services/escher-telemetry.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:36Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 16 · 0 new · 3 revised · 0 retired · tx 1582"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:36Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 24 · 0 new · 2 revised · 0 retired · tx 1583"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:37Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 13 · 0 new · 1 revised · 0 retired · tx 1584"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:37Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-test-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__services__blitz-test-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-test-harness.md rev 7 · 0 new · 1 revised · 0 retired · tx 1585"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/services/blitz-test-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:38Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 14 · 0 new · 2 revised · 0 retired · tx 1586"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:38Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 13 · 0 new · 1 revised · 0 retired · tx 1587"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:39Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 21 · 0 new · 3 revised · 0 retired · tx 1588"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:39Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 24 · 0 new · 1 revised · 0 retired · tx 1589"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:40Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 18 · 0 new · 2 revised · 0 retired · tx 1590"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:40Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 25 · 0 new · 3 revised · 0 retired · tx 1591"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:07:41Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 8 · 0 new · 1 revised · 0 retired · tx 1592"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:10:21Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:10:24Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 1596 · cry-2dk6n44y … cry-2dk6n44y"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:10:42Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T00-47-21-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap",
+"--marker",
+"2026-11-16-error-field-in-the-answer"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1598 · run-v6q7ghco … run-v6q7ghco"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-16T21-48-37-2026-11-16-error-field-in-the-answer.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.51",
+"sha8": "5602718f",
+"ts": "2026-11-17T01:34:02Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-16-error-field-in-the-answer",
+"--run-dir",
+".andromeda/runs/2026-11-17T00-47-21-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 4 file(s) of 2026-11-16-error-field-in-the-answer"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

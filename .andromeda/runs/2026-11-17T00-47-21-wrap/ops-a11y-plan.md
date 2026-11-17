@@ -1,0 +1,2 @@
+@none
+reason: The chunk widens the acting verbs' caused item so its error field crosses as written (fct-tylyvsk5, fct-vk5mjci2), and it adds no interactive UI element and changes neither the a11y violation schema nor the obs log schema (a11y n/a, fct-jlhi4rif). The picked row contract/actions-answer/fields covers the actions verb's answer, which this chunk leaves unchanged (no verb, carrier or field added, fct-vk5mjci2), so the row stays true and a11y-plan owes nothing.
