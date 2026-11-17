@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-17 — A rename sweep reaches harness renders and misses forms its probe does not spell
+A rename carried by a script over `git grep`'s hits (an upstream sync renaming a cargo feature) writes every tracked file that names the old word, `.claude/docs/*` and CLAUDE.md among them — files rendered from the store, which `write-guard.sh` protects only against the Edit and Write tools. Such a write leaves the render differing from its journal: reconcile it away (`rec.py render --family harness --reconcile`) and land each page through `rec.py harness land`, or keep harness renders out of the script's file list from the start. Separately, an anchored probe pattern for the old name (its quoted and `-`/`_`-joined spellings) can read clean while a bracketed choice list (`[a|b|old]`) and the name written as two plain words in prose still hold it: after the probe, grep the bare old word once and dispose of each hit — and write neither the probe's pattern nor the old name into any file the probe scans, this entry included.
+
+---
+
 ## 2026-11-17 — A plan's CI wait is set from the last measured CI wall
 A plan's `ci.py conclusion --wait {s}` entry is a bound, not a verdict: when the run outlasts it the read prints `verdict: in progress` with the oldest job still running, which is neither green nor red, and the operator pass has to fire the read again once the run completes. The CI wall grows as checks are added (the `Stand checks repeated` job, which runs every `stand_*` target three times, is the oldest job at the bound), so a wait copied from an earlier plan falls behind. Set the next plan's wait above the latest measured wall the previous operator pass recorded (its `ci.py conclusion` line prints `wall {n} s`), with margin, rather than carrying the old figure forward.
 

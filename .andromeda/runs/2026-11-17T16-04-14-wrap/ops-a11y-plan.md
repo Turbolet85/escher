@@ -1,0 +1,2 @@
+@row_none n=1 fact=F1 type=4
+relied: the stand's scroll-into-view check over the CRUD list relies on a scroller's offset being clamped to its scroll range at layout, so after a delete the list's offset reads 0 and its first row lies inside the list's box in both layout modes; the clamp is an engine mechanism taken from upstream, with no reason stated that a11y-plan keeps, and the code and its test hold the measured reading.

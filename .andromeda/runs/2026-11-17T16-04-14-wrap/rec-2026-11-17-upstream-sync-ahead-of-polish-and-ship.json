@@ -1,0 +1,1044 @@
+[
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:07:32Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--section-file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-17-upstream-sync-ahead-of-polish-and-ship/report rev 2 · 10 new · 0 revised · 0 retired · 79 kept · tx 1796"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:07:33Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--section-file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-17-upstream-sync-ahead-of-polish-and-ship/report rev 3 · 72 new · 0 revised · 0 retired · 89 kept · tx 1797"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:08:06Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cites-land-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+"--base",
+"0d93539f19d1662658302f59480fdeb334587eff",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:08:11Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cites-land-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+"--base",
+"0d93539f19d1662658302f59480fdeb334587eff",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 1799"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:11:38Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1529 · packs 16 · pack 100 · 383459 B",
+"security-plan: rows 555 · packs 6 · pack 100 · 159237 B",
+"design-system: rows 138 · packs 2 · pack 100 · 37980 B",
+"layout-templates: rows 121 · packs 2 · pack 100 · 30389 B",
+"test-plan: rows 626 · packs 7 · pack 100 · 174407 B",
+"obs-plan: rows 282 · packs 3 · pack 100 · 77355 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75200 B",
+"rows-packs: 7 master(s) · 3491 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 1799"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T16-04-14-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:27:59Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1529 · packs 16 · picked 313 (196 by every draw) · standing 0 · 237810 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 555 · packs 6 · picked 67 (39 by every draw) · standing 0 · 120398 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 138 · packs 2 · picked 42 (26 by every draw) · standing 0 · 31587 B",
+"layout-templates: rows 121 · packs 2 · picked 23 (19 by every draw) · standing 0 · 26696 B",
+"test-plan: rows 626 · packs 7 · picked 66 (34 by every draw) · standing 0 · 143720 B",
+"obs-plan: rows 282 · packs 3 · picked 24 (19 by every draw) · standing 0 · 53791 B",
+"a11y-plan: rows 240 · packs 3 · picked 43 (21 by every draw) · standing 0 · 61941 B",
+"rows-union: 7 master(s) · picked 578 of 3491 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T16-04-14-wrap/arch-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/arch-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/security-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/security-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/design-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/design-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/tests-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/tests-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/obs-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/obs-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:31:42Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-main-architecture.md",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:architecture",
+"PASS · standing · 2 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:31:42Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-main-security-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:security-plan",
+"PASS · standing · 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/only-stand-repeat-frees-disk · rejected",
+"decision/free-disk-space-only-in-stand-repeat · rejected",
+"decision/svg-embedded-images-by-context · rejected",
+"decision/free-disk-on-test-and-stand-repeat · rejected",
+"fit: fits 6 · not_master 0 · stands 0",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Stack and Technologies: 2 row(s)\n**Section:** Stack and Technologies\n**Change:** ~ decision/anyrender-rendering-abstraction · rule: was «Painting goes through the anyrender abstraction, with its vello, vello-cpu, vello-hybrid, skia and svg backends and its serializer.»; now «Painting goes through the anyrender abstraction, with its vello, vello-cpu, vello-gpu, skia and svg backends and its serializer.»\n~ decision/window-renderer-chosen-at-compile-time · rule: was «dioxus-native chooses its window renderer at compile time among vello, vello-cpu-base, skia, skia-raster-base and vello-hybrid, while blitz uses the vello window renderer.»; now «dioxus-native chooses its window renderer at compile time among vello, vello-cpu-base, skia, skia-raster-base and vello-gpu, the GPU window renderer being anyrender_vello_gpu, while blitz uses the vello window renderer.»\n**Why:** decision/anyrender-rendering-abstraction: The AnyRender 0.15 set replaced the anyrender_vello_hybrid backend with anyrender_vello_gpu, so the row's backend list must name vello-gpu, not vello-hybrid.\ndecision/window-renderer-chosen-at-compile-time: dioxus-native's public feature vello-hybrid was renamed vello-gpu over anyrender_vello_gpu, so no hybrid renderer name remains for the row to list.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Conventions: 1 row(s)\n**Section:** Conventions\n**Change:** ~ decision/in-repo-default-features-off · except: was «The `seven_guis` path entry keeps its default `hybrid` renderer feature, because `dioxus-native` raises `compile_error!` with no renderer.»; now «The `seven_guis` path entry keeps its default `vello-gpu` renderer feature, because `dioxus-native` raises `compile_error!` with no renderer.»\n**Why:** decision/in-repo-default-features-off: The apps' and examples' renderer feature hybrid was renamed vello-gpu, so the exception's feature name no longer stands.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Established Decisions: 5 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/sub-resource-requests-carry-initiator · rule: was «Every engine sub-resource request (linked stylesheet, its reload, @import, @font-face, CSS image, img, iframe) carries its loading document's URL as initiator; a request with no initiator is a top-level load an embedder or the user's own load asked for, or a navigation its page may start.»; now «Every engine sub-resource request (linked stylesheet, its reload, @import, @font-face, CSS image, img, iframe, SVG image or feImage href) carries its loading document's URL as initiator, a use href never fetched; a request with no initiator is a top-level or embedder load, or a page navigation.»\n− decision/skrifa-matches-parley-vello → decision/skrifa-matches-parley: The renderer set now brings a second skrifa version beside parley's, so skrifa no longer matches vello's version.\n− decision/font-deps-match-renderers → decision/skrifa-matches-parley: The renderer set now brings a second skrifa version beside parley's, so skrifa no longer matches the renderers' version.\n+ decision/skrifa-matches-parley — skrifa follows parley\n+ decision/scroll-offsets-clamped-after-layout — Scroll offsets clamped after layout\n**Why:** decision/sub-resource-requests-carry-initiator: An SVG image or feImage href is now loaded through the stamping request constructor as a sub-resource of its document, while a use href is not fetched, so the list of stamped kinds must name it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-17, inputs#I8: «Да, в силе (Recommended)» (with inputs#I5 §2 «Взять (Recommended)»); the card confirmed by the operator, 2026-11-17: «Confirm all three (Recommended)»\ndecision/skrifa-matches-parley-vello: skrifa 0.49 and read-fonts 0.46 joined beside 0.44 and 0.41 with the AnyRender 0.15 move, and the rule is amended in its standing form.\ndecision/font-deps-match-renderers: skrifa 0.49 and read-fonts 0.46 joined beside 0.44 and 0.41 with the AnyRender 0.15 move, and the rule is amended in its standing form.\ndecision/skrifa-matches-parley: The AnyRender 0.15 move brought skrifa 0.49 beside parley's 0.44, and the amended rule must replace the two retired rows.\ndecision/scroll-offsets-clamped-after-layout: The take clamps scroll offsets in the final-layout write and resets a removed subtree's scroll state, a behaviour change for every document no row states.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"patterns: none: 6 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 8 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Standard Contracts: 1 row(s)\n**Section:** Standard Contracts\n**Change:** − decision/only-stand-repeat-frees-disk → none: The default-features test job now frees disk too, so stand-repeat is no longer the only job that does; the rule's home is the test plan's CI integration.\n**Why:** decision/only-stand-repeat-frees-disk: test-features-default gained the same SHA-pinned free-disk step and its guard was renamed, so the row is false, and the one fact keeps its home in test-plan.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Occupied Resources: 1 row(s)\n**Section:** Occupied Resources\n**Change:** − decision/free-disk-space-only-in-stand-repeat → none: The default-features test job now runs the free-disk-space action too, so stand-repeat is no longer its one run; the rule's home is the test plan's CI integration.\n**Why:** decision/free-disk-space-only-in-stand-repeat: test-features-default gained the same SHA-pinned free-disk step and its guard was renamed, so the row is false, and the one fact keeps its home in test-plan.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/programmatic-scroll-clamped · rejected",
+"decision/free-disk-only-on-stand-repeat · rejected",
+"decision/free-disk-on-test-and-stand-repeat · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Dependency Security: 1 row(s)\n**Section:** Dependency Security\n**Change:** ~ decision/upstream-sync-dependency-set · rule: was «Each upstream sync takes upstream's dependency set whole or, by cherry-pick, enters no package and takes git-pinned content only by a lock-only, semver-compatible update of a pinned registry crate or Taffy's own git pin; its lock is read name by name, the audit leg green after it.»; now «Each upstream sync takes upstream's dependency set whole or, by cherry-pick, a coupled registry set upstream moved, packages entering with it, or a lock-only semver-compatible update; git content only by Taffy's own pin; its lock read name by name, the audit leg green after it.»\n**Why:** decision/upstream-sync-dependency-set: The cherry-picked take brought the AnyRender 0.15 set from the registry with seven packages entering the lock, and the founder amended the rule in its standing form, so «enters no package» no longer holds.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** + decision/svg-image-href-fetch — SVG image href fetched as a sub-resource\n**Why:** decision/svg-image-href-fetch: The merge added a remote fetch of SVG image and feImage hrefs, validated by the stamp and the file-URL refusal, and no standing row names this widened input surface. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-17, inputs#I8: «Да, в силе (Recommended)» (with inputs#I5 §2 «Взять (Recommended)»); the card confirmed by the operator, 2026-11-17: «Confirm all three (Recommended)»\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Dependency Security: 1 row(s)\n**Section:** Dependency Security\n**Change:** − decision/free-disk-only-on-stand-repeat → none: The default-features test job now frees runner disk too, and the guard the row names was renamed; the rule's home is the test plan's CI integration.\n**Why:** decision/free-disk-only-on-stand-repeat: The free-disk step moved from one job to two, so a row keyed and ruled on the stand-repeat job alone is false, and the one fact keeps its home in test-plan.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"patterns: 1 in cascade-patterns-security-plan-1.toml",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-patterns-security-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/test-job-reads-its-disk · rejected",
+"decision/unacquired-ci-job-rerun · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/file-urls-only-for-file-documents · rule: was «A `file:` URL is loaded only for a `file:` document: otherwise a script's `fetch()`, `import` or `<script src>` is refused with a `FetchError`, a blitz-net sub-resource load reads no local file, and the browser app drops a `file:` favicon or link navigation silently; user loads are not gated.»; now «A `file:` URL loads only for a `file:` document: else a script's `fetch()`, `import` or `<script src>` is refused with a `FetchError`, a sub-resource load, an SVG image or feImage href included, reads no local file, and the browser drops a `file:` favicon or link silently; user loads are not gated.»\n**Why:** decision/file-urls-only-for-file-documents: The take adds an SVG image and feImage href fetch as an engine sub-resource request, its scope ratified as measured (no use href), so the row's sub-resource refusal must name that load. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-17, inputs#I8: «Да, в силе (Recommended)» (with inputs#I5 §2 «Взять (Recommended)»); the card confirmed by the operator, 2026-11-17: «Confirm all three (Recommended)»\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — 9. CI Integration: 2 row(s)\n**Section:** 9. CI Integration\n**Change:** − decision/only-stand-repeat-frees-disk → decision/free-disk-on-test-and-stand-repeat: The default-features test job now holds the pinned free-disk step too, so only the stand-repeat job no longer frees disk, and its guard was renamed.\n+ decision/free-disk-on-test-and-stand-repeat — Free disk on the test and stand-repeat jobs\n**Why:** decision/only-stand-repeat-frees-disk: The free-disk step stands on two jobs where the row says one, and the row's name and rule are made from that one job, so the row is replaced by its heir.\ndecision/free-disk-on-test-and-stand-repeat: The free-disk step joins the default-features test job under the renamed guard, and the heir states the two jobs the workflow now guarantees.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/scroll-offset-clamped-to-range · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-17-upstream-sync-ahead-of-polish-and-ship — Surface: cli: 1 row(s)\n**Section:** Surface: cli\n**Change:** ~ contract/paint-bench-cli/backend · promise: was «One of vello (the default), cpu or hybrid.»; now «One of vello (the default), cpu or gpu, vello_gpu also accepted for gpu.»\n**Why:** contract/paint-bench-cli/backend: The paint_bench backend list was renamed with upstream from [vello|cpu|hybrid] to [vello|cpu|gpu], so the backend name hybrid no longer exists and the row must name gpu.\n**Ref:** .andromeda/runs/2026-11-17T16-04-14-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/scroll-offset-clamped-to-range · rejected",
+"contract/dioxus-native-renderer-features/vello-gpu · rejected",
+"decision/svg-external-images-through-image-cache · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/ci-test-job-disk-readings · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:55Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/only-stand-repeat-frees-disk · rejected",
+"decision/free-disk-space-only-in-stand-repeat · rejected",
+"decision/svg-embedded-images-by-context · rejected",
+"decision/free-disk-on-test-and-stand-repeat · rejected",
+"fit: fits 6 · not_master 0 · stands 0",
+"landed tx 1800 · 8 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"landed tx 1801 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/programmatic-scroll-clamped · rejected",
+"decision/free-disk-only-on-stand-repeat · rejected",
+"decision/free-disk-on-test-and-stand-repeat · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 1802 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"landed tx 1803 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:57Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/test-job-reads-its-disk · rejected",
+"decision/unacquired-ci-job-rerun · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 1804 · 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:33:57Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-17T16-04-14-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/scroll-offset-clamped-to-range · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 1805 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+".andromeda/runs/2026-11-17T16-04-14-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:37:09Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap/staged-leaf-.claude__docs__services__blitz-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-dom.md rev 12 · 0 new · 1 revised · 0 retired · tx 1806"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+"./.claude/docs/services/blitz-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:37:10Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 25 · 0 new · 1 revised · 0 retired · tx 1807"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:37:10Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 29 · 0 new · 1 revised · 0 retired · tx 1808"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:37:11Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 22 · 0 new · 1 revised · 0 retired · tx 1809"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:40:40Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 8 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:40:47Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 8 record(s) · 0 edge(s) · tx 1815 · res-xpkmxnvl … res-7qgqygtj"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T16:41:01Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-17T16-04-14-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap",
+"--marker",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 1817 · run-wasvnzpu … run-wasvnzpu"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-17T11-44-48-2026-11-17-upstream-sync-ahead-of-polish-and-ship.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.52",
+"sha8": "cca31503",
+"ts": "2026-11-17T17:18:20Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-17-upstream-sync-ahead-of-polish-and-ship",
+"--run-dir",
+".andromeda/runs/2026-11-17T16-04-14-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 20 file(s) of 2026-11-17-upstream-sync-ahead-of-polish-and-ship"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

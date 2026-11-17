@@ -1,0 +1,15 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -226,2 +226,3 @@
+ decision/state-directory-path-is-parameter · State directory path is a parameter — The state directory path is a parameter, never an environment read or a working-directory-relative default.
++decision/svg-image-href-fetch · SVG image href fetched as a sub-resource — An SVG image or feImage element's href, the unprefixed href else xlink:href, is fetched as an external image sub-resource through the stamping constructor, carrying its document as initiator and under the file-URL refusal; a use element's href is never fetched. · why: A boundary widening by upstream merge, ratified. · guard: every_engine_request_carries_its_document_as_initiator
+ decision/target-refusal-order · Fixed order of target refusals — A click or type on an element that cannot take it is refused with nothing run, the first of disabled, off-screen, covered that holds, leaving the snapshot and both focus readings as they were; scroll reports in_view instead of refusing. · why: The detection of refusal causes by code was ratified.
+@@ -450,3 +451,2 @@
+ decision/engine-dependency-pins · Engine dependency pins — The pins stay: Stylo 0.22.0, Taffy the git pin of upstream DioxusLabs/taffy at commit a3997d55, Dioxus 0.7.3 and winit =0.31.0-beta.3.
+-decision/free-disk-only-on-stand-repeat · Runner disk freed only for the repeated stand job — Only the `Stand checks repeated` CI job frees runner disk, with the free-disk-space action pinned to a commit; the `matrix_test` job holds no such step. · guard: test_only_stand_repeat_frees_disk
+ decision/licence-gate · Licence gate on every push — The audit leg runs upstream's licences table, held byte for byte in the root deny.toml, on every push over the whole workspace's graph, so the fork gates on licences. · why: An open question, decided as the fork's chosen option. · guard: the audit leg · except: upstream's own licenses job stays reverted
+@@ -463,3 +463,3 @@
+ decision/test-harness-no-tracing-no-style · Test harness takes no tracing and no style — blitz-test-harness takes neither the tracing crate nor the style crate as a dependency.
+-decision/upstream-sync-dependency-set · Upstream sync takes the dependency set whole — Each upstream sync takes upstream's dependency set whole or, by cherry-pick, enters no package and takes git-pinned content only by a lock-only, semver-compatible update of a pinned registry crate or Taffy's own git pin; its lock is read name by name, the audit leg green after it.
++decision/upstream-sync-dependency-set · Upstream sync takes the dependency set whole — Each upstream sync takes upstream's dependency set whole or, by cherry-pick, a coupled registry set upstream moved, packages entering with it, or a lock-only semver-compatible update; git content only by Taffy's own pin; its lock read name by name, the audit leg green after it.
+ decision/workspace-inherited-dependency-versions · Workspace-inherited dependency versions — Dependency versions are inherited from the workspace with workspace = true rather than declared inline in each manifest.

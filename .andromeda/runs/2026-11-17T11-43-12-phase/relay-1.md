@@ -1,1 +1,0 @@
-Upstream sync ahead of polish and ship. One thing to weigh in the plan: give the CI disk reds a line — `Test [default features]` has no free-disk step, and two reds on runner image 20261018.96.1 (`Stand checks repeated` at 42eed99a6, `Test [default features]` at 361d8bd27) correlate with disk; hypothesis, not measured on that image.
