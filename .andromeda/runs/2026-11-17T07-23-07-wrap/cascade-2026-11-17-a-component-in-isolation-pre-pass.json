@@ -1,0 +1,282 @@
+[
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "6498921a",
+"ts": "2026-11-17T07:24:13Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-17T07-23-07-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-17T07-23-07-wrap",
+"--marker",
+"2026-11-17-a-component-in-isolation"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 4c6d9a85 (pre-pass — HEAD)",
+"SCA · control UNFIRED over the seven masters (bodies and sets) at 4c6d9a85"
+],
+"stderr": "control: SCA never fired over the seven masters' pre-pass text, bodies and sets (4c6d9a85) — no master holds them: re-fire with --pattern CAV --pattern CAT --pattern BND --pattern HUT --pattern D800 --pattern DTIM --pattern DPROP --pattern EAABS --pattern EANAT --pattern EADEL --pattern EAOBS; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "6498921a",
+"ts": "2026-11-17T07:24:24Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-17T07-23-07-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-17T07-23-07-wrap",
+"--marker",
+"2026-11-17-a-component-in-isolation",
+"--pattern",
+"CAV",
+"--pattern",
+"CAT",
+"--pattern",
+"BND",
+"--pattern",
+"HUT",
+"--pattern",
+"D800",
+"--pattern",
+"DTIM",
+"--pattern",
+"DPROP",
+"--pattern",
+"EAABS",
+"--pattern",
+"EANAT",
+"--pattern",
+"EADEL",
+"--pattern",
+"EAOBS"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 4c6d9a85 (pre-pass — HEAD)",
+"architecture · 9 rows over 1 files · new 0 · standing 9 · 6 patterns",
+"security-plan · 5 rows over 1 files · new 0 · standing 5 · 3 patterns",
+"layout-templates · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 12 rows over 1 files · new 0 · standing 12 · 6 patterns",
+"obs-plan · 3 rows over 1 files · new 0 · standing 3 · 1 pattern",
+"a11y-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (11 patterns) · 96 rows over 22 files",
+"per class · new 0/0 · standing 31/6 · leaf 63/15 · curation 0/0 · base 2/1",
+"rows 1/1 · .andromeda/runs/2026-11-17T07-23-07-wrap/sweep-pre-pass-1.1.txt · 121 lines · 13877 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-17T07-23-07-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "4c6d9a85046e9e32b29b7a451fa8e2efb142d7c4",
+"how": "pre-pass — HEAD",
+"counts": {
+"CAV": {
+"new": 0,
+"standing": 3,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"CAT": {
+"new": 0,
+"standing": 1,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"BND": {
+"new": 0,
+"standing": 3,
+"leaf": 8,
+"curation": 0,
+"base": 0
+},
+"HUT": {
+"new": 0,
+"standing": 4,
+"leaf": 9,
+"curation": 0,
+"base": 0
+},
+"D800": {
+"new": 0,
+"standing": 1,
+"leaf": 10,
+"curation": 0,
+"base": 0
+},
+"DTIM": {
+"new": 0,
+"standing": 3,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"DPROP": {
+"new": 0,
+"standing": 3,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"EAABS": {
+"new": 0,
+"standing": 5,
+"leaf": 11,
+"curation": 0,
+"base": 0
+},
+"EANAT": {
+"new": 0,
+"standing": 3,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"EADEL": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 2
+},
+"EAOBS": {
+"new": 0,
+"standing": 3,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 9,
+"files": 1,
+"new": 0,
+"standing": 9,
+"patterns": 6
+},
+"security-plan": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 3
+},
+"layout-templates": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 12,
+"files": 1,
+"new": 0,
+"standing": 12,
+"patterns": 6
+},
+"obs-plan": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 1
+},
+"a11y-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"CAV": {
+"test-plan": 3
+},
+"CAT": {
+"architecture": 1
+},
+"BND": {
+"architecture": 1,
+"security-plan": 1,
+"test-plan": 1
+},
+"HUT": {
+"architecture": 1,
+"test-plan": 3
+},
+"D800": {
+"layout-templates": 1
+},
+"DTIM": {
+"test-plan": 3
+},
+"DPROP": {
+"architecture": 1,
+"test-plan": 1,
+"a11y-plan": 1
+},
+"EAABS": {
+"architecture": 3,
+"security-plan": 1,
+"test-plan": 1
+},
+"EANAT": {
+"security-plan": 3
+},
+"EADEL": {
+"architecture": 2
+},
+"EAOBS": {
+"obs-plan": 3
+}
+},
+"forms": {
+"CAV": [
+{
+"form": "14 (driver )?verbs",
+"from": "fourteen"
+},
+{
+"form": "14 `?mcp__escher",
+"from": "fourteen"
+},
+{
+"form": "14 tools",
+"from": "fourteen"
+}
+],
+"CAT": [
+{
+"form": "thirty-seven",
+"from": "37"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

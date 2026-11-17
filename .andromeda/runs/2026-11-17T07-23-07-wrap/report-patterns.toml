@@ -1,0 +1,54 @@
+[[pattern]]
+id = 'CAV'
+regex = '''fourteen (driver )?verbs|fourteen `?mcp__escher|fourteen tools|cold-agent-verbs-without-layout|other than `layout`|cold-agent-check/step|cold-agent-verdict/isolated'''
+ignore_case = true
+
+[[pattern]]
+id = 'CAT'
+regex = '''test_cold_agent|37 tests'''
+
+[[pattern]]
+id = 'SCA'
+regex = '''stand_component_alone|component alone|component in isolation'''
+ignore_case = true
+
+[[pattern]]
+id = 'BND'
+regex = '''boundary\.rs|Boundary::Root|root boundary|root error boundary'''
+ignore_case = true
+
+[[pattern]]
+id = 'HUT'
+regex = '''from_component_alone|vdom_alone|boot_alone|from_vdom'''
+
+[[pattern]]
+id = 'D800'
+regex = '''800 × 600|800 x 600|800×600'''
+
+[[pattern]]
+id = 'DTIM'
+regex = '''TimerTicks|Elapsed: 0\.0s'''
+
+[[pattern]]
+id = 'DPROP'
+regex = '''props (value|maker)|given props|EventHandler'''
+ignore_case = true
+
+[[pattern]]
+id = 'EAABS'
+regex = '''absence/fixture-state-on-carriers|absence/component-alone|fixture state'''
+ignore_case = true
+
+[[pattern]]
+id = 'EANAT'
+regex = '''no-attribute-text|attribute's text'''
+ignore_case = true
+
+[[pattern]]
+id = 'EADEL'
+regex = '''delegate'''
+ignore_case = true
+
+[[pattern]]
+id = 'EAOBS'
+regex = '''graph-and-actions-not-counted-verbs|checks-silent|headless-stand-no-sink'''

@@ -1,0 +1,19 @@
+[[pattern]]
+id = 'M-CAV'
+regex = '''fourteen (driver )?verbs|fourteen `?mcp__escher|fourteen tools|cold-agent-verbs-without-layout|other than `layout`'''
+ignore_case = true
+
+[[pattern]]
+id = 'M-NAT'
+regex = '''never carries an attribute's text|no-attribute-text|attribute's text'''
+ignore_case = true
+
+[[pattern]]
+id = 'M-UNC'
+regex = '''graph-and-actions-not-counted|`graph` and `actions` verbs are not counted|neither adds a verdict field'''
+ignore_case = true
+
+[[pattern]]
+id = 'M-PRV'
+regex = '''layout[^.]{0,80}(model provider|cold.agent)|(model provider|cold.agent)[^.]{0,80}layout'''
+ignore_case = true

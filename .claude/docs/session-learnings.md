@@ -8,6 +8,9 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-17 — A plan's CI wait is set from the last measured CI wall
+A plan's `ci.py conclusion --wait {s}` entry is a bound, not a verdict: when the run outlasts it the read prints `verdict: in progress` with the oldest job still running, which is neither green nor red, and the operator pass has to fire the read again once the run completes. The CI wall grows as checks are added (the `Stand checks repeated` job, which runs every `stand_*` target three times, is the oldest job at the bound), so a wait copied from an earlier plan falls behind. Set the next plan's wait above the latest measured wall the previous operator pass recorded (its `ci.py conclusion` line prints `wall {n} s`), with margin, rather than carrying the old figure forward.
+
 ## 2026-11-16 — Rustdoc runs only in the doc leg
 The `fast` leg runs no rustdoc, and a chunk's gate block holds a `doc` entry only if its plan writes one. So a broken intra-doc link passes every local gate and reads red only in CI's Documentation job, under `-D rustdoc::broken-intra-doc-links`, which `-D warnings` implies. One case: a link naming both a function and a module of the same name (`[`capture`]`). A change to a crate's doc comments or intra-doc links runs `bash .github/scripts/ci-leg.sh doc` before the push, and a plan that edits them lists that leg as a gate entry. To make such a link unambiguous, name the function as `[`capture()`]`.
 

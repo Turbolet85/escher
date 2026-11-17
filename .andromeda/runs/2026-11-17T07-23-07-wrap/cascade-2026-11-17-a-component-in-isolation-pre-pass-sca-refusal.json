@@ -1,0 +1,28 @@
+[
+{
+"tool": "cascade",
+"v": "1.35",
+"sha8": "6498921a",
+"ts": "2026-11-17T07:24:13Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-17T07-23-07-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-17T07-23-07-wrap",
+"--marker",
+"2026-11-17-a-component-in-isolation"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 4c6d9a85 (pre-pass — HEAD)",
+"SCA · control UNFIRED over the seven masters (bodies and sets) at 4c6d9a85"
+],
+"stderr": "control: SCA never fired over the seven masters' pre-pass text, bodies and sets (4c6d9a85) — no master holds them: re-fire with --pattern CAV --pattern CAT --pattern BND --pattern HUT --pattern D800 --pattern DTIM --pattern DPROP --pattern EAABS --pattern EANAT --pattern EADEL --pattern EAOBS; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+}
+]
