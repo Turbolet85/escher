@@ -1,49 +1,45 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-18T16:45:00Z
-**Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup (HEAD `bc9be0469`, the operator pass's fix commit)
+**Last Updated:** 2026-11-18T21:10:00Z
+**Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup (HEAD `023a1a06c`, the operator pre-CI commit)
 **Status:** wrapped — the chunk commit and push are this wrap's P7
-**Last Commit:** fix(2026-11-18-served-error-page): spell the order page Submit's return type std::result::Result (the wrap commit follows; see `git log -1`)
+**Last Commit:** chore(2026-11-18-cold-agent-live-run): operator pre-CI commit (the wrap commit follows; see `git log -1`)
 
 ## Position
-- Done: 2026-11-18-served-error-page (Epoch 6 «Polish & ship»).
-  - The stand serves a seventh app, the order page (`order`). Its Submit returns an error under its own boundary, a good Submit logs `order placed`, and Export panics, so a cold agent meets `caused`.
-  - The cold-agent verdict counts `caused_by_kind` (panic · error · log), and `capability-unused` fires at any 0.
-  - CI#44317201082 reads green 17/17 on `bc9be0469` at attempt 6. Attempts 1–5 were macOS no-runner cancels; the android compile red on `ab8e18b89` was fixed by `bc9be0469`.
-- The widening (a new served app; authored error text crossing to the provider) rests on the founder's F5 «В 0.3.0, до прогона», relayed verbatim (inputs#I2). Its card was confirmed by the operator at this wrap.
-- No capability claimed. v030-15 stays on «Cold-agent live run».
-- Wrap run dir: `.andromeda/runs/2026-11-18T16-02-11-wrap/`.
-- Next: `/andromeda-phase` for «Cold-agent live run» (`chk-bx26t3rg`), the last markerless entry of Epoch 6 and of 0.3.0.
+- Done: 2026-11-18-cold-agent-live-run — the last entry of Epoch 6 «Polish & ship» and of escher-0.3.0.
+  - The founder's one live cold-agent run fired once and passed. It made 76 calls with 0 wrong against the 5 % bar, met all seven apps, and read `caused_by_kind` panic 1 · error 1 · log 1. It cost $1.0301 of the $3 cap, on client 2.1.327.
+  - README.md and docs/capabilities.md state the run as measured, with its reach.
+  - v030-15 implemented with its ref; P7 flips it to verified.
+  - CI#44386100144 reads green 17/17 on `023a1a06c` at attempt 1.
+- The founder's F1–F4 (inputs#I1) were the ratification basis, named again in the wrap directive (inputs#I6). F4 (graph and actions answers to the provider) already stood in architecture and security-plan, from 2026-11-18-cold-agent-bar's wrap; nothing new was owed for it.
+- 0.3.0's markerless tail is empty, so the version's route is exhausted.
+- Wrap run dir: `.andromeda/runs/2026-11-18T20-45-44-wrap/`.
+- Next: the Epoch 6 diagnosis (`/andromeda-evolve-diagnose`, if the P7 nudge names it), then `/andromeda-route` for the next version.
 
 ## Work done
-- Report closed (report rev 4): `## After implement` + `## New text, by line`. Input snapped: I7 (the wrap directive).
-- Masters: 47 operations landed, in tx 2189–2197.
-  - The served set reads seven in architecture, design-system, layout-templates, test-plan and obs-plan.
-  - `caused_by_kind` added in architecture and obs-plan; capability-unused sets in all three plans.
-  - The order page's surface and its six stand ids in layout-templates; `stand::boot_order` in test-plan.
-  - F5's two provider rows (architecture, security-plan).
-  - The `is_select` CARRY's row and `cold-agent-six-apps` retired.
-- Leaves: 15 comparers (pass mode); one re-spawned twice by the tool. 54 findings — 52 applied, 2 declined, 0 by hand.
-- Curation: T3 1 (on android the native prelude's glob shadows `Result`).
-- Route, tx 2218: on «Cold-agent live run», the P5 card's CARRY (the seventh app met and `caused_by_kind` ≥ 1 per kind at its claim) and a WATCH on no-runner macOS/iOS cancels (0/3). This chunk's two CARRYs (F5, `is_select`) are spent by the flip.
+- Report closed (report rev 3): `## After implement` + `## New text, by line`. Input snapped: I6 (the wrap directive).
+- Masters: 4 rows added, in tx 2272–2275.
+  - architecture `decision/cold-agent-result-stated-measured` (F2).
+  - security-plan `decision/credential-probe-reads-valued-keys`.
+  - test-plan `decision/live-run-evidence-byte-faithful` (inputs#I4).
+  - test-plan `decision/cold-agent-live-run-fired-once` (F3; mine).
+- Leaves: whole mode (the epoch closes), 15 comparers. 23 findings — 21 applied, 2 declined, 0 by hand.
+- Curation: none. All candidates are master rows now, or duplicates of host-linux.md.
+- Route, tx 2291: the unretired WATCH (no-runner macOS/iOS cancels, 1/3 green) became cross-version residual `res-q2tllspz` at version end.
 
 ## Drift resolved
-- 63 operations proposed (and 8 `@row_none`): 44 applied, 19 rejected. 4 `ops-main` operations of mine — 3 applied, 1 rejected by fit — 47 in all.
-  - Rejected under check 2 (one fact twice across masters): 12 — design-system ×6, obs-plan ×3, test-plan ×2, layout-templates ×1.
-  - Rejected under check 7 (`not_master`): 6 of the proposers' and 1 of mine. 2 were corrections of rows now false: a shorter set (obs `exit-codes/2`) and a retire (`is-select`) of mine landed for them.
-  - The `cold-agent-six-apps` retire fell with its rejected heir, and I retired the row again with no heir.
-- 1 escalation (Q1, F5 widening, 5 operations), resolved on its answer card: the founder's F5 relayed verbatim, confirmed by the operator.
+- 12 operations proposed (and 2 `@none`): 3 applied, 7 rejected, plus 1 `ops-main` operation of mine, applied — 4 landed. Fit: 4 fits, 0 not_master.
+  - Rejected under check 2 (one fact twice across masters): 6. The credential probe was offered in 3 masters, the measured statement in 2, the one-run rule in 2, and the byte-faithful rule was set onto obs's raw-transcript row.
+  - Rejected under check 3: 1. test-plan's «once per version» reached past F3; I restated it as ruled.
+- 0 escalations.
 
 ## Notes
-- The Bash guard refused four of my calls this wrap (a pipeline tool piped into `head`, then `cut`; a `cd` out of the root; an `ls | head` substitution). Each was re-issued once in the guard's form, none routed around.
+- The Bash guard refused two of my calls this wrap: a pipeline tool piped into `head`, and a `cd` into the run dir. Each was re-issued once in the guard's form, none routed around.
+- `.claude/docs/tests-summary.md:16` still states the 2026-10-25 live run (66 calls, 2.1.308) — true as that run's record. No master states the 2026-11-18 run, so no comparer carried it, and no hand edit was made (inputs#I6).
 - Carried from earlier wraps:
-  - v030-15's `gated` text still names the F1/F3/F4 block, which is cleared — the live-run entry's phase claims the cap knowing it;
   - the CARRY leaf lines' test-file lists are the pre-split ones;
   - residual `res-h7acz56c` is route's to flip;
   - security-plan `dec-kxrtstbq`'s `verified_was` evidence still quotes `Cargo.lock:8040-8041`;
   - `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Left for the operator to remove: `target/tmp/smoke-order-1` (implement's smoke state dir), implement's scratch clones (`…/scratchpad/guardclone`, `…/guardclone-impl`), `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
+- Left for the operator to remove: `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, implement's scratch clones (`…/scratchpad/guardclone`, `…/guardclone-impl`), `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-18 20:42:28

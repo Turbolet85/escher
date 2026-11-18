@@ -1,0 +1,2 @@
+@none
+reason: The chunk moves no code line and adds no surface, region, verb or tool (fct-yb6s266b, fct-jmbh7lz2); its edits are README and capability-page prose of the measured run plus two comment lines of the pipe, so every row stands true — contract/escher-session-mcp/tools' fifteen verbs included, which the measured run's fifteen tools confirm (fct-qqkt3ncp) — and D-layout-surface finds no undocumented surface.

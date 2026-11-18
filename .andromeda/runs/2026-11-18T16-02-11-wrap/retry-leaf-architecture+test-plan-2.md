@@ -1,4 +1,0 @@
-RULED · leaf-architecture+test-plan.md — two findings of the first file are missing from the re-spawn, and both are ruled to apply:
-- `.claude/docs/commands.md` line 28, class stale: «the six served tasks' driver answer digests» → «the seven served tasks' driver answer digests» (source dec-fcya4gfl, «The seven served tasks are read on every CI OS by one stand check …»).
-- `.claude/docs/commands.md` line 40, class omission: after «writes `target/cold-agent/verdict.json`» the leaf names no `caused_by_kind` (source ctr-ti4lrgxx, «The cold-agent verdict and its run.end event carry `caused_by_kind`, an object of the closed words panic, error and log to counts of accepted click, type, press, advance and scroll answers …»; a run where any reads 0 fails `capability-unused`). Write it so it does not share a span with the line-40 stale finding.
-Keep the five findings of the current file as they are, and add these two, each leaf-text copied byte-exact from its line.

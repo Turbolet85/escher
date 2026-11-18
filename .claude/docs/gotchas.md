@@ -9,7 +9,7 @@ _Documented architectural traps from the architecture master `doc:architecture` 
 
 ## `StyleThreading::Parallel` with two documents
 **What breaks:** no longer a panic — `Parallel` traversals are serialised process-wide by the static `PARALLEL_TRAVERSAL_LOCK` (its poison recovered, no panic path), so two documents resolving `Parallel` concurrently on Stylo's global pool no longer panic `already mutably borrowed` (blitz issue 430); the `Default` derive and the field doc both name `Sequential` the default. What still stands: `LAYOUT_CTX` is thread-local with a FIXME for multi-document use.
-**How to avoid:** no choice is needed for safety — the windowed `dioxus_native::launch` and the browser build their documents `Parallel`, serialised by the lock, and no headless document (harness, stand or driver) sets `style_threading`, so it resolves `Sequential`, which bypasses Stylo's global pool.
+**How to avoid:** no choice is needed for safety — the windowed `dioxus_native::launch`, the browser and the multi-document bench example build their documents `Parallel`, serialised by the lock, and no headless document (harness, stand or driver) sets `style_threading`, so it resolves `Sequential`, which bypasses Stylo's global pool.
 **References:** `packages/blitz-dom/src/config.rs`, `stylo.rs`, `resolve.rs`; arch [Style threading]
 
 ## Stale `NodeId` indexing panics

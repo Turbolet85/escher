@@ -1,3 +1,0 @@
-Directive (the operator, invoking /andromeda-phase, 2026-11-18T19:34Z):
-
-Gate-only plan revision of the pending chunk 2026-11-18-cold-agent-live-run; the tree, the evidence and the fired live run stay untouched (no stash, reset, clean, no second run, live-transcript.jsonl byte-faithful). Revise only entry 12, the credential probe: its api[_-]?key arm matches the client field NAME apiKeySource (value none). Make that arm read a credential, not a name: do not count the key apiKeySource itself, and keep catching an api key name carrying a value, an authorization header, a bearer token and an e-mail address. Controls: green on the real evidence; red on a planted "api_key":"sk-..." line, a planted bearer line and an e-mail. No other plan change. Stop at P5 for my review.
