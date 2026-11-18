@@ -1,3 +1,0 @@
-Question (the wrap's P2 halt): CARRY cry-b3h6o7do — both leaves compared, neither comparer flagged the stale json.rs counts; which door?
-Answer: "Lift the hand-edit ban"
-Notes: One exception, for these two lines only, landed through rec.py harness land. Do not re-measure the per-file test counts: REMOVE them from both lines (.claude/docs/services/escher-driver.md:60 and .claude/docs/tests-summary.md:24), keeping what each line says that no command prints. A count of tests per file retells the code and no master states it, so it goes stale at the next split and no comparer can see it; the project does not record what retells code. If a totals figure on those lines is owned by a master row, leave it. Close the CARRY with that reason.
