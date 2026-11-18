@@ -1,0 +1,11 @@
+--- a/.andromeda/test-plan.md
++++ b/.andromeda/test-plan.md
+@@ -116,2 +116,3 @@
+ decision/png-decoding-in-checks · PNG decoding in checks — A blitz-tests check decodes or encodes a PNG through the png dev-dependency; seven_guis, which has none, reads it with a hand base64 reader and the PNG header.
++decision/requirement-witness-inside-stand-repeat · Every requirement witnessed inside stand-repeat — Every release requirement names its witness test inside the stand-repeat leg, in a table pinned by each test's function name, so a renamed witness reads red. · guard: stand_requirement_sweep · except: A requirement with no screen names no witness.
+ decision/shared-test-modules-not-targets · Shared test modules are no target — Shared test modules, the flow scripts directory and the committed checks data directory are no test target; checks read shared modules through mod declarations.
+@@ -397,3 +398,3 @@
+ decision/stated-tolerance-read-inclusively · Stated tolerance read inclusively — A tolerance stated as to 1/64 px is read inclusively: the absolute difference of the two values is at most 1/64. · why: A sum of values each snapped to 1/64 can sit one unit from a separately snapped rect.
+-decision/typed-password-never-returned · Typed passwords never returned — A password typed through the driver occurs nowhere in what the call returns, reads `MASKED_VALUE`, and never leaves as pixels in a screenshot. · guard: stand_act_screenshot, stand_act_filled
++decision/typed-password-never-returned · Typed passwords never returned — A password typed through the driver and a file input's path occur nowhere in what a call returns, graph, actions and layout answers included, nor in a kept or an explored path's check, in both layout modes; the value reads the mask, and a typed password never leaves as pixels. · guard: stand_act_screenshot, stand_act_filled, stand_masks_on_new_answers
+ contract/actions-command/argument · the actions command · argument — An argument to actions is refused malformed.

@@ -1,2 +1,0 @@
-@none
-reason: The chunk split the driver's crate-private answer writer into private child modules with every carrier's answers byte for byte unchanged (fct-zsmh6zlz, fct-wvfeqhto), no public symbol or caller path changed (fct-y7i4kmy3), no dependency added (fct-xmi6akxg), and no external surface, log site or secret handling added (fct-od6gfuzm); every security-plan row the pickers marked stays true as it stands, and the task carries no new fact.

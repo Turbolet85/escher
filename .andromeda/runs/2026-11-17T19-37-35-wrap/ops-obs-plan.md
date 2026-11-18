@@ -1,2 +1,0 @@
-@none
-reason: The chunk only splits the driver's answer writer into private child modules: no written key, order or byte moved (fct-wvfeqhto), no public symbol or caller path changed (fct-y7i4kmy3), no dependency added (fct-xmi6akxg), and it adds no log site, print, env read or span, the info_span sites staying 2 (fct-od6gfuzm, fct-egiooylz), so every picked obs-plan row, the stale-marked answer, refusal-cause, no-subscriber and no-span rows included, stays true, and the task brings no new fact.
