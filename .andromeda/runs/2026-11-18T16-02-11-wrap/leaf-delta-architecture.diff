@@ -1,0 +1,56 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -460,2 +460,3 @@
+ decision/annotated-unsafe · Annotated unsafe blocks — `unsafe` blocks carry an `allow unsafe_code` or a `// SAFETY:` comment. · except: Upstream engine code holds unannotated blocks (a node's tree pointer, stylo data, the taffy conversion, layout); escher's own crates hold no `unsafe`.
++decision/app-crate-takes-own-tracing · App crates that log take tracing themselves — An app crate that logs takes tracing itself as a workspace dependency. · why: dioxus-native's prelude re-exports no tracing.
+ decision/asset-macro · Assets through the asset macro — Apps reference assets through `asset!`.
+@@ -589,3 +590,2 @@
+ decision/cold-agent-isolated-session · Cold-agent run is one isolated session — A cold-agent run starts one isolated non-interactive Claude session from a fresh temporary directory with a fixed prompt and only the escher server's tools, under a budget and time cap. · why: ratified · guard: test_cold_agent.py
+-decision/cold-agent-six-apps · Cold-agent prompt names six apps — The cold-agent prompt names six apps (counter, flight booker, timer, CRUD, cells and the load page) and their goals, naming no stand id.
+ decision/cold-agent-wrong-call-bar · Cold-agent wrong-call bar — A cold-agent run passes only when wrong calls times 100 is at most 5 times the tool calls.
+@@ -660,3 +660,3 @@
+ decision/stand-pinned-environment · Stand pins its environment — Every headless stand boot uses a pinned 800 by 600 viewport at scale 1.0 in the light colour scheme, installs no telemetry and reads no environment variable.
+-decision/stand-readings-same-on-every-ci-os · Stand readings identical on every CI OS — The six served stand tasks read the same driver answer digests of snapshot, lint and actions on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes, at boot and after one step, compared with no screenshot. · guard: stand_cross_os_readings
++decision/stand-readings-same-on-every-ci-os · Stand readings identical on every CI OS — The seven served stand tasks read the same driver answer digests of snapshot, lint and actions on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes, at boot and after one step, compared with no screenshot. · guard: stand_cross_os_readings
+ decision/stand-typography-dejavu-sans · Stand typography is DejaVu Sans — Every stand boot loads one font, the bundled DejaVu Sans, with system fonts off, so every generic family and any unavailable named family lays out in DejaVu Sans by fallback; the typography is stated in the stand contract, not on the design-system product surface. · guard: stand_bundled_font_families
+@@ -825,3 +825,3 @@
+ contract/cold-agent-state/state-directory · cold-agent.sh state · state directory — The cold-agent pipe keeps its state in `target/cold-agent/` only.
+-contract/cold-agent-verdict-reasons/capability-unused · cold-agent verdict reasons · capability-unused — The verdict fails with `capability-unused` unless `lint`, `screenshot`, `advance`, `graph`, `actions` and `layout` are each used, a part is read and a list is opened.
++contract/cold-agent-verdict-reasons/capability-unused · cold-agent verdict reasons · capability-unused — The verdict fails with `capability-unused` unless `lint`, `screenshot`, `advance`, `graph`, `actions` and `layout` are each used, a part is read, a list is opened and `caused_by_kind` reads at least 1 for each of panic, error and log.
+ contract/cold-agent-verdict-reasons/recording-not-kept · cold-agent verdict reasons · recording-not-kept — The verdict fails with `recording-not-kept` unless one check is kept per accepted `start`.
+@@ -830,2 +830,3 @@
+ contract/cold-agent-verdict/advance-calls · cold-agent verdict.json · advance_calls — The cold-agent verdict carries `advance_calls`, the count of `advance` calls, which the `passed` bar requires to be used.
++contract/cold-agent-verdict/caused-by-kind · cold-agent verdict.json · caused_by_kind — The cold-agent verdict and its run.end event carry `caused_by_kind`, an object of the closed words panic, error and log to counts of accepted click, type, press, advance and scroll answers whose caused list holds an item of that kind, each kind counted once per answer; a non-JSON answer is skipped.
+ contract/cold-agent-verdict/graph-calls · cold-agent verdict.json · graph_calls — The cold-agent verdict and its run.end event carry `graph_calls`, the count of the agent's `graph` calls read from the tool_call span, which the `passed` bar requires to be used.
+@@ -835,3 +836,3 @@
+ contract/cold-agent-verdict/part-reads · cold-agent verdict · part_reads — The cold-agent verdict adds `part_reads`.
+-contract/cold-agent-verdict/passed · cold-agent verdict.json · passed — The verdict is `passed` only on positive evidence: client exit 0, isolation, matching tool-call counts, all six apps met, and the agent's final check replaying passing and failing on an ablated replay.
++contract/cold-agent-verdict/passed · cold-agent verdict.json · passed — The verdict is `passed` only on positive evidence: client exit 0, isolation, matching tool-call counts, all seven apps met, and the agent's final check replaying passing and failing on an ablated replay.
+ contract/cold-agent-verdict/recorded-sessions · cold-agent verdict · recorded_sessions — The cold-agent verdict adds `recorded_sessions`.
+@@ -919,3 +920,2 @@
+ contract/driver-forms/is-multiple-select · driver form-control readers · is_multiple_select — is_multiple_select stays re-exported, read within the workspace by closed_select_of alone.
+-contract/driver-forms/is-select · driver form-control readers · is_select — is_select is read by the driver's locate alone.
+ contract/driver-forms/select-form-data · driver form-control readers · select form data — A select's input and change reach the app as form data, a multiple select's as one (name, FormValue::Text(value)) per chosen option, so evt.values() reads the set and value stays select_value.
+@@ -955,3 +955,3 @@
+ contract/escher-session-cli/serve-role · escher-session command line · serve — escher-session has a serve host role.
+-contract/escher-session-cli/usage · escher-session command line · usage — escher-session <verb> [arguments] --session <dir> drives six served stand tasks: the four lean ones, Cells and the load page.
++contract/escher-session-cli/usage · escher-session command line · usage — escher-session <verb> [arguments] --session <dir> drives seven served stand tasks: the four lean ones, Cells, the load page and the order page.
+ contract/escher-session-exit-codes/0 · escher-session exit codes · 0 — The command was accepted.
+@@ -970,5 +970,5 @@
+ contract/escher-session/help · escher-session command line · help — Needs no --session, admits at most one and reads it not, reaches no session, and answers the self-description's one line with status 0.
+-contract/escher-session/invocation · escher-session command line · invocation — escher-session <verb> [arguments] --session <dir> drives the stand's six served tasks: counter, flight-booker, timer, crud, cells, load.
++contract/escher-session/invocation · escher-session command line · invocation — escher-session <verb> [arguments] --session <dir> drives the stand's seven served tasks: counter, flight-booker, timer, crud, cells, load, order.
+ contract/escher-session/lint · escher-session command line · lint — The verb lint takes no argument beside --session.
+-contract/escher-session/mcp · escher-session command line · mcp [--record <dir>] — An MCP server on the binary's standard streams whose start tool boots the same six tasks through the same boot.
++contract/escher-session/mcp · escher-session command line · mcp [--record <dir>] — An MCP server on the binary's standard streams whose start tool boots the same seven tasks through the same boot.
+ contract/escher-session/press · escher-session command line · press --key [--shift] — The verb press takes --key and an optional --shift.
+@@ -1025,3 +1025,3 @@
+ contract/handler-coverage/written-form · Handler coverage reader · written form — Coverage is written `{"unexercised":[{"id":…,"owner":…,"event":…}],"checks":n,"held":m}`, `owner` left out when absent.
+-contract/headless-stand/boot · seven_guis headless stand · seven_guis::stand — seven_guis::stand, native only, boots the four lean tasks, Cells, a load page and one component alone in a pinned 800x600 Light viewport with one bundled font.
++contract/headless-stand/boot · seven_guis headless stand · seven_guis::stand — seven_guis::stand, native only, boots the four lean tasks, Cells, a load page, the order page and one component alone in a pinned 800x600 Light viewport with one bundled font.
+ contract/headless-stand/no-telemetry · seven_guis headless stand · telemetry and environment — The stand installs no telemetry, reads no env var and names no blitz_net.
+@@ -1378,3 +1378,3 @@
+ decision/cold-agent-run-adds-no-listener · Cold-agent run adds no listener — The live cold-agent run spawns one claude client that reaches escher-session mcp over stdio only; no listener, port or socket is added, and the client's own messaging socket is the client's, opened by no escher code. · why: ratified
+-decision/cold-agent-run-carries-stand-screen · Live cold-agent run carries the stand's screen — The live cold-agent run sends the stand's served screens to the model provider: element ids, accessible names, control values, snapshot texts, diffs, and graph and actions answers, from the driver's own MCP server. · why: chosen as one run capped at $3, with a JSON check and a retry
++decision/cold-agent-run-carries-stand-screen · Live cold-agent run carries the stand's screen — The live cold-agent run sends the stand's served screens to the model provider from the driver's own MCP server: element ids, accessible names, control values, snapshot texts, diffs, graph and actions answers, and acting answers' caused text, the order page's authored messages among it. · why: chosen as one run capped at $3, with a JSON check and a retry
+ decision/committed-stand-checks · Committed stand-Counter checks — Two kept checks of the repository's own scripted stand-Counter sessions, one through the command line and one through the mcp role, are committed publicly, holding no typed text, host path, name or secret and no screenshot step. · why: A shot's PNG bytes differ by OS, so no screenshot step is kept. · guard: seven_guis recording, comparing a fresh recording byte for byte with the committed copies · except: The one exception to a kept check's owner-only medium.

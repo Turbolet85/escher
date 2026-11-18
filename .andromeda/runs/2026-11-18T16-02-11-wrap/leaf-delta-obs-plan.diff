@@ -1,0 +1,26 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -18,3 +18,3 @@
+ decision/answers-echo-nothing-typed · Answers echo nothing the caller typed — No answer, refusal, usage line or session error writes back anything the caller typed, and a password's or a file input's value appears only as the fixed mask. · except: A caused item's message, chain and kept fields hold what their author wrote, a field of the answer's own hidden set reading [redacted] and an error field shown as written, cut at the text bound.
+-decision/checks-silent · Silent checks and shared modules — Checks, their shared modules and the stand-ins they use install no subscriber, read no environment variable and print nothing, their readings going into assertions only, and the code they pin adds no log site, span, field or env read. · except: Telemetry and error-text checks install escher's sink, MCP tools and layout checks their own recorder, the paint-tree bench reads an opt-in env var, a re-run child prints ids or digests to its parent.
++decision/checks-silent · Silent checks and shared modules — Checks, their shared modules and the stand-ins they use install no subscriber, read no environment variable and print nothing, their readings going into assertions only, and the code they pin adds no log site, span, field or env read. · except: Telemetry and error-text checks install escher's sink, MCP tools and layout checks a recorder; the paint-tree bench reads an opt-in env var; a re-run child prints ids or digests; the order page logs.
+ decision/cold-agent-record-owner-only · Cold-agent record directory owner-only — The live session runs mcp --record into target/cold-agent/record/, made owner-only (mkdir -m 700).
+@@ -80,3 +80,3 @@
+ decision/tool-call-span-two-closed-fields · tool_call span with tool and ending — Each MCP tools/call request writes one tool_call span carrying exactly two fields, tool and ending, each a closed word. · why: Ratified as the span's shape. · guard: stand_mcp_tools
+-contract/cold-agent-verdict/capability-unused · The cold-agent verdict · capability-unused — The reason given when a counted verb, a part read or a list opening went unused.
++contract/cold-agent-verdict/capability-unused · The cold-agent verdict · capability-unused — The reason given when a counted verb, a part read or a list opening went unused, or when any of panic, error and log in caused_by_kind reads 0.
+ contract/command-span/added · The driver's command span · added — The length of the returned diff's added list, recorded from an acting verb's outcome.
+@@ -133,2 +133,3 @@
+ contract/cold-agent-verdict/advance-calls · The cold-agent verdict · advance_calls — The count of accepted tool_call span lines of the advance verb in the live server child's server.log.
++contract/cold-agent-verdict/caused-by-kind · The cold-agent verdict · caused_by_kind — An object of the closed kind words panic, error and log to the count of accepted click, type, press, advance and scroll answers whose caused list holds an item of that kind, each kind counted once per answer; an answer that is not JSON is skipped; also on run.end.
+ contract/cold-agent-verdict/counts-agree · The cold-agent verdict · counts_agree — Ties the server's span lines to the transcript: the tool_call lines equal the escher tool uses, and its refused and error lines equal the escher results marked is_error.
+@@ -176,3 +177,3 @@
+ contract/cold-agent-counted-verbs/screenshot · The cold-agent pipe's counted verbs · screenshot — A counted verb: its accepted `tool_call` span lines are counted from the server log.
+-contract/cold-agent-verdict-reasons/capability-unused · The cold-agent verdict's reasons · capability-unused — Given when a counted verb, a part read or a list opening went unused.
++contract/cold-agent-verdict-reasons/capability-unused · The cold-agent verdict's reasons · capability-unused — Given when a counted verb, a part read or a list opening went unused, or when any of panic, error and log in caused_by_kind reads 0.
+ contract/cold-agent-verdict-reasons/wrong-calls-over-bar · The cold-agent verdict's reasons · wrong-calls-over-bar — Given when `wrong_calls × 100 > 5 × tool_calls`.
+@@ -198,3 +199,3 @@
+ contract/escher-session-exit-codes/1 · escher-session exit codes · 1 — Refused: one line of JSON on stdout, stderr empty with `RUST_LOG` unset.
+-contract/escher-session-exit-codes/2 · escher-session exit codes · 2 — Usage: one fixed line on stderr built from `VERBS` and the six task names, stdout empty.
++contract/escher-session-exit-codes/2 · escher-session exit codes · 2 — Usage: one fixed line on stderr built from `VERBS` and the served task names, stdout empty.
+ contract/escher-session-exit-codes/3 · escher-session exit codes · 3 — Session error: the error object on stdout and its fixed message on stderr.

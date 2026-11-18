@@ -1,0 +1,29 @@
+--- a/.andromeda/layout-templates.md
++++ b/.andromeda/layout-templates.md
+@@ -10,2 +10,3 @@
+ decision/open-list-rows-own-bounds · Open list rows read their own bounds — While a select list is open each row reads its own bounds in the snapshot and the diff, and after a close the rows read back at the select's client rect. · why: stand_act_popup checks a click opening the list names each row's bounds in the diff, and escape closing it puts the rows back at the select's box
++decision/order-page-built-to-cause · Order page controls built to cause — The order page's controls are built to cause: Submit returns an error for a quantity not a whole number from 10 to 20, a good Submit logs one info record order placed, and Export panics with export is not built yet. · why: So a driver and a cold agent meet caused items of every kind: panic, error and log. · guard: stand_order_served
+ decision/scroll-into-view-moves-every-scroller · Into-view scroll moves every holding scroller — An into-view scroll moves every scrolling box that holds its target, innermost first, and then the viewport, in every document. · why: Ratified for every document. · guard: stand_act_scroll · except: A row of an open select list is scrolled into view by writing the list's scroll offset at once, no scrolling box or viewport moving.
+@@ -15,3 +16,3 @@
+ decision/stand-ids-as-attributes-alone · Stand ids as attributes alone — Author ids on stand elements are added as attributes alone, moving no element, class, style, wrapper or order, and no stand CSS selects by them.
+-decision/stand-lints-clean-at-boot · Stand lints clean at boot — At boot the counter, the flight booker, the timer, CRUD and the load page read zero visual-lint findings, in both layout modes. · guard: stand_lint
++decision/stand-lints-clean-at-boot · Stand lints clean at boot — At boot the counter, the flight booker, the timer, CRUD, the load page and the order page read zero visual-lint findings, in both layout modes. · guard: stand_lint
+ decision/visible-region-through-clipping-boxes · Visible region through clipping boxes — The part of the viewport an element can be seen through is the viewport narrowed to the padding box of every clipping box that holds it, in every document. · why: Ratified for every document. · except: A row or group of an open select list is seen through the list's scrollport alone, no clipping box answering.
+@@ -50,2 +51,8 @@
+ contract/stand-element-ids/load-fetch · Stand stable element ids · load-fetch — Stable author element id of the load page's Load button, taking Enter and Space.
++contract/stand-element-ids/order-export · Stand stable element ids · order-export — Stable author element id of the order page's Export button, which panics.
++contract/stand-element-ids/order-failed · Stand stable element ids · order-failed — Stable author element id of the order page's Order failed message.
++contract/stand-element-ids/order-quantity · Stand stable element ids · order-quantity — Stable author element id of the order page's quantity input.
++contract/stand-element-ids/order-retry · Stand stable element ids · order-retry — Stable author element id of the order page's Retry button, present only once Submit fails.
++contract/stand-element-ids/order-status · Stand stable element ids · order-status — Stable author element id of the order page's status, reading Order placed after a good Submit.
++contract/stand-element-ids/order-submit · Stand stable element ids · order-submit — Stable author element id of the order page's Submit button.
+ contract/stand-element-ids/task-card-cells · Stand stable element ids · task-card-cells — Stable author element id of Home's Cells task-card button.
+@@ -84,3 +91,3 @@
+ contract/cold-agent-cli/stdout · cold-agent.sh run pipe · stdout — Every verb's stdout is JSON lines only, one object per event; the session transcript and the agent's check stay in files under target/cold-agent, never printed.
+-contract/cold-agent-cli/usage · cold-agent.sh run pipe · usage — cold-agent.sh <verb> [task], run from the repository root, with verbs run, status, cleanup, logs and the one task stand: six apps in one client session under a fixed prompt.
++contract/cold-agent-cli/usage · cold-agent.sh run pipe · usage — cold-agent.sh <verb> [task], run from the repository root, with verbs run, status, cleanup, logs and the one task stand: seven apps in one client session under a fixed prompt.
+ contract/cold-agent-cli/windows-pass-through · cold-agent.sh run pipe · cold-agent.ps1 — The Windows pass-through to cold-agent.sh.
+@@ -118,2 +125,3 @@
+ contract/escher-session-served-tasks/load · escher-session served tasks · load — A task start, the host role and the MCP start tool boot, listed in the usage line's apps and the start tool's enum.
++contract/escher-session-served-tasks/order · escher-session served tasks · order — The order page; a task start, the host role and the MCP start tool boot, listed after load in the usage line's apps and the start tool's enum.
+ contract/escher-session-served-tasks/timer · escher-session served tasks · timer — A task start, the host role and the MCP start tool boot, listed in the usage line's apps and the start tool's enum.

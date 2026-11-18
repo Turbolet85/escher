@@ -1,0 +1,14 @@
+@pack_count n=1 doc=test-plan pack=1 draw=1 rows=58 yes=0 no=58 standing=0 file=tests-pick-p1.md of=a28ab1699cfdabd9 rule=any
+@pack_count n=2 doc=test-plan pack=1 draw=2 rows=58 yes=5 no=53 standing=0 file=tests-pick-p1.d2.md of=691c4c8207c9d365 rule=any
+@pack_count n=3 doc=test-plan pack=2 draw=1 rows=100 yes=11 no=89 standing=0 file=tests-pick-p2.md of=7ba7abb25fbd6df5 rule=any
+@pack_count n=4 doc=test-plan pack=2 draw=2 rows=100 yes=12 no=88 standing=0 file=tests-pick-p2.d2.md of=124273e21b39d024 rule=any
+@pack_count n=5 doc=test-plan pack=3 draw=1 rows=98 yes=5 no=93 standing=0 file=tests-pick-p3.md of=76e6137b65ccc3af rule=any
+@pack_count n=6 doc=test-plan pack=3 draw=2 rows=98 yes=4 no=94 standing=0 file=tests-pick-p3.d2.md of=dcf59512276efbfc rule=any
+@pack_count n=7 doc=test-plan pack=4 draw=1 rows=90 yes=10 no=80 standing=0 file=tests-pick-p4.md of=80f8ce95a66d8571 rule=any
+@pack_count n=8 doc=test-plan pack=4 draw=2 rows=90 yes=11 no=79 standing=0 file=tests-pick-p4.d2.md of=eade5de67ec9f96e rule=any
+@pack_count n=9 doc=test-plan pack=5 draw=1 rows=87 yes=6 no=81 standing=0 file=tests-pick-p5.md of=614690e1f537f3ce rule=any
+@pack_count n=10 doc=test-plan pack=5 draw=2 rows=87 yes=5 no=82 standing=0 file=tests-pick-p5.d2.md of=633c3a2831c85014 rule=any
+@pack_count n=11 doc=test-plan pack=6 draw=1 rows=96 yes=2 no=94 standing=0 file=tests-pick-p6.md of=46ac8ca93c21cd3b rule=any
+@pack_count n=12 doc=test-plan pack=6 draw=2 rows=96 yes=3 no=93 standing=0 file=tests-pick-p6.d2.md of=80d94a2516c3781b rule=any
+@pack_count n=13 doc=test-plan pack=7 draw=1 rows=99 yes=6 no=93 standing=0 file=tests-pick-p7.md of=134b15a7be437b64 rule=any
+@pack_count n=14 doc=test-plan pack=7 draw=2 rows=99 yes=8 no=91 standing=0 file=tests-pick-p7.d2.md of=41890439f4e3afdf rule=any

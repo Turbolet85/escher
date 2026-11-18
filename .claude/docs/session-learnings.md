@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-18 — On android the native prelude's glob shadows `Result`
+An app crate that imports `dioxus_native::prelude::*` gets, on `aarch64-linux-android` alone, manganis' one-parameter alias `Result<T>` (its error fixed to a JNI error) in scope through that glob, so a two-argument `Result<(), E>` written in the app — a handler's return type, say — fails to compile there (E0107, then E0277 and E0308 downstream), while the linux, windows and macOS builds never see the alias and the dev host has no android target to check it. Spell `std::result::Result` in any crate that globs the native prelude; CI's `Test (android)` job is the only witness.
+
+---
+
 ## 2026-11-17 — A rename sweep reaches harness renders and misses forms its probe does not spell
 A rename carried by a script over `git grep`'s hits (an upstream sync renaming a cargo feature) writes every tracked file that names the old word, `.claude/docs/*` and CLAUDE.md among them — files rendered from the store, which `write-guard.sh` protects only against the Edit and Write tools. Such a write leaves the render differing from its journal: reconcile it away (`rec.py render --family harness --reconcile`) and land each page through `rec.py harness land`, or keep harness renders out of the script's file list from the start. Separately, an anchored probe pattern for the old name (its quoted and `-`/`_`-joined spellings) can read clean while a bracketed choice list (`[a|b|old]`) and the name written as two plain words in prose still hold it: after the probe, grep the bare old word once and dispose of each hit — and write neither the probe's pattern nor the old name into any file the probe scans, this entry included.
 

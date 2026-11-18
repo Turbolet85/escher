@@ -1,0 +1,3 @@
+anchor absent · leaf-architecture+test-plan.md/.claude/docs/commands.md:58#1 · stale
+
+The finding is ruled true (the six served stand tasks now read seven, the order page the seventh, `order` after `load`), but its leaf-text is not on line 58 as written: the leaf there reads `` `start <counter|flight-booker|timer|crud|cells|load> [--record <dir>]` `` — the code span closes after ` [--record <dir>]`, not after `load>`. Write that finding again with a leaf-text copied byte-exact from line 58 (one that holds no code-span boundary the line does not hold there), and keep every other finding of the file as it was.
