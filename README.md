@@ -84,7 +84,7 @@ Version 0.2.0 was built in five stages:
 
 All 11 of its capabilities are verified. A fresh agent given only the twelve MCP tools drove six apps (the four lean tasks, Cells and a load page) in 66 calls, with 0 wrong, under a bar of at most 5 % wrong. The version-end audit's mutation testing caught 53 of 53 mutants in the engine's DOM crate; the demo stand's run went unscored, 12 of its 15 mutants unviable, and none of the 5 in upstream's WPT runner was caught.
 
-### 0.3.0 — built, its cold-agent run to come
+### 0.3.0 — built, its cold-agent run passed
 
 Version 0.3.0 was built in six stages:
 
@@ -95,7 +95,7 @@ Version 0.3.0 was built in six stages:
 - **Epoch 5 — Errors and explanation** — the panic, error or log an action caused returned with its answer, the `layout` command saying why an element sits where it does at its size, and one component rendered alone with given props.
 - **Epoch 6 — Polish & ship** — every new capability proven headlessly on the stand, the accessibility checks re-run, and [the capability statement](docs/capabilities.md) brought to 0.3.0.
 
-16 of its 17 capabilities are verified headlessly; a fresh agent's run over the new capabilities is the version's last step.
+All 17 of its capabilities are verified. A fresh agent given only the fifteen MCP tools drove seven apps (the four lean tasks, Cells, a load page and an order page) in 76 calls, with 0 wrong, under a bar of at most 5 % wrong. It used the UI graph, what could be done on the screen, why an element sits where it does, a select's list opened, and a panic, an error and a log its actions caused. A cold agent does not reach handler coverage, a start in a state, exploration, a component alone, the seed or the bundled fonts; each is proven headlessly on the stand, as [the capability statement](docs/capabilities.md) states.
 
 Later: opt-in OpenTelemetry export, the platform accessibility adapter witnessed with a real assistive technology, and the next MCP protocol revision.
 

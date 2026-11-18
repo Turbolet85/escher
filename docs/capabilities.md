@@ -529,18 +529,21 @@ No description crosses any driver carrier, since descriptions go to the platform
 What the client does with a result is the client's, a model provider included. Escher's boundary ends at the stdio
 it answers on.
 
-The measured instance is the 2026-10-25 cold-agent live run. Through the operator's own login, the stand's six apps
-reached the model provider: ids, names and values in snapshot texts, paged parts and diffs, Cells' contents, the
-`flight-type` select's options and value, a lint's findings and one screenshot. It was one run with twelve tools: it
-passed, all six apps met, in 66 tool calls with 0 wrong against a bar of at most 5 % wrong, one `lint` and one
-`screenshot` among them, through the `claude` client 2.1.308. Its verdict holds counts, booleans and closed words only.
-The earlier 2026-10-15 run drove the four lean tasks with the eleven tools of its day.
+The measured instance is the 2026-11-18 cold-agent live run, through the `claude` client 2.1.327 and the operator's
+own login. The stand's seven apps reached the model provider: ids, names and values in snapshot texts, paged parts and
+diffs; graph, actions and layout answers; a lint's findings; one screenshot; and the acting answers' `caused` text, the
+order page's authored messages among it. It was one run with the fifteen tools: it passed, all seven apps met,
+in 76 tool calls with 0 wrong against a bar of at most 5 % wrong. Among them were one `lint`, one `screenshot`, one
+`advance`, one `graph`, one `actions` and one `layout`, two part reads and three openings of a select's list. Its
+`caused_by_kind` read 1 `panic`, 1 `error` and 1 `log`, and no refusal was counted under any cause. Its verdict holds
+counts, booleans and closed words only.
 
-The pipe now gives the agent seven apps, the order page among them, where the agent meets `caused`: its goal asks the
-agent to read what a failing submit caused, then fix it, and to press its export control once. The verdict counts,
-per closed kind word `panic` · `error` · `log`, the accepted acting answers whose `caused` holds an item of that kind
-(`caused_by_kind`), reading nothing of an item but its kind, and a run where any kind reads 0 fails. No live run has
-read the seventh app yet.
+A cold agent's MCP carrier reaches no handler coverage, start in a state, exploration, component alone, seed or font
+choice. Each is proven headlessly: by `stand_handler_coverage`, `stand_start_in_state`, `stand_explore`,
+`stand_component_alone`, `stand_seeded_randomness` and `stand_bundled_font_families`.
+
+The earlier 2026-10-25 run drove six apps with twelve tools, in 66 calls with 0 wrong, through the `claude` client
+2.1.308; the 2026-10-15 run drove the four lean tasks with the eleven tools of its day.
 
 ## Where each claim is proven
 

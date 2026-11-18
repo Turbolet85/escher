@@ -1,0 +1,14 @@
+# security · standing conventions
+
+- S1 · any log line the pipe adds holds run metadata only — no screen content, no caller input, no transcript or check text · logging-monitoring
+  decision/accessible-names-not-logged · Accessible names kept out of logs — Escher's own code logs no accessible name, and a host that installs escher's sink writes none to stderr at any `RUST_LOG` level, the third-party record that carried one being dropped whole. · why: That third-party target is outside the sink's allowlist. · guard: mcp_log
+  decision/command-span-content-free · Command span holds no content — One command span per call holds fixed words, booleans and counts only, never a call's content, the screen text, an image or findings.
+  decision/diff-counts-only-in-logs · Only diff sizes reach a log — A diff's content never reaches a log or event, while its three sizes (counts of added, removed and changed nodes) are recorded on the driver's command span, printed at `info` or below. · why: Ratified: a diff's content never reaches a log while its three sizes may.
+  decision/driver-outcomes-never-logged · Driver outcomes never logged — The driver crate logs and fields no command, call, argument, outcome, refusal, screen text, image, finding, session label or id record; an outcome is written only as a command-line answer, an MCP tool result, a session-socket reply or a recording file the caller asked for. · why: Outcomes leave the process only by the ratified crossing.
+  decision/one-command-span-per-call · One command span per call — Every call handed to the session is wrapped in one INFO span named command under the escher_driver target, entered before validation so a refusal is inside it, holding fixed words, booleans and counts only.
+  decision/select-list-label-never-logged · Select list row labels never logged — The select list's public surface is read-only but for one closing writer, and a list row's label, being page text, is never logged.
+  decision/stable-id-not-logged · Stable ids kept out of logs — Escher's own code writes the stable id to no log, and a host that installs escher's sink drops third-party style records carrying an element's HTML id whole, printing that value at no `RUST_LOG` level. · why: Those third-party targets are outside the sink's allowlist.
+- S2 · any test or fixture added for the pipe validates its input as untrusted and asserts the closed-content verdict, never reading recorded content back into output · input-validation
+- S3 · committed live-run evidence holds no credential and comes from the operator's own login · secret-management
+- S4 · kept checks and recordings of the run stay owner-only and uncommitted, read for booleans and counts only · data-protection
+  decision/state-dir-owner-only · Session state directory is owner-only — The session state directory is created mode 0700 and a present one granting group or others any bit is refused; the socket file is set 0600.

@@ -77,8 +77,8 @@ COUNTED = ("lint", "screenshot", "advance", "graph", "actions", "layout")
 # of that kind; the run must meet every one.
 CAUSED_KINDS = ("panic", "error", "log")
 CAUSES = ("unknown-verb", "malformed", "not-found", "stale", "disabled", "covered", "off-screen", "fonts-unavailable")
-# The founder's wrong-call bar: at most this percentage of the run's tool calls may be wrong. It holds 0.2.0's bar
-# until the founder sets 0.3.0's number.
+# The founder's wrong-call bar: at most this percentage of the run's tool calls may be wrong. The founder kept 0.2.0's
+# 5 % for 0.3.0.
 WRONG_CALL_BAR_PCT = 5
 MAX_CHECK_BYTES = 65536
 MAX_CHECK_STEPS = 400

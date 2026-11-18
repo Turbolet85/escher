@@ -109,3 +109,4 @@
 2026-11-18-capability-statement · complete · Capability statement — what escher 0.3.0 can do, its stated limits, a11y reach and where each claim is proven, the README's 0.3.0 status, the stale owners and counts re-pointed, stated where Viola's planning reads it · → chk:2026-11-18-capability-statement
 2026-11-18-cold-agent-bar · complete · Cold-agent bar — the pipe over 0.3.0's carried reads, counted; the founder's bar, claim and live-run word as forks · → chk:2026-11-18-cold-agent-bar
 2026-11-18-served-error-page · complete · Served error page — a seventh served stand app whose controls panic, return an error and log, so a cold agent meets `caused`; its stand checks, a prompt goal and a verdict count · → chk:2026-11-18-served-error-page
+2026-11-18-cold-agent-live-run · pending · Cold-agent live run — the one fresh-agent run over 0.3.0's seven apps under the founder's 5 % bar, its result stated as measured · → chk:2026-11-18-cold-agent-live-run
