@@ -6,10 +6,13 @@
 //! upstream's tree panics the same way at `e42ee1f25`'s `node/node.rs:1740`. Focus stays on the
 //! control, HTML's focus fixup reading `inert` alone here, and a key still acts on it, as it does
 //! on a control in no anonymous block. In both layout modes, through real dispatch. A failure
-//! message carries the layout mode and the row.
+//! message carries the layout mode and the row. The file is also the `a11y` leg's witness of the
+//! SC 2.4.3 gap this leaves, a stated limit pinned and not removed: the engine's focus stays on a
+//! control that no longer shows while the accessibility tree's focus names the window.
 
 use ::keyboard_types::{Key, NamedKey};
-use blitz_dom::{NodeId, QualName, local_name, ns};
+use accesskit::NodeId as TreeNodeId;
+use blitz_dom::{Document, NodeId, QualName, local_name, ns};
 use blitz_html::HtmlDocument;
 use blitz_test_harness::{Harness, HarnessOptions};
 
@@ -36,6 +39,22 @@ fn in_anonymous_block(control: &str, sheet: &str) -> String {
         <div id="root">{control}<div style="height:20px"></div></div>
         </body></html>"#
     )
+}
+
+/// The control in its anonymous block under `#root`, and a button `#after` past `#root`.
+fn in_anonymous_block_then_after(control: &str, sheet: &str) -> String {
+    format!(
+        r#"<html><head><style>{sheet}</style></head><body style="margin:0">
+        <div id="root">{control}<div style="height:20px"></div></div>
+        <button id="after">After</button>
+        </body></html>"#
+    )
+}
+
+/// The accessibility tree's focus, read through the trait.
+fn tree_focus(harness: &Harness<HtmlDocument>) -> TreeNodeId {
+    let doc: &dyn Document = &harness.doc;
+    doc.accessibility_tree().focus
 }
 
 /// The control as a block of its own, under no anonymous block.
@@ -183,5 +202,59 @@ fn a_key_on_a_control_in_no_anonymous_block_reads_the_same() {
             "{at}: the key moves the choice"
         );
         assert_eq!(harness.focused(), Some(control), "{at}: focus stays on it");
+    }
+}
+
+#[test]
+fn a_focused_control_that_no_longer_shows_keeps_focus_the_tree_naming_the_window() {
+    let window = TreeNodeId(u64::MAX);
+    for incremental in [false, true] {
+        for way in WAYS {
+            let at = format!("incremental {incremental}: {way:?}");
+            let sheet = match way {
+                Lost::FocusWithin => HIDDEN_ON_FOCUS,
+                Lost::Hidden | Lost::StyleDisplayNone => "",
+            };
+            let mut harness = boot(&in_anonymous_block_then_after(BUTTON, sheet), incremental);
+            let control = harness.node("#control");
+            assert!(
+                anonymous_block_of(&harness, control).is_some(),
+                "{at}: the control sits in an anonymous block"
+            );
+            harness.press(Key::Named(NamedKey::Tab));
+            assert_eq!(harness.focused(), Some(control), "{at}: Tab focuses it");
+            // Under `:focus-within` the box goes as focus arrives, so no shown reading exists.
+            if !matches!(way, Lost::FocusWithin) {
+                assert!(
+                    tree_focus(&harness) == TreeNodeId(control.as_u64()),
+                    "{at}: the tree's focus is the control while it shows"
+                );
+            }
+
+            take_box_away(&mut harness, way);
+
+            assert_eq!(harness.focused(), Some(control), "{at}: focus stays on it");
+            let doc: &dyn Document = &harness.doc;
+            let tree = doc.accessibility_tree();
+            assert!(
+                !tree
+                    .nodes
+                    .iter()
+                    .any(|(id, _)| *id == TreeNodeId(control.as_u64())),
+                "{at}: the control is left out of the tree"
+            );
+            assert!(
+                tree.focus == window && tree.nodes.iter().any(|(id, _)| *id == tree.focus),
+                "{at}: the tree's focus is the window, a node it holds"
+            );
+
+            harness.press(Key::Named(NamedKey::Tab));
+            let after = harness.node("#after");
+            assert_eq!(
+                harness.focused(),
+                Some(after),
+                "{at}: the next Tab moves on in tree order"
+            );
+        }
     }
 }

@@ -34,7 +34,8 @@
 //! reads.
 
 use ::keyboard_types::{Key, Modifiers, NamedKey};
-use blitz_dom::{QualName, ScrollBehavior, local_name, ns};
+use accesskit::NodeId as TreeNodeId;
+use blitz_dom::{Document, QualName, ScrollBehavior, local_name, ns};
 use blitz_test_harness::{Busy, Harness, NotSettled};
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
@@ -1130,5 +1131,45 @@ fn a_click_opens_the_list_focus_stays_on_the_select_and_the_walk_goes_on_from_it
             node(&snapshot, "flight-type").state.value.as_deref() == Some("one-way"),
             "{mode}: the chosen option stays chosen"
         );
+    }
+}
+
+/// The stand's reading of the limit a focused control that no longer shows leaves: the one
+/// focusable node a served page can unmount while focused, Cells' editor opened by a click, leaves
+/// focus by removal, so no stand screen keeps focus on a node that no longer shows.
+#[test]
+fn a_focused_cells_editor_unmounted_by_enter_drops_focus_and_never_reads_the_limit() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = stand::boot_cells(stand::options(incremental));
+        harness.click("#cell-A0");
+        assert!(
+            harness.query("#cell-input").is_some() && holder(&harness).is_empty(),
+            "{mode}: a click opens the editor unfocused"
+        );
+        harness.click("#cell-input");
+        let input = harness.node("#cell-input");
+        assert!(
+            holder(&harness) == ["cell-input"]
+                && harness.doc.accessibility_tree().focus == TreeNodeId(input.as_u64()),
+            "{mode}: a click focuses the editor, read by the engine, snapshot and tree"
+        );
+
+        harness.press(Key::Named(NamedKey::Enter));
+
+        assert!(
+            harness.query("#cell-input").is_none() && !text(&harness).contains("cell-input"),
+            "{mode}: Enter unmounts the editor"
+        );
+        let root = harness.base().try_root_element().map(|root| root.id);
+        assert!(
+            harness.focused().is_some() && harness.focused() == root,
+            "{mode}: the engine's focus reads the root element, not the removed editor"
+        );
+        assert!(
+            harness.doc.accessibility_tree().focus == TreeNodeId(u64::MAX),
+            "{mode}: the tree's focus is the window"
+        );
+        assert!(holder(&harness).is_empty(), "{mode}: nothing reads focused");
     }
 }

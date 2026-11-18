@@ -1,0 +1,13 @@
+[[control]]
+id = "tree-focus"
+entry = 1
+guard = "the accessibility tree's focus falls back to the window when the focused node is not built"
+case = "a_focused_control_that_no_longer_shows_keeps_focus_the_tree_naming_the_window"
+
+[[control.edit]]
+path = "packages/blitz-dom/src/accessibility.rs"
+old = '''
+            .filter(|id| nodes.contains_key(id))
+'''
+new = '''
+'''
