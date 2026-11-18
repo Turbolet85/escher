@@ -1,0 +1,37 @@
+[[pattern]]
+id = 'counted-verbs'
+regex = '''not[- ]counted|counted verbs?|uncounted|graph-actions-layout|\bCOUNTED\b'''
+ignore_case = true
+
+[[pattern]]
+id = 'cap-unused'
+regex = '''capability-unused'''
+
+[[pattern]]
+id = 'verdict-fields'
+regex = '''refused_by_cause|list_opens|graph_calls|actions_calls|layout_calls|verdict fields?'''
+
+[[pattern]]
+id = 'stand-prompt'
+regex = '''STAND_PROMPT|stand prompt|fixed prompt|cold-agent-prompt|prompt names no'''
+ignore_case = true
+
+[[pattern]]
+id = 'cold-tests'
+regex = '''test_cold_agent|38 tests|41 tests|38 cases|41 cases'''
+
+[[pattern]]
+id = 'ci-scripts-n'
+regex = '''Ran 12[0-9] tests|12[0-9] tests'''
+
+[[pattern]]
+id = 'cells-actions'
+regex = '''106,088|106088|118,292|118292'''
+
+[[pattern]]
+id = 'provider'
+regex = '''screen-to-provider|to the model provider'''
+
+[[pattern]]
+id = 'caused-reach'
+regex = '''caused[^.\n]*(out of|beyond)[^.\n]*reach|out of the run's reach'''

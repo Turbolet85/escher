@@ -54,8 +54,8 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 - The driver session's Unix socket is the one listener: a new socket, port, IPC endpoint or credential path is a security-plan amendment first
 - No panic path on untrusted input — a driver call's arguments — refuse it as a typed value, never `unwrap` · `expect` · `panic!` · `unreachable!`
 - `NodeId` is versioned: a dropped node's id stops resolving instead of aliasing a reused slot — a stale id resolves to none on lookup, never a panic
-- No content in a log field: `url` · `href` · `src` · `html` · `text` · `value` · `attrs` · `path` · `request` · `error` · `password` print `[redacted]` on `escher_*` targets — add no field that carries them
-- Every build, test and CI cargo leg passes `--locked` against the committed `Cargo.lock` (`examples/wasm_hello` aside — a standalone workspace)
+- No content in a log field: `url` · `href` · `src` · `html` · `text` · `value` · `attrs` · `path` · `request` · `error` · `password` · `panic.payload` print `[redacted]` on `escher_*` targets — add no field that carries them
+- Every build, test and CI cargo leg passes `--locked` against the committed `Cargo.lock` (`fmt` and `examples/wasm_hello` aside — the latter a standalone workspace with no `Cargo.lock`)
 - The workspace takes no git dependency — every crate a crates.io registry version, the taffy crate alone excepted: it takes upstream's git source pinned at a full commit rev, no patch section, its integrity resting on the rev (its lock entry has no checksum), and still passes the lock, audit and MSRV legs
 - Incremental and non-incremental layout must produce identical layouts after any sequence of mutations — the `incremental_oracle` holds them to it
 - DOM mutations go through `DocumentMutator`, which flushes deferred work on drop

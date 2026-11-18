@@ -100,6 +100,8 @@ A phase P5 control script that plants a host-path literal to prove a `/home/` pr
 `/home/someone/x`) lands in the committed run dir, and `gate.py hygiene` P1 refuses it at the operator pass, costing a
 respell and a re-fire there. Plant the control's literal in a form hygiene does not read as a host path — a
 placeholder such as `/home/<user>/x` keeps the probe red and the run dir clean — from the first write.
+Extended 2026-11-18: where hygiene still meets such a planted path, rewrite it to the `<user>` form and name it in
+the card, without asking — the operator's standing ruling for this project.
 
 Where it applies: every control a phase P5 writes into `.andromeda/runs/*-phase/` whose subject is a host-path probe.
 

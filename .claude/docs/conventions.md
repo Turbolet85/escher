@@ -14,7 +14,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) Â
 - `#[non_exhaustive]` on extensible public structs (`NavigationOptions`, `Request`).
 
 ## Manifests
-- Dependencies declared once in `[workspace.dependencies]` and consumed as `{ workspace = true }`; dependency groups separated by comment headers.
+- Dependencies declared once in `[workspace.dependencies]` and consumed as `{ workspace = true }` (the WPT runner's direct `mimalloc` dependency excepted); dependency groups separated by comment headers.
 - The in-repo engine crates (blitz-dom, blitz-html, blitz-net, blitz-paint, blitz-vibey-script, blitz-shell, blitz-traits, stylo_taffy, dioxus-native, dioxus-native-dom, accesskit_xplat) are declared with `default-features = false`, the other in-repo crates without it â€” except `seven_guis`, which keeps its default renderer feature (dioxus-native refuses to compile with none); package metadata inherited with `*.workspace = true`.
 - App and example crates, blitz-tests, blitz-test-harness, escher-telemetry, escher-driver, blitz-vibey-script (since 2026-10-13-upstream-sync-polish-and-ship) and wpt set `publish = false`, rdme `publish = true`; docs.rs builds with all features and `doc_cfg` under `docsrs`.
 

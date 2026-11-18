@@ -1,0 +1,218 @@
+[
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "2aaa7a60",
+"ts": "2026-11-18T09:04:30Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline ce6e2488 (pre-pass — HEAD)",
+"ci-scripts-n · control UNFIRED over the seven masters (bodies and sets) at ce6e2488",
+"cells-actions · control UNFIRED over the seven masters (bodies and sets) at ce6e2488",
+"caused-reach · control UNFIRED over the seven masters (bodies and sets) at ce6e2488"
+],
+"stderr": "control: ci-scripts-n, cells-actions, caused-reach never fired over the seven masters' pre-pass text, bodies and sets (ce6e2488) — no master holds them: re-fire with --pattern counted-verbs --pattern cap-unused --pattern verdict-fields --pattern stand-prompt --pattern cold-tests --pattern provider; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "2aaa7a60",
+"ts": "2026-11-18T09:04:48Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--pattern",
+"counted-verbs",
+"--pattern",
+"cap-unused",
+"--pattern",
+"verdict-fields",
+"--pattern",
+"stand-prompt",
+"--pattern",
+"cold-tests",
+"--pattern",
+"provider"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline ce6e2488 (pre-pass — HEAD)",
+"architecture · 8 rows over 1 files · new 0 · standing 8 · 5 patterns",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"layout-templates · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"test-plan · 14 rows over 1 files · new 0 · standing 14 · 4 patterns",
+"obs-plan · 18 rows over 1 files · new 0 · standing 18 · 4 patterns",
+"a11y-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (6 patterns) · 86 rows over 22 files",
+"per class · new 0/0 · standing 45/6 · leaf 38/15 · curation 3/1 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-18T09-02-58-wrap/sweep-pre-pass-1.1.txt · 101 lines · 12072 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T09-02-58-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "ce6e24880ef9a3f2ec1eb5ca2ffa0ef7b99f8cfa",
+"how": "pre-pass — HEAD",
+"counts": {
+"counted-verbs": {
+"new": 0,
+"standing": 20,
+"leaf": 22,
+"curation": 3,
+"base": 0
+},
+"cap-unused": {
+"new": 0,
+"standing": 8,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"verdict-fields": {
+"new": 0,
+"standing": 5,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"stand-prompt": {
+"new": 0,
+"standing": 6,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"cold-tests": {
+"new": 0,
+"standing": 1,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"provider": {
+"new": 0,
+"standing": 5,
+"leaf": 5,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 8,
+"files": 1,
+"new": 0,
+"standing": 8,
+"patterns": 5
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"layout-templates": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+},
+"test-plan": {
+"rows": 14,
+"files": 1,
+"new": 0,
+"standing": 14,
+"patterns": 4
+},
+"obs-plan": {
+"rows": 18,
+"files": 1,
+"new": 0,
+"standing": 18,
+"patterns": 4
+},
+"a11y-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"counted-verbs": {
+"architecture": 4,
+"test-plan": 8,
+"obs-plan": 7,
+"a11y-plan": 1
+},
+"cap-unused": {
+"architecture": 1,
+"test-plan": 2,
+"obs-plan": 5
+},
+"verdict-fields": {
+"test-plan": 2,
+"obs-plan": 3
+},
+"stand-prompt": {
+"architecture": 1,
+"security-plan": 1,
+"layout-templates": 2,
+"test-plan": 2
+},
+"cold-tests": {
+"architecture": 1
+},
+"provider": {
+"architecture": 1,
+"security-plan": 1,
+"obs-plan": 3
+}
+},
+"forms": {
+"cold-tests": [
+{
+"form": "thirty-eight",
+"from": "38"
+},
+{
+"form": "forty-one",
+"from": "41"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

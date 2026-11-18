@@ -1,9 +1,0 @@
-[[control]]
-id = "d-prompt-graph"
-entry = 3
-guard = "the prompt asks for the counter's UI graph"
-case = "test_the_prompt_names_no_stand_id"
-[[control.edit]]
-path = "scripts/cold-agent.sh"
-old = '''1. Counter: the display reads 3. Before acting, read its UI graph.'''
-new = '''1. Counter: the display reads 3.'''

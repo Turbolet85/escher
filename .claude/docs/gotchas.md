@@ -24,7 +24,7 @@ _Documented architectural traps from the architecture master `doc:architecture` 
 
 ## Interaction state is DOM-only
 **What breaks:** hover/focus/active pointing at an anonymous block or a pseudo-element subtree.
-**How to avoid:** hit-test results canonicalize to the element; removing a node retargets hover/active to the nearest surviving ancestor and drops focus to the root element, the tree's focus naming the window.
+**How to avoid:** hit-test results canonicalize to the element; removing a node retargets hover/active to the nearest surviving ancestor and drops focus to the root element, the tree's focus naming the window; a focused node made inert gives focus up at the flush with no blur or focusout, while one made disabled or hidden keeps focus and takes keys as the tree's focus names the window (a named SC 2.4.3 gap).
 **References:** `tests/blitz-tests/tests/interaction_state_*.rs`
 
 ## The changed set is not a diff

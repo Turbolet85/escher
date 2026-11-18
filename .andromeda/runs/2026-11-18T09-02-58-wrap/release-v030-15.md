@@ -1,0 +1,1 @@
+2026-11-18 (2026-11-18-cold-agent-bar, wrap P5): the pipe now counts and requires graph, actions, layout and a list opening and reads refusals by cause; the founder's F1, F3 and F4 clear the block, and his F5 places a served error page before the live run (the operator's directive at the wrap, inputs#I6) → «Cold-agent live run»

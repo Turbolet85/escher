@@ -1,0 +1,1391 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:05:53Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-18-cold-agent-bar",
+"--section-file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-18-cold-agent-bar/report rev 4 · 10 new · 0 revised · 0 retired · 58 kept · tx 2102"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:05:54Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-18-cold-agent-bar",
+"--section-file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-18-cold-agent-bar/report rev 5 · 6 new · 0 revised · 0 retired · 68 kept · tx 2103"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:06:24Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cites-land-2026-11-18-cold-agent-bar.ndjson",
+"--base",
+"764b4ba63b4d8acfd1808572f75999085d531b1e",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:06:30Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cites-land-2026-11-18-cold-agent-bar.ndjson",
+"--base",
+"764b4ba63b4d8acfd1808572f75999085d531b1e",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 2105"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:08:47Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1527 · packs 16 · pack 100 · 383553 B",
+"security-plan: rows 555 · packs 6 · pack 100 · 159515 B",
+"design-system: rows 138 · packs 2 · pack 100 · 37980 B",
+"layout-templates: rows 121 · packs 2 · pack 100 · 30419 B",
+"test-plan: rows 627 · packs 7 · pack 100 · 175243 B",
+"obs-plan: rows 282 · packs 3 · pack 100 · 77355 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75353 B",
+"rows-packs: 7 master(s) · 3490 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 2105"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T09-02-58-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:18:23Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1527 · packs 16 · picked 43 (11 by every draw) · standing 0 · 113965 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 555 · packs 6 · picked 25 (20 by every draw) · standing 0 · 91432 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 138 · packs 2 · picked 16 (14 by every draw) · standing 0 · 19443 B",
+"layout-templates: rows 121 · packs 2 · picked 9 (3 by every draw) · standing 0 · 26575 B",
+"test-plan: rows 627 · packs 7 · picked 19 (12 by every draw) · standing 0 · 99478 B",
+"obs-plan: rows 282 · packs 3 · picked 20 (14 by every draw) · standing 0 · 53817 B",
+"a11y-plan: rows 240 · packs 3 · picked 1 (0 by every draw) · standing 0 · 19208 B",
+"rows-union: 7 master(s) · picked 133 of 3490 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T09-02-58-wrap/arch-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/arch-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/security-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/security-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/design-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/design-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/tests-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/tests-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/obs-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/obs-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:22:12Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-security-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"rows-check · standing · doc:security-plan",
+"decision/cold-agent-screen-to-provider · over — rule: 328 chars, 300 at the most",
+"REFUSED · standing · 1 row(s) of 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:22:18Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-security-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:security-plan",
+"PASS · standing · 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:24:21Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-obs-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:obs-plan",
+"PASS · standing · 2 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:24:22Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-test-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:test-plan",
+"PASS · standing · 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-six-apps · rejected",
+"fit: fits 7 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — Standard Contracts: 6 row(s)\n**Section:** Standard Contracts\n**Change:** ~ contract/cold-agent-verdict-reasons/capability-unused · promise: was «The verdict fails with `capability-unused` unless `lint`, `screenshot` and `advance` are each used and a part is read.»; now «The verdict fails with `capability-unused` unless `lint`, `screenshot`, `advance`, `graph`, `actions` and `layout` are each used, a part is read and a list is opened.»\n+ contract/cold-agent-verdict/graph-calls — cold-agent verdict.json · graph_calls\n+ contract/cold-agent-verdict/actions-calls — cold-agent verdict.json · actions_calls\n+ contract/cold-agent-verdict/layout-calls — cold-agent verdict.json · layout_calls\n+ contract/cold-agent-verdict/list-opens — cold-agent verdict.json · list_opens\n+ contract/cold-agent-verdict/refused-by-cause — cold-agent verdict.json · refused_by_cause\n**Why:** contract/cold-agent-verdict-reasons/capability-unused: The pipe now counts six verbs and its capability-unused requirement set reads graph, actions, layout and list openings beside lint, screenshot, advance and part reads, so the row's three verbs and one read no longer state the reason.\ncontract/cold-agent-verdict/graph-calls: The verdict and its run.end event gain graph_calls, a new field of the pipe's outward verdict, which the registry does not yet hold.\ncontract/cold-agent-verdict/actions-calls: The verdict and its run.end event gain actions_calls, a new field of the pipe's outward verdict, which the registry does not yet hold.\ncontract/cold-agent-verdict/layout-calls: The verdict and its run.end event gain layout_calls, a new field of the pipe's outward verdict, which the registry does not yet hold.\ncontract/cold-agent-verdict/list-opens: The verdict gains list_opens, a new outward field the passed bar requires, which the registry does not yet hold.\ncontract/cold-agent-verdict/refused-by-cause: The verdict gains refused_by_cause, a new outward field of closed words to counts, which the registry does not yet hold.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"## 2026-11-18-cold-agent-bar — Occupied Resources: 1 row(s)\n**Section:** Occupied Resources\n**Change:** ~ decision/cold-agent-run-carries-stand-screen · rule: was «The live cold-agent run sends the stand's served screens to the model provider: element ids, accessible names, control values, snapshot texts and diffs, from the driver's own MCP server.»; now «The live cold-agent run sends the stand's served screens to the model provider: element ids, accessible names, control values, snapshot texts, diffs, and graph and actions answers, from the driver's own MCP server.»\n**Why:** decision/cold-agent-run-carries-stand-screen: The founder's F4 answer lets graph and actions answers cross to the model provider on the live run, so the row listing what crosses must hold them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-18, inputs#I5: «Утвердить graph и actions (Recommended)» (the card confirmed by the operator, 2026-11-18)\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 7 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-screen-to-provider · rejected",
+"decision/cold-agent-transcript-answers-counted-only · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — Logging & Monitoring: 1 row(s)\n**Section:** Logging & Monitoring\n**Change:** ~ decision/cold-agent-events-metadata-only · rule: was «The cold-agent pipe's events and verdict carry counts, booleans and closed words, never transcript text, a tool argument or answer, a reply or the check.»; now «The cold-agent pipe's events and verdict carry counts, booleans and closed words, refusals as counts per closed cause word with a word outside the closed set not counted, never transcript text, a tool argument or answer, a reply or the check.»\n**Why:** decision/cold-agent-events-metadata-only: The verdict and its run.end event now carry refused_by_cause, read from the server log's command span lines against the eight closed cause words, and list_opens, a count, so the row must say a log-read word reaches the verdict only as a closed word's count.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:48Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/cold-agent-screen-to-provider · rule: was «A cold-agent live run carries the stand's screen, element ids, accessible names and control values in snapshot texts and diffs, and layout answers of ids, closed words, numbers, through the claude client to the model provider; the reply returns as an agent-written check the pipe parses and replays.»; now «A cold-agent live run carries the stand's screen, ids, accessible names and control values in snapshot texts and diffs, and layout, graph and actions answers, through the claude client to the model provider; the reply returns as an agent-written check the pipe parses and replays.»\n**Why:** decision/cold-agent-screen-to-provider: The founder ratified graph and actions answers crossing to the model provider on the live run (F4, inputs#I5), so the row listing what crosses must hold them; caused text joins only when the served error page F5 places before the run lands. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-18, inputs#I5: «Утвердить graph и actions (Recommended)» (the card confirmed by the operator, 2026-11-18)\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:48Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-prompt-names-no-id · rejected",
+"contract/cold-agent-cli/counted-verbs · rejected",
+"contract/cold-agent-cli/refused-by-cause · rejected",
+"contract/cold-agent-cli/capability-unused · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-server-log-counted-only · rejected",
+"decision/cold-agent-prompt-names-no-ids · rejected",
+"contract/cold-agent-verdict/capability-unused · rejected",
+"contract/cold-agent-verdict/calls · rejected",
+"contract/cold-agent-verdict/refused-by-cause · rejected",
+"contract/cold-agent-verdict/list-opens · rejected",
+"decision/ci-scripts-controls-read-by-hand · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — 4. Unit Test Strategy: 1 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** + decision/prompt-goal-control-phrase-once — Prompt goal controls pin a phrase standing once\n**Why:** decision/prompt-goal-control-phrase-once: The chunk's control on the prompt test read DOES NOT HOLD on words shared with the Cells sentence and held on unique phrases, a convention for future controls that no row states.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:49Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ decision/cold-agent-server-log-counted-only · rule: was «The server's log is read only to count its tool-call span lines, their refused and error endings and each counted verb's accepted lines; it is never printed or copied.»; now «The server's log is read only to count its span lines; it is never printed or copied.»\n**Why:** decision/cold-agent-server-log-counted-only: The standing rule names tool-call span lines alone while the pipe now also counts the command span lines' causes; the shorter rule holds without the inventory.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:50Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/cold-agent-verdict/capability-unused · rejected",
+"decision/cold-agent-server-log-counted-only · rejected",
+"fit: fits 12 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — 6. Log Coverage: 7 row(s)\n**Section:** 6. Log Coverage\n**Change:** + contract/cold-agent-counted-verbs/graph — The cold-agent pipe's counted verbs · graph\n+ contract/cold-agent-counted-verbs/actions — The cold-agent pipe's counted verbs · actions\n+ contract/cold-agent-counted-verbs/layout — The cold-agent pipe's counted verbs · layout\n~ contract/cold-agent-verdict-reasons/capability-unused · promise: was «Given when a counted verb or a part read went unused.»; now «Given when a counted verb, a part read or a list opening went unused.»\n~ decision/cold-agent-server-log-read-by-span-name · rule: was «The cold-agent pipe reads the server log by span name only and never prints or copies it.»; now «The cold-agent pipe reads the server log by span name, the tool_call span's tool and ending and the command span's cause word only, and never prints or copies it.»\n~ decision/cold-agent-verdict-holds-no-content · rule: was «Every field of the cold-agent verdict is a count, a boolean or a closed word, holding no transcript text, tool argument, tool answer, reply or check.»; now «Every field of the cold-agent verdict is a count, a boolean, a closed word or an object of closed words to counts, holding no transcript text, tool argument, tool answer, reply or check.»\n− decision/graph-actions-layout-not-counted-verbs → none: The decision is reversed: graph, actions and layout are now counted verbs, each with a verdict field, and required by capability-unused.\n**Why:** contract/cold-agent-counted-verbs/graph: COUNTED now holds graph beside lint, screenshot and advance, so the counted-verb list gains its item.\ncontract/cold-agent-counted-verbs/actions: COUNTED now holds actions beside lint, screenshot and advance, so the counted-verb list gains its item.\ncontract/cold-agent-counted-verbs/layout: COUNTED now holds layout beside lint, screenshot and advance, so the counted-verb list gains its item.\ncontract/cold-agent-verdict-reasons/capability-unused: capability-unused now also reads list_opens at 0, so the reason's promise must name the list opening beside the counted verbs and part reads.\ndecision/cold-agent-server-log-read-by-span-name: The pipe now reads the command span's existing cause field for refused_by_cause, so a read by span name alone no longer holds.\ndecision/cold-agent-verdict-holds-no-content: refused_by_cause is an object of closed words to counts, so the row's list of field kinds is incomplete.\ndecision/graph-actions-layout-not-counted-verbs: COUNTED now holds graph, actions and layout and capability-unused reads their counts, so the row says the opposite of the code's contract.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"## 2026-11-18-cold-agent-bar — 6. Log Coverage: 6 row(s)\n**Section:** 6. Log Coverage\n**Change:** + contract/cold-agent-verdict/graph-calls — The cold-agent verdict · graph_calls\n+ contract/cold-agent-verdict/actions-calls — The cold-agent verdict · actions_calls\n+ contract/cold-agent-verdict/layout-calls — The cold-agent verdict · layout_calls\n+ contract/cold-agent-verdict/list-opens — The cold-agent verdict · list_opens\n+ contract/cold-agent-verdict/refused-by-cause — The cold-agent verdict · refused_by_cause\n~ decision/verdict-fields-closed · rule: was «Each cold-agent verdict field is a count, a boolean, a closed word, the task, the client's tool names, version and model, or the transcript file's path, never transcript text, a tool argument, a tool answer, a reply or the check.»; now «Each cold-agent verdict field is a count, a boolean, a closed word, an object of closed words to counts, the task, the client's tool names, version and model, or the transcript file's path, never transcript text, a tool argument, a tool answer, a reply or the check.»\n**Why:** contract/cold-agent-verdict/graph-calls: The verdict gains graph_calls, a new field promised outward beside lint_calls, screenshot_calls and advance_calls.\ncontract/cold-agent-verdict/actions-calls: The verdict gains actions_calls, a new field promised outward beside lint_calls, screenshot_calls and advance_calls.\ncontract/cold-agent-verdict/layout-calls: The verdict gains layout_calls, a new field promised outward beside lint_calls, screenshot_calls and advance_calls.\ncontract/cold-agent-verdict/list-opens: The verdict gains list_opens, a new field promised outward, with its decode rule stated in the report's coverage.\ncontract/cold-agent-verdict/refused-by-cause: The verdict gains refused_by_cause, a new field promised outward, holding closed words and counts only.\ndecision/verdict-fields-closed: refused_by_cause is an object of closed words to counts, a field kind the row's closed list did not name.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: none: 5 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 13 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:50Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-18-cold-agent-bar — 4. Span / Trace Coverage: 1 row(s)\n**Section:** 4. Span / Trace Coverage\n**Change:** ~ contract/cold-agent-verdict/capability-unused · promise: was «The reason given when lint_calls, screenshot_calls or advance_calls reads 0.»; now «The reason given when a counted verb, a part read or a list opening went unused.»\n**Why:** contract/cold-agent-verdict/capability-unused: The standing promise names lint_calls, screenshot_calls and advance_calls alone while the requirement set is now eight; the shorter promise states the reason without the inventory, which fit read the code's.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"## 2026-11-18-cold-agent-bar — 3. Observability Harness Contract: 1 row(s)\n**Section:** 3. Observability Harness Contract\n**Change:** ~ decision/cold-agent-server-log-counted-only · rule: was «The cold-agent pipe reads server.log only to count tool_call span lines, their refused and error endings and the accepted lines of each counted verb (lint, screenshot, advance), never printing or copying it.»; now «The cold-agent pipe reads server.log only to count its span lines, never printing or copying it.»\n**Why:** decision/cold-agent-server-log-counted-only: The standing rule lists three counted verbs and tool_call lines alone, while the pipe now counts six verbs and the command lines' causes; the shorter rule holds without the inventory.\n**Ref:** .andromeda/runs/2026-11-18T09-02-58-wrap/",
+"patterns: 2 in cascade-patterns-obs-plan-1.toml",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-patterns-obs-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:57Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-six-apps · rejected",
+"fit: fits 7 · not_master 0 · stands 0",
+"landed tx 2106 · 7 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:58Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-screen-to-provider · rejected",
+"decision/cold-agent-transcript-answers-counted-only · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2107 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:58Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2108 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:25:59Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/cold-agent-server-log-counted-only · rejected",
+"decision/cold-agent-prompt-names-no-ids · rejected",
+"contract/cold-agent-verdict/capability-unused · rejected",
+"contract/cold-agent-verdict/calls · rejected",
+"contract/cold-agent-verdict/refused-by-cause · rejected",
+"contract/cold-agent-verdict/list-opens · rejected",
+"decision/ci-scripts-controls-read-by-hand · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2109 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:26:00Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2110 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:26:01Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/cold-agent-verdict/capability-unused · rejected",
+"decision/cold-agent-server-log-counted-only · rejected",
+"fit: fits 12 · not_master 0 · stands 0",
+"landed tx 2111 · 13 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:26:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/ops-main-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T09-02-58-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 2112 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+".andromeda/runs/2026-11-18T09-02-58-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:33:59Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/conventions.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__conventions.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/conventions.md rev 10 · 0 new · 1 revised · 0 retired · tx 2113"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/conventions.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:33:59Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-traits.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__services__blitz-traits.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-traits.md rev 4 · 0 new · 1 revised · 0 retired · tx 2114"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/services/blitz-traits.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:00Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 16 · 0 new · 1 revised · 0 retired · tx 2115"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:00Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-telemetry.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__services__escher-telemetry.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-telemetry.md rev 15 · 0 new · 1 revised · 0 retired · tx 2116"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/services/escher-telemetry.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:01Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 24 · 0 new · 1 revised · 0 retired · tx 2117"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:01Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/gotchas.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__gotchas.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/gotchas.md rev 9 · 0 new · 1 revised · 0 retired · tx 2118"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/gotchas.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:02Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 32 · 0 new · 2 revised · 0 retired · tx 2119"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:03Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 17 · 0 new · 2 revised · 0 retired · tx 2120"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:03Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 15 · 0 new · 2 revised · 0 retired · tx 2121"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:04Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 27 · 0 new · 2 revised · 0 retired · tx 2122"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:04Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 31 · 0 new · 1 revised · 0 retired · tx 2123"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:34:05Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 11 · 0 new · 2 revised · 0 retired · tx 2124"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:38:41Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 6 record(s) · 6 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:38:47Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 6 record(s) · 6 edge(s) · tx 2131 · chk-klwsn2pj … cry-32fid2ry"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:39:50Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T09-02-58-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap",
+"--marker",
+"2026-11-18-cold-agent-bar"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 2134 · run-7q4owowu … run-7q4owowu"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T09:47:24Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-18-cold-agent-bar",
+"--run-dir",
+".andromeda/runs/2026-11-18T09-02-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 11 file(s) of 2026-11-18-cold-agent-bar"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
