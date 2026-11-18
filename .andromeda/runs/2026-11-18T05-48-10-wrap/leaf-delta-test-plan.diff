@@ -1,0 +1,22 @@
+--- a/.andromeda/test-plan.md
++++ b/.andromeda/test-plan.md
+@@ -2,3 +2,3 @@
+ > NOT YET MEASURED — the reading gathered no tier justification, critical-path list or coverage triggers for this summary
+-decision/capability-statement-pinned · Capability statement pinned to the driver schema — The capability statement names every driver verb and refusal cause as a code span and states the schema's verb, cause, session-error, node-key and exit-status counts in words; the README states the count of driver commands an MCP client gets as tools. · guard: test_capability_statement.py
++decision/capability-statement-pinned · Capability statement pinned to the driver schema — The capability statement names every driver verb and refusal cause as a code span and states in words the schema's verb, cause, session-error, node-key and exit-status counts and the a11y and stand-repeat legs' counts; the README states the count of driver commands an MCP client gets as tools. · guard: test_capability_statement.py
+ decision/ci-package-installs-bounded · CI package installs bounded — Every package install of the CI workflow is bounded, a workflow invariant held by the CI scripts' unit tests. · guard: test_ci_workflows.py
+@@ -19,3 +19,3 @@
+ decision/buffered-render-on-dioxus-07-bridge · Buffered render on the Dioxus 0.7 bridge — The Dioxus 0.7 bridge renders into a mutation buffer with the document unborrowed, so a task polled during render can access the document. · why: Upstream's buffered render ported onto the Dioxus 0.7 bridge. · guard: dioxus_runtime_probe
+-decision/capabilities-doc-pinned-to-schema · Capability statement pinned to the driver schema — The capability statement's verb and cause names and its counts, and the README's count of MCP tools, are held equal to the driver schema's tables. · guard: CapabilityStatementTest
++decision/capabilities-doc-pinned-to-schema · Capability statement pinned to the driver schema — The capability statement's verb and cause names and its schema counts, and the README's count of MCP tools, are held equal to the driver schema's tables, and its a11y leg file count and stand-repeat named-target count to the CI leg script. · guard: CapabilityStatementTest
+ decision/chosen-select-row-colours · Chosen select row colour pair — A chosen select row is painted with the engine default #c8c8c8 on #000000. · why: The pair is Chromium's inactive selected pair, reading 12.56:1. · guard: a_chosen_row_and_a_plain_one_meet_their_ratio_at_the_user_agents_pair
+@@ -94,3 +94,3 @@
+ ## test-plan · test-strategy · twin 2-test-strategy
+-decision/capability-check-names-held-to-schema · Claim section names and counts held to the schema — Only the claim section's names and counts are held to the schema's tables, so a check renamed or moved changes that section by hand. · guard: test_capability_statement.py
++decision/capability-check-names-held-to-schema · Claim section names and counts held to the schema — Only the claim section's names and counts are pinned, the names and schema counts to the schema's tables and the a11y leg's file count and stand-repeat's named-target count to the CI leg script, so a check renamed or moved changes that section by hand. · guard: test_capability_statement.py
+ decision/capability-claims-name-their-checks · Capability claims name their checks — The capabilities document ends naming the check behind each claim it makes, and states each limit as pinned by its check or as asserted by no check.
+@@ -307,3 +307,3 @@
+ decision/bridge-tests-child-module · Bridge tests a child of the dioxus document — The dioxus document's bridge tests sit in a child module of the dioxus document module. · why: The event handler's two fields are private to that module and it has no constructor.
+-decision/capability-statement-from-schema · Capability statement read from the schema — The capability statement names every verb and every refusal cause and states its counts in words read from the schema's tables, none hand-copied. · guard: CapabilityStatementTest
++decision/capability-statement-from-schema · Capability statement read from the schema — The capability statement names every verb and every refusal cause and states the schema's counts in words read from the schema's tables, none hand-copied. · guard: CapabilityStatementTest
+ decision/ci-uses-no-secrets · CI uses no secrets — No CI workflow step reads a `secrets.` value. · guard: CiWorkflowTest

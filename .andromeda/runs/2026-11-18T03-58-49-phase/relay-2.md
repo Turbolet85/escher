@@ -1,3 +1,0 @@
-The operator's review of .andromeda/runs/2026-11-18T03-58-49-phase/p5-card-1.md (2026-11-18), verbatim:
-
-review: one change. The six leaf sites of CARRY cry-svjyrphi do not wait for the wrap's leaves pass — no comparer has a source for a count the masters no longer state, so they would be carried a third time. Add a step that lands them through rec.py harness land in this chunk: remove each stale count (the a11y leg as «fourteen», «115 tests», stand_keyboard as «23 tests») rather than re-measure it, keeping what each line says beyond the number; then the CARRY closes at the wrap. Add its sites to the touchpoints and a check that no «fourteen» is left on those pages. Show me the card again.

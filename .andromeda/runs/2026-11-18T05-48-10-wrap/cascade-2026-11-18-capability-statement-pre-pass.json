@@ -1,0 +1,227 @@
+[
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "2aaa7a60",
+"ts": "2026-11-18T05:49:21Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline a021719f (pre-pass — HEAD)",
+"SRCOUNT · control UNFIRED over the seven masters (bodies and sets) at a021719f",
+"WIT · control UNFIRED over the seven masters (bodies and sets) at a021719f",
+"README · control UNFIRED over the seven masters (bodies and sets) at a021719f",
+"DENY · control UNFIRED over the seven masters (bodies and sets) at a021719f",
+"VER · control UNFIRED over the seven masters (bodies and sets) at a021719f",
+"LAYCAR · control UNFIRED over the seven masters (bodies and sets) at a021719f"
+],
+"stderr": "control: SRCOUNT, WIT, README, DENY, VER, LAYCAR never fired over the seven masters' pre-pass text, bodies and sets (a021719f) — no master holds them: re-fire with --pattern A11YN --pattern OVERLAP --pattern SRNAMED --pattern STAND --pattern CAPDOC; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "2aaa7a60",
+"ts": "2026-11-18T05:49:30Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--pattern",
+"A11YN",
+"--pattern",
+"OVERLAP",
+"--pattern",
+"SRNAMED",
+"--pattern",
+"STAND",
+"--pattern",
+"CAPDOC"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline a021719f (pre-pass — HEAD)",
+"architecture · 8 rows over 1 files · new 0 · standing 8 · 4 patterns",
+"security-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 7 rows over 1 files · new 0 · standing 7 · 4 patterns",
+"obs-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"a11y-plan · 4 rows over 1 files · new 0 · standing 4 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (5 patterns) · 72 rows over 20 files",
+"per class · new 0/0 · standing 21/5 · leaf 50/14 · curation 1/1 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-18T05-48-10-wrap/sweep-pre-pass-1.1.txt · 87 lines · 10229 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T05-48-10-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "a021719fc7a025d4c15d16a83a875f727cbc7e44",
+"how": "pre-pass — HEAD",
+"counts": {
+"A11YN": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"OVERLAP": {
+"new": 0,
+"standing": 3,
+"leaf": 12,
+"curation": 1,
+"base": 0
+},
+"SRNAMED": {
+"new": 0,
+"standing": 1,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"STAND": {
+"new": 0,
+"standing": 6,
+"leaf": 20,
+"curation": 0,
+"base": 0
+},
+"CAPDOC": {
+"new": 0,
+"standing": 10,
+"leaf": 11,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 8,
+"files": 1,
+"new": 0,
+"standing": 8,
+"patterns": 4
+},
+"security-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 7,
+"files": 1,
+"new": 0,
+"standing": 7,
+"patterns": 4
+},
+"obs-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"a11y-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 2
+}
+},
+"per_master": {
+"A11YN": {
+"architecture": 1
+},
+"OVERLAP": {
+"architecture": 1,
+"test-plan": 2
+},
+"SRNAMED": {
+"test-plan": 1
+},
+"STAND": {
+"architecture": 2,
+"test-plan": 1,
+"a11y-plan": 3
+},
+"CAPDOC": {
+"architecture": 4,
+"security-plan": 1,
+"test-plan": 3,
+"obs-plan": 1,
+"a11y-plan": 1
+}
+},
+"forms": {
+"A11YN": [
+{
+"form": "(14|18) (accessibility )?files",
+"from": "fourteen · eighteen"
+},
+{
+"form": "eighty-four",
+"from": "84"
+},
+{
+"form": "fourteen · 84",
+"from": "14"
+},
+{
+"form": "eighteen · 163",
+"from": "18"
+},
+{
+"form": "leg.s (14|18)",
+"from": "fourteen · eighteen"
+}
+],
+"OVERLAP": [
+{
+"form": "(8|11)[^.]{0,60}stand-repeat",
+"from": "eight · eleven"
+}
+],
+"SRNAMED": [
+{
+"form": "(15|17) named",
+"from": "fifteen · seventeen"
+}
+],
+"STAND": [
+{
+"form": "(4|6) (lean|served) tasks",
+"from": "four · six"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

@@ -5,7 +5,7 @@ _Distilled from `.andromeda/a11y-plan.md` (adopted reading). wrap-session's casc
 ## A11y tier
 
 **Tier:** 0
-**WCAG target:** SC 2.1.1 Keyboard · SC 1.4.3 Contrast (Minimum) · SC 2.4.3 Focus Order — the reach (tier, criteria, the `a11y` leg's files with no required status check, what an assistive technology reads unmeasured, the named limits) published in `docs/capabilities.md` under `## Accessibility reach`; its pin `.github/scripts/test_capability_statement.py` reads none of these claims, so a change to the reach is made in that document by hand
+**WCAG target:** SC 2.1.1 Keyboard · SC 1.4.3 Contrast (Minimum) · SC 2.4.3 Focus Order — the reach (tier, criteria, the `a11y` leg's files with no required status check, what an assistive technology reads unmeasured, the named limits) published in `docs/capabilities.md` under `## Accessibility reach`; its pin `.github/scripts/test_capability_statement.py` reads only the `a11y` leg's file count among these claims and no check reads the rest, so a change to the reach is made in that document by hand
 
 ## Harness contract (§3)
 

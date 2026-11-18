@@ -1,3 +1,0 @@
-Question (implement P4, the hygiene read): Hygiene refuses one file: the phase run's control record .andromeda/runs/2026-11-18T03-58-49-phase/p5-controls.md, line 16. It records the planted known positive `/home/<user>/path (a planted made-up home)`, a made-up home, not this host's user. The plan's baselines cite this file, so the rewrite is yours to allow. The chunk's land waits on it. How should it be handled?
-
-Answer: "Placeholder it (Recommended)" — Rewrite the literal on line 16 to `/home/<user>/path`, which P1 reads as a placeholder. The control's meaning is kept, nothing else in the file changes, and hygiene is re-run until clean before the land.

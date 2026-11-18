@@ -1,0 +1,1058 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T05:50:31Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-18-capability-statement",
+"--section-file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-18-capability-statement/report rev 3 · 10 new · 0 revised · 0 retired · 35 kept · tx 2033"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T05:50:32Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-18-capability-statement",
+"--section-file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-18-capability-statement/report rev 4 · 14 new · 0 revised · 0 retired · 45 kept · tx 2034"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T05:50:54Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cites-land-2026-11-18-capability-statement.ndjson",
+"--base",
+"6ebf42e65b5c95930fde09baace1ac532ae5e2ec",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T05:50:59Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cites-land-2026-11-18-capability-statement.ndjson",
+"--base",
+"6ebf42e65b5c95930fde09baace1ac532ae5e2ec",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 2036"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T05:52:57Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1527 · packs 16 · pack 100 · 383467 B",
+"security-plan: rows 555 · packs 6 · pack 100 · 159424 B",
+"design-system: rows 138 · packs 2 · pack 100 · 37980 B",
+"layout-templates: rows 121 · packs 2 · pack 100 · 30419 B",
+"test-plan: rows 627 · packs 7 · pack 100 · 174978 B",
+"obs-plan: rows 282 · packs 3 · pack 100 · 77355 B",
+"a11y-plan: rows 240 · packs 3 · pack 100 · 75299 B",
+"rows-packs: 7 master(s) · 3490 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 2036"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T05-48-10-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:03:42Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1527 · packs 16 · picked 20 (11 by every draw) · standing 0 · 85577 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 555 · packs 6 · picked 7 (4 by every draw) · standing 0 · 78267 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 138 · packs 2 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"layout-templates: rows 121 · packs 2 · picked 18 (3 by every draw) · standing 0 · 26649 B",
+"test-plan: rows 627 · packs 7 · picked 20 (14 by every draw) · standing 0 · 141249 B",
+"obs-plan: rows 282 · packs 3 · picked 36 (27 by every draw) · standing 0 · 56607 B",
+"a11y-plan: rows 240 · packs 3 · picked 12 (4 by every draw) · standing 0 · 37610 B",
+"rows-union: 7 master(s) · picked 113 of 3490 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T05-48-10-wrap/arch-rows.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/arch-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/security-rows.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/security-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/design-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/tests-rows.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/tests-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/obs-rows.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/obs-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:06:12Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-18-capability-statement",
+"--section-file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-18-capability-statement/report rev 5 · 0 new · 1 revised · 0 retired · 58 kept · tx 2037"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:19Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/capability-statement-matches-schema · rejected",
+"decision/cargo-deny-advisory-gate · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-capability-statement — Project Intent: 1 row(s)\n**Section:** Project Intent\n**Change:** ~ decision/capability-statement · rule: was «docs/capabilities.md is escher's own statement of what it can do and its limits; its verb and cause names and its five counts are held to the driver schema's tables, and no check reads its other claims.»; now «The capability statement is escher's own statement of what it can do and its limits; its verb and cause names and its five counts are held to the driver schema's tables, its a11y leg file count and stand-repeat named-target count to the CI leg runner, and no check reads its other claims.»\n**Why:** decision/capability-statement: The pin now also reads the a11y leg's file count and stand-repeat's named-target count from the CI leg runner, so the row's claim that only the five schema counts are held is stale.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"patterns: 1 in cascade-patterns-architecture-1.toml",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-18T05-48-10-wrap/cascade-patterns-architecture-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:19Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/capability-statement-mcp-crossing · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-capability-statement — Dependency Security: 1 row(s)\n**Section:** Dependency Security\n**Change:** ~ decision/advisory-ignores-by-id · rule: was «An advisory is ignored only by its ID, each with a written reason, with no blanket allow and unmaintained and unsound at their defaults.»; now «An advisory is ignored only by its ID, each with a written reason that names its owner as a residual row by its id, with no blanket allow and unmaintained and unsound at their defaults; no product file names the residuals file.»\n**Why:** decision/advisory-ignores-by-id: The deny.toml ignore reasons now name their owner by residual row id and no product line names the residuals file, a convention of the ignore list the row states without it.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:20Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/requirement-witness-inside-stand-repeat · rejected",
+"decision/mutation-controlled-tests · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-18-capability-statement — 1. Test Scope Summary: 1 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** ~ decision/capability-statement-pinned · rule: was «The capability statement names every driver verb and refusal cause as a code span and states the schema's verb, cause, session-error, node-key and exit-status counts in words; the README states the count of driver commands an MCP client gets as tools.»; now «The capability statement names every driver verb and refusal cause as a code span and states in words the schema's verb, cause, session-error, node-key and exit-status counts and the a11y and stand-repeat legs' counts; the README states the count of driver commands an MCP client gets as tools.»\n**Why:** decision/capability-statement-pinned: The pin now also holds the a11y leg's file count and stand-repeat's named-target count against the CI leg script, so a change of either leg's membership reddens ci-scripts until the page re-states it, and the row's pinned set must name both.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"## 2026-11-18-capability-statement — 1. Test Scope Summary: 1 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** ~ decision/capabilities-doc-pinned-to-schema · rule: was «The capability statement's verb and cause names and its counts, and the README's count of MCP tools, are held equal to the driver schema's tables.»; now «The capability statement's verb and cause names and its schema counts, and the README's count of MCP tools, are held equal to the driver schema's tables, and its a11y leg file count and stand-repeat named-target count to the CI leg script.»\n**Why:** decision/capabilities-doc-pinned-to-schema: Two counts the pin holds are now read from the CI leg script rather than the schema, so a rule naming the schema's tables alone is incomplete.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"## 2026-11-18-capability-statement — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/capability-check-names-held-to-schema · rule: was «Only the claim section's names and counts are held to the schema's tables, so a check renamed or moved changes that section by hand.»; now «Only the claim section's names and counts are pinned, the names and schema counts to the schema's tables and the a11y leg's file count and stand-repeat's named-target count to the CI leg script, so a check renamed or moved changes that section by hand.»\n**Why:** decision/capability-check-names-held-to-schema: The claim map's a11y and stand-repeat counts are now held to the CI leg script, so the row's statement that only the schema's tables hold the section is false.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"## 2026-11-18-capability-statement — 4. Unit Test Strategy: 1 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** ~ decision/capability-statement-from-schema · rule: was «The capability statement names every verb and every refusal cause and states its counts in words read from the schema's tables, none hand-copied.»; now «The capability statement names every verb and every refusal cause and states the schema's counts in words read from the schema's tables, none hand-copied.»\n**Why:** decision/capability-statement-from-schema: The statement now also states leg counts read from the CI leg script and requirement witness counts stated by hand, so the row's claim that all its counts are read from the schema's tables is false.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:20Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/leg-counts-stated-in-capability-statement · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-18-capability-statement — 1. A11y Scope Summary: 1 row(s)\n**Section:** 1. A11y Scope Summary\n**Change:** ~ decision/capability-statement-reach-by-hand · why: was «The capability statement's pin reads none of the section's claims.»; now «The capability statement's pin reads only the a11y leg's file count among the section's claims; no check reads the rest.»\n**Why:** decision/capability-statement-reach-by-hand: The pin now reads the a11y leg's file count stated in the section, so the why that it reads none of the section's claims is false.\n**Ref:** .andromeda/runs/2026-11-18T05-48-10-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:20Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/randomness-seed-in-process-only · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:20Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/scrub-by-field-name · rejected",
+"decision/seed-in-process-only · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:25Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/capability-statement-matches-schema · rejected",
+"decision/cargo-deny-advisory-gate · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2038 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:25Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/capability-statement-mcp-crossing · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2039 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:25Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/requirement-witness-inside-stand-repeat · rejected",
+"decision/mutation-controlled-tests · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 2040 · 4 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:07:26Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-18T05-48-10-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/leg-counts-stated-in-capability-statement · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2041 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+".andromeda/runs/2026-11-18T05-48-10-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:53Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/a11y-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__docs__a11y-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/a11y-summary.md rev 12 · 0 new · 1 revised · 0 retired · tx 2042"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/docs/a11y-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:54Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 12 · 0 new · 1 revised · 0 retired · tx 2043"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:54Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 22 · 0 new · 1 revised · 0 retired · tx 2044"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:55Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 30 · 0 new · 2 revised · 0 retired · tx 2045"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:55Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 19 · 0 new · 1 revised · 0 retired · tx 2046"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:56Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 26 · 0 new · 1 revised · 0 retired · tx 2047"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:56Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 30 · 0 new · 1 revised · 0 retired · tx 2048"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:57Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 26 · 0 new · 1 revised · 0 retired · tx 2049"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:09:57Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 27 · 0 new · 1 revised · 0 retired · tx 2050"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:13:20Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-18-capability-statement",
+"--section-file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-18-capability-statement/report rev 6 · 0 new · 1 revised · 0 retired · 58 kept · tx 2057"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:16:47Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:16:47Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 2061 · cry-iyrlvsyr … cry-iyrlvsyr"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson",
+"./escher-0.3.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:17:02Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-18T05-48-10-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap",
+"--marker",
+"2026-11-18-capability-statement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 2063 · run-p6paglsg … run-p6paglsg"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T04-00-22-2026-11-18-capability-statement.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "9904b8bc",
+"ts": "2026-11-18T06:24:16Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-18-capability-statement",
+"--run-dir",
+".andromeda/runs/2026-11-18T05-48-10-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 14 file(s) of 2026-11-18-capability-statement"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
