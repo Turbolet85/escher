@@ -87,7 +87,7 @@ fn OrderSubmit(quantity: Signal<String>, placed: Signal<bool>) -> Element {
         button {
             id: "order-submit",
             class: "order-btn",
-            onclick: move |_| -> Result<(), CapturedError> {
+            onclick: move |_| -> std::result::Result<(), CapturedError> {
                 if !quantity_holds(&quantity.read()) {
                     return Err(CapturedError::from_display(QUANTITY_RULE));
                 }
