@@ -25,7 +25,8 @@
 //! `inert` and reaches content under a falsy one, whose attribute the bridge removed; a node that
 //! holds focus when it becomes inert gives it up, pinned by `inert_subtree`. *Served pages:* the
 //! load page walks `back-btn` and `load-fetch`, and Enter and Space on its button each leave a load
-//! in flight. Cells walks `back-btn` and its one `cells-grid` stop: the arrows move the current
+//! in flight. The order page walks its four stops, and once Enter on its Submit at the boot quantity
+//! shows the failure, the walk reaches Retry in Submit's place. Cells walks `back-btn` and its one `cells-grid` stop: the arrows move the current
 //! cell, clamped at the grid's ends, and bring it into view, Enter opens its editor focused, a
 //! typed value and Enter commit it with focus back on the grid, and Tab leaving an open editor
 //! commits it.
@@ -44,8 +45,8 @@ use seven_guis::stand::{self, LeanTask};
 mod common;
 mod fixtures;
 use common::{
-    CELLS_TAB_ORDER, ENABLED_TAB_ORDER, LOAD_TAB_ORDER, boot, controls, editor_text, focused, node,
-    tab_order,
+    CELLS_TAB_ORDER, ENABLED_TAB_ORDER, LOAD_TAB_ORDER, ORDER_TAB_ORDER, boot, controls,
+    editor_text, focused, node, tab_order,
 };
 
 /// Each stand button in the four Tab sequences, and whether a click on it changes the screen
@@ -174,6 +175,27 @@ fn the_load_page_walks_its_stated_sequence_and_its_button_takes_enter_and_space(
                 "{mode}: {key_name}: the key leaves a load in flight"
             );
         }
+    }
+}
+
+/// The order page's focus sequence with its failure shown: Retry in Submit's place.
+const ORDER_FAILED_TAB_ORDER: [&str; 4] =
+    ["back-btn", "order-quantity", "order-retry", "order-export"];
+
+#[test]
+fn the_order_page_walks_its_stated_sequence_and_reaches_retry_once_submit_fails() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = stand::boot_order(stand::options(incremental));
+        assert_walk(&mut harness, &ORDER_TAB_ORDER, &mode);
+        let mut harness = stand::boot_order(stand::options(incremental));
+        tab_until(&mut harness, "order-submit", 3, &mode);
+        harness.press(Key::Named(NamedKey::Enter));
+        assert!(
+            harness.query("#order-retry").is_some() && harness.query("#order-submit").is_none(),
+            "{mode}: Enter on Submit shows the failure in its place"
+        );
+        assert_walk(&mut harness, &ORDER_FAILED_TAB_ORDER, &mode);
     }
 }
 

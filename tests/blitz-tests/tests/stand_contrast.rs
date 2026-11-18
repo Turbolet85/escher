@@ -13,7 +13,9 @@
 //! active).
 //! The pages the stand serves beside them are held to their required ratios with no recorded hex:
 //! the load page's button at rest, hover and active, its shell and its message once its sheet has
-//! landed, and Cells' shell, a filled cell, its open editor and its headers.
+//! landed, the order page's shell, label, field and buttons, its Submit at hover and active, its
+//! failure and Retry once a Submit fails and its status once an order is placed, and Cells' shell,
+//! a filled cell, its open editor and its headers.
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
 
@@ -696,6 +698,54 @@ fn the_load_page_meets_its_ratios() {
             std::thread::yield_now();
         }
         assert_meets_its_ratio(&harness, "#load-done", &at);
+    }
+}
+
+#[test]
+fn the_order_page_meets_its_ratios() {
+    const REST: [&str; 6] = [
+        "#back-btn",
+        "#task-title",
+        ".order-label",
+        "#order-quantity",
+        "#order-submit",
+        "#order-export",
+    ];
+    const FAILED: [&str; 2] = ["#order-failed", "#order-retry"];
+    assert_eq!((REST.len(), FAILED.len()), (6, 2));
+    for incremental in [false, true] {
+        let boot_order = || stand::boot_order(stand::options(incremental));
+        let harness = boot_order();
+        for (row, selector) in REST.into_iter().enumerate() {
+            let at = format!("{}, order page, row {row}", mode(incremental));
+            assert_meets_its_ratio(&harness, selector, &at);
+        }
+        for (row, how) in [Reach::Hover, Reach::Active].into_iter().enumerate() {
+            let at = format!("{}, order page, state {row}", mode(incremental));
+            let mut harness = boot_order();
+            reach(&mut harness, how, "order-submit", &at);
+            assert_meets_its_ratio(&harness, "#order-submit", &at);
+        }
+
+        // The failure shows once a Submit at the boot quantity returns its `Err`.
+        let mut harness = boot_order();
+        harness.click("#order-submit");
+        for (row, selector) in FAILED.into_iter().enumerate() {
+            let at = format!("{}, order page, failed row {row}", mode(incremental));
+            assert_meets_its_ratio(&harness, selector, &at);
+        }
+
+        // The status reads its text once a good quantity places the order.
+        let at = format!("{}, order page, placed", mode(incremental));
+        let mut harness = boot_order();
+        harness.click("#order-quantity");
+        harness.type_text("12");
+        harness.click("#order-submit");
+        assert!(
+            harness.text_content("#order-status") == "Order placed",
+            "{at}: the order is placed"
+        );
+        assert_meets_its_ratio(&harness, "#order-status", &at);
     }
 }
 

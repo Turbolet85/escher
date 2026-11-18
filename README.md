@@ -35,7 +35,7 @@ bash scripts/agent-run.sh run stand
 
 These run the demo stand (the 7GUIs tasks) and its headless checks.
 
-The agent driver has a command line. The `escher-session` binary starts a session on a stand task (`counter`, `flight-booker`, `timer`, `crud`, `cells` or `load`) and runs one driver command per call against it; each call answers one line of JSON on stdout and exits `0` when it ran, `1` when it was refused, `2` on a usage error and `3` on a session error:
+The agent driver has a command line. The `escher-session` binary starts a session on a stand task (`counter`, `flight-booker`, `timer`, `crud`, `cells`, `load` or `order`) and runs one driver command per call against it; each call answers one line of JSON on stdout and exits `0` when it ran, `1` when it was refused, `2` on a usage error and `3` on a session error:
 
 ```sh
 cargo build -p seven_guis --bin escher-session

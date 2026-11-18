@@ -60,6 +60,7 @@ fn hold_task(title: &str, incremental: bool) -> Session {
         "Temperature Converter" => open("task-card-temp-converter", incremental),
         "Circle Drawer" => open("task-card-circle-drawer", incremental),
         "Cells" => stand::boot_cells(stand::options(incremental)),
+        "Order" => stand::boot_order(stand::options(incremental)),
         _ => panic!("a stand task's title"),
     };
     Session::start("stand-task", || harness).expect("a label")
@@ -291,6 +292,11 @@ fn every_graph_node_is_a_snapshot_node_and_no_served_id_holds_the_reserved_form(
         sessions.push((
             "load".to_string(),
             Session::start("load", || load).expect("a label"),
+        ));
+        let order = stand::boot_order(stand::options(incremental));
+        sessions.push((
+            "order".to_string(),
+            Session::start("order", || order).expect("a label"),
         ));
         for (title, session) in &mut sessions {
             let at = format!("incremental={incremental} {title}");

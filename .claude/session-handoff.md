@@ -48,3 +48,6 @@
   - `host-linux.md` is 9 template lines behind (U04 `noted`).
 - Left for the operator to remove: implement's scratch clones (`…/scratchpad/guardclone`, `…/guardclone-impl`), `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-18 13:42:48

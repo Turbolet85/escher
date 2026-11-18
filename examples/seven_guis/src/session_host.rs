@@ -1,5 +1,5 @@
-//! The `escher-session` binary: the driver's command line over six stand tasks — the four lean
-//! tasks, Cells and the load page. As a client it runs one driver command against a session in a
+//! The `escher-session` binary: the driver's command line over seven stand tasks — the four lean
+//! tasks, Cells, the load page and the order page. As a client it runs one driver command against a session in a
 //! state directory; in its host role (`serve <task> --session <dir>`) it boots one task
 //! headlessly and serves it as that session until it is stopped or idle; in its `mcp` role it
 //! speaks MCP on its standard streams, holding the apps it starts in its own process; in its
@@ -11,22 +11,25 @@ fn main() -> std::process::ExitCode {
     use escher_driver::{Session, SessionError, command_line};
     use seven_guis::stand::{self, LeanTask};
 
-    /// A task the binary serves: a lean task, Cells or the load page, each its own boot.
+    /// A task the binary serves: a lean task, Cells, the load page or the order page, each its own
+    /// boot.
     #[derive(Clone, Copy)]
     enum Served {
         Lean(LeanTask),
         Cells,
         Load,
+        Order,
     }
 
     /// The served tasks by the stand's own slugs.
-    const TASKS: [(&str, Served); 6] = [
+    const TASKS: [(&str, Served); 7] = [
         ("counter", Served::Lean(LeanTask::Counter)),
         ("flight-booker", Served::Lean(LeanTask::FlightBooker)),
         ("timer", Served::Lean(LeanTask::Timer)),
         ("crud", Served::Lean(LeanTask::Crud)),
         ("cells", Served::Cells),
         ("load", Served::Load),
+        ("order", Served::Order),
     ];
 
     if let Err(error) = escher_telemetry::init(escher_telemetry::service_identity!()) {
@@ -50,6 +53,7 @@ fn main() -> std::process::ExitCode {
             Served::Lean(task) => stand::boot(task, stand::options(true)),
             Served::Cells => stand::boot_cells(stand::options(true)),
             Served::Load => stand::boot_load(stand::options(true)),
+            Served::Order => stand::boot_order(stand::options(true)),
         })?;
         Ok(match ticks {
             Some(handle) => session.with_time(stand::timer_step(handle)),

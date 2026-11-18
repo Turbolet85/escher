@@ -2,7 +2,7 @@
 //! fresh session of its task, and lists the handlers the UI graph showed that no replay reached.
 //! In both layout modes, each check recorded in process through `Session::recording_into` into an
 //! owner-only directory under the target's temporary directory, read back by `Check::from_bytes`
-//! and removed. *A check of one `snapshot`* lists exactly `HANDLERS_AT_BOOT` on each of the six
+//! and removed. *A check of one `snapshot`* lists exactly `HANDLERS_AT_BOOT` on each of the seven
 //! served tasks — the handlers `DioxusDocument::graph` reads on a fresh boot, `mounted` left out.
 //! *A check of a task's `GRAPH_DRIVES`* lists exactly its `UNEXERCISED_AFTER_DRIVES` row. *Two
 //! Counter checks* list only what neither exercised. *The load page*, which registers no state,
@@ -73,6 +73,7 @@ fn boot(task: &str, incremental: bool) -> Session {
     let harness = match task {
         "cells" => stand::boot_cells(stand::options(incremental)),
         "load" => stand::boot_load(stand::options(incremental)),
+        "order" => stand::boot_order(stand::options(incremental)),
         "temp-converter" => open("task-card-temp-converter", incremental),
         "circle-drawer" => open("task-card-circle-drawer", incremental),
         _ => panic!("a stand task"),
@@ -91,6 +92,7 @@ fn title_slug(title: &str) -> &'static str {
         "Temperature Converter" => "temp-converter",
         "Circle Drawer" => "circle-drawer",
         "Cells" => "cells",
+        "Order" => "order",
         _ => panic!("a stand task's title"),
     }
 }

@@ -1,8 +1,8 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
 //! each of the eleven verbs answer one line of uncoloured JSON on stdout and end with a status
-//! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the six
-//! served tasks — the four lean tasks, Cells and the load page — starts, answers and stops, and
-//! the usage line names the six. The snapshot's
+//! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the seven
+//! served tasks — the four lean tasks, Cells, the load page and the order page — starts, answers
+//! and stops, and the usage line names the seven. The snapshot's
 //! line is the library's own form of the screen booted in process, inside its byte budget; the
 //! screenshot's `png` is the PNG of the screen booted in process, 800 × 600; a lint on a held
 //! counter answers one line whose `findings` is empty, and a graph on it one line naming the
@@ -42,8 +42,16 @@ use seven_guis::stand::{self, LeanTask};
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
 
-/// The six tasks the binary serves, by the slug `start` takes.
-const TASKS: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
+/// The seven tasks the binary serves, by the slug `start` takes.
+const TASKS: [&str; 7] = [
+    "counter",
+    "flight-booker",
+    "timer",
+    "crud",
+    "cells",
+    "load",
+    "order",
+];
 
 /// The four lean tasks among them, each with the stand's own task.
 const LEAN: [(&str, LeanTask); 4] = [
@@ -782,7 +790,7 @@ fn a_line_that_is_no_command_is_a_usage_error() {
             stderr
                 .trim_end()
                 .ends_with(&format!("; apps: {}", TASKS.join(" | "))),
-            "row {row}: the usage line names the six served tasks"
+            "row {row}: the usage line names the seven served tasks"
         );
         assert!(!dir.exists(), "row {row}: no state directory is created");
     }

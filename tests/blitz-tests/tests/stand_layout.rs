@@ -1,5 +1,5 @@
 //! Why an element sits where it does at its size, on the stand: `Session::layout`, in process
-//! only, read in both layout modes. On each of the six served screens at boot every snapshot node
+//! only, read in both layout modes. On each of the seven served screens at boot every snapshot node
 //! answers, its `bounds` the snapshot's own, and every node with no transform shift sits at its
 //! container's bounds plus its offset plus the container's scroll shift, to 1/64 px. Pinned
 //! readings: the Cells cell `cell-A0` placed by `Grid` in `cells-grid`, its height `Style` and its
@@ -34,8 +34,16 @@ use session_common::{
     act, click, explained, focused, hold, layout, refused_unchanged, scroll, slug,
 };
 
-/// The six screens the stand serves, by the label each session is started with.
-const SERVED: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
+/// The seven screens the stand serves, by the label each session is started with.
+const SERVED: [&str; 7] = [
+    "counter",
+    "flight-booker",
+    "timer",
+    "crud",
+    "cells",
+    "load",
+    "order",
+];
 
 /// How many Creates put the last CRUD row past the list's box.
 const CREATES: usize = 12;
@@ -85,6 +93,7 @@ fn hold_served(label: &str, incremental: bool) -> Session {
     let harness = match label {
         "cells" => stand::boot_cells(stand::options(incremental)),
         "load" => stand::boot_load(stand::options(incremental)),
+        "order" => stand::boot_order(stand::options(incremental)),
         _ => panic!("a served screen's label"),
     };
     Session::start(label, || harness).expect("the label is one of the closed set")

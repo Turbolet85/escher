@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # The cold-agent run pipe: starts a fresh agent session whose only tools are the driver's own MCP server (the built
-# `escher-session mcp`, keeping each session it starts as a check under record/), gives it the stand's six apps —
-# the four lean tasks, Cells and the load page — captures the session as a stream-json transcript, counts its wrong
+# `escher-session mcp`, keeping each session it starts as a check under record/), gives it the stand's seven apps —
+# the four lean tasks, Cells, the load page and the order page — captures the session as a stream-json transcript, counts its wrong
 # calls and its calls per verb from the server's own tool_call span lines, judges the wrong calls against the
 # founder's bar, reads completion from the tool's own snapshot answers, reads that each started app left its kept
 # check, replays the check the agent wrote on a fresh server and writes a verdict. Four verbs, each printing JSON
@@ -17,7 +17,7 @@ TASKS=(stand)
 STATE_DIR=target/cold-agent
 BINARY=target/debug/escher-session
 read -r -d '' STAND_PROMPT <<'PROMPT' || true
-Use only your tools. The stand has six apps: counter, flight booker, timer, CRUD, cells and the load page. Work on one app at a time: start it, reach its goal, take a snapshot of its final screen, then stop it before you start the next app.
+Use only your tools. The stand has seven apps: counter, flight booker, timer, CRUD, cells, the load page and the order page. Work on one app at a time: start it, reach its goal, take a snapshot of its final screen, then stop it before you start the next app.
 
 The goals:
 1. Counter: the display reads 3. Before acting, read its UI graph.
@@ -26,8 +26,9 @@ The goals:
 4. CRUD: the person Ada Lovelace is added, Roman Tisch's surname is changed to Tischler, and Hans Emil is deleted. Ask where its people list sits and why it has its size.
 5. Cells: cell A0 holds 5, cell B1 holds the formula =A0*2 and reads 10, and cell Z25 holds the formula =B1+1 and reads 11. Before you stop it, run one visual lint of its screen. Do not ask the cells app for its UI graph or for what can be done on it, as both answers are very large.
 6. Load page: its resource is loaded and its message is shown.
+7. Order page: an order is placed and its message shows. Its first submit fails; read what that action caused to find out why, then fix it. Before you stop it, press its export control once.
 
-Finally, reply with a check as the LAST thing in your reply: one fenced ```json block holding a JSON array of steps, each {"tool": <a tool name without its server prefix>, "arguments": {...}, "expect": [texts]} ("arguments" and "expect" optional). Run in order on a fresh server, the steps must redo all six tasks from fresh sessions, starting and stopping each app in turn; each app's part ends with a snapshot step whose "expect" lists texts from that screen which prove the task is done, before that app is stopped.
+Finally, reply with a check as the LAST thing in your reply: one fenced ```json block holding a JSON array of steps, each {"tool": <a tool name without its server prefix>, "arguments": {...}, "expect": [texts]} ("arguments" and "expect" optional). Run in order on a fresh server, the steps must redo all seven tasks from fresh sessions, starting and stopping each app in turn; each app's part ends with a snapshot step whose "expect" lists texts from that screen which prove the task is done, before that app is stopped.
 PROMPT
 
 usage() {
@@ -62,6 +63,7 @@ DONE = {
     "crud": (['ListBoxOption "Lovelace, Ada"', 'ListBoxOption "Tischler, Roman"'], ['id="crud-person-0"']),
     "cells": (['GenericContainer "10" id="cell-B1"', 'GenericContainer "11" id="cell-Z25"'], []),
     "load": (['Paragraph "Loaded" id="load-done"'], []),
+    "order": (['Paragraph "Order placed" id="order-status"'], []),
 }
 APPS = tuple(DONE)
 # The verbs whose accepted calls the verdict counts, each a capability the run must exercise at least once: the
@@ -71,6 +73,9 @@ COUNTED = ("lint", "screenshot", "advance", "graph", "actions", "layout")
 # The driver's eight refusal causes, in the schema's order. A refusal is counted by the closed cause word its command
 # span line records, which only an instance verb's call writes: a session verb the server refuses itself writes no
 # command line, so these counts read instance-verb refusals alone and may sum below refused_calls.
+# The three closed kinds of what an acting step caused, each counted once per accepted acting answer holding an item
+# of that kind; the run must meet every one.
+CAUSED_KINDS = ("panic", "error", "log")
 CAUSES = ("unknown-verb", "malformed", "not-found", "stale", "disabled", "covered", "off-screen", "fonts-unavailable")
 # The founder's wrong-call bar: at most this percentage of the run's tool calls may be wrong. It holds 0.2.0's bar
 # until the founder sets 0.3.0's number.
@@ -278,6 +283,31 @@ def list_opens(transcript, uses):
                     for node in changed):
                 count += 1
     return count
+
+
+def caused_by_kind(transcript, uses):
+    """Per closed kind word, the accepted acting answers whose `caused` list holds an item of that kind. Nothing of an
+    item but its `kind` is read."""
+    counts = {kind: 0 for kind in CAUSED_KINDS}
+    for record in transcript:
+        if record.get("type") != "user":
+            continue
+        for block in blocks(record, "tool_result"):
+            name, _ = uses.get(block.get("tool_use_id"), (None, {}))
+            if name not in {PREFIX + verb for verb in ACTING} or block.get("is_error") is True:
+                continue
+            try:
+                answer = json.loads(text_of(block.get("content")))
+            except ValueError:
+                continue
+            caused = answer.get("caused") if isinstance(answer, dict) else None
+            if not isinstance(caused, list):
+                continue
+            kinds = {item.get("kind") for item in caused if isinstance(item, dict)}
+            for kind in CAUSED_KINDS:
+                if kind in kinds:
+                    counts[kind] += 1
+    return counts
 
 
 def started_in_order(transcript, uses):
@@ -494,6 +524,7 @@ def verdict(task, client_exit, root_name, binary):
         "part_reads": part_reads(transcript, uses),
         "list_opens": list_opens(transcript, uses),
         "refused_by_cause": by_cause,
+        "caused_by_kind": caused_by_kind(transcript, uses),
         "recorded_sessions": recorded_sessions,
         "recording_kept": recording_kept,
         "tasks_met": met,
@@ -525,7 +556,7 @@ def verdict(task, client_exit, root_name, binary):
     if len(met) != len(APPS):
         reasons.append("task-unmet")
     if 0 in (v["lint_calls"], v["screenshot_calls"], v["advance_calls"], v["graph_calls"], v["actions_calls"],
-             v["layout_calls"], v["part_reads"], v["list_opens"]):
+             v["layout_calls"], v["part_reads"], v["list_opens"]) or 0 in v["caused_by_kind"].values():
         reasons.append("capability-unused")
     if not recording_kept:
         reasons.append("recording-not-kept")

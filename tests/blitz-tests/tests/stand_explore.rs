@@ -1,6 +1,6 @@
 //! A breadth-first exploration of a held app: `escher_driver::explore` drives every action the
 //! `actions` reader offers, each path on a fresh session through `Session::run`, within a step
-//! budget. In both layout modes, on the stand's bundled font. *The six served tasks* are each
+//! budget. In both layout modes, on the stand's bundled font. *The seven served tasks* are each
 //! explored within a budget of 40, every path's calls a `click`, a `type` or a `scroll`, the same
 //! paths on a second run. *The Counter*, recorded into an owner-only directory, leaves one kept
 //! check per path, each of format 1, holding no `screenshot` step and replaying holding. *A
@@ -35,8 +35,16 @@ fn mode_name(incremental: bool) -> &'static str {
     if incremental { "incremental" } else { "full" }
 }
 
-/// The six tasks the stand's binary serves.
-const SERVED: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
+/// The seven tasks the stand's binary serves.
+const SERVED: [&str; 7] = [
+    "counter",
+    "flight-booker",
+    "timer",
+    "crud",
+    "cells",
+    "load",
+    "order",
+];
 
 /// A fresh session on the served task `task`, labelled `task`, booted as the binary boots it.
 fn boot(task: &str, incremental: bool) -> Session {
@@ -46,6 +54,7 @@ fn boot(task: &str, incremental: bool) -> Session {
     let harness = match task {
         "cells" => stand::boot_cells(stand::options(incremental)),
         "load" => stand::boot_load(stand::options(incremental)),
+        "order" => stand::boot_order(stand::options(incremental)),
         _ => panic!("a served task"),
     };
     Session::start(task, || harness).expect("a served task's name is a label")
@@ -114,7 +123,7 @@ fn panicking() -> Element {
 
 #[test]
 fn every_served_task_is_explored_within_its_budget() {
-    assert_eq!(SERVED.len(), 6);
+    assert_eq!(SERVED.len(), 7);
     for incremental in [false, true] {
         let mode = mode_name(incremental);
         for (index, task) in SERVED.into_iter().enumerate() {

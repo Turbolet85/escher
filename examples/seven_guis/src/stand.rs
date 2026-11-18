@@ -1,5 +1,5 @@
-//! The headless stand: mounts one of the lean four 7GUIs tasks, Cells, or the load page inside
-//! the stand's `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
+//! The headless stand: mounts one of the lean four 7GUIs tasks, Cells, the load page or the
+//! order page inside the stand's `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
 //! bundled DejaVu Sans, building a fresh document per boot. Every boot is offline but the load
 //! page's, whose one stylesheet an in-process stand-in answers after 200 ms from a thread of its
 //! own, reaching no network.
@@ -17,6 +17,7 @@ use dioxus_native::{DioxusDocument, FontContext, build_single_font_ctx};
 use escher_driver::{Fixture, FixtureStep, ReachError, Session, SessionError};
 
 use crate::app::{Task, TaskShell, task_in_shell};
+use crate::tasks::order::OrderPage;
 use crate::tasks::timer::TimerTicks;
 
 /// The four tasks the stand proves capabilities on.
@@ -250,6 +251,20 @@ fn load_root() -> Element {
     }
 }
 
+/// Boot the order page in a fresh document, offline: its Submit returns an `Err` its own error
+/// boundary takes, logs, or places the order, and its Export panics.
+pub fn boot_order(options: HarnessOptions) -> Harness<DioxusDocument> {
+    Harness::from_vdom(VirtualDom::new(order_root), options)
+}
+
+fn order_root() -> Element {
+    rsx! {
+        TaskShell { title: "Order", on_back: EventHandler::new(|_| {}),
+            OrderPage {}
+        }
+    }
+}
+
 #[component]
 fn LoadPage() -> Element {
     let mut linked = use_signal(|| false);
@@ -414,6 +429,31 @@ mod tests {
                         busy: blitz_test_harness::Busy::Loads
                     }),
                 "incremental={incremental}: the click's stylesheet is a load in flight"
+            );
+        }
+    }
+
+    #[test]
+    fn the_order_page_boots_in_the_shell() {
+        for incremental in [false, true] {
+            let harness = boot_order(options(incremental));
+            assert!(
+                harness.text_content("#task-title") == "Order",
+                "incremental={incremental}: the shell's title names the page"
+            );
+            assert!(
+                harness.query("#order-quantity").is_some()
+                    && harness.query("#order-submit").is_some()
+                    && harness.query("#order-export").is_some(),
+                "incremental={incremental}: the page's controls are mounted"
+            );
+            assert!(
+                harness.attr("#order-quantity", "value").as_deref() == Some("0"),
+                "incremental={incremental}: the quantity boots at 0"
+            );
+            assert!(
+                harness.text_content("#order-status").is_empty(),
+                "incremental={incremental}: no order is placed at boot"
             );
         }
     }

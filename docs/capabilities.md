@@ -100,7 +100,12 @@ source. A caught panic whose payload the capture did not see still answers a `pa
 `<payload unread>`. A handler `Err` the app's root error boundary takes also shows on the screen, through Dioxus's
 default boundary rendering, and reads in `caused` as one error item under the root boundary.
 
-Witnesses: `stand_act_errors`, `stand_act_error_text`.
+On the stand, the order page is where a driver meets `caused` through ordinary steps. A Submit whose quantity breaks
+its rule answers one `error` item under the page's own boundary, which shows only a failure and a Retry, so the rule
+is read in `caused` alone. A good Submit answers one `info` log of the page's own, and Export one `panic` item. Every
+text the page writes is its own fixed text, with no field.
+
+Witnesses: `stand_act_errors`, `stand_act_error_text`, `stand_order_served`.
 
 ### One virtual clock
 
@@ -130,7 +135,7 @@ Witnesses: `stand_act_screenshot`, `stand_screenshot_repeat`, `password_painted_
 ### Bundled fonts and one reading on every host
 
 Every stand boot registers one font, the bundled DejaVu Sans, with system fonts off, so every generic family and any
-named family that is unavailable lays out in it. The six served tasks read the same driver answer digests of
+named family that is unavailable lays out in it. The seven served tasks read the same driver answer digests of
 `snapshot` (every part), `lint` and `actions` on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes,
 at boot and after one acting step. A shot's PNG is not among them: its bytes differ between operating systems (see
 Stated limits).
@@ -177,8 +182,8 @@ the verb table's instance verbs that take an id, today `click` · `type` · `scr
 always without a cause. A verb that would
 be accepted now carries no cause. One that would be refused carries the cause the call would return, decided by the
 same check the call's own run meets before it acts, so the two agree by construction. `unkeyed_actionable` reads the
-same actionable rule, its listener reading the current handlers. At boot the six served screens list 2, 7, 3, 11, 678
-and 2 nodes (Counter, the flight booker, the Timer, CRUD, Cells, the load page). For every listed node and verb on
+same actionable rule, its listener reading the current handlers. At boot the seven served screens list 2, 7, 3, 11,
+678, 2 and 4 nodes (Counter, the flight booker, the Timer, CRUD, Cells, the load page, the order page). For every listed node and verb on
 the four lean tasks, and on a stated Cells and load-page subset, the listed answer equals the real call's.
 
 Witnesses: `stand_actions`, `stand_mcp_tools`, dioxus-native-dom's actionable tests.
@@ -305,8 +310,8 @@ feature, which escher-driver names unconditionally.
 
 ### The stand it is proven on
 
-Everything above is proven on the 7GUIs stand. Its six served tasks, the four lean tasks (counter, flight booker,
-timer, CRUD), Cells and the load page, and one component alone are booted headless at a pinned 800 × 600 viewport,
+Everything above is proven on the 7GUIs stand. Its seven served tasks, the four lean tasks (counter, flight booker,
+timer, CRUD), Cells, the load page and the order page, and one component alone are booted headless at a pinned 800 × 600 viewport,
 scale 1.0, Light, with one bundled font, DejaVu Sans. Every boot is offline but the load page's, whose one stylesheet
 fetch an in-process stand-in answers. Author ids stand on all seven tasks.
 
@@ -531,6 +536,12 @@ passed, all six apps met, in 66 tool calls with 0 wrong against a bar of at most
 `screenshot` among them, through the `claude` client 2.1.308. Its verdict holds counts, booleans and closed words only.
 The earlier 2026-10-15 run drove the four lean tasks with the eleven tools of its day.
 
+The pipe now gives the agent seven apps, the order page among them, where the agent meets `caused`: its goal asks the
+agent to read what a failing submit caused, then fix it, and to press its export control once. The verdict counts,
+per closed kind word `panic` · `error` · `log`, the accepted acting answers whose `caused` holds an item of that kind
+(`caused_by_kind`), reading nothing of an item but its kind, and a run where any kind reads 0 fails. No live run has
+read the seventh app yet.
+
 ## Where each claim is proven
 
 The checks named above live in `tests/blitz-tests/tests/` and `examples/seven_guis/tests/`, one file per behaviour.
@@ -554,7 +565,7 @@ proven by `stand_start_in_state`, a `stand_*` file of the same two legs. An expl
 a `stand_*` file of the same two legs. The layout read is proven by `layout_reason` and by `stand_layout`, a
 `stand_*` file of the same two legs, and the `layout` verb on every carrier by `stand_layout`, `stand_mcp_tools`,
 `stand_replay` and seven_guis' `cli_commands` and `mcp_server`. Errors with the action are proven by
-`stand_act_errors` and `stand_act_error_text`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
+`stand_act_errors`, `stand_act_error_text` and, on the order page, `stand_order_served`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
 `stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
 layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.

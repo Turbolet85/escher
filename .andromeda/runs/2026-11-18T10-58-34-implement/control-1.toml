@@ -1,0 +1,32 @@
+[[control]]
+id = "a-unused-kind"
+entry = 7
+guard = "capability-unused fails a run where a caused kind reads 0"
+case = "test_each_unused_capability_fails"
+
+[[control.edit]]
+path = "scripts/cold-agent.sh"
+old = '''v["layout_calls"], v["part_reads"], v["list_opens"]) or 0 in v["caused_by_kind"].values():'''
+new = '''v["layout_calls"], v["part_reads"], v["list_opens"]):'''
+
+[[control]]
+id = "b-caused-key"
+entry = 7
+guard = "caused_by_kind reads the answer's caused key"
+case = "test_caused_is_counted_by_kind_from_the_acting_answers"
+
+[[control.edit]]
+path = "scripts/cold-agent.sh"
+old = '''caused = answer.get("caused") if isinstance(answer, dict) else None'''
+new = '''caused = answer.get("cause") if isinstance(answer, dict) else None'''
+
+[[control]]
+id = "c-prompt-goal"
+entry = 7
+guard = "goal 7 asks the agent to read what the action caused"
+case = "test_the_prompt_names_no_stand_id"
+
+[[control.edit]]
+path = "scripts/cold-agent.sh"
+old = '''Its first submit fails; read what that action caused to find out why, then fix it.'''
+new = '''Its first submit fails; then fix it.'''

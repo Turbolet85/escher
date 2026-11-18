@@ -22,9 +22,9 @@ ANSWER_MARKER = "cold-agent-answer-marker"
 CHECK_MARKER = "cold-agent-check-marker"
 VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "layout", "start", "status", "stop", "help"]
 TOOLS = ["mcp__escher__" + verb for verb in VERBS]
-APPS = ("counter", "flight-booker", "timer", "crud", "cells", "load")
+APPS = ("counter", "flight-booker", "timer", "crud", "cells", "load", "order")
 CAUSES = ["unknown-verb", "malformed", "not-found", "stale", "disabled", "covered", "off-screen", "fonts-unavailable"]
-STAND_IDS =("counter-", "flight-", "timer-", "crud-", "cell-", "load-", "task-header", "id=")
+STAND_IDS =("counter-", "flight-", "timer-", "crud-", "cell-", "load-", "order-", "task-header", "id=")
 
 HEADER = 'Header "" id="task-header" @0,0 800x46\n  GenericContainer "" id="task-header-spacer" @181,22.5 603x0\n'
 
@@ -54,6 +54,8 @@ SCREENS = {
         HEADER + 'Button "Load" id="load-fetch"\n',
         HEADER + 'Button "Load" id="load-fetch"\nParagraph "Loaded" id="load-done"\n',
     ],
+    "order": [HEADER + 'Paragraph "" id="order-status"\n'] * 4
+    + [HEADER + 'Paragraph "Order placed" id="order-status"\n'],
 }
 # The apps whose screen reads in parts, with the count of parts.
 PAGES = {"cells": 2}
@@ -64,7 +66,13 @@ ACTS = {
     "crud": [("click", {"id": "crud-create"})],
     "cells": [("type", {"id": "cell-input", "text": "=B1+1"})],
     "load": [("click", {"id": "load-fetch"})],
+    "order": [("click", {"id": "order-submit"}), ("click", {"id": "order-retry"}),
+              ("type", {"id": "order-quantity", "text": "12"}), ("click", {"id": "order-submit"}),
+              ("click", {"id": "order-export"})],
 }
+# Per app, by the count of its accepted acting calls, the kinds of the `caused` items that acting answer carries: the
+# order page's first Submit an error, its good Submit a log, its Export a panic.
+CAUSED = {"order": {"1": ["error"], "4": ["log"], "5": ["panic"]}}
 # The calls each app's flow makes after its final snapshot: the capabilities the verdict counts.
 EXTRA = {
     "counter": [("graph", {})],
@@ -82,6 +90,7 @@ EXPECT = {
     "crud": ["Lovelace, Ada", "Tischler, Roman"],
     "cells": ['"10" id="cell-B1"'],
     "load": ['"Loaded" id="load-done"'],
+    "order": ['"Order placed" id="order-status"'],
 }
 SPACER_CLICK = {"tool": "mcp__escher__click", "arguments": {"id": "task-header-spacer"}}
 LEFT = {"tool": "mcp__escher__press", "arguments": {"key": "arrowleft"}}
@@ -94,7 +103,8 @@ HELP = {"tool": "mcp__escher__help"}
 # tool_call span line per tools/call on stderr when RUST_LOG=info, as escher's sink does, then one command span line
 # per instance-verb call it runs (a refused one holding its cause; a session or tool verb none, as the server writes
 # none), answers a click on an id the scenario lists in `lists` with a diff of two option rows moved by their bounds
-# alone (a select's list opening), and under `--record <dir>` keeps one check per accepted start in that directory,
+# alone (a select's list opening), adds to an acting answer the `caused` items the scenario lists for that app's
+# count of acting calls, and under `--record <dir>` keeps one check per accepted start in that directory,
 # opening with the start's record.
 FAKE = """\
 #!/usr/bin/env python3
@@ -111,6 +121,7 @@ pages = scenario.get("pages", {})
 refuse = scenario["refuse"]
 causes = scenario.get("causes", {})
 lists = scenario.get("lists", [])
+caused = scenario.get("caused", {})
 INSTANCE = set(VERBS) - {"start", "status", "stop", "help"}
 OPENED = [{"id": "flight-type-" + option, "role": "ListBoxOption", "differs": ["bounds"]}
           for option in ("one-way", "return")]
@@ -167,7 +178,11 @@ def call(name, arguments):
     acts += 1
     if name == "click" and arguments.get("id") in lists:
         return "accepted", json.dumps({"settled": True, "added": [], "removed": [], "changed": OPENED})
-    return "accepted", '{"settled":true,"added":[],"removed":[],"changed":[]}'
+    answer = {"settled": True, "added": [], "removed": [], "changed": []}
+    kinds = caused.get(started, {}).get(str(acts), [])
+    if kinds:
+        answer["caused"] = [{"kind": kind, "level": "error", "message": "a fixed text"} for kind in kinds]
+    return "accepted", json.dumps(answer)
 
 
 for line in sys.stdin:
@@ -344,7 +359,8 @@ class ColdAgentPipeTest(unittest.TestCase):
 
     def run_scenario(self, calls=None, **knobs):
         scenario = {"calls": flow() if calls is None else calls, "check": stand_check(), "screens": SCREENS,
-                    "pages": PAGES, "refuse": ["task-header-spacer", "arrowleft"], "lists": ["flight-type"]}
+                    "pages": PAGES, "refuse": ["task-header-spacer", "arrowleft"], "lists": ["flight-type"],
+                    "caused": CAUSED}
         scenario.update(knobs)
         if scenario["check"] is None:
             del scenario["check"]
@@ -381,7 +397,7 @@ class ColdAgentPipeTest(unittest.TestCase):
         self.assertEqual((verdict["outcome"], verdict["reasons"]), ("passed", []))
         return verdict
 
-    def test_a_six_app_run_passes_with_no_wrong_call(self):
+    def test_a_seven_app_run_passes_with_no_wrong_call(self):
         proc = self.run_scenario()
         verdict = self.assert_passed(proc)
         start, end = self.json_lines(proc.stdout)
@@ -393,7 +409,7 @@ class ColdAgentPipeTest(unittest.TestCase):
                                      "error_calls", "wrong_calls", "wrong_call_bar_pct", "spacer_calls", "lint_calls",
                                      "screenshot_calls", "advance_calls", "graph_calls", "actions_calls",
                                      "layout_calls", "part_reads", "list_opens", "refused_by_cause",
-                                     "recorded_sessions", "recording_kept", "tasks_met", "check_steps",
+                                     "caused_by_kind", "recorded_sessions", "recording_kept", "tasks_met", "check_steps",
                                      "check_expects", "check_passed", "check_can_fail")},
             {"isolated": True, "counts_agree": True, "tool_calls": calls, "server_tool_calls": calls,
              "refused_calls": 0, "error_calls": 0, "wrong_calls": 0, "wrong_call_bar_pct": 5, "spacer_calls": 0,
@@ -401,6 +417,7 @@ class ColdAgentPipeTest(unittest.TestCase):
              "layout_calls": 1, "part_reads": 1, "list_opens": 1,
              "refused_by_cause": {"unknown-verb": 0, "malformed": 0, "not-found": 0, "stale": 0, "disabled": 0,
                                   "covered": 0, "off-screen": 0, "fonts-unavailable": 0},
+             "caused_by_kind": {"panic": 1, "error": 1, "log": 1},
              "recorded_sessions": len(APPS), "recording_kept": True, "tasks_met": list(APPS),
              "check_steps": len(stand_check()), "check_expects": sum(len(texts) for texts in EXPECT.values()),
              "check_passed": True, "check_can_fail": True},
@@ -491,6 +508,12 @@ class ColdAgentPipeTest(unittest.TestCase):
                 verdict = self.assert_failed_with(self.run_scenario(flow(**shape), **knobs), ["capability-unused"])
                 self.assertEqual(verdict[field], 0)
                 self.assertEqual(verdict["tasks_met"], list(APPS))
+        for kind, act in (("error", "1"), ("log", "4"), ("panic", "5")):
+            with self.subTest(field="caused_by_kind", kind=kind):
+                without = {"order": {at: kinds for at, kinds in CAUSED["order"].items() if at != act}}
+                verdict = self.assert_failed_with(self.run_scenario(caused=without), ["capability-unused"])
+                self.assertEqual(verdict["caused_by_kind"][kind], 0)
+                self.assertEqual(verdict["tasks_met"], list(APPS))
 
     def test_a_layout_read_is_counted_in_the_run_and_replayed_in_the_check(self):
         calls = flow()
@@ -534,6 +557,20 @@ class ColdAgentPipeTest(unittest.TestCase):
         self.assertEqual(verdict["list_opens"], 1)
         verdict = self.assert_failed_with(self.run_scenario(lists=[]), ["capability-unused"])
         self.assertEqual((verdict["list_opens"], verdict["tasks_met"]), (0, list(APPS)))
+
+    def test_caused_is_counted_by_kind_from_the_acting_answers(self):
+        verdict = self.assert_passed(self.run_scenario())
+        self.assertEqual(verdict["caused_by_kind"], {"panic": 1, "error": 1, "log": 1})
+        # The Retry's answer carries a second error and the typed quantity's two logs: each kind counts once per
+        # answer, a non-acting answer naming caused counts nothing.
+        more = {"order": dict(CAUSED["order"], **{"2": ["error"], "3": ["log", "log"]})}
+        screens = copy.deepcopy(SCREENS)
+        screens["counter"] = [s + 'Paragraph "\\"caused\\":[{\\"kind\\":\\"panic\\"}]" id="note"\n'
+                              for s in screens["counter"]]
+        verdict = self.assert_passed(self.run_scenario(caused=more, screens=screens))
+        self.assertEqual(list(verdict["caused_by_kind"]), ["panic", "error", "log"])
+        self.assertEqual(verdict["caused_by_kind"], {"panic": 1, "error": 2, "log": 2})
+        self.assertEqual(verdict["wrong_calls"], 0)
 
     def test_a_start_that_left_no_kept_check_fails(self):
         for knobs, recorded in (({"no_record": True}, 0), ({"record_as": "counter"}, len(APPS))):
@@ -687,12 +724,14 @@ class ColdAgentPipeTest(unittest.TestCase):
         prompt = argv[argv.index("-p") + 1]
         for token in STAND_IDS:
             self.assertNotIn(token, prompt.casefold())
-        for goal in ("six apps", "reads 3", "24.12.2026", "31.12.2026", "flight type control", "screenshot",
+        for goal in ("seven apps", "reads 3", "24.12.2026", "31.12.2026", "flight type control", "screenshot",
                      "10 seconds", "10.0s", "Ada Lovelace", "Tischler", "Hans Emil", "A0 holds 5", "=A0*2", "reads 10",
                      "Z25", "=B1+1", "reads 11", "visual lint", "Load page", "message is shown", "```json",
                      "read its UI graph", "ask what can be done on its screen", "people list",
-                     "opening the flight type list"):
+                     "opening the flight type list", "Order page", "what that action caused", "export control"):
             self.assertIn(goal, prompt)
+        for phrase in ("Order page", "what that action caused", "export control"):
+            self.assertEqual(prompt.count(phrase), 1, phrase)
 
     def test_the_session_runs_outside_the_root_in_a_directory_removed_after(self):
         self.run_scenario()

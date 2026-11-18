@@ -92,17 +92,23 @@ pub const ENABLED_TAB_ORDER: [(LeanTask, &[&str]); 2] = [
 
 /// Each served screen's actionable nodes at boot, by its session label, as the `actions` verb
 /// lists them, measured.
-pub const ACTIONABLE_AT_BOOT: [(&str, usize); 6] = [
+pub const ACTIONABLE_AT_BOOT: [(&str, usize); 7] = [
     ("counter", 2),
     ("flight-booker", 7),
     ("timer", 3),
     ("crud", 11),
     ("cells", 678),
     ("load", 2),
+    ("order", 4),
 ];
 
 /// The focus sequence of the load page the stand serves beside the lean tasks.
 pub const LOAD_TAB_ORDER: [&str; 2] = ["back-btn", "load-fetch"];
+
+/// The focus sequence of the order page the stand serves beside the lean tasks, Submit standing
+/// while no failure shows.
+pub const ORDER_TAB_ORDER: [&str; 4] =
+    ["back-btn", "order-quantity", "order-submit", "order-export"];
 
 /// The focus sequence of Cells, whose grid is one stop that moves among its cells by its keys.
 pub const CELLS_TAB_ORDER: [&str; 2] = ["back-btn", "cells-grid"];
@@ -256,7 +262,7 @@ pub enum Drive {
 /// conditional write by a run that takes it: a Cells cell's click commits an editor open in
 /// another cell, so two cells are clicked in turn, and the grid's editor is left once by Enter and
 /// once by Tab. Circle Drawer's two clicks on one point add a circle and open its dialog.
-pub const GRAPH_DRIVES: [(&str, &[Drive]); 7] = [
+pub const GRAPH_DRIVES: [(&str, &[Drive]); 8] = [
     ("Counter", &[Drive::Click("counter-increment")]),
     (
         "Flight Booker",
@@ -331,12 +337,19 @@ pub const GRAPH_DRIVES: [(&str, &[Drive]); 7] = [
             Drive::Click("cell-A0"),
         ],
     ),
+    (
+        "Order",
+        &[
+            Drive::Type("order-quantity", "12"),
+            Drive::Click("order-submit"),
+        ],
+    ),
 ];
 
 /// Per served task, by its slug, the handlers its boot screen shows, each as (id, event),
 /// `mounted` left out, in the UI graph's pre-order. Cells' grid then shows each of its cells'
 /// `click` ([`grid_cells`]) after the rows stated here.
-pub const HANDLERS_AT_BOOT: [(&str, &[(&str, &str)]); 6] = [
+pub const HANDLERS_AT_BOOT: [(&str, &[(&str, &str)]); 7] = [
     (
         "counter",
         &[("back-btn", "click"), ("counter-increment", "click")],
@@ -377,13 +390,22 @@ pub const HANDLERS_AT_BOOT: [(&str, &[(&str, &str)]); 6] = [
     ),
     ("cells", &[("back-btn", "click"), ("cells-grid", "keydown")]),
     ("load", &[("back-btn", "click"), ("load-fetch", "click")]),
+    (
+        "order",
+        &[
+            ("back-btn", "click"),
+            ("order-quantity", "input"),
+            ("order-submit", "click"),
+            ("order-export", "click"),
+        ],
+    ),
 ];
 
 /// Per stand task with a [`GRAPH_DRIVES`] row, by its title, the handlers a check of exactly
 /// those drives leaves unexercised, each as (id, event), in the order first seen. CRUD's Create
 /// adds the row `crud-person-3`, which no drive clicks. Cells' grid then leaves each of its cells'
 /// `click` but [`CELLS_CLICKED_BY_DRIVES`] after the rows stated here.
-pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 7] = [
+pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 8] = [
     ("Counter", &[("back-btn", "click")]),
     ("Flight Booker", &[("back-btn", "click")]),
     ("Timer", &[("back-btn", "click")]),
@@ -398,6 +420,7 @@ pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 7] = [
     ("Temperature Converter", &[("back-btn", "click")]),
     ("Circle Drawer", &[("back-btn", "click")]),
     ("Cells", &[("back-btn", "click")]),
+    ("Order", &[("back-btn", "click"), ("order-export", "click")]),
 ];
 
 /// The grid cells Cells' [`GRAPH_DRIVES`] row clicks.

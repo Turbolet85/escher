@@ -1,4 +1,4 @@
-//! Each of the six served tasks reads one state the same way on every OS the tests run on. Held
+//! Each of the seven served tasks reads one state the same way on every OS the tests run on. Held
 //! in process as the session host holds it, in both layout modes, each task is read through the
 //! driver — `snapshot` (every part of a screen over the budget), `lint` and `actions` — at boot
 //! and again after one acting step reached by `click`, `type` or `advance` alone, never `press`.
@@ -18,9 +18,9 @@ use session_common::{actions, advance, click, hold, lint, snapshot, snapshot_par
 type Row = (&'static str, &'static str, &'static str, u32, u64);
 
 /// How many readings the table holds.
-const ROWS: usize = 48;
+const ROWS: usize = 54;
 
-/// Every reading of the six tasks, in the order the check takes them.
+/// Every reading of the seven tasks, in the order the check takes them.
 const TABLE: [Row; ROWS] = [
     ("counter", "boot", "snapshot", 0, 0x5802032aa3564184),
     ("counter", "boot", "lint", 0, 0x7da3ac622b6348c1),
@@ -70,6 +70,12 @@ const TABLE: [Row; ROWS] = [
     ("load", "step", "snapshot", 0, 0x03296567ce0abc73),
     ("load", "step", "lint", 0, 0x7da3ac622b6348c1),
     ("load", "step", "actions", 0, 0x08d40474a77b6857),
+    ("order", "boot", "snapshot", 0, 0x8df7e2d9bcc95fab),
+    ("order", "boot", "lint", 0, 0x7da3ac622b6348c1),
+    ("order", "boot", "actions", 0, 0xdb6492dc4e39748a),
+    ("order", "step", "snapshot", 0, 0x5e8a041ede862291),
+    ("order", "step", "lint", 0, 0x7da3ac622b6348c1),
+    ("order", "step", "actions", 0, 0xdb6492dc4e39748a),
 ];
 
 /// A session on the served task `task`, booted through the stand as the session host boots it.
@@ -83,6 +89,7 @@ fn hold_served(task: &str, incremental: bool) -> Session {
     let harness = match task {
         "cells" => stand::boot_cells(stand::options(incremental)),
         "load" => stand::boot_load(stand::options(incremental)),
+        "order" => stand::boot_order(stand::options(incremental)),
         _ => panic!("a served task's label"),
     };
     Session::start(task, || harness).expect("the label is one of the closed set")
@@ -104,6 +111,7 @@ fn step(task: &str) -> Vec<Call> {
         ],
         "cells" => vec![click("cell-A0"), type_into("cell-input", "42")],
         "load" => vec![click("load-fetch")],
+        "order" => vec![type_into("order-quantity", "12")],
         _ => panic!("a served task's label"),
     }
 }
@@ -181,7 +189,15 @@ fn holds(task: &'static str) {
 #[test]
 fn the_table_counts_its_rows_and_covers_the_six_tasks() {
     assert!(TABLE.len() == ROWS, "the table holds its stated row count");
-    for task in ["counter", "flight-booker", "timer", "crud", "cells", "load"] {
+    for task in [
+        "counter",
+        "flight-booker",
+        "timer",
+        "crud",
+        "cells",
+        "load",
+        "order",
+    ] {
         for moment in ["boot", "step"] {
             for verb in ["snapshot", "lint", "actions"] {
                 assert!(
@@ -223,4 +239,9 @@ fn cells_reads_its_table() {
 #[test]
 fn the_load_page_reads_its_table() {
     holds("load");
+}
+
+#[test]
+fn the_order_page_reads_its_table() {
+    holds("order");
 }

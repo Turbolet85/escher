@@ -21,7 +21,10 @@
 //! while a `click` opens its list, another chooses a row by id, and a third opens it for an
 //! `escape` to close. A coverage run (`coverage crud <check>`) over a CRUD session kept through the
 //! binary writes to its stderr at `RUST_LOG=trace` no id, no name, none of the ids its answer
-//! lists, no typed text, no recording directory's path and nothing the check keeps.
+//! lists, no typed text, no recording directory's path and nothing the check keeps. A host serving
+//! the order page, driven through a failing Submit, a Retry, a good Submit and Export, writes to
+//! stderr at `RUST_LOG=trace` neither the page's logged message nor its quantity rule, and the
+//! Export panic's payload only on std's own panic line.
 
 #![cfg(not(target_arch = "wasm32"))]
 
@@ -481,6 +484,131 @@ fn a_select_list_opened_and_chosen_through_the_host_logs_no_option_at_trace() {
         "{needles_found} of {} option needles found in {lines} stderr lines",
         needles.len()
     );
+}
+
+#[cfg(unix)]
+#[test]
+fn the_order_page_served_at_trace_logs_neither_its_message_nor_its_rule() {
+    use std::process::{Command, Stdio};
+    use std::thread;
+    use std::time::{Duration, Instant};
+
+    use common::{Host, clear, drain, state_dir};
+    use escher_driver::{ArgValue, Call, attach, call, stop};
+    use seven_guis::tasks::order::{EXPORT_UNBUILT, ORDER_PLACED, QUANTITY_RULE};
+
+    const READY: Duration = Duration::from_secs(60);
+    const EXIT: Duration = Duration::from_secs(10);
+
+    let dir = state_dir("hl-order");
+    clear(&dir);
+    let mut host = Host(
+        Command::new(BINARY)
+            .args(["serve", "order", "--session"])
+            .arg(&dir)
+            .env("RUST_LOG", "trace")
+            .stdin(Stdio::null())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .expect("the binary spawns"),
+    );
+    let stdout = drain(host.0.stdout.take().expect("stdout is piped"));
+    let stderr = drain(host.0.stderr.take().expect("stderr is piped"));
+
+    let deadline = Instant::now() + READY;
+    while attach(&dir).is_err() {
+        let exited = host.0.try_wait().expect("the host can be waited on");
+        assert!(exited.is_none(), "the host exited before it answered");
+        assert!(
+            Instant::now() < deadline,
+            "the host answers within the bound"
+        );
+        thread::sleep(Duration::from_millis(10));
+    }
+
+    let id = |value: &str| vec![("id".to_string(), ArgValue::Text(value.to_string()))];
+    let typed = vec![
+        (
+            "id".to_string(),
+            ArgValue::Text("order-quantity".to_string()),
+        ),
+        ("text".to_string(), ArgValue::Text("12".to_string())),
+    ];
+    let calls = [
+        ("click", id("order-submit")),
+        ("click", id("order-retry")),
+        ("type", typed),
+        ("click", id("order-submit")),
+        ("click", id("order-export")),
+    ];
+    let answers: Vec<String> = calls
+        .iter()
+        .enumerate()
+        .map(|(sent, (verb, args))| {
+            let sent_call = Call {
+                verb: verb.to_string(),
+                args: args.clone(),
+            };
+            let answer = call(&dir, &sent_call).expect("the host answers the call");
+            assert!(answer.accepted, "call {sent} ran");
+            answer.json
+        })
+        .collect();
+    assert!(
+        answers[0].contains(QUANTITY_RULE)
+            && answers[3].contains(ORDER_PLACED)
+            && answers[4].contains(EXPORT_UNBUILT),
+        "the answers hold the texts the absences read below are of"
+    );
+
+    stop(&dir).expect("the session stops");
+    let deadline = Instant::now() + EXIT;
+    let status = loop {
+        if let Some(status) = host.0.try_wait().expect("the host can be waited on") {
+            break status;
+        }
+        assert!(Instant::now() < deadline, "the host exits after stop");
+        thread::sleep(Duration::from_millis(10));
+    };
+    let stdout = stdout
+        .join()
+        .expect("the stdout reader ends")
+        .expect("stdout is read to its end");
+    let stderr = stderr
+        .join()
+        .expect("the stderr reader ends")
+        .expect("stderr is read to its end");
+    let stderr = String::from_utf8_lossy(&stderr);
+
+    // A failure names a kind and a count only.
+    assert_eq!(status.code(), Some(0), "the host exits 0 after stop");
+    assert!(
+        stdout.is_empty(),
+        "the host wrote {} bytes to stdout",
+        stdout.len()
+    );
+    let logged = stderr.matches(ORDER_PLACED).count();
+    assert_eq!(logged, 0, "{logged} lines hold the logged message");
+    let ruled = stderr.matches(QUANTITY_RULE).count();
+    assert_eq!(ruled, 0, "{ruled} lines hold the quantity rule");
+    // std's own hook, which the telemetry hook chains, prints a panic's payload on the line
+    // after its `panicked at` line; nothing else may hold it.
+    let lines: Vec<&str> = stderr.lines().collect();
+    let payloads: Vec<usize> = (0..lines.len())
+        .filter(|&at| lines[at].contains(EXPORT_UNBUILT))
+        .collect();
+    let off_std = payloads
+        .iter()
+        .filter(|&&at| at == 0 || !lines[at - 1].contains("panicked at"))
+        .count();
+    assert_eq!(
+        payloads.len(),
+        1,
+        "{} lines hold the payload",
+        payloads.len()
+    );
+    assert_eq!(off_std, 0, "{off_std} payload lines off std's panic line");
 }
 
 /// The host's flow at `RUST_LOG=trace` in the state directory `name`, keeping its session as a

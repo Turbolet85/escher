@@ -1,5 +1,5 @@
 //! What can be done on the screen now: the `actions` verb, run through `Session::run`, answers
-//! what `Session::actions` reads, in both layout modes. On each of the six served screens at
+//! what `Session::actions` reads, in both layout modes. On each of the seven served screens at
 //! boot it lists every node a snapshot reads `clickable` or that is focusable, and every node an
 //! owner serves, each a node of the UI graph, no id holding the reserved `///`, the count per
 //! task the stated one. For every listed node and verb on the four lean tasks at boot, and on a
@@ -48,8 +48,16 @@ const LAST_ROW: &str = "crud-person-14";
 /// Time enough for the overlay scrollbars a scroll shows to fade, in milliseconds.
 const FADE_MS: i64 = 5000;
 
-/// The six screens the stand serves, by the label each session is started with.
-const SERVED: [&str; 6] = ["counter", "flight-booker", "timer", "crud", "cells", "load"];
+/// The seven screens the stand serves, by the label each session is started with.
+const SERVED: [&str; 7] = [
+    "counter",
+    "flight-booker",
+    "timer",
+    "crud",
+    "cells",
+    "load",
+    "order",
+];
 
 fn lean(label: &str) -> Option<LeanTask> {
     LeanTask::ALL.into_iter().find(|task| slug(*task) == label)
@@ -63,6 +71,7 @@ fn hold_served(label: &str, incremental: bool) -> Session {
     let harness = match label {
         "cells" => stand::boot_cells(stand::options(incremental)),
         "load" => stand::boot_load(stand::options(incremental)),
+        "order" => stand::boot_order(stand::options(incremental)),
         _ => panic!("a served screen's label"),
     };
     Session::start(label, || harness).expect("the label is one of the closed set")
