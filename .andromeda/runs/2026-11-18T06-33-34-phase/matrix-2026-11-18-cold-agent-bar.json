@@ -1,0 +1,81 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "8813f655",
+"ts": "2026-11-18T07:11:59Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.3.0",
+"--id",
+"v030-15",
+"--chunk",
+"2026-11-18-cold-agent-bar",
+"--acceptance-file",
+".andromeda/runs/2026-11-18T06-33-34-phase/acceptance-v030-15.md",
+"--gated-file",
+".andromeda/runs/2026-11-18T06-33-34-phase/gated-v030-15.md",
+"--run-dir",
+".andromeda/runs/2026-11-18T06-33-34-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v030-15 → chunk 2026-11-18-cold-agent-bar (was null; status planned kept)",
+"acceptance: A cold agent's run over 0.3.0's new capabilities passes the bar the fo… (137 chars)",
+"         → The one live `bash scripts/cold-agent.sh run stand`, fired on the foun… (705 chars)",
+"gated: the founder's word on F1 (the bar), F3 (the live run) and F4 (graph and actions … (171 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson · 1 entry changed",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-18T06-35-00-2026-11-18-cold-agent-bar.ndjson"
+],
+"before": {
+"id": "v030-15",
+"chunk": null,
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "A cold agent's run over 0.3.0's new capabilities passes the bar the founder sets from 0.2.0's baseline of six apps, 66 c… (137 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v030-15",
+"chunk": "2026-11-18-cold-agent-bar",
+"status": "planned",
+"method": "dynamic-external",
+"ref": "null",
+"acceptance": "The one live `bash scripts/cold-agent.sh run stand`, fired on the founder's word, reads `\"outcome\": \"passed\"` in `target… (705 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "8813f655",
+"ts": "2026-11-18T07:11:59Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.3.0",
+"--chunk",
+"2026-11-18-cold-agent-bar",
+"--run-dir",
+".andromeda/runs/2026-11-18T06-33-34-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-18-cold-agent-bar: 1 · ## Acceptance Criteria: line 244, 25 lines",
+"v030-15: cited in ## Acceptance Criteria (line 259)",
+"pool: unclaimed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

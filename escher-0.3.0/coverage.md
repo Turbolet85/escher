@@ -1,9 +1,9 @@
 # Coverage — escher-0.3.0
 
-verified 16/17 · deferred 0 · planned 1 · implemented 0 · unclaimed 1
+verified 16/17 · deferred 0 · planned 1 · implemented 0 · unclaimed 0
 
-## planned, unclaimed (1)
-- v030-15 · Cold-agent bar
+## planned, gated (1)
+- v030-15 · Cold-agent bar · 2026-11-18-cold-agent-bar
 
 ## verified (16)
 - v030-01 · Codebase health · 2026-10-26-codebase-health

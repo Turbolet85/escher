@@ -20,11 +20,11 @@ read -r -d '' STAND_PROMPT <<'PROMPT' || true
 Use only your tools. The stand has six apps: counter, flight booker, timer, CRUD, cells and the load page. Work on one app at a time: start it, reach its goal, take a snapshot of its final screen, then stop it before you start the next app.
 
 The goals:
-1. Counter: the display reads 3.
-2. Flight booker: a return flight is booked, departing 24.12.2026 and returning 31.12.2026, the return flight chosen on its flight type control. Before you stop it, take a screenshot of its final screen.
+1. Counter: the display reads 3. Before acting, read its UI graph.
+2. Flight booker: a return flight is booked, departing 24.12.2026 and returning 31.12.2026, the return flight chosen on its flight type control. Before acting, ask what can be done on its screen. Choose the return flight by opening the flight type list and clicking its option. Before you stop it, take a screenshot of its final screen.
 3. Timer: the duration is set to 10 seconds, and time is passed until the elapsed time reads 10.0s.
-4. CRUD: the person Ada Lovelace is added, Roman Tisch's surname is changed to Tischler, and Hans Emil is deleted.
-5. Cells: cell A0 holds 5, cell B1 holds the formula =A0*2 and reads 10, and cell Z25 holds the formula =B1+1 and reads 11. Before you stop it, run one visual lint of its screen.
+4. CRUD: the person Ada Lovelace is added, Roman Tisch's surname is changed to Tischler, and Hans Emil is deleted. Ask where its people list sits and why it has its size.
+5. Cells: cell A0 holds 5, cell B1 holds the formula =A0*2 and reads 10, and cell Z25 holds the formula =B1+1 and reads 11. Before you stop it, run one visual lint of its screen. Do not ask the cells app for its UI graph or for what can be done on it, as both answers are very large.
 6. Load page: its resource is loaded and its message is shown.
 
 Finally, reply with a check as the LAST thing in your reply: one fenced ```json block holding a JSON array of steps, each {"tool": <a tool name without its server prefix>, "arguments": {...}, "expect": [texts]} ("arguments" and "expect" optional). Run in order on a fresh server, the steps must redo all six tasks from fresh sessions, starting and stopping each app in turn; each app's part ends with a snapshot step whose "expect" lists texts from that screen which prove the task is done, before that app is stopped.
@@ -64,15 +64,23 @@ DONE = {
     "load": (['Paragraph "Loaded" id="load-done"'], []),
 }
 APPS = tuple(DONE)
-# The verbs whose accepted calls the verdict counts, each a capability the run must exercise at least once.
-COUNTED = ("lint", "screenshot", "advance")
-# The founder's wrong-call bar: at most this percentage of the run's tool calls may be wrong.
+# The verbs whose accepted calls the verdict counts, each a capability the run must exercise at least once: the
+# visual lint, the screenshot and time passed, and 0.3.0's three carried reads, the UI graph, the actions and the
+# layout.
+COUNTED = ("lint", "screenshot", "advance", "graph", "actions", "layout")
+# The driver's eight refusal causes, in the schema's order. A refusal is counted by the closed cause word its command
+# span line records, which only an instance verb's call writes: a session verb the server refuses itself writes no
+# command line, so these counts read instance-verb refusals alone and may sum below refused_calls.
+CAUSES = ("unknown-verb", "malformed", "not-found", "stale", "disabled", "covered", "off-screen", "fonts-unavailable")
+# The founder's wrong-call bar: at most this percentage of the run's tool calls may be wrong. It holds 0.2.0's bar
+# until the founder sets 0.3.0's number.
 WRONG_CALL_BAR_PCT = 5
 MAX_CHECK_BYTES = 65536
 MAX_CHECK_STEPS = 400
 REPLY_BOUND = 30
 FENCE = re.compile(r"```json[ \t]*\r?\n(.*?)```", re.DOTALL)
 SPAN_FIELD = re.compile(r' (tool|ending)="([a-z-]+)"')
+CAUSE_FIELD = re.compile(r' cause="([a-z-]+)"')
 KEPT = re.compile(r"check-([0-9]+)\.json")
 
 
@@ -159,12 +167,13 @@ def isolated(init, root_name):
 
 
 def span_counts():
-    lines = []
+    log = []
     try:
         with open(SERVER_LOG, encoding="utf-8", errors="replace") as f:
-            lines = [line for line in f if ' span="tool_call" ' in line]
+            log = f.readlines()
     except OSError:
         pass
+    lines = [line for line in log if ' span="tool_call" ' in line]
     refused = sum(1 for line in lines if ' ending="refused" ' in line)
     errors = sum(1 for line in lines if ' ending="error" ' in line)
     accepted = {verb: 0 for verb in COUNTED}
@@ -172,7 +181,12 @@ def span_counts():
         fields = dict(SPAN_FIELD.findall(line))
         if fields.get("ending") == "accepted" and fields.get("tool") in accepted:
             accepted[fields["tool"]] += 1
-    return len(lines), refused, errors, accepted
+    by_cause = {cause: 0 for cause in CAUSES}
+    for line in log:
+        cause = CAUSE_FIELD.search(line) if ' span="command" ' in line else None
+        if cause is not None and cause.group(1) in by_cause:
+            by_cause[cause.group(1)] += 1
+    return len(lines), refused, errors, accepted, by_cause
 
 
 def paged(text):
@@ -237,6 +251,31 @@ def part_reads(transcript, uses):
         for block in blocks(record, "tool_result"):
             name, arguments = uses.get(block.get("tool_use_id"), (None, {}))
             if name == PREFIX + "snapshot" and "part" in arguments and block.get("is_error") is not True:
+                count += 1
+    return count
+
+
+def list_opens(transcript, uses):
+    """The accepted click and press answers whose diff holds an option row moved by its bounds alone. A select's list
+    that opens, or closes with no choice, moves its rows' bounds and nothing else, so a count above 0 means a list was
+    opened in the run (a close implies an earlier opening); a choice, by `type` or by a row's click, also changes the
+    row's `selected` and is not counted."""
+    count = 0
+    for record in transcript:
+        if record.get("type") != "user":
+            continue
+        for block in blocks(record, "tool_result"):
+            name, _ = uses.get(block.get("tool_use_id"), (None, {}))
+            if name not in (PREFIX + "click", PREFIX + "press") or block.get("is_error") is True:
+                continue
+            try:
+                answer = json.loads(text_of(block.get("content")))
+            except ValueError:
+                continue
+            changed = answer.get("changed") if isinstance(answer, dict) else None
+            if isinstance(changed, list) and any(
+                    isinstance(node, dict) and node.get("role") == "ListBoxOption" and node.get("differs") == ["bounds"]
+                    for node in changed):
                 count += 1
     return count
 
@@ -410,7 +449,7 @@ def verdict(task, client_exit, root_name, binary):
         if record.get("type") == "user":
             for block in blocks(record, "tool_result"):
                 results[block.get("tool_use_id")] = block.get("is_error") is True
-    server_calls, refused, errors, accepted = span_counts()
+    server_calls, refused, errors, accepted, by_cause = span_counts()
     escher_uses = [i for i, (name, _) in uses.items() if isinstance(name, str) and name.startswith(PREFIX)]
     escher_errors = sum(1 for i in escher_uses if results.get(i))
     foreign = len(uses) - len(escher_uses)
@@ -449,7 +488,12 @@ def verdict(task, client_exit, root_name, binary):
         "lint_calls": accepted["lint"],
         "screenshot_calls": accepted["screenshot"],
         "advance_calls": accepted["advance"],
+        "graph_calls": accepted["graph"],
+        "actions_calls": accepted["actions"],
+        "layout_calls": accepted["layout"],
         "part_reads": part_reads(transcript, uses),
+        "list_opens": list_opens(transcript, uses),
+        "refused_by_cause": by_cause,
         "recorded_sessions": recorded_sessions,
         "recording_kept": recording_kept,
         "tasks_met": met,
@@ -480,7 +524,8 @@ def verdict(task, client_exit, root_name, binary):
         reasons.append("no-tool-call")
     if len(met) != len(APPS):
         reasons.append("task-unmet")
-    if 0 in (v["lint_calls"], v["screenshot_calls"], v["advance_calls"], v["part_reads"]):
+    if 0 in (v["lint_calls"], v["screenshot_calls"], v["advance_calls"], v["graph_calls"], v["actions_calls"],
+             v["layout_calls"], v["part_reads"], v["list_opens"]):
         reasons.append("capability-unused")
     if not recording_kept:
         reasons.append("recording-not-kept")
