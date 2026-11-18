@@ -84,14 +84,18 @@ Version 0.2.0 was built in five stages:
 
 All 11 of its capabilities are verified. A fresh agent given only the twelve MCP tools drove six apps (the four lean tasks, Cells and a load page) in 66 calls, with 0 wrong, under a bar of at most 5 % wrong. The version-end audit's mutation testing caught 53 of 53 mutants in the engine's DOM crate; the demo stand's run went unscored, 12 of its 15 mutants unviable, and none of the 5 in upstream's WPT runner was caught.
 
-### 0.3.0 — planned, in six stages
+### 0.3.0 — built, its cold-agent run to come
+
+Version 0.3.0 was built in six stages:
 
 - **Epoch 1 — Foundation** — the functions the 0.2.0 audit found over the complexity ceiling brought under it, and this README and the project's records brought up to date.
-- **Epoch 2 — Engine debts** — upstream Blitz merged in, then each of the engine's recorded debts fixed and proven, pinned as a limit, or kept: among them HTML's focus fixup for a focused node made inert, a native checkbox's or radio's checked state reaching the platform adapter, the lint reading a select's options as overlapping, a target inside a transformed scrolling box, the `select` limits, and keyboard and contrast checks for the pages served beside the four lean tasks.
-- **Epoch 3 — The UI graph** — a probe of what the Dioxus runtime exposes, then one read that gives, for the current screen, each node's component, its handlers, the state they write and the nodes that read it; on it, a command listing what an agent can do on the screen now and why not, and one listing the handlers no recorded check reached.
+- **Epoch 2 — Engine debts** — upstream Blitz merged in, then each of the engine's recorded debts fixed and proven, pinned as a limit, or kept: among them HTML's focus fixup for a focused node made inert, a native checkbox's or radio's checked state reaching the platform adapter, the lint no longer reading a select's options as overlapping, a target inside a transformed scrolling box, the `select` limits, and keyboard and contrast checks for the pages served beside the four lean tasks.
+- **Epoch 3 — The UI graph** — a probe of what the Dioxus runtime exposes, then the `graph` command, which gives, for the current screen, each node's component, its handlers, the state they write and the components that read it; on it, the `actions` command, listing what an agent can do on the screen now and why not, and a coverage reading of the handlers no recorded check reached.
 - **Epoch 4 — Determinism and exploration** — a run's randomness from one seed, bundled fonts so every host reads one state, a session started in a given fixture state, and automatic breadth-first exploration that keeps each path as a replayable check.
-- **Epoch 5 — Errors and explanation** — the panic, error or handler log an action caused returned with its answer, why an element sits where it does at its size, and one component rendered alone with given props.
-- **Epoch 6 — Polish & ship** — every new capability proven headlessly, the accessibility checks re-run, the capability statement brought to 0.3.0, and a fresh agent driving the new capabilities.
+- **Epoch 5 — Errors and explanation** — the panic, error or log an action caused returned with its answer, the `layout` command saying why an element sits where it does at its size, and one component rendered alone with given props.
+- **Epoch 6 — Polish & ship** — every new capability proven headlessly on the stand, the accessibility checks re-run, and [the capability statement](docs/capabilities.md) brought to 0.3.0.
+
+16 of its 17 capabilities are verified headlessly; a fresh agent's run over the new capabilities is the version's last step.
 
 Later: opt-in OpenTelemetry export, the platform accessibility adapter witnessed with a real assistive technology, and the next MCP protocol revision.
 

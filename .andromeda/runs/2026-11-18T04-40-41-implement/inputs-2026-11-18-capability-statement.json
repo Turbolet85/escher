@@ -1,0 +1,55 @@
+[
+{
+"tool": "inputs",
+"v": "1.7",
+"sha8": "823570d9",
+"ts": "2026-11-18T04:55:36Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-18-capability-statement",
+"--message-file",
+".andromeda/runs/2026-11-18T04-40-41-implement/relay-1.md",
+"--origin",
+"the operator, implement P4 dialog",
+"--kind",
+"relay",
+"--why",
+"the hygiene P1 row on the phase run p5-controls.md:16 (a planted /home/someone/path) is rewritten to the placeholder /home/<user>/path, the operator own word",
+"--step",
+"implement",
+"--run-dir",
+".andromeda/runs/2026-11-18T04-40-41-implement"
+],
+"cwd": ".",
+"exit": 5,
+"stdout": [
+"snapped I4 · copy message · message: the operator, implement P4 dialog",
+"cite: inputs#I4"
+],
+"stderr": "snapped, not landed: I4 stands in the working folder — exit 3 — 2026-11-18-capability-statement: inputs/andromeda-inputs.json:72 (home) holds a host path — `gate.py hygiene` refuses it; respell it and land again; nothing written; `rec.py check` holds it, `rec.py land --chunk 2026-11-18-capability-statement` lands it",
+"wrote": [
+"inputs/I4-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I4",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, implement P4 dialog",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "2ce5b647af93f17cb6be930608535ca9911e7f00b098a14fdae6f5e652aec241",
+"copy": "I4-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-18T04:55:36Z",
+"step": "implement",
+"why": "the hygiene P1 row on the phase run p5-controls.md:16 (a planted /home/someone/path) is rewritten to the placeholder /home/<user>/path, the operator own word"
+}
+}
+]

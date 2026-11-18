@@ -1,6 +1,6 @@
 # What Escher can do
 
-This statement is current with Escher 0.2.0, the `build/escher-0.2.0` branch. It is written for a consumer planning
+This statement is current with Escher 0.3.0, the `build/escher-0.3.0` branch. It is written for a consumer planning
 work on Escher, Viola's frontend first. It says what Escher can do, the limits it states, how far its accessibility
 reach is proven and what an MCP client carries onward.
 
@@ -12,7 +12,7 @@ tables.
 
 Every measured claim below names its witness: a check by file name, a CI run, or the chunk report that measured it.
 Every limit says how it stands: pinned by a named check, asserted by no check, or unmeasured, with the
-`.andromeda/residuals.md` line that owns it where one exists.
+residual row that owns it, `res-…`, where one exists.
 
 ## What it can do
 
@@ -89,6 +89,19 @@ time, moving no time on the instance; a step that does not go quiet answers `set
 Witnesses: `stand_act_ids`, `stand_act_keys`, `stand_act_filled`, `stand_act_disabled`, `stand_act_obstructed`,
 `stand_act_scroll`, `stand_act_select`, `stand_act_popup`, `stand_act_states`, `stand_settle`, `stand_load_wait`.
 
+### Errors with the action
+
+An acting verb's answer carries `caused` only when its step caused something: one item per panic, boundary error and
+kept record, each with its kind, level, source and target, its message cut at 1,024 bytes, its location, an error's
+boundary and cause chain, a log's fields and the first handler the step reached. A record's `error` field is kept as
+its author wrote it; every other content-named field reads `[redacted]`. Panics come first, then the errors new since
+the boundary marks, then records; 16 items are kept and the rest counted in `caused_past`, one entry per kind and
+source. A caught panic whose payload the capture did not see still answers a `panic` item, its message the fixed text
+`<payload unread>`. A handler `Err` the app's root error boundary takes also shows on the screen, through Dioxus's
+default boundary rendering, and reads in `caused` as one error item under the root boundary.
+
+Witnesses: `stand_act_errors`, `stand_act_error_text`.
+
 ### One virtual clock
 
 Every harness-built document reads one virtual clock. `advance` moves the session's clock by exactly `ms` inside one
@@ -97,6 +110,15 @@ least 500 ms between them read as a double click.
 
 Witnesses: `virtual_clock_engine`, `stand_virtual_clock`, `stand_act_timer`, seven_guis' `host_timer`.
 
+### Seeded randomness
+
+A run's randomness comes from one seed held as a Dioxus root context. `Harness::from_vdom` provides the default seed 0
+where the builder gives none, so two runs of one seed read the same state at every step, in both layout modes and
+across processes. No seed crosses a driver carrier: every driver session and every kept check's replay reads the
+default seed, and a seed reaches a run only from in-process code that builds its VirtualDom.
+
+Witness: `stand_seeded_randomness`.
+
 ### The headless screenshot
 
 `screenshot` paints with no display and returns a PNG equal to the harness's raster: the whole screen, or with `--id`
@@ -104,6 +126,16 @@ the visible part of one element. It changes nothing. An app with no `sans-serif`
 `fonts-unavailable` before anything is painted. A password input paints masked in every document.
 
 Witnesses: `stand_act_screenshot`, `stand_screenshot_repeat`, `password_painted_masked`.
+
+### Bundled fonts and one reading on every host
+
+Every stand boot registers one font, the bundled DejaVu Sans, with system fonts off, so every generic family and any
+named family that is unavailable lays out in it. The six served tasks read the same driver answer digests of
+`snapshot` (every part), `lint` and `actions` on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes,
+at boot and after one acting step. A shot's PNG is not among them: its bytes differ between operating systems (see
+Stated limits).
+
+Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`.
 
 ### The visual lint
 
@@ -273,14 +305,15 @@ feature, which escher-driver names unconditionally.
 
 ### The stand it is proven on
 
-Everything above is proven on the 7GUIs stand. Its four lean tasks (counter, flight booker, timer, CRUD) are booted
-headless and offline at a pinned 800 × 600 viewport, scale 1.0, Light, with one bundled font, DejaVu Sans. Author ids
-stand on all seven tasks.
+Everything above is proven on the 7GUIs stand. Its six served tasks, the four lean tasks (counter, flight booker,
+timer, CRUD), Cells and the load page, and one component alone are booted headless at a pinned 800 × 600 viewport,
+scale 1.0, Light, with one bundled font, DejaVu Sans. Every boot is offline but the load page's, whose one stylesheet
+fetch an in-process stand-in answers. Author ids stand on all seven tasks.
 
 ### Building against it
 
-Escher is a Rust 2024 workspace with `rust-version` 1.91.0. Its version, 0.2.0, is kept apart from the crates' shared
-workspace version, 0.3.0-beta.4. The engine stack stays at Stylo 0.22.0, Taffy 0.15 and Dioxus 0.7.3; the upgrades
+Escher is a Rust 2024 workspace with `rust-version` 1.91.0. Its version, 0.3.0, is kept apart from the crates' shared
+workspace version, 0.3.0-beta.4. The engine stack stays at Stylo 0.22.0, Taffy 0.15 (upstream's git source, pinned to one revision) and Dioxus 0.7.3; the upgrades
 waiting upstream are next-version work. The escher crates set `publish = false`, so a consumer reaches them from the
 repository, not from crates.io.
 
@@ -343,6 +376,9 @@ The driver's own refusal texts state three readings that are off:
 - **Accepted is not acting.** `actions` answers whether a call would be accepted, not what it would do: `type` reads
   accepted on any enabled, visible, uncovered node, a button included, since the call's only check is the one a
   `click` meets. `press` and `advance` act on focus and the clock, so no node lists them. Pinned by `stand_actions`.
+- **Engine items in `caused` on a tracing build.** An engine-sourced `caused` item, such as a failed stylesheet fetch's
+  warning, exists only in a build that compiled the engine's `tracing` feature. A check asserts such items only on that
+  build, read through the engine's own constant, and runs on both builds. Pinned by `stand_act_error_text`.
 - **A shot's PNG bytes.** They repeat byte for byte on one host and differ between linux x86_64 and macOS aarch64, as
   measured at CI#39225375577. A check compared byte for byte across operating systems holds no `screenshot` step.
 
@@ -362,6 +398,13 @@ The driver's own refusal texts state three readings that are off:
   `press` holds no Ctrl, so a set of rows that are not adjacent cannot be built through the driver. A controlled app must
   write `selected` back, or a choice reverts. A single-choice select shows its chosen option's label alone. The windowed
   list is read and not run: no test launches a window.
+- **`caused` carries an app's own text.** Its messages and fields cross as their author wrote them, the `error` field
+  included, scrubbed by field name alone, so an app that writes the caller's typed text into a record echoes it in the
+  answer. The scrub by name is pinned by `stand_act_error_text`; no check asserts an echo.
+- **The buffered render's same-render limit.** A task polled during a Dioxus render acts on the document as the
+  previous render left it, so a node created in that same render is not yet focusable by a task that render spawned:
+  `MountedData::set_focus` on it does nothing. The runtime probe's pins act on nodes an earlier render mounted. Owned by
+  the residual row `res-433ttjb2` (target: next).
 - **The bounded record of ids.** The session keeps the last 4,096 ids its screens read, to tell `stale` from
   `not-found`. Past that bound a once-read id can read `not-found`.
 - **Selectors that never match.** `:focus-visible`, `:valid`, `:invalid`, `:required` and `:target` always read false.
@@ -377,6 +420,9 @@ The driver's own refusal texts state three readings that are off:
   A session held in process and the MCP stdio role run elsewhere too.
 - **A state in process only.** No fixture state crosses the command line, MCP, the session socket or a kept check's
   form; a session starts in one only in process.
+- **A seed in process only.** No verb, argument, command-line flag, MCP tool field, kept-check key or span field
+  carries a seed, so every driver session and every kept check's replay reads the default seed 0; a seed reaches a
+  run only from in-process code that builds its VirtualDom.
 - **An exploration in process only.** No verb, role, argument or carrier reaches `explore`, and it follows no
   navigation: a harness-built session has no navigation provider, so a navigating action loads nothing. No explored
   path holds a `screenshot` step. A caught panic's payload is never read, though the std panic hook still prints it in
@@ -410,8 +456,6 @@ Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_st
 
 - A settle verb, or a reply naming the busy source.
 - A producer of the reserved virtual-node id form.
-- A carrier for the layout read: no verb, MCP tool, socket call or kept check reaches `Session::layout`. This absence
-  is provisional, standing until the founder's own word.
 - A producer of the `App { canvas }` placer.
 
 ### Unmeasured
@@ -428,8 +472,8 @@ is claimed as met. The three are proven headless on the stand: by `stand_keyboar
 Enter and Space on each stand button), `stand_contrast` (every stand control's text and background pair, row for row)
 and `stand_accessibility_ids`.
 
-The `a11y` CI leg runs fourteen files and read 14 · 84 · 0 · 0 (result lines · passed · failed · ignored) on
-CI#40134371519. It is no required status check. Eight of its files also run three rounds in `stand-repeat`.
+The `a11y` CI leg runs eighteen files and read 18 · 163 · 0 · 0 (result lines · passed · failed · ignored) on
+CI#44225111039. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
 
 Contrast: the stand's accent controls are white on `#3a5ce5` at 5.47, on its hover shade at 6.83 and on its active
 shade at 8.27, against SC 1.4.3's 4.5. The lint's `contrast` defect uses the same reader and the same exempt rule.
@@ -437,11 +481,16 @@ shade at 8.27, against SC 1.4.3's 4.5. The lint's `contrast` defect uses the sam
 What is not reached:
 
 - **What an assistive technology reads is unmeasured.** No stand binary builds a platform accessibility adapter
-  (probe 0, as measured at escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md). The windowed witness is owned by a
-  `.andromeda/residuals.md` line whose disposition reads `re-carried:0.2.0`; it is owed at an active assistive
-  technology, which this version does not reach. The platform adapters have their
+  (probe 0, as measured at escher-0.2.0/chunks/2026-10-24-a11y-re-read/report.md). The windowed witness is owned by
+  the residual row `res-llkgqygv`, re-carried at 0.3.0 (target: next); it is owed at an active assistive technology,
+  which this version does not reach. The platform adapters have their
   own gaps: Android's `set_focus` and `set_window_bounds` are empty, Windows' `set_focus` and macOS'
   `set_window_bounds` are no-ops.
+- **A focused control that no longer shows keeps focus.** A control hidden while it holds focus, by `hidden`,
+  `display: none` or CSS, keeps focus and takes keys, the tree's focus naming the window, and the next Tab moves on
+  from it: a named SC 2.4.3 gap, since HTML's focus fixup is honoured for `inert` alone. The stand never reaches it:
+  Cells' editor, unmounted by Enter, leaves the root element focused and the tree's focus on the window. Pinned by
+  `inert_subtree` and `key_press_after_container_lost_its_box`.
 - `aria-activedescendant` is unread (SC 4.1.2, outside tier 0), pinned by `accessibility_active_descendant_unread`, so
   an open `select` list states `expanded` on its select and not which row is highlighted.
 - Descriptions (`aria-describedby`, `aria-description`) reach the platform adapter only, never the snapshot.
@@ -465,7 +514,10 @@ A tool result carries:
 - a UI graph: ids, component names, registered state names, handler event names, closed flag words and booleans, never
   a state's value;
 - an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text;
-- a layout answer: ids, closed words and numbers, never page text or a style value as written.
+- a layout answer: ids, closed words and numbers, never page text or a style value as written;
+- an acting verb's `caused`, where its step caused something: each panic's, boundary error's and kept record's
+  message, location, boundary, cause chain and fields as their authors wrote them, the `error` field kept within the
+  text bound and every other content-named field redacted.
 
 No description crosses any driver carrier, since descriptions go to the platform adapter only.
 
@@ -485,12 +537,13 @@ The checks named above live in `tests/blitz-tests/tests/` and `examples/seven_gu
 They run in these CI legs (`.github/scripts/ci-leg.sh`):
 
 - **`test`**: the whole workspace, on linux, macOS and windows.
-- **`a11y`**: the fourteen accessibility files.
-- **`stand-repeat`**: the `stand_*` files, fifteen named blitz-tests targets and seven_guis' eight process checks, three
-  rounds under a zero-failure budget; with 48 files and ten named targets it read 198 · 837 · 0 · 21 on CI#40134371519.
-  Among the fifteen: `visible_region_transformed`, `hit_non_invertible_transform`, `open_state`,
-  `checkable_change_event`, `text_range_no_change_event` and `transformed_client_rect`, whose
-  `a_target_inside_a_translated_scrolling_box_reads_inside_its_visible_region` holds the transformed box's reading.
+- **`a11y`**: the eighteen accessibility files.
+- **`stand-repeat`**: the `stand_*` files, seventeen named blitz-tests targets and seven_guis' eight process checks,
+  three rounds under a zero-failure budget; with 64 files and seventeen named targets it read 273 · 1467 · 0 · 30 on
+  CI#44225111039. Among the seventeen: `visible_region_transformed`, `hit_non_invertible_transform`, `open_state`,
+  `checkable_change_event`, `text_range_no_change_event`, `select_popup`, `select_popup_painted` and
+  `transformed_client_rect`, whose `a_target_inside_a_translated_scrolling_box_reads_inside_its_visible_region` holds
+  the transformed box's reading.
 - **`ci-scripts`**: the CI-script checks, this page's pin among them.
 
 The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
@@ -500,6 +553,11 @@ seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `st
 proven by `stand_start_in_state`, a `stand_*` file of the same two legs. An exploration is proven by `stand_explore`,
 a `stand_*` file of the same two legs. The layout read is proven by `layout_reason` and by `stand_layout`, a
 `stand_*` file of the same two legs, and the `layout` verb on every carrier by `stand_layout`, `stand_mcp_tools`,
-`stand_replay` and seven_guis' `cli_commands` and `mcp_server`.
+`stand_replay` and seven_guis' `cli_commands` and `mcp_server`. Errors with the action are proven by
+`stand_act_errors` and `stand_act_error_text`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
+`stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, on the `Test (windows)`
+and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
+layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.
 
-The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 46 witnesses.
+The 0.2.0 requirement record is `WITNESSES_020` in `stand_requirement_sweep`: nine rows, 49 witnesses. The 0.3.0
+requirement record is `WITNESSES_030` in `stand_requirement_sweep`: sixteen rows, 74 witnesses.
