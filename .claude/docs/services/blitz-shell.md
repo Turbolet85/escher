@@ -28,7 +28,7 @@ Event loop, windowing and system integration on winit: `BlitzApplication`, `View
 - `src/{application,window,event,accessibility,convert_events,net,lib}.rs`
 
 ## Testing this crate
-- One in-crate unit test, in `src/event.rs`'s one `#[cfg(test)]` module: a redraw request reaching the receiver and waking the loop once; headless behaviour is tested through `blitz-test-harness`.
+- An in-crate unit test, in `src/event.rs`'s `#[cfg(test)]` module: a redraw request reaching the receiver and waking the loop once; headless behaviour is tested through `blitz-test-harness`.
 
 ## References
 - `doc:architecture` (the records store) · `.claude/docs/services/blitz-dom.md`

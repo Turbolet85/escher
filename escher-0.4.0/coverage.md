@@ -1,9 +1,6 @@
 # Coverage — escher-0.4.0
 
-verified 0/15 · deferred 0 · planned 14 · implemented 1 · unclaimed 14
-
-## implemented (1)
-- v040-01 · Build directory held · 2026-11-19-build-directory-held
+verified 1/15 · deferred 0 · planned 14 · implemented 0 · unclaimed 14
 
 ## planned, unclaimed (14)
 - v040-02 · Upstream sync
@@ -20,3 +17,6 @@ verified 0/15 · deferred 0 · planned 14 · implemented 1 · unclaimed 14
 - v040-13 · Pan and zoom under a transform
 - v040-14 · The node-graph stand app
 - v040-15 · Cold-agent run
+
+## verified (1)
+- v040-01 · Build directory held · 2026-11-19-build-directory-held

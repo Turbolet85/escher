@@ -13,7 +13,7 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 - `tests/blitz-tests/` — integration tests, one file and one test target per behaviour; `checks/` holds the two committed kept checks
 - `examples/` — example crates; `examples/seven_guis/` is the 7GUIs stand
 - `apps/` — the reference browser and the markdown viewer
-- `scripts/` — the agent-run test contract, the cold-agent run pipe, the code-graph tooling
+- `scripts/` — the agent-run test contract, the cold-agent run pipe, the dev-host build-directory sweep (`target-sweep.py`, its Windows pass-through `target-sweep.ps1`), the code-graph tooling
 <!-- GENERATED:setup:overview end -->
 
 ## Modules
@@ -55,7 +55,7 @@ escher is a fork of Blitz, a Rust library workspace for an HTML/CSS engine (high
 - No panic path on untrusted input — a driver call's arguments — refuse it as a typed value, never `unwrap` · `expect` · `panic!` · `unreachable!`
 - `NodeId` is versioned: a dropped node's id stops resolving instead of aliasing a reused slot — a stale id resolves to none on lookup, never a panic
 - No content in a log field: `url` · `href` · `src` · `html` · `text` · `value` · `attrs` · `path` · `request` · `error` · `password` · `panic.payload` print `[redacted]` on `escher_*` targets — add no field that carries them
-- Every build, test and CI cargo leg passes `--locked` against the committed `Cargo.lock` (`fmt` and `examples/wasm_hello` aside — the latter a standalone workspace with no `Cargo.lock`)
+- Every build, test and CI cargo leg, and every cargo run of the build-directory sweep, passes `--locked` against the committed `Cargo.lock` (`fmt` and `examples/wasm_hello` aside — the latter a standalone workspace with no `Cargo.lock`)
 - The workspace takes no git dependency — every crate a crates.io registry version, the taffy crate alone excepted: it takes upstream's git source pinned at a full commit rev, no patch section, its integrity resting on the rev (its lock entry has no checksum), and still passes the lock, audit and MSRV legs
 - Incremental and non-incremental layout must produce identical layouts after any sequence of mutations — the `incremental_oracle` holds them to it
 - DOM mutations go through `DocumentMutator`, which flushes deferred work on drop
@@ -105,7 +105,7 @@ The masters live in the store, no file: fire `python -X utf8 ~/.claude/skills/an
 <!-- GENERATED:setup:workflow start -->
 **Key commands:**
 - `cargo build --workspace` — build every crate (Linux needs `libfontconfig1-dev`; Arch: `fontconfig`)
-- `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → workspace tests → CI scripts → `embolden` (the `blitz-paint/font-embolden` witness, a leg with no CI job of its own), as CI runs them — it runs no rustdoc, so a chunk that edits a public doc comment lists the `doc` leg in its local gate block too
+- `bash .github/scripts/ci-leg.sh fast` — the local pre-push gate: fmt → clippy → workspace tests → CI scripts → `embolden` (the `blitz-paint/font-embolden` witness, a leg with no CI job of its own), as CI runs them, then, on a dev host with `CI` unset or empty and after a green verdict, the build-directory sweep `scripts/target-sweep.py`, its line printed and its refusal or failure never reddening the leg (a red leg calls none) — it runs no rustdoc, so a chunk that edits a public doc comment lists the `doc` leg in its local gate block too
 - `cargo test -p blitz-tests --test {name}` — one integration-test file; agent-driven: `bash scripts/agent-run.sh boot`, then `run stand|all|session|{name}` (`session` a closed word matched before a file name, running seven_guis' `cli_flow` flows of the `escher-session` binary; JSON-line results; `status` · `logs` · `cleanup`)
 - `bash .github/scripts/ci-leg.sh {leg}` — one CI leg exactly (`fmt` · `clippy` · `test` · `build` · `doc` · `audit` · `a11y` · `coverage` · `stand-repeat` — the stand checks, seventeen named blitz-tests targets outside the `stand_` prefix and seven_guis' process checks three rounds under a zero-failure budget, not a fast leg · …); log in `target/ci-logs/{leg}.log`; the mutation tier is no leg — run on the dev host alone, never in CI: cargo-mutants `--test-tool nextest --baseline=skip` under `NEXTEST_PROFILE=mutants` (the root `.config/nextest.toml`'s `mutants` profile), each unit's mutant test command first read green on the unmutated tree (`.andromeda/test-plan.md` §10)
 - `just seven_guis` — run the 7GUIs stand natively (windowed)

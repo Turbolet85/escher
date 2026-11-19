@@ -1,0 +1,26 @@
+# Main's own cascade patterns — the amended claims' old wording and mechanism, across all seven masters
+
+# contract/ci-leg-legs/embolden's old claim: embolden is the last step of fast
+[[pattern]]
+id = 'main-last-step'
+regex = 'last step of (`?ci-leg\.sh )?`?fast|ends on the font-embolden|fast` ends|ends with (the )?embolden'
+
+# the fast leg's run list, stated as its whole run (pre-push gate rows and their quotes)
+[[pattern]]
+id = 'main-fast-run'
+regex = 'fmt, clippy, test, ci-scripts(,| and) embolden|fmt → clippy → test'
+
+# decision/windows-entries-pass-through's old enumeration
+[[pattern]]
+id = 'main-win-entries'
+regex = 'agent-run and cold-agent pipes are pass-throughs|pass-throughs? with no logic'
+
+# decision/run-state-areas-local-only: what is removed under target/
+[[pattern]]
+id = 'main-target-rm'
+regex = 'nothing else under target/|removed by cleanup'
+
+# decision/locked-builds' old enumeration
+[[pattern]]
+id = 'main-locked'
+regex = 'every CI cargo leg,? passes --locked|the bundle and every CI cargo leg'

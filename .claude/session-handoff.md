@@ -1,48 +1,53 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-18T21:10:00Z
-**Branch:** build/escher-0.3.0 · 0 ahead of origin/build/escher-0.3.0 as read at this wrap's Setup (HEAD `023a1a06c`, the operator pre-CI commit)
-**Status:** wrapped — the chunk commit and push are this wrap's P7
-**Last Commit:** chore(2026-11-18-cold-agent-live-run): operator pre-CI commit (the wrap commit follows; see `git log -1`)
+**Last Updated:** 2026-11-19T15:20:00Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `70eb94880`, the operator pre-CI commit)
+**Status:** clean — the chunk commit and push are this wrap's P7
+**Last Commit:** chore(2026-11-19-build-directory-held): operator pre-CI commit (the wrap commit follows; see `git log -1`)
 
 ## Position
-- Done: 2026-11-18-cold-agent-live-run — the last entry of Epoch 6 «Polish & ship» and of escher-0.3.0.
-  - The founder's one live cold-agent run fired once and passed. It made 76 calls with 0 wrong against the 5 % bar, met all seven apps, and read `caused_by_kind` panic 1 · error 1 · log 1. It cost $1.0301 of the $3 cap, on client 2.1.327.
-  - README.md and docs/capabilities.md state the run as measured, with its reach.
-  - v030-15 implemented with its ref; P7 flips it to verified.
-  - CI#44386100144 reads green 17/17 on `023a1a06c` at attempt 1.
-- The founder's F1–F4 (inputs#I1) were the ratification basis, named again in the wrap directive (inputs#I6). F4 (graph and actions answers to the provider) already stood in architecture and security-plan, from 2026-11-18-cold-agent-bar's wrap; nothing new was owed for it.
-- 0.3.0's markerless tail is empty, so the version's route is exhausted.
-- Wrap run dir: `.andromeda/runs/2026-11-18T20-45-44-wrap/`.
-- Next: the Epoch 6 diagnosis (`/andromeda-evolve-diagnose`, if the P7 nudge names it), then `/andromeda-route` for the next version.
+- Done: 2026-11-19-build-directory-held — the build directory's growth measured and mended. It is the one entry of 0.4.0's Epoch 1 «Foundation», so this wrap closes that epoch.
+  - The cause: cargo mints a unit hash per feature resolution × lockfile × toolchain epoch, never per edit. A one-crate lock move added 184 test-binary hashes, +36.49 GB.
+  - The mend: `scripts/target-sweep.py`, run by `ci-leg.sh fast` after a green verdict on a dev host, skipped under `CI`. A replayed day grew +57.90 GB unmended and −2.04 GB mended.
+  - v040-01 implemented with its ref; P7 flips it to verified.
+  - CI#44537789372 reads green 17/17 on `70eb94880`.
+- Next: Epoch 2's head, «Upstream sync ahead of the debts» (`/andromeda-phase`), after the Epoch 1 diagnosis if P7's nudge names it.
 
 ## Work done
-- Report closed (report rev 3): `## After implement` + `## New text, by line`. Input snapped: I6 (the wrap directive).
-- Masters: 4 rows added, in tx 2272–2275.
-  - architecture `decision/cold-agent-result-stated-measured` (F2).
-  - security-plan `decision/credential-probe-reads-valued-keys`.
-  - test-plan `decision/live-run-evidence-byte-faithful` (inputs#I4).
-  - test-plan `decision/cold-agent-live-run-fired-once` (F3; mine).
-- Leaves: whole mode (the epoch closes), 15 comparers. 23 findings — 21 applied, 2 declined, 0 by hand.
-- Curation: none. All candidates are master rows now, or duplicates of host-linux.md.
-- Route, tx 2291: the unretired WATCH (no-runner macOS/iOS cancels, 1/3 green) became cross-version residual `res-q2tllspz` at version end.
+- Report closed (rev 4): `## After implement` and `## New text, by line`. Input snapped: I4, the wrap directive.
+  - The close states the step 2 and step 9 controls in substance as deviations, both read by property.
+  - It records the `CI=true` rebuild as a measured limit.
+- Masters: 24 operations in tx 2343–2347.
+  - security-plan 4: argv, no env read, the `CI` env value, locked-builds.
+  - architecture 12: the fast contract and pre-push gate, embolden, the Windows entries, the state areas, exit codes 0–3, three names.
+  - obs-plan 5: the sweep's stdout line and its keys.
+  - test-plan 3: the pre-push gate, the sweep safe around a build, the build directory held by a sweep.
+- Leaves: whole mode (the epoch closes), 15 comparers, 27 findings. 16 applied, 10 declined as detail, and 2 written by hand through `harness land`: the CLAUDE.md tree line, and a stale `tests-summary.md:21` that the comparer missed.
+- Figure removal (inputs#I4): 96 code-stated test, file and target counts removed from 13 docs leaves (tx 2362–2374). Run readings were kept. Log: `.andromeda/runs/2026-11-19T14-42-20-wrap/curation.md`.
+- Curation: T3 extended (the `<user>` placeholder now covers every control record a phase or implement run writes or quotes).
+- Route: CARRY on «Dependency and CI debts» (tx 2377), for the `CI=true` rebuild under new hashes (about 48 GB, mechanism not found).
 
 ## Drift resolved
-- 12 operations proposed (and 2 `@none`): 3 applied, 7 rejected, plus 1 `ops-main` operation of mine, applied — 4 landed. Fit: 4 fits, 0 not_master.
-  - Rejected under check 2 (one fact twice across masters): 6. The credential probe was offered in 3 masters, the measured statement in 2, the one-run rule in 2, and the byte-faithful rule was set onto obs's raw-transcript row.
-  - Rejected under check 3: 1. test-plan's «once per version» reached past F3; I restated it as ruled.
-- 0 escalations.
+- 80 proposals and 4 of mine. Applied 24, rejected 44, escalations 0.
+  - Rejected under check 2 (one fact twice across masters): 40. The sweep's exit codes were offered in 5 masters, its stdout line in 4, its lock refusal in 5. Each keeps one home, listed in `fanout-results.md`.
+  - Rejected under check 7 (`not_master`): 4 — the keep set's construction, a no-log decision, local-baseline's figures, and the `CI=true` limit (the CARRY holds it).
+- Fit: 24 fits.
 
 ## Notes
-- The Bash guard refused two of my calls this wrap: a pipeline tool piped into `head`, and a `cd` into the run dir. Each was re-issued once in the guard's form, none routed around.
-- `.claude/docs/tests-summary.md:16` still states the 2026-10-25 live run (66 calls, 2.1.308) — true as that run's record. No master states the 2026-11-18 run, so no comparer carried it, and no hand edit was made (inputs#I6).
+- The Bash guard refused three of my calls. The first, a `cd` into the run dir, stopped the wrap on the directive. The operator then narrowed the line: a refusal the guard spells is re-issued once; stop only when a wrap step has no accepted form. The other two (a pipe into `head`, a `cd` into the skills dir) were each re-issued once.
+- Deferred learnings (Filter 5: the directive named one entry):
+  - the sweep hazard: cargo 1.99's JSON names a build-script unit by its directory, an example by its hash-less uplift;
+  - the operator's guard line above.
+- Curation recurrence: `recurrence-despite-learning: host-linux.md §Paths` (a `cd` that moves the cwd).
+- No tool runs a «figure sweep». This wrap ran its own search; the friction record names it.
 - Carried from earlier wraps:
   - the CARRY leaf lines' test-file lists are the pre-split ones;
   - residual `res-h7acz56c` is route's to flip;
   - security-plan `dec-kxrtstbq`'s `verified_was` evidence still quotes `Cargo.lock:8040-8041`;
   - `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Left for the operator to remove: `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, implement's scratch clones (`…/scratchpad/guardclone`, `…/guardclone-impl`), `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
+- Left for the operator to remove:
+  - `target/p5-baseline-debug` (101 GB, renamed aside at implement);
+  - `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`);
+  - `target/tmp/smoke-order-1`, `target/tmp/trial-pas` and `target/tmp/escher-session.head`;
+  - implement's scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-19 10:26:17

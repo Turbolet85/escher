@@ -113,4 +113,4 @@
 
 ## escher-0.4.0
 
-2026-11-19-build-directory-held · pending · Build directory held — the growth of target/ measured to its cause, mended, a working day's growth stated in GB · → chk:2026-11-19-build-directory-held
+2026-11-19-build-directory-held · complete · Build directory held — the growth of target/ measured to its cause, mended, a working day's growth stated in GB · → chk:2026-11-19-build-directory-held

@@ -14,7 +14,7 @@ Browser's surviving mutants — the four at the capture module caught, or kept b
 Select list and selection debts — highlighted-row contrast shared with a multiple's chosen row, larger font, highlight's reading, single `size`, Cells' selected cell; founder's forks (v040-04)
 Driver debts — `press` with Ctrl, `graph --part N` as ruled, coverage under a stopped bubbling dispatch; each the founder's fork (v040-05)
 Engine debts — a hidden focused control, a render-polled task, page-script `Math.random`, the growing boundary registry; each the founder's fork (v040-06)
-Dependency and CI debts — advisories (sqlite, paste, memmap2, zbus, zip) closed or stated as waits; the cancelled-runner watch retired or kept (v040-07)
+Dependency and CI debts — advisories (sqlite, paste, memmap2, zbus, zip) closed or stated as waits; the cancelled-runner watch retired or kept (v040-07)  CARRY: find why a `CI=true bash .github/scripts/ci-leg.sh fast` on the dev host builds its units under new hashes (about 48 GB measured, 42 packages recompiled, the project source reading no `CI`) and make it reuse the dev host's units or state the cause as a limit (2026-11-19-build-directory-held, measured limit; chunks/2026-11-19-build-directory-held/evidence/operator-pass.md, chunks/2026-11-19-build-directory-held/evidence/footprint-report.md)
 
 ### Epoch 3 — The canvas painted
 

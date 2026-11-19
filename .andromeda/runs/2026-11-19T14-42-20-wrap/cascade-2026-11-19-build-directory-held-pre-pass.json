@@ -1,0 +1,199 @@
+[
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "4ae4030f",
+"ts": "2026-11-19T14:43:53Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-19T14-42-20-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-19T14-42-20-wrap",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 70eb9488 (pre-pass — HEAD)",
+"incremental-dir · control UNFIRED over the seven masters (bodies and sets) at 70eb9488",
+"compiling-line · control UNFIRED over the seven masters (bodies and sets) at 70eb9488",
+"deps-count · control UNFIRED over the seven masters (bodies and sets) at 70eb9488",
+"sweep · control UNFIRED over the seven masters (bodies and sets) at 70eb9488",
+"hash-cause · control UNFIRED over the seven masters (bodies and sets) at 70eb9488",
+"ci-env · control UNFIRED over the seven masters (bodies and sets) at 70eb9488"
+],
+"stderr": "control: incremental-dir, compiling-line, deps-count, sweep, hash-cause, ci-env never fired over the seven masters' pre-pass text, bodies and sets (70eb9488) — no master holds them: re-fire with --pattern ci-scripts-files --pattern fast-step --pattern local-baseline --pattern state-areas --pattern env-list --pattern cleanup-scoped; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "4ae4030f",
+"ts": "2026-11-19T14:44:01Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-19T14-42-20-wrap/report-patterns.toml",
+"--pattern",
+"ci-scripts-files",
+"--pattern",
+"fast-step",
+"--pattern",
+"local-baseline",
+"--pattern",
+"state-areas",
+"--pattern",
+"env-list",
+"--pattern",
+"cleanup-scoped",
+"--run-dir",
+".andromeda/runs/2026-11-19T14-42-20-wrap",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 70eb9488 (pre-pass — HEAD)",
+"architecture · 21 rows over 1 files · new 0 · standing 21 · 4 patterns",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"layout-templates · 4 rows over 1 files · new 0 · standing 4 · 2 patterns",
+"test-plan · 13 rows over 1 files · new 0 · standing 13 · 5 patterns",
+"obs-plan · 7 rows over 1 files · new 0 · standing 7 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (6 patterns) · 116 rows over 21 files",
+"per class · new 0/0 · standing 47/5 · leaf 63/15 · curation 6/3 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-19T14-42-20-wrap/sweep-pre-pass-1.1.txt · 129 lines · 15693 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-19T14-42-20-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "70eb94880e1dde66d62a436f5b2abf0ab9ea627c",
+"how": "pre-pass — HEAD",
+"counts": {
+"ci-scripts-files": {
+"new": 0,
+"standing": 11,
+"leaf": 10,
+"curation": 2,
+"base": 0
+},
+"fast-step": {
+"new": 0,
+"standing": 8,
+"leaf": 18,
+"curation": 2,
+"base": 0
+},
+"local-baseline": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"state-areas": {
+"new": 0,
+"standing": 19,
+"leaf": 29,
+"curation": 1,
+"base": 0
+},
+"env-list": {
+"new": 0,
+"standing": 6,
+"leaf": 6,
+"curation": 1,
+"base": 0
+},
+"cleanup-scoped": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 21,
+"files": 1,
+"new": 0,
+"standing": 21,
+"patterns": 4
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 2
+},
+"test-plan": {
+"rows": 13,
+"files": 1,
+"new": 0,
+"standing": 13,
+"patterns": 5
+},
+"obs-plan": {
+"rows": 7,
+"files": 1,
+"new": 0,
+"standing": 7,
+"patterns": 2
+}
+},
+"per_master": {
+"ci-scripts-files": {
+"architecture": 8,
+"test-plan": 3
+},
+"fast-step": {
+"architecture": 3,
+"security-plan": 2,
+"test-plan": 3
+},
+"local-baseline": {
+"test-plan": 1
+},
+"state-areas": {
+"architecture": 6,
+"layout-templates": 3,
+"test-plan": 5,
+"obs-plan": 5
+},
+"env-list": {
+"architecture": 4,
+"layout-templates": 1,
+"test-plan": 1
+},
+"cleanup-scoped": {
+"obs-plan": 2
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]
