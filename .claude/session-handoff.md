@@ -43,3 +43,6 @@
   - `host-linux.md` is 9 template lines behind (U04 `noted`).
 - Left for the operator to remove: `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, implement's scratch clones (`…/scratchpad/guardclone`, `…/guardclone-impl`), `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-19 07:47:58

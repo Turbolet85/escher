@@ -1,0 +1,53 @@
+# Working Route — escher-0.4.0
+
+### Epoch 1 — Foundation
+
+Build directory held — the growth's cause measured, then mended; a working day's growth after the mend stated as a number (v040-01)
+
+### Epoch 2 — Debts of 0.1.0–0.3.0
+
+Upstream sync ahead of the debts — two-parent merge; left-out commits named; CDP listener's security amendment first; lock, residuals re-read; CI, a11y leg, audit green (v040-02)
+README and records — 0.3.0 closed in the founder's chosen form, what 0.4.0 builds; the category-file citation backlog read through or kept (v040-03)
+Stand-test setup shared — the stand checks' repeated setup in one place, duplication back under its earlier reading, every check unchanged (v040-08)
+Codebase health — the code audit's oversize files and functions over the ceiling, each under its bar or kept by the founder's word (v040-08)
+Browser's surviving mutants — the four at the capture module caught, or kept by the founder's word (v040-08)
+Select list and selection debts — highlighted-row contrast shared with a multiple's chosen row, larger font, highlight's reading, single `size`, Cells' selected cell; founder's forks (v040-04)
+Driver debts — `press` with Ctrl, `graph --part N` as ruled, coverage under a stopped bubbling dispatch; each the founder's fork (v040-05)
+Engine debts — a hidden focused control, a render-polled task, page-script `Math.random`, the growing boundary registry; each the founder's fork (v040-06)
+Dependency and CI debts — advisories (sqlite, paste, memmap2, zbus, zip) closed or stated as waits; the cancelled-runner watch retired or kept (v040-07)
+
+### Epoch 3 — The canvas painted
+
+Upstream sync ahead of the canvas — two-parent merge; left-out commits named with reasons; CI, a11y leg and audit green (v040-02)
+Canvas in a headless shot — what an app paints from Rust appears in a harness shot, measured on the stand first (v040-09)
+Canvas placement and text — the widget placed at its content box (upstream issue 1578), canvas text from the bundled fonts (v040-09)
+Canvas shot across hosts — byte equality on Linux, macOS, Windows measured; required (amending the no-shot cross-OS rule) or toleranced, by the founder's word (v040-09)
+Circle Drawer on a canvas — the first sample, circles painted from Rust; skeleton, keys, boot lint clean; checks in both layout modes, cross-OS digests (v040-09)
+
+### Epoch 4 — Inside the canvas
+
+Upstream sync ahead of inside the canvas — two-parent merge; left-out commits named with reasons; CI, a11y leg and audit green (v040-02)
+Canvas draw commands — a driver verb answering a canvas's commands, summary and full levels, deterministic, diffable; size measured; every carrier's crossing the founder's fork (v040-10)
+Canvas lint — lint-like checks inside a canvas, a label overflowing its region among them (v040-10)
+Virtual nodes declared — author key, role, non-empty name, region inside a canvas, reserved id form; declaration's form and names' crossing the founder's fork (v040-11)
+Virtual nodes as elements — in the accessibility tree and from it the snapshot and diff; taking `click`; refused covered, off-screen, disabled or stale (v040-11)
+Virtual nodes in every read — the UI graph, actions, handler coverage, layout explained and exploration (v040-11)
+Circle Drawer's circles as virtual nodes — each circle a node, its draw commands grouped by it, with stand checks (v040-10, v040-11)
+Canvas keyboard path — Circle Drawer's circles reached and acted on by keyboard; engine, snapshot and tree focus agree; Tab order in the shared table (v040-11)
+
+### Epoch 5 — Drag, pan and zoom
+
+Upstream sync ahead of drag, pan and zoom — two-parent merge; left-out commits named with reasons; CI, a11y leg and audit green (v040-02)
+The drag verb — element, virtual node or offset; interpolated moves; settled and refused like every action; recorded, replayed, in actions; a widening fork (v040-12)
+Select list thumb dragged — the list's thumb moved by `drag`, a long list scrolled by it (v040-12)
+Pan and zoom — transformed targets read, hit, acted on where shown; zoom a widening-fork verb or stated limit; speed budget at stated node count (v040-13)
+Node-graph stand app — nodes with ports, canvas wires; dragged, wired, panned, zoomed, with a keyboard path or stated limit; keyed, lint-clean, both layout modes (v040-14)
+
+### Epoch 6 — Polish & ship
+
+Upstream sync ahead of polish and ship — two-parent merge; left-out commits named with reasons; CI, a11y leg and audit green (v040-02)
+Stand requirement sweep — 0.4.0's capabilities proven inside stand-repeat; floors, masks, stand layout and the log scrub at trace held over every new verb (intent §Principles)
+A11y re-read — SC 2.1.1, 2.4.3, 1.4.3 on both canvas samples' keyboard paths, virtual-node names and roles, in the `a11y` leg and stand-repeat (a11y-plan §9)
+Capability statement — what 0.4.0 adds and its stated limits, span set and accessibility reach by hand, the README's 0.4.0 done (v040-03 reach)
+Cold-agent bar — the pipe, its reply check and verb counts widened to canvas apps and new verbs; fresh-agent goals over canvas, virtual nodes, `drag` (v040-15)
+Cold-agent live run — one fresh agent on the stand, the two canvas samples among its apps, judged at 5 % wrong calls (v040-15)

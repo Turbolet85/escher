@@ -1,0 +1,15 @@
+# Tests validation — route draft
+
+## Rewrite
+- `Canvas shot across hosts`: "byte equality on CI's Linux, macOS and Windows measured; required or toleranced by the founder's word" → "byte equality on CI's Linux, macOS and Windows measured; a required equality amends the ratified no-shot cross-OS rule, else held per host"
+  Reason: per test-plan §2 Test Strategy (no-shot-in-cross-os-byte-checks, cross-os-checks-hold-no-shot) and §Session lifecycle (no-screenshot-in-cross-os-checks), shot PNG bytes are ratified as differing across OSes, so a cross-host shot gate must amend that rule out loud and cannot quietly sit beside it.
+- `Canvas draw commands`: "deterministic, diffable; size measured" → "deterministic, diffable; size measured; verb-count pins, tools/list order and the capability statement's schema counts swept"
+  Reason: per test-plan §2 Test Strategy (count-and-rename-sweeps, capability-check-names-held-to-schema) and §6 E2E (`tools/list` offers fifteen verbs in order), a sixteenth verb turns the pinned verb-table counts red unless the chunk sweeps them.
+- `The drag verb`: "recorded, replayed, in actions; a widening fork" → "recorded, replayed, in actions; verb-count pins and schema counts swept; a widening fork"
+  Reason: per test-plan §2 Test Strategy count-and-rename-sweeps and §1 capabilities-doc-pinned-to-schema (guard `test_capability_statement.py`), each verb added moves the pinned counts again.
+- `Circle Drawer on a canvas`: "with its stand checks" → "with its stand checks in both layout modes, its non-shot readings joining the cross-OS digest table"
+  Reason: per test-plan §1 stand-checks-in-both-layout-modes and §2 cross-os-readings-by-answer-digest (`stand_cross_os_readings`), a new served sample's readings get the same per-mode and cross-OS hold as the seven existing tasks.
+- `Node-graph stand app`: "the surface panned and zoomed" → "the surface panned and zoomed; stand checks in both layout modes, readings in the cross-OS digest table"
+  Reason: per test-plan §1 stand-checks-in-both-layout-modes and §2 cross-os-readings-by-answer-digest, the second canvas app needs the same stand-check hold as Circle Drawer.
+- `Pan and zoom under a transform`: "speed at stated node count" → "speed at stated node count, recorded as the project's first performance budget"
+  Reason: per test-plan §10 Quality Gates, no performance budget is set yet, so the measured speed should become the stated budget that later checks hold to.
