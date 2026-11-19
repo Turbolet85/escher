@@ -10,6 +10,7 @@ use style::{
         specified::box_::{DisplayInside, DisplayOutside},
     },
 };
+use stylo_taffy::CopyStyleGetters;
 
 use crate::{
     NodeData,
@@ -196,20 +197,25 @@ pub(crate) fn build_inline_layout_into(
                             if box_kind == InlineBoxKind::InFlow {
                                 text_transformer.word_break(builder);
                             }
-                            builder.push_inline_box(InlineBox {
-                                id: node_id.as_u64(),
-                                kind: box_kind,
-                                // Overridden by push_inline_box method
-                                index: 0,
-                                // Width and height are set during layout
-                                width: 0.0,
-                                height: 0.0,
-                                baseline: None,
-                                vertical_align: node
-                                    .primary_styles()
-                                    .map(|s| stylo_to_parley::vertical_align(&s))
-                                    .unwrap_or_default(),
-                            });
+                            push_inline_box(
+                                builder,
+                                nodes,
+                                node,
+                                InlineBox {
+                                    id: node_id.as_u64(),
+                                    kind: box_kind,
+                                    // Overridden by push_inline_box method
+                                    index: 0,
+                                    // Width and height are set during layout
+                                    width: 0.0,
+                                    height: 0.0,
+                                    baseline: None,
+                                    vertical_align: node
+                                        .primary_styles()
+                                        .map(|s| stylo_to_parley::vertical_align(&s))
+                                        .unwrap_or_default(),
+                                },
+                            );
                         } else if *tag_name == local_name!("br") {
                             // node.remove_damage(CONSTRUCT_DESCENDENT | CONSTRUCT_FC | CONSTRUCT_BOX);
                             // TODO: update span id for br spans
@@ -270,20 +276,25 @@ pub(crate) fn build_inline_layout_into(
                         if box_kind == InlineBoxKind::InFlow {
                             text_transformer.word_break(builder);
                         }
-                        builder.push_inline_box(InlineBox {
-                            id: node_id.as_u64(),
-                            kind: box_kind,
-                            // Overridden by push_inline_box method
-                            index: 0,
-                            // Width and height are set during layout
-                            width: 0.0,
-                            height: 0.0,
-                            baseline: None,
-                            vertical_align: node
-                                .primary_styles()
-                                .map(|s| stylo_to_parley::vertical_align(&s))
-                                .unwrap_or_default(),
-                        });
+                        push_inline_box(
+                            builder,
+                            nodes,
+                            node,
+                            InlineBox {
+                                id: node_id.as_u64(),
+                                kind: box_kind,
+                                // Overridden by push_inline_box method
+                                index: 0,
+                                // Width and height are set during layout
+                                width: 0.0,
+                                height: 0.0,
+                                baseline: None,
+                                vertical_align: node
+                                    .primary_styles()
+                                    .map(|s| stylo_to_parley::vertical_align(&s))
+                                    .unwrap_or_default(),
+                            },
+                        );
                     }
                 };
             }
@@ -301,4 +312,54 @@ pub(crate) fn build_inline_layout_into(
             NodeData::Document(_) => unreachable!(),
         }
     }
+}
+
+/// Push `inline_box` into the inline context being built by `builder`.
+///
+/// Parley places an in-flow box at a U+FFFC placeholder in the text, and a placeholder no font
+/// can shape yields no box in the line, so the box would never be laid out. Shaping the
+/// placeholder in the families of `node`'s parent with [`crate::PLACEHOLDER_FONT_FAMILY`] last
+/// (registered in every document's context; its font covers no U+FFFC) keeps the box placed
+/// where the text around it has no font at all, and changes nothing where any family of the
+/// parent resolves.
+fn push_inline_box(
+    builder: &mut TreeBuilder<TextBrush>,
+    nodes: &crate::NodeTree,
+    node: &crate::Node,
+    inline_box: InlineBox,
+) {
+    if inline_box.kind != InlineBoxKind::InFlow {
+        builder.push_inline_box(inline_box);
+        return;
+    }
+    let parent = node.parent.and_then(|id| nodes.get(id));
+    let mut families: Vec<parley::FontFamilyName<'static>> = match parent
+        .and_then(|parent| {
+            parent
+                .primary_styles()
+                .map(|s| stylo_to_parley::style(parent.id, &s))
+        })
+        .map(|style| style.font_family)
+    {
+        Some(parley::FontFamily::List(list)) => list
+            .iter()
+            .map(|family| family.clone().into_owned())
+            .collect(),
+        Some(parley::FontFamily::Single(family)) => vec![family.into_owned()],
+        None => Vec::new(),
+        // A family list given as CSS source text is never what `stylo_to_parley` builds; left
+        // as it is rather than re-parsed.
+        Some(parley::FontFamily::Source(_)) => {
+            builder.push_inline_box(inline_box);
+            return;
+        }
+    };
+    families.push(parley::FontFamilyName::Named(std::borrow::Cow::Borrowed(
+        crate::PLACEHOLDER_FONT_FAMILY,
+    )));
+    builder.push_style_modification_span(&[parley::StyleProperty::FontFamily(
+        parley::FontFamily::List(std::borrow::Cow::Owned(families)),
+    )]);
+    builder.push_inline_box(inline_box);
+    builder.pop_style_span();
 }

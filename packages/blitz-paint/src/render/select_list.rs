@@ -3,7 +3,7 @@
 //! [`BaseDocument::select_list_view`](blitz_dom::BaseDocument::select_list_view).
 
 use anyrender::PaintScene;
-use blitz_dom::{BoundingRect, SelectListRow, SelectListView};
+use blitz_dom::{BoundingRect, CopyStyleGetters, SelectListRow, SelectListView};
 use kurbo::{Affine, Rect, Stroke};
 use peniko::Fill;
 
@@ -68,7 +68,8 @@ impl BlitzDomPainter<'_, '_> {
             .and_then(|node| node.primary_styles())
         {
             let background = styles
-                .clone_background_color()
+                .get_background()
+                .background_color
                 .resolve_to_absolute(&styles.clone_color())
                 .as_srgb_color();
             scene.fill(

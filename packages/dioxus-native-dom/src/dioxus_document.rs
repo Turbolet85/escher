@@ -303,6 +303,10 @@ impl Document for DioxusDocument {
         // their own (e.g. JavaScript timers)
         let subdoc_changes = self.inner.borrow_mut().poll_subdocuments(Some(&waker));
 
+        // Dispatch events queued on the document since it was last driven, before running
+        // the vdom so that it picks up any work their handlers schedule.
+        self.flush_pending_dom_events();
+
         {
             let fut = self.vdom.wait_for_work();
             let mut pinned_fut = pin!(fut);
@@ -323,6 +327,13 @@ impl Document for DioxusDocument {
         drop(writer);
         drop(inner);
         self.flush_queued_mounted_events();
+
+        // Applying mutations and running mounted handlers can queue events (e.g. focus
+        // events from a mounted handler calling `set_focus`). Their handlers may leave the
+        // vdom with more work, so ask to be polled again.
+        if self.flush_pending_dom_events() {
+            waker.wake_by_ref();
+        }
 
         true
     }
@@ -352,6 +363,21 @@ impl Document for DioxusDocument {
             }
         }
         tree
+    }
+}
+
+impl DioxusDocument {
+    /// Dispatch the events queued on the document to the vdom. Returns whether there were any.
+    fn flush_pending_dom_events(&mut self) -> bool {
+        if !self.inner.borrow().has_pending_events() {
+            return false;
+        }
+        let handler = DioxusEventHandler {
+            vdom: &mut self.vdom,
+            vdom_state: &mut self.vdom_state,
+        };
+        EventDriver::new(&mut self.inner, handler).flush_pending_events();
+        true
     }
 }
 

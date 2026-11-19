@@ -6,8 +6,10 @@ use markup5ever::{LocalName, QualName, local_name, ns};
 use selectors::matching::{ElementSelectorFlags, QuirksMode};
 use std::cell::Cell;
 use std::str::FromStr;
-use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
+use std::sync::{Arc, OnceLock};
+
+use crate::stylo::PresentationalHints;
 use style::Atom;
 use style::parser::ParserContext;
 use style::properties::{Importance, PropertyDeclaration, PropertyId, SourcePropertyDeclaration};
@@ -68,6 +70,10 @@ pub struct ElementData {
     /// The element's parsed style attribute (used by stylo)
     pub style_attribute: Option<ServoArc<Locked<PropertyDeclarationBlock>>>,
 
+    /// The declaration blocks of the element's presentational hints, built from its
+    /// attributes when style matching first asks for them. Cleared when an attribute changes.
+    pub(crate) presentational_hints: OnceLock<PresentationalHints>,
+
     /// Heterogeneous data that depends on the element's type.
     /// For example:
     ///   - The image data for \<img\> elements.
@@ -110,6 +116,10 @@ pub struct ElementData {
     /// Whether this node or any of its descendants may carry `RestyleDamage`.
     /// Used by the damage propagation pass to skip unchanged subtrees.
     pub damaged_descendants: AtomicBool,
+    /// Whether an animation or transition set has ever been stored for this
+    /// element (or its pseudo-elements). Lets Stylo skip the animation lookups
+    /// for elements that have never animated.
+    pub may_have_animations: AtomicBool,
 
     // Pseudo element nodes
     pub before: Option<NodeId>,
@@ -322,6 +332,7 @@ impl Clone for ElementData {
             template_contents: self.template_contents,
 
             // Runtime state: reset to defaults.
+            presentational_hints: OnceLock::new(),
             stylo_element_data: Default::default(),
             selector_flags: Cell::new(ElementSelectorFlags::empty()),
             guard: self.guard.clone(),
@@ -330,6 +341,7 @@ impl Clone for ElementData {
             snapshot_handled: AtomicBool::new(false),
             dirty_descendants: AtomicBool::new(true),
             damaged_descendants: AtomicBool::new(true),
+            may_have_animations: AtomicBool::new(false),
             before: None,
             after: None,
             detailed_layout_info: taffy::DetailedLayoutInfo::None,
@@ -432,6 +444,7 @@ impl ElementData {
             attrs: Attributes::new(attrs),
             is_focussable: false,
             style_attribute: Default::default(),
+            presentational_hints: OnceLock::new(),
             inline_layout_data: None,
             list_item_data: None,
             special_data: SpecialElementData::None,
@@ -447,6 +460,7 @@ impl ElementData {
             snapshot_handled: AtomicBool::new(false),
             dirty_descendants: AtomicBool::new(true),
             damaged_descendants: AtomicBool::new(true),
+            may_have_animations: AtomicBool::new(false),
             before: None,
             after: None,
             detailed_layout_info: taffy::DetailedLayoutInfo::None,
@@ -804,7 +818,7 @@ impl ElementData {
         guard: &SharedRwLock,
         url_extra_data: UrlExtraData,
     ) -> bool {
-        let context = ParserContext::new(
+        let mut context = ParserContext::new(
             Origin::Author,
             &url_extra_data,
             Some(CssRuleType::Style),
@@ -826,7 +840,7 @@ impl ElementData {
         let Ok(_) = PropertyDeclaration::parse_into(
             &mut source_property_declaration,
             property_id,
-            &context,
+            &mut context,
             &mut parser,
         ) else {
             #[cfg(feature = "tracing")]

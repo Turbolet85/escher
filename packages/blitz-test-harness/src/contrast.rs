@@ -2,7 +2,7 @@
 //! the document's computed styles.
 
 use blitz_dom::util::ToColorColor;
-use blitz_dom::{BaseDocument, Document, Node};
+use blitz_dom::{BaseDocument, CopyStyleGetters, Document, Node};
 use blitz_traits::node_id::NodeId;
 use color::{AlphaColor, Srgb};
 
@@ -74,8 +74,8 @@ impl<D: Document> Harness<D> {
             let styles = element.primary_styles()?;
             (
                 styles.clone_color().as_color_color(),
-                styles.clone_font_size().computed_size().px(),
-                styles.clone_font_weight().value(),
+                styles.slow_clone_font_size().computed_size().px(),
+                styles.get_font().font_weight.value(),
             )
         };
         let background = background_behind(&doc, element)?;
@@ -162,7 +162,8 @@ fn background_colour(node: &Node) -> Option<Color> {
     let styles = node.primary_styles()?;
     Some(
         styles
-            .clone_background_color()
+            .get_background()
+            .background_color
             .resolve_to_absolute(&styles.clone_color())
             .as_color_color(),
     )

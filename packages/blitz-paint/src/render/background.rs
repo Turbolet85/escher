@@ -1,11 +1,12 @@
-use super::{ElementCx, to_image_quality, to_peniko_image};
+use super::{ALMOST_OPAQUE, ElementCx, to_image_quality, to_peniko_image};
 use crate::color::{Color, ToColorColor};
 use crate::gradient::to_peniko_gradient;
-use anyrender::PaintScene;
+use anyrender::{AntiAliasing, NonUniformRoundedRect, PaintScene};
+use blitz_dom::CopyStyleGetters;
 use blitz_dom::NodeId;
 use blitz_dom::node::{ImageData, ImageResourceData, SpecialElementData};
-use kurbo::{self, Affine, BezPath, Point, Rect, Shape, Size, Vec2};
-use peniko::{self, Fill};
+use kurbo::{self, Affine, Point, Rect, Shape, Size, Vec2};
+use peniko::{self, BlendMode, Compose, Fill, Mix};
 use style::{
     computed_values::border_collapse::T as BorderCollapse,
     properties::{
@@ -13,7 +14,6 @@ use style::{
             background_attachment::single_value::computed_value::T as StyloBackgroundAttachment,
             background_clip::single_value::computed_value::T as StyloBackgroundClip,
             background_origin::single_value::computed_value::T as StyloBackgroundOrigin,
-            mask_origin::single_value::computed_value::T as StyloMaskOrigin,
         },
         style_structs::{Background, SVG},
     },
@@ -51,26 +51,18 @@ impl From<StyloBackgroundClip> for BoxModelBox {
 
             // TODO: support BorderArea
             StyloBackgroundClip::BorderArea => Self::BorderBox,
+            StyloBackgroundClip::Text => Self::BorderBox,
         }
     }
 }
 
+// Also covers MaskOrigin as the type is the same
 impl From<StyloBackgroundOrigin> for BoxModelBox {
     fn from(value: StyloBackgroundOrigin) -> Self {
         match value {
             StyloBackgroundOrigin::BorderBox => Self::BorderBox,
             StyloBackgroundOrigin::PaddingBox => Self::PaddingBox,
             StyloBackgroundOrigin::ContentBox => Self::ContentBox,
-        }
-    }
-}
-
-impl From<StyloMaskOrigin> for BoxModelBox {
-    fn from(value: StyloMaskOrigin) -> Self {
-        match value {
-            StyloMaskOrigin::BorderBox => Self::BorderBox,
-            StyloMaskOrigin::PaddingBox => Self::PaddingBox,
-            StyloMaskOrigin::ContentBox => Self::ContentBox,
         }
     }
 }
@@ -89,6 +81,7 @@ pub(super) struct ImageLayerStyles<'a> {
     pub repeat: &'a BackgroundRepeat,
     pub size: &'a BackgroundSize,
     pub clip: BoxModelBox,
+    pub text_clip: bool,
     pub origin: BoxModelBox,
     pub attachment: StyloBackgroundAttachment,
 }
@@ -107,6 +100,7 @@ impl<'a> ImageLayerStyles<'a> {
             repeat: get_cyclic(&bg_styles.background_repeat.0, idx),
             size: get_cyclic(&bg_styles.background_size.0, idx),
             clip: (*get_cyclic(&bg_styles.background_clip.0, idx)).into(),
+            text_clip: *get_cyclic(&bg_styles.background_clip.0, idx) == StyloBackgroundClip::Text,
             origin: (*get_cyclic(&bg_styles.background_origin.0, idx)).into(),
             attachment: *get_cyclic(&bg_styles.background_attachment.0, idx),
         }
@@ -125,6 +119,7 @@ impl<'a> ImageLayerStyles<'a> {
             repeat: get_cyclic(&svg_styles.mask_repeat.0, idx),
             size: get_cyclic(&svg_styles.mask_size.0, idx),
             clip: (*get_cyclic(&svg_styles.mask_clip.0, idx)).into(),
+            text_clip: false,
             origin: (*get_cyclic(&svg_styles.mask_origin.0, idx)).into(),
             // There is no `mask-attachment` property
             attachment: StyloBackgroundAttachment::Scroll,
@@ -139,15 +134,30 @@ impl ElementCx<'_, '_> {
         let layer_count = bg_styles.background_image.0.len();
 
         // The background color is clipped by the clip of the last layer in the list
-        let background_clip: BoxModelBox =
-            (*get_cyclic(&bg_styles.background_clip.0, layer_count - 1)).into();
+        let last_clip = *get_cyclic(&bg_styles.background_clip.0, layer_count - 1);
+        let background_clip: BoxModelBox = last_clip.into();
         let background_clip_path = self.box_path(background_clip);
 
         // Draw background color (if any)
-        self.draw_solid_bg(scene, &background_clip_path);
+        let mut text_run = last_clip == StyloBackgroundClip::Text;
+        if text_run {
+            self.begin_text_clip_group(scene);
+        }
+        // The canvas already paints this element's background color.
+        if self.context.canvas_background_node_id != Some(self.node.id) {
+            self.draw_solid_bg(scene, &background_clip_path);
+        }
 
         for idx in (0..layer_count).rev() {
             let layer = ImageLayerStyles::from_background(bg_styles, image_data, idx);
+            if layer.text_clip != text_run {
+                if text_run {
+                    self.end_text_clip_group(scene);
+                } else {
+                    self.begin_text_clip_group(scene);
+                }
+                text_run = layer.text_clip;
+            }
             if layer_paints_nothing(&layer) {
                 continue;
             }
@@ -167,14 +177,49 @@ impl ElementCx<'_, '_> {
                 },
             );
         }
+        if text_run {
+            self.end_text_clip_group(scene);
+        }
+    }
+
+    /// Starts an isolated group for `background-clip: text` layers; layers drawn
+    /// until [`end_text_clip_group`](Self::end_text_clip_group) are clipped to text.
+    fn begin_text_clip_group(&self, scene: &mut impl PaintScene) {
+        scene.push_layer(
+            Fill::NonZero,
+            Mix::Normal,
+            ALMOST_OPAQUE,
+            self.transform,
+            &self.frame.border_box_shape(),
+            None,
+            None,
+        );
+    }
+
+    /// Ends the group started by [`begin_text_clip_group`](Self::begin_text_clip_group):
+    /// draws the text mask in a `DestIn` layer, then pops both layers.
+    fn end_text_clip_group(&self, scene: &mut impl PaintScene) {
+        scene.push_layer(
+            Fill::NonZero,
+            BlendMode::new(Mix::Normal, Compose::DestIn),
+            1.0,
+            self.transform,
+            &self.frame.border_box_shape(),
+            None,
+            None,
+        );
+        self.context
+            .draw_text_mask(scene, self.node.id, self.transform, true);
+        scene.pop_layer();
+        scene.pop_layer();
     }
 
     /// The path of the given CSS box model box for this element
-    pub(super) fn box_path(&self, css_box: BoxModelBox) -> BezPath {
+    pub(super) fn box_path(&self, css_box: BoxModelBox) -> NonUniformRoundedRect {
         match css_box {
-            BoxModelBox::BorderBox => self.frame.border_box_path(),
-            BoxModelBox::PaddingBox => self.frame.padding_box_path(),
-            BoxModelBox::ContentBox => self.frame.content_box_path(),
+            BoxModelBox::BorderBox => self.frame.border_box_shape(),
+            BoxModelBox::PaddingBox => self.frame.padding_box_shape(),
+            BoxModelBox::ContentBox => self.frame.content_box_shape(),
         }
     }
 
@@ -182,8 +227,8 @@ impl ElementCx<'_, '_> {
     fn box_rect(&self, css_box: BoxModelBox) -> Rect {
         match css_box {
             BoxModelBox::BorderBox => self.frame.border_box,
-            BoxModelBox::PaddingBox => self.frame.padding_box,
-            BoxModelBox::ContentBox => self.frame.content_box,
+            BoxModelBox::PaddingBox => self.frame.padding_box(),
+            BoxModelBox::ContentBox => self.frame.content_box(),
         }
     }
 
@@ -332,13 +377,13 @@ impl ElementCx<'_, '_> {
                     *color,
                     None,
                     &shape,
-                    anyrender::AntiAliasing::Enabled,
+                    AntiAliasing::Enabled,
                 );
             }
         }
     }
 
-    fn draw_solid_bg(&self, scene: &mut impl PaintScene, shape: &BezPath) {
+    fn draw_solid_bg(&self, scene: &mut impl PaintScene, shape: &impl Shape) {
         let current_color = self.style.clone_color();
         let background_color = &self.style.get_background().background_color;
         let bg_color = background_color
@@ -353,7 +398,7 @@ impl ElementCx<'_, '_> {
                 bg_color,
                 None,
                 shape,
-                anyrender::AntiAliasing::Enabled,
+                AntiAliasing::Enabled,
             );
         }
     }
@@ -467,7 +512,7 @@ impl ElementCx<'_, '_> {
             ))
             * viewport;
 
-        anyrender_svg::render_svg_tree(scene, &svg.tree, transform);
+        self.context.draw_svg_image(scene, &svg.tree, transform);
     }
 
     fn draw_raster_image_layer(&self, scene: &mut impl PaintScene, layer: &ImageLayerStyles) {
@@ -545,7 +590,7 @@ impl ElementCx<'_, '_> {
                     to_peniko_image(image_data, quality).as_ref(),
                     None,
                     &tile_rect,
-                    anyrender::AntiAliasing::Enabled,
+                    AntiAliasing::Enabled,
                 );
             }
         }
@@ -638,7 +683,7 @@ impl ElementCx<'_, '_> {
                     brush.clone(),
                     gradient_transform,
                     &tile_rect,
-                    anyrender::AntiAliasing::Enabled,
+                    AntiAliasing::Enabled,
                 );
             }
         }

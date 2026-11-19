@@ -1,5 +1,5 @@
 use crate::NodeTree;
-use crate::events::{DragMode, handle_dom_event};
+use crate::events::{DragMode, WheelGesture, handle_dom_event};
 use crate::layout::construct::ConstructionTask;
 use crate::layout::damage::ALL_DAMAGE;
 use crate::mutator::ViewportMut;
@@ -13,19 +13,20 @@ use crate::node::{
 };
 use crate::scrolling::ScrollAnimationState;
 use crate::selection::TextSelection;
-use crate::stylo_device::{DeviceChanges, make_device};
+use crate::stylo::{BlitzNode, UserAgentStylesheet, init_stylo_prefs};
+use crate::stylo::{DeviceChanges, make_device, make_media_data};
 use crate::stylo_to_cursor_icon::stylo_to_cursor_icon;
 use crate::traversal::TreeTraverser;
 use crate::url::DocumentUrl;
 use crate::util::ImageType;
 use crate::{
-    Clock, DEFAULT_CSS, DocumentConfig, DocumentMutator, DummyHtmlParserProvider, ElementData,
-    EventDriver, HtmlParserProvider, Node, NodeData, NoopEventHandler, StyleThreading,
-    TextNodeData, WallClock,
+    Clock, DocumentConfig, DocumentMutator, DummyHtmlParserProvider, ElementData, EventDriver,
+    HtmlParserProvider, Node, NodeData, NoopEventHandler, StyleThreading, TextNodeData, WallClock,
 };
 use bitflags::bitflags;
 use blitz_traits::devtools::DevtoolSettings;
-use blitz_traits::events::{DomEvent, HitResult, UiEvent};
+use blitz_traits::events::EventDispatchSource;
+use blitz_traits::events::{BlitzFocusEvent, DomEvent, DomEventData, HitResult, UiEvent};
 use blitz_traits::navigation::{DummyNavigationProvider, NavigationProvider};
 use blitz_traits::net::{AbortSignal, DummyNetProvider, NetProvider, Request};
 use blitz_traits::node_id::NodeId;
@@ -34,19 +35,17 @@ use cursor_icon::CursorIcon;
 use linebender_resource_handle::Blob;
 use markup5ever::{LocalName, local_name};
 use parley::{FontContext, PlainEditorDriver};
-use selectors::{Element, matching::QuirksMode};
+use selectors::matching::QuirksMode;
 use smallvec::SmallVec;
 use std::any::Any;
 use std::cell::RefCell;
-use std::collections::{BTreeMap, Bound, HashMap, HashSet};
+use std::collections::{BTreeMap, Bound, HashMap, HashSet, VecDeque};
 use std::ops::{Deref, DerefMut};
 use std::rc::Rc;
 use std::str::FromStr;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::mpsc::{Receiver, Sender, channel};
-use std::sync::{
-    Arc, LazyLock, Mutex, MutexGuard, Once, OnceLock, RwLockReadGuard, RwLockWriteGuard,
-};
+use std::sync::{Arc, Mutex, MutexGuard, OnceLock, RwLockReadGuard, RwLockWriteGuard};
 use std::task::{Context as TaskContext, Waker};
 use style::Atom;
 use style::animation::DocumentAnimationSet;
@@ -64,7 +63,6 @@ use style::values::computed::UserSelect;
 use style::values::computed::ui::CursorKind;
 use style::{
     device::Device,
-    dom::{TDocument, TNode},
     media_queries::MediaList,
     selector_parser::SnapshotMap,
     shared_lock::{SharedRwLock, StylesheetGuards},
@@ -72,68 +70,13 @@ use style::{
     stylist::Stylist,
 };
 use style_dom::ElementState;
+use stylo_taffy::CopyStyleGetters;
 use thin_vec::ThinVec;
 use url::Url;
 use web_time::Duration;
 
 #[cfg(feature = "parallel-construct")]
 use thread_local::ThreadLocal;
-
-/// A user-agent stylesheet, parsed with a read-only lock so that it can be shared between documents.
-///
-/// Documents with the same user-agent stylesheets (in the same order) also share Stylo's
-/// cached user-agent cascade data. `@import` rules are ignored.
-#[derive(Clone, Debug, PartialEq)]
-pub struct UserAgentStylesheet(DocumentStyleSheet);
-
-pub(crate) fn init_stylo_prefs() {
-    static INIT: Once = Once::new();
-    INIT.call_once(|| {
-        style_config::set_pref!("layout.grid.enabled", true);
-        style_config::set_pref!("layout.flexbox.balance", true);
-        style_config::set_pref!("layout.unimplemented", true);
-        style_config::set_pref!("layout.columns.enabled", true);
-        style_config::set_pref!("layout.css.basic-shape-shape.enabled", true);
-        style_config::set_pref!("layout.css.tree-counting-functions.enabled", true);
-        style_config::set_pref!("layout.css.progress-function.enabled", true);
-        style_config::set_pref!("layout.variable_fonts.enabled", true);
-        #[cfg(feature = "writing-mode")]
-        style_config::set_pref!("layout.writing-mode.enabled", true);
-        style_config::set_pref!("layout.threads", -1);
-    });
-}
-
-impl UserAgentStylesheet {
-    pub fn parse(css: &str) -> Self {
-        // Pref-gated UA declarations must be enabled before parsing.
-        init_stylo_prefs();
-
-        let lock = SharedRwLock::read_only();
-        let data = Stylesheet::from_str(
-            css,
-            DocumentUrl::default().url_extra_data(),
-            Origin::UserAgent,
-            ServoArc::new(lock.wrap(MediaList::empty())),
-            lock,
-            None,
-            None,
-            QuirksMode::NoQuirks,
-            AllowImportRules::No,
-        );
-        Self(DocumentStyleSheet(ServoArc::new(data)))
-    }
-
-    /// The default user-agent stylesheet ([`DEFAULT_CSS`]), parsed once.
-    pub fn default_sheet() -> Self {
-        static SHEET: LazyLock<UserAgentStylesheet> =
-            LazyLock::new(|| UserAgentStylesheet::parse(DEFAULT_CSS));
-        SHEET.clone()
-    }
-
-    pub fn sheet(&self) -> &DocumentStyleSheet {
-        &self.0
-    }
-}
 
 pub enum DocGuard<'a> {
     Ref(&'a BaseDocument),
@@ -359,6 +302,11 @@ pub struct BaseDocument {
     pub(crate) scrollbar_activity: HashMap<NodeId, Duration>,
     /// Whether and what kind of scroll animation is currently in progress
     pub(crate) scroll_animation: ScrollAnimationState,
+    /// Events which have been generated but not yet dispatched. Drained by the
+    /// [`EventDriver`](crate::EventDriver).
+    pub(crate) pending_events: VecDeque<DomEvent>,
+    /// The trackpad scroll gesture under way, locked to its main axis
+    pub(crate) wheel_gesture: WheelGesture,
 
     /// Text selection state (for non-input text)
     pub(crate) text_selection: TextSelection,
@@ -440,6 +388,26 @@ pub struct BaseDocument {
     /// it cancels all in-flight fetches tied to this document. Set via
     /// [`DocumentConfig::abort_signal`].
     pub(crate) abort_signal: Option<AbortSignal>,
+    /// Devtools provider notified of DOM mutations. Set via
+    /// [`DocumentConfig::devtools_provider`] or [`Self::set_devtools_provider`].
+    #[cfg(feature = "devtools")]
+    pub(crate) devtools_provider: Option<Arc<dyn blitz_traits::devtools::DevtoolsProvider>>,
+    /// Title shown for this document in devtools (instead of its `<title>`).
+    /// Set via [`Self::set_devtools_title`].
+    #[cfg(feature = "devtools")]
+    pub(crate) devtools_title: Option<String>,
+    /// Reusable buffers for document-wide passes.
+    pub(crate) scratch: DocumentScratch,
+}
+
+/// Buffers reused across runs of document-wide passes to avoid reallocating
+/// them. Recursive passes use them as stacks: each level pushes above the
+/// length it found and truncates back to it before returning.
+#[derive(Default)]
+pub(crate) struct DocumentScratch {
+    /// `(paint order, node)` pairs of the paint lists under construction in
+    /// `build_paint_tree_impl`.
+    pub(crate) keyed_children: Vec<((i32, i32), NodeId)>,
 }
 
 bitflags! {
@@ -462,7 +430,7 @@ impl BaseDocument {
 
         let id = ID_GENERATOR.fetch_add(1, Ordering::SeqCst);
 
-        let font_ctx = config
+        let mut font_ctx = config
             .font_ctx
             .map(|mut font_ctx| {
                 font_ctx.source_cache.make_shared();
@@ -486,6 +454,21 @@ impl BaseDocument {
                     .register_fonts(Blob::new(Arc::new(crate::BULLET_FONT) as _), None);
                 font_ctx
             });
+        // The family an inline box's placeholder falls back to (see
+        // `layout::inline::build::push_inline_box`), in every context, a given one included.
+        if font_ctx
+            .collection
+            .family_id(crate::PLACEHOLDER_FONT_FAMILY)
+            .is_none()
+        {
+            font_ctx.collection.register_fonts(
+                Blob::new(Arc::new(crate::BULLET_FONT) as _),
+                Some(parley::fontique::FontInfoOverride {
+                    family_name: Some(crate::PLACEHOLDER_FONT_FAMILY),
+                    ..Default::default()
+                }),
+            );
+        }
         let font_ctx = Arc::new(Mutex::new(font_ctx));
 
         let viewport = config.viewport.unwrap_or_default();
@@ -576,6 +559,10 @@ impl BaseDocument {
             shell_provider,
             html_parser_provider,
             abort_signal: config.abort_signal,
+            #[cfg(feature = "devtools")]
+            devtools_provider: config.devtools_provider,
+            #[cfg(feature = "devtools")]
+            devtools_title: None,
             last_mousedown_time: None,
             mousedown_position: taffy::Point::ZERO,
             click_count: 0,
@@ -583,10 +570,13 @@ impl BaseDocument {
             hovered_scrollbar: None,
             scrollbar_activity: HashMap::new(),
             scroll_animation: ScrollAnimationState::None,
+            pending_events: VecDeque::new(),
+            wheel_gesture: WheelGesture::default(),
             text_selection: TextSelection::default(),
             select_typeahead: None,
             select_cursor: None,
             select_list: None,
+            scratch: DocumentScratch::default(),
         };
 
         // Initialise document with root Document node
@@ -627,6 +617,30 @@ impl BaseDocument {
     /// Set the Document's shell provider
     pub fn set_shell_provider(&mut self, shell_provider: Arc<dyn ShellProvider>) {
         self.shell_provider = shell_provider;
+    }
+
+    /// Set (or clear) the Document's devtools provider, which is notified of DOM mutations
+    #[cfg(feature = "devtools")]
+    pub fn set_devtools_provider(
+        &mut self,
+        devtools_provider: Option<Arc<dyn blitz_traits::devtools::DevtoolsProvider>>,
+    ) {
+        self.devtools_provider = devtools_provider;
+    }
+
+    /// The title shown for this document in devtools, if overridden with
+    /// [`Self::set_devtools_title`]
+    #[cfg(feature = "devtools")]
+    pub fn devtools_title(&self) -> Option<&str> {
+        self.devtools_title.as_deref()
+    }
+
+    /// Set (or clear) the title shown for this document in devtools (e.g. as
+    /// the CDP target title). Defaults to the document's `<title>`, which an
+    /// application's UI document may use for its window title instead.
+    #[cfg(feature = "devtools")]
+    pub fn set_devtools_title(&mut self, title: Option<String>) {
+        self.devtools_title = title;
     }
 
     /// Set the Document's html parser provider
@@ -726,12 +740,67 @@ impl BaseDocument {
         DocumentMutator::new(self)
     }
 
-    pub fn handle_dom_event<F: FnMut(DomEvent)>(
-        &mut self,
-        event: &mut DomEvent,
-        dispatch_event: F,
-    ) {
-        handle_dom_event(self, event, dispatch_event)
+    /// Run an event's default action. `default_prevented` says whether a handler prevented
+    /// it, in which case only state that must follow every event is updated.
+    ///
+    /// Events generated in the process (focus, input, click, ...) are queued with
+    /// [`queue_event`](Self::queue_event).
+    pub fn handle_dom_event(&mut self, event: &mut DomEvent, default_prevented: bool) {
+        handle_dom_event(self, event, default_prevented)
+    }
+
+    /// Queue an event to be dispatched by an [`EventDriver`](crate::EventDriver).
+    ///
+    /// Events are queued rather than dispatched so that anything with access to the
+    /// document (default actions, state changes such as
+    /// [`set_focus_to`](Self::set_focus_to), embedder code) can generate them without
+    /// access to a driver.
+    ///
+    /// A `scroll` event replaces a `scroll` event for the same target at the back of the
+    /// queue, so scrolling a node several times before the queue is drained dispatches
+    /// one event with the latest scroll position. Only the back of the queue is
+    /// considered, which keeps `scroll` events in order relative to other events.
+    pub fn queue_event(&mut self, event: DomEvent) {
+        if matches!(event.data, DomEventData::Scroll(_))
+            && let Some(last) = self.pending_events.back_mut()
+            && matches!(last.data, DomEventData::Scroll(_))
+            && last.target == event.target
+            && last.source == event.source
+        {
+            *last = event;
+            return;
+        }
+
+        // Bound the queue in case the embedder never drains it
+        const MAX_PENDING_EVENTS: usize = 1024;
+        if self.pending_events.len() >= MAX_PENDING_EVENTS {
+            self.pending_events.pop_front();
+        }
+        self.pending_events.push_back(event);
+    }
+
+    /// [Queue](Self::queue_event) an event generated by the engine itself
+    pub(crate) fn queue_ua_event(&mut self, target: NodeId, data: DomEventData) {
+        self.queue_event(DomEvent::new(target, data, EventDispatchSource::UserAgent));
+    }
+
+    /// Take the next queued event (see [`queue_event`](Self::queue_event)), discarding
+    /// events whose target node has been dropped since they were queued.
+    ///
+    /// A node that was only detached from the tree still exists and still gets its events,
+    /// as an event can be dispatched to a node that is not in the document.
+    pub fn pop_pending_event(&mut self) -> Option<DomEvent> {
+        loop {
+            let event = self.pending_events.pop_front()?;
+            if self.nodes.contains_key(event.target) {
+                return Some(event);
+            }
+        }
+    }
+
+    /// Whether there are queued events waiting to be dispatched
+    pub fn has_pending_events(&self) -> bool {
+        !self.pending_events.is_empty()
     }
 
     pub fn as_any_mut(&mut self) -> &mut dyn Any {
@@ -1136,11 +1205,11 @@ impl BaseDocument {
         let mut builder = layout_ctx.tree_builder(font_ctx, self.viewport.scale(), true, &style);
         builder.push_text(text);
         let mut layout = builder.build().0;
-        layout.break_all_lines(None);
-        layout.align(
+        layout.set_alignment(
             parley::Alignment::Start,
             parley::AlignmentOptions::default(),
         );
+        layout.break_all_lines(None);
         Some(layout)
     }
 
@@ -1361,15 +1430,11 @@ impl BaseDocument {
     }
 
     pub fn try_root_element(&self) -> Option<&Node> {
-        TDocument::as_node(&self.root_node()).first_element_child()
+        self.root_node().first_element_child()
     }
 
     pub fn root_element(&self) -> &Node {
-        TDocument::as_node(&self.root_node())
-            .first_element_child()
-            .unwrap()
-            .as_element()
-            .unwrap()
+        self.try_root_element().unwrap()
     }
 
     pub fn create_node(&mut self, node_data: NodeData) -> NodeId {
@@ -1565,6 +1630,12 @@ impl BaseDocument {
         std::mem::take(&mut self.changed_nodes)
     }
 
+    /// Empty the changed set without reading it: the shell's mark that the accessibility tree
+    /// is up to date (see [`Self::has_changes`]).
+    pub fn clear_changes(&mut self) {
+        self.changed_nodes.clear();
+    }
+
     /// Whether the document's font context resolves at least one font family for the
     /// `sans-serif` generic. Without one, text lays out with zero metrics and paints nothing.
     /// Reads the context only; changes no state.
@@ -1604,11 +1675,11 @@ impl BaseDocument {
             builder.push_default(prop.to_owned());
         }
         let mut layout = builder.build(text);
-        layout.break_all_lines(None);
-        layout.align(
+        layout.set_alignment(
             parley::Alignment::Start,
             parley::AlignmentOptions::default(),
         );
+        layout.break_all_lines(None);
         Some(layout)
     }
 
@@ -2055,7 +2126,7 @@ impl BaseDocument {
             return;
         }
 
-        let opaque_node_id = TNode::opaque(&&*node);
+        let opaque_node_id = node.opaque();
         node.set_has_snapshot(true);
         node.snapshot_handled()
             .store(false, std::sync::atomic::Ordering::SeqCst);
@@ -2280,27 +2351,58 @@ impl BaseDocument {
         Some(id)
     }
 
-    /// Clear the focussed node
+    /// Clear the focussed node, queueing blur and focusout events for it
     pub fn clear_focus(&mut self) {
-        if let Some(id) = self.focus_node_id {
-            let shell_provider = self.shell_provider.clone();
-            self.snapshot_node_and(id, ElementState::FOCUS | ElementState::FOCUSRING, |node| {
-                node.blur(shell_provider)
-            });
-            for &ancestor in self.node_element_ancestors(id).iter() {
-                self.snapshot_node_and(ancestor, ElementState::FOCUS_WITHIN, |node| {
-                    node.remove_focus_within()
-                });
-            }
-            self.focus_node_id = None;
-            self.shell_provider.request_redraw();
+        if let Some(id) = self.clear_focus_silently() {
+            self.queue_ua_event(id, DomEventData::Blur(BlitzFocusEvent));
+            self.queue_ua_event(id, DomEventData::FocusOut(BlitzFocusEvent));
         }
+    }
+
+    /// Clear the focussed node queueing no event, returning the node that held focus. The
+    /// focus a node gives up by coming under `inert` fires no `blur` or `focusout`.
+    pub(crate) fn clear_focus_silently(&mut self) -> Option<NodeId> {
+        let id = self.focus_node_id?;
+        let shell_provider = self.shell_provider.clone();
+        self.snapshot_node_and(id, ElementState::FOCUS | ElementState::FOCUSRING, |node| {
+            node.blur(shell_provider)
+        });
+        for &ancestor in self.node_element_ancestors(id).iter() {
+            self.snapshot_node_and(ancestor, ElementState::FOCUS_WITHIN, |node| {
+                node.remove_focus_within()
+            });
+        }
+        self.focus_node_id = None;
+        self.shell_provider.request_redraw();
+        Some(id)
     }
 
     pub fn set_mousedown_node_id(&mut self, node_id: Option<NodeId>) {
         self.mousedown_node_id = node_id.and_then(|id| self.nearest_non_anonymous_ancestor(id));
     }
+
+    /// Focus the given node, returning whether the focus changed. Queues blur and focusout
+    /// events for the previously focussed node and focus and focusin events for the new one.
     pub fn set_focus_to(&mut self, focus_node_id: NodeId) -> bool {
+        let old_focus_node_id = self.focus_node_id;
+        if !self.set_focus_silently(focus_node_id) {
+            return false;
+        }
+        let Some(focus_node_id) = self.focus_node_id else {
+            return true;
+        };
+        if let Some(id) = old_focus_node_id {
+            self.queue_ua_event(id, DomEventData::Blur(BlitzFocusEvent));
+            self.queue_ua_event(id, DomEventData::FocusOut(BlitzFocusEvent));
+        }
+        self.queue_ua_event(focus_node_id, DomEventData::Focus(BlitzFocusEvent));
+        self.queue_ua_event(focus_node_id, DomEventData::FocusIn(BlitzFocusEvent));
+        true
+    }
+
+    /// Focus the given node as [`Self::set_focus_to`] does, queueing no focus event. The
+    /// driver's `type` on a select focuses it so, with no click and no DOM focus events.
+    pub fn set_focus_silently(&mut self, focus_node_id: NodeId) -> bool {
         let Some(focus_node_id) = self.nearest_non_anonymous_ancestor(focus_node_id) else {
             return false;
         };
@@ -2471,10 +2573,7 @@ impl BaseDocument {
         x: f32,
         y: f32,
     ) -> (Option<HitResult>, Option<crate::node::ScrollbarRef>) {
-        if TDocument::as_node(&self.root_node())
-            .first_element_child()
-            .is_none()
-        {
+        if self.root_node().first_element_child().is_none() {
             #[cfg(feature = "tracing")]
             tracing::warn!("No DOM - not resolving hit test");
             return (None, None);
@@ -2735,19 +2834,21 @@ impl BaseDocument {
         self.shell_provider.request_redraw();
     }
 
-    /// Apply any pending device changes to the stylist, coalescing all changes
-    /// since the last flush into a single device rebuild.
+    /// Apply any pending device changes to the stylist's device, coalescing all
+    /// changes since the last flush into a single update of its [`MediaData`](style::device::servo::MediaData).
     pub(crate) fn flush_pending_device_changes(&mut self) {
         let changes = std::mem::take(&mut self.pending_device_changes);
         if changes.is_empty() {
             return;
         }
 
-        self.set_stylist_device(make_device(
-            &self.viewport,
-            self.media_type.clone(),
-            self.font_ctx.clone(),
-        ));
+        let media_data = make_media_data(&self.viewport, self.media_type.clone());
+        let device = self.stylist.device_mut();
+        let old_viewport_size = device.au_viewport_size();
+        device.set_media_data(media_data);
+        let viewport_units_changed =
+            old_viewport_size != device.au_viewport_size() && device.used_viewport_size();
+        self.restyle_for_device_change(viewport_units_changed);
 
         // Text is shaped at a specific scale factor, so cached inline layouts
         // must be invalidated when the scale changes, as must every node's
@@ -2781,7 +2882,7 @@ impl BaseDocument {
             device.set_root_style(root_style);
 
             let font = root_style.get_font();
-            let font_size = font.clone_font_size().computed_size();
+            let font_size = font.slow_clone_font_size().computed_size();
             device.set_root_font_size(root_style.effective_zoom.unzoom(font_size.px()));
 
             let line_height = device
@@ -2791,17 +2892,24 @@ impl BaseDocument {
         }
         drop(root_styles);
 
-        let old_device = self.stylist.device();
-        let viewport_size_changed = old_device.au_viewport_size() != device.au_viewport_size();
-        let styles_use_viewport_units = old_device.used_viewport_size();
+        let viewport_size_changed =
+            self.stylist.device().au_viewport_size() != device.au_viewport_size();
+        let styles_used_viewport_units = self.stylist.device().used_viewport_size();
+        *self.stylist.device_mut() = device;
+        self.restyle_for_device_change(viewport_size_changed && styles_used_viewport_units);
+    }
 
+    /// Invalidate the styles that a change to the stylist's device affects.
+    /// `viewport_units_changed` is whether styles that used viewport units need recomputing.
+    fn restyle_for_device_change(&mut self, viewport_units_changed: bool) {
         let origins = {
             let guard = &self.guard;
             let guards = StylesheetGuards {
                 author: &guard.read(),
                 ua_or_user: &guard.read(),
             };
-            self.stylist.set_device(device, &guards)
+            self.stylist
+                .media_features_change_changed_style(&guards, self.stylist.device())
         };
 
         // Only fully invalidate element styles when the media query results of
@@ -2816,7 +2924,7 @@ impl BaseDocument {
         // when the viewport size changes, even if no media query results
         // changed. Invalidate just the elements whose styles use viewport
         // units (tracked via per-element computed value flags).
-        if viewport_size_changed && styles_use_viewport_units {
+        if viewport_units_changed {
             if self
                 .stylist
                 .get_custom_property_initial_values_flags()
@@ -2825,7 +2933,7 @@ impl BaseDocument {
                 self.stylist.rebuild_initial_values_for_custom_properties();
             }
             if let Some(root) = self.try_root_element() {
-                style::invalidation::viewport_units::invalidate(root);
+                style::invalidation::viewport_units::invalidate(BlitzNode(root));
             }
         }
     }
@@ -2858,7 +2966,7 @@ impl BaseDocument {
 
         let style = node.primary_styles()?;
         let user_select = style.clone_user_select();
-        let keyword = style.clone_cursor().keyword;
+        let keyword = style.get_cursor().keyword;
 
         // Return cursor from style if it is non-auto
         if keyword != CursorKind::Auto {
@@ -2878,7 +2986,7 @@ impl BaseDocument {
         // (such as `<a>`) between them.
         let mut maybe_node = Some(node);
         while let Some(node) = maybe_node {
-            if node.is_link() {
+            if node.data.is_element_with_tag_name(&local_name!("a")) {
                 return Some(CursorIcon::Pointer);
             }
 
@@ -3423,7 +3531,12 @@ impl BaseDocument {
             if !result.is_empty() {
                 result.push(' ');
             }
-            result.push_str(&inline_layout.text[*start..*end]);
+            let text = &inline_layout.text[*start..*end];
+            result.extend(
+                text.char_indices()
+                    .filter(|&(i, _)| !inline_layout.is_inline_box_char(start + i))
+                    .map(|(_, c)| c),
+            );
         }
 
         if result.is_empty() {
@@ -3586,6 +3699,15 @@ fn is_labelable(element: &ElementData) -> bool {
             .attr(local_name!("type"))
             .is_some_and(|kind| kind.eq_ignore_ascii_case("hidden")),
         _ => false,
+    }
+}
+
+impl Drop for BaseDocument {
+    fn drop(&mut self) {
+        #[cfg(feature = "devtools")]
+        if let Some(provider) = &self.devtools_provider {
+            provider.document_dropped();
+        }
     }
 }
 
@@ -4421,3 +4543,48 @@ mod changed_set_tests;
 #[cfg(test)]
 #[path = "document_font_reading_tests.rs"]
 mod font_reading_tests;
+
+#[cfg(test)]
+#[path = "document_inline_box_placeholder_tests.rs"]
+mod inline_box_placeholder_tests;
+
+#[cfg(test)]
+mod change_tracking_tests {
+    use super::*;
+    use crate::qual_name;
+    use blitz_traits::shell::ColorScheme;
+
+    #[test]
+    fn mutations_and_focus_changes_are_tracked() {
+        let mut doc = BaseDocument::new(DocumentConfig {
+            viewport: Some(Viewport::new(400, 300, 1.0, ColorScheme::Light)),
+            ..Default::default()
+        });
+        let root_id = doc.root_node().id;
+        let mut mutator = doc.mutate();
+        let html = mutator.create_element(qual_name!("html"), vec![]);
+        let body = mutator.create_element(qual_name!("body"), vec![]);
+        let button = mutator.create_element(qual_name!("button"), vec![]);
+        mutator.append_children(body, &[button]);
+        mutator.append_children(html, &[body]);
+        mutator.append_children(root_id, &[html]);
+        drop(mutator);
+        doc.resolve(0.0);
+        assert!(doc.has_changes());
+
+        doc.clear_changes();
+        assert!(!doc.has_changes());
+
+        doc.mutate()
+            .set_attribute(button, qual_name!("aria-label"), "Submit");
+        assert!(doc.has_changes());
+
+        doc.clear_changes();
+        assert!(doc.set_focus_to(button));
+        assert!(doc.has_changes());
+
+        doc.clear_changes();
+        doc.clear_focus();
+        assert!(doc.has_changes());
+    }
+}

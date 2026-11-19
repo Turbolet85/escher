@@ -20,7 +20,7 @@
 //! a coordinate.
 
 use blitz_dom::node::{ImageData, RasterImageData, ScrollbarRef, SpecialElementData};
-use blitz_dom::{DocumentConfig, EventDriver, NoopEventHandler, ScrollBehavior};
+use blitz_dom::{CopyStyleGetters, DocumentConfig, EventDriver, NoopEventHandler, ScrollBehavior};
 use blitz_html::{HtmlDocument, HtmlProvider};
 use blitz_traits::events::{
     BlitzPointerEvent, BlitzPointerId, MouseEventButton, MouseEventButtons, Point, PointerCoords,

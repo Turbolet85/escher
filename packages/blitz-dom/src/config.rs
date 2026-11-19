@@ -1,4 +1,6 @@
 use crate::{Clock, HtmlParserProvider, UserAgentStylesheet};
+#[cfg(feature = "devtools")]
+use blitz_traits::devtools::DevtoolsProvider;
 use blitz_traits::{
     navigation::NavigationProvider,
     net::{AbortSignal, NetProvider},
@@ -69,6 +71,9 @@ pub struct DocumentConfig {
     /// The clock the document reads its own time from: the scrollbar fade,
     /// double-click detection, smooth scrolling and fling. Wall time when `None`.
     pub clock: Option<Arc<dyn Clock>>,
+    /// Devtools provider notified of DOM mutations (e.g. by a remote inspector)
+    #[cfg(feature = "devtools")]
+    pub devtools_provider: Option<Arc<dyn DevtoolsProvider>>,
 }
 
 impl Default for DocumentConfig {
@@ -88,6 +93,8 @@ impl Default for DocumentConfig {
             abort_signal: None,
             subdocument_depth: 0,
             clock: None,
+            #[cfg(feature = "devtools")]
+            devtools_provider: None,
         }
     }
 }

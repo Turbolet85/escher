@@ -30,6 +30,10 @@
 
 pub const DEFAULT_CSS: &str = include_str!("../assets/default.css");
 pub const BULLET_FONT: &[u8] = include_bytes!("../assets/moz-bullet-font.otf");
+/// The private family [`BULLET_FONT`] is registered under in every document's font context, named
+/// by nothing but an inline box's placeholder, which falls back to it when no other family can
+/// shape it.
+pub(crate) const PLACEHOLDER_FONT_FAMILY: &str = "blitz-inline-box-placeholder";
 
 /// Whether this build compiled the engine's `tracing` call sites (the crate's `tracing`
 /// feature): where it is false, the engine emits no record at any level.
@@ -68,7 +72,6 @@ mod scrolling;
 mod selection;
 /// Implementations that interact with servo's style engine
 mod stylo;
-mod stylo_device;
 mod stylo_to_cursor_icon;
 mod stylo_to_kurbo;
 mod stylo_to_parley;
@@ -84,6 +87,7 @@ pub use cssom::{CssRuleInfo, CssomError};
 pub use resolved_style::{
     css_property_is_supported, parse_transform_matrix, resolved_style_property_names,
 };
+pub use stylo_taffy::CopyStyleGetters;
 pub use stylo_to_kurbo::resolve_2d_transform;
 
 pub mod net;
@@ -92,6 +96,7 @@ pub mod util;
 #[cfg(feature = "accessibility")]
 mod accessibility;
 
+pub use crate::layout::LayoutPassState;
 pub use crate::layout::paint_tree::{HoistedPaintChild, StackingContext, hoisted_child_position};
 pub use crate::layout::replaced::IntrinsicSizes;
 pub use crate::layout::text_transform::{full_size_kana, full_width};
@@ -105,9 +110,7 @@ pub use crate::node::Widget;
 pub use blitz_traits::node_id::NodeId;
 pub use clock::{Clock, VirtualClock, WallClock};
 pub use config::{DocumentConfig, StyleThreading};
-pub use document::{
-    BaseDocument, BoundingRect, DocGuard, DocGuardMut, Document, PlainDocument, UserAgentStylesheet,
-};
+pub use document::{BaseDocument, BoundingRect, DocGuard, DocGuardMut, Document, PlainDocument};
 pub use markup5ever::{
     LocalName, Namespace, NamespaceStaticSet, Prefix, PrefixStaticSet, QualName, local_name,
     namespace_prefix, namespace_url, ns,
@@ -119,6 +122,7 @@ pub use node::{
 };
 pub use parley::FontContext;
 pub use scrolling::{ScrollBehavior, ScrollLogicalPosition};
+pub use stylo::UserAgentStylesheet;
 pub use text_extent::TextExtent;
 pub use tree::NodeTree;
 

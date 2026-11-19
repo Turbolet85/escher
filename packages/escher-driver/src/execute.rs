@@ -801,12 +801,13 @@ const ACTION_MODIFIER: Modifiers = Modifiers::META;
 const ACTION_MODIFIER: Modifiers = Modifiers::CONTROL;
 
 /// Focuses a select with no click, which would open its list or land on the row at its centre:
-/// any list that stands closes and its typed text starts afresh, as a click's would.
+/// any list that stands closes and its typed text starts afresh, as a click's would. No DOM
+/// focus event fires.
 fn focus_select(harness: &mut Harness<DioxusDocument>, select: NodeId) {
     let mut doc = harness.base_mut();
     doc.close_select_list();
     doc.clear_select_typeahead();
-    doc.set_focus_to(select);
+    doc.set_focus_silently(select);
 }
 
 /// Selects everything the focused control holds, through the editor's own select-all key:

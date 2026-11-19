@@ -1,12 +1,13 @@
 use blitz_traits::node_id::NodeId;
 use std::collections::VecDeque;
+use stylo_taffy::CopyStyleGetters;
 
 use web_time::Duration;
 
 use blitz_traits::{
     events::{
-        BlitzInputEvent, BlitzPointerEvent, BlitzPointerId, BlitzWheelDelta, BlitzWheelEvent,
-        DomEvent, DomEventData, MouseEventButton, MouseEventButtons,
+        BlitzInputEvent, BlitzPointerEvent, BlitzPointerId, DomEventData, MouseEventButton,
+        MouseEventButtons,
     },
     navigation::NavigationOptions,
 };
@@ -24,8 +25,6 @@ use crate::{
     },
     scrolling::{FlingState, ScrollAnimationState},
 };
-
-use super::focus::generate_focus_events;
 
 #[derive(Debug, Clone, PartialEq)]
 pub(crate) struct PanState {
@@ -206,11 +205,10 @@ fn touch_action_pan_axes(doc: &BaseDocument, node_id: NodeId) -> (bool, bool) {
     (allow_x, allow_y)
 }
 
-pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
+pub(crate) fn handle_pointermove(
     doc: &mut BaseDocument,
     target: NodeId,
     event: &BlitzPointerEvent,
-    mut dispatch_event: F,
 ) -> bool {
     let x = event.page_x();
     let y = event.page_y();
@@ -275,7 +273,7 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
         let target = state.target;
         let (dx, dy) = state.update(time_ms, event.screen_x(), event.screen_y());
 
-        let has_changed = doc.scroll_chain_by(Some(target), dx, dy, &mut dispatch_event);
+        let has_changed = doc.scroll_chain_by(Some(target), dx, dy);
         return has_changed;
     }
 
@@ -295,7 +293,7 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
             AbsoluteAxis::Horizontal => (-delta_px * ratio, 0.0),
             AbsoluteAxis::Vertical => (0.0, -delta_px * ratio),
         };
-        let has_changed = doc.scroll_chain_by(Some(node_id), dx, dy, &mut dispatch_event);
+        let has_changed = doc.scroll_chain_by(Some(node_id), dx, dy);
         return has_changed;
     }
 
@@ -304,10 +302,7 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
     };
 
     if changed {
-        dispatch_event(DomEvent::new(
-            hit.node_id,
-            DomEventData::MouseEnter(event.clone()),
-        ));
+        doc.queue_ua_event(hit.node_id, DomEventData::MouseEnter(event.clone()));
     }
 
     // `target` is the event's canonicalized target (never a layout-generated
@@ -382,15 +377,10 @@ pub(crate) fn handle_pointermove<F: FnMut(DomEvent)>(
     changed
 }
 
-pub(crate) fn handle_pointerdown(
-    doc: &mut BaseDocument,
-    _target: NodeId,
-    x: f32,
-    y: f32,
-    button: MouseEventButton,
-    mods: Modifiers,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) {
+/// Record that the pointer has pressed, for counting clicks and detecting drags, and stop
+/// a scroll that is under way. Runs for every `pointerdown`, including one whose default
+/// action was prevented.
+pub(crate) fn record_pointerdown(doc: &mut BaseDocument, x: f32, y: f32) {
     // Compute click count using the previous mousedown position (before updating)
     // This handles both double-click detection and text input word/line selection
     // TODO: For text inputs, only increment click count if click maps to the same/similar caret position
@@ -411,7 +401,17 @@ pub(crate) fn handle_pointerdown(
     doc.mousedown_position = taffy::Point { x, y };
     doc.drag_mode = DragMode::None;
     doc.scroll_animation = ScrollAnimationState::None;
+}
 
+/// The default action of a `pointerdown`, which [`record_pointerdown`] has recorded.
+pub(crate) fn handle_pointerdown(
+    doc: &mut BaseDocument,
+    _target: NodeId,
+    x: f32,
+    y: f32,
+    button: MouseEventButton,
+    mods: Modifiers,
+) {
     // A press on the list selects no text under it; one outside closes the list.
     if doc.select_list_hit(x, y).is_some() {
         return;
@@ -520,7 +520,7 @@ pub(crate) fn handle_pointerdown(
     match click_target {
         ClickTarget::Disabled => (),
         ClickTarget::RangeInput { fraction } => {
-            press_range_input(doc, actual_target, button, fraction, dispatch_event);
+            press_range_input(doc, actual_target, button, fraction);
         }
         ClickTarget::SelectableText => {
             // Handle text selection for non-input elements
@@ -581,13 +581,7 @@ pub(crate) fn handle_pointerdown(
                 );
             }
 
-            generate_focus_events(
-                doc,
-                &mut |doc| {
-                    doc.set_focus_to(hit.node_id);
-                },
-                dispatch_event,
-            );
+            doc.set_focus_to(hit.node_id);
         }
     }
 }
@@ -641,17 +635,12 @@ fn click_lands_on_row(doc: &BaseDocument, row: NodeId, event: &BlitzPointerEvent
 
 /// A click on an option of an open list: a disabled row changes nothing and leaves the list open;
 /// any other is chosen, and the list closes.
-fn click_list_row(
-    doc: &mut BaseDocument,
-    select: NodeId,
-    row: NodeId,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) {
+fn click_list_row(doc: &mut BaseDocument, select: NodeId, row: NodeId) {
     if doc.get_node(row).is_some_and(select::option_disabled) {
         return;
     }
     doc.close_select_list();
-    doc.apply_select_choice(select, &[row], dispatch_event);
+    doc.apply_select_choice(select, &[row]);
 }
 
 /// A click in a password input places its caret by the bullets painted for its text, never by
@@ -741,22 +730,20 @@ fn press_range_input(
     target: NodeId,
     button: MouseEventButton,
     fraction: f32,
-    dispatch_event: &mut dyn FnMut(DomEvent),
 ) {
     if button == MouseEventButton::Main {
-        doc.apply_range_move(
-            target,
-            RangeMove::Fraction(f64::from(fraction)),
-            dispatch_event,
-        );
+        doc.apply_range_move(target, RangeMove::Fraction(f64::from(fraction)));
     }
 }
 
-pub(crate) fn handle_pointerup<F: FnMut(DomEvent)>(
+/// Runs for every `pointerup`, including one whose default action was prevented: the drag
+/// under way still ends and the click is still dispatched, as neither is `pointerup`'s
+/// default action.
+pub(crate) fn handle_pointerup(
     doc: &mut BaseDocument,
     target: NodeId,
     event: &BlitzPointerEvent,
-    mut dispatch_event: F,
+    default_prevented: bool,
 ) {
     if doc.devtools().highlight_hover {
         let mut node = doc.get_node(target).unwrap();
@@ -775,8 +762,9 @@ pub(crate) fn handle_pointerup<F: FnMut(DomEvent)>(
     let drag_mode = doc.drag_mode.take();
 
     // Don't dispatch click if we were doing a text selection drag or panning
-    // the document with a touch
-    let do_click = drag_mode == DragMode::None;
+    // the document with a touch. Nor for a prevented touch or pen: that may be a
+    // prevented `touchend`, which does suppress the click.
+    let do_click = drag_mode == DragMode::None && (!default_prevented || event.is_mouse());
 
     // Repaint so a dragged scrollbar thumb drops its active styling, and
     // restart its fade-out delay now that the drag no longer holds it shown
@@ -787,7 +775,9 @@ pub(crate) fn handle_pointerup<F: FnMut(DomEvent)>(
 
     let time_ms = doc.clock_millis();
 
-    if let DragMode::Panning(state) = &drag_mode {
+    if let DragMode::Panning(state) = &drag_mode
+        && !default_prevented
+    {
         if let Some(fling) = state.generate_fling(time_ms) {
             doc.scroll_animation = ScrollAnimationState::Fling(fling);
             doc.shell_provider.request_redraw();
@@ -796,51 +786,35 @@ pub(crate) fn handle_pointerup<F: FnMut(DomEvent)>(
 
     // Dispatch a click event
     if do_click && event.button == MouseEventButton::Main {
-        dispatch_event(DomEvent::new(target, DomEventData::Click(event.clone())));
+        doc.queue_ua_event(target, DomEventData::Click(event.clone()));
     }
 
     // Dispatch a context menu event
     if do_click && event.button == MouseEventButton::Secondary {
-        dispatch_event(DomEvent::new(
-            target,
-            DomEventData::ContextMenu(event.clone()),
-        ));
+        doc.queue_ua_event(target, DomEventData::ContextMenu(event.clone()));
     }
 }
 
-pub(crate) fn handle_click(
-    doc: &mut BaseDocument,
-    target: NodeId,
-    event: &BlitzPointerEvent,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) {
+pub(crate) fn handle_click(doc: &mut BaseDocument, target: NodeId, event: &BlitzPointerEvent) {
     let double_click_event = event.clone();
 
-    let matched = click_walk(doc, target, event, dispatch_event);
+    let matched = click_walk(doc, target, event);
 
     // If nothing is matched then clear focus
     if !matched {
-        generate_focus_events(doc, &mut |doc| doc.clear_focus(), dispatch_event);
+        doc.clear_focus();
     }
 
     // Dispatch double-click event if this is the second click in quick succession
     // (click_count was already computed in handle_mousedown)
     if doc.click_count == 2 {
-        dispatch_event(DomEvent::new(
-            target,
-            DomEventData::DoubleClick(double_click_event),
-        ));
+        doc.queue_ua_event(target, DomEventData::DoubleClick(double_click_event));
     }
 }
 
 /// The walk of a click from `target` up through its parents, until an element takes it; reads
 /// whether one did. A disabled form control and a text input take it and do nothing more.
-fn click_walk(
-    doc: &mut BaseDocument,
-    target: NodeId,
-    event: &BlitzPointerEvent,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_walk(doc: &mut BaseDocument, target: NodeId, event: &BlitzPointerEvent) -> bool {
     let mut maybe_node_id = Some(target);
     while let Some(node_id) = maybe_node_id {
         let Some(el) = doc.nodes[node_id].data.downcast_element() else {
@@ -859,17 +833,11 @@ fn click_walk(
         // A click focuses a range input; its value was set by the pointerdown, so a label's
         // synthetic click leaves it alone.
         if el.range_input_data().is_some() {
-            generate_focus_events(
-                doc,
-                &mut |doc| {
-                    doc.set_focus_to(node_id);
-                },
-                dispatch_event,
-            );
+            doc.set_focus_to(node_id);
             return true;
         }
 
-        if click_element(doc, node_id, event, dispatch_event) {
+        if click_element(doc, node_id, event) {
             return true;
         }
 
@@ -883,28 +851,23 @@ fn click_walk(
 
 /// The default action of a click on the element `node_id`, by its name; reads whether the
 /// element took the click, which ends the walk.
-fn click_element(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    event: &BlitzPointerEvent,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_element(doc: &mut BaseDocument, node_id: NodeId, event: &BlitzPointerEvent) -> bool {
     let Some(el) = doc.nodes[node_id].element_data() else {
         return false;
     };
     match el.name.local {
         local_name!("input") if el.attr(local_name!("type")) == Some("checkbox") => {
-            click_checkbox(doc, node_id, dispatch_event)
+            click_checkbox(doc, node_id)
         }
         local_name!("input") if el.attr(local_name!("type")) == Some("radio") => {
-            click_radio(doc, node_id, dispatch_event)
+            click_radio(doc, node_id)
         }
-        local_name!("summary") => click_summary(doc, node_id, dispatch_event),
-        local_name!("select") => click_select(doc, node_id, dispatch_event),
-        local_name!("option") => click_option(doc, node_id, event, dispatch_event),
+        local_name!("summary") => click_summary(doc, node_id),
+        local_name!("select") => click_select(doc, node_id),
+        local_name!("option") => click_option(doc, node_id, event),
         // A header of an open list chooses nothing and leaves it open.
         local_name!("optgroup") => click_lands_on_row(doc, node_id, event),
-        local_name!("label") => click_label(doc, node_id, event, dispatch_event),
+        local_name!("label") => click_label(doc, node_id, event),
         local_name!("a") => click_link(doc, node_id),
         // A click focuses a button, as a pointerdown does in browsers, and a submit
         // button submits its form owner.
@@ -916,7 +879,7 @@ fn click_element(
                 ) =>
         {
             let submits = el.is_submit_button() || el.attr(local_name!("type")) == Some("submit");
-            click_button(doc, node_id, submits, dispatch_event);
+            click_button(doc, node_id, submits);
             true
         }
         #[cfg(feature = "file-input")]
@@ -929,11 +892,7 @@ fn click_element(
 }
 
 /// A click on a checkbox flips it, fires `input` then `change`, and focuses it.
-fn click_checkbox(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_checkbox(doc: &mut BaseDocument, node_id: NodeId) -> bool {
     let mut is_checked = false;
     doc.snapshot_node_and(node_id, ElementState::CHECKED, |node| {
         if let Some(el) = node.element_data_mut() {
@@ -942,33 +901,20 @@ fn click_checkbox(
         node.mark_ancestors_dirty();
     });
     let value = is_checked.to_string();
-    dispatch_event(DomEvent::new(
+    doc.queue_ua_event(
         node_id,
         DomEventData::Input(BlitzInputEvent {
             value: value.clone(),
         }),
-    ));
-    dispatch_event(DomEvent::new(
-        node_id,
-        DomEventData::Change(BlitzInputEvent { value }),
-    ));
-    generate_focus_events(
-        doc,
-        &mut |doc| {
-            doc.set_focus_to(node_id);
-        },
-        dispatch_event,
     );
+    doc.queue_ua_event(node_id, DomEventData::Change(BlitzInputEvent { value }));
+    doc.set_focus_to(node_id);
     true
 }
 
 /// A click on a radio checks it, fires `input`, and `change` where it was not checked before,
 /// and focuses it.
-fn click_radio(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_radio(doc: &mut BaseDocument, node_id: NodeId) -> bool {
     let Some(el) = doc.nodes[node_id].element_data() else {
         return false;
     };
@@ -986,37 +932,24 @@ fn click_radio(
 
     // TODO: make input event conditional on value actually changing
     let value = String::from("true");
-    dispatch_event(DomEvent::new(
+    doc.queue_ua_event(
         node_id,
         DomEventData::Input(BlitzInputEvent {
             value: value.clone(),
         }),
-    ));
+    );
     if !was_checked {
-        dispatch_event(DomEvent::new(
-            node_id,
-            DomEventData::Change(BlitzInputEvent { value }),
-        ));
+        doc.queue_ua_event(node_id, DomEventData::Change(BlitzInputEvent { value }));
     }
 
-    generate_focus_events(
-        doc,
-        &mut |doc| {
-            doc.set_focus_to(node_id);
-        },
-        dispatch_event,
-    );
+    doc.set_focus_to(node_id);
 
     true
 }
 
 /// Activating the first <summary> of a <details> element toggles
 /// the details' `open` attribute (expand/collapse).
-fn click_summary(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_summary(doc: &mut BaseDocument, node_id: NodeId) -> bool {
     let Some(parent_id) = doc.nodes[node_id].parent else {
         return false;
     };
@@ -1034,29 +967,19 @@ fn click_summary(
         return false;
     }
     doc.toggle_details_open(parent_id);
-    generate_focus_events(
-        doc,
-        &mut |doc| {
-            doc.set_focus_to(node_id);
-        },
-        dispatch_event,
-    );
+    doc.set_focus_to(node_id);
     true
 }
 
 /// A click focuses a select and starts its typed text afresh, and the text it hit
 /// inside the select is not selected; on a single select it opens the list, or
 /// closes the one that stands.
-fn click_select(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_select(doc: &mut BaseDocument, node_id: NodeId) -> bool {
     let single = doc.nodes[node_id]
         .element_data()
         .is_some_and(select::is_single_select);
     let standing = doc.select_list_for(node_id).is_some();
-    focus_select(doc, node_id, dispatch_event);
+    focus_select(doc, node_id);
     if standing {
         doc.close_select_list();
     } else if single {
@@ -1068,35 +991,25 @@ fn click_select(
 /// A `multiple` select's row takes a click, and so does a row of an open list; an
 /// option of a closed select has no box to take one, and the walk goes on to its
 /// select.
-fn click_option(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    event: &BlitzPointerEvent,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_option(doc: &mut BaseDocument, node_id: NodeId, event: &BlitzPointerEvent) -> bool {
     if let Some(select) = doc.select_of(node_id).filter(|select| {
         doc.get_node(*select)
             .is_some_and(|node| node.attr(local_name!("multiple")).is_some())
     }) {
-        click_select_row(doc, select, node_id, event.mods, dispatch_event);
+        click_select_row(doc, select, node_id, event.mods);
         return true;
     }
     if let Some(select) = doc.open_select()
         && click_lands_on_row(doc, node_id, event)
     {
-        click_list_row(doc, select, node_id, dispatch_event);
+        click_list_row(doc, select, node_id);
         return true;
     }
     false
 }
 
 /// Clicking labels triggers click, and possibly input event, of associated input
-fn click_label(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    event: &BlitzPointerEvent,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) -> bool {
+fn click_label(doc: &mut BaseDocument, node_id: NodeId, event: &BlitzPointerEvent) -> bool {
     let Some(target_node_id) = doc.label_bound_input_element(node_id).map(|n| n.id) else {
         return false;
     };
@@ -1106,14 +1019,14 @@ fn click_label(
         .and_then(|node| node.element_data())
         .is_some_and(|el| select::is_single_select(el) && !el.is_disabled())
     {
-        focus_select(doc, target_node_id, dispatch_event);
+        focus_select(doc, target_node_id);
         return true;
     }
 
     // Apply default click event action for target node
     let target_node = doc.get_node_mut(target_node_id).unwrap();
     let syn_event = target_node.synthetic_click_event_data(event.mods);
-    handle_click(doc, target_node_id, &syn_event, dispatch_event);
+    handle_click(doc, target_node_id, &syn_event);
     true
 }
 
@@ -1191,28 +1104,16 @@ fn click_file_input(doc: &mut BaseDocument, node_id: NodeId) {
 }
 
 /// Focuses a clicked select and starts its typed text afresh, the document's text selection cleared.
-fn focus_select(doc: &mut BaseDocument, select: NodeId, dispatch_event: &mut dyn FnMut(DomEvent)) {
+fn focus_select(doc: &mut BaseDocument, select: NodeId) {
     doc.select_typeahead = None;
     doc.text_selection.clear();
-    generate_focus_events(
-        doc,
-        &mut |doc| {
-            doc.set_focus_to(select);
-        },
-        dispatch_event,
-    );
+    doc.set_focus_to(select);
 }
 
 /// A click on a row of a `multiple` select focuses the select and starts its typed text afresh;
 /// plain it chooses the row alone, with Ctrl or Meta flips it and with Shift spans from the
 /// anchor to it. A disabled select takes no click, and a disabled row changes nothing.
-fn click_select_row(
-    doc: &mut BaseDocument,
-    select: NodeId,
-    row: NodeId,
-    mods: Modifiers,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) {
+fn click_select_row(doc: &mut BaseDocument, select: NodeId, row: NodeId, mods: Modifiers) {
     if doc
         .get_node(select)
         .and_then(|node| node.element_data())
@@ -1222,13 +1123,7 @@ fn click_select_row(
     }
     doc.select_typeahead = None;
     doc.text_selection.clear();
-    generate_focus_events(
-        doc,
-        &mut |doc| {
-            doc.set_focus_to(select);
-        },
-        dispatch_event,
-    );
+    doc.set_focus_to(select);
     let options = select::options(doc, select);
     let Some(index) = options.iter().position(|option| *option == row) else {
         return;
@@ -1242,56 +1137,14 @@ fn click_select_row(
     };
     let disabled = doc.get_node(row).is_some_and(select::option_disabled);
     if !disabled {
-        doc.apply_row_gesture(select, &options, gesture, dispatch_event);
+        doc.apply_row_gesture(select, &options, gesture);
     }
 }
 
 /// Focuses a clicked button, then submits its form owner when it is a submit button.
-fn click_button(
-    doc: &mut BaseDocument,
-    node_id: NodeId,
-    submits: bool,
-    dispatch_event: &mut dyn FnMut(DomEvent),
-) {
-    generate_focus_events(
-        doc,
-        &mut |doc| {
-            doc.set_focus_to(node_id);
-        },
-        dispatch_event,
-    );
+fn click_button(doc: &mut BaseDocument, node_id: NodeId, submits: bool) {
+    doc.set_focus_to(node_id);
     if submits && let Some(form_owner) = doc.controls_to_form.get(&node_id) {
         doc.submit_form(*form_owner, node_id);
-    }
-}
-
-pub(crate) fn handle_wheel<F: FnMut(DomEvent)>(
-    doc: &mut BaseDocument,
-    _: NodeId,
-    event: BlitzWheelEvent,
-    mut dispatch_event: F,
-) {
-    let (scroll_x, scroll_y) = match event.delta {
-        BlitzWheelDelta::Lines(x, y) => (x * 20.0, y * 20.0),
-        BlitzWheelDelta::Pixels(x, y) => (x, y),
-    };
-
-    if doc
-        .select_list_hit(event.page_x(), event.page_y())
-        .is_some()
-    {
-        doc.scroll_select_list_by(scroll_y);
-        return;
-    }
-    doc.close_select_list();
-
-    let has_changed = doc.scroll_chain_by(
-        doc.get_hover_node_id(),
-        scroll_x,
-        scroll_y,
-        &mut dispatch_event,
-    );
-    if has_changed {
-        doc.shell_provider.request_redraw();
     }
 }

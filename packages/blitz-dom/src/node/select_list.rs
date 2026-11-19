@@ -10,6 +10,7 @@ use style::computed_values::visibility::T as Visibility;
 
 use super::{Node, select};
 use crate::{BaseDocument, BoundingRect};
+use stylo_taffy::CopyStyleGetters;
 
 /// The most rows a list shows before it scrolls.
 pub(crate) const MAX_ROWS: usize = 20;

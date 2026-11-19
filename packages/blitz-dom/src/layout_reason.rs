@@ -32,6 +32,7 @@ use style::values::specified::box_::DisplayOutside;
 use crate::layout::replaced::is_replaced_element;
 use crate::node::Node;
 use crate::{BaseDocument, BoundingRect, NodeId};
+use stylo_taffy::CopyStyleGetters;
 
 /// Why an element sits where it does at its size. Built by [`BaseDocument::layout_reason`].
 #[derive(Debug, Clone, PartialEq)]

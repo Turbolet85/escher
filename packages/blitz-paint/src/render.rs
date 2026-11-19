@@ -6,6 +6,7 @@ mod form_controls;
 mod mask;
 mod select_list;
 
+use blitz_dom::CopyStyleGetters;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -18,9 +19,9 @@ use crate::filters::convert_filters;
 use crate::kurbo_css::NonUniformRoundedRectRadii;
 use crate::layers::LayerManager;
 use crate::sizing::compute_object_fit;
-use crate::text::DrawTextContext;
+use crate::text::{DrawTextContext, TextPaintOptions};
 use crate::{CustomWidgetSceneMap, SELECTION_COLOR};
-use anyrender::{PaintScene, Scene};
+use anyrender::{AntiAliasing, PaintScene, Scene};
 use blitz_dom::node::{
     ListItemLayout, ListItemLayoutPosition, Marker, NodeData, RasterImageData, TextInputData,
     TextNodeData,
@@ -30,7 +31,6 @@ use blitz_traits::devtools::DevtoolSettings;
 
 use style::values::computed::{BorderCornerRadius, ColorOrAuto};
 use style::{
-    dom::TElement,
     properties::{
         ComputedValues, generated::longhands::visibility::computed_value::T as StyloVisibility,
         style_structs::Font,
@@ -47,6 +47,14 @@ use peniko::{self, BlendMode, Fill, ImageData, ImageSampler};
 use style::computed_values::isolation::T as Isolation;
 use style::values::generics::color::GenericColor;
 use taffy::Layout;
+
+/// An opacity just below 1.0, used to force the renderer to allocate an isolated
+/// buffer for mask and text-clip isolation layers. Renderers (e.g. vello_cpu) may optimize
+/// layers with `Mix::Normal`/`Compose::SrcOver` and an opacity of exactly 1.0 into
+/// plain non-isolated clip layers, in which case the mask layer (or `Compose::DestIn`
+/// text-clip layer) would erase the backdrop behind the element rather than just the
+/// element's own content.
+pub(super) const ALMOST_OPAQUE: f32 = 1.0 - f32::EPSILON;
 
 /// A view of the track positions reported by taffy in physical (left-to-right /
 /// top-to-bottom) order. Taffy reports tracks in logical order, which for RTL grid
@@ -116,6 +124,7 @@ pub struct BlitzDomPainter<'dom, 'a> {
     pub(crate) initial_y: f64,
     /// The id of the document's root element (cached to avoid re-resolving it for every element)
     pub(crate) root_element_id: Option<NodeId>,
+    pub(crate) canvas_background_node_id: Option<NodeId>,
     /// Scrollbar hover/drag state, resolved once per scene like the root element
     #[cfg(feature = "scrollbars")]
     pub(crate) hovered_scrollbar: Option<blitz_dom::node::ScrollbarRef>,
@@ -150,6 +159,23 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
 
         let layer_manager = LayerManager::default();
         let root_element_id = dom.try_root_element().map(|el| el.id);
+        let canvas_background_node_id = dom.try_root_element().and_then(|root| {
+            let styles = root.primary_styles();
+            let color = styles
+                .as_ref()
+                .map_or(&GenericColor::TRANSPARENT_BLACK, |s| {
+                    s.get_background_color()
+                });
+            if *color == GenericColor::TRANSPARENT_BLACK {
+                root.children.iter().find_map(|id| {
+                    dom.get_node(*id)
+                        .filter(|node| node.data.is_element_with_tag_name(&local_name!("body")))
+                        .map(|body| body.id)
+                })
+            } else {
+                Some(root.id)
+            }
+        });
 
         Self {
             dom,
@@ -159,6 +185,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
             initial_x,
             initial_y,
             root_element_id,
+            canvas_background_node_id,
             #[cfg(feature = "scrollbars")]
             hovered_scrollbar: dom.hovered_scrollbar(),
             #[cfg(feature = "scrollbars")]
@@ -193,33 +220,16 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
         let bg_width = (self.width as f32).max(root_element.final_layout().size.width);
         let bg_height = (self.height as f32).max(root_element.final_layout().size.height);
 
-        let background_color = {
-            let html_color = root_element
-                .primary_styles()
-                .map(|s| s.clone_background_color())
-                .unwrap_or(GenericColor::TRANSPARENT_BLACK);
-            if html_color == GenericColor::TRANSPARENT_BLACK {
-                root_element
-                    .children
-                    .iter()
-                    .find_map(|id| {
-                        self.dom
-                            .as_ref()
-                            .get_node(*id)
-                            .filter(|node| node.data.is_element_with_tag_name(&local_name!("body")))
-                    })
-                    .and_then(|body| body.primary_styles())
-                    .map(|style| {
-                        let current_color = style.clone_color();
-                        style
-                            .clone_background_color()
-                            .resolve_to_absolute(&current_color)
-                    })
-            } else {
-                let current_color = root_element.primary_styles().unwrap().clone_color();
-                Some(html_color.resolve_to_absolute(&current_color))
-            }
-        };
+        let background_color = self
+            .canvas_background_node_id
+            .and_then(|id| self.dom.get_node(id))
+            .and_then(|node| node.primary_styles())
+            .map(|style| {
+                let current_color = style.clone_color();
+                style
+                    .get_background_color()
+                    .resolve_to_absolute(&current_color)
+            });
 
         if let Some(bg_color) = background_color {
             let bg_color = bg_color.as_srgb_color();
@@ -233,7 +243,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                 bg_color,
                 None,
                 &rect,
-                anyrender::AntiAliasing::Enabled,
+                AntiAliasing::Enabled,
             );
         }
 
@@ -287,6 +297,142 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
         }
     }
 
+    fn node_transform(&self, node: &Node, parent: Affine) -> Affine {
+        let location = node.final_layout().location;
+        parent
+            * Affine::translate(Vec2::new(location.x as f64, location.y as f64) * self.scale)
+            * node.transform().as_deref().copied().unwrap_or_default()
+    }
+
+    fn scrolled_transform(&self, node: &Node, transform: Affine) -> Affine {
+        transform.then_translate(Vec2 {
+            x: -node.scroll_offset().x * self.scale,
+            y: -node.scroll_offset().y * self.scale,
+        })
+    }
+
+    /// Paint an SVG image as its own isolated group, so blend modes inside the image
+    /// composite with the image's own content rather than the page behind it.
+    #[cfg(feature = "svg")]
+    pub(crate) fn draw_svg_image(
+        &self,
+        scene: &mut impl PaintScene,
+        tree: &anyrender_svg::usvg::Tree,
+        transform: Affine,
+    ) {
+        // `1.0 - EPSILON` stops the layer from being demoted to a non-isolating clip layer.
+        self.layer_manager.maybe_with_layer(
+            scene,
+            true,
+            BlendMode::default(),
+            1.0 - f32::EPSILON,
+            Affine::IDENTITY,
+            &Rect::new(
+                self.initial_x,
+                self.initial_y,
+                self.initial_x + self.width as f64,
+                self.initial_y + self.height as f64,
+            ),
+            None,
+            None,
+            |scene| anyrender_svg::render_svg_tree(scene, tree, transform),
+        );
+    }
+
+    fn should_clip_node(&self, node: &Node, styles: &ComputedValues) -> bool {
+        let box_style = styles.get_box();
+        let contain_paint = box_style.slow_clone_contain().contains(Contain::PAINT) && {
+            let display = styles.clone_display();
+            let is_internal_table_box_other_than_cell = display.outside()
+                == DisplayOutside::InternalTable
+                && display.inside() != DisplayInside::TableCell;
+            !display.is_inline_flow() && !is_internal_table_box_other_than_cell
+        };
+        let element = node.element_data();
+        self.root_element_id != Some(node.id)
+            && (element.and_then(|e| e.raster_image_data()).is_some()
+                || element.and_then(|e| e.sub_doc_data()).is_some()
+                || element.and_then(|e| e.text_input_data()).is_some()
+                || contain_paint
+                || !matches!(box_style.overflow_x, Overflow::Visible)
+                || !matches!(box_style.overflow_y, Overflow::Visible))
+    }
+
+    fn draw_text_mask(
+        &self,
+        scene: &mut impl PaintScene,
+        node_id: NodeId,
+        transform: Affine,
+        root: bool,
+    ) {
+        let node = &self.dom.as_ref().tree()[node_id];
+        if matches!(node.taffy_display(), taffy::Display::None) || (!root && node.is_out_of_flow())
+        {
+            return;
+        }
+        let Some(styles) = node.primary_styles() else {
+            return;
+        };
+        if styles.get_inherited_box().visibility != StyloVisibility::Visible
+            || node.element_data().is_none()
+        {
+            return;
+        }
+        let cx = self.element_cx(node, *node.final_layout(), transform, None);
+        let clip = if cx.text_input.is_some() {
+            cx.frame.text_input_clip_shape()
+        } else {
+            cx.frame.padding_box_shape()
+        };
+        let pushed = self.layer_manager.maybe_push_layer(
+            scene,
+            self.should_clip_node(node, &styles),
+            BlendMode::default(),
+            1.0,
+            transform,
+            &clip,
+            None,
+            None,
+        );
+        let transform = self.scrolled_transform(node, transform);
+        if node.flags.is_inline_root() {
+            if let Some(layout) = &cx.element.inline_layout_data {
+                let layout_box = node.final_layout();
+                let x = (layout_box.padding.left + layout_box.border.left) as f64
+                    - node.scroll_offset().x;
+                let y = (layout_box.padding.top + layout_box.border.top) as f64
+                    - node.scroll_offset().y
+                    + layout.block_offset as f64;
+                let text_transform =
+                    transform * Affine::translate((x * self.scale, y * self.scale));
+                crate::text::stroke_text(
+                    scene,
+                    layout.layout.lines(),
+                    self.dom,
+                    text_transform,
+                    TextPaintOptions {
+                        scale: self.scale,
+                        brush_override: Some(Color::BLACK),
+                    },
+                    node.id,
+                    &mut self.draw_text_context.borrow_mut(),
+                );
+            }
+        }
+        if let Some(children) = &*node.layout_children.borrow() {
+            for &child_id in children {
+                let child = &self.dom.as_ref().tree()[child_id];
+                self.draw_text_mask(
+                    scene,
+                    child_id,
+                    self.node_transform(child, transform),
+                    false,
+                );
+            }
+        }
+        self.layer_manager.maybe_pop_layer(scene, pushed);
+    }
+
     /// Renders a node, but is guaranteed that the node is an element
     /// This is because the font_size is calculated from layout resolution and all text is rendered directly here, instead
     /// of a separate text stroking phase.
@@ -317,7 +463,9 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
 
         // Hide inputs with type=hidden
         // Implemented here rather than using the style engine for performance reasons
-        if node.local_name() == "input" && node.attr(local_name!("type")) == Some("hidden") {
+        if node.data.is_element_with_tag_name(&local_name!("input"))
+            && node.attr(local_name!("type")) == Some("hidden")
+        {
             return;
         }
 
@@ -333,51 +481,19 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
         }
         let has_opacity = opacity < 1.0;
 
-        // TODO: account for overflow_x vs overflow_y
-        let overflow_x = styles.get_box().overflow_x;
-        let overflow_y = styles.get_box().overflow_y;
-        // `contain: paint` (and stronger values like `strict`/`content`) clips the element's
-        // contents to its padding box. Paint containment does not apply to non-atomic inlines
-        // or internal table boxes other than table-cell.
-        let contain_paint = styles.get_box().clone_contain().contains(Contain::PAINT) && {
-            let display = styles.clone_display();
-            let is_internal_table_box_other_than_cell = display.outside()
-                == DisplayOutside::InternalTable
-                && display.inside() != DisplayInside::TableCell;
-            !display.is_inline_flow() && !is_internal_table_box_other_than_cell
-        };
-        let is_image = node
-            .element_data()
-            .and_then(|e| e.raster_image_data())
-            .is_some();
-        let is_sub_doc = node
-            .element_data()
-            .and_then(|el| el.sub_doc_data())
-            .is_some();
+        let should_clip = self.should_clip_node(node, &styles);
         let is_text_input = node
             .element_data()
             .and_then(|el| el.text_input_data())
             .is_some();
-        // The root element's overflow is propagated to the viewport (which is clipped by the
-        // window/surface bounds), so the root element must not clip its own overflow.
-        let is_root_element = self.root_element_id == Some(node_id);
-        let should_clip = !is_root_element
-            && (is_image
-                || is_sub_doc
-                || is_text_input
-                || contain_paint
-                || !matches!(overflow_x, Overflow::Visible)
-                || !matches!(overflow_y, Overflow::Visible));
 
         // Apply padding/border offset to inline root
         let taffy::Layout {
             size,
             border,
             padding,
-            location,
             ..
         } = *node.final_layout();
-        let box_position = Vec2::new(location.x as f64, location.y as f64) * self.scale;
         let box_size = Size::new(
             size.width as f64 * self.scale,
             size.height as f64 * self.scale,
@@ -395,10 +511,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
 
         // Don't render things that are out of view
         let overflow = *node.scrollable_overflow();
-        let transform = parent_style_transform
-            * Affine::translate(box_position)
-            * node.transform().as_deref().copied().unwrap_or_default();
-
+        let transform = self.node_transform(node, parent_style_transform);
         let screen_transform = Affine::translate(Vec2 {
             x: -self.initial_x,
             y: -self.initial_y,
@@ -456,9 +569,9 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
         // here matches the clip applied to the content below.
         let child_clip_rect = if should_clip {
             let clip_box = if is_text_input {
-                cx.frame.content_box_path()
+                cx.frame.text_input_clip_shape()
             } else {
-                cx.frame.padding_box_path()
+                cx.frame.padding_box_shape()
             };
             clip_rect.intersect(screen_transform.transform_rect_bbox(clip_box.bounding_box()))
         } else {
@@ -583,9 +696,9 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
 
                         // TODO: allow layers with opacity to be unclipped (overflow: visible)
                         let clip = if is_text_input {
-                            &cx.frame.content_box_path()
+                            &cx.frame.text_input_clip_shape()
                         } else {
-                            &cx.frame.padding_box_path()
+                            &cx.frame.padding_box_shape()
                         };
 
                         // Clip layer if box requires clipping. Opacity set to 1.0
@@ -605,10 +718,7 @@ impl<'dom, 'a> BlitzDomPainter<'dom, 'a> {
                                     y: content_position.y - node.scroll_offset().y,
                                 };
 
-                                cx.transform = cx.transform.then_translate(Vec2 {
-                                    x: -node.scroll_offset().x * self.scale,
-                                    y: -node.scroll_offset().y * self.scale,
-                                });
+                                cx.transform = self.scrolled_transform(node, cx.transform);
                                 cx.draw_image(scene);
                                 #[cfg(feature = "svg")]
                                 cx.draw_svg(scene);
@@ -842,7 +952,7 @@ impl ElementCx<'_, '_> {
 
             // Track (only when the author specified a track color)
             if let Some(track_color) = custom_track {
-                let padding_box = self.frame.padding_box;
+                let padding_box = self.frame.padding_box();
                 let track_rect = match axis {
                     AbsoluteAxis::Horizontal => {
                         Rect::new(padding_box.x0, rect.y0, padding_box.x1, rect.y1)
@@ -857,7 +967,7 @@ impl ElementCx<'_, '_> {
                     track_color.multiply_alpha(opacity),
                     None,
                     &track_rect,
-                    anyrender::AntiAliasing::Enabled,
+                    AntiAliasing::Enabled,
                 );
             }
 
@@ -882,7 +992,7 @@ impl ElementCx<'_, '_> {
                 color.multiply_alpha(opacity),
                 None,
                 &rect.to_rounded_rect(radius),
-                anyrender::AntiAliasing::Enabled,
+                AntiAliasing::Enabled,
             );
             // Contrast stroke, default thumbs only: an author-specified
             // scrollbar-color is rendered exactly as given.
@@ -895,7 +1005,7 @@ impl ElementCx<'_, '_> {
                     stroke_color.multiply_alpha(opacity),
                     None,
                     &stroke_rect.to_rounded_rect(radius - stroke_width / 2.0),
-                    anyrender::AntiAliasing::Enabled,
+                    AntiAliasing::Enabled,
                 );
             }
         }
@@ -947,7 +1057,10 @@ impl ElementCx<'_, '_> {
                 text_layout.layout.lines(),
                 self.context.dom,
                 transform,
-                self.scale,
+                TextPaintOptions {
+                    scale: self.scale,
+                    brush_override: None,
+                },
                 self.node.id,
                 &mut draw_text_context,
             );
@@ -993,7 +1106,7 @@ impl ElementCx<'_, '_> {
                         SELECTION_COLOR,
                         None,
                         &convert_rect(rect),
-                        anyrender::AntiAliasing::Enabled,
+                        AntiAliasing::Enabled,
                     );
                 }
                 if let Some(cursor) = input_data.editor.cursor_geometry(1.5) {
@@ -1003,7 +1116,7 @@ impl ElementCx<'_, '_> {
                         self.caret_color(),
                         None,
                         &convert_rect(&cursor),
-                        anyrender::AntiAliasing::Enabled,
+                        AntiAliasing::Enabled,
                     );
                 };
             }
@@ -1015,7 +1128,10 @@ impl ElementCx<'_, '_> {
                 input_data.editor.try_layout().unwrap().lines(),
                 self.context.dom,
                 transform,
-                self.scale,
+                TextPaintOptions {
+                    scale: self.scale,
+                    brush_override: None,
+                },
                 self.node.id,
                 &mut draw_text_context,
             );
@@ -1103,7 +1219,10 @@ impl ElementCx<'_, '_> {
             layout.lines(),
             self.context.dom,
             transform,
-            self.scale,
+            TextPaintOptions {
+                scale: self.scale,
+                brush_override: None,
+            },
             self.node.id,
             &mut draw_text_context,
         );
@@ -1158,7 +1277,10 @@ impl ElementCx<'_, '_> {
                 layout.lines(),
                 self.context.dom,
                 transform,
-                self.scale,
+                TextPaintOptions {
+                    scale: self.scale,
+                    brush_override: None,
+                },
                 self.node.id,
                 &mut draw_text_context,
             );
@@ -1205,6 +1327,11 @@ impl ElementCx<'_, '_> {
                         x: scroll.x * self.scale,
                         y: scroll.y * self.scale,
                     })
+                } else if let Some(offset) = child.lifted_paint_offset(self.node.id) {
+                    parent_style_transform.pre_translate(kurbo::Vec2 {
+                        x: offset.x as f64 * self.scale,
+                        y: offset.y as f64 * self.scale,
+                    })
                 } else {
                     parent_style_transform
                 };
@@ -1238,12 +1365,13 @@ impl ElementCx<'_, '_> {
             return;
         };
 
-        let width = self.frame.content_box.width() as f32;
-        let height = self.frame.content_box.height() as f32;
+        let content_box = self.frame.content_box();
+        let width = content_box.width() as f32;
+        let height = content_box.height() as f32;
         let svg_size = svg.tree.size();
 
-        let x = self.frame.content_box.origin().x;
-        let y = self.frame.content_box.origin().y;
+        let x = content_box.origin().x;
+        let y = content_box.origin().y;
 
         // An SVG with an aspect ratio but no natural size is sized by the default sizing
         // algorithm, which for `none` and `scale-down` contains it within the content box.
@@ -1257,7 +1385,7 @@ impl ElementCx<'_, '_> {
             }
             object_fit => object_fit,
         };
-        let object_position = self.style.clone_object_position();
+        let object_position = self.style.get_object_position();
 
         // Apply object-fit algorithm
         let container_size = taffy::Size { width, height };
@@ -1280,14 +1408,43 @@ impl ElementCx<'_, '_> {
         let viewport = svg_viewport_affine(svg, paint_size.width, paint_size.height);
         let transform = (self.transform * viewport).then_translate(Vec2 { x, y });
 
-        self.with_replaced_content_clip(
+        // An inline `<svg>`'s `transform` attribute is applied inside the tree, so its
+        // viewport clip is left to `overflow`.
+        if self.node.data.is_element_with_tag_name(&local_name!("svg")) {
+            self.with_replaced_content_clip(
+                scene,
+                container_size,
+                paint_size,
+                x_offset.px(),
+                y_offset.px(),
+                |scene| {
+                    self.draw_svg_image(scene, &svg.tree, transform);
+                },
+            );
+            return;
+        }
+
+        // An SVG image's root viewport clips its content, as does the content box when
+        // the object-fit rect overflows it. The viewport is rounded out to whole pixels
+        // so its clip doesn't anti-alias the content's own edges a second time.
+        let viewport_rect = Rect::new(
+            x,
+            y,
+            x + paint_size.width as f64,
+            y + paint_size.height as f64,
+        )
+        .expand();
+        self.context.layer_manager.maybe_with_layer(
             scene,
-            container_size,
-            paint_size,
-            x_offset.px(),
-            y_offset.px(),
+            true,
+            BlendMode::default(),
+            1.0,
+            self.transform,
+            &viewport_rect.intersect(content_box),
+            None,
+            None,
             |scene| {
-                anyrender_svg::render_svg_tree(scene, &svg.tree, transform);
+                self.draw_svg_image(scene, &svg.tree, transform);
             },
         );
     }
@@ -1322,13 +1479,14 @@ impl ElementCx<'_, '_> {
 
     fn draw_image(&self, scene: &mut impl PaintScene) {
         if let Some(image) = self.element.raster_image_data() {
-            let width = self.frame.content_box.width() as u32;
-            let height = self.frame.content_box.height() as u32;
-            let x = self.frame.content_box.origin().x;
-            let y = self.frame.content_box.origin().y;
+            let content_box = self.frame.content_box();
+            let width = content_box.width() as u32;
+            let height = content_box.height() as u32;
+            let x = content_box.origin().x;
+            let y = content_box.origin().y;
 
             let object_fit = self.style.clone_object_fit();
-            let object_position = self.style.clone_object_position();
+            let object_position = self.style.get_object_position();
             let image_rendering = self.style.clone_image_rendering();
             let quality = to_image_quality(image_rendering);
 
@@ -1376,8 +1534,7 @@ impl ElementCx<'_, '_> {
     #[cfg(feature = "custom-widget")]
     fn draw_custom_widget(&self, scene: &mut impl PaintScene) {
         if let Some(widget_scene) = self.custom_widget_scene {
-            let x = self.frame.content_box.origin().x;
-            let y = self.frame.content_box.origin().y;
+            let Point { x, y } = self.frame.content_box().origin();
             let transform = self.transform.then_translate(Vec2 { x, y });
 
             // TODO: eliminate clone
@@ -1388,13 +1545,14 @@ impl ElementCx<'_, '_> {
     fn draw_sub_document(&self, scene: &mut impl PaintScene) {
         if let Some(sub_doc) = self.element.sub_doc_data().map(|doc| doc.inner()) {
             let scale = self.scale;
-            let width = self.frame.content_box.width() as u32;
-            let height = self.frame.content_box.height() as u32;
+            let content_box = self.frame.content_box();
+            let width = content_box.width() as u32;
+            let height = content_box.height() as u32;
 
             // TODO: Support arbitrary transforms of subdocuments
             let translation = self.transform.translation();
-            let initial_x = translation.x + self.frame.content_box.origin().x;
-            let initial_y = translation.y + self.frame.content_box.origin().y;
+            let initial_x = translation.x + content_box.origin().x;
+            let initial_y = translation.y + content_box.origin().y;
             // let transform = self.transform.then_translate(Vec2 { x, y });
 
             let painter = BlitzDomPainter::new(
@@ -1430,7 +1588,7 @@ impl ElementCx<'_, '_> {
                 stroke_color,
                 None,
                 &shape,
-                anyrender::AntiAliasing::Enabled,
+                AntiAliasing::Enabled,
             );
         }
     }

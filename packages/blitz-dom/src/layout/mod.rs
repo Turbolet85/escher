@@ -13,6 +13,7 @@ use std::sync::Arc;
 use style::Atom;
 use style::values::computed::CSSPixelLength;
 use style::values::computed::length_percentage::CalcLengthPercentage;
+use stylo_taffy::CopyStyleGetters;
 use stylo_taffy::TaffyStyloStyle;
 use taffy::{
     AxisStaticEdge, AxisStaticPosition, BlockContext, CoreStyle as _, DetailedLayoutInfo,
@@ -81,7 +82,11 @@ pub(crate) fn resolve_calc_value(calc_ptr: *const (), parent_size: f32) -> f32 {
 
 /// Per-pass layout state: wraps the document for the duration of a layout pass and carries
 /// the Taffy tree trait implementations. Derefs to [`BaseDocument`].
-pub(crate) struct LayoutPassState<'doc> {
+///
+/// Public so that embedders can drive Taffy over a Blitz document themselves (e.g. a
+/// custom `LayoutPartialTree` wrapper which intercepts some nodes — multi-column or
+/// paginated layout — and delegates everything else to Blitz).
+pub struct LayoutPassState<'doc> {
     doc: &'doc mut BaseDocument,
     /// The writing mode of the box whose layout algorithm is currently running (see
     /// `layout::writing_mode`). Child styles read during that algorithm are expressed in its axes.
@@ -120,7 +125,8 @@ impl<'doc> LayoutPassState<'doc> {
         }
     }
 
-    pub(crate) fn new(doc: &'doc mut BaseDocument) -> Self {
+    /// Start a layout pass over `doc`.
+    pub fn new(doc: &'doc mut BaseDocument) -> Self {
         #[cfg(feature = "writing-mode")]
         let root_id = doc.try_root_element().map(|root| root.id);
         Self {
@@ -228,7 +234,7 @@ impl LayoutPassState<'_> {
         let font_styles = node.primary_styles().map(|style| {
             use style::values::computed::font::LineHeight;
 
-            let font_size = style.clone_font_size().used_size().px();
+            let font_size = style.slow_clone_font_size().used_size().px();
             let line_height = match style.clone_line_height() {
                 LineHeight::Normal => font_size * 1.2,
                 LineHeight::Number(num) => font_size * num.0,

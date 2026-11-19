@@ -6,7 +6,7 @@
 
 ### Epoch 2 — Debts of 0.1.0–0.3.0
 
-Upstream sync ahead of the debts — two-parent merge; left-out commits named; CDP listener's security amendment first; lock, residuals re-read; CI, a11y leg, audit green (v040-02)
+[2026-11-19-upstream-sync-ahead-of-the-debts] Upstream sync ahead of the debts — two-parent merge; left-out commits named; CDP listener's security amendment first; lock, residuals re-read; CI, a11y leg, audit green (v040-02)
 README and records — 0.3.0 closed in the founder's chosen form, what 0.4.0 builds; the category-file citation backlog read through or kept (v040-03)
 Stand-test setup shared — the stand checks' repeated setup in one place, duplication back under its earlier reading, every check unchanged (v040-08)
 Codebase health — the code audit's oversize files and functions over the ceiling, each under its bar or kept by the founder's word (v040-08)

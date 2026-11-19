@@ -1,4 +1,4 @@
-use anyrender::PaintScene;
+use anyrender::{AntiAliasing, PaintScene};
 use blitz_dom::{BaseDocument, NodeId};
 use kurbo::{Affine, Rect, Vec2};
 
@@ -28,7 +28,7 @@ pub(crate) fn render_debug_overlay(
                 fill_color,
                 None,
                 &rect,
-                anyrender::AntiAliasing::Enabled,
+                AntiAliasing::Enabled,
             );
         }
         return;
@@ -100,7 +100,7 @@ pub(crate) fn render_debug_overlay(
         fill_color,
         None,
         &rect,
-        anyrender::AntiAliasing::Enabled,
+        AntiAliasing::Enabled,
     );
 
     let padding_color = Color::from_rgba8(81, 144, 66, 128); // green
@@ -151,7 +151,7 @@ fn draw_cutout_rect(
             color,
             None,
             &Rect::new(0.0, 0.0, width, height),
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
     };
 

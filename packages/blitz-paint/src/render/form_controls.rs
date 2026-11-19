@@ -1,14 +1,14 @@
 use super::ElementCx;
 use crate::color::{Color, ToColorColor as _};
-use anyrender::PaintScene;
+use anyrender::{AntiAliasing, PaintScene};
+use blitz_dom::CopyStyleGetters;
 use blitz_dom::local_name;
 use kurbo::{Affine, BezPath, Cap, Circle, Join, Point, RoundedRect, Stroke, Vec2};
 use peniko::Fill;
-use style::dom::TElement as _;
 
 impl ElementCx<'_, '_> {
     pub(super) fn draw_input(&self, scene: &mut impl PaintScene) {
-        if self.node.local_name() != "input" {
+        if self.element.name.local != local_name!("input") {
             return;
         }
         let Some(checked) = self.element.checkbox_input_checked() else {
@@ -60,7 +60,7 @@ fn draw_checkbox(
             accent_color,
             None,
             &frame,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
         //Tick code derived from masonry
         let mut path = BezPath::new();
@@ -86,7 +86,7 @@ fn draw_checkbox(
             Color::WHITE,
             None,
             &path,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
     } else {
         scene.fill(
@@ -95,7 +95,7 @@ fn draw_checkbox(
             Color::WHITE,
             None,
             &frame,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
         scene.stroke(
             &Stroke::default(),
@@ -103,7 +103,7 @@ fn draw_checkbox(
             accent_color,
             None,
             &frame,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
     }
 }
@@ -126,7 +126,7 @@ fn draw_radio_button(
             accent_color,
             None,
             &outer_ring,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
         scene.fill(
             Fill::NonZero,
@@ -134,7 +134,7 @@ fn draw_radio_button(
             Color::WHITE,
             None,
             &gap,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
         scene.fill(
             Fill::NonZero,
@@ -142,7 +142,7 @@ fn draw_radio_button(
             accent_color,
             None,
             &inner_circle,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
     } else {
         const GRAY: Color = color::palette::css::GRAY;
@@ -152,7 +152,7 @@ fn draw_radio_button(
             GRAY,
             None,
             &outer_ring,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
         scene.fill(
             Fill::NonZero,
@@ -160,7 +160,7 @@ fn draw_radio_button(
             Color::WHITE,
             None,
             &gap,
-            anyrender::AntiAliasing::Enabled,
+            AntiAliasing::Enabled,
         );
     }
 }

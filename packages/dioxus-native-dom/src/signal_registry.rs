@@ -264,7 +264,11 @@ pub(crate) mod tests {
                 inner.node_chain(target),
             )
         };
-        let mut event = DomEvent::new(target, DomEventData::Click(data));
+        let mut event = DomEvent::new(
+            target,
+            DomEventData::Click(data),
+            blitz_traits::events::EventDispatchSource::Input,
+        );
         doc.dispatch_to_vdom(&chain, &mut event);
         doc.poll(None);
     }

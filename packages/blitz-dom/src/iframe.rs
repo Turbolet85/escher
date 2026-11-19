@@ -73,6 +73,9 @@ impl BaseDocument {
             abort_signal: Some(abort_signal),
             subdocument_depth: self.subdocument_depth + 1,
             clock: Some(self.clock.clone()),
+            // A sub-document is a separate devtools target with its own provider
+            #[cfg(feature = "devtools")]
+            devtools_provider: None,
         }
     }
 

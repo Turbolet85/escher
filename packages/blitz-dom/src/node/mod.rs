@@ -34,4 +34,4 @@ pub use select_list::{SelectListRow, SelectListView};
 pub use stylo_data::ComputedStyleRef;
 #[cfg(feature = "svg")]
 pub use svg::{SvgImageData, SvgIntrinsicDimensions};
-pub use text::{GeneratedTextInputEvent, TextBrush, TextInputData, TextLayout};
+pub use text::{GeneratedTextInputEvent, INLINE_BOX_CHAR, TextBrush, TextInputData, TextLayout};

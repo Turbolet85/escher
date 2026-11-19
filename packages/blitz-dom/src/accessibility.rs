@@ -6,6 +6,7 @@ use accesskit::{
     Invalid, Node as AccessKitNode, NodeId, Role, Toggled, TreeId, TreeInfo, TreeUpdate,
 };
 use style::properties::longhands::visibility;
+use stylo_taffy::CopyStyleGetters;
 
 impl BaseDocument {
     pub fn build_accessibility_tree(&self) -> TreeUpdate {
@@ -292,10 +293,12 @@ impl BlitzDomNode {
             .try_stylo_element_data()
             .as_ref()
             .and_then(|s| s.get())
-            .map(|s| {
-                (s.styles.is_display_none() && !is_select_option)
-                    || s.styles.primary().clone_visibility()
-                        == visibility::computed_value::T::Hidden
+            .and_then(|s| {
+                let style = s.styles.get_primary()?;
+                Some(
+                    (style.get_box().get_display().is_none() && !is_select_option)
+                        || style.clone_visibility() != visibility::computed_value::T::Visible,
+                )
             })
             .unwrap_or(false)
     }

@@ -16,6 +16,8 @@ mod window;
 
 #[cfg(feature = "accessibility")]
 mod accessibility;
+#[cfg(feature = "devtools")]
+mod devtools;
 
 pub use crate::application::BlitzApplication;
 pub use crate::event::{BlitzShellEvent, BlitzShellProxy};
@@ -159,40 +161,24 @@ impl ShellProvider for BlitzShellProvider {
         let _ = self.window.drag_window();
     }
 
-    #[cfg(all(
-        feature = "clipboard",
-        any(
-            target_os = "windows",
-            target_os = "macos",
-            target_os = "linux",
-            target_os = "dragonfly",
-            target_os = "freebsd",
-            target_os = "netbsd",
-            target_os = "openbsd"
-        )
-    ))]
-    fn get_clipboard_text(&self) -> Result<String, blitz_traits::shell::ClipboardError> {
-        let mut cb = arboard::Clipboard::new().unwrap();
-        cb.get_text()
-            .map_err(|_| blitz_traits::shell::ClipboardError)
+    #[cfg(feature = "devtools")]
+    fn open_devtools(&self, doc_id: usize) {
+        self.proxy
+            .send_event(BlitzShellEvent::OpenDevtools { doc_id });
     }
 
-    #[cfg(all(
-        feature = "clipboard",
-        any(
-            target_os = "windows",
-            target_os = "macos",
-            target_os = "linux",
-            target_os = "dragonfly",
-            target_os = "freebsd",
-            target_os = "netbsd",
-            target_os = "openbsd"
-        )
-    ))]
+    fn request_clipboard_text(&self) -> Result<(), blitz_traits::shell::ClipboardError> {
+        self.proxy
+            .send_event(BlitzShellEvent::RequestClipboardText {
+                window_id: self.window.id(),
+            });
+        Ok(())
+    }
+
     fn set_clipboard_text(&self, text: String) -> Result<(), blitz_traits::shell::ClipboardError> {
-        let mut cb = arboard::Clipboard::new().unwrap();
-        cb.set_text(text.to_owned())
-            .map_err(|_| blitz_traits::shell::ClipboardError)
+        self.proxy
+            .send_event(BlitzShellEvent::SetClipboardText { text });
+        Ok(())
     }
 
     #[cfg(all(

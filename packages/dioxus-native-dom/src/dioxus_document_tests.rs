@@ -222,7 +222,7 @@ fn a_handled_event_reports_cancel_and_stop_as_the_listener_left_them() {
         let data = DomEventData::Input(BlitzInputEvent {
             value: String::new(),
         });
-        let mut event = DomEvent::new(node, data);
+        let mut event = DomEvent::new(node, data, blitz_traits::events::EventDispatchSource::Input);
         let mut state = EventState::default();
         let mut handler = DioxusEventHandler {
             vdom: &mut doc.vdom,
@@ -251,6 +251,7 @@ fn input_on(doc: &mut DioxusDocument, id: &str) -> String {
         DomEventData::Input(BlitzInputEvent {
             value: String::new(),
         }),
+        blitz_traits::events::EventDispatchSource::Input,
     );
     doc.dispatch_to_vdom(&[node], &mut event);
     doc.poll(None);
