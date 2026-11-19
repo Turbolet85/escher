@@ -37,7 +37,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) Â
 
 ## DOM API patterns
 - Mutations go through `DocumentMutator`, which flushes deferred work on `Drop`; take a Stylo snapshot before attribute mutation of in-document nodes.
-- Event-producing functions take a `dispatch_event` callback.
+- Engine and user-agent events are queued on the document and dispatched by the event driver's flush of pending events, never through a callback passed to the producer; queued events for dropped nodes are discarded.
 - Repeated regexes live in `LazyLock<Regex>` or are compiled per worker.
 
 ## Known gaps and markers

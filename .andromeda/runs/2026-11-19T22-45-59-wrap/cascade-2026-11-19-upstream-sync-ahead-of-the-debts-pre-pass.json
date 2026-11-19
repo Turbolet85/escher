@@ -1,0 +1,323 @@
+[
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "664bb4c5",
+"ts": "2026-11-19T22:47:11Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-19T22-45-59-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-19T22-45-59-wrap",
+"--marker",
+"2026-11-19-upstream-sync-ahead-of-the-debts"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline aedc67c6 (pre-pass — HEAD)",
+"tgt · control UNFIRED over the seven masters (bodies and sets) at aedc67c6",
+"licence · control UNFIRED over the seven masters (bodies and sets) at aedc67c6",
+"istrusted · control UNFIRED over the seven masters (bodies and sets) at aedc67c6",
+"placeholder · control UNFIRED over the seven masters (bodies and sets) at aedc67c6"
+],
+"stderr": "control: tgt, licence, istrusted, placeholder never fired over the seven masters' pre-pass text, bodies and sets (aedc67c6) — no master holds them: re-fire with --pattern members --pattern env --pattern listener --pattern pins --pattern focusev --pattern tls --pattern mask --pattern sync --pattern prefs --pattern w7w9 --pattern evqueue --pattern a11yref --pattern skia; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "664bb4c5",
+"ts": "2026-11-19T22:47:24Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-19T22-45-59-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-19T22-45-59-wrap",
+"--marker",
+"2026-11-19-upstream-sync-ahead-of-the-debts",
+"--pattern",
+"members",
+"--pattern",
+"env",
+"--pattern",
+"listener",
+"--pattern",
+"pins",
+"--pattern",
+"focusev",
+"--pattern",
+"tls",
+"--pattern",
+"mask",
+"--pattern",
+"sync",
+"--pattern",
+"prefs",
+"--pattern",
+"w7w9",
+"--pattern",
+"evqueue",
+"--pattern",
+"a11yref",
+"--pattern",
+"skia"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline aedc67c6 (pre-pass — HEAD)",
+"architecture · 58 rows over 1 files · new 0 · standing 58 · 11 patterns",
+"security-plan · 38 rows over 1 files · new 0 · standing 38 · 8 patterns",
+"design-system · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"layout-templates · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 13 rows over 1 files · new 0 · standing 13 · 4 patterns",
+"obs-plan · 8 rows over 1 files · new 0 · standing 8 · 2 patterns",
+"a11y-plan · 5 rows over 1 files · new 0 · standing 5 · 3 patterns",
+"by line · 0 lines · 0 offsets",
+"total (13 patterns) · 263 rows over 35 files",
+"per class · new 0/0 · standing 125/7 · leaf 131/26 · curation 5/3 · base 2/1",
+"rows 1/1 · .andromeda/runs/2026-11-19T22-45-59-wrap/sweep-pre-pass-1.1.txt · 300 lines · 35751 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-19T22-45-59-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "aedc67c600eddd5249021cd6f5bded375ef63eec",
+"how": "pre-pass — HEAD",
+"counts": {
+"members": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"env": {
+"new": 0,
+"standing": 10,
+"leaf": 11,
+"curation": 1,
+"base": 0
+},
+"listener": {
+"new": 0,
+"standing": 7,
+"leaf": 13,
+"curation": 0,
+"base": 0
+},
+"pins": {
+"new": 0,
+"standing": 7,
+"leaf": 12,
+"curation": 0,
+"base": 0
+},
+"focusev": {
+"new": 0,
+"standing": 12,
+"leaf": 16,
+"curation": 0,
+"base": 0
+},
+"tls": {
+"new": 0,
+"standing": 4,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"mask": {
+"new": 0,
+"standing": 62,
+"leaf": 46,
+"curation": 1,
+"base": 0
+},
+"sync": {
+"new": 0,
+"standing": 10,
+"leaf": 19,
+"curation": 3,
+"base": 2
+},
+"prefs": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"w7w9": {
+"new": 0,
+"standing": 3,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"evqueue": {
+"new": 0,
+"standing": 3,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"a11yref": {
+"new": 0,
+"standing": 2,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"skia": {
+"new": 0,
+"standing": 3,
+"leaf": 1,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 58,
+"files": 1,
+"new": 0,
+"standing": 58,
+"patterns": 11
+},
+"security-plan": {
+"rows": 38,
+"files": 1,
+"new": 0,
+"standing": 38,
+"patterns": 8
+},
+"design-system": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 13,
+"files": 1,
+"new": 0,
+"standing": 13,
+"patterns": 4
+},
+"obs-plan": {
+"rows": 8,
+"files": 1,
+"new": 0,
+"standing": 8,
+"patterns": 2
+},
+"a11y-plan": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 3
+}
+},
+"per_master": {
+"members": {
+"a11y-plan": 1
+},
+"env": {
+"architecture": 4,
+"security-plan": 3,
+"test-plan": 1,
+"obs-plan": 2
+},
+"listener": {
+"architecture": 4,
+"security-plan": 3
+},
+"pins": {
+"architecture": 6,
+"security-plan": 1
+},
+"focusev": {
+"architecture": 7,
+"security-plan": 1,
+"test-plan": 1,
+"a11y-plan": 3
+},
+"tls": {
+"architecture": 3,
+"security-plan": 1
+},
+"mask": {
+"architecture": 21,
+"security-plan": 23,
+"layout-templates": 1,
+"test-plan": 10,
+"obs-plan": 6,
+"a11y-plan": 1
+},
+"sync": {
+"architecture": 4,
+"security-plan": 5,
+"test-plan": 1
+},
+"prefs": {
+"architecture": 1
+},
+"w7w9": {
+"security-plan": 1,
+"design-system": 2
+},
+"evqueue": {
+"architecture": 3
+},
+"a11yref": {
+"architecture": 2
+},
+"skia": {
+"architecture": 3
+}
+},
+"forms": {
+"listener": [
+{
+"form": "the 1 listener",
+"from": "one"
+},
+{
+"form": "1 listener",
+"from": "one"
+}
+],
+"sync": [
+{
+"form": "2 parents",
+"from": "two"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

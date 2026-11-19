@@ -4,7 +4,7 @@ _Documented architectural traps from the architecture master `doc:architecture` 
 
 ## Coupled dependency pins
 **What breaks:** bumping one side of a coupled pin fails to build or mis-renders.
-**How to avoid:** markup5ever/html5ever/xml5ever must match stylo's `web_atoms`; skrifa must match parley (the renderer set may bring a second skrifa and read-fonts version beside it); svgtypes must match usvg; taffy is Taffy 0.15 from upstream's git source, pinned to upstream DioxusLabs/taffy commit a3997d55 (Taffy from #1372 on, taken), the one git source the manifest admits (every other crate stays a crates.io registry version; a git Taffy still passes the lock, audit and MSRV legs) — and parley a registry version (0.12); winit is exact `=0.31.0-beta.3`. Bump the set together.
+**How to avoid:** markup5ever/html5ever/xml5ever must match stylo's `web_atoms`; skrifa must match parley (the renderer set may bring a second skrifa and read-fonts version beside it); svgtypes must match usvg; taffy is Taffy 0.15 from upstream's git source, pinned to upstream DioxusLabs/taffy commit a3997d55 (Taffy from #1372 on, taken), the one git source the manifest admits (every other crate stays a crates.io registry version; a git Taffy still passes the lock, audit and MSRV legs) — and parley a registry version (0.13); winit is exact `=0.31.0-beta.4`. Bump the set together.
 **References:** arch §Established Decisions [Dependency pinning]
 
 ## `StyleThreading::Parallel` with two documents
@@ -38,7 +38,7 @@ _Documented architectural traps from the architecture master `doc:architecture` 
 **References:** `tests/blitz-tests/tests/anonymous_block_cache_invalidation.rs`, `incremental_oracle.rs`
 
 ## Unsupported CSS that silently reads false
-**What breaks:** `:focus-visible`, `:valid`, `:invalid`, `:required`, `:target` always match false, while `:focus-within` matches the focused element and its ancestors by the `FOCUS_WITHIN` element state; Shadow DOM, container queries, 3D transforms, anchor positioning (hits `unreachable!()` on size variants), subgrid/masonry are absent; `background-clip: text` is not supported, `BackgroundClip::Text` being `gecko`-only on Stylo 0.22, and upstream `ac6f9f582`, which paints it, stays left out.
+**What breaks:** `:focus-visible`, `:valid`, `:invalid`, `:required`, `:target` always match false, while `:focus-within` matches the focused element and its ancestors by the `FOCUS_WITHIN` element state; Shadow DOM, container queries, 3D transforms, anchor positioning (hits `unreachable!()` on size variants), subgrid/masonry are absent; `background-clip: text` is not supported, `BackgroundClip::Text` being `gecko`-only in Stylo, and upstream `ac6f9f582`, which paints it, stays left out.
 **How to avoid:** stand styles use `:focus`; never feed anchor-positioning sizes to `stylo_taffy`.
 **References:** arch [Unsupported features]
 
