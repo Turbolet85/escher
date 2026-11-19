@@ -1,9 +1,11 @@
 # Coverage — escher-0.4.0
 
-verified 0/15 · deferred 0 · planned 15 · implemented 0 · unclaimed 15
+verified 0/15 · deferred 0 · planned 14 · implemented 1 · unclaimed 14
 
-## planned, unclaimed (15)
-- v040-01 · Build directory held
+## implemented (1)
+- v040-01 · Build directory held · 2026-11-19-build-directory-held
+
+## planned, unclaimed (14)
 - v040-02 · Upstream sync
 - v040-03 · The version on the GitHub page
 - v040-04 · Select list and selection debts

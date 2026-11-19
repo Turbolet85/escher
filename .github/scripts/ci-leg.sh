@@ -85,6 +85,11 @@ if [[ "$leg" == fast ]]; then
     for l in "${FAST_LEGS[@]}"; do
         bash "$0" "$l"
     done
+    # The dev host's owning call of the stale-hash sweep, after a green verdict: CI sets CI and sweeps nothing,
+    # and the sweep's exit never reaches the leg's.
+    if [[ -z "${CI:-}" ]]; then
+        python3 "$SCRIPTS/../../scripts/target-sweep.py" run || true
+    fi
     exit 0
 fi
 

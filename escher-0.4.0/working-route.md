@@ -2,7 +2,7 @@
 
 ### Epoch 1 — Foundation
 
-Build directory held — the growth's cause measured, then mended; a working day's growth after the mend stated as a number (v040-01)
+[2026-11-19-build-directory-held] Build directory held — the growth's cause measured, then mended; a working day's growth after the mend stated as a number (v040-01)
 
 ### Epoch 2 — Debts of 0.1.0–0.3.0
 

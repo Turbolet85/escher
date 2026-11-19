@@ -112,3 +112,5 @@
 2026-11-18-cold-agent-live-run · complete · Cold-agent live run — the one fresh-agent run over 0.3.0's seven apps under the founder's 5 % bar, its result stated as measured · → chk:2026-11-18-cold-agent-live-run
 
 ## escher-0.4.0
+
+2026-11-19-build-directory-held · pending · Build directory held — the growth of target/ measured to its cause, mended, a working day's growth stated in GB · → chk:2026-11-19-build-directory-held

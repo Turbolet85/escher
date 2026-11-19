@@ -1,0 +1,158 @@
+[
+{
+"tool": "evolve",
+"v": "1.4",
+"sha8": "c80a1428",
+"ts": "2026-11-19T10:28:00Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"2",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-19T09-26-25-implement",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2 record(s) in the store · tx 2329 · 2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson",
+"ts 2026-11-19T10:27:50Z · clock 2026-11-19T10:28:00Z · bound 2026-11-19T09:23:19Z (line 2650)",
+"ids 2026-11-19T10:27:50Z-a … 2026-11-19T10:27:50Z-b (2)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.4",
+"sha8": "c80a1428",
+"ts": "2026-11-19T13:27:13Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"3",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-19T09-26-25-implement",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"REFUSED ts: 2026-11-19T13:30:00Z · 2026-11-19T13:30:00Z-a … 2026-11-19T13:30:00Z-c (3) — later than the clock 2026-11-19T13:27:13Z"
+],
+"stderr": "refused — nothing written: 3 of 3 record(s) out of time; re-read `date -u`, re-letter the ids, re-fire",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.4",
+"sha8": "c80a1428",
+"ts": "2026-11-19T13:27:24Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"3",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-19T09-26-25-implement",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 3 record(s) in the store · tx 2331 · 2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson",
+"ts 2026-11-19T13:27:13Z · clock 2026-11-19T13:27:23Z · bound 2026-11-19T10:27:50Z (line 2652)",
+"ids 2026-11-19T13:27:13Z-a … 2026-11-19T13:27:13Z-c (3)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.4",
+"sha8": "c80a1428",
+"ts": "2026-11-19T13:27:31Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-19T09-26-25-implement",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) in the store · tx 2332 · 2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson",
+"ts 2026-11-19T13:27:30Z · clock 2026-11-19T13:27:30Z · bound 2026-11-19T13:27:13Z (line 2655)",
+"ids 2026-11-19T13:27:30Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.4",
+"sha8": "c80a1428",
+"ts": "2026-11-19T13:29:41Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-19T09-26-25-implement",
+"--marker",
+"2026-11-19-build-directory-held"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) in the store · tx 2334 · 2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson",
+"ts 2026-11-19T13:29:41Z · clock 2026-11-19T13:29:41Z · bound 2026-11-19T13:27:30Z (line 2656)",
+"ids 2026-11-19T13:29:41Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-19T08-21-36-2026-11-19-build-directory-held.ndjson"
+],
+"before": null,
+"after": null
+}
+]
