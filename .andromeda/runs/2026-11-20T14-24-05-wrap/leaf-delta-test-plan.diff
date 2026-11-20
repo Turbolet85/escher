@@ -1,6 +1,0 @@
---- a/.andromeda/test-plan.md
-+++ b/.andromeda/test-plan.md
-@@ -567,2 +567,3 @@
- decision/mutation-baseline-skipped · Mutation baseline skipped, read green by hand — Mutation runs skip cargo-mutants' baseline; each unit's mutant test command is first read green on the unmutated tree. · why: cargo-mutants' baseline tests the mutated package alone yet passes every test argument, so a test set naming other packages cannot be its baseline and would read every mutant caught.
-+decision/mutation-filter-anchored-on-verb · Scoped mutation run filter anchored on the verb — A cargo-mutants run scoped to one function anchors its filter on the mutant name's verb, the replace verb then the function's name and a space, and its mutant listing is read first and must show exactly the mutants the run is meant to test. · why: The filter is an unanchored regex over the whole mutant name, location included, so a bare function name matches other functions holding it as a substring.
- decision/mutation-runs-on-dev-host-only · Mutation runs on the dev host only — Mutation runs are made on the dev host alone, never in CI. · why: cargo-mutants and cargo-nextest are host tools no lockfile resolves.

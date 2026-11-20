@@ -1,0 +1,309 @@
+[
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "664bb4c5",
+"ts": "2026-11-20T17:46:35Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-20T17-45-40-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-20T17-45-40-wrap",
+"--marker",
+"2026-11-20-select-list-and-selection-debts"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--patterns-file: not TOML — Expected newline or end of document after a statement (at line 15, column 26)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "664bb4c5",
+"ts": "2026-11-20T17:46:48Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-20T17-45-40-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-20T17-45-40-wrap",
+"--marker",
+"2026-11-20-select-list-and-selection-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline d2f49404 (pre-pass — HEAD)",
+"architecture · 36 rows over 1 files · new 0 · standing 36 · 10 patterns",
+"security-plan · 9 rows over 1 files · new 0 · standing 9 · 3 patterns",
+"design-system · 6 rows over 1 files · new 0 · standing 6 · 3 patterns",
+"layout-templates · 3 rows over 1 files · new 0 · standing 3 · 2 patterns",
+"test-plan · 7 rows over 1 files · new 0 · standing 7 · 3 patterns",
+"obs-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"a11y-plan · 20 rows over 1 files · new 0 · standing 20 · 9 patterns",
+"by line · 0 lines · 0 offsets",
+"total (13 patterns) · 217 rows over 28 files",
+"per class · new 0/0 · standing 83/7 · leaf 133/20 · curation 1/1 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-20T17-45-40-wrap/sweep-pre-pass-1.1.txt · 250 lines · 29899 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T17-45-40-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "d2f49404c4e5271f499aba51310e29a37f21095e",
+"how": "pre-pass — HEAD",
+"counts": {
+"nodekeys": {
+"new": 0,
+"standing": 30,
+"leaf": 14,
+"curation": 0,
+"base": 0
+},
+"readings": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"nodestate": {
+"new": 0,
+"standing": 4,
+"leaf": 14,
+"curation": 0,
+"base": 0
+},
+"hlcontrast": {
+"new": 0,
+"standing": 7,
+"leaf": 21,
+"curation": 0,
+"base": 0
+},
+"rowheight": {
+"new": 0,
+"standing": 1,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"marks": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"activedesc": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"hlread": {
+"new": 0,
+"standing": 7,
+"leaf": 10,
+"curation": 0,
+"base": 0
+},
+"cells": {
+"new": 0,
+"standing": 5,
+"leaf": 13,
+"curation": 0,
+"base": 0
+},
+"digests": {
+"new": 0,
+"standing": 2,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"tests": {
+"new": 0,
+"standing": 11,
+"leaf": 29,
+"curation": 1,
+"base": 0
+},
+"size": {
+"new": 0,
+"standing": 1,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"hlconst": {
+"new": 0,
+"standing": 7,
+"leaf": 7,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 36,
+"files": 1,
+"new": 0,
+"standing": 36,
+"patterns": 10
+},
+"security-plan": {
+"rows": 9,
+"files": 1,
+"new": 0,
+"standing": 9,
+"patterns": 3
+},
+"design-system": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 3
+},
+"layout-templates": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 2
+},
+"test-plan": {
+"rows": 7,
+"files": 1,
+"new": 0,
+"standing": 7,
+"patterns": 3
+},
+"obs-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"a11y-plan": {
+"rows": 20,
+"files": 1,
+"new": 0,
+"standing": 20,
+"patterns": 9
+}
+},
+"per_master": {
+"nodekeys": {
+"architecture": 21,
+"security-plan": 6,
+"obs-plan": 1,
+"a11y-plan": 2
+},
+"readings": {
+"architecture": 2
+},
+"nodestate": {
+"architecture": 3,
+"obs-plan": 1
+},
+"hlcontrast": {
+"architecture": 2,
+"test-plan": 4,
+"a11y-plan": 1
+},
+"rowheight": {
+"a11y-plan": 1
+},
+"marks": {
+"architecture": 2,
+"a11y-plan": 1
+},
+"activedesc": {
+"layout-templates": 1,
+"a11y-plan": 2
+},
+"hlread": {
+"design-system": 2,
+"a11y-plan": 5
+},
+"cells": {
+"architecture": 1,
+"security-plan": 1,
+"a11y-plan": 3
+},
+"digests": {
+"architecture": 1,
+"test-plan": 1
+},
+"tests": {
+"architecture": 1,
+"security-plan": 2,
+"design-system": 1,
+"layout-templates": 2,
+"test-plan": 2,
+"a11y-plan": 3
+},
+"size": {
+"architecture": 1
+},
+"hlconst": {
+"architecture": 2,
+"design-system": 3,
+"a11y-plan": 2
+}
+},
+"forms": {
+"nodekeys": [
+{
+"form": "14 node keys",
+"from": "fourteen"
+},
+{
+"form": "14 keys",
+"from": "fourteen"
+}
+],
+"readings": [
+{
+"form": "12 readings",
+"from": "twelve"
+}
+],
+"nodestate": [
+{
+"form": "8 fields",
+"from": "eight"
+}
+],
+"rowheight": [
+{
+"form": "1 row height",
+"from": "one"
+},
+{
+"form": "1 height",
+"from": "one"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

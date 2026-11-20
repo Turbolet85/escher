@@ -1,9 +1,6 @@
 # Coverage — escher-0.4.0
 
-verified 2/15 · deferred 0 · planned 12 · implemented 1 · unclaimed 12
-
-## implemented (1)
-- v040-04 · Select list and selection debts · 2026-11-20-select-list-and-selection-debts
+verified 3/15 · deferred 0 · planned 12 · implemented 0 · unclaimed 12
 
 ## planned, unclaimed (12)
 - v040-02 · Upstream sync
@@ -19,6 +16,7 @@ verified 2/15 · deferred 0 · planned 12 · implemented 1 · unclaimed 12
 - v040-14 · The node-graph stand app
 - v040-15 · Cold-agent run
 
-## verified (2)
+## verified (3)
 - v040-01 · Build directory held · 2026-11-19-build-directory-held
 - v040-03 · The version on the GitHub page · 2026-11-20-readme-s-0-3-0-closed
+- v040-04 · Select list and selection debts · 2026-11-20-select-list-and-selection-debts

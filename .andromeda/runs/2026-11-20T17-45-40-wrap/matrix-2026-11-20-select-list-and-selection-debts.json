@@ -1,0 +1,146 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-20T18:47:59Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-20-select-list-and-selection-debts",
+"--run-dir",
+".andromeda/runs/2026-11-20T17-45-40-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-20-select-list-and-selection-debts: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v040-04 → verified — The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · … (682 chars)",
+"dry-run: nothing written",
+"version: verified 3/15"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-20T18:48:03Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-20-select-list-and-selection-debts",
+"--run-dir",
+".andromeda/runs/2026-11-20T17-45-40-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-20-select-list-and-selection-debts: 1 · to flip 1 · already verified 0 · below 0",
+"flipped v040-04 → verified — The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · … (682 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-20T15-04-00-2026-11-20-select-list-and-selection-debts.ndjson · 1 entry changed",
+"version: verified 3/15"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T15-04-00-2026-11-20-select-list-and-selection-debts.ndjson"
+],
+"before": [
+{
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 0
+}
+],
+"after": [
+{
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 0
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-20T18:48:04Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-04",
+"--text-file",
+".andromeda/runs/2026-11-20T17-45-40-wrap/note-v040-04.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T17-45-40-wrap",
+"--marker",
+"2026-11-20-select-list-and-selection-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-04: +619 chars (total 619) · status verified · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-20T15-04-00-2026-11-20-select-list-and-selection-debts.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T15-04-00-2026-11-20-select-list-and-selection-debts.ndjson"
+],
+"before": {
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 619
+}
+}
+]

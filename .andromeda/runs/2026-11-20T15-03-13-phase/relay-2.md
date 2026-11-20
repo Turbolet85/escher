@@ -1,3 +1,0 @@
-Question (P4, by dialog): F1 (lint reads the highlighted row as painted): escher-driver cannot name the harness's colour type (`color::AlphaColor`) — its only colour path is `Harness::text_contrast`, which reads computed styles. Where should the painted-pair reading live?
-
-Answer: "New harness reader (Recommended)" — Add a read-only `Harness::highlight_contrast(element) -> Option<TextContrast>` in blitz-test-harness: for the highlighted row of an open list it answers the painted pair (SelectListView constants) with the row's own text size, else None. The lint asks it first, then `text_contrast`. One formula, no new dependency, `text_contrast`'s 'computed styles only' contract unchanged.

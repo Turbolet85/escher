@@ -1,0 +1,40 @@
+## After implement
+- **Report:** 2026-11-20T16-06-30-implement — the newest implement run of 2026-11-20-select-list-and-selection-debts (`rec.py runs --kind '*-implement' --file '*-2026-11-20-select-list-and-selection-debts.json'`, its last run line), its outcome `green` (`outcome-2026-11-20-select-list-and-selection-debts.md`)
+- **Commits:** since last_wrap 2026-11-20T14:24:05Z (the `state` view): `3ff72e8da test(2026-11-20-browser-s-surviving-mutants): browser's surviving mutants caught` (the prior chunk's wrap commit, not this chunk's) · `d2f49404c chore(2026-11-20-select-list-and-selection-debts): operator pre-CI commit, for the run this chunk's verdict reads`. The pass's commits from the parent 3ff72e8da: that one alone (`git log --format='%h %s' 3ff72e8da..HEAD`).
+- **Operator pass:** ran, end **as-left** (all green, no fix commit), per `evidence/operator-pass.md`:
+  - entry 10 `gate.py hygiene` — `hygiene: clean — read 191 (runs 184 · evidence 1 · inputs 6) …`; then `rec.py land` → `unchanged · 6 file(s)`
+  - pre-CI commit `d2f49404c` — `git add -A`, tree clean after
+  - entry 11 push — green · exit 0, `refs/remotes/origin/build/escher-0.4.0 3ff72e8d→d2f49404`
+  - entry 12 `ci.py conclusion` — CI#44780414846 · sha d2f49404c4e5 · `verdict: green · checks 17/17 · wall 2028 s`; the OS-sensitive case (Cells' re-read digests of `stand_cross_os_readings`) held by `Test (windows)` and `Test (macos)`, both success
+- **Changes after implement:** none — no commit after the pre-CI one; no directed edit of the wrap's.
+- **Inputs:** `inputs.py verify`: `inputs: 4 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 0 · unparsed 0`
+  - I1 · message: operator (/andromeda-phase invocation) · message · n/a
+  - I2 · `../additional/escher-overseer/relays/select-list-debts-founder-2026-11-20.md` · copy no-repo · unchanged
+  - I3 · message: operator (P4 dialog) · message · n/a
+  - I4 · message: operator (P5 review) · message · n/a
+  - The P5 card (`.andromeda/runs/2026-11-20T15-03-13-phase/p5-card-1.md`) is the only card named; its `## Beyond the plan` rows 1–2 stand in implement's **Cross-project / external claims** verbatim, approved by I4 ("yes", the operator's own word). The wrap's invocation restates that approval and directs route-resolve to land both rows; no new input snapped.
+- **Scope:** none appended — `gate.py scope`: `scope: clean — changed 23 · listed 20 · recorded 3 (companion 3 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 192` (base 3ff72e8d)
+- **Sweep reach:** `cascade.py sweep --pre-pass` over `report-patterns.toml` (13 patterns), trail `cascade-2026-11-20-select-list-and-selection-debts-pre-pass.json`, rows in `sweep-pre-pass-1.1.txt`; the sites are the masters' rows, each disposed by the row write:
+  - `nodekeys` (node keys 14 → 15) · standing 30: architecture 21 · security-plan 6 · obs-plan 1 · a11y-plan 2 — stale: architecture ctr-qieygpzi (expanded: fourteen keys, NodeState) and security-plan dec-goyp2c5r (highlighted row in no snapshot); add: a `highlighted` row beside architecture's node-keys contracts and security-plan's diff node keys; the rest true claims sharing the token (owner: architecture, security-plan)
+  - `readings` (`Reading::ALL` 12 → 13) · standing 2: architecture 2 — stale: ctr-qn6vnmjb (the reading list ends Clickable, Bounds); ctr-qocrq3rm true (owner: architecture)
+  - `nodestate` (`NodeState` 8 → 9 fields) · standing 4: architecture 3 · obs-plan 1 — stale: architecture ctr-r4pssjgw («eight»); ctr-j5z4y2tn and obs-plan ctr-5rvopapp count span fields, true claims sharing the token (owner: architecture)
+  - `hlcontrast` (the lint reads the painted pair; `highlight_contrast`) · standing 7: architecture 2 · test-plan 4 · a11y-plan 1 — stale: a11y-plan dec-2rwoal42 (retire); add-to: test-plan dec-djbogyuk and contract/harness-contrast (the new reader), architecture ctr-n6bldwa6; the rest true (owner: a11y-plan, test-plan)
+  - `rowheight` (rows the tallest row's height) · standing 1: a11y-plan 1 — stale: dec-2qmhfbqn (owner: a11y-plan)
+  - `marks` (a highlight move marks) · standing 3: architecture 2 · a11y-plan 1 — stale: architecture dec-vvnxavu4, a11y-plan dec-3xjtbjfc; architecture dec-uskjf2rn true (owner: a11y-plan, architecture)
+  - `activedesc` (the engine writes the active descendant) · standing 3: layout-templates 1 · a11y-plan 2 — stale: a11y-plan dec-32dgdqvw (active descendant kept unread); a11y-plan dec-2oc4ijsd and layout-templates dec-eoa75dgk true (a page's `aria-activedescendant` still unread) (owner: a11y-plan)
+  - `hlread` (the highlight read in the tree and the snapshot) · standing 7: design-system 2 · a11y-plan 5 — stale: a11y-plan ctr-32perug3 and ctr-2sijrh32; add-to: design-system ctr-j6l2vmng; the rest true (owner: a11y-plan)
+  - `cells` (Cells' current cell `aria-selected`) · standing 5: architecture 1 · security-plan 1 · a11y-plan 3 — add-to: security-plan dec-h5ptrm5y; the rest true (owner: layout-templates, security-plan)
+  - `digests` (Cells' cross-OS digests re-pinned) · standing 2: architecture 1 · test-plan 1 — true (a guard name; no master holds a digest value)
+  - `tests` (test counts of five files) · standing 11 over six masters — true (guard names; no master states a per-file count)
+  - `size` (F4 C: a single select's `size` stays unread) · standing 1: architecture 1 — true (dec-yvsz7ugd)
+  - `hlconst` (the highlight constants pinned to the chosen-row pair) · standing 7: architecture 2 · design-system 3 · a11y-plan 2 — add-to: design-system dec-fsx7qwxb, a11y-plan dec-2o5rvqfs; the rest true (owner: design-system)
+  - Spec claim disproved (Cells' diff `differs: [selected, bounds]`): the plan's forecast alone; no master states it (`cells` rows above) — disposed, no master site
+  - reach: 13 patterns · 83 master rows standing over 7 masters · new 0 · `by line · 0 lines · 0 offsets`; leaf 133 rows over 20 files and curation 1 are the cascade's
+- **Outcome, final:**
+  - supersedes «(tests) cross-OS readings on linux green and `stand-repeat` `3 of 3 rounds green` — met on this host; windows and macOS await the operator pass's CI read»: met — CI#44780414846 green, `Test (windows)` and `Test (macos)` success
+  - supersedes «(tests) `fast`, `doc` and `a11y` green — met; CI on the pushed HEAD awaits the operator pass»: met — `verdict: green · checks 17/17` on d2f49404c
+  - supersedes «`gate.py hygiene` · `git push …` · `ci.py conclusion …` — not run — leg operator»: green, green, green (`evidence/operator-pass.md`)
+  - watches: none
+  - outcome basis: Setup 4's commit list (`d2f49404c` alone), the final HEAD's CI run CI#44780414846 in `evidence/operator-pass.md`; implement's report for what only it holds
+- **Decisions & corrections after implement:** none — the pass record names no correction or ruling. The wrap's invocation: wrap whole; the P5 card's two Beyond-the-plan rows approved (inputs#I4) for route-resolve; a widening the founder answered (F2 A, F3 A, inputs#I2) stopped on one card citing his words.
+- **Process hygiene, re-measured:** `gate.py census --comm escher-session --comm cargo --comm seven_guis_nati` → `census: none running`
