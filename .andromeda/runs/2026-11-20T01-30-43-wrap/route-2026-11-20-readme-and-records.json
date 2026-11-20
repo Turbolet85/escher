@@ -1,0 +1,67 @@
+[
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "7b0d7906",
+"ts": "2026-11-20T01:50:12Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-20-readme-and-records",
+"--date",
+"2026-11-20",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin cry-akbi776c strip CARRY: 442ch \"CARRY: .claude/docs/stack.md still reads\"",
+"pin next markerless chk-xxvbepua holds no freight",
+"2026-11-20-readme-and-records · strip 1 block(s) · spent in the spine",
+"dry-run · would flip 2026-11-20-readme-and-records pending -> complete"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "route",
+"v": "1.14",
+"sha8": "7b0d7906",
+"ts": "2026-11-20T01:50:17Z",
+"argv": [
+"route.py",
+"flip",
+"--root",
+".",
+"--chunk",
+"2026-11-20-readme-and-records",
+"--date",
+"2026-11-20",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"pin cry-akbi776c strip CARRY: 442ch \"CARRY: .claude/docs/stack.md still reads\"",
+"pin next markerless chk-xxvbepua holds no freight",
+"flip 2026-11-20-readme-and-records pending -> complete · tx 2501",
+"compacted 1 complete line(s) — their freight spent in the spine, no archive (U61)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T00-07-07-2026-11-20-readme-and-records.ndjson",
+"./.andromeda/master-route.md",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+}
+]

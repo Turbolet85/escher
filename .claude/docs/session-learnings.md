@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-20 — A harness copy staged in the chunk folder reads unlanded until the folder is landed
+A plan that changes a harness render (`.claude/docs/*`, a rule file, CLAUDE.md) by editing a copy and landing it with `rec.py harness land --file` puts that copy somewhere; put in the chunk's `evidence/` folder, it is a chunk file the store has not yet taken, so `rec.py check --no-heal` reads `check: 1 failure(s)` with `unlanded: {marker}/evidence/{file}` even though the render itself agrees with its journal. A gate entry that asserts `check: clean` after such a land is therefore order-dependent on `rec.py land --chunk {marker}`, which implement schedules after its gates: either stage the copy outside the chunk folder (the run dir or the scratchpad), or land the chunk folder before the check entry fires, and say which in the plan.
+
+---
+
 ## 2026-11-18 — On android the native prelude's glob shadows `Result`
 An app crate that imports `dioxus_native::prelude::*` gets, on `aarch64-linux-android` alone, manganis' one-parameter alias `Result<T>` (its error fixed to a JNI error) in scope through that glob, so a two-argument `Result<(), E>` written in the app — a handler's return type, say — fails to compile there (E0107, then E0277 and E0308 downstream), while the linux, windows and macOS builds never see the alias and the dev host has no android target to check it. Spell `std::result::Result` in any crate that globs the native prelude; CI's `Test (android)` job is the only witness.
 

@@ -1,0 +1,2 @@
+@none
+reason: The chunk changed documentation only (README.md's 0.4.0 section and Later line, stack.md's re-derived versions; fct-wv3whmyn, fct-jgwq4sju: no new external surface, hot-path op or UI element), so no row of layout-templates is made false or incomplete. The picked rows (the host log's service.name, the MCP protocol revisions, the MCP tools/list, paint_bench's backend) are stated nowhere in the report, and D-layout-surface does not fire because no UI surface or region was added.

@@ -7,7 +7,7 @@
 ### Epoch 2 — Debts of 0.1.0–0.3.0
 
 [2026-11-19-upstream-sync-ahead-of-the-debts] Upstream sync ahead of the debts — two-parent merge; left-out commits named; CDP listener's security amendment first; lock, residuals re-read; CI, a11y leg, audit green (v040-02)
-[2026-11-20-readme-and-records] README and records — 0.3.0 closed in the founder's chosen form, what 0.4.0 builds; the category-file citation backlog read through or kept (v040-03)  CARRY: .claude/docs/stack.md still reads skrifa 0.44, svgtypes 0.16.1 and arboard 3.4.1 after the 0.4.0 upstream sync (skrifa 0.49, svgtypes 0.16.2, arboard left the graph); no leaf comparer found them and that wrap's directive forbade a hand edit — re-derive them, or leave them to the epoch-closing wrap's whole-mode leaves pass (2026-11-19-upstream-sync-ahead-of-the-debts; .andromeda/runs/2026-11-19T22-45-59-wrap/cascade-dispositions.md)
+[2026-11-20-readme-and-records] README and records — 0.3.0 closed in the founder's chosen form, what 0.4.0 builds; the category-file citation backlog read through or kept (v040-03)
 Stand-test setup shared — the stand checks' repeated setup in one place, duplication back under its earlier reading, every check unchanged (v040-08)
 Codebase health — the code audit's oversize files and functions over the ceiling, each under its bar or kept by the founder's word (v040-08)
 Browser's surviving mutants — the four at the capture module caught, or kept by the founder's word (v040-08)
@@ -48,6 +48,6 @@ Node-graph stand app — nodes with ports, canvas wires; dragged, wired, panned,
 Upstream sync ahead of polish and ship — two-parent merge; left-out commits named with reasons; CI, a11y leg and audit green (v040-02)
 Stand requirement sweep — 0.4.0's capabilities proven inside stand-repeat; floors, masks, stand layout and the log scrub at trace held over every new verb (intent §Principles)
 A11y re-read — SC 2.1.1, 2.4.3, 1.4.3 on both canvas samples' keyboard paths, virtual-node names and roles, in the `a11y` leg and stand-repeat (a11y-plan §9)
-Capability statement — what 0.4.0 adds and its stated limits, span set and accessibility reach by hand, the README's 0.4.0 done (v040-03 reach)
+Capability statement — what 0.4.0 adds and its stated limits, span set and accessibility reach by hand, the README's 0.4.0 done (v040-03 reach)  CARRY: the founder's forks F1 (the form in which the README states 0.3.0 closed) and F2 (the citation backlog res-xe7pyput, read through or kept) are unanswered; README's 0.3.0 section and that residual row are left as they read and v040-03 stays unclaimed — apply each answer here once he gives it (2026-11-20-readme-and-records, P5 card row 1; .andromeda/runs/2026-11-20T00-04-51-phase/founder-forks.md)
 Cold-agent bar — the pipe, its reply check and verb counts widened to canvas apps and new verbs; fresh-agent goals over canvas, virtual nodes, `drag` (v040-15)
 Cold-agent live run — one fresh agent on the stand, the two canvas samples among its apps, judged at 5 % wrong calls (v040-15)

@@ -1,0 +1,577 @@
+[
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-20T01:31:00Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-20-readme-and-records",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 120fbc8b (the parent of the oldest pre-CI commit 6deccbd1) · lists new 0 · modify 2 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 1 · listed 1 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 191"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "120fbc8b63959a1a90f91583790944232a82db01",
+"base_why": "the parent of the oldest pre-CI commit 6deccbd1",
+"counts": {
+"changed": 1,
+"listed": 1,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 191,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-20T01:31:43Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"python3",
+"--args",
+"ci-leg.sh",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap",
+"--marker",
+"2026-11-20-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, python3 · args ci-leg.sh · own tree excluded: 8",
+"  10698 · ppid 1491 · python3 · /usr/bin/python3 -X utf8 -B ~/dev/projects/additional/andromedaV3/andromeda-overseer/docs/tools/hostwatch.py run",
+"  1943084 · ppid 1942845 · python3 · /usr/bin/python3 /usr/share/omarchy/default/input-methods/indicator.py",
+"census: 2 running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"python3"
+],
+"args": [
+"ci-leg.sh"
+],
+"running": [
+10698,
+1943084
+]
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-20T01:48:52Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-20-readme-and-records",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-20-readme-and-records · entries 9",
+"logs $TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 141",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L71-74: This chunk has no compiled-source delta (two documentation files), no boot path and no liv… (432 chars)",
+"  1 unit        green · exit 0 · 14.48s · 246 B → 1.log · bash .github/scripts/ci-leg.sh ci-scripts",
+"  2 probe       green · exit 0 · 0.0s · 2 B → 2.log · grep -c '^### 0.4.0 — planned, in six stages$' README.md",
+"  3 probe       green · exit 0 · 0.0s · 3 B → 3.log · grep -c -E '^- \\*\\*Epoch [1-6] — ' README.md",
+"  4 probe       green · exit 0 · 0.0s · 2 B → 4.log · grep -c -E '^### 0\\.3\\.0 — built, its cold-agent run passe… (108 chars)",
+"  5 probe       green · exit 0 · 0.0s · 2 B → 5.log · grep -c 'the fifteen driver commands as tools' README.md",
+"  6 probe       green · exit 1 · 0.0s · 2 B → 6.log · grep -c -E 'skrifa 0\\.44|svgtypes 0\\.16\\.1|usvg 0\\.48\\.1|s… (106 chars)",
+"  7 probe       green · exit 0 · 0.0s · 2 B → 7.log · grep -o -E 'skrifa 0\\.49|svgtypes 0\\.16\\.2|usvg 0\\.50\\.0|s… (106 chars)",
+"  8 probe       green · exit 0 · 51.79s · 2883 B → 8.log · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/re… (87 chars)",
+"  9 probe       green · exit 0 · 0.0s · 0 B → 9.log · git diff --exit-code --stat 120fbc8b63959a1a90f91583790944… (137 chars)",
+"entries 9 · green 9 · red 0 · recorded 0 · timeout 0 · not-run 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-20-readme-and-records",
+"plan": "doc:2026-11-20-readme-and-records/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-20T00-07-07-2026-11-20-readme-and-records.ndjson",
+".andromeda/runs/2026-11-20T00-40-49-implement/gate-2026-11-20-readme-and-records.json",
+".claude/docs/session-learnings.md",
+".claude/session-handoff.md",
+"escher-0.4.0/working-route.md",
+".andromeda/db/log/2026-11-20T01-45-04-2026-11-20T01-30-43-wrap.ndjson",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-pick-p3.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/a11y-task.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/after-implement.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p10.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p11.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p12.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p13.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p14.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p15.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p16.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p3.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p4.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p5.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p6.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p7.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p8.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-pick-p9.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-rows.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/arch-task.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/cascade-2026-11-20-readme-and-records-pre-pass.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/cascade-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/cascade-tally.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/citation-dispositions.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/citedisp-leaves.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/cites-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/cites-land-2026-11-20-readme-and-records.ndjson",
+".andromeda/runs/2026-11-20T01-30-43-wrap/curation.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/design-task.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/draft-.claude-docs-session-learnings.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/evolve-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/fanout-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/fanout-results.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/gate-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/health-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/inputs-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/layouts-task.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/new-text.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-pick-p3.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-rows.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/obs-task.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/ops-a11y-plan.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/ops-architecture.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/ops-layout-templates.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/ops-obs-plan.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/ops-test-plan.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/rec-2026-11-20-readme-and-records.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/rec-no-marker.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/rec-read-2026-11-20-readme-and-records.ndjson",
+".andromeda/runs/2026-11-20T01-30-43-wrap/relay-1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/report-patterns.toml",
+".andromeda/runs/2026-11-20T01-30-43-wrap/route-batch.txt",
+".andromeda/runs/2026-11-20T01-30-43-wrap/rows-packs.json",
+".andromeda/runs/2026-11-20T01-30-43-wrap/run-node.txt",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p3.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p4.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p5.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-pick-p6.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/security-task.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p1.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p3.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p4.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p5.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p6.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-pick-p7.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-rows.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-standing.md",
+".andromeda/runs/2026-11-20T01-30-43-wrap/tests-task.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 141,
+"problem": null
+},
+"prose": [
+{
+"from": 71,
+"to": 74,
+"text": "This chunk has no compiled-source delta (two documentation files), no boot path and no live leg: no smoke, no self-verify and no workspace compile gate are listed. Its unit gate is the CI-scripts leg, which holds README's pinned phrase. No acceptance needs a CI read, and the diff is not OS-sensitive, so the hygiene and `ci.py` operator entries are not listed. The base sha `120fbc8b63959a1a90f91583790944232a82db01` is HEAD at P4."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "bash .github/scripts/ci-leg.sh ci-scripts",
+"run_sha8": "439b8b7a",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/1.log",
+"bytes": 246,
+"log_sha8": "a008246b",
+"exit": 0,
+"seconds": 14.48,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "grep -c '^### 0.4.0 — planned, in six stages$' README.md",
+"run_sha8": "d56118df",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/2.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "grep -c -E '^- \\*\\*Epoch [1-6] — ' README.md",
+"run_sha8": "2e6f97c0",
+"expect": [
+"exit 0",
+"last line 23"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/3.log",
+"bytes": 3,
+"log_sha8": "076320a2",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '23' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "grep -c -E '^### 0\\.3\\.0 — built, its cold-agent run passed$|^### 0\\.[12]\\.0 — done and verified$' README.md",
+"run_sha8": "54230f72",
+"expect": [
+"exit 0",
+"last line 3"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/4.log",
+"bytes": 2,
+"log_sha8": "1121cfcc",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '3' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "grep -c 'the fifteen driver commands as tools' README.md",
+"run_sha8": "f15bad8e",
+"expect": [
+"exit 0",
+"last line 1"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/5.log",
+"bytes": 2,
+"log_sha8": "4355a46b",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '1' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "probe",
+"run": "grep -c -E 'skrifa 0\\.44|svgtypes 0\\.16\\.1|usvg 0\\.48\\.1|selectors 0\\.41\\.0|arboard' .claude/docs/stack.md",
+"run_sha8": "c8b11b1d",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/6.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.0,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "grep -o -E 'skrifa 0\\.49|svgtypes 0\\.16\\.2|usvg 0\\.50\\.0|selectors 0\\.43\\.0' .claude/docs/stack.md | wc -l",
+"run_sha8": "c468619e",
+"expect": [
+"exit 0",
+"last line 4"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/7.log",
+"bytes": 2,
+"log_sha8": "7de1555d",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"last line '4' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/rec.py check --root . --no-heal",
+"run_sha8": "95bfcd08",
+"expect": [
+"exit 0",
+"contains check: clean"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/8.log",
+"bytes": 2883,
+"log_sha8": "44851671",
+"exit": 0,
+"seconds": 51.79,
+"readings": [
+"exit 0 ✓",
+"contains 'check: clean' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "probe",
+"run": "git diff --exit-code --stat 120fbc8b63959a1a90f91583790944232a82db01 -- docs/capabilities.md .github/scripts/test_capability_statement.py",
+"run_sha8": "3f62f97f",
+"expect": [
+"exit 0",
+"no output"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-20-readme-and-records/wrap-2026-11-20T01-30-43/9.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓",
+"no output ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-20T01:49:05Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap",
+"--marker",
+"2026-11-20-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 120fbc8b (the parent of the oldest pre-CI commit 6deccbd1)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 326 (runs 318 · evidence 2 · inputs 6) · trails 27 not read · copies 4 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 318,
+"evidence": 2,
+"inputs": 6,
+"trails": 27,
+"copies": 4,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-20T01:49:10Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-20-readme-and-records",
+"--run-dir",
+".andromeda/runs/2026-11-20T01-30-43-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 120fbc8b (the parent of the oldest pre-CI commit 6deccbd1) · lists new 0 · modify 2 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 1 · listed 1 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 328"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "120fbc8b63959a1a90f91583790944232a82db01",
+"base_why": "the parent of the oldest pre-CI commit 6deccbd1",
+"counts": {
+"changed": 1,
+"listed": 1,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 328,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]
