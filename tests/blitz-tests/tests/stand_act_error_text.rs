@@ -31,15 +31,13 @@ use blitz_traits::net::{NetHandler, NetProvider, Request};
 use dioxus::prelude::*;
 use dioxus_core::{CapturedError, ErrorContext};
 use dioxus_native_dom::{Boundary, MASKED_VALUE};
-use escher_driver::{
-    Call, Caused, CausedKind, CausedLevel, CausedPast, Outcome, Session, serve_mcp,
-};
+use escher_driver::{Call, Caused, CausedKind, CausedLevel, CausedPast, Outcome, Session};
 use escher_telemetry::{FIELDS_KEPT, REDACTED, Source};
 use seven_guis::stand;
 
 mod fixtures;
 mod session_common;
-use session_common::{click, mcp_result_text, type_into};
+use session_common::{click, mcp_result_text, serve_lines, tool_call, type_into};
 
 const LABEL: &str = "error-text";
 
@@ -805,32 +803,6 @@ fn a_flood_is_cut_counted_and_bounded() {
     }
 }
 
-/// The replies `serve_mcp` writes for `requests`, one per line.
-fn serve(requests: &[String], incremental: bool) -> Vec<String> {
-    let mut input = requests.join("\n");
-    input.push('\n');
-    let mut output = Vec::new();
-    serve_mcp(
-        input.as_bytes(),
-        &mut output,
-        &[LABEL],
-        |_: &str| Ok(hold(incremental)),
-        Duration::from_secs(1800),
-    )
-    .expect("the exchange ends");
-    String::from_utf8(output)
-        .expect("replies are text")
-        .lines()
-        .map(str::to_string)
-        .collect()
-}
-
-fn tool_call(id: usize, name: &str, arguments: &str) -> String {
-    format!(
-        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
-    )
-}
-
 const CROSSING: [&str; 3] = ["idx", "warn-button", "parse-warn"];
 
 #[test]
@@ -847,7 +819,7 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
             ));
         }
         requests.push(tool_call(9, "stop", "{}"));
-        let replies = serve(&requests, incremental);
+        let replies = serve_lines(&requests, &[LABEL], |_: &str| Ok(hold(incremental)));
         assert!(
             replies.len() == CROSSING.len() + 2,
             "{mode}: a reply per request"
@@ -932,7 +904,7 @@ fn error_text_host_incremental() {
 #[test]
 fn a_kept_check_replays_its_caused_and_a_changed_cut_stops_naming_caused() {
     use escher_driver::Check;
-    use session_common::state_dir;
+    use session_common::{record_check, state_dir};
 
     let calls = [
         click("idx"),
@@ -943,19 +915,7 @@ fn a_kept_check_replays_its_caused_and_a_changed_cut_stops_naming_caused() {
     for incremental in [false, true] {
         let at = format!("{}: 0", mode_name(incremental));
         let dir = state_dir(&format!("aet-check-{}", mode_name(incremental)));
-        let _ = std::fs::remove_dir_all(&dir);
-        {
-            let mut session = hold(incremental)
-                .recording_into(&dir)
-                .unwrap_or_else(|_| panic!("{at}: the recording starts"));
-            for call in &calls {
-                assert!(session.run(call).is_ok(), "{at}: each step is accepted");
-            }
-            assert!(!session.recording_failed(), "{at}: the recording stands");
-        }
-        let bytes = std::fs::read(dir.join("check-1.json"))
-            .unwrap_or_else(|_| panic!("{at}: the check is kept"));
-        let _ = std::fs::remove_dir_all(&dir);
+        let bytes = record_check(&dir, || hold(incremental), &calls, &at);
         let text = std::str::from_utf8(&bytes).expect("a check is text");
         assert!(
             text.contains(INDEX_PAYLOAD),

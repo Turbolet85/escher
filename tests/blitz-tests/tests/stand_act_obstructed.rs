@@ -27,7 +27,8 @@ mod common;
 mod fixtures;
 mod session_common;
 use session_common::{
-    act, click, focused, hold as hold_task, refused_unchanged, scroll, type_into,
+    act, centre, click, edges, focused, has_area, hold as hold_task, inside, refused_unchanged,
+    scroll, type_into, viewport,
 };
 
 /// Two buttons under one opaque overlay — the second of them disabled — a third under an
@@ -150,45 +151,6 @@ fn one_axis_clip_fixture() -> Element {
             p { id: "fx-presses", style: "margin-top: 120px;", "{presses}" }
         }
     }
-}
-
-/// The left, top, right and bottom of the bounds the snapshot reads for `id`.
-fn edges(session: &Session, id: &str) -> (f64, f64, f64, f64) {
-    let snapshot = session.harness().doc.snapshot();
-    let bounds = snapshot
-        .get(id)
-        .expect("the fixture's element is a snapshot node")
-        .bounds;
-    (
-        bounds.x,
-        bounds.y,
-        bounds.x + bounds.width,
-        bounds.y + bounds.height,
-    )
-}
-
-fn centre(session: &Session, id: &str) -> (f64, f64) {
-    let (left, top, right, bottom) = edges(session, id);
-    ((left + right) / 2.0, (top + bottom) / 2.0)
-}
-
-fn has_area(session: &Session, id: &str) -> bool {
-    let (left, top, right, bottom) = edges(session, id);
-    right > left && bottom > top
-}
-
-fn inside(point: (f64, f64), (left, top, right, bottom): (f64, f64, f64, f64)) -> bool {
-    point.0 >= left && point.0 <= right && point.1 >= top && point.1 <= bottom
-}
-
-/// The viewport's logical size as the edges of a rect.
-fn viewport() -> (f64, f64, f64, f64) {
-    (
-        0.0,
-        0.0,
-        f64::from(stand::VIEWPORT_WIDTH),
-        f64::from(stand::VIEWPORT_HEIGHT),
-    )
 }
 
 /// The node the harness's own hit answers at the centre of `id`'s bounds, on a viewport that

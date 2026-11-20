@@ -12,6 +12,8 @@ use dioxus_native_dom::MASKED_VALUE;
 use escher_driver::{Session, SessionError, serve_mcp};
 
 mod fixtures;
+mod session_common;
+use session_common::{mcp_tool_result, tool_call};
 
 /// What the check types into the password input: synthetic, and no part of any id or name.
 const SENTINEL: &str = "Mcp-Typed-Sentinel-4kPw";
@@ -25,43 +27,6 @@ fn boot(incremental: bool) -> impl FnMut(&str) -> Result<Session, SessionError> 
             fixtures::boot(fixtures::password_named, incremental)
         })
     }
-}
-
-fn tool_call(id: usize, name: &str, arguments: &str) -> String {
-    format!(
-        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
-    )
-}
-
-/// The text block of a tool result's reply, unescaped over exactly the escapes the driver's
-/// writer writes, and whether the result is marked as an error.
-#[track_caller]
-fn result(reply: &str) -> (bool, String) {
-    let (_, rest) = reply
-        .split_once(r#""content":[{"type":"text","text":""#)
-        .expect("the reply is a tool result");
-    let mut text = String::new();
-    let mut chars = rest.chars();
-    loop {
-        match chars.next().expect("the text block ends") {
-            '"' => break,
-            '\\' => match chars.next().expect("an escape is whole") {
-                '"' => text.push('"'),
-                '\\' => text.push('\\'),
-                'n' => text.push('\n'),
-                'r' => text.push('\r'),
-                't' => text.push('\t'),
-                'u' => {
-                    let hex: String = chars.by_ref().take(4).collect();
-                    let code = u32::from_str_radix(&hex, 16).expect("four hex digits");
-                    text.push(char::from_u32(code).expect("a character"));
-                }
-                _ => panic!("an escape the writer does not write"),
-            },
-            other => text.push(other),
-        }
-    }
-    (reply.ends_with(r#""isError":true}}"#), text)
 }
 
 #[test]
@@ -98,7 +63,8 @@ fn a_password_typed_over_mcp_reads_the_mask_and_never_the_typed_text() {
             output.matches(SENTINEL).count()
         );
 
-        let read: Vec<(bool, String)> = replies.iter().map(|reply| result(reply)).collect();
+        let read: Vec<(bool, String)> =
+            replies.iter().map(|reply| mcp_tool_result(reply)).collect();
         for (index, (is_error, text)) in read.iter().enumerate() {
             assert!(!is_error, "{mode}: call {} ran", index + 1);
             assert!(

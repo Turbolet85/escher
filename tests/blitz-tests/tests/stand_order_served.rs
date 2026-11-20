@@ -10,16 +10,16 @@
 //! `serve_mcp` in process, and a kept check of those steps replays holding. A failure message
 //! names a layout mode and an index only.
 
-use std::time::Duration;
-
 use dioxus_native_dom::{Boundary, SNAPSHOT_TEXT_BUDGET};
-use escher_driver::{Call, Caused, CausedKind, CausedLevel, Outcome, Session, serve_mcp};
+use escher_driver::{Call, Caused, CausedKind, CausedLevel, Outcome, Session};
 use escher_telemetry::{REDACTED, Source};
 use seven_guis::stand;
 use seven_guis::tasks::order::{EXPORT_PANIC_LINE, EXPORT_UNBUILT, ORDER_PLACED, QUANTITY_RULE};
 
 mod session_common;
-use session_common::{click, focused, lint, linted, mcp_result_text, press, type_into};
+use session_common::{
+    click, focused, lint, linted, mcp_result_text, press, serve_lines, tool_call, type_into,
+};
 
 const LABEL: &str = "order";
 
@@ -253,32 +253,6 @@ fn each_control_answers_what_it_caused() {
     }
 }
 
-/// The replies `serve_mcp` writes for `requests`, one per line.
-fn serve(requests: &[String], incremental: bool) -> Vec<String> {
-    let mut input = requests.join("\n");
-    input.push('\n');
-    let mut output = Vec::new();
-    serve_mcp(
-        input.as_bytes(),
-        &mut output,
-        &[LABEL],
-        |_: &str| Ok(hold(incremental)),
-        Duration::from_secs(1800),
-    )
-    .expect("the exchange ends");
-    String::from_utf8(output)
-        .expect("replies are text")
-        .lines()
-        .map(str::to_string)
-        .collect()
-}
-
-fn tool_call(id: usize, name: &str, arguments: &str) -> String {
-    format!(
-        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
-    )
-}
-
 #[test]
 fn the_same_caused_crosses_serve_mcp_in_process() {
     for incremental in [false, true] {
@@ -297,14 +271,15 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
             })
             .collect();
 
-        let replies = serve(
+        let replies = serve_lines(
             &[
                 tool_call(1, "start", &format!(r#"{{"app":"{LABEL}"}}"#)),
                 tool_call(2, "click", r#"{"id":"order-submit"}"#),
                 tool_call(3, "click", r#"{"id":"order-export"}"#),
                 tool_call(4, "stop", "{}"),
             ],
-            incremental,
+            &[LABEL],
+            |_: &str| Ok(hold(incremental)),
         );
         assert!(replies.len() == 4, "{mode}: four replies");
         for (index, member) in members.iter().enumerate() {
@@ -326,7 +301,7 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
 #[test]
 fn a_kept_check_of_the_order_steps_replays_holding() {
     use escher_driver::Check;
-    use session_common::state_dir;
+    use session_common::{record_check, state_dir};
 
     for incremental in [false, true] {
         let at = mode_name(incremental);
@@ -338,19 +313,7 @@ fn a_kept_check_of_the_order_steps_replays_holding() {
             click("order-export"),
         ];
         let dir = state_dir(&format!("order-served-{at}"));
-        let _ = std::fs::remove_dir_all(&dir);
-        {
-            let mut session = hold(incremental)
-                .recording_into(&dir)
-                .unwrap_or_else(|_| panic!("{at}: the recording starts"));
-            for call in &calls {
-                assert!(session.run(call).is_ok(), "{at}: each step is accepted");
-            }
-            assert!(!session.recording_failed(), "{at}: the recording stands");
-        }
-        let bytes = std::fs::read(dir.join("check-1.json"))
-            .unwrap_or_else(|_| panic!("{at}: the check is kept"));
-        let _ = std::fs::remove_dir_all(&dir);
+        let bytes = record_check(&dir, || hold(incremental), &calls, at);
         let check = Check::from_bytes(&bytes).unwrap_or_else(|_| panic!("{at}: the check reads"));
         let replay = check.replay(&mut hold(incremental));
         assert!(replay.holds(), "{at}: the replay holds");

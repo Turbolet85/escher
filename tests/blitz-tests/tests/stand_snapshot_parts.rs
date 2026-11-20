@@ -21,7 +21,9 @@ use seven_guis::stand::LeanTask;
 mod fixtures;
 mod session_common;
 use fixtures::many_items;
-use session_common::{act, click, hold, part, scroll, snapshot, snapshot_part, type_into};
+use session_common::{
+    act, click, hold, mcp_tool_result, part, scroll, snapshot, snapshot_part, tool_call, type_into,
+};
 
 /// The text typed into the password input: synthetic, and no part of any id or name.
 const SENTINEL: &str = "synthetic-pt-7Qv";
@@ -180,43 +182,6 @@ fn a_screen_over_the_budget_is_walked_in_parts() {
     }
 }
 
-fn tool_call(id: usize, name: &str, arguments: &str) -> String {
-    format!(
-        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
-    )
-}
-
-/// The text block of a tool result's reply, unescaped over exactly the escapes the driver's
-/// writer writes, and whether the result is marked as an error.
-#[track_caller]
-fn result(reply: &str) -> (bool, String) {
-    let (_, rest) = reply
-        .split_once(r#""content":[{"type":"text","text":""#)
-        .expect("the reply is a tool result");
-    let mut text = String::new();
-    let mut chars = rest.chars();
-    loop {
-        match chars.next().expect("the text block ends") {
-            '"' => break,
-            '\\' => match chars.next().expect("an escape is whole") {
-                '"' => text.push('"'),
-                '\\' => text.push('\\'),
-                'n' => text.push('\n'),
-                'r' => text.push('\r'),
-                't' => text.push('\t'),
-                'u' => {
-                    let hex: String = chars.by_ref().take(4).collect();
-                    let code = u32::from_str_radix(&hex, 16).expect("four hex digits");
-                    text.push(char::from_u32(code).expect("a character"));
-                }
-                _ => panic!("an escape the writer does not write"),
-            },
-            other => text.push(other),
-        }
-    }
-    (reply.ends_with(r#""isError":true}}"#), text)
-}
-
 #[test]
 fn over_mcp_the_walk_answers_the_json_lines_of_the_same_calls() {
     for incremental in [false, true] {
@@ -271,7 +236,7 @@ fn over_mcp_the_walk_answers_the_json_lines_of_the_same_calls() {
             "{mode}: one reply per call"
         );
         for (index, line) in expected.iter().enumerate() {
-            let (is_error, text) = result(replies[index + 1]);
+            let (is_error, text) = mcp_tool_result(replies[index + 1]);
             assert!(
                 !is_error && text == *line,
                 "{mode}: call {index} answers its JSON line"

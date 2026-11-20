@@ -1,0 +1,248 @@
+[
+{
+"sql": "SELECT symbol, crate, kind, file, def_line FROM symbol WHERE name IN ('tool_call', 'result', 'serve', 'focused', 'mcp_result_text', 'hold_served', 'edges') AND kind = 'fn' ORDER BY name, file",
+"rows": 34,
+"result": [
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 edges().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/hit_clipped_at_scrolling_box.rs",
+"def_line": 76
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 edges().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_obstructed.rs",
+"def_line": 155
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 edges().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_scroll.rs",
+"def_line": 86
+},
+{
+"symbol": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 inspect/impl#[`Harness<D>`]focused().",
+"crate": "blitz-test-harness",
+"kind": "fn",
+"file": "packages/blitz-test-harness/src/inspect.rs",
+"def_line": 107
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 common/focused().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/common/mod.rs",
+"def_line": 118
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_common/focused().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"def_line": 233
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 focused().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_session_state.rs",
+"def_line": 36
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 focused().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_settle.rs",
+"def_line": 23
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_served().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_actions.rs",
+"def_line": 66
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_served().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_cross_os_readings.rs",
+"def_line": 81
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 hold_served().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_layout.rs",
+"def_line": 88
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 session_common/mcp_result_text().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/session_common/mod.rs",
+"def_line": 463
+},
+{
+"symbol": "rust-analyzer cargo seven_guis 0.1.0 result().",
+"crate": "seven_guis",
+"kind": "fn",
+"file": "examples/seven_guis/tests/mcp_server.rs",
+"def_line": 58
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 result().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"def_line": 38
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 result().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"def_line": 114
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 result().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+"def_line": 191
+},
+{
+"symbol": "rust-analyzer cargo escher-driver 0.3.0-beta.4 host/imp/serve().",
+"crate": "escher-driver",
+"kind": "fn",
+"file": "packages/escher-driver/src/host.rs",
+"def_line": 59
+},
+{
+"symbol": "rust-analyzer cargo escher-driver 0.3.0-beta.4 host/serve().",
+"crate": "escher-driver",
+"kind": "fn",
+"file": "packages/escher-driver/src/host.rs",
+"def_line": 35
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 serve().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_error_text.rs",
+"def_line": 808
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 serve().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_errors.rs",
+"def_line": 352
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 serve().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"def_line": 91
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 serve().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_order_served.rs",
+"def_line": 256
+},
+{
+"symbol": "rust-analyzer cargo seven_guis 0.1.0 tool_call().",
+"crate": "seven_guis",
+"kind": "fn",
+"file": "examples/seven_guis/tests/mcp_log.rs",
+"def_line": 53
+},
+{
+"symbol": "rust-analyzer cargo seven_guis 0.1.0 tool_call().",
+"crate": "seven_guis",
+"kind": "fn",
+"file": "examples/seven_guis/tests/mcp_server.rs",
+"def_line": 50
+},
+{
+"symbol": "rust-analyzer cargo seven_guis 0.1.0 tool_call().",
+"crate": "seven_guis",
+"kind": "fn",
+"file": "examples/seven_guis/tests/recording.rs",
+"def_line": 81
+},
+{
+"symbol": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/impl#[`Server<'_, B>`]tool_call().",
+"crate": "escher-driver",
+"kind": "fn",
+"file": "packages/escher-driver/src/mcp.rs",
+"def_line": 178
+},
+{
+"symbol": "rust-analyzer cargo escher-driver 0.3.0-beta.4 mcp/tests/tool_call().",
+"crate": "escher-driver",
+"kind": "fn",
+"file": "packages/escher-driver/src/mcp_tests.rs",
+"def_line": 45
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_error_text.rs",
+"def_line": 827
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_act_errors.rs",
+"def_line": 371
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_masks_on_new_answers.rs",
+"def_line": 224
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_masked.rs",
+"def_line": 29
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_mcp_tools.rs",
+"def_line": 82
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_order_served.rs",
+"def_line": 275
+},
+{
+"symbol": "rust-analyzer cargo blitz-tests 0.3.0-beta.4 tool_call().",
+"crate": "blitz-tests",
+"kind": "fn",
+"file": "tests/blitz-tests/tests/stand_snapshot_parts.rs",
+"def_line": 182
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

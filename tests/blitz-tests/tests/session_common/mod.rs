@@ -19,6 +19,7 @@ use blitz_dom::Document;
 use dioxus_native_dom::{SnapshotDiff, UiGraph};
 use escher_driver::{
     ActionNode, ArgValue, Busy, Call, Cause, Check, Finding, LayoutExplanation, Outcome, Session,
+    SessionError, serve_mcp,
 };
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
@@ -490,4 +491,206 @@ pub fn mcp_result_text(reply: &str) -> String {
         }
     }
     out
+}
+
+/// An MCP `tools/call` request line: request `id`, the tool `name` and its JSON `arguments`.
+pub fn tool_call(id: usize, name: &str, arguments: &str) -> String {
+    format!(
+        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
+    )
+}
+
+/// The replies `serve_mcp` writes for `requests`, one per line, serving `apps` booted by `boot`.
+pub fn serve_lines(
+    requests: &[String],
+    apps: &[&str],
+    boot: impl FnMut(&str) -> Result<Session, SessionError>,
+) -> Vec<String> {
+    let mut input = requests.join("\n");
+    input.push('\n');
+    let mut output = Vec::new();
+    serve_mcp(
+        input.as_bytes(),
+        &mut output,
+        apps,
+        boot,
+        Duration::from_secs(1800),
+    )
+    .expect("the exchange ends");
+    String::from_utf8(output)
+        .expect("replies are text")
+        .lines()
+        .map(str::to_string)
+        .collect()
+}
+
+/// The text block of a tool result's reply, unescaped over exactly the escapes the driver's
+/// writer writes, and whether the result is marked as an error.
+#[track_caller]
+pub fn mcp_tool_result(reply: &str) -> (bool, String) {
+    let (_, rest) = reply
+        .split_once(r#""content":[{"type":"text","text":""#)
+        .expect("the reply is a tool result");
+    let mut text = String::new();
+    let mut chars = rest.chars();
+    loop {
+        match chars.next().expect("the text block ends") {
+            '"' => break,
+            '\\' => match chars.next().expect("an escape is whole") {
+                '"' => text.push('"'),
+                '\\' => text.push('\\'),
+                'n' => text.push('\n'),
+                'r' => text.push('\r'),
+                't' => text.push('\t'),
+                'u' => {
+                    let hex: String = chars.by_ref().take(4).collect();
+                    let code = u32::from_str_radix(&hex, 16).expect("four hex digits");
+                    text.push(char::from_u32(code).expect("a character"));
+                }
+                _ => panic!("an escape the writer does not write"),
+            },
+            other => text.push(other),
+        }
+    }
+    (reply.ends_with(r#""isError":true}}"#), text)
+}
+
+/// The lean task a served screen's label names, if it is one.
+pub fn lean(label: &str) -> Option<LeanTask> {
+    LeanTask::ALL.into_iter().find(|task| slug(*task) == label)
+}
+
+/// A session on the served screen `label` names, booted through the stand.
+pub fn hold_served(label: &str, incremental: bool) -> Session {
+    if let Some(task) = lean(label) {
+        return hold(task, incremental).0;
+    }
+    let harness = match label {
+        "cells" => stand::boot_cells(stand::options(incremental)),
+        "load" => stand::boot_load(stand::options(incremental)),
+        "order" => stand::boot_order(stand::options(incremental)),
+        _ => panic!("a served screen's label"),
+    };
+    Session::start(label, || harness).expect("the label is one of the closed set")
+}
+
+/// One held session in one layout mode, and the diffs its steps returned.
+pub struct Held {
+    pub mode: String,
+    pub session: Session,
+    pub diffs: Vec<SnapshotDiff>,
+}
+
+impl Held {
+    /// A session on `task` in the layout mode `incremental` names, with no step taken.
+    pub fn task(task: LeanTask, incremental: bool) -> Self {
+        Held {
+            mode: format!("incremental={incremental}: {task:?}"),
+            session: hold(task, incremental).0,
+            diffs: Vec::new(),
+        }
+    }
+
+    /// Runs `call` through the driver between the check's own two snapshots and asserts it
+    /// returns settled with the diff of those snapshots.
+    #[track_caller]
+    pub fn settled_step(&mut self, call: &Call) -> Acted {
+        let mode = &self.mode;
+        let step = self.diffs.len();
+        let before = self.session.harness().doc.snapshot();
+        let Some(acted) = act(&mut self.session, call) else {
+            panic!("{mode}: step {step} runs");
+        };
+        let after = self.session.harness().doc.snapshot();
+        assert!(
+            acted.settled && acted.busy.is_none(),
+            "{mode}: step {step} returns settled"
+        );
+        assert!(
+            acted.diff == before.diff(&after),
+            "{mode}: step {step} returns the diff of the snapshots before and after it"
+        );
+        self.diffs.push(acted.diff.clone());
+        acted
+    }
+}
+
+/// Asserts the two layout modes returned the same diffs, step by step.
+#[track_caller]
+pub fn assert_modes_agree(runs: &[Vec<SnapshotDiff>]) {
+    assert!(runs.len() == 2, "one run per layout mode");
+    assert!(!runs[0].is_empty(), "a run takes a step");
+    assert!(
+        runs[0] == runs[1],
+        "the steps' diffs differ between incremental false and true"
+    );
+}
+
+/// The left, top, right and bottom of the bounds the snapshot reads for `id`.
+pub fn edges(session: &Session, id: &str) -> (f64, f64, f64, f64) {
+    let snapshot = session.harness().doc.snapshot();
+    let bounds = snapshot
+        .get(id)
+        .expect("the fixture's element is a snapshot node")
+        .bounds;
+    (
+        bounds.x,
+        bounds.y,
+        bounds.x + bounds.width,
+        bounds.y + bounds.height,
+    )
+}
+
+/// The centre of the bounds the snapshot reads for `id`.
+pub fn centre(session: &Session, id: &str) -> (f64, f64) {
+    let (left, top, right, bottom) = edges(session, id);
+    ((left + right) / 2.0, (top + bottom) / 2.0)
+}
+
+/// Whether the bounds the snapshot reads for `id` hold any area.
+pub fn has_area(session: &Session, id: &str) -> bool {
+    let (left, top, right, bottom) = edges(session, id);
+    right > left && bottom > top
+}
+
+/// Whether `point` lies inside the rect of the given edges, its edges included.
+pub fn inside(point: (f64, f64), (left, top, right, bottom): (f64, f64, f64, f64)) -> bool {
+    point.0 >= left && point.0 <= right && point.1 >= top && point.1 <= bottom
+}
+
+/// The viewport's logical size as the edges of a rect.
+pub fn viewport() -> (f64, f64, f64, f64) {
+    (
+        0.0,
+        0.0,
+        f64::from(stand::VIEWPORT_WIDTH),
+        f64::from(stand::VIEWPORT_HEIGHT),
+    )
+}
+
+/// Records `calls` into `dir`, cleared first, on the session `boot` gives: each call asserted
+/// accepted and the recording asserted standing, then the kept check's bytes read and `dir`
+/// removed. A failure message names `at` only.
+#[cfg(unix)]
+#[track_caller]
+pub fn record_check(
+    dir: &Path,
+    boot: impl FnOnce() -> Session,
+    calls: &[Call],
+    at: &str,
+) -> Vec<u8> {
+    let _ = fs::remove_dir_all(dir);
+    {
+        let mut session = boot()
+            .recording_into(dir)
+            .unwrap_or_else(|_| panic!("{at}: the recording starts"));
+        for call in calls {
+            assert!(session.run(call).is_ok(), "{at}: each step is accepted");
+        }
+        assert!(!session.recording_failed(), "{at}: the recording stands");
+    }
+    let bytes =
+        fs::read(dir.join("check-1.json")).unwrap_or_else(|_| panic!("{at}: the check is kept"));
+    let _ = fs::remove_dir_all(dir);
+    bytes
 }

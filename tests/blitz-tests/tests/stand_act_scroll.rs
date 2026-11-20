@@ -16,11 +16,11 @@
 
 use dioxus::prelude::*;
 use escher_driver::{Cause, Session, VERBS};
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 
 mod fixtures;
 mod session_common;
-use session_common::{act, click, hold, refused, refused_unchanged, scroll};
+use session_common::{act, click, hold, inside, refused, refused_unchanged, scroll, viewport};
 
 /// How many driver clicks on Create put a row's centre past the CRUD list's box at the stand's
 /// viewport, as measured on the stand.
@@ -101,20 +101,6 @@ fn edges(session: &Session, id: &str) -> (f64, f64, f64, f64) {
 fn centre(session: &Session, id: &str) -> (f64, f64) {
     let (left, top, right, bottom) = edges(session, id);
     ((left + right) / 2.0, (top + bottom) / 2.0)
-}
-
-fn inside(point: (f64, f64), (left, top, right, bottom): (f64, f64, f64, f64)) -> bool {
-    point.0 >= left && point.0 <= right && point.1 >= top && point.1 <= bottom
-}
-
-/// The viewport's logical size as the edges of a rect.
-fn viewport() -> (f64, f64, f64, f64) {
-    (
-        0.0,
-        0.0,
-        f64::from(stand::VIEWPORT_WIDTH),
-        f64::from(stand::VIEWPORT_HEIGHT),
-    )
 }
 
 fn viewport_scroll(session: &Session) -> (f64, f64) {

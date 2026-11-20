@@ -1,0 +1,2 @@
+old: - The operator's take-up directive (the hypotheses above, the direction, the one-target-per-file rule, the before/after reading, the founder's absence) — a relay, snapped at P1 [inferred: cited as `inputs#I{n}` once snapped].
+new: - The operator's take-up directive (the hypotheses above, the direction, the one-target-per-file rule, the before/after reading, the founder's absence) — a relay, snapped at P1: `inputs#I1`.

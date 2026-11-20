@@ -263,6 +263,67 @@ fn a_check_on_a_session_of_another_app_runs_nothing() {
     }
 }
 
+/// A Counter session recorded in process into `dir`, cleared first, through `calls`, each
+/// asserted accepted and the recording asserted standing; the kept check's bytes, `dir` removed.
+#[cfg(unix)]
+#[track_caller]
+fn recorded_counter(
+    dir: &std::path::Path,
+    calls: [escher_driver::Call; 4],
+    mode: &str,
+    incremental: bool,
+) -> Vec<u8> {
+    let _ = std::fs::remove_dir_all(dir);
+    {
+        let (session, _ticks) = hold(LeanTask::Counter, incremental);
+        let mut session = session.recording_into(dir).expect("the recording starts");
+        for call in calls {
+            assert!(session.run(&call).is_ok(), "{mode}: each step is accepted");
+        }
+        assert!(!session.recording_failed(), "{mode}: the recording stands");
+    }
+    let bytes = std::fs::read(dir.join("check-1.json")).expect("the check is kept");
+    let _ = std::fs::remove_dir_all(dir);
+    bytes
+}
+
+/// Asserts the kept check `bytes` reads its four steps as `verbs` and replays holding, every
+/// step run, on a fresh Counter.
+#[cfg(unix)]
+#[track_caller]
+fn assert_kept_and_holding(bytes: &[u8], verbs: [&str; 4], mode: &str, incremental: bool) {
+    let check = Check::from_bytes(bytes).expect("the kept check reads");
+    let kept: Vec<&str> = check
+        .steps()
+        .iter()
+        .map(|step| step.call().verb.as_str())
+        .collect();
+    assert!(kept == verbs, "{mode}: the four steps are kept");
+    let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
+    let replay = check.replay(&mut session);
+    assert!(replay.holds(), "{mode}: the replay holds");
+    assert!(replay.ran() == 4, "{mode}: all four steps ran");
+}
+
+/// Replays the changed check `changed` on a fresh Counter, asserts it stops at step 3, accepted
+/// then and now, every step before it held, and reads the keys that step differs in.
+#[cfg(unix)]
+#[track_caller]
+fn stopped_at_step_3(changed: &str, mode: &str, incremental: bool) -> Vec<&'static str> {
+    let check = Check::from_bytes(changed.as_bytes()).expect("the changed check reads");
+    let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
+    let replay = check.replay(&mut session);
+    assert!(!replay.holds(), "{mode}: the changed check does not hold");
+    let change = replay.change().expect("a step changed");
+    assert!(change.step() == 3, "{mode}: it stops at step 3");
+    assert!(replay.ran() == 4, "{mode}: every step before step 3 held");
+    assert!(
+        change.accepted_then() && change.accepted_now(),
+        "{mode}: step 3 accepted then and now"
+    );
+    change.keys().to_vec()
+}
+
 /// A Counter session recorded in process, with an `actions` step before and after a click, read
 /// back and replayed on a fresh Counter; then the same bytes with the last `actions` answer's
 /// first `keyed` reading flipped.
@@ -274,32 +335,18 @@ fn a_kept_actions_step_replays_and_a_changed_one_stops_naming_nodes() {
     for incremental in [false, true] {
         let mode = mode_name(incremental);
         let dir = state_dir(&format!("replay-actions-{mode}"));
-        let _ = std::fs::remove_dir_all(&dir);
-        {
-            let (session, _ticks) = hold(LeanTask::Counter, incremental);
-            let mut session = session.recording_into(&dir).expect("the recording starts");
-            for call in [snapshot(), actions(), click(BUTTON), actions()] {
-                assert!(session.run(&call).is_ok(), "{mode}: each step is accepted");
-            }
-            assert!(!session.recording_failed(), "{mode}: the recording stands");
-        }
-        let bytes = std::fs::read(dir.join("check-1.json")).expect("the check is kept");
-        let _ = std::fs::remove_dir_all(&dir);
-
-        let check = Check::from_bytes(&bytes).expect("the kept check reads");
-        let verbs: Vec<&str> = check
-            .steps()
-            .iter()
-            .map(|step| step.call().verb.as_str())
-            .collect();
-        assert!(
-            verbs == ["snapshot", "actions", "click", "actions"],
-            "{mode}: the four steps are kept"
+        let bytes = recorded_counter(
+            &dir,
+            [snapshot(), actions(), click(BUTTON), actions()],
+            mode,
+            incremental,
         );
-        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
-        let replay = check.replay(&mut session);
-        assert!(replay.holds(), "{mode}: the replay holds");
-        assert!(replay.ran() == 4, "{mode}: all four steps ran");
+        assert_kept_and_holding(
+            &bytes,
+            ["snapshot", "actions", "click", "actions"],
+            mode,
+            incremental,
+        );
 
         let text = std::str::from_utf8(&bytes).expect("a check is text");
         let last = text.rfind(r#""tool":"actions""#).expect("an actions step");
@@ -313,21 +360,8 @@ fn a_kept_actions_step_replays_and_a_changed_one_stops_naming_nodes() {
             r#""keyed":false"#,
             &text[keyed + r#""keyed":true"#.len()..]
         );
-        let check = Check::from_bytes(changed.as_bytes()).expect("the changed check reads");
-        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
-        let replay = check.replay(&mut session);
-        assert!(!replay.holds(), "{mode}: the changed check does not hold");
-        let change = replay.change().expect("a step changed");
-        assert!(change.step() == 3, "{mode}: it stops at step 3");
-        assert!(replay.ran() == 4, "{mode}: every step before step 3 held");
-        assert!(
-            change.accepted_then() && change.accepted_now(),
-            "{mode}: step 3 accepted then and now"
-        );
-        assert!(
-            change.keys() == ["nodes"],
-            "{mode}: step 3 differs in its nodes"
-        );
+        let keys = stopped_at_step_3(&changed, mode, incremental);
+        assert!(keys == ["nodes"], "{mode}: step 3 differs in its nodes");
     }
 }
 
@@ -343,32 +377,18 @@ fn a_kept_layout_step_replays_and_a_changed_one_stops_naming_placed() {
     for incremental in [false, true] {
         let mode = mode_name(incremental);
         let dir = state_dir(&format!("replay-layout-{mode}"));
-        let _ = std::fs::remove_dir_all(&dir);
-        {
-            let (session, _ticks) = hold(LeanTask::Counter, incremental);
-            let mut session = session.recording_into(&dir).expect("the recording starts");
-            for call in [snapshot(), layout(BUTTON), click(BUTTON), layout(BUTTON)] {
-                assert!(session.run(&call).is_ok(), "{mode}: each step is accepted");
-            }
-            assert!(!session.recording_failed(), "{mode}: the recording stands");
-        }
-        let bytes = std::fs::read(dir.join("check-1.json")).expect("the check is kept");
-        let _ = std::fs::remove_dir_all(&dir);
-
-        let check = Check::from_bytes(&bytes).expect("the kept check reads");
-        let verbs: Vec<&str> = check
-            .steps()
-            .iter()
-            .map(|step| step.call().verb.as_str())
-            .collect();
-        assert!(
-            verbs == ["snapshot", "layout", "click", "layout"],
-            "{mode}: the four steps are kept"
+        let bytes = recorded_counter(
+            &dir,
+            [snapshot(), layout(BUTTON), click(BUTTON), layout(BUTTON)],
+            mode,
+            incremental,
         );
-        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
-        let replay = check.replay(&mut session);
-        assert!(replay.holds(), "{mode}: the replay holds");
-        assert!(replay.ran() == 4, "{mode}: all four steps ran");
+        assert_kept_and_holding(
+            &bytes,
+            ["snapshot", "layout", "click", "layout"],
+            mode,
+            incremental,
+        );
 
         let text = std::str::from_utf8(&bytes).expect("a check is text");
         let last = text.rfind(r#""tool":"layout""#).expect("a layout step");
@@ -384,19 +404,9 @@ fn a_kept_layout_step_replays_and_a_changed_one_stops_naming_placed() {
             "grid"
         };
         let changed = format!("{}{other}{}", &text[..word_at], &text[word_end..]);
-        let check = Check::from_bytes(changed.as_bytes()).expect("the changed check reads");
-        let (mut session, _ticks) = hold(LeanTask::Counter, incremental);
-        let replay = check.replay(&mut session);
-        assert!(!replay.holds(), "{mode}: the changed check does not hold");
-        let change = replay.change().expect("a step changed");
-        assert!(change.step() == 3, "{mode}: it stops at step 3");
-        assert!(replay.ran() == 4, "{mode}: every step before step 3 held");
+        let keys = stopped_at_step_3(&changed, mode, incremental);
         assert!(
-            change.accepted_then() && change.accepted_now(),
-            "{mode}: step 3 accepted then and now"
-        );
-        assert!(
-            change.keys() == ["placed"],
+            keys == ["placed"],
             "{mode}: step 3 differs in its placement"
         );
     }

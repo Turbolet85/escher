@@ -1,0 +1,55 @@
+[
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T03:39:01Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-stand-test-setup-shared",
+"--message-file",
+".andromeda/runs/2026-11-20T03-05-17-implement/relay-1.md",
+"--origin",
+"the operator, /andromeda-implement invocation",
+"--kind",
+"relay",
+"--why",
+"the implement directive: F1 unanswered, no upstream file touched; on green, the operator pass by hand in plan order in this window, recorded in evidence/operator-pass.md and landed; stop on any red",
+"--step",
+"implement",
+"--run-dir",
+".andromeda/runs/2026-11-20T03-05-17-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, /andromeda-implement invocation",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, /andromeda-implement invocation",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "11f19e7228525122f06eb06e2ac631e4616dd792127c024188d6905d9e6824e0",
+"copy": "I3-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-20T03:39:01Z",
+"step": "implement",
+"why": "the implement directive: F1 unanswered, no upstream file touched; on green, the operator pass by hand in plan order in this window, recorded in evidence/operator-pass.md and landed; stop on any red"
+}
+}
+]

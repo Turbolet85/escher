@@ -4,10 +4,7 @@
 //! `click` handler of their own — whether Circle Drawer's dialog rule sizes
 //! its range input, and that the dialog's two controls read their author keys while it is open.
 
-use std::collections::HashMap;
-
 use accesskit::Role;
-use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::DioxusDocument;
@@ -15,7 +12,7 @@ use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
 mod common;
-use common::boot;
+use common::{boot, element_marks};
 
 fn app_root() -> Element {
     use_hook(|| provide_context(TimerTicks::default()));
@@ -38,28 +35,9 @@ fn open(card: &str, title: &str, incremental: bool) -> Harness<DioxusDocument> {
 /// The elements whose accessibility node is a generic container and which carry the listener
 /// mark: they react to input, a click or a key, and state no role.
 fn reacting_without_role(harness: &Harness<DioxusDocument>) -> usize {
-    let roles: HashMap<u64, Role> = harness
-        .doc
-        .accessibility_tree()
-        .nodes
-        .iter()
-        .map(|(id, node)| (id.0, node.role()))
-        .collect();
-    let doc = harness.base();
-    harness
-        .doc
-        .element_ids()
+    element_marks(harness)
         .into_iter()
-        .filter(|(node_id, _)| {
-            let node = doc.get_node(*node_id).expect("an element id names a node");
-            let listener = node.element_data().is_some_and(|element| {
-                element
-                    .attrs
-                    .iter()
-                    .any(|attr| *attr.name.local == *"data-dioxus-id")
-            });
-            listener && roles.get(&node_id.as_u64()) == Some(&Role::GenericContainer)
-        })
+        .filter(|mark| mark.listener && mark.role == Some(Role::GenericContainer))
         .count()
 }
 

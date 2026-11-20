@@ -194,6 +194,45 @@ pub fn boot(task: LeanTask, incremental: bool) -> Harness<DioxusDocument> {
     stand::boot(task, stand::options(incremental))
 }
 
+/// What an element `element_ids` names reads on the three readers the library's actionable
+/// check uses: focusability, its accessibility node's role and the listener mark.
+pub struct ElementMark {
+    pub focusable: bool,
+    pub role: Option<Role>,
+    pub listener: bool,
+}
+
+/// Each element `element_ids` names, with its [`ElementMark`], in `element_ids`' order.
+pub fn element_marks(harness: &Harness<DioxusDocument>) -> Vec<ElementMark> {
+    let roles: HashMap<u64, Role> = harness
+        .doc
+        .accessibility_tree()
+        .nodes
+        .iter()
+        .map(|(id, node)| (id.0, node.role()))
+        .collect();
+    let doc = harness.base();
+    harness
+        .doc
+        .element_ids()
+        .into_iter()
+        .map(|(node_id, _)| {
+            let node = doc.get_node(node_id).expect("an element id names a node");
+            let listener = node.element_data().is_some_and(|element| {
+                element
+                    .attrs
+                    .iter()
+                    .any(|attr| *attr.name.local == *"data-dioxus-id")
+            });
+            ElementMark {
+                focusable: node.is_focussable(),
+                role: roles.get(&node_id.as_u64()).copied(),
+                listener,
+            }
+        })
+        .collect()
+}
+
 /// The node `id` names, asserted present.
 #[track_caller]
 pub fn node<'s>(snapshot: &'s Snapshot, id: &str) -> &'s SnapshotNode {

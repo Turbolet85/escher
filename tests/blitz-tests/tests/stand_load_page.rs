@@ -12,7 +12,7 @@ use escher_driver::{Outcome, Session};
 use seven_guis::stand;
 
 mod session_common;
-use session_common::{act, click, lint, linted, press, snapshot};
+use session_common::{Acted, act, click, lint, linted, press, snapshot};
 
 /// What the screen reads for the message once the sheet shows it.
 const MESSAGE_LINE: &str = "Paragraph \"Loaded\" id=\"load-done\"";
@@ -32,6 +32,28 @@ fn screen(session: &mut Session, mode: &str) -> String {
     }
 }
 
+/// Asserts what a settled answer on the load page reads once its load is answered: `acted`'s
+/// diff adds the message, the wait moved no time from `time`, and the next screen reads it.
+#[track_caller]
+fn assert_loaded(session: &mut Session, acted: &Acted, time: f64, mode: &str) {
+    assert!(
+        acted
+            .diff
+            .added
+            .iter()
+            .any(|node| node.id == "load-done" && node.name == "Loaded"),
+        "{mode}: the diff adds the message"
+    );
+    assert!(
+        session.harness().time() == time,
+        "{mode}: the wait moved no time"
+    );
+    assert!(
+        screen(session, mode).contains(MESSAGE_LINE),
+        "{mode}: the next screen reads the message"
+    );
+}
+
 #[test]
 fn the_load_page_click_waits_out_its_load_and_shows_the_message() {
     for incremental in [false, true] {
@@ -49,22 +71,7 @@ fn the_load_page_click_waits_out_its_load_and_shows_the_message() {
             acted.settled && acted.busy.is_none(),
             "{mode}: the click returns settled once the load is answered"
         );
-        assert!(
-            acted
-                .diff
-                .added
-                .iter()
-                .any(|node| node.id == "load-done" && node.name == "Loaded"),
-            "{mode}: the diff adds the message"
-        );
-        assert!(
-            session.harness().time() == time,
-            "{mode}: the wait moved no time"
-        );
-        assert!(
-            screen(&mut session, &mode).contains(MESSAGE_LINE),
-            "{mode}: the next screen reads the message"
-        );
+        assert_loaded(&mut session, &acted, time, &mode);
     }
 }
 
@@ -91,22 +98,7 @@ fn the_load_page_enter_waits_out_its_load_and_shows_the_message() {
             acted.settled && acted.busy.is_none(),
             "{mode}: the press returns settled once the load is answered"
         );
-        assert!(
-            acted
-                .diff
-                .added
-                .iter()
-                .any(|node| node.id == "load-done" && node.name == "Loaded"),
-            "{mode}: the diff adds the message"
-        );
-        assert!(
-            session.harness().time() == time,
-            "{mode}: the wait moved no time"
-        );
-        assert!(
-            screen(&mut session, &mode).contains(MESSAGE_LINE),
-            "{mode}: the next screen reads the message"
-        );
+        assert_loaded(&mut session, &acted, time, &mode);
     }
 }
 

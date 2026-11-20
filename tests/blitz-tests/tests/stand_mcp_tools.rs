@@ -35,10 +35,9 @@
 //! a call index or a count — never an id, a name or a captured line.
 
 use std::sync::{Arc, Mutex};
-use std::time::Duration;
 
 use blitz_test_harness::HarnessOptions;
-use escher_driver::{CAUSES, Cause, Outcome, Session, SessionError, describe, serve_mcp};
+use escher_driver::{CAUSES, Cause, Outcome, Session, SessionError, describe};
 use seven_guis::stand::{self, LeanTask};
 use tracing::field::{Field, Visit};
 use tracing::span::{Attributes, Id, Record};
@@ -46,7 +45,9 @@ use tracing::{Event, Metadata, Subscriber};
 
 mod fixtures;
 mod session_common;
-use session_common::{click, hold, layout, screenshot, shot, slug, snapshot};
+use session_common::{
+    click, hold, layout, mcp_tool_result, screenshot, serve_lines, shot, slug, snapshot,
+};
 
 /// The lean tasks, as the binary hands them to the server.
 const TASKS: [LeanTask; 4] = [
@@ -90,54 +91,14 @@ fn tool_call(id: usize, name: &str, arguments: &str) -> String {
 
 /// The replies `serve_mcp` writes for `requests`, one per line.
 fn serve(requests: &[String], incremental: bool) -> Vec<String> {
-    let mut input = requests.join("\n");
-    input.push('\n');
-    let apps = TASKS.map(slug);
-    let mut output = Vec::new();
-    serve_mcp(
-        input.as_bytes(),
-        &mut output,
-        &apps,
-        boot(incremental),
-        Duration::from_secs(1800),
-    )
-    .expect("the exchange ends");
-    String::from_utf8(output)
-        .expect("replies are text")
-        .lines()
-        .map(str::to_string)
-        .collect()
+    serve_lines(requests, &TASKS.map(slug), boot(incremental))
 }
 
 /// The text block of a tool result's reply, unescaped over exactly the escapes the driver's
 /// writer writes, and whether the result is marked as an error.
 #[track_caller]
 fn result(reply: &str) -> (bool, String) {
-    let (_, rest) = reply
-        .split_once(r#""content":[{"type":"text","text":""#)
-        .expect("the reply is a tool result");
-    let mut text = String::new();
-    let mut chars = rest.chars();
-    loop {
-        match chars.next().expect("the text block ends") {
-            '"' => break,
-            '\\' => match chars.next().expect("an escape is whole") {
-                '"' => text.push('"'),
-                '\\' => text.push('\\'),
-                'n' => text.push('\n'),
-                'r' => text.push('\r'),
-                't' => text.push('\t'),
-                'u' => {
-                    let hex: String = chars.by_ref().take(4).collect();
-                    let code = u32::from_str_radix(&hex, 16).expect("four hex digits");
-                    text.push(char::from_u32(code).expect("a character"));
-                }
-                _ => panic!("an escape the writer does not write"),
-            },
-            other => text.push(other),
-        }
-    }
-    let is_error = reply.ends_with(r#""isError":true}}"#);
+    let (is_error, text) = mcp_tool_result(reply);
     assert!(
         is_error || reply.ends_with(r#""isError":false}}"#),
         "the result says whether it is an error"
@@ -228,6 +189,47 @@ impl Subscriber for Recorder {
             recorded.stack.remove(at);
         }
     }
+}
+
+/// The indices of the `tool_call` spans `recorded` holds whose `tool` reads `tool`, in order.
+fn tool_calls(recorded: &Recorded, tool: &str) -> Vec<usize> {
+    recorded
+        .spans
+        .iter()
+        .enumerate()
+        .filter(|(_, seen)| {
+            seen.name == "tool_call"
+                && seen
+                    .fields
+                    .iter()
+                    .any(|(field, value)| *field == "tool" && value == tool)
+        })
+        .map(|(at, _)| at)
+        .collect()
+}
+
+/// A read's exchange on `task` under a recorder of its own: `start`, the read `verb` with no
+/// argument, the read naming one, `stop`; the recorder and the four replies, asserted four.
+#[track_caller]
+fn served_read(
+    verb: &str,
+    task: LeanTask,
+    incremental: bool,
+    mode: &str,
+    row: usize,
+) -> (Recorder, Vec<String>) {
+    let start = format!(r#"{{"app":"{}"}}"#, slug(task));
+    let requests = [
+        tool_call(1, "start", &start),
+        tool_call(2, verb, "{}"),
+        tool_call(3, verb, r#"{"id":"x"}"#),
+        tool_call(4, "stop", "{}"),
+    ];
+    let recorder = Recorder::default();
+    let replies =
+        tracing::subscriber::with_default(recorder.clone(), || serve(&requests, incremental));
+    assert_eq!(replies.len(), 4, "{mode}: task {row}: one reply per call");
+    (recorder, replies)
 }
 
 #[test]
@@ -518,25 +520,13 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
             tool_call(2, "click", r#"{"id":"fx-under"}"#),
             tool_call(3, "stop", "{}"),
         ];
-        let mut input = requests.join("\n");
-        input.push('\n');
-        let mut output = Vec::new();
         let boot_fixture =
             |app: &str| Session::start(app, || fixtures::boot(fixtures::covered, incremental));
-        tracing::subscriber::with_default(Recorder::default(), || {
-            serve_mcp(
-                input.as_bytes(),
-                &mut output,
-                &["covered"],
-                boot_fixture,
-                Duration::from_secs(1800),
-            )
-        })
-        .expect("the exchange ends");
-        let output = String::from_utf8(output).expect("replies are text");
-        let replies: Vec<&str> = output.lines().collect();
+        let replies = tracing::subscriber::with_default(Recorder::default(), || {
+            serve_lines(&requests, &["covered"], boot_fixture)
+        });
         assert_eq!(replies.len(), 3, "{mode}: one reply per fixture call");
-        let (is_error, text) = result(replies[1]);
+        let (is_error, text) = result(&replies[1]);
         assert!(
             is_error && remedied(&text) == Some(Cause::Covered),
             "{mode}: the covered button is refused with its cause and that cause's remedy"
@@ -549,23 +539,11 @@ fn every_cause_a_tool_call_reaches_is_served_with_its_remedy() {
             tool_call(2, "screenshot", "{}"),
             tool_call(3, "stop", "{}"),
         ];
-        let mut input = requests.join("\n");
-        input.push('\n');
-        let mut output = Vec::new();
-        tracing::subscriber::with_default(Recorder::default(), || {
-            serve_mcp(
-                input.as_bytes(),
-                &mut output,
-                &["crud"],
-                boot_without_font(incremental),
-                Duration::from_secs(1800),
-            )
-        })
-        .expect("the exchange ends");
-        let output = String::from_utf8(output).expect("replies are text");
-        let replies: Vec<&str> = output.lines().collect();
+        let replies = tracing::subscriber::with_default(Recorder::default(), || {
+            serve_lines(&requests, &["crud"], boot_without_font(incremental))
+        });
         assert_eq!(replies.len(), 3, "{mode}: one reply per no-font call");
-        let (is_error, text) = result(replies[1]);
+        let (is_error, text) = result(&replies[1]);
         assert!(
             is_error && remedied(&text) == Some(Cause::FontsUnavailable),
             "{mode}: the shot with no font is refused with its cause and that cause's remedy"
@@ -683,19 +661,7 @@ fn a_screenshot_tool_call_answers_its_image_then_its_text_and_parents_its_comman
         );
 
         let recorded = recorder.0.lock().unwrap();
-        let shots: Vec<usize> = recorded
-            .spans
-            .iter()
-            .enumerate()
-            .filter(|(_, seen)| {
-                seen.name == "tool_call"
-                    && seen
-                        .fields
-                        .iter()
-                        .any(|(field, value)| *field == "tool" && value == "screenshot")
-            })
-            .map(|(at, _)| at)
-            .collect();
+        let shots = tool_calls(&recorded, "screenshot");
         assert_eq!(shots.len(), 2, "{mode}: one tool_call per screenshot call");
         for (index, at) in shots.iter().enumerate() {
             let children = recorded
@@ -716,18 +682,7 @@ fn a_lint_tool_call_answers_the_readers_findings_and_parents_its_command() {
     for incremental in [false, true] {
         let mode = if incremental { "incremental" } else { "full" };
         for (row, task) in TASKS.into_iter().enumerate() {
-            let start = format!(r#"{{"app":"{}"}}"#, slug(task));
-            let requests = [
-                tool_call(1, "start", &start),
-                tool_call(2, "lint", "{}"),
-                tool_call(3, "lint", r#"{"id":"x"}"#),
-                tool_call(4, "stop", "{}"),
-            ];
-            let recorder = Recorder::default();
-            let replies = tracing::subscriber::with_default(recorder.clone(), || {
-                serve(&requests, incremental)
-            });
-            assert_eq!(replies.len(), 4, "{mode}: task {row}: one reply per call");
+            let (recorder, replies) = served_read("lint", task, incremental, mode, row);
 
             let (mut direct, _ticks) = hold(task, incremental);
             let findings = direct.lint().expect("the stand has a font");
@@ -742,19 +697,7 @@ fn a_lint_tool_call_answers_the_readers_findings_and_parents_its_command() {
             );
 
             let recorded = recorder.0.lock().unwrap();
-            let lints: Vec<usize> = recorded
-                .spans
-                .iter()
-                .enumerate()
-                .filter(|(_, seen)| {
-                    seen.name == "tool_call"
-                        && seen
-                            .fields
-                            .iter()
-                            .any(|(field, value)| *field == "tool" && value == "lint")
-                })
-                .map(|(at, _)| at)
-                .collect();
+            let lints = tool_calls(&recorded, "lint");
             assert_eq!(lints.len(), 2, "{mode}: task {row}: one tool_call per lint");
             let accepted = recorded.spans[lints[0]]
                 .fields
@@ -843,19 +786,7 @@ fn a_layout_tool_call_answers_the_runs_line_and_parents_a_command_recording_its_
             );
 
             let recorded = recorder.0.lock().unwrap();
-            let calls: Vec<usize> = recorded
-                .spans
-                .iter()
-                .enumerate()
-                .filter(|(_, seen)| {
-                    seen.name == "tool_call"
-                        && seen
-                            .fields
-                            .iter()
-                            .any(|(field, value)| *field == "tool" && value == "layout")
-                })
-                .map(|(at, _)| at)
-                .collect();
+            let calls = tool_calls(&recorded, "layout");
             assert_eq!(
                 calls.len(),
                 3,
@@ -916,18 +847,7 @@ fn a_read_tool_call_answers_its_reader_and_parents_a_command_recording_its_verb_
     for incremental in [false, true] {
         let mode = if incremental { "incremental" } else { "full" };
         for (row, task) in TASKS.into_iter().enumerate() {
-            let start = format!(r#"{{"app":"{}"}}"#, slug(task));
-            let requests = [
-                tool_call(1, "start", &start),
-                tool_call(2, verb, "{}"),
-                tool_call(3, verb, r#"{"id":"x"}"#),
-                tool_call(4, "stop", "{}"),
-            ];
-            let recorder = Recorder::default();
-            let replies = tracing::subscriber::with_default(recorder.clone(), || {
-                serve(&requests, incremental)
-            });
-            assert_eq!(replies.len(), 4, "{mode}: task {row}: one reply per call");
+            let (recorder, replies) = served_read(verb, task, incremental, mode, row);
 
             let (mut direct, _ticks) = hold(task, incremental);
             assert!(
@@ -941,19 +861,7 @@ fn a_read_tool_call_answers_its_reader_and_parents_a_command_recording_its_verb_
             );
 
             let recorded = recorder.0.lock().unwrap();
-            let calls: Vec<usize> = recorded
-                .spans
-                .iter()
-                .enumerate()
-                .filter(|(_, seen)| {
-                    seen.name == "tool_call"
-                        && seen
-                            .fields
-                            .iter()
-                            .any(|(field, value)| *field == "tool" && value == verb)
-                })
-                .map(|(at, _)| at)
-                .collect();
+            let calls = tool_calls(&recorded, verb);
             assert_eq!(calls.len(), 2, "{mode}: task {row}: one tool_call per read");
             let accepted = recorded.spans[calls[0]]
                 .fields

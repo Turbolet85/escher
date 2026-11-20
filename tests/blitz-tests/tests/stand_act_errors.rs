@@ -16,13 +16,10 @@
 //! this check installs. A failure message names a layout mode and an index only.
 
 use std::sync::{Arc, Mutex};
-use std::time::Duration;
 
 use dioxus::prelude::*;
 use dioxus_core::CapturedError;
-use escher_driver::{
-    Call, Cause, Caused, CausedKind, CausedLevel, Outcome, Refusal, Session, serve_mcp,
-};
+use escher_driver::{Call, Cause, Caused, CausedKind, CausedLevel, Outcome, Refusal, Session};
 use escher_telemetry::Source;
 use tracing::field::{Field, Visit};
 use tracing::span::{Attributes, Id, Record};
@@ -30,7 +27,9 @@ use tracing::{Event, Metadata, Subscriber};
 
 mod fixtures;
 mod session_common;
-use session_common::{advance, click, mcp_result_text, press, scroll, type_into};
+use session_common::{
+    advance, click, mcp_result_text, press, scroll, serve_lines, tool_call, type_into,
+};
 
 const PANIC_SENTINEL: &str = "sentinel-panic-payload-7f3a";
 const ERR_SENTINEL: &str = "sentinel-err-text-91c2";
@@ -349,32 +348,6 @@ fn an_err_the_root_boundary_takes_reads_one_error_item_on_a_session_of_its_own()
     }
 }
 
-/// The replies `serve_mcp` writes for `requests`, one per line.
-fn serve(requests: &[String], incremental: bool) -> Vec<String> {
-    let mut input = requests.join("\n");
-    input.push('\n');
-    let mut output = Vec::new();
-    serve_mcp(
-        input.as_bytes(),
-        &mut output,
-        &[LABEL],
-        |_: &str| Ok(hold(incremental)),
-        Duration::from_secs(1800),
-    )
-    .expect("the exchange ends");
-    String::from_utf8(output)
-        .expect("replies are text")
-        .lines()
-        .map(str::to_string)
-        .collect()
-}
-
-fn tool_call(id: usize, name: &str, arguments: &str) -> String {
-    format!(
-        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
-    )
-}
-
 /// Whether an MCP tool result carries `member`, the `caused` member of the line written in
 /// process: the result's text block decoded whole, so a location spelled with `\\` compares as
 /// written.
@@ -390,13 +363,14 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
         let (_, line) = answered(&mut session, &click("panic-button"), &at);
         let member = caused_member(&line).unwrap_or_else(|| panic!("{at}: a caused key"));
 
-        let replies = serve(
+        let replies = serve_lines(
             &[
                 tool_call(1, "start", &format!(r#"{{"app":"{LABEL}"}}"#)),
                 tool_call(2, "click", r#"{"id":"panic-button"}"#),
                 tool_call(3, "stop", "{}"),
             ],
-            incremental,
+            &[LABEL],
+            |_: &str| Ok(hold(incremental)),
         );
         assert!(replies.len() == 3, "{at}: three replies");
         assert!(
@@ -418,7 +392,7 @@ fn the_same_caused_crosses_serve_mcp_in_process() {
 #[test]
 fn a_kept_check_replays_its_caused_and_a_changed_message_stops_naming_caused() {
     use escher_driver::Check;
-    use session_common::state_dir;
+    use session_common::{record_check, state_dir};
 
     for incremental in [false, true] {
         let mode = mode_name(incremental);
@@ -430,19 +404,7 @@ fn a_kept_check_replays_its_caused_and_a_changed_message_stops_naming_caused() {
         for (index, (name, calls)) in rows.into_iter().enumerate() {
             let at = format!("{mode}: {index}");
             let dir = state_dir(&format!("act-errors-{name}-{mode}"));
-            let _ = std::fs::remove_dir_all(&dir);
-            {
-                let mut session = hold(incremental)
-                    .recording_into(&dir)
-                    .unwrap_or_else(|_| panic!("{at}: the recording starts"));
-                for call in &calls {
-                    assert!(session.run(call).is_ok(), "{at}: each step is accepted");
-                }
-                assert!(!session.recording_failed(), "{at}: the recording stands");
-            }
-            let bytes = std::fs::read(dir.join("check-1.json"))
-                .unwrap_or_else(|_| panic!("{at}: the check is kept"));
-            let _ = std::fs::remove_dir_all(&dir);
+            let bytes = record_check(&dir, || hold(incremental), &calls, &at);
             let text = std::str::from_utf8(&bytes).expect("a check is text");
             let sentinel = if name == "err" {
                 ERR_SENTINEL

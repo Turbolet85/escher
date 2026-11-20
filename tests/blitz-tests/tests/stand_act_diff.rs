@@ -12,15 +12,15 @@
 //! file prints none, and a failure message carries the layout mode, the task and a step index,
 //! never an id or what a screen reads.
 
-use dioxus_native_dom::{DiffNode, MASKED_VALUE, SnapshotDiff};
-use escher_driver::{Call, Outcome, Session};
+use dioxus_native_dom::{DiffNode, MASKED_VALUE};
+use escher_driver::{Call, Outcome};
 use seven_guis::stand::LeanTask;
 
 mod common;
 mod fixtures;
 mod session_common;
 use common::editor_text;
-use session_common::{Acted, act, advance, click, hold, type_into};
+use session_common::{Acted, Held, advance, assert_modes_agree, click, type_into};
 
 /// The text the driver types into the fixture's password input: synthetic, and no part of any
 /// id or name.
@@ -29,47 +29,17 @@ const SECRET: &str = "synthetic-pw-7Qz";
 /// What a step's diff names: the ids added, removed and changed, each in the diff's order.
 type Named = [&'static [&'static str]; 3];
 
-/// One held session in one layout mode, and the diffs its steps returned.
-struct Held {
-    mode: String,
-    session: Session,
-    diffs: Vec<SnapshotDiff>,
-}
-
 impl Held {
-    fn task(task: LeanTask, incremental: bool) -> Self {
-        Held {
-            mode: format!("incremental={incremental}: {task:?}"),
-            session: hold(task, incremental).0,
-            diffs: Vec::new(),
-        }
-    }
-
-    /// Runs `call` through the driver between this file's own two snapshots: asserts it
-    /// returns settled, that its diff is the diff of those snapshots and that the diff names
-    /// exactly `named`.
+    /// Runs `call` through [`Held::settled_step`] and asserts the diff names exactly `named`.
     #[track_caller]
     fn step(&mut self, call: &Call, named: Named) -> Acted {
-        let mode = &self.mode;
         let step = self.diffs.len();
-        let before = self.session.harness().doc.snapshot();
-        let Some(acted) = act(&mut self.session, call) else {
-            panic!("{mode}: step {step} runs");
-        };
-        let after = self.session.harness().doc.snapshot();
-        assert!(
-            acted.settled && acted.busy.is_none(),
-            "{mode}: step {step} returns settled"
-        );
-        assert!(
-            acted.diff == before.diff(&after),
-            "{mode}: step {step} returns the diff of the snapshots before and after it"
-        );
+        let acted = self.settled_step(call);
+        let mode = &self.mode;
         assert!(
             [acted.added(), acted.removed(), acted.changed()] == named,
             "{mode}: step {step} names exactly the nodes stated for it"
         );
-        self.diffs.push(acted.diff.clone());
         acted
     }
 }
@@ -82,17 +52,6 @@ fn entry<'d>(acted: &'d Acted, id: &str) -> Option<&'d DiffNode> {
         .iter()
         .chain(&acted.diff.changed)
         .find(|entry| entry.id == id)
-}
-
-/// Asserts the two layout modes returned the same diffs, step by step.
-#[track_caller]
-fn assert_modes_agree(runs: &[Vec<SnapshotDiff>]) {
-    assert!(runs.len() == 2, "one run per layout mode");
-    assert!(!runs[0].is_empty(), "a run takes a step");
-    assert!(
-        runs[0] == runs[1],
-        "the steps' diffs differ between incremental false and true"
-    );
 }
 
 #[test]

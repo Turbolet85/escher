@@ -3,10 +3,7 @@
 //! headlessly in both layout modes, whatever state the screen is in. The three tasks outside
 //! the lean four are keyed too: the same function reads 0 on each, measured and pinned.
 
-use std::collections::HashMap;
-
 use accesskit::Role;
-use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus::prelude::*;
 use dioxus_native_dom::{DioxusDocument, UnkeyedActionable};
@@ -14,7 +11,7 @@ use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
 
 mod common;
-use common::boot;
+use common::{boot, element_marks};
 
 const CARDS: [&str; 7] = [
     "task-card-counter",
@@ -41,31 +38,14 @@ fn boot_home(incremental: bool) -> Harness<DioxusDocument> {
 /// focusability, the accessibility node's role (the roles the stand's controls carry) and the
 /// listener mark.
 fn actionable_count(harness: &Harness<DioxusDocument>) -> usize {
-    let roles: HashMap<u64, Role> = harness
-        .doc
-        .accessibility_tree()
-        .nodes
-        .iter()
-        .map(|(id, node)| (id.0, node.role()))
-        .collect();
-    let doc = harness.base();
-    harness
-        .doc
-        .element_ids()
+    element_marks(harness)
         .into_iter()
-        .filter(|(node_id, _)| {
-            let node = doc.get_node(*node_id).expect("an element id names a node");
-            let listener = node.element_data().is_some_and(|element| {
-                element
-                    .attrs
-                    .iter()
-                    .any(|attr| *attr.name.local == *"data-dioxus-id")
-            });
+        .filter(|mark| {
             let role = matches!(
-                roles.get(&node_id.as_u64()),
+                mark.role,
                 Some(Role::Button | Role::TextInput | Role::Slider)
             );
-            node.is_focussable() || role || listener
+            mark.focusable || role || mark.listener
         })
         .count()
 }

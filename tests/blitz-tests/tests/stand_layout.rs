@@ -24,14 +24,14 @@ use std::sync::{Arc, Mutex};
 use dioxus::prelude::*;
 use dioxus_native_dom::{NodeId, PlacedBy, ShiftBy, SizeCause, SnapshotNode};
 use escher_driver::{Cause, LayoutExplanation, Placer, Session};
-use seven_guis::stand::{self, LeanTask};
+use seven_guis::stand::LeanTask;
 use tracing::span::{Attributes, Id, Record};
 use tracing::{Event, Metadata, Subscriber};
 
 mod fixtures;
 mod session_common;
 use session_common::{
-    act, click, explained, focused, hold, layout, refused_unchanged, scroll, slug,
+    act, click, explained, focused, hold, hold_served, layout, refused_unchanged, scroll,
 };
 
 /// The seven screens the stand serves, by the label each session is started with.
@@ -80,24 +80,6 @@ const PINNED: [Pinned; 2] = [
 
 /// The last CRUD row after [`CREATES`] Creates.
 const LAST_ROW: &str = "crud-person-14";
-
-fn lean(label: &str) -> Option<LeanTask> {
-    LeanTask::ALL.into_iter().find(|task| slug(*task) == label)
-}
-
-/// A session on the served screen `label` names, booted through the stand.
-fn hold_served(label: &str, incremental: bool) -> Session {
-    if let Some(task) = lean(label) {
-        return hold(task, incremental).0;
-    }
-    let harness = match label {
-        "cells" => stand::boot_cells(stand::options(incremental)),
-        "load" => stand::boot_load(stand::options(incremental)),
-        "order" => stand::boot_order(stand::options(incremental)),
-        _ => panic!("a served screen's label"),
-    };
-    Session::start(label, || harness).expect("the label is one of the closed set")
-}
 
 #[track_caller]
 fn read(session: &mut Session, id: &str, at: &str) -> LayoutExplanation {

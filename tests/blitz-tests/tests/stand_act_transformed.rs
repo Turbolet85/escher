@@ -78,6 +78,23 @@ fn assert_the_button_is_moved(session: &Session, mode: &str) {
     );
 }
 
+/// Asserts a `click` on the button `id` names is accepted, its diff naming the count it
+/// changes, and lands: the count reads 1.
+#[track_caller]
+fn assert_click_lands(session: &mut Session, id: &str, mode: &str) {
+    let clicked = act(session, &click(id));
+    assert!(
+        clicked
+            .as_ref()
+            .is_some_and(|clicked| clicked.settled && clicked.changed().contains(&"fx-presses")),
+        "{mode}: the click is accepted and its diff names the count it changes"
+    );
+    assert!(
+        session.harness().text_content("#fx-presses") == "1",
+        "{mode}: the click lands on the button"
+    );
+}
+
 #[test]
 fn a_click_on_a_translated_button_is_accepted_and_lands() {
     for incremental in [false, true] {
@@ -89,17 +106,7 @@ fn a_click_on_a_translated_button_is_accepted_and_lands() {
             "{mode}: the button is not pressed first"
         );
 
-        let clicked = act(&mut session, &click("fx-moved"));
-        assert!(
-            clicked
-                .as_ref()
-                .is_some_and(|clicked| clicked.settled && clicked.changed().contains(&"fx-presses")),
-            "{mode}: the click is accepted and its diff names the count it changes"
-        );
-        assert!(
-            session.harness().text_content("#fx-presses") == "1",
-            "{mode}: the click lands on the button"
-        );
+        assert_click_lands(&mut session, "fx-moved", &mode);
     }
 }
 
@@ -141,17 +148,7 @@ fn a_control_in_a_scrolling_box_under_a_zoomed_world_is_reached_where_it_shows()
         let mode = format!("incremental={incremental}: zoomed world");
         let mut session = fixtures::hold("transformed", zoomed_world_fixture, incremental);
 
-        let clicked = act(&mut session, &click("fx-inner"));
-        assert!(
-            clicked
-                .as_ref()
-                .is_some_and(|clicked| clicked.settled && clicked.changed().contains(&"fx-presses")),
-            "{mode}: the click is accepted and its diff names the count it changes"
-        );
-        assert!(
-            session.harness().text_content("#fx-presses") == "1",
-            "{mode}: the click lands on the button"
-        );
+        assert_click_lands(&mut session, "fx-inner", &mode);
 
         let findings = linted(&mut session, &lint()).expect("the lint is answered");
         assert!(

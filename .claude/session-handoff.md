@@ -26,3 +26,6 @@
 - Left for the operator to remove: `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Guard refusals this wrap, each re-issued once: a `cd` into the wrap skill's directory.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-20 04:05:11

@@ -29,7 +29,7 @@ mod fixtures;
 mod session_common;
 use common::ACTIONABLE_AT_BOOT;
 use session_common::{
-    act, actioned, actions, advance, click, focused, hold, layout, refused_unchanged,
+    act, actioned, actions, advance, click, focused, hold, hold_served, layout, refused_unchanged,
     screenshot_of, scroll, slug, type_into,
 };
 
@@ -58,24 +58,6 @@ const SERVED: [&str; 7] = [
     "load",
     "order",
 ];
-
-fn lean(label: &str) -> Option<LeanTask> {
-    LeanTask::ALL.into_iter().find(|task| slug(*task) == label)
-}
-
-/// A session on the served screen `label` names, booted through the stand.
-fn hold_served(label: &str, incremental: bool) -> Session {
-    if let Some(task) = lean(label) {
-        return hold(task, incremental).0;
-    }
-    let harness = match label {
-        "cells" => stand::boot_cells(stand::options(incremental)),
-        "load" => stand::boot_load(stand::options(incremental)),
-        "order" => stand::boot_order(stand::options(incremental)),
-        _ => panic!("a served screen's label"),
-    };
-    Session::start(label, || harness).expect("the label is one of the closed set")
-}
 
 /// The load page with its fetch in flight: its button clicked through the harness, which waits
 /// on nothing.

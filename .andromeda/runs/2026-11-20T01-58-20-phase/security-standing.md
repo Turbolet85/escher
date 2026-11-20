@@ -1,0 +1,18 @@
+# security · standing conventions
+
+- S1 · every shared test helper reaching a driver session uses an owner-only state directory passed as a parameter and removes only its own files · input-validation
+  contract/kept-check-file/lifecycle · Kept check files · lifecycle — A kept check is never logged and never removed by escher, but for its own check when a recording ends.
+  contract/kept-check-file/medium · Kept check files · medium — Under `--record <dir>`, `Session::recording_into` or an exploration's record directory, one `check-{n}.json` with mode `0600` per recorded session, each explored path its own, is written in a `0700` directory the launcher named.
+  decision/cold-agent-checks-read-for-counts-only · Cold-agent checks read for bools and counts only — The cold-agent pipe's live child keeps its checks in an owner-only record directory, read by the pipe for bools and counts only, never printed, copied or committed, and removed by its cleanup.
+  decision/cold-agent-records-private · Cold-agent recordings stay private — The cold-agent pipe records into an owner-only directory, never prints, copies or commits the checks, reads them for bools and counts only and removes them with its state on cleanup.
+  decision/kept-check-owner-only · Kept checks are owner-only — A recorded check is written 0600 into a 0700 directory the launcher named, is never logged, and is never removed by escher but for its own check when a recording ends. · why: Ratified. · guard: recording::the_committed_checks_are_what_the_binary_records · except: Two scripted stand-Counter checks, one through the command line and one through the mcp role, are committed publicly, holding no typed text, host path, name or secret and no screenshot step.
+  decision/kept-checks-owner-only · Kept checks owner-only and uncommitted — A kept check stays in an owner-only medium, is never logged and is never committed. · except: The two committed checks of the repository's own scripted stand-Counter sessions.
+  decision/recorder-removes-only-own-files · Recorder removes only its own files — A file the recorder did not create is never removed.
+  decision/recording-dir-owner-only · Recording directory is owner-only — The recording directory is created mode 0700 and a present one open to group or others is refused `record-dir-not-private` with status 3, nothing written and nothing spawned. · why: Ratified.
+  decision/recording-directory-owner-only · Owner-only recording directory — The recording directory is created 0700, a group- or other-open one is refused with nothing written or spawned, each check is created 0600 and never replaced, and recording is unix only.
+  decision/recording-never-replaces-files · Recording never replaces or removes foreign files — A recorded check file is created 0600 with create-new under the smallest free number, rewritten whole through a temp file and rename; no file is replaced and a file the recorder did not create is never removed.
+- S2 · every test in the blitz-tests crate keeps the crate unpublished and takes no tracing or style dependency · dependency-security
+- S3 · every check's refusal or session-error assertion reads the fixed cause, fault, meaning and remedy fields, never call content · error-handling
+  contract/session-error-json/kind · Session error JSON · kind — One fixed kebab-case word per session error variant, inside `{"error":{...}}`.
+  contract/session-error-json/message · Session error JSON · message — The error's fixed meaning, holding no path.
+  contract/session-error-json/remedy · Session error JSON · remedy — The error's fixed remedy text.

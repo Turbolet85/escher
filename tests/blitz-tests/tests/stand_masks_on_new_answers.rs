@@ -25,7 +25,7 @@ mod fixtures;
 mod session_common;
 #[cfg(unix)]
 use session_common::state_dir;
-use session_common::{actions, graph, layout, mcp_result_text, snapshot, type_into};
+use session_common::{actions, graph, layout, mcp_result_text, snapshot, tool_call, type_into};
 
 /// What the check types into the password input: synthetic, and no part of any id or name.
 const SENTINEL: &str = "Masks-Typed-Sentinel-7qZr";
@@ -220,12 +220,6 @@ fn every_explored_paths_check_holds_no_masked_value() {
         }
         let _ = fs::remove_dir_all(&dir);
     }
-}
-
-fn tool_call(id: usize, name: &str, arguments: &str) -> String {
-    format!(
-        r#"{{"jsonrpc":"2.0","id":{id},"method":"tools/call","params":{{"name":"{name}","arguments":{arguments}}}}}"#
-    )
 }
 
 fn boot(incremental: bool) -> impl FnMut(&str) -> Result<Session, SessionError> {

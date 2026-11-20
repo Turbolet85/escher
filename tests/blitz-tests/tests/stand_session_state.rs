@@ -3,13 +3,14 @@
 //! is what the next one reads, and the timer's time moves only with ticks delivered on the
 //! handle the check holds.
 
-use blitz_dom::Document;
 use escher_driver::Session;
 use keyboard_types::{Key, NamedKey};
 use seven_guis::stand::{self, LeanTask};
 
 mod common;
+mod session_common;
 use common::boot;
+use session_common::focused;
 
 /// The accessible name a snapshot of the held instance reads for `id`: `None` when it holds no
 /// such node.
@@ -30,27 +31,6 @@ fn value_of(session: &Session, id: &str) -> Option<String> {
         .snapshot()
         .get(id)
         .and_then(|node| node.state.value.clone())
-}
-
-/// The ids reading focused in a snapshot of the held instance, and the id the accessibility
-/// tree's focus carries: none when that is the `Window`.
-fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
-    let doc = &session.harness().doc;
-    let in_snapshot = doc
-        .snapshot()
-        .nodes()
-        .filter(|node| node.state.focused)
-        .map(|node| node.id.clone())
-        .collect();
-    let tree = doc.accessibility_tree();
-    let in_tree = tree
-        .nodes
-        .iter()
-        .filter(|(id, _)| *id == tree.focus)
-        .filter_map(|(_, node)| node.author_id())
-        .map(str::to_string)
-        .collect();
-    (in_snapshot, in_tree)
 }
 
 #[test]
