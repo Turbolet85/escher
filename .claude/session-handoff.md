@@ -1,30 +1,27 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-20T09:59:40Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `a34ed3086`)
+**Last Updated:** 2026-11-20T11:58:30Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `50c251f14`)
 **Status:** clean
-**Last Commit:** chore(route): operator-requested adaptation — 0-pending wrap (see `git log -1`)
+**Last Commit:** 2026-11-20-readme-s-0-3-0-closed — docs: README's 0.3.0 closed (see `git log -1`)
 
 ## Position
-- Done: no chunk (0 pending). A route adaptation on the founder's README and backlog answers was applied (`.andromeda/runs/2026-11-20T09-57-04-wrap/adaptation-record.md`, inputs#I1 · I2).
-- Next: «README's 0.3.0 closed» (`chk-saqyvdsz`, `/andromeda-phase`). It now stands first, ahead of «Browser's surviving mutants», and takes v040-03.
+- Done: 2026-11-20-readme-s-0-3-0-closed — `README.md`'s `### 0.3.0` heading reads «done and verified», as 0.1.0 and 0.2.0 do (founder's F1). v040-03 is verified: CI#44724398399 green, and GitHub serves the heading from the default branch.
+- Next: «Browser's surviving mutants» (`chk-uuhtb7to`, `/andromeda-phase`, v040-08).
 
 ## Work done
-- New first markerless entry «README's 0.3.0 closed» with one `CARRY:` quoting the founder's F1 and F2 labels and his «when» (tx 2600). The stale CARRY `cry-53tdca3g` on «Capability statement» was retired (tx 2601). Added a dated note on v040-03 recording F1/F2 (tx 2602). Each was the operator's choice of the recommended option on A1–A4.
-- `res-xe7pyput` already stood `absorbed` into v040-03, so its close is proving v040-03. Its row was left as it stands.
+- The wrap closed implement's report (`## After implement`, tx 2631). The operator pass ended as-left, every entry green.
+- Row write: architecture got one add, which fit read `not_master` (type 5), so it was rejected. obs-plan returned `@none`. No masters TX.
 
 ## Drift resolved
-- none (0-pending; no reconcile run)
+- No master change. The plan's expected amendment (architecture § Project Intent) has no site: pattern `readme-030`'s control was unfired over the masters.
+- `.claude/docs/workflow.md:8` still names `build/escher-0.3.0` as the default branch; it is `build/escher-0.4.0` (inputs#I3). No master states it, so no comparer reached it. It is carried as `CARRY:` `cry-g3etodij` on «Dependency and CI debts», for Epoch 2's whole-mode leaves pass or a harness landing on the operator's word.
 
 ## Notes
-- The verified skia archive («Проверенный архив (Recommended)») is a directive for the phase of «Dependency and CI debts». It arrives with that phase and was not acted on here.
-- testing.md's «36 readers» of `session_common` and `.claude/docs/stack.md:3`'s «(citations live there)» stay stale. They are left to the whole-mode leaves pass at Epoch 2's close.
+- The verified skia archive («Проверенный архив (Recommended)») is a directive for the phase of «Dependency and CI debts». It arrives with that phase.
+- Still stale, left to the whole-mode leaves pass at Epoch 2's close: testing.md's «36 readers» of `session_common`, `.claude/docs/stack.md:3`'s «(citations live there)», and `workflow.md:8` (above).
 - Epoch 1 — Foundation (0.4.0) is complete and has no evolve diagnosis yet (`/andromeda-evolve-diagnose`).
 - Upstreamable, not yet sent (carried): the inline-box placeholder defect (parley 0.13); the W8 fragment mask fetched as a stamped `data:` URL; upstream's `docs/licensing.md` on `webpki-root-certs`.
 - Carried: residual `res-h7acz56c` is route's to flip; security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`; `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Left for the operator to remove: `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`. `target/` reads 174 G.
-- Guard refusals this wrap, each re-issued once: a `cd` into the skills dir (re-issued with absolute paths); a pipeline tool's `--help` piped into `head` (re-issued bare).
+- Left for the operator to remove: `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-20 11:57:52

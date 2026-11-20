@@ -1,0 +1,97 @@
+[
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T11:43:25Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-readme-s-0-3-0-closed",
+"--message-file",
+".andromeda/runs/2026-11-20T11-42-44-wrap/relay-1.md",
+"--origin",
+"the operator, the wrap invocation, 2026-11-20",
+"--kind",
+"relay",
+"--why",
+"the operator directs the close to carry one line: .claude/docs/workflow.md:8 names build/escher-0.3.0 as the default branch; it is build/escher-0.4.0",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-11-20T11-42-44-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I3 · copy message · message: the operator, the wrap invocation, 2026-11-20",
+"cite: inputs#I3"
+],
+"stderr": null,
+"wrote": [
+"inputs/I3-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I3",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, the wrap invocation, 2026-11-20",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "5a8a00d0e52c0c7233621c67d8e3d0b2f0d256761f1b397d4f0af0bd95958b85",
+"copy": "I3-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-20T11:43:24Z",
+"step": "wrap",
+"why": "the operator directs the close to carry one line: .claude/docs/workflow.md:8 names build/escher-0.3.0 as the default branch; it is build/escher-0.4.0"
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T11:43:25Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-20-readme-s-0-3-0-closed",
+"--run-dir",
+".andromeda/runs/2026-11-20T11-42-44-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 unchanged · copy no-repo · ../additional/escher-overseer/relays/morning-answers-founder-2026-11-20.md",
+"I1 cited scope.md:36 · research.md:7 · plan.md:13 · plan.md:17 · plan.md:82 (in fence) · plan.md:137 · plan.md:140 · plan.md:153 · plan.md:172 · report.md:19",
+"I2 n/a — a message has no live source · copy message · message: the operator",
+"I2 cited report.md:20",
+"I3 n/a — a message has no live source · copy message · message: the operator, the wrap invocation, 2026-11-20",
+"I3 UNCITED",
+"inputs: 3 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 2 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 3,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 2
+},
+"uncited": 1,
+"unparsed": 0
+}
+}
+]
