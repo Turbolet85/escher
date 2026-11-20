@@ -88,6 +88,38 @@ impl<D: Document> Harness<D> {
             font_weight,
         })
     }
+
+    /// The contrast of the highlighted row of the open select list, where `node_id` is that row's
+    /// `option`, read as the list paints it. Changes nothing.
+    ///
+    /// The engine paints a highlighted row in its own constants, not the option's computed styles:
+    /// its text is [`SelectListView::HIGHLIGHT_TEXT`](blitz_dom::SelectListView::HIGHLIGHT_TEXT)
+    /// on [`SelectListView::HIGHLIGHT_BACKGROUND`](blitz_dom::SelectListView::HIGHLIGHT_BACKGROUND),
+    /// both opaque, so this reads that pair through [`contrast_ratio`], with the font size and
+    /// weight of the option's own computed font. [`text_contrast`](Self::text_contrast) is
+    /// unchanged and still reads the option's computed pair.
+    ///
+    /// `None` for any element that is not the highlighted row of a list standing open, and for one
+    /// with no computed styles.
+    pub fn highlight_contrast(&self, node_id: NodeId) -> Option<TextContrast> {
+        use blitz_dom::SelectListView;
+        let doc = self.base();
+        let view = doc.select_list_view()?;
+        view.rows
+            .iter()
+            .find(|row| row.node == node_id && row.highlighted)?;
+        let styles = doc.get_node(node_id)?.primary_styles()?;
+        let rgb = |[r, g, b]: [u8; 3]| Color::from_rgb8(r, g, b);
+        let text = rgb(SelectListView::HIGHLIGHT_TEXT);
+        let background = rgb(SelectListView::HIGHLIGHT_BACKGROUND);
+        Some(TextContrast {
+            text,
+            background,
+            ratio: contrast_ratio(text, background),
+            font_size_px: styles.slow_clone_font_size().computed_size().px(),
+            font_weight: styles.get_font().font_weight.value(),
+        })
+    }
 }
 
 fn text_bearing_element<'a>(doc: &'a BaseDocument, node: &'a Node) -> Option<&'a Node> {

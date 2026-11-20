@@ -7,7 +7,8 @@
 //! list is refused `covered`. `type` leaves no list open; `screenshot` of a row crops to it and
 //! changes nothing; `lint` reads no `overlap` on a row, the planted pair still reading; the open
 //! screen stays under the text budget; every actionable element stays keyed; two `click`s on one
-//! point open and close, each focusing; and the `VirtualClock` stays where it was. A failure
+//! point open and close, each focusing; the `VirtualClock` stays where it was; and a `press` in the
+//! open list returns the highlight's move in its diff, one row reading `highlighted`. A failure
 //! message carries the layout mode and a row index, never an id or what a screen reads.
 
 use dioxus::prelude::*;
@@ -19,7 +20,7 @@ mod fixtures;
 mod session_common;
 use session_common::{
     Acted, act, click, focused, hold, lint, linted, press, refused, refused_unchanged,
-    screenshot_of, scroll, shot, type_into,
+    screenshot_of, scroll, shot, snapshot, type_into,
 };
 
 fn flight(incremental: bool) -> Session {
@@ -418,6 +419,75 @@ fn a_screen_read_after_a_step_reads_the_new_state_with_no_advance() {
         assert!(
             bounds(&session, ROWS[0]) != bounds(&session, SELECT),
             "{mode}: the next read shows the rows"
+        );
+    }
+}
+
+/// The lines of the screen's text holding the `highlighted` token.
+fn highlighted_lines(session: &mut Session) -> Vec<String> {
+    match session.run(&snapshot()) {
+        Ok(Outcome::Screen { text }) => text
+            .lines()
+            .filter(|line| line.split_whitespace().any(|word| word == "highlighted"))
+            .map(str::to_string)
+            .collect(),
+        _ => panic!("the screen is read whole"),
+    }
+}
+
+#[test]
+fn a_press_in_an_open_list_returns_the_highlight_move_in_its_diff() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = flight(incremental);
+        assert!(
+            highlighted_lines(&mut session).is_empty(),
+            "{mode}: a closed list highlights nothing"
+        );
+        assert!(
+            act(&mut session, &click(SELECT)).is_some(),
+            "{mode}: the click opens the list"
+        );
+        let open = highlighted_lines(&mut session);
+        assert_eq!(open.len(), 1, "{mode}: one row reads highlighted");
+        assert!(
+            open[0].contains(&format!("id=\"{}\"", ROWS[0])),
+            "{mode}: the chosen row is highlighted at opening"
+        );
+        let moved = act(&mut session, &press("arrow-down", false))
+            .unwrap_or_else(|| panic!("{mode}: the press is accepted"));
+        assert!(moved.settled, "{mode}: the press settles");
+        for (row, id) in ROWS.into_iter().enumerate() {
+            assert!(
+                differs(&moved, id).contains(&Reading::Highlighted),
+                "{mode}: row {row}: the diff names the row's highlight"
+            );
+        }
+        let highlighted: Vec<&str> = moved
+            .diff
+            .changed
+            .iter()
+            .filter(|node| node.state.highlighted)
+            .map(|node| node.id.as_str())
+            .collect();
+        assert_eq!(
+            highlighted,
+            [ROWS[1]],
+            "{mode}: the new row reads highlighted"
+        );
+        let after = highlighted_lines(&mut session);
+        assert_eq!(after.len(), 1, "{mode}: still one row reads highlighted");
+        assert!(
+            after[0].contains(&format!("id=\"{}\"", ROWS[1])),
+            "{mode}: the token moved to the new row"
+        );
+        assert!(
+            act(&mut session, &press("escape", false)).is_some(),
+            "{mode}: escape is accepted"
+        );
+        assert!(
+            highlighted_lines(&mut session).is_empty(),
+            "{mode}: a closed list highlights nothing again"
         );
     }
 }

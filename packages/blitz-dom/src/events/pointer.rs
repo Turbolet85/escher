@@ -598,6 +598,8 @@ fn hover_list_row(doc: &mut BaseDocument, x: f32, y: f32) -> bool {
     match doc.select_list.as_mut() {
         Some(list) if enabled_option && list.current != Some(hit.node_id) => {
             list.current = Some(hit.node_id);
+            let select = list.select;
+            doc.changed_nodes.insert(select);
             true
         }
         _ => false,

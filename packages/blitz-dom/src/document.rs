@@ -969,7 +969,8 @@ impl BaseDocument {
         self.shell_provider.request_redraw();
     }
 
-    /// The height of a row, the select's own font on one line with its padding, and the width the
+    /// The height of a row, the tallest line among the rows' own fonts (a header's at weight 700),
+    /// never shorter than the select's own font on one line, with its padding, and the width the
     /// widest row asks for, as they stand now; `None` with no row to show.
     fn measure_select_list(&self, select: NodeId, rows: &[select_list::Row]) -> Option<(f64, f64)> {
         use select_list::{BORDER_WIDTH, GROUP_INDENT, ROW_PADDING_X, ROW_PADDING_Y};
@@ -983,7 +984,7 @@ impl BaseDocument {
             .unwrap_or_else(std::sync::PoisonError::into_inner);
         let mut layout_ctx = parley::LayoutContext::new();
         let line = self.text_row_layout(&mut font_ctx, &mut layout_ctx, select, "x")?;
-        let row_height = f64::from(line.height()) / scale + 2.0 * ROW_PADDING_Y;
+        let mut tallest = f64::from(line.height());
         let mut widest: f64 = 0.0;
         for row in rows {
             let Some(node) = self.get_node(row.node) else {
@@ -997,9 +998,10 @@ impl BaseDocument {
             };
             let indent = if row.indented { GROUP_INDENT } else { 0.0 };
             widest = widest.max(f64::from(layout.full_width()) / scale + indent);
+            tallest = tallest.max(f64::from(layout.height()));
         }
         Some((
-            row_height,
+            tallest / scale + 2.0 * ROW_PADDING_Y,
             widest + 2.0 * ROW_PADDING_X + 2.0 * BORDER_WIDTH,
         ))
     }
@@ -1044,10 +1046,14 @@ impl BaseDocument {
         (options, current)
     }
 
-    /// Moves the highlight to `option` and brings its row in, asking a redraw and marking nothing.
+    /// Moves the highlight to `option` and brings its row in, asking a redraw; a move to another
+    /// row marks the list's select, whose tree node names the highlighted option.
     pub(crate) fn move_select_list_current(&mut self, option: NodeId) {
-        if let Some(list) = self.select_list.as_mut() {
+        if let Some(list) = self.select_list.as_mut()
+            && list.current != Some(option)
+        {
             list.current = Some(option);
+            self.changed_nodes.insert(list.select);
         }
         self.scroll_select_list_to(option);
         self.shell_provider.request_redraw();

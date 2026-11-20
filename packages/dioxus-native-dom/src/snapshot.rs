@@ -78,6 +78,10 @@ pub struct NodeState {
     /// and is no disabled form control. A native activation with no app handler (a bare button,
     /// a checkbox, a `summary`) and a listener on an ancestor read false.
     pub clickable: bool,
+    /// Whether the element is the option an open select list highlights: a select's
+    /// accessibility node names it as its active descendant, which the engine writes only while
+    /// the list stands open. True on at most one row.
+    pub highlighted: bool,
 }
 
 impl Snapshot {
@@ -114,6 +118,11 @@ impl DioxusDocument {
                 .filter(|(_, events)| events.contains(&"click"))
                 .map(|(node, _)| node)
                 .collect(),
+            highlighted: tree
+                .nodes
+                .iter()
+                .filter_map(|(_, node)| node.active_descendant())
+                .collect(),
         };
         let mut roots = Vec::new();
         if let Some(root) = tree_root(&tree) {
@@ -133,6 +142,8 @@ struct Builder<'a> {
     focus: TreeNodeId,
     /// The elements carrying an app `click` listener now.
     clicked: HashSet<NodeId>,
+    /// The tree nodes another tree node names as its active descendant.
+    highlighted: HashSet<TreeNodeId>,
 }
 
 impl Builder<'_> {
@@ -197,6 +208,7 @@ impl Builder<'_> {
                         invalid: tree_node.invalid().is_some(),
                         focused: id == self.focus,
                         clickable: self.clicked.contains(&node_id) && !element.is_disabled(),
+                        highlighted: self.highlighted.contains(&id),
                     },
                     bounds,
                     children,

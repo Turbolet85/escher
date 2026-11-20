@@ -47,8 +47,9 @@ pub struct NodeFieldSpec {
 
 /// The keys of each node in a `nodes` result field, in the order a node is written with them.
 /// `parent`, `enabled`, `checked`, `value`, `selected` and `pressed` are left out where the
-/// node has no reading for them, and `differs` is written on a changed node only.
-pub const NODE_FIELDS: [NodeFieldSpec; 14] = [
+/// node has no reading for them, `highlighted` is written only when true, and `differs` is
+/// written on a changed node only.
+pub const NODE_FIELDS: [NodeFieldSpec; 15] = [
     NodeFieldSpec {
         name: "id",
         help: "the element's stable id, the one a call names it by",
@@ -112,6 +113,11 @@ pub const NODE_FIELDS: [NodeFieldSpec; 14] = [
                and a handler on an ancestor, read false",
     },
     NodeFieldSpec {
+        name: "highlighted",
+        help: "true on the one row an open select list highlights, the option its select names \
+               as its active descendant; written only when true",
+    },
+    NodeFieldSpec {
         name: "bounds",
         help: "where the element stands on the screen: x, y, width and height, in pixels; a box \
                reads the same bounds however far its content is scrolled",
@@ -158,7 +164,8 @@ const CHANGED: FieldSpec = FieldSpec {
     kind: FieldKind::Nodes,
     always: true,
     help: "the elements on the screen before and after the step whose role, name, state, bounds \
-           or parent differ, as they read after it, `clickable` among its state; `selected` and \
+           or parent differ, as they read after it, `clickable` and `highlighted` among its state; \
+           `highlighted` is written only when true; `selected` and \
            `pressed` are left out where the element states neither, `pressed` is false for a mixed toggle, and `invalid` is \
            true for a grammar or spelling error",
 };
@@ -241,7 +248,8 @@ pub(crate) const SNAPSHOT: VerbSpec = VerbSpec {
                    nested by indent, a part's lines as they read in the whole text; a line's state \
                    words, each written only where the element states it, are enabled or disabled, \
                    checked or unchecked, value=, selected or unselected, pressed or unpressed, \
-                   invalid, focused and clickable; a mixed toggle reads unpressed, and a grammar \
+                   invalid, focused, clickable and highlighted; a mixed toggle reads unpressed, \
+                   and a grammar \
                    or spelling error reads invalid",
         },
         FieldSpec {

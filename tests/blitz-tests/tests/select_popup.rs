@@ -5,7 +5,10 @@
 //! neither; Escape, a second click, a click outside — which goes on to what it landed on — and the
 //! page scrolling close it with no event. A disabled, inert, hidden or singularly transformed
 //! select opens nothing, and one made so with its list open closes with no panic. The tree reads
-//! `expanded` on the select and no `aria-expanded`, its focus staying on the select. Boxes that
+//! `expanded` on the select and no `aria-expanded`, its focus staying on the select, and while the
+//! list is open names the highlighted option as the select's active descendant; a highlight move,
+//! by key or pointer, marks the changed set. Every row takes the tallest row's height, so a larger
+//! authored font is not cut. Boxes that
 //! clip the select do not clip the list. Hostile markup keeps every box finite, and a `multiple`
 //! select's `size` makes it that many rows tall. In both layout modes, through real dispatch. A
 //! failure message carries the layout mode and a row index.
@@ -252,9 +255,10 @@ fn the_keys_move_the_highlight_over_enabled_rows_and_choose_nothing() {
     for incremental in [false, true] {
         let mut harness = fixtures::boot(page, incremental);
         click(&mut harness, "#fx-pick", "fixture");
-        harness.base_mut().take_changed_nodes();
         for (row, (key, expected)) in moves().into_iter().enumerate() {
             let at = format!("incremental {incremental}: row {row}");
+            let before = highlighted(&harness);
+            harness.base_mut().take_changed_nodes();
             harness.press(key);
             assert_eq!(
                 highlighted(&harness),
@@ -267,7 +271,14 @@ fn the_keys_move_the_highlight_over_enabled_rows_and_choose_nothing() {
                 "{at}: the choice stands"
             );
             assert_eq!(counted(&harness), (0, 0), "{at}: a move fires nothing");
-            assert!(!harness.base().has_changes(), "{at}: a move marks nothing");
+            // A move to another row marks the select, whose tree node names the highlight; a key
+            // that leaves the highlight where it stood marks nothing.
+            let moved = before != highlighted(&harness);
+            assert_eq!(
+                harness.base().has_changes(),
+                moved,
+                "{at}: a move marks the set, a stay marks nothing"
+            );
         }
     }
 }
@@ -1178,5 +1189,121 @@ fn a_click_on_the_chosen_text_in_the_selects_own_box_closes_and_chooses_nothing(
         assert_eq!(open(&harness), None, "{at}: the click closes the list");
         assert_eq!(value(&harness, "#fx-pick").as_deref(), Some("b"), "{at}");
         assert_eq!(counted(&harness), (0, 0), "{at}: no event fires");
+    }
+}
+
+/// A 13px select with one option at 32px and a group whose header is at the select's size.
+fn large_font_page() -> Element {
+    rsx! {
+        div { style: "padding: 20px;",
+            select { id: "fx-sized", style: "font-size: 13px;",
+                option { id: "fx-small", value: "s", "Small" }
+                option { id: "fx-large", value: "l", style: "font-size: 32px;", "Large" }
+                optgroup { id: "fx-group", label: "Group",
+                    option { id: "fx-inner", value: "i", "Inner" }
+                }
+            }
+        }
+    }
+}
+
+/// The open list's one row height, measured with the tallest row's line: the 32px option's.
+const LARGE_ROW_HEIGHT: f64 = 40.0;
+
+#[test]
+fn every_row_takes_the_tallest_rows_line_so_a_larger_font_is_not_cut() {
+    for incremental in [false, true] {
+        let at = format!("incremental {incremental}");
+        let mut harness = fixtures::boot(large_font_page, incremental);
+        let large = harness.node("#fx-large");
+        let line = harness
+            .base()
+            .select_row_layout(large, "Large")
+            .map(|layout| f64::from(layout.height()))
+            .unwrap_or_else(|| panic!("{at}: the large option lays out"));
+        let small = harness
+            .base()
+            .select_row_layout(harness.node("#fx-small"), "Small")
+            .map(|layout| f64::from(layout.height()))
+            .unwrap_or_else(|| panic!("{at}: the small option lays out"));
+        assert!(
+            line > small * 2.0,
+            "{at}: the fixture's 32px line ({line}) is past twice the 13px one ({small})"
+        );
+        click(&mut harness, "#fx-sized", &at);
+        let view = harness
+            .base()
+            .select_list_view()
+            .unwrap_or_else(|| panic!("{at}: the list opens"));
+        assert_eq!(view.rows.len(), 4, "{at}: three options and one header");
+        for (row, read) in view.rows.iter().enumerate() {
+            assert_eq!(
+                read.bounds.height, LARGE_ROW_HEIGHT,
+                "{at}: row {row} reads the one height"
+            );
+            assert!(
+                read.bounds.height >= line,
+                "{at}: row {row} is no shorter than the 32px line"
+            );
+            assert!(finite(read.bounds), "{at}: row {row} stands finite");
+        }
+        assert!(finite(view.bounds), "{at}: the list stands finite");
+    }
+}
+
+/// The accessibility tree's active descendant of `selector`.
+fn active_descendant(harness: &Page, selector: &str, at: &str) -> Option<TreeId> {
+    tree_node(harness, selector, at).active_descendant()
+}
+
+#[test]
+fn an_open_list_names_its_highlighted_option_as_the_selects_active_descendant() {
+    for incremental in [false, true] {
+        let at = format!("incremental {incremental}");
+        let mut harness = fixtures::boot(page, incremental);
+        let tree_id = |harness: &Page, selector: &str| TreeId(harness.node(selector).as_u64());
+        assert_eq!(open(&harness), None, "{at}: the fixture starts closed");
+        assert_eq!(
+            active_descendant(&harness, "#fx-pick", &at),
+            None,
+            "{at}: a closed select names none"
+        );
+        click(&mut harness, "#fx-pick", &at);
+        assert_eq!(
+            active_descendant(&harness, "#fx-pick", &at),
+            Some(tree_id(&harness, "#fx-banana")),
+            "{at}: opened on the chosen option"
+        );
+        harness.press(named(NamedKey::ArrowDown));
+        assert_eq!(
+            active_descendant(&harness, "#fx-pick", &at),
+            Some(tree_id(&harness, "#fx-blueberry")),
+            "{at}: a key moves it"
+        );
+        harness.base_mut().take_changed_nodes();
+        let (x, y) = row_point(&harness, "#fx-apple", &at);
+        harness.move_mouse_to(x, y);
+        assert!(
+            harness.base().has_changes(),
+            "{at}: a pointer move of the highlight marks the set"
+        );
+        assert_eq!(
+            active_descendant(&harness, "#fx-pick", &at),
+            Some(tree_id(&harness, "#fx-apple")),
+            "{at}: the pointer moves it"
+        );
+        let tree = harness.base().build_accessibility_tree();
+        assert_eq!(
+            tree.focus,
+            tree_id(&harness, "#fx-pick"),
+            "{at}: the tree's focus stays on the select"
+        );
+        harness.press(named(NamedKey::Escape));
+        assert_eq!(open(&harness), None, "{at}: Escape closes");
+        assert_eq!(
+            active_descendant(&harness, "#fx-pick", &at),
+            None,
+            "{at}: a closed select names none again"
+        );
     }
 }

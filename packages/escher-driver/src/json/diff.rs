@@ -25,6 +25,7 @@ fn nodes(nodes: &[DiffNode], changed: bool) -> String {
             invalid: read.state.invalid,
             focused: read.state.focused,
             clickable: read.state.clickable,
+            highlighted: read.state.highlighted,
             bounds: [
                 read.bounds.x,
                 read.bounds.y,

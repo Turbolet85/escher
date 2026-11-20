@@ -545,7 +545,9 @@ fn contrast(
     if !is_text_control(harness, element) && !holds_text(harness, element, false) {
         return None;
     }
-    let reading = harness.text_contrast(element)?;
+    let reading = harness
+        .highlight_contrast(element)
+        .or_else(|| harness.text_contrast(element))?;
     let required = reading.required_ratio();
     (reading.ratio < required).then_some(Reason::Contrast {
         ratio: reading.ratio,

@@ -10,7 +10,8 @@
 //! value in the last part. By keyboard alone: `press` tabs to the grid, moves its current cell and
 //! opens the editor, `type` supplies the characters `press` has no key for, and `press` commits a
 //! value read in the first part with focus back on the grid. The lint at boot reads the 490
-//! findings measured on a grid larger than its viewport. A screen's text is content: this file
+//! findings measured on a grid larger than its viewport. The current cell alone reads `selected`,
+//! an arrow moving the reading. A screen's text is content: this file
 //! prints none, and a failure message carries the layout mode and a step or part index only.
 
 use dioxus_native_dom::SNAPSHOT_TEXT_BUDGET;
@@ -245,5 +246,57 @@ fn the_lint_at_boot_reads_the_measured_findings() {
             matches!(session.run(&snapshot()), Ok(Outcome::Part { .. })),
             "{mode}: the screen still reads in parts after the lint"
         );
+    }
+}
+
+/// The data cells the screen reads selected, by id.
+fn selected_cells(session: &Session) -> Vec<String> {
+    session
+        .harness()
+        .doc
+        .snapshot()
+        .nodes()
+        .filter(|node| node.id.starts_with("cell-") && node.id != "cell-input")
+        .filter(|node| node.state.selected.is_some())
+        .map(|node| {
+            assert!(
+                node.state.selected == Some(true),
+                "a cell states selected only as true"
+            );
+            node.id.clone()
+        })
+        .collect()
+}
+
+#[test]
+fn the_current_cell_alone_reads_selected_and_an_arrow_moves_it() {
+    use dioxus_native_dom::Reading;
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_cells(incremental);
+        assert!(
+            selected_cells(&session) == ["cell-A0"],
+            "{mode}: at boot the first cell alone reads selected"
+        );
+        step(&mut session, &press("tab", false), &mode, 0);
+        step(&mut session, &press("tab", false), &mode, 1);
+        assert!(
+            focused(&session).0 == ["cells-grid"],
+            "{mode}: the walk reaches the grid"
+        );
+        let moved = step(&mut session, &press("arrow-right", false), &mode, 2);
+        assert!(
+            selected_cells(&session) == ["cell-B0"],
+            "{mode}: the arrow moves the reading to the next cell alone"
+        );
+        // Measured: the arrow also brings the current cell into view, so the cells read new
+        // bounds beside their selection.
+        for id in ["cell-A0", "cell-B0"] {
+            let read = moved.diff.changed.iter().find(|node| node.id == id);
+            assert!(
+                read.is_some_and(|node| node.differs == [Reading::Selected, Reading::Bounds]),
+                "{mode}: step 2's diff names both cells by their selection and bounds"
+            );
+        }
     }
 }

@@ -54,13 +54,15 @@ pub enum Reading {
     Focused,
     /// [`NodeState::clickable`].
     Clickable,
+    /// [`NodeState::highlighted`].
+    Highlighted,
     /// Its bounds.
     Bounds,
 }
 
 impl Reading {
     /// Every reading, in the order a node is read.
-    pub const ALL: [Reading; 12] = [
+    pub const ALL: [Reading; 13] = [
         Reading::Parent,
         Reading::Role,
         Reading::Name,
@@ -72,6 +74,7 @@ impl Reading {
         Reading::Invalid,
         Reading::Focused,
         Reading::Clickable,
+        Reading::Highlighted,
         Reading::Bounds,
     ];
 }
@@ -192,6 +195,7 @@ fn differing(
         invalid,
         focused,
         clickable,
+        highlighted,
     } = &node.state;
     let before = &was.state;
     [
@@ -206,6 +210,7 @@ fn differing(
         (Reading::Invalid, before.invalid != *invalid),
         (Reading::Focused, before.focused != *focused),
         (Reading::Clickable, before.clickable != *clickable),
+        (Reading::Highlighted, before.highlighted != *highlighted),
         (Reading::Bounds, was.bounds != node.bounds),
     ]
     .into_iter()
@@ -409,7 +414,7 @@ mod tests {
         assert_eq!(base().diff(&moved).changed[0].differs, [Reading::Parent]);
 
         // Each reading alone names itself alone.
-        let edits: [fn(&mut SnapshotNode); 12] = [
+        let edits: [fn(&mut SnapshotNode); 13] = [
             |_| {},
             |node| node.role = Role::Button,
             |node| node.name = "Zwei".to_string(),
@@ -421,6 +426,7 @@ mod tests {
             |node| node.state.invalid = true,
             |node| node.state.focused = true,
             |node| node.state.clickable = true,
+            |node| node.state.highlighted = true,
             |node| node.bounds = BoundingRect { y: 1.0, ..BOX },
         ];
         assert_eq!(edits.len(), Reading::ALL.len());

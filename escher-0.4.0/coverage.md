@@ -1,10 +1,12 @@
 # Coverage — escher-0.4.0
 
-verified 2/15 · deferred 0 · planned 13 · implemented 0 · unclaimed 13
+verified 2/15 · deferred 0 · planned 12 · implemented 1 · unclaimed 12
 
-## planned, unclaimed (13)
+## implemented (1)
+- v040-04 · Select list and selection debts · 2026-11-20-select-list-and-selection-debts
+
+## planned, unclaimed (12)
 - v040-02 · Upstream sync
-- v040-04 · Select list and selection debts
 - v040-05 · Driver debts
 - v040-06 · Engine debts
 - v040-07 · Dependency and CI debts

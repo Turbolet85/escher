@@ -86,12 +86,13 @@ fn a_node_is_written_with_the_schema_fields_it_has() {
         invalid: true,
         focused: true,
         clickable: true,
+        highlighted: true,
         bounds: [8.0, 8.5, 200.0, 24.0],
-        differs: Some(&[Reading::Value, Reading::Focused]),
+        differs: Some(&[Reading::Value, Reading::Focused, Reading::Highlighted]),
     });
     assert_eq!(
         full,
-        r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"clickable":true,"bounds":[8,8.5,200,24],"differs":["value","focused"]}"#
+        r#"{"id":"who","parent":"form","role":"TextInput","name":"Name:","enabled":true,"checked":false,"value":"Ada","selected":false,"pressed":true,"invalid":true,"focused":true,"clickable":true,"highlighted":true,"bounds":[8,8.5,200,24],"differs":["value","focused","highlighted"]}"#
     );
     assert_eq!(keys(&full), NODE_FIELDS.map(|key| key.name));
 
@@ -108,6 +109,7 @@ fn a_node_is_written_with_the_schema_fields_it_has() {
         invalid: false,
         focused: false,
         clickable: false,
+        highlighted: false,
         bounds: [0.0, 0.0, f64::NAN, 600.0],
         differs: None,
     });
@@ -142,6 +144,7 @@ fn a_node_is_written_with_the_schema_fields_it_has() {
         invalid: false,
         focused: true,
         clickable: false,
+        highlighted: false,
         bounds: [0.0, 0.0, 1.0, 1.0],
         differs: None,
     });
@@ -153,7 +156,7 @@ fn a_node_is_written_with_the_schema_fields_it_has() {
     assert_eq!(list(std::iter::empty()), "[]");
 
     // Each reading is written as the node key it reads.
-    assert_eq!(Reading::ALL.len(), 12);
+    assert_eq!(Reading::ALL.len(), 13);
     for (row, reading) in Reading::ALL.into_iter().enumerate() {
         let word = reading_word(reading);
         assert!(word == NODE_FIELDS[row + 1].name, "row {row}");

@@ -467,6 +467,7 @@ pub fn Cells() -> Element {
                                     } else {
                                         "cell"
                                     },
+                                    aria_selected: is_current.then_some("true"),
                                     onmounted: move |evt: MountedEvent| {
                                         cell_handles.write().insert((r, c), evt.data());
                                     },

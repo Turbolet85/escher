@@ -4,8 +4,10 @@
 //! each ratio through the one contrast reader, no second formula; its border; a list under an
 //! `opacity` ancestor and past an `overflow: hidden` box painted whole; a closed select's frame
 //! byte-equal before opening and after a close with no choice; a group's header darker than a row
-//! by weight; and a scroll thumb that paints and takes no hit. A failure message carries the layout
-//! mode and a row index.
+//! by weight; a scroll thumb that paints and takes no hit; the highlight's pair the default sheet's
+//! `multiple` chosen-row pair, read by `Harness::highlight_contrast` on the highlighted row alone;
+//! and a larger authored font's glyphs painted wholly inside their row. A failure message carries
+//! the layout mode and a row index.
 
 use ::keyboard_types::{Key, NamedKey};
 use blitz_dom::{BoundingRect, SelectListView};
@@ -347,5 +349,142 @@ fn a_scrolled_list_paints_its_thumb_which_takes_no_hit() {
             hit.is_some_and(|hit| hit.node_id != harness.node("#fx-long")),
             "{at}: a hit at the thumb reads a row"
         );
+    }
+}
+
+/// A `multiple` select whose second option is chosen, at the default sheet.
+fn chosen_page() -> Element {
+    rsx! {
+        div { id: "fx-root",
+            select { id: "fx-many", multiple: true,
+                option { id: "fx-many-a", value: "a", "HHHH" }
+                option { id: "fx-many-b", value: "b", selected: true, "HHHH" }
+            }
+        }
+    }
+}
+
+fn rgb8(reading: blitz_test_harness::TextContrast) -> ([u8; 3], [u8; 3]) {
+    let (text, background) = (reading.text.to_rgba8(), reading.background.to_rgba8());
+    (
+        [text.r, text.g, text.b],
+        [background.r, background.g, background.b],
+    )
+}
+
+#[test]
+fn the_highlight_shares_the_default_sheets_chosen_row_pair() {
+    assert_eq!(SelectListView::HIGHLIGHT_TEXT, [0x00, 0x00, 0x00]);
+    assert_eq!(SelectListView::HIGHLIGHT_BACKGROUND, [0xc8, 0xc8, 0xc8]);
+    for incremental in [false, true] {
+        let at = format!("incremental {incremental}");
+        let harness = fixtures::boot(chosen_page, incremental);
+        assert_eq!(
+            harness
+                .base()
+                .select_value(harness.node("#fx-many"))
+                .as_deref(),
+            Some("b"),
+            "{at}: the fixture's second row is chosen"
+        );
+        let chosen = harness.text_contrast(harness.node("#fx-many-b"));
+        let chosen = chosen.unwrap_or_else(|| panic!("{at}: the chosen row is measured"));
+        assert_eq!(
+            rgb8(chosen),
+            ([0x00, 0x00, 0x00], [0xc8, 0xc8, 0xc8]),
+            "{at}: the default sheet's chosen-row pair"
+        );
+        assert_eq!(
+            rgb8(chosen),
+            (
+                SelectListView::HIGHLIGHT_TEXT,
+                SelectListView::HIGHLIGHT_BACKGROUND
+            ),
+            "{at}: the open list's highlight is the same pair"
+        );
+    }
+}
+
+#[test]
+fn the_highlight_reader_answers_the_painted_pair_on_the_highlighted_row_alone() {
+    for incremental in [false, true] {
+        let at = format!("incremental {incremental}");
+        let mut harness = fixtures::boot(page, incremental);
+        let banana = harness.node("#fx-banana");
+        assert_eq!(
+            harness.highlight_contrast(banana),
+            None,
+            "{at}: a closed select's option reads none"
+        );
+        open_by_key(&mut harness, "#fx-pick");
+        let reading = harness.highlight_contrast(banana);
+        let reading = reading.unwrap_or_else(|| panic!("{at}: the highlighted row is read"));
+        assert!(
+            (reading.ratio - 12.56).abs() < 0.2,
+            "{at}: the highlight reads {}",
+            reading.ratio
+        );
+        assert_eq!(reading.font_size_px, 28.0, "{at}: the row's own font size");
+        assert_eq!(
+            harness.highlight_contrast(harness.node("#fx-apple")),
+            None,
+            "{at}: a plain row reads none"
+        );
+        harness.press(Key::Named(NamedKey::Escape));
+        assert_eq!(harness.base().open_select(), None, "{at}: Escape closes");
+        assert_eq!(
+            harness.highlight_contrast(banana),
+            None,
+            "{at}: with the list closed it reads none"
+        );
+    }
+}
+
+/// A 13px select on the default white whose second option is at 32px.
+fn large_font_page() -> Element {
+    rsx! {
+        div { id: "fx-root",
+            select { id: "fx-sized", style: "font-size: 13px;",
+                option { id: "fx-small", value: "s", "Small" }
+                option { id: "fx-large", value: "l", style: "font-size: 32px;", "HHHH" }
+            }
+        }
+    }
+}
+
+/// The first and last pixel rows of `rect` that hold ink, relative to its top.
+fn inked_rows(raster: &Raster, rect: BoundingRect) -> Option<(u32, u32)> {
+    let (y0, y1) = (rect.y.ceil() as u32, (rect.y + rect.height).floor() as u32);
+    let (x0, x1) = (rect.x.ceil() as u32, (rect.x + rect.width).floor() as u32);
+    let inked: Vec<u32> = (y0..y1)
+        .filter(|&y| (x0..x1).any(|x| pixel(raster, f64::from(x), f64::from(y))[1] < 128))
+        .collect();
+    Some((*inked.first()? - y0, *inked.last()? - y0))
+}
+
+#[test]
+fn a_larger_fonts_glyphs_paint_wholly_inside_their_row() {
+    for incremental in [false, true] {
+        let at = format!("incremental {incremental}");
+        let mut harness = fixtures::boot(large_font_page, incremental);
+        open_by_key(&mut harness, "#fx-sized");
+        let raster = frame(&mut harness, &at);
+        let rect = row_rect(&harness, "#fx-large", &at);
+        let (top, bottom) = inked_rows(&raster, rect)
+            .unwrap_or_else(|| panic!("{at}: the 32px row's glyphs paint"));
+        let last = (rect.y + rect.height).floor() as u32 - rect.y.ceil() as u32 - 1;
+        assert!(top > 0, "{at}: no glyph reaches the row's top edge");
+        assert!(
+            bottom < last,
+            "{at}: no glyph reaches the row's bottom edge"
+        );
+        // Measured: the top inked row reads 8 on a plain build and 7 under blitz-paint's
+        // `font-embolden`, which thickens the glyph by a pixel. This crate cannot read a
+        // dependency's feature, and macOS emboldens by its own gate, so the top takes the band.
+        assert!(
+            (7..=8).contains(&top),
+            "{at}: the H's top inked row, measured 8, emboldened 7, reads {top}"
+        );
+        assert_eq!(bottom, 30, "{at}: the H's bottom inked row, measured");
     }
 }

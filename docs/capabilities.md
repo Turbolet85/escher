@@ -64,9 +64,10 @@ Witnesses: `stand_element_ids`, `stand_id_persistence`, `stand_id_edits`, `stand
 
 ### The snapshot
 
-`snapshot` reads the screen as a tree of nodes, each with id · role · name · state · bounds, written under fourteen
+`snapshot` reads the screen as a tree of nodes, each with id · role · name · state · bounds, written under fifteen
 node keys. A node's state says whether it reacts to a click, `clickable`: it carries a `click` handler of the app's own
-and is no disabled form control. Its text form is one line per node, nested by indent, under a 10,000-byte budget. A screen over the budget
+and is no disabled form control; and, written only when true, whether it is the row an open `select` list highlights,
+`highlighted`. Its text form is one line per node, nested by indent, under a 10,000-byte budget. A screen over the budget
 is read in parts with `snapshot --part` (1 to 1,000): runs of whole lines that concatenate to the whole text. Each
 acting verb returns the diff of the screen before and after its step, by stable id: the nodes added, removed and
 changed, a changed node's `differs` naming the readings that moved.
@@ -281,7 +282,7 @@ Escher changed the engine, for every document and not the stand alone, in these 
   options, a labelled group's header among them; arrows, `Home`, `End` and typed text move a highlight; Enter, Space, Tab
   and a click on a row choose, one `input` then one `change`; Escape, a second click, a click outside, which goes on to
   what it landed on, and the page scrolling close it with no event. Focus stays on the select, whose tree node states
-  `expanded`;
+  `expanded` and, while the list is open, names the highlighted option as its active descendant;
 - **`size`** on a `multiple` select makes it that many rows tall, the rest scrolling;
 - **a `multiple` `select` model**: its rows have boxes of their own and take a click, plain, with Ctrl or Meta and with
   Shift; its arrows, `Home` and `End` choose a row alone, with Shift span and with Ctrl or Meta move the current row; a
@@ -313,7 +314,9 @@ feature, which escher-driver names unconditionally.
 Everything above is proven on the 7GUIs stand. Its seven served tasks, the four lean tasks (counter, flight booker,
 timer, CRUD), Cells, the load page and the order page, and one component alone are booted headless at a pinned 800 × 600 viewport,
 scale 1.0, Light, with one bundled font, DejaVu Sans. Every boot is offline but the load page's, whose one stylesheet
-fetch an in-process stand-in answers. Author ids stand on all seven tasks.
+fetch an in-process stand-in answers. Author ids stand on all seven tasks. Cells' current cell states
+`aria-selected="true"` and no other cell states it, so the snapshot reads that cell alone `selected`; pinned by
+`stand_cells_served`.
 
 ### Building against it
 
@@ -354,13 +357,16 @@ The driver's own refusal texts state three readings that are off:
   mutator's flush, and no DOM `blur` or `focusout` fires. Pinned by `inert_subtree`.
 - **The `select` model's limits.** An option of a closed select is not clicked: a driver click on one is refused
   `covered`, under a group too, and an agent clicks the select first, then the option. A single select's `size` is
-  unread. A list inside an iframe stays there. Pinned by `select_interaction`, `select_popup` and `stand_act_select`.
-- **The highlight is unread.** The highlighted row is in no snapshot and no tree, so an agent pressing keys sees it only
-  in a screenshot, and an assistive technology hears that the list is open and not which row is highlighted. The lint's
-  `contrast` reads a row's plain pair even when it is highlighted. Pinned by `select_popup_painted`.
+  unread, owed by a route entry of its own on the founder's word. A list inside an iframe stays there. Pinned by `select_interaction`, `select_popup` and `stand_act_select`.
+- **How the highlight is read.** While a single select's list is open, the tree names the highlighted option as the
+  select's active descendant, the engine writing it itself and never reading a page's `aria-activedescendant`; the
+  snapshot reads that row `highlighted`, and a highlight move marks the changed set, so an acting call's diff names
+  it. The lint's `contrast` reads a highlighted row at its painted pair, the pair a `multiple` select's chosen row
+  reads at the default sheet. What an assistive technology reads of it is unmeasured. Pinned by `select_popup`,
+  `select_popup_painted`, `stand_act_popup` and `stand_lint`.
 - **The list's thumb and one row height.** The thumb is painted and not draggable; keys, the wheel and `scroll` reach the
-  rows. All rows take one height, measured from the select's font at opening, so a row with a larger authored font
-  clips. Pinned by `select_popup`.
+  rows. All rows take one height, the tallest row's, measured at opening and never shorter than the select's own line,
+  so a row with a larger authored font is painted whole. Pinned by `select_popup` and `select_popup_painted`.
 - **`change` on a text input and a range.** They fire `input` and no `change`. Pinned by `text_range_no_change_event`.
 - **The UI graph's reach.** Only states an app registers are graphed. A handler's writes before it runs are what its
   declaration states, so only as true as the code it names; a handler the session never runs keeps its declaration
@@ -496,8 +502,9 @@ What is not reached:
   from it: a named SC 2.4.3 gap, since HTML's focus fixup is honoured for `inert` alone. The stand never reaches it:
   Cells' editor, unmounted by Enter, leaves the root element focused and the tree's focus on the window. Pinned by
   `inert_subtree` and `key_press_after_container_lost_its_box`.
-- `aria-activedescendant` is unread (SC 4.1.2, outside tier 0), pinned by `accessibility_active_descendant_unread`, so
-  an open `select` list states `expanded` on its select and not which row is highlighted.
+- `aria-activedescendant` is unread from a page (SC 4.1.2, outside tier 0), pinned by
+  `accessibility_active_descendant_unread`; an open `select` list's select names its highlighted option as its active
+  descendant, written by the engine itself (`select_popup`).
 - Descriptions (`aria-describedby`, `aria-description`) reach the platform adapter only, never the snapshot.
 - A `role` attribute reaches the tree through the engine's one role-name mapping. The role, name and state mappings
   are stated in `.andromeda/a11y-plan.md`, not here.
@@ -560,7 +567,9 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
   the transformed box's reading.
 - **`ci-scripts`**: the CI-script checks, this page's pin among them.
 
-The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
+The open list's highlight — its active descendant, the `highlighted` reading, its painted pair in the lint — and its
+one row height, the tallest row's, are proven by `select_popup`, `select_popup_painted`, `stand_act_popup` and
+`stand_lint`. The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
 `stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs. Handler
 coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two legs, and through the binary by
 seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
@@ -569,7 +578,8 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_*` file of the same two legs, and the `layout` verb on every carrier by `stand_layout`, `stand_mcp_tools`,
 `stand_replay` and seven_guis' `cli_commands` and `mcp_server`. Errors with the action are proven by
 `stand_act_errors`, `stand_act_error_text` and, on the order page, `stand_order_served`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
-`stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, on the `Test (windows)`
+`stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, Cells' current cell read
+`selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
 layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.
 

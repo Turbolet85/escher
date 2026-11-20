@@ -19,6 +19,8 @@ pub(super) struct NodeParts<'a> {
     pub(super) invalid: bool,
     pub(super) focused: bool,
     pub(super) clickable: bool,
+    /// Written only when true.
+    pub(super) highlighted: bool,
     /// x, y, width and height.
     pub(super) bounds: [f64; 4],
     /// For a changed node, the readings that differ; `None` for any other node.
@@ -39,13 +41,15 @@ pub(super) fn reading_word(reading: Reading) -> &'static str {
         Reading::Invalid => 9,
         Reading::Focused => 10,
         Reading::Clickable => 11,
-        Reading::Bounds => 12,
+        Reading::Highlighted => 12,
+        Reading::Bounds => 13,
     };
     NODE_FIELDS[index].name
 }
 
 /// A node as an object with the fields the schema's node fields name, in that order. A field
-/// the node has no reading for is left out, and `differs` is written for a changed node only.
+/// the node has no reading for is left out, `highlighted` is written only when true, and
+/// `differs` is written for a changed node only.
 pub(super) fn node(parts: &NodeParts<'_>) -> String {
     let mut object = Object::new();
     object.text("id", parts.id);
@@ -72,6 +76,9 @@ pub(super) fn node(parts: &NodeParts<'_>) -> String {
     object.flag("invalid", parts.invalid);
     object.flag("focused", parts.focused);
     object.flag("clickable", parts.clickable);
+    if parts.highlighted {
+        object.flag("highlighted", true);
+    }
     let bounds = object.member("bounds");
     bounds.push('[');
     for (index, bound) in parts.bounds.into_iter().enumerate() {

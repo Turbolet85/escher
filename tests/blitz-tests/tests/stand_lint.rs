@@ -9,7 +9,8 @@
 //! two options, which the snapshot gives their select's client rect; it changes nothing; after twelve Creates it names the last CRUD row cut by the list's box, the
 //! row a `click` is refused `off-screen` on; and an app with no font is refused
 //! `fonts-unavailable`. The verb `lint`, run through `Session::run`, answers exactly the findings
-//! the reader reads, on the planted page and on each lean task. A failure message carries a
+//! the reader reads, on the planted page and on each lean task. An open list's highlighted row
+//! reads its painted pair and no `contrast`, while its plain rows read theirs. A failure message carries a
 //! layout mode, a task and a row index only.
 
 use blitz_test_harness::HarnessOptions;
@@ -515,5 +516,59 @@ fn an_open_lists_rows_read_no_overlap_on_the_stand() {
             })
             .count();
         assert_eq!(overlapping, 0, "{at}: no row reads an overlap");
+    }
+}
+
+/// A select whose rows' text reads faint on white, its list to be opened on Banana.
+fn faint_select_page() -> Element {
+    rsx! {
+        div { id: "fx-root", style: "padding: 20px;",
+            select { id: "fx-faint", style: "color: #aaaaaa;",
+                option { id: "fx-faint-apple", value: "a", "Apple" }
+                option { id: "fx-faint-banana", value: "b", selected: true, "Banana" }
+                option { id: "fx-faint-cherry", value: "c", "Cherry" }
+            }
+        }
+    }
+}
+
+#[test]
+fn an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own() {
+    const PLAIN: [&str; 2] = ["fx-faint-apple", "fx-faint-cherry"];
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental}");
+        let mut session = fixtures::hold("lint", faint_select_page, incremental);
+        for id in PLAIN.into_iter().chain(["fx-faint-banana"]) {
+            let node = session.harness().query(&format!("#{id}"));
+            let measured = node.and_then(|node| session.harness().text_contrast(node));
+            assert!(
+                measured.is_some_and(|reading| (reading.ratio - 2.32).abs() < 0.01),
+                "{at}: the fixture's computed pair reads below 4.5 on every row"
+            );
+        }
+        assert!(
+            act(&mut session, &click("fx-faint")).is_some(),
+            "{at}: the click opens the list"
+        );
+        let findings = linted(&mut session, &lint());
+        assert!(findings.is_some(), "{at}: the lint reads the open list");
+        let contrast: Vec<(&str, f32)> = findings
+            .iter()
+            .flatten()
+            .filter_map(|finding| match finding.reason {
+                Reason::Contrast { ratio, .. } if finding.id.starts_with("fx-faint-") => {
+                    Some((finding.id.as_str(), ratio))
+                }
+                _ => None,
+            })
+            .collect();
+        let ids: Vec<&str> = contrast.iter().map(|(id, _)| *id).collect();
+        assert_eq!(
+            ids, PLAIN,
+            "{at}: the plain rows read contrast, the highlighted none"
+        );
+        for (row, (_, ratio)) in contrast.iter().enumerate() {
+            assert!((ratio - 2.32).abs() < 0.01, "{at}: row {row} reads {ratio}");
+        }
     }
 }

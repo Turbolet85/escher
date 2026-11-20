@@ -66,7 +66,8 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
              by indent, a part's lines as they read in the whole text; a line's state words, \
              each written only where the element states it, are enabled or disabled, checked \
              or unchecked, value=, selected or unselected, pressed or unpressed, invalid, \
-             focused and clickable; a mixed toggle reads unpressed, and a grammar or spelling \
+             focused, clickable and highlighted; a mixed toggle reads unpressed, and a grammar \
+             or spelling \
              error reads invalid",
         ),
         (
@@ -91,7 +92,8 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         (
             field_help(&CLICK, "changed"),
             "the elements on the screen before and after the step whose role, name, state, \
-             bounds or parent differ, as they read after it, `clickable` among its state; \
+             bounds or parent differ, as they read after it, `clickable` and `highlighted` among \
+             its state; `highlighted` is written only when true; \
              `selected` and `pressed` are left out where the element states neither, `pressed` is false for a mixed \
              toggle, and `invalid` is true for a grammar or spelling error",
         ),
@@ -420,7 +422,7 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
 }
 
 #[test]
-fn the_fourteen_node_keys_are_named_in_order_each_with_its_help() {
+fn the_fifteen_node_keys_are_named_in_order_each_with_its_help() {
     let names = [
         "id",
         "parent",
@@ -434,10 +436,11 @@ fn the_fourteen_node_keys_are_named_in_order_each_with_its_help() {
         "invalid",
         "focused",
         "clickable",
+        "highlighted",
         "bounds",
         "differs",
     ];
-    assert_eq!(NODE_FIELDS.len(), 14);
+    assert_eq!(NODE_FIELDS.len(), 15);
     assert_eq!(NODE_FIELDS.map(|key| key.name), names);
     for (row, key) in NODE_FIELDS.iter().enumerate() {
         assert!(!key.help.is_empty(), "row {row}");

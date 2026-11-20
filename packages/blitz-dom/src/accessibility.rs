@@ -239,7 +239,16 @@ impl BaseDocument {
             // A single select states whether its list is open and reads no author attribute
             // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox).
             if select::is_single_select(element_data) {
-                builder.set_expanded(self.select_list_for(node.id).is_some());
+                let list = self.select_list_for(node.id);
+                builder.set_expanded(list.is_some());
+                // While its list is open the select keeps focus and names the highlighted option
+                // as its active descendant, which the engine writes itself and never reads from a
+                // page's `aria-activedescendant`
+                // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox,
+                // https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant).
+                if let Some(current) = list.and_then(|list| list.current) {
+                    builder.set_active_descendant(NodeId(current.as_u64()));
+                }
             } else if let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
                 && let Ok(aria_expanded) = aria_expanded.parse()
             {
