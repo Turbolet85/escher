@@ -1,2 +1,0 @@
-@none
-reason: The chunk is a pure restructuring with no public item, signature, verb, field, span or log site changed (fct-xmrlwmoz), no dependency (fct-utr36q36), no new hot-path operation (fct-nivrawgt) and the touched files stay silent (fct-czl2pmvn); decision/actions-read-changes-nothing, marked stale, stays true since every test keeps its path and name (fct-dv4fpv6a, fct-lqggyiyv), and the task brings no fact.

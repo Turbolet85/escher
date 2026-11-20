@@ -1,2 +1,0 @@
-@none
-reason: The chunk is a structure-only refactor — fixture builders, the named key set and the snapshot unit tests moved into child modules, and long functions split into private helpers — with no public item, signature, verb, field, span, log site, schema or config changed, every test path kept (1631 listed, 0 gone, 0 new) and no UI element added (fct-xmrlwmoz, fct-uinna3f6, fct-dv4fpv6a, fct-nivrawgt); every a11y-plan row the pickers marked, its guards by test name included, stays true, and the task brings no new fact.
