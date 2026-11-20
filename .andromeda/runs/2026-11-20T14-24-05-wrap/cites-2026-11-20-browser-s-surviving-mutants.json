@@ -1,0 +1,421 @@
+[
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:25:16Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-20T14-24-05-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 80c31730 — the parent of the oldest pre-CI commit 5b5f835e",
+"apps/browser/src/capture.rs — added 4 line(s) in 1 range(s)",
+"apps/browser/src/capture_tests.rs — new file · 57 line(s)",
+"new text: 2 file(s) · 1 new · 2 added range(s) · 61 line(s) · 6 block(s) → .andromeda/runs/2026-11-20T14-24-05-wrap/new-text.md (14 lines) · written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T14-24-05-wrap/new-text.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"base": "80c31730e59b9e9c344d24fd4d0b4bb643506ac2",
+"counts": {
+"files": 2,
+"new": 1,
+"ranges": 2,
+"lines": 61,
+"blocks": 6
+},
+"out": ".andromeda/runs/2026-11-20T14-24-05-wrap/new-text.md",
+"state": "written",
+"lines": 14
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:27:30Z",
+"argv": [
+"apply",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 80c31730 — the previous sweep (2026-11-20T11-42-44-wrap)",
+"masters: rows — a row holds no citation",
+"sites 7 (bare \":digits\" 20) over 31 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 1 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"dry-run · would land 0 fact(s) · 0 edge(s)",
+"dry-run: 0 citation(s) in 0 file(s) — nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "80c31730e59b9e9c344d24fd4d0b4bb643506ac2",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 1,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 80c31730",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 80c31730",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": false,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:391 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:27:34Z",
+"argv": [
+"apply",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 80c31730 — the previous sweep (2026-11-20T11-42-44-wrap)",
+"masters: rows — a row holds no citation",
+"sites 7 (bare \":digits\" 20) over 31 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 1 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"landed 0 fact(s) · 0 edge(s) · tx 2685",
+"re-pointed 0 citation(s) in 0 file(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "80c31730e59b9e9c344d24fd4d0b4bb643506ac2",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 1,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 80c31730",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 80c31730",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": true,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:391 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 391,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:28:09Z",
+"argv": [
+"dispositions",
+"--write",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dispositions: 1 row(s) · curation home — P3 1",
+".andromeda/runs/2026-11-20T14-24-05-wrap/citation-dispositions.md (2 lines) · written",
+"hand re-points: 0 written in 0 file(s) · 0 already written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T14-24-05-wrap/citation-dispositions.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"rows": 1,
+"tally": {
+"curation home — P3": 1
+},
+"state": "written"
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:43:30Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-20T14-24-05-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"base: 80c31730 — the parent of the oldest pre-CI commit 5b5f835e"
+],
+"stderr": "the listing differs from .andromeda/runs/2026-11-20T14-24-05-wrap/new-text.md — the tree (or the tool) moved after it was written; nothing written. First differing line 6, now: ### .gitignore — added 2 line(s) in 1 range(s)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:43:56Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 80c31730 — the parent of the oldest pre-CI commit 5b5f835e",
+".gitignore — added 2 line(s) in 1 range(s)",
+"apps/browser/src/capture.rs — added 4 line(s) in 1 range(s)",
+"apps/browser/src/capture_tests.rs — new file · 57 line(s)",
+"new text: 3 file(s) · 1 new · 3 added range(s) · 63 line(s) · 6 block(s) → .andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md (16 lines) · written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"base": "80c31730e59b9e9c344d24fd4d0b4bb643506ac2",
+"counts": {
+"files": 3,
+"new": 1,
+"ranges": 3,
+"lines": 63,
+"blocks": 6
+},
+"out": ".andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md",
+"state": "written",
+"lines": 16
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T14:44:56Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 80c31730 — the parent of the oldest pre-CI commit 5b5f835e",
+".gitignore — added 2 line(s) in 1 range(s)",
+"apps/browser/src/capture.rs — added 4 line(s) in 1 range(s)",
+"apps/browser/src/capture_tests.rs — new file · 57 line(s)",
+"new text: 3 file(s) · 1 new · 3 added range(s) · 63 line(s) · 6 block(s) → .andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md (16 lines) · unchanged"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"base": "80c31730e59b9e9c344d24fd4d0b4bb643506ac2",
+"counts": {
+"files": 3,
+"new": 1,
+"ranges": 3,
+"lines": 63,
+"blocks": 6
+},
+"out": ".andromeda/runs/2026-11-20T14-24-05-wrap/new-text-2.md",
+"state": "unchanged",
+"lines": 16
+}
+}
+]

@@ -8,6 +8,20 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-20 — A cargo-mutants `--output` written into a chunk's evidence carries host paths that hygiene refuses
+cargo-mutants writes its run record into the `--output` directory's `mutants.out/`. `debug.log`, the `log/` directory
+and `outcomes.json` there hold absolute host paths (the workspace root, the home dir). So when that directory is a
+chunk's `evidence/`, `gate.py hygiene` refuses those files and `rec.py land` lands nothing.
+
+The outcome lists carry no path: `caught.txt`, `missed.txt`, `timeout.txt`, `unviable.txt`, `mutants.json`,
+`lock.json` and `diff/`. Keep them in evidence, quote the run's summary line in the pass record, and MOVE the three
+raw records under the gitignored `target/` (deleting nothing) before landing. The alternative is to point `--output`
+outside evidence and copy the outcome lists in.
+
+Any later mutation run written into evidence meets the same refusal.
+
+---
+
 ## 2026-11-20 — A `#[path]` test child not named `*_tests.rs` is counted in its crate's coverage reading
 The coverage leg leaves a unit-test file out of a crate's line reading by its name: a `#[path]` test module in a
 `*_tests.rs` sibling is no record of the reading, but a child of that test module under any other name (a

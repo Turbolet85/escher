@@ -1,0 +1,17 @@
+# Wrap P1 site sweep — one pattern per moved fact of implement's report and the close
+# brtests: the browser crate's unit tests gain two (capture::tests), out of line in capture_tests.rs (Counts; Expected amendment test-plan §4)
+[[pattern]]
+id = 'brtests'
+regex = '''capture_tests|capture::tests|render_scene_returns_the_(viewport|physical)_size\w*|browser(?:'s| crate's)? unit tests?|unit tests? (?:of|in) the browser|out of line in a sibling file|_tests suffix'''
+ignore_case = true
+
+# survivors: the 0.3.0 Epoch 6 audit's four render_scene survivors (met-mjjioowg) now read caught (Counts; Expected amendment test-plan §10)
+[[pattern]]
+id = 'survivors'
+regex = '''render_scene|met-mjjioowg|surviv(?:ing|or)s? (?:mutants? )?(?:of|in|at) the (?:browser|capture)|browser'?s? (?:four )?(?:surviving mutants|survivors)|capture[- ]module mutants?|cargo-mutants'''
+ignore_case = true
+
+# anyscene: the close's fact — capture_anyrender_scene's mutant missed, outside the founder's word, a residual
+[[pattern]]
+id = 'anyscene'
+regex = '''capture_anyrender_scene'''

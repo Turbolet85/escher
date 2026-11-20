@@ -1,0 +1,124 @@
+[
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "664bb4c5",
+"ts": "2026-11-20T14:25:38Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-20T14-24-05-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 5b5f835e (pre-pass — HEAD)",
+"brtests · control UNFIRED over the seven masters (bodies and sets) at 5b5f835e",
+"survivors · control UNFIRED over the seven masters (bodies and sets) at 5b5f835e",
+"anyscene · control UNFIRED over the seven masters (bodies and sets) at 5b5f835e"
+],
+"stderr": "control: brtests, survivors, anyscene never fired over the seven masters' pre-pass text, bodies and sets (5b5f835e) — no master holds them: none left: no re-fire; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.36",
+"sha8": "664bb4c5",
+"ts": "2026-11-20T14:26:05Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-20T14-24-05-wrap/report-patterns.toml",
+"--pattern",
+"brtests",
+"--pattern",
+"survivors",
+"--run-dir",
+".andromeda/runs/2026-11-20T14-24-05-wrap",
+"--marker",
+"2026-11-20-browser-s-surviving-mutants"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 5b5f835e (pre-pass — HEAD)",
+"architecture · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 7 rows over 1 files · new 0 · standing 7 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (2 patterns) · 14 rows over 7 files",
+"per class · new 0/0 · standing 8/2 · leaf 6/5 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-20T14-24-05-wrap/sweep-pre-pass-1.1.txt · 20 lines · 2184 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T14-24-05-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "5b5f835e2adf6a7df357764b5d23aa6aaf97a1f5",
+"how": "pre-pass — HEAD",
+"counts": {
+"brtests": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"survivors": {
+"new": 0,
+"standing": 6,
+"leaf": 5,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 7,
+"files": 1,
+"new": 0,
+"standing": 7,
+"patterns": 2
+}
+},
+"per_master": {
+"brtests": {
+"test-plan": 2
+},
+"survivors": {
+"architecture": 1,
+"test-plan": 5
+}
+},
+"forms": {
+"survivors": [
+{
+"form": "browser'?s? (?:4 )?(?:surviving mutants|survivors)",
+"from": "four"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

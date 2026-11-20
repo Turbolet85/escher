@@ -1,2 +1,0 @@
-@none
-reason: The chunk changed one README Status heading (0.3.0 state to «done and verified») and added no symbol, dependency, log site, span or telemetry setup (fct-wc73urvu, fct-uglwuzll, fct-ellp7elu); the picked row decision/capability-statement-updated-by-hand concerns the driver's span set and the scrub's limits, which the report leaves untouched, so every obs-plan row stays true and no task fact is carried.
