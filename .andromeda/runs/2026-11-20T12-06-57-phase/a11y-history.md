@@ -1,0 +1,17 @@
+@history_item n=1 marker=2026-10-06-accessibility-tree-identity
+**2026-10-06-accessibility-tree-identity** — (name sources, carried stable id, Dioxus feature wiring) recorded that the workspace takes the Dioxus crates with `default-features = false`, so a crate gets `accessibility` only by naming it, and that dioxus-native-dom's / dioxus-native's `accessibility` forwards to blitz-dom and blitz-shell. This is the origin of decision/dioxus-accessibility-feature-by-name and decision/accessibility-feature-gate. It matters here because a direct `#[cfg(test)]` unit test of `render_scene` in `apps/browser/src/capture.rs` is built under the browser's default features, which name no accessibility (decision/browser-accessibility-off-by-default). The test must not rely on, or turn on, an accessibility-gated item.
+
+@history_item n=2 marker=2026-10-07-act-by-id
+**2026-10-07-act-by-id** — (the session library names `accessibility`) widened the feature-reach rule from «only by naming it» to «by naming it or by depending on a crate that names it». That is the wording of decision/dioxus-accessibility-feature-by-name today. Trap for this chunk: any dev-dependency or crate edge added to the browser crate for the test could pull `accessibility` in transitively and change the browser's feature graph. The scope rules out new carriers and every other crate, so the browser's manifest should stay untouched.
+
+@history_item n=3 marker=2026-10-27-upstream-sync-engine-debts
+**2026-10-27-upstream-sync-engine-debts** — (citations into code the take moved, re-pointed) re-pointed citations into the browser's `tab.rs` and the §6 page-zoom row, with each claim unchanged. This is the nearest past touch of the browser app and of the zoom reading behind decision/viewport-scheme-and-zoom-level. `render_scene` reads `doc.viewport().scale_f64()`, the scale the viewport derives from zoom, so a test that sets a viewport's size and zoom rests on that row (1.0 unzoomed). If the test or a return-value removal moves cited browser lines, the wrap re-points citations the same way.
+
+@history_item n=4 marker=2026-10-12-headless-screenshot
+**2026-10-12-headless-screenshot** — (a password painted masked; the shot one more reader of bounds) records painting through blitz-paint in every document and renderer, with the shot a reader that changes nothing. It is a precedent for this chunk's constraint that a capture test or edit leaves what the browser paints or saves unchanged (scope: «no change to what the browser paints or saves»).
+
+@history_item n=5 marker=2026-11-04-dioxus-runtime-probe
+**2026-11-04-dioxus-runtime-probe** — (the stand's graph re-read on pulldown-cmark 0.13.6) is the latest re-read that no platform adapter joins the stand's graph. The adapter's absence and its windowed assistive-technology witness are owned by residual `res-llkgqygv`, which is re-carried. This underlies absence/assistive-technology-reach in the rows file. This chunk adds no dependency, so the absence stands and no re-read is owed unless `Cargo.lock` moves.
+
+@history_item n=6 marker=2026-11-12T03-36-23-rows
+**2026-11-12T03-36-23-rows** — (the masters as rows) turned every area's text into the rows this chunk is bound by. Among them are decision/browser-accessibility-off-by-default, decision/dioxus-accessibility-feature-by-name, decision/viewport-scheme-and-zoom-level and decision/accessibility-feature-gate. Each row was verified against the code at edd0cfaea7f0, so a later amendment to any of them is made as a `~ {handle}` row change.

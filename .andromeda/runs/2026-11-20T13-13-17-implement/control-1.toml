@@ -1,0 +1,47 @@
+[[control]]
+id = 'c00'
+entry = 1
+guard = "render_scene's real returned size"
+case = ['render_scene_returns_the_viewport_size', 'render_scene_returns_the_physical_size_at_a_hidpi_scale']
+[[control.edit]]
+path = 'apps/browser/src/capture.rs'
+old = '''    (render_width, render_height)
+}'''
+new = '''    (0, 0)
+}'''
+
+[[control]]
+id = 'c01'
+entry = 1
+guard = "render_scene's real returned size"
+case = ['render_scene_returns_the_viewport_size', 'render_scene_returns_the_physical_size_at_a_hidpi_scale']
+[[control.edit]]
+path = 'apps/browser/src/capture.rs'
+old = '''    (render_width, render_height)
+}'''
+new = '''    (0, 1)
+}'''
+
+[[control]]
+id = 'c10'
+entry = 1
+guard = "render_scene's real returned size"
+case = ['render_scene_returns_the_viewport_size', 'render_scene_returns_the_physical_size_at_a_hidpi_scale']
+[[control.edit]]
+path = 'apps/browser/src/capture.rs'
+old = '''    (render_width, render_height)
+}'''
+new = '''    (1, 0)
+}'''
+
+[[control]]
+id = 'c11'
+entry = 1
+guard = "render_scene's real returned size"
+case = ['render_scene_returns_the_viewport_size', 'render_scene_returns_the_physical_size_at_a_hidpi_scale']
+[[control.edit]]
+path = 'apps/browser/src/capture.rs'
+old = '''    (render_width, render_height)
+}'''
+new = '''    (1, 1)
+}'''

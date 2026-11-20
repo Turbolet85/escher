@@ -120,3 +120,7 @@ pub(crate) async fn try_get_save_path(file_type_name: &str, ext: &str) -> Option
 
     path
 }
+
+#[cfg(test)]
+#[path = "capture_tests.rs"]
+mod tests;

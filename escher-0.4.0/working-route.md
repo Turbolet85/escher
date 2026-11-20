@@ -11,7 +11,7 @@
 [2026-11-20-stand-test-setup-shared] Stand-test setup shared — the stand checks' repeated setup in one place, duplication back under its earlier reading, every check unchanged (v040-08)
 [2026-11-20-codebase-health] Codebase health — the code audit's oversize files and functions over the ceiling, each under its bar or kept by the founder's word (v040-08)
 [2026-11-20-readme-s-0-3-0-closed] README's 0.3.0 closed — 0.3.0 stated done and verified as 0.1.0 and 0.2.0, the citation backlog closed as read, on the founder's word (v040-03)
-Browser's surviving mutants — the four at the capture module caught, or kept by the founder's word (v040-08)
+[2026-11-20-browser-s-surviving-mutants] Browser's surviving mutants — the four at the capture module caught, or kept by the founder's word (v040-08)
 Select list and selection debts — highlighted-row contrast shared with a multiple's chosen row, larger font, highlight's reading, single `size`, Cells' selected cell; founder's forks (v040-04)
 Driver debts — `press` with Ctrl, `graph --part N` as ruled, coverage under a stopped bubbling dispatch; each the founder's fork (v040-05)
 Engine debts — a hidden focused control, a render-polled task, page-script `Math.random`, the growing boundary registry; each the founder's fork (v040-06)
