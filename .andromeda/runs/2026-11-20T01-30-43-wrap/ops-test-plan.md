@@ -1,2 +1,0 @@
-@none
-reason: The chunk is documentation only — README's 0.4.0 section and Later line, stack.md's re-derived pins — with no new symbol, module, test, runner, harness, status or log-format change (fct-vnlrbttw, fct-uvuys4qc, fct-jgwq4sju, fct-pehagcvq); its moved counts are README counts no test-plan row states (fct-vxtaci4p), so every picked row, the stale-marked ones included, stands as true and no task fact owes a row.

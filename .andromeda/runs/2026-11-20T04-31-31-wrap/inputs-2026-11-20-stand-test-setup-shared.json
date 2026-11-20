@@ -1,0 +1,99 @@
+[
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T04:31:56Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-stand-test-setup-shared",
+"--message-file",
+".andromeda/runs/2026-11-20T04-31-31-wrap/relay-1.md",
+"--origin",
+"operator",
+"--kind",
+"relay",
+"--why",
+"the wrap directive: F1 carried unanswered, jscpd reports respelled before hygiene, guard refusals re-issued once, no hand edit of a leaf, a new founder fork to founder-forks.md",
+"--step",
+"wrap",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I4 · copy message · message: operator",
+"cite: inputs#I4"
+],
+"stderr": null,
+"wrote": [
+"inputs/I4-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I4",
+"kind": "relay",
+"repo": null,
+"path": "message: operator",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "ca3b80d4c42f94459e63194a94733bb8fb8475285997598b033d71dbc31c627a",
+"copy": "I4-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-20T04:31:56Z",
+"step": "wrap",
+"why": "the wrap directive: F1 carried unanswered, jscpd reports respelled before hygiene, guard refusals re-issued once, no hand edit of a leaf, a new founder fork to founder-forks.md"
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T04:31:57Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-20-stand-test-setup-shared",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, /andromeda-phase invocation",
+"I1 cited scope.md:33 · research.md:7 · plan.md:23 · plan.md:195 · plan.md:212 · report.md:25",
+"I2 n/a — a message has no live source · copy message · message: the operator, P5 review",
+"I2 cited report.md:26",
+"I3 n/a — a message has no live source · copy message · message: the operator, /andromeda-implement invocation",
+"I3 cited report.md:31 · report.md:49",
+"I4 n/a — a message has no live source · copy message · message: operator",
+"I4 UNCITED",
+"inputs: 4 entries — unchanged 0 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 1 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 4,
+"counts": {
+"unchanged": 0,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 4
+},
+"uncited": 1,
+"unparsed": 0
+}
+}
+]

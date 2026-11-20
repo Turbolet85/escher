@@ -1,0 +1,391 @@
+[
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T04:32:01Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap",
+"--marker",
+"2026-11-20-stand-test-setup-shared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 1b0125c1 — the parent of the oldest pre-CI commit 4ff03a30",
+"tests/blitz-tests/tests/common/mod.rs — added 39 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/session_common/mod.rs — added 203 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_act_diff.rs — added 6 line(s) in 4 range(s)",
+"tests/blitz-tests/tests/stand_act_error_text.rs — added 5 line(s) in 5 range(s)",
+"tests/blitz-tests/tests/stand_act_errors.rs — added 9 line(s) in 6 range(s)",
+"tests/blitz-tests/tests/stand_act_obstructed.rs — added 2 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_act_scroll.rs — added 2 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_act_states.rs — added 8 line(s) in 8 range(s)",
+"tests/blitz-tests/tests/stand_act_transformed.rs — added 19 line(s) in 3 range(s)",
+"tests/blitz-tests/tests/stand_actionable_keys.rs — added 5 line(s) in 5 range(s)",
+"tests/blitz-tests/tests/stand_actions.rs — added 1 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_layout.rs — added 2 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_load_page.rs — added 25 line(s) in 4 range(s)",
+"tests/blitz-tests/tests/stand_masks_on_new_answers.rs — added 1 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_mcp_masked.rs — added 4 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_mcp_tools.rs — added 61 line(s) in 15 range(s)",
+"tests/blitz-tests/tests/stand_non_lean_tasks.rs — added 3 line(s) in 3 range(s)",
+"tests/blitz-tests/tests/stand_order_served.rs — added 9 line(s) in 6 range(s)",
+"tests/blitz-tests/tests/stand_replay.rs — added 87 line(s) in 6 range(s)",
+"tests/blitz-tests/tests/stand_session_state.rs — added 2 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_snapshot_parts.rs — added 4 line(s) in 2 range(s)",
+"new text: 21 file(s) · 0 new · 81 added range(s) · 497 line(s) · 55 block(s) → .andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md (102 lines) · written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"base": "1b0125c103721081449288aff17bf977fa74dfe7",
+"counts": {
+"files": 21,
+"new": 0,
+"ranges": 81,
+"lines": 497,
+"blocks": 55
+},
+"out": ".andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md",
+"state": "written",
+"lines": 102
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T04:33:35Z",
+"argv": [
+"apply",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap",
+"--marker",
+"2026-11-20-stand-test-setup-shared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 1b0125c1 — the previous sweep (2026-11-20T01-30-43-wrap)",
+"masters: rows — a row holds no citation",
+"sites 6 (bare \":digits\" 19) over 31 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"dry-run · would land 0 fact(s) · 0 edge(s)",
+"dry-run: 0 citation(s) in 0 file(s) — nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "1b0125c103721081449288aff17bf977fa74dfe7",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 1b0125c1",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 1b0125c1",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": false,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:368 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T04:33:40Z",
+"argv": [
+"apply",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap",
+"--marker",
+"2026-11-20-stand-test-setup-shared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 1b0125c1 — the previous sweep (2026-11-20T01-30-43-wrap)",
+"masters: rows — a row holds no citation",
+"sites 6 (bare \":digits\" 19) over 31 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"landed 0 fact(s) · 0 edge(s) · tx 2531",
+"re-pointed 0 citation(s) in 0 file(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "1b0125c103721081449288aff17bf977fa74dfe7",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 1b0125c1",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at 1b0125c1",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": true,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:368 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 368,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T04:34:28Z",
+"argv": [
+"dispositions",
+"--write",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap",
+"--marker",
+"2026-11-20-stand-test-setup-shared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dispositions: 1 row(s) · curation home — P3 1",
+".andromeda/runs/2026-11-20T04-31-31-wrap/citation-dispositions.md (2 lines) · written",
+"hand re-points: 0 written in 0 file(s) · 0 already written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-20T04-31-31-wrap/citation-dispositions.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"rows": 1,
+"tally": {
+"curation home — P3": 1
+},
+"state": "written"
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "1c59b360",
+"ts": "2026-11-20T04:54:33Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T04-31-31-wrap",
+"--marker",
+"2026-11-20-stand-test-setup-shared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: 1b0125c1 — the parent of the oldest pre-CI commit 4ff03a30",
+"tests/blitz-tests/tests/common/mod.rs — added 39 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/session_common/mod.rs — added 203 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_act_diff.rs — added 6 line(s) in 4 range(s)",
+"tests/blitz-tests/tests/stand_act_error_text.rs — added 5 line(s) in 5 range(s)",
+"tests/blitz-tests/tests/stand_act_errors.rs — added 9 line(s) in 6 range(s)",
+"tests/blitz-tests/tests/stand_act_obstructed.rs — added 2 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_act_scroll.rs — added 2 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_act_states.rs — added 8 line(s) in 8 range(s)",
+"tests/blitz-tests/tests/stand_act_transformed.rs — added 19 line(s) in 3 range(s)",
+"tests/blitz-tests/tests/stand_actionable_keys.rs — added 5 line(s) in 5 range(s)",
+"tests/blitz-tests/tests/stand_actions.rs — added 1 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_layout.rs — added 2 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_load_page.rs — added 25 line(s) in 4 range(s)",
+"tests/blitz-tests/tests/stand_masks_on_new_answers.rs — added 1 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_mcp_masked.rs — added 4 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_mcp_tools.rs — added 61 line(s) in 15 range(s)",
+"tests/blitz-tests/tests/stand_non_lean_tasks.rs — added 3 line(s) in 3 range(s)",
+"tests/blitz-tests/tests/stand_order_served.rs — added 9 line(s) in 6 range(s)",
+"tests/blitz-tests/tests/stand_replay.rs — added 87 line(s) in 6 range(s)",
+"tests/blitz-tests/tests/stand_session_state.rs — added 2 line(s) in 2 range(s)",
+"tests/blitz-tests/tests/stand_snapshot_parts.rs — added 4 line(s) in 2 range(s)",
+"new text: 21 file(s) · 0 new · 81 added range(s) · 497 line(s) · 55 block(s) → .andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md (102 lines) · unchanged"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"base": "1b0125c103721081449288aff17bf977fa74dfe7",
+"counts": {
+"files": 21,
+"new": 0,
+"ranges": 81,
+"lines": 497,
+"blocks": 55
+},
+"out": ".andromeda/runs/2026-11-20T04-31-31-wrap/new-text.md",
+"state": "unchanged",
+"lines": 102
+}
+}
+]

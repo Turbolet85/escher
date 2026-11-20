@@ -266,7 +266,7 @@ moved items.
 ---
 
 ## 2026-10-15 — A saved `cargo build` capture in a run dir holds the project root
-A phase or implement step that saves a `cargo build` run's output into its run dir commits the project root's absolute path: cargo's `Compiling {crate} v{version} ({root}/{path})` lines name it. `gate.py hygiene` refuses the file as an in-root host path. Because the path is under the root, `gate.py respell` fixes it, dropping the root prefix and nothing else, and the respell is recorded. Where it applies: any build or test capture kept as evidence. Keep the raw capture in the session scratchpad with its figures in a record, or respell it before the hygiene read.
+A phase or implement step that saves a `cargo build` run's output into its run dir commits the project root's absolute path: cargo's `Compiling {crate} v{version} ({root}/{path})` lines name it. `gate.py hygiene` refuses the file as an in-root host path. Because the path is under the root, `gate.py respell` fixes it, dropping the root prefix and nothing else, and the respell is recorded. Where it applies: any build or test capture kept as evidence. Keep the raw capture in the session scratchpad with its figures in a record, or respell it before the hygiene read. Extended 2026-11-20: a jscpd duplication report written into the chunk's evidence with `--absolute` holds the same in-root paths in its `jscpd-report.json`, and the same `gate.py respell` fixes it before the hygiene read, the report still reading the same figures.
 
 ---
 

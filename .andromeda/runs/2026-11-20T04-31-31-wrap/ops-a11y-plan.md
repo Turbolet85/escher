@@ -1,0 +1,2 @@
+@none
+reason: The chunk moved the stand checks' repeated setup into shared test helpers with each target and its tests unchanged (fct-gxsy7dwz, fct-6bexx3gn), added no UI element and changed no schema (fct-gxid6xta, fct-r2gyklkv); the picker-marked decision/harness-settle-leaves-changed-set still holds, since the harness settle and its guard stand_settle are untouched (fct-xr33tt4v), and the task brings no fact for a11y-plan.

@@ -1,2 +1,0 @@
-@none
-reason: The chunk changed documentation only (README's 0.4.0 planned section and Later line, stack.md's version pins) and added no interactive UI element or schema (fct-jgwq4sju, fct-ugbkehyx); the README's Later line naming the platform accessibility adapter witnessed with a real assistive technology as out of version agrees with the standing deferral rows, and no a11y-plan row is made false or incomplete; the task brings no new fact.
