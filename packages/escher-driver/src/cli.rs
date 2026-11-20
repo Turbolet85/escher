@@ -157,45 +157,8 @@ fn read(args: &[String], apps: &[&str]) -> Line {
     let Some((word, rest)) = args.split_first() else {
         return Line::Usage;
     };
-    if word == HOST_ROLE {
-        return match rest {
-            [app, option, state_dir, record @ ..]
-                if option == SESSION_OPTION && apps.contains(&app.as_str()) =>
-            {
-                match record_option(record) {
-                    Some(record) => Line::Serve {
-                        app: app.clone(),
-                        state_dir: PathBuf::from(state_dir),
-                        record,
-                    },
-                    None => Line::Usage,
-                }
-            }
-            _ => Line::Usage,
-        };
-    }
-    if word == MCP_ROLE {
-        return match record_option(rest) {
-            Some(record) => Line::Mcp { record },
-            None => Line::Usage,
-        };
-    }
-    if word == COVERAGE_ROLE {
-        return match rest {
-            [app, checks @ ..]
-                if apps.contains(&app.as_str())
-                    && !checks.is_empty()
-                    && !checks
-                        .iter()
-                        .any(|check| check == SESSION_OPTION || check == RECORD_OPTION) =>
-            {
-                Line::Coverage {
-                    app: app.clone(),
-                    checks: checks.iter().map(PathBuf::from).collect(),
-                }
-            }
-            _ => Line::Usage,
-        };
+    if let Some(line) = read_role(word, rest, apps) {
+        return line;
     }
     let Some(spec) = schema::verb(word) else {
         return Line::Refused(Refusal::new(Cause::UnknownVerb));
@@ -215,12 +178,70 @@ fn read(args: &[String], apps: &[&str]) -> Line {
             _ => Line::Usage,
         };
     }
-    let [Some(state_dir)] = state_dirs.as_slice() else {
+    read_address(call, command, &state_dirs, &records, apps)
+}
+
+/// The line a role's first word spells with the words after it, or `None` when `word` names
+/// no role.
+fn read_role(word: &str, rest: &[String], apps: &[&str]) -> Option<Line> {
+    if word == HOST_ROLE {
+        return Some(match rest {
+            [app, option, state_dir, record @ ..]
+                if option == SESSION_OPTION && apps.contains(&app.as_str()) =>
+            {
+                match record_option(record) {
+                    Some(record) => Line::Serve {
+                        app: app.clone(),
+                        state_dir: PathBuf::from(state_dir),
+                        record,
+                    },
+                    None => Line::Usage,
+                }
+            }
+            _ => Line::Usage,
+        });
+    }
+    if word == MCP_ROLE {
+        return Some(match record_option(rest) {
+            Some(record) => Line::Mcp { record },
+            None => Line::Usage,
+        });
+    }
+    if word == COVERAGE_ROLE {
+        return Some(match rest {
+            [app, checks @ ..]
+                if apps.contains(&app.as_str())
+                    && !checks.is_empty()
+                    && !checks
+                        .iter()
+                        .any(|check| check == SESSION_OPTION || check == RECORD_OPTION) =>
+            {
+                Line::Coverage {
+                    app: app.clone(),
+                    checks: checks.iter().map(PathBuf::from).collect(),
+                }
+            }
+            _ => Line::Usage,
+        });
+    }
+    None
+}
+
+/// The line a checked call spells once its session's address is read: exactly one
+/// `--session`, a `--record` on `start` alone, and a `start` of an app this binary boots.
+fn read_address(
+    call: Call,
+    command: Option<SessionCommand>,
+    state_dirs: &[Option<String>],
+    records: &[Option<String>],
+    apps: &[&str],
+) -> Line {
+    let [Some(state_dir)] = state_dirs else {
         return Line::Usage;
     };
     let state_dir = PathBuf::from(state_dir);
     let starts = matches!(command, Some(SessionCommand::Start { .. }));
-    let record = match records.as_slice() {
+    let record = match records {
         [] => None,
         [Some(record)] if starts => Some(PathBuf::from(record)),
         _ => return Line::Usage,

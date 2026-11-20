@@ -65,6 +65,13 @@ fn walk(doc: &DioxusDocument) -> Walk {
 }
 
 fn visit(doc: &DioxusDocument, vnode: &VNode, owner: Option<&'static str>, walk: &mut Walk) {
+    visit_roots(doc, vnode, owner, walk);
+    visit_listeners(doc, vnode, walk);
+    visit_dynamic_nodes(doc, vnode, owner, walk);
+}
+
+/// Each mounted template root element of `vnode`, owned by `owner`.
+fn visit_roots(doc: &DioxusDocument, vnode: &VNode, owner: Option<&'static str>, walk: &mut Walk) {
     for (idx, root) in vnode.template.roots.iter().enumerate() {
         if !matches!(root, TemplateNode::Element { .. }) {
             continue;
@@ -76,6 +83,10 @@ fn visit(doc: &DioxusDocument, vnode: &VNode, owner: Option<&'static str>, walk:
             walk.roots.insert(node, owner);
         }
     }
+}
+
+/// The listeners `vnode`'s dynamic attributes put on each mounted element.
+fn visit_listeners(doc: &DioxusDocument, vnode: &VNode, walk: &mut Walk) {
     for (idx, attributes) in vnode.dynamic_attrs.iter().enumerate() {
         let node = vnode
             .mounted_dynamic_attribute(idx, &doc.vdom)
@@ -91,6 +102,15 @@ fn visit(doc: &DioxusDocument, vnode: &VNode, owner: Option<&'static str>, walk:
             }
         }
     }
+}
+
+/// `vnode`'s dynamic nodes, visited through each component and fragment they mount.
+fn visit_dynamic_nodes(
+    doc: &DioxusDocument,
+    vnode: &VNode,
+    owner: Option<&'static str>,
+    walk: &mut Walk,
+) {
     for (idx, dynamic) in vnode.dynamic_nodes.iter().enumerate() {
         match dynamic {
             DynamicNode::Component(component) => {

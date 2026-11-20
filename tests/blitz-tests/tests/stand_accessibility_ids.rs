@@ -13,7 +13,7 @@
 
 use std::collections::{HashMap, HashSet};
 
-use accesskit::{NodeId as TreeNodeId, Role, TreeUpdate};
+use accesskit::{Node, NodeId as TreeNodeId, Role, TreeUpdate};
 use blitz_dom::Document;
 use blitz_test_harness::Harness;
 use dioxus_native_dom::DioxusDocument;
@@ -252,6 +252,62 @@ fn tab_order_is_unchanged() {
     }
 }
 
+/// Every node of an interactive role reads a name; each one's id joins `named`. Returns how
+/// many there are.
+#[track_caller]
+fn assert_interactive_named(
+    tree: &TreeUpdate,
+    nodes: &HashMap<TreeNodeId, &Node>,
+    named: &mut HashSet<String>,
+    mode: &str,
+    task: LeanTask,
+) -> usize {
+    let mut interactive = 0;
+    for (index, (_, node)) in tree.nodes.iter().enumerate() {
+        if !INTERACTIVE_ROLES.contains(&node.role()) {
+            continue;
+        }
+        interactive += 1;
+        assert!(
+            !name(nodes, node).trim().is_empty(),
+            "{mode}, {task:?}, tree node {index}: an interactive node is named"
+        );
+        named.extend(node.author_id().map(str::to_string));
+    }
+    interactive
+}
+
+/// Each stated region the task's screen holds is a list box whose tree and snapshot read its
+/// stated name.
+#[track_caller]
+fn assert_regions_named(
+    harness: &Harness<DioxusDocument>,
+    tree: &TreeUpdate,
+    nodes: &HashMap<TreeNodeId, &Node>,
+    mode: &str,
+    task: LeanTask,
+) {
+    let snapshot = harness.doc.snapshot();
+    for (index, (id, expected)) in REGION_NAMES.iter().enumerate() {
+        let Some(read) = snapshot.get(id) else {
+            continue;
+        };
+        let (_, node) = common::tree_node(tree, id);
+        assert!(
+            node.role() == Role::ListBox,
+            "{mode}, {task:?}, region {index}: the region is a list box"
+        );
+        assert!(
+            name(nodes, node).trim() == *expected,
+            "{mode}, {task:?}, region {index}: the tree reads the stated name"
+        );
+        assert!(
+            read.name == *expected,
+            "{mode}, {task:?}, region {index}: the snapshot reads the stated name"
+        );
+    }
+}
+
 #[test]
 fn every_interactive_role_element_reads_a_name() {
     for incremental in [false, true] {
@@ -261,42 +317,12 @@ fn every_interactive_role_element_reads_a_name() {
             let harness = boot(task, incremental);
             let tree = harness.doc.accessibility_tree();
             let nodes = by_id(&tree);
-            let mut interactive = 0;
-            for (index, (_, node)) in tree.nodes.iter().enumerate() {
-                if !INTERACTIVE_ROLES.contains(&node.role()) {
-                    continue;
-                }
-                interactive += 1;
-                assert!(
-                    !name(&nodes, node).trim().is_empty(),
-                    "{mode}, {task:?}, tree node {index}: an interactive node is named"
-                );
-                named.extend(node.author_id().map(str::to_string));
-            }
+            let interactive = assert_interactive_named(&tree, &nodes, &mut named, mode, task);
             assert!(
                 interactive >= controls(task).len(),
                 "{mode}, {task:?}: every control is among the interactive nodes"
             );
-
-            let snapshot = harness.doc.snapshot();
-            for (index, (id, expected)) in REGION_NAMES.iter().enumerate() {
-                let Some(read) = snapshot.get(id) else {
-                    continue;
-                };
-                let (_, node) = common::tree_node(&tree, id);
-                assert!(
-                    node.role() == Role::ListBox,
-                    "{mode}, {task:?}, region {index}: the region is a list box"
-                );
-                assert!(
-                    name(&nodes, node).trim() == *expected,
-                    "{mode}, {task:?}, region {index}: the tree reads the stated name"
-                );
-                assert!(
-                    read.name == *expected,
-                    "{mode}, {task:?}, region {index}: the snapshot reads the stated name"
-                );
-            }
+            assert_regions_named(&harness, &tree, &nodes, mode, task);
         }
         for (index, (id, _)) in REGION_NAMES.iter().enumerate() {
             assert!(

@@ -191,17 +191,7 @@ fn every_stand_tasks_declarations_agree_with_its_code_once_its_handlers_have_run
                 .flat_map(|node| &node.handlers)
                 .flat_map(|handler| &handler.writes)
                 .collect();
-            for (index, write) in writes.iter().enumerate() {
-                assert!(write.flag.is_none(), "{at}: write {index} reads no flag");
-            }
-            for (index, state) in graph.states.iter().enumerate() {
-                for (writer, read) in state.writers.iter().enumerate() {
-                    assert!(
-                        read.flag.is_none(),
-                        "{at}: state {index} writer {writer} reads no flag"
-                    );
-                }
-            }
+            assert_no_flag(&graph, &at);
             assert!(
                 writes.iter().any(|write| write.confirmed),
                 "{at}: the steps confirmed a write"
@@ -308,39 +298,70 @@ fn every_graph_node_is_a_snapshot_node_and_no_served_id_holds_the_reserved_form(
                 graph_ids == snapshot_ids,
                 "{at}: the graph's nodes are the snapshot's, in its order"
             );
-            // A state names its reading components: a node reading it is a node of one, and
-            // each one named has a node reading it.
-            for (index, state) in graph.states.iter().enumerate() {
-                let reading = graph
-                    .nodes
-                    .iter()
-                    .filter(|node| node.reads.contains(&state.name));
-                for node in reading {
-                    if let Some(component) = &node.component {
-                        assert!(
-                            state.readers.contains(component),
-                            "{at}: state {index} names each reading node's component"
-                        );
-                    }
-                }
-                for (reader, component) in state.readers.iter().enumerate() {
-                    assert!(
-                        graph.nodes.iter().any(|node| {
-                            node.component.as_ref() == Some(component)
-                                && node.reads.contains(&state.name)
-                        }),
-                        "{at}: state {index} reader {reader} has a node reading it"
-                    );
-                }
-            }
-            let ids = session.harness().doc.element_ids();
-            for (index, (_, id)) in ids.iter().enumerate() {
+            assert_readers_agree(&graph, &at);
+            assert_no_reserved_separator(session, &at);
+        }
+    }
+}
+
+/// No write of a handler and no writer of a state reads a flag.
+#[track_caller]
+fn assert_no_flag(graph: &UiGraph, at: &str) {
+    let writes = graph
+        .nodes
+        .iter()
+        .flat_map(|node| &node.handlers)
+        .flat_map(|handler| &handler.writes);
+    for (index, write) in writes.enumerate() {
+        assert!(write.flag.is_none(), "{at}: write {index} reads no flag");
+    }
+    for (index, state) in graph.states.iter().enumerate() {
+        for (writer, read) in state.writers.iter().enumerate() {
+            assert!(
+                read.flag.is_none(),
+                "{at}: state {index} writer {writer} reads no flag"
+            );
+        }
+    }
+}
+
+/// A state names its reading components: a node reading it is a node of one, and each one
+/// named has a node reading it.
+#[track_caller]
+fn assert_readers_agree(graph: &UiGraph, at: &str) {
+    for (index, state) in graph.states.iter().enumerate() {
+        let reading = graph
+            .nodes
+            .iter()
+            .filter(|node| node.reads.contains(&state.name));
+        for node in reading {
+            if let Some(component) = &node.component {
                 assert!(
-                    !id.contains(VIRTUAL_KEY_SEPARATOR),
-                    "{at}: id {index} holds no reserved separator"
+                    state.readers.contains(component),
+                    "{at}: state {index} names each reading node's component"
                 );
             }
         }
+        for (reader, component) in state.readers.iter().enumerate() {
+            assert!(
+                graph.nodes.iter().any(|node| {
+                    node.component.as_ref() == Some(component) && node.reads.contains(&state.name)
+                }),
+                "{at}: state {index} reader {reader} has a node reading it"
+            );
+        }
+    }
+}
+
+/// No id on the session's screen holds the reserved separator.
+#[track_caller]
+fn assert_no_reserved_separator(session: &Session, at: &str) {
+    let ids = session.harness().doc.element_ids();
+    for (index, (_, id)) in ids.iter().enumerate() {
+        assert!(
+            !id.contains(VIRTUAL_KEY_SEPARATOR),
+            "{at}: id {index} holds no reserved separator"
+        );
     }
 }
 

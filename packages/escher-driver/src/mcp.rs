@@ -214,44 +214,48 @@ impl<B: FnMut(&str) -> Result<Session, SessionError>> Server<'_, B> {
 
     fn run(&mut self, verb: &'static VerbSpec, call: &Call) -> ToolResult {
         match verb.level {
-            Level::Instance => {
-                let Some(held) = &mut self.held else {
-                    // Checked before the session is asked for, as on the command line.
-                    return match validate(call) {
-                        Ok(_) => ToolResult::failed(SessionError::NoSession),
-                        Err(refusal) => ToolResult::refused(refusal),
-                    };
-                };
-                let answer = held.session.run(call);
-                if held.session.recording_failed() {
-                    return ToolResult::failed(SessionError::RecordingFailed);
-                }
-                match answer {
-                    Ok(Outcome::Screen { text }) => ToolResult::accepted(text),
-                    Ok(Outcome::Shot { width, height, png }) => {
-                        ToolResult::shot(width, height, &png)
-                    }
-                    Ok(outcome) => ToolResult::accepted(outcome.to_json()),
-                    Err(refusal) => ToolResult::refused(refusal),
-                }
-            }
+            Level::Instance => self.run_instance(call),
             Level::Tool => match validate_session(call) {
                 Ok(_) => ToolResult::accepted(describe()),
                 Err(refusal) => ToolResult::refused(refusal),
             },
-            Level::Session => match validate_session(call) {
+            Level::Session => self.run_session(call),
+        }
+    }
+
+    fn run_instance(&mut self, call: &Call) -> ToolResult {
+        let Some(held) = &mut self.held else {
+            // Checked before the session is asked for, as on the command line.
+            return match validate(call) {
+                Ok(_) => ToolResult::failed(SessionError::NoSession),
                 Err(refusal) => ToolResult::refused(refusal),
-                Ok(SessionCommand::Start { app }) => self.start(app),
-                Ok(SessionCommand::Status) => match &self.held {
-                    Some(held) => ToolResult::accepted(json::status(&self.hello(held))),
-                    None => ToolResult::failed(SessionError::NoSession),
-                },
-                Ok(SessionCommand::Stop) => match self.held.take() {
-                    Some(_) => ToolResult::accepted(json::stopped()),
-                    None => ToolResult::failed(SessionError::NoSession),
-                },
-                Ok(SessionCommand::Help) => ToolResult::accepted(describe()),
+            };
+        };
+        let answer = held.session.run(call);
+        if held.session.recording_failed() {
+            return ToolResult::failed(SessionError::RecordingFailed);
+        }
+        match answer {
+            Ok(Outcome::Screen { text }) => ToolResult::accepted(text),
+            Ok(Outcome::Shot { width, height, png }) => ToolResult::shot(width, height, &png),
+            Ok(outcome) => ToolResult::accepted(outcome.to_json()),
+            Err(refusal) => ToolResult::refused(refusal),
+        }
+    }
+
+    fn run_session(&mut self, call: &Call) -> ToolResult {
+        match validate_session(call) {
+            Err(refusal) => ToolResult::refused(refusal),
+            Ok(SessionCommand::Start { app }) => self.start(app),
+            Ok(SessionCommand::Status) => match &self.held {
+                Some(held) => ToolResult::accepted(json::status(&self.hello(held))),
+                None => ToolResult::failed(SessionError::NoSession),
             },
+            Ok(SessionCommand::Stop) => match self.held.take() {
+                Some(_) => ToolResult::accepted(json::stopped()),
+                None => ToolResult::failed(SessionError::NoSession),
+            },
+            Ok(SessionCommand::Help) => ToolResult::accepted(describe()),
         }
     }
 

@@ -20,7 +20,7 @@ use std::collections::HashMap;
 
 use blitz_test_harness::HarnessOptions;
 use dioxus::prelude::*;
-use dioxus_native_dom::{MASKED_VALUE, VIRTUAL_KEY_SEPARATOR};
+use dioxus_native_dom::{MASKED_VALUE, UiGraph, VIRTUAL_KEY_SEPARATOR};
 use escher_driver::{ActionNode, ArgValue, Busy, Call, Cause, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 
@@ -155,6 +155,70 @@ fn cause(node: &ActionNode, verb: &str, at: &str) -> Option<Cause> {
         .cause
 }
 
+/// One listed node: a graph node with its owner, no virtual separator in its id, keyed by its
+/// id, the table's verbs that name an element, `layout` last with no cause.
+#[track_caller]
+fn assert_listed_node(node: &ActionNode, index: usize, graph: &UiGraph, at: &str) {
+    let in_graph = graph.nodes.iter().find(|graphed| graphed.id == node.id);
+    assert!(
+        in_graph.is_some_and(|graphed| graphed.owner == node.owner),
+        "{at}: node {index} is a graph node with its owner"
+    );
+    assert!(
+        !node.id.contains(VIRTUAL_KEY_SEPARATOR),
+        "{at}: node {index} holds no virtual separator"
+    );
+    assert!(
+        node.keyed == !node.id.contains('/'),
+        "{at}: node {index} reads keyed by its id"
+    );
+    let verbs: Vec<&str> = node.verbs.iter().map(|reading| reading.verb).collect();
+    assert!(
+        verbs == ["click", "type", "scroll", "screenshot", "layout"],
+        "{at}: node {index} lists the table's verbs that name an element"
+    );
+    assert!(
+        node.verbs
+            .last()
+            .is_some_and(|reading| reading.cause.is_none()),
+        "{at}: node {index} reads layout with no cause"
+    );
+}
+
+/// Every snapshot node that reads `clickable` or is focusable, and every graph node an owner
+/// serves, is listed.
+#[track_caller]
+fn assert_every_actionable_listed(
+    session: &Session,
+    graph: &UiGraph,
+    nodes: &[ActionNode],
+    at: &str,
+) {
+    let doc = &session.harness().doc;
+    let snapshot = doc.snapshot();
+    let elements: HashMap<String, _> = doc
+        .element_ids()
+        .into_iter()
+        .map(|(node, id)| (id, node))
+        .collect();
+    let is_listed = |id: &str| nodes.iter().any(|node| node.id == id);
+    let base = session.harness().base();
+    for (index, node) in snapshot.nodes().enumerate() {
+        let focusable = elements
+            .get(&node.id)
+            .and_then(|element| base.get_node(*element))
+            .is_some_and(|element| element.is_focussable());
+        if node.state.clickable || focusable {
+            assert!(is_listed(&node.id), "{at}: snapshot node {index} is listed");
+        }
+    }
+    for (index, node) in graph.nodes.iter().enumerate() {
+        if node.owner.is_some() {
+            assert!(is_listed(&node.id), "{at}: graph node {index} is listed");
+        }
+    }
+}
+
 #[test]
 fn each_served_screen_lists_its_actionable_nodes_with_the_tables_verbs() {
     assert_eq!(ACTIONABLE_AT_BOOT.len(), SERVED.len());
@@ -166,56 +230,11 @@ fn each_served_screen_lists_its_actionable_nodes_with_the_tables_verbs() {
             let nodes = read(&mut session, &at);
             counts.push((label, nodes.len()));
 
-            let doc = &session.harness().doc;
-            let graph = doc.graph();
-            let snapshot = doc.snapshot();
-            let elements: HashMap<String, _> = doc
-                .element_ids()
-                .into_iter()
-                .map(|(node, id)| (id, node))
-                .collect();
-            let is_listed = |id: &str| nodes.iter().any(|node| node.id == id);
+            let graph = session.harness().doc.graph();
             for (index, node) in nodes.iter().enumerate() {
-                let in_graph = graph.nodes.iter().find(|graphed| graphed.id == node.id);
-                assert!(
-                    in_graph.is_some_and(|graphed| graphed.owner == node.owner),
-                    "{at}: node {index} is a graph node with its owner"
-                );
-                assert!(
-                    !node.id.contains(VIRTUAL_KEY_SEPARATOR),
-                    "{at}: node {index} holds no virtual separator"
-                );
-                assert!(
-                    node.keyed == !node.id.contains('/'),
-                    "{at}: node {index} reads keyed by its id"
-                );
-                let verbs: Vec<&str> = node.verbs.iter().map(|reading| reading.verb).collect();
-                assert!(
-                    verbs == ["click", "type", "scroll", "screenshot", "layout"],
-                    "{at}: node {index} lists the table's verbs that name an element"
-                );
-                assert!(
-                    node.verbs
-                        .last()
-                        .is_some_and(|reading| reading.cause.is_none()),
-                    "{at}: node {index} reads layout with no cause"
-                );
+                assert_listed_node(node, index, &graph, &at);
             }
-            let base = session.harness().base();
-            for (index, node) in snapshot.nodes().enumerate() {
-                let focusable = elements
-                    .get(&node.id)
-                    .and_then(|element| base.get_node(*element))
-                    .is_some_and(|element| element.is_focussable());
-                if node.state.clickable || focusable {
-                    assert!(is_listed(&node.id), "{at}: snapshot node {index} is listed");
-                }
-            }
-            for (index, node) in graph.nodes.iter().enumerate() {
-                if node.owner.is_some() {
-                    assert!(is_listed(&node.id), "{at}: graph node {index} is listed");
-                }
-            }
+            assert_every_actionable_listed(&session, &graph, &nodes, &at);
         }
         let measured: Vec<usize> = counts.iter().map(|(_, count)| *count).collect();
         assert!(
