@@ -1,7 +1,0 @@
-# Cascade dispositions — 2026-11-20-stand-test-setup-shared
-
-- Step 2 (sweep): skipped — `rows-land` dry run of ops-test-plan.md: `patterns: none: 1 set(s) and retire(s) changed prose alone — no file`; ops-architecture.md landed nothing (its one operation rejected, check 2). No pattern file stands.
-- Step 3 (leaves): `epoch · «Epoch 2 — Debts of 0.1.0–0.3.0» · markerless 6 · gated 0 · open` · baseline 1b0125c1 · pass mode, 5 groups (test-plan-1…5), 8 leaves, `unmapped .claude/rules/host-linux.md (host)`. Comparers: 1 finding — `.claude/rules/testing.md:15#1` omission (the helper-kept-private exception) — taken, applied by `cascade.py leaves --apply` (`wrote .claude/rules/testing.md: 1 finding(s), read back`). Groups test-plan-1, -2, -3, -5: no finding.
-- Binds (tests↔obs, a11y↔log-schema): untouched — the changed row is a test-harness convention; no span, field or log site moved.
-- Stale statements of the amended claim in the seven masters: architecture `decision/shared-test-modules` states the modules' layout, not the exception, and stays true; no other master states the exception.
-- Known stale leaf text outside this pass: testing.md's «36 readers» of `session_common` (46 declarers now, report Counts / qualifiers moved), already stale before this chunk (its 2026-11-14 learning) — no master states the count, so no comparer is handed it; left for the whole-mode pass at the epoch's close (no hand edit of a leaf, inputs#I4).

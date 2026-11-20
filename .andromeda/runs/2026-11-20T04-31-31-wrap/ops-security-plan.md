@@ -1,2 +1,0 @@
-@none
-reason: The chunk only moved repeated stand-check setup into shared test helpers (fct-xr33tt4v, fct-gxid6xta: test-crate items only, no product symbol, no external surface), with no dependency (fct-taogznzj), schema or config (fct-r2gyklkv) or auth change, and the report states no row's claim changes (fct-gxsy7dwz, fct-uoycj54h); every picked security-plan row, the stale-marked ones included, stays true, and the task carries no fact for a new row.

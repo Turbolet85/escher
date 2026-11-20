@@ -8,6 +8,27 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-20 — A `#[path]` test child not named `*_tests.rs` is counted in its crate's coverage reading
+The coverage leg leaves a unit-test file out of a crate's line reading by its name: a `#[path]` test module in a
+`*_tests.rs` sibling is no record of the reading, but a child of that test module under any other name (a
+`json_tests/fixtures.rs` holding fixture builders) is counted like source, so moving test code into it raises the
+crate's figure with no product line changed.
+
+Where it applies: any split that moves test helpers or fixtures out of a test module into a file of their own. Forecast
+the crate's coverage reading with that file counted, or name the file `*_tests.rs` where it should stay out of the
+reading.
+
+---
+
+## 2026-11-20 — A child `mod` inside a `#[path]`-loaded test file resolves as from a `mod.rs`
+A test module loaded with `#[path = "x_tests.rs"]` is read as if it were a `mod.rs`, so a plain `mod fixtures;` inside
+it looks for `fixtures.rs` beside it, not under `x_tests/`. Declare such a child with its own `#[path =
+"x_tests/fixtures.rs"]`.
+
+Where it applies: any out-of-line test module that gains a child module of its own.
+
+---
+
 ## 2026-11-20 — A harness copy staged in the chunk folder reads unlanded until the folder is landed
 A plan that changes a harness render (`.claude/docs/*`, a rule file, CLAUDE.md) by editing a copy and landing it with `rec.py harness land --file` puts that copy somewhere; put in the chunk's `evidence/` folder, it is a chunk file the store has not yet taken, so `rec.py check --no-heal` reads `check: 1 failure(s)` with `unlanded: {marker}/evidence/{file}` even though the render itself agrees with its journal. A gate entry that asserts `check: clean` after such a land is therefore order-dependent on `rec.py land --chunk {marker}`, which implement schedules after its gates: either stage the copy outside the chunk folder (the run dir or the scratchpad), or land the chunk folder before the check entry fires, and say which in the plan.
 
@@ -112,6 +133,8 @@ respell and a re-fire there. Plant the control's literal in a form hygiene does 
 placeholder such as `/home/<user>/x` keeps the probe red and the run dir clean — from the first write.
 Extended 2026-11-18: where hygiene still meets such a planted path, rewrite it to the `<user>` form and name it in
 the card, without asking — the operator's standing ruling for this project.
+Extended 2026-11-20: an evidence script that names the project root as a bare string literal reads P1 `in-root` too,
+and `gate.py respell` refuses a bare root — have the script derive the root from its own path from the first write.
 Extended 2026-11-19: the same `<user>` form holds for every control record a phase or implement run writes or quotes,
 an outcome file included, not only a phase P5 control.
 

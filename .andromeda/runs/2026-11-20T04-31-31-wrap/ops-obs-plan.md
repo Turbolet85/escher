@@ -1,2 +1,0 @@
-@none
-reason: The chunk moved the stand checks' repeated setup into shared test helpers, with no product symbol, span, log site, subscriber, env read, dependency or contract changed (fct-xr33tt4v, fct-taogznzj, fct-gxid6xta, fct-6bexx3gn "shared modules silent — MET"); every obs-plan row it touches, the picker-marked ones included, still holds as written — the MCP tools and layout checks keep their own recorder, the shared modules stay silent, and no row cites a line (fct-uoycj54h).
