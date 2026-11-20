@@ -1,0 +1,74 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-20T00:40:22Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-03",
+"--text-file",
+".andromeda/runs/2026-11-20T00-04-51-phase/note-v040-03.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T00-04-51-phase",
+"--marker",
+"2026-11-20-readme-and-records"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-03: +686 chars (total 686) · status planned · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-20T00-07-07-2026-11-20-readme-and-records.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T00-07-07-2026-11-20-readme-and-records.ndjson"
+],
+"before": {
+"id": "v040-03",
+"chunk": null,
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "The README on the build branch states 0.3.0 closed in the form the founder chose and names what 0.4.0 builds; the citati… (214 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v040-03",
+"chunk": null,
+"status": "planned",
+"method": "manual",
+"ref": "null",
+"acceptance": "The README on the build branch states 0.3.0 closed in the form the founder chose and names what 0.4.0 builds; the citati… (214 chars)",
+"notes_chars": 686
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-20T00:40:22Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-20-readme-and-records",
+"--run-dir",
+".andromeda/runs/2026-11-20T00-04-51-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-20-readme-and-records: 0 · ## Acceptance Criteria: line 140, 17 lines",
+"pool: unclaimed 14 [v040-02 v040-03 v040-04 v040-05 v040-06 v040-07 v040-08 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

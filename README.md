@@ -97,7 +97,18 @@ Version 0.3.0 was built in six stages:
 
 All 17 of its capabilities are verified. A fresh agent given only the fifteen MCP tools drove seven apps (the four lean tasks, Cells, a load page and an order page) in 76 calls, with 0 wrong, under a bar of at most 5 % wrong. It used the UI graph, what could be done on the screen, why an element sits where it does, a select's list opened, and a panic, an error and a log its actions caused. A cold agent does not reach handler coverage, a start in a state, exploration, a component alone, the seed or the bundled fonts; each is proven headlessly on the stand, as [the capability statement](docs/capabilities.md) states.
 
-Later: opt-in OpenTelemetry export, the platform accessibility adapter witnessed with a real assistive technology, and the next MCP protocol revision.
+### 0.4.0 — planned, in six stages
+
+Version 0.4.0 closes every debt of 0.1.0–0.3.0 and takes Escher past the web-like box, with a headless 2D canvas an agent sees inside. It is planned in six stages:
+
+- **Epoch 1 — Foundation** — the build directory's growth measured to its cause and held.
+- **Epoch 2 — Debts of 0.1.0–0.3.0** — upstream Blitz merged in, then each debt the earlier versions left either fixed and proven or kept by the founder's word with its reason: the stand checks' shared setup, the code audit's findings, the browser's surviving mutants, the select list, the driver, the engine, and the dependencies and CI.
+- **Epoch 3 — The canvas painted** — what an app paints from Rust appears in a headless screenshot, placed at its box with text from the bundled fonts and compared across hosts, and Circle Drawer moved onto a real canvas.
+- **Epoch 4 — Inside the canvas** — a canvas read as data: its draw commands, lint inside it, and virtual nodes an app declares that act like elements in the snapshot, the accessibility tree and every read, reached by keyboard.
+- **Epoch 5 — Drag, pan and zoom** — a `drag` command, a select list's thumb dragged, targets under pan and zoom read and acted on where they show, and a new node-graph stand app.
+- **Epoch 6 — Polish & ship** — every new capability proven headlessly on the stand, the accessibility checks re-run, the capability statement brought to 0.4.0, and a fresh agent driving the canvas apps.
+
+Later: the demo project that shows everything Escher can do and heavy modern HTML (0.5.0), a GPU-painted canvas, a web Canvas 2D context for page scripts, opt-in OpenTelemetry export, the platform accessibility adapter witnessed with a real assistive technology, and the next MCP protocol revision.
 
 ## License
 
