@@ -1,10 +1,12 @@
 # Coverage — escher-0.4.0
 
-verified 1/15 · deferred 0 · planned 14 · implemented 0 · unclaimed 14
+verified 1/15 · deferred 0 · planned 13 · implemented 1 · unclaimed 13
 
-## planned, unclaimed (14)
+## implemented (1)
+- v040-03 · The version on the GitHub page · 2026-11-20-readme-s-0-3-0-closed
+
+## planned, unclaimed (13)
 - v040-02 · Upstream sync
-- v040-03 · The version on the GitHub page
 - v040-04 · Select list and selection debts
 - v040-05 · Driver debts
 - v040-06 · Engine debts

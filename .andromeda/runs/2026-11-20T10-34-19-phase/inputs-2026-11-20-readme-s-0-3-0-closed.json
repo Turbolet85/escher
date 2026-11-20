@@ -1,0 +1,151 @@
+[
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T10:35:06Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-readme-s-0-3-0-closed",
+"--source",
+"~/dev/projects/additional/escher-overseer/relays/morning-answers-founder-2026-11-20.md",
+"--kind",
+"relay",
+"--why",
+"the founder's F1 (the 0.3.0 heading done and verified, no caveat) and F2 (res-xe7pyput closed as read), relayed by the overseer",
+"--step",
+"phase:P1",
+"--run-dir",
+".andromeda/runs/2026-11-20T10-34-19-phase",
+"--marker",
+"2026-11-20-readme-s-0-3-0-closed"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy no-repo · ../additional/escher-overseer/relays/morning-answers-founder-2026-11-20.md",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-morning-answers-founder-2026-11-20.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "../additional/escher-overseer/relays/morning-answers-founder-2026-11-20.md",
+"form": "copy",
+"state": "no-repo",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "d2e531c4178f6502266b2a224589fe4117616512d00486e7e4b75d8b8b1f7d34",
+"copy": "I1-morning-answers-founder-2026-11-20.md.txt",
+"link": false,
+"read_at": "2026-11-20T10:35:06Z",
+"step": "phase:P1",
+"why": "the founder's F1 (the 0.3.0 heading done and verified, no caveat) and F2 (res-xe7pyput closed as read), relayed by the overseer"
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T10:52:09Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-20-readme-s-0-3-0-closed",
+"--run-dir",
+".andromeda/runs/2026-11-20T10-34-19-phase",
+"--marker",
+"2026-11-20-readme-s-0-3-0-closed"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 unchanged · copy no-repo · ../additional/escher-overseer/relays/morning-answers-founder-2026-11-20.md",
+"I1 cited scope.md:36 · research.md:7 · plan.md:13 · plan.md:17 · plan.md:82 (in fence) · plan.md:137 · plan.md:140 · plan.md:153 · plan.md:172",
+"inputs: 1 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 0 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 1,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 0
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T10:55:14Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-readme-s-0-3-0-closed",
+"--message-file",
+".andromeda/runs/2026-11-20T10-34-19-phase/relay-1.md",
+"--kind",
+"relay",
+"--origin",
+"the operator",
+"--why",
+"the operator's P5 word on .andromeda/runs/2026-11-20T10-34-19-phase/p5-card-1.md, its Beyond the plan row included (operator, 2026-11-20)",
+"--step",
+"phase:P5",
+"--run-dir",
+".andromeda/runs/2026-11-20T10-34-19-phase",
+"--marker",
+"2026-11-20-readme-s-0-3-0-closed"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy message · message: the operator",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "5040625b1fb6fa4af07226683f6e6003b29e5e70b16f8cfb24be7a752393f0ee",
+"copy": "I2-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-20T10:55:13Z",
+"step": "phase:P5",
+"why": "the operator's P5 word on .andromeda/runs/2026-11-20T10-34-19-phase/p5-card-1.md, its Beyond the plan row included (operator, 2026-11-20)"
+}
+}
+]

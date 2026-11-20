@@ -25,3 +25,6 @@
 - Left for the operator to remove: `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`. `target/` reads 174 G.
 - Guard refusals this wrap, each re-issued once: a `cd` into the skills dir (re-issued with absolute paths); a pipeline tool's `--help` piped into `head` (re-issued bare).
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-20 11:57:52

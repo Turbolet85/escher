@@ -84,7 +84,7 @@ Version 0.2.0 was built in five stages:
 
 All 11 of its capabilities are verified. A fresh agent given only the twelve MCP tools drove six apps (the four lean tasks, Cells and a load page) in 66 calls, with 0 wrong, under a bar of at most 5 % wrong. The version-end audit's mutation testing caught 53 of 53 mutants in the engine's DOM crate; the demo stand's run went unscored, 12 of its 15 mutants unviable, and none of the 5 in upstream's WPT runner was caught.
 
-### 0.3.0 — built, its cold-agent run passed
+### 0.3.0 — done and verified
 
 Version 0.3.0 was built in six stages:
 
