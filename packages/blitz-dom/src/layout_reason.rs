@@ -343,26 +343,11 @@ impl BaseDocument {
     /// Whether `node` generates a box: in the document, and neither it nor an ancestor
     /// `display: none`, nor itself `display: contents`.
     fn has_box(&self, node: &Node) -> bool {
-        if !node.flags.is_in_document() {
-            return false;
-        }
-        let display_of = |node: &Node| node.primary_styles().map(|style| style.clone_display());
-        match display_of(node) {
-            Some(display) if display.is_none() || display.is_contents() => return false,
-            None => return false,
-            Some(_) => {}
-        }
-        let mut current = node.parent;
-        while let Some(id) = current {
-            let Some(ancestor) = self.get_node(id) else {
-                return false;
-            };
-            if ancestor.is_element() && display_of(ancestor).is_none_or(|d| d.is_none()) {
-                return false;
-            }
-            current = ancestor.parent;
-        }
-        true
+        node.flags.is_in_document()
+            && !node
+                .primary_styles()
+                .is_some_and(|style| style.clone_display().is_contents())
+            && !node.under_display_none()
     }
 
     /// The box `node` was placed in: a non-atomic inline's inline root, else its containing

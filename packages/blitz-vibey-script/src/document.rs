@@ -134,6 +134,14 @@ impl ScriptDocument {
         self.runtime.ctx.state.borrow().clock.advance_to(deadline);
     }
 
+    /// Seed the document's `Math.random` with `seed`, so two documents given one seed read one
+    /// sequence. Without it `Math.random` draws from the host's randomness. The seed comes only
+    /// from the code that builds the document: nothing a page holds reaches it.
+    pub fn with_seed(mut self, seed: u64) -> Self {
+        self.runtime.install_seeded_random(seed);
+        self
+    }
+
     /// Override the [`ScriptFetcher`] used to load external (`src="..."`) scripts
     /// and ES module imports. The default fetcher supports `file:` and `data:` URLs.
     pub fn with_fetcher(self, fetcher: impl ScriptFetcher) -> Self {

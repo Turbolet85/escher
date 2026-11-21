@@ -98,6 +98,9 @@ pub(crate) struct RuntimeState {
     pub base_url: Option<Url>,
     /// Fetcher backing `fetch()` (shared with `<script src>` and module loading)
     pub fetcher: Option<Rc<RefCell<Box<dyn ScriptFetcher>>>>,
+    /// The splitmix64 state `Math.random` steps when the document was built with a seed; `None`
+    /// leaves Boa's own, the host's randomness
+    pub random_state: Option<u64>,
 }
 
 /// Maximum number of errors stored in [`RuntimeState::uncaught_errors`] between

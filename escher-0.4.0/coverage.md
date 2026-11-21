@@ -1,10 +1,12 @@
 # Coverage — escher-0.4.0
 
-verified 4/15 · deferred 0 · planned 11 · implemented 0 · unclaimed 11
+verified 4/15 · deferred 0 · planned 10 · implemented 1 · unclaimed 10
 
-## planned, unclaimed (11)
+## implemented (1)
+- v040-06 · Engine debts · 2026-11-21-engine-debts
+
+## planned, unclaimed (10)
 - v040-02 · Upstream sync
-- v040-06 · Engine debts
 - v040-07 · Dependency and CI debts
 - v040-08 · Codebase health
 - v040-09 · A canvas painted headless

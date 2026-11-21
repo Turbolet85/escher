@@ -320,6 +320,7 @@ impl Document for DioxusDocument {
 
         // Mutations are buffered and only applied once the vdom has finished running. This means
         // that the document is not borrowed while user code (which may access it) is running.
+        crate::boundary::prune_dropped_boundaries(&self.vdom);
         self.vdom.render_immediate(&mut self.buffered_mutations);
         let mut inner = self.inner.borrow_mut();
         let mut writer = MutationWriter::new(&mut inner, &mut self.vdom_state);

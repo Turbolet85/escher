@@ -1,0 +1,2 @@
+old: - Item 4: `packages/dioxus-native-dom/src/boundary.rs` alone (escher's own file, no upstream merge surface); its two
+new: - Item 4: `packages/dioxus-native-dom/src/boundary.rs` and its prune call before each render in `dioxus_document.rs` [premise-corrected at P4: the factory reaches no `VirtualDom`, so the prune cannot run at registration; inputs#I4] (escher's own registry, no upstream merge surface beyond one call); its two

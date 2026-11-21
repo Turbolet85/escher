@@ -608,6 +608,41 @@ impl Node {
         false
     }
 
+    /// Whether this node or an element ancestor generates no box: it has no computed style, or
+    /// it computes `display: none` (the `hidden` attribute is one),
+    /// <https://drafts.csswg.org/css-display/#valdef-display-none>.
+    pub(crate) fn under_display_none(&self) -> bool {
+        let display_none = |node: &Node| {
+            node.primary_styles()
+                .is_none_or(|style| style.clone_display().is_none())
+        };
+        if display_none(self) {
+            return true;
+        }
+        let mut current = self.parent;
+        while let Some(id) = current {
+            let Some(ancestor) = self.tree().get(id) else {
+                return true;
+            };
+            if ancestor.is_element() && display_none(ancestor) {
+                return true;
+            }
+            current = ancestor.parent;
+        }
+        false
+    }
+
+    /// Whether this node is being rendered: in the document, under no `display: none` and
+    /// computing `visibility: visible` (which inherits, so an ancestor's `hidden` or `collapse`
+    /// counts), <https://html.spec.whatwg.org/multipage/rendering.html#being-rendered>.
+    pub(crate) fn shows(&self) -> bool {
+        self.flags.is_in_document()
+            && !self.under_display_none()
+            && self.primary_styles().is_some_and(|computed| {
+                computed.clone_visibility() == style::computed_values::visibility::T::Visible
+            })
+    }
+
     pub fn set_restyle_hint(&mut self, hint: RestyleHint) {
         if let Some(stylo_element_data) = self.try_stylo_element_data_mut() {
             if let Some(mut element_data) = stylo_element_data.get_mut() {

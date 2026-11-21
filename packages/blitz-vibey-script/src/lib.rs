@@ -36,6 +36,7 @@ mod event_handler;
 mod fetch;
 mod inner_text;
 mod runtime;
+mod seeded_random;
 mod state;
 mod timers;
 

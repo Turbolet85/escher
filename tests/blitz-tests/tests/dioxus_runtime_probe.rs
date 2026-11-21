@@ -16,6 +16,12 @@
 //! the document unborrowed (upstream `286874cc1`, https://github.com/DioxusLabs/blitz/pull/1260,
 //! ported onto Dioxus 0.7), so the same `MountedData` call acts, as it does with no task.
 //!
+//! It pins the buffered render's same-render limit too: a task polled during a render acts on the
+//! document as the previous render left it. A handle exists only for a node the document holds,
+//! so a task awaiting the handle of a node its key handler shows focuses it once that render has
+//! replayed, while a task asking a handle for focus in the render that removes its node leaves
+//! focus on the root element.
+//!
 //! Every failure message names a layout mode, a task or page and a link or an index; none holds
 //! a component name, a listener read off a node, a signal's value or a node id.
 
@@ -648,4 +654,194 @@ fn mounted_data_asked_at_once_in_a_key_handler_acts() {
             "incremental={incremental} hazard page: the handle's focus request acts"
         );
     }
+}
+
+/// The slot a waiting task leaves its waker in, for the `onmounted` that brings the handle.
+type WakerSlot = Rc<std::cell::RefCell<Option<std::task::Waker>>>;
+
+/// A future ready with the handle once `onmounted` has written it, pending until then with its
+/// waker left in the slot. It never wakes itself: a task woken during a render is polled again
+/// inside that render (dioxus-core's `render_immediate`), so a self-waking wait would spin there
+/// and the handle, made only after the render replays, would never come.
+struct HandleArrives(Signal<Option<Rc<MountedData>>>, WakerSlot);
+
+impl std::future::Future for HandleArrives {
+    type Output = Rc<MountedData>;
+
+    fn poll(
+        self: std::pin::Pin<&mut Self>,
+        cx: &mut std::task::Context<'_>,
+    ) -> std::task::Poll<Rc<MountedData>> {
+        if let Some(handle) = self.0.peek().clone() {
+            return std::task::Poll::Ready(handle);
+        }
+        *self.1.borrow_mut() = Some(cx.waker().clone());
+        std::task::Poll::Pending
+    }
+}
+
+/// A key target whose handler shows an input and spawns a task that waits for the input's handle,
+/// then asks it for focus.
+fn shows_then_focuses() -> Element {
+    let mut shown = use_signal(|| false);
+    let mut handle: Signal<Option<Rc<MountedData>>> = use_signal(|| None);
+    let waker: WakerSlot = use_hook(|| Rc::new(std::cell::RefCell::new(None)));
+    let task_waker = waker.clone();
+    rsx! {
+        div {
+            id: "key-target",
+            tabindex: "0",
+            onkeydown: move |_| {
+                shown.set(true);
+                let waker = task_waker.clone();
+                spawn(async move {
+                    let target = HandleArrives(handle, waker).await;
+                    _ = target.set_focus(true).await;
+                });
+            },
+            "Keys"
+        }
+        if shown() {
+            input {
+                id: "shown-input",
+                onmounted: move |evt: MountedEvent| {
+                    handle.set(Some(evt.data()));
+                    if let Some(waker) = waker.borrow_mut().take() {
+                        waker.wake();
+                    }
+                },
+            }
+        }
+    }
+}
+
+/// A task awaiting the handle of a node its key handler shows focuses that node once the render
+/// that mounts it has replayed: the engine, the snapshot and the tree agree.
+#[track_caller]
+fn shown_node_takes_focus(incremental: bool) {
+    let mut harness = boot_page(shows_then_focuses, incremental);
+    let key_target = harness.node("#key-target");
+    harness.press(Key::Named(NamedKey::Tab));
+    assert!(
+        harness.focused() == Some(key_target),
+        "incremental={incremental} shown page: Tab focuses the key target"
+    );
+    harness.press(Key::Named(NamedKey::ArrowDown));
+    for _ in 0..8 {
+        if harness
+            .query("#shown-input")
+            .is_some_and(|input| harness.focused() == Some(input))
+        {
+            break;
+        }
+        harness.pump();
+    }
+    let input = harness.node("#shown-input");
+    assert!(
+        harness.focused() == Some(input),
+        "incremental={incremental} shown page: the task's focus request acts"
+    );
+    let snapshot = harness.doc.snapshot();
+    let focused: Vec<&str> = snapshot
+        .nodes()
+        .filter(|node| node.state.focused)
+        .map(|node| node.id.as_str())
+        .collect();
+    assert!(
+        focused == ["shown-input"],
+        "incremental={incremental} shown page: the snapshot reads the input alone focused"
+    );
+    let tree = Document::accessibility_tree(&harness.doc);
+    assert!(
+        tree.focus.0 == input.as_u64(),
+        "incremental={incremental} shown page: the accessibility tree's focus is the input"
+    );
+}
+
+#[test]
+fn a_task_awaiting_the_handle_of_a_node_its_handler_shows_focuses_it_non_incremental() {
+    shown_node_takes_focus(false);
+}
+
+#[test]
+fn a_task_awaiting_the_handle_of_a_node_its_handler_shows_focuses_it_incremental() {
+    shown_node_takes_focus(true);
+}
+
+/// A held handle's target beside a key target whose handler removes that target and spawns a
+/// task asking its handle for focus.
+fn removes_then_focuses() -> Element {
+    let mut removed = use_signal(|| false);
+    let mut handle: Signal<Option<Rc<MountedData>>> = use_signal(|| None);
+    let mut presses = use_signal(|| 0u32);
+    rsx! {
+        if !removed() {
+            div {
+                id: "focus-target",
+                onmounted: move |evt: MountedEvent| handle.set(Some(evt.data())),
+                "Target"
+            }
+        }
+        div {
+            id: "key-target",
+            tabindex: "0",
+            onkeydown: move |_| {
+                presses += 1;
+                removed.set(true);
+                let Some(target) = handle.peek().clone() else {
+                    return;
+                };
+                spawn(async move {
+                    _ = target.set_focus(true).await;
+                });
+            },
+            "Keys"
+        }
+        p { id: "mounted", if handle.read().is_some() { "held" } else { "none" } }
+        p { id: "presses", "{presses}" }
+    }
+}
+
+/// A task polled during the render that removes its target acts on the document as the previous
+/// render left it; the removal then leaves focus off the target, its reading pinned as measured.
+#[track_caller]
+fn removed_node_keeps_no_focus(incremental: bool) {
+    let mut harness = boot_page(removes_then_focuses, incremental);
+    harness.pump();
+    assert!(
+        harness.text_content("#mounted") == "held",
+        "incremental={incremental} removing page: the mounted handle is held"
+    );
+    let focus_target = harness.node("#focus-target");
+    let key_target = harness.node("#key-target");
+    harness.press(Key::Named(NamedKey::Tab));
+    assert!(
+        harness.focused() == Some(key_target),
+        "incremental={incremental} removing page: Tab focuses the key target"
+    );
+    harness.press(Key::Named(NamedKey::ArrowDown));
+    harness.pump();
+    assert!(
+        harness.text_content("#presses") == "1",
+        "incremental={incremental} removing page: the key handler ran once"
+    );
+    assert!(
+        harness.query("#focus-target").is_none() && harness.base().get_node(focus_target).is_none(),
+        "incremental={incremental} removing page: the target no longer resolves"
+    );
+    let root = harness.base().try_root_element().map(|root| root.id);
+    assert!(
+        harness.focused() == root,
+        "incremental={incremental} removing page: focus reads the root element"
+    );
+}
+
+#[test]
+fn a_task_polled_during_the_render_that_removes_its_target_leaves_focus_off_it_non_incremental() {
+    removed_node_keeps_no_focus(false);
+}
+
+#[test]
+fn a_task_polled_during_the_render_that_removes_its_target_leaves_focus_off_it_incremental() {
+    removed_node_keeps_no_focus(true);
 }

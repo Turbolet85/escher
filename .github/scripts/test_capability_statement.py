@@ -124,7 +124,7 @@ class CapabilityStatementTest(unittest.TestCase):
         named = len(stand_repeat_named_targets())
         files = len(a11y_leg_files())
         self.assertEqual(named, 17)
-        self.assertEqual(files, 18)
+        self.assertEqual(files, 19)
         for phrase in (f"{number_word(named)} named blitz-tests targets", f"runs {number_word(files)} files"):
             self.assertTrue(phrase in statement, phrase)
 

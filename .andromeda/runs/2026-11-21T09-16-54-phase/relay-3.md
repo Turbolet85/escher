@@ -1,0 +1,3 @@
+The operator's answer to a technical fork, by question dialog at P4 (2026-11-21), after research found «at each new registration» (inputs#I2) not buildable through public dioxus-core 0.7.10 API (the boundary factory reaches no VirtualDom; Runtime::has_context panics on a dropped scope):
+
+- "Which form keeps what you chose it for (a read never changes the registry, so a boundary that errors and is dropped within one step still reads as new in caused)?" — «Before each render (Recommended)»: DioxusDocument prunes the dead entries at the start of initial_build/poll, before render_immediate; reads never prune.

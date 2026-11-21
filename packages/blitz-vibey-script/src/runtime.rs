@@ -7,12 +7,13 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 use blitz_dom::BaseDocument;
-use boa_engine::{Context, Finalize, JsResult, Source, Trace};
+use boa_engine::{Context, Finalize, JsResult, JsValue, Source, Trace, js_string};
 use boa_runtime::Console;
 use boa_runtime::console::{ConsoleState, Logger};
 use url::Url;
 
 use crate::fetch::ScriptFetcher;
+use crate::seeded_random::{splitmix64_next, unit_interval};
 use crate::state::{DomCtx, ReadyState};
 use bootstrap::{BOOTSTRAP_JS, GEOMETRY_JS};
 use events::report_js_error;
@@ -148,4 +149,30 @@ impl ScriptRuntime {
     pub fn set_ready_state(&mut self, ready_state: ReadyState) {
         self.ctx.state.borrow_mut().ready_state = ready_state;
     }
+
+    /// Replace the realm's `Math.random` with one drawing from a splitmix64 stream seeded with
+    /// `seed`, defined as Boa defines its own: writable, configurable, not enumerable.
+    pub fn install_seeded_random(&mut self, seed: u64) {
+        self.ctx.state.borrow_mut().random_state = Some(seed);
+        let global = self.context.global_object();
+        let math = global.get(js_string!("Math"), &mut self.context);
+        if let Some(math) = math.ok().and_then(|math| math.as_object()) {
+            crate::dom::define_method(&math, "random", 0, seeded_math_random, &mut self.context);
+        }
+    }
+}
+
+/// The seeded `Math.random`: the next value of the document's stream, in [0, 1).
+fn seeded_math_random(
+    _this: &JsValue,
+    _args: &[JsValue],
+    context: &mut Context,
+) -> JsResult<JsValue> {
+    let ctx = crate::dom::dom_ctx(context)?;
+    let mut state = ctx.state.borrow_mut();
+    let Some(random_state) = state.random_state.as_mut() else {
+        return Ok(JsValue::from(0.0));
+    };
+    let next = splitmix64_next(random_state);
+    Ok(JsValue::from(unit_interval(next)))
 }

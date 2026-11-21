@@ -5,9 +5,11 @@
 //! [`ScopeId::ROOT_ERROR_BOUNDARY`], so a handler's `Err` that no boundary of the app's own
 //! catches lands there. [`DioxusDocument::new`] provides dioxus-core's boundary factory at the
 //! root scope before the first build, so every boundary built under it — the root one and each
-//! of the app's own — registers its [`ErrorContext`] in the document's [`BoundaryRegistry`]. An
-//! app that provides a factory of its own shadows the document's for the scopes under it, and
-//! those boundaries stay unread.
+//! of the app's own — registers its [`ErrorContext`] in the document's [`BoundaryRegistry`] with
+//! the id of the scope that holds it. Before each render the document drops the entries whose
+//! scope is gone, so a remounting app does not grow the registry, while a boundary dropped in a
+//! step still reads in that step's marks. An app that provides a factory of its own shadows the
+//! document's for the scopes under it, and those boundaries stay unread.
 //!
 //! A mark holds an error by identity and is compared by it. [`BoundaryMark::read`] reads its
 //! top line and its cause chain; nothing here prints or logs them.
@@ -17,7 +19,7 @@ use std::rc::Rc;
 use std::sync::Arc;
 
 use dioxus_core::{
-    CapturedError, ErrorContext, ScopeId, VirtualDom, provide_context,
+    CapturedError, ErrorContext, Runtime, ScopeId, VirtualDom, provide_context,
     provide_create_error_boundary, try_consume_context,
 };
 
@@ -41,18 +43,42 @@ impl std::fmt::Debug for RootErrorMark {
     }
 }
 
-/// Every error boundary built under the document's boundary factory, in the order built.
+/// Every error boundary built under the document's boundary factory whose scope still stands as
+/// of the last render, in the order built, each beside the id of the scope that holds it.
 #[derive(Clone, Default)]
-pub struct BoundaryRegistry(Rc<RefCell<Vec<ErrorContext>>>);
+pub struct BoundaryRegistry(Rc<RefCell<Vec<RegisteredBoundary>>>);
+
+/// A registered boundary: the scope that holds it, where the factory ran inside one, and its
+/// context.
+type RegisteredBoundary = (Option<ScopeId>, ErrorContext);
 
 /// The document's boundary factory: a boundary like dioxus-core's default one, registered in
-/// the [`BoundaryRegistry`] its scope reads.
+/// the [`BoundaryRegistry`] its scope reads, with the scope it is built in.
 fn registered_boundary() -> ErrorContext {
     let context = ErrorContext::new(None);
     if let Some(registry) = try_consume_context::<BoundaryRegistry>() {
-        registry.0.borrow_mut().push(context.clone());
+        let scope = Runtime::try_current().and_then(|runtime| runtime.try_current_scope_id());
+        registry.0.borrow_mut().push((scope, context.clone()));
     }
     context
+}
+
+/// Drops each registered boundary whose scope `vdom` no longer holds, or holds with another
+/// boundary in a reused slot. An entry with no scope is kept.
+pub(crate) fn prune_dropped_boundaries(vdom: &VirtualDom) {
+    let Some(registry) = vdom
+        .runtime()
+        .has_context::<BoundaryRegistry>(ScopeId::ROOT)
+    else {
+        return;
+    };
+    // `has_context` panics on a dropped scope, so the scope is looked up first.
+    registry.0.borrow_mut().retain(|(scope, context)| {
+        scope.is_none_or(|id| {
+            vdom.get_scope(id).is_some()
+                && vdom.runtime().has_context::<ErrorContext>(id).as_ref() == Some(context)
+        })
+    });
 }
 
 /// Provides the registry and the factory at `vdom`'s root scope.
@@ -158,7 +184,14 @@ impl DioxusDocument {
             .vdom
             .runtime()
             .has_context::<BoundaryRegistry>(ScopeId::ROOT)
-            .map(|registry| registry.0.borrow().clone())
+            .map(|registry| {
+                registry
+                    .0
+                    .borrow()
+                    .iter()
+                    .map(|(_, context)| context.clone())
+                    .collect()
+            })
             .unwrap_or_default();
         if let Some(root) = &root
             && !contexts.contains(root)
@@ -368,5 +401,104 @@ mod tests {
         let marks = doc.boundary_marks();
         assert_eq!(marks.len(), 1, "the root boundary read once");
         assert_eq!(marks[0].read().boundary, Boundary::Root);
+    }
+
+    /// A boundary of the app's own, keyed by a count a button moves, so each click remounts it.
+    fn remounting() -> Element {
+        let mut generation = use_signal(|| 0u32);
+        rsx! {
+            button { id: "remount", onclick: move |_| generation += 1, "{generation}" }
+            for current in [generation()] {
+                ErrorBoundary { key: "{current}", handle_error: |_| rsx! { p { id: "caught" } },
+                    Inner {}
+                }
+            }
+        }
+    }
+
+    /// The registry's length after twenty remounts, as measured: the root boundary, the one the
+    /// last render dropped (pruned at the next) and the live one.
+    const REMOUNTED_LEN: usize = 3;
+
+    fn registry_len(doc: &DioxusDocument) -> Option<usize> {
+        doc.vdom
+            .runtime()
+            .has_context::<BoundaryRegistry>(ScopeId::ROOT)
+            .map(|registry| registry.0.borrow().len())
+    }
+
+    fn remounted_twenty_times() -> DioxusDocument {
+        let mut doc = build(remounting);
+        assert_eq!(
+            registry_len(&doc),
+            Some(2),
+            "the root boundary and the app's own"
+        );
+        for _ in 0..20 {
+            let remount = node(&doc, "remount");
+            click(&mut doc, remount);
+        }
+        doc
+    }
+
+    #[test]
+    fn twenty_remounts_keep_the_registry_bounded() {
+        let doc = remounted_twenty_times();
+        assert_eq!(registry_len(&doc), Some(REMOUNTED_LEN));
+    }
+
+    #[test]
+    fn an_err_after_the_remounts_still_reads_a_new_mark() {
+        let mut doc = remounted_twenty_times();
+        assert!(doc.boundary_marks().is_empty(), "no mark before the Err");
+        let fail = node(&doc, "fail");
+        click(&mut doc, fail);
+        let marks = doc.boundary_marks();
+        assert_eq!(marks.len(), 1);
+        assert_eq!(marks[0].boundary(), Boundary::Own);
+    }
+
+    #[component]
+    fn Leaving() -> Element {
+        let mut shown = use_context::<Signal<bool>>();
+        rsx! {
+            button {
+                id: "fail",
+                onclick: move |_| -> Result<(), CapturedError> {
+                    shown.set(false);
+                    Err(CapturedError::from_display("left"))
+                },
+                "Fail"
+            }
+        }
+    }
+
+    #[test]
+    fn a_boundary_dropped_in_a_step_reads_until_the_next_render() {
+        fn app() -> Element {
+            let shown = use_context_provider(|| Signal::new(true));
+            let mut count = use_signal(|| 0u32);
+            rsx! {
+                if shown() {
+                    ErrorBoundary { handle_error: |_| rsx! { p { id: "caught" } },
+                        Leaving {}
+                    }
+                }
+                button { id: "count", onclick: move |_| count += 1, "{count}" }
+            }
+        }
+        let mut doc = build(app);
+        let fail = node(&doc, "fail");
+        click(&mut doc, fail);
+        assert!(
+            doc.element_ids().iter().all(|(_, id)| id != "fail"),
+            "the step removes the boundary"
+        );
+        let marks = doc.boundary_marks();
+        assert_eq!(marks.len(), 1, "the dropped boundary reads in its step");
+        assert_eq!(marks[0].boundary(), Boundary::Own);
+        let count = node(&doc, "count");
+        click(&mut doc, count);
+        assert!(doc.boundary_marks().is_empty(), "the next render drops it");
     }
 }

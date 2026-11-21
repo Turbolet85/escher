@@ -122,3 +122,4 @@
 2026-11-20-browser-s-surviving-mutants · complete · Browser's four surviving capture-module mutants caught, or kept by the founder's word · → chk:2026-11-20-browser-s-surviving-mutants
 2026-11-20-select-list-and-selection-debts · complete · the select list's highlight contrast, larger font, highlight reading, single size, and Cells' selected cell — each fixed or kept by the founder's fork · → chk:2026-11-20-select-list-and-selection-debts
 2026-11-20-driver-debts · complete · Driver debts — press with Ctrl, graph in parts, coverage under a stopped dispatch, each fixed or kept by the founder's word · → chk:2026-11-20-driver-debts
+2026-11-21-engine-debts · pending · engine debts — a hidden focused control, a render-polled task, page-script Math.random, the growing boundary registry, each the founder's fork · → chk:2026-11-21-engine-debts

@@ -132,6 +132,7 @@ impl BaseDocument {
 
         // A list closes on what this pass settled, before hover reads what it answers.
         self.reconcile_select_list();
+        self.give_up_unshown_focus();
 
         // Re-resolve the hover node from the pointer position against the fresh
         // layout. This must run *after* the damage/dirty flags are cleared

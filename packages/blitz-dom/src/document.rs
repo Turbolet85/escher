@@ -2342,9 +2342,14 @@ impl BaseDocument {
         }
     }
 
+    /// Move focus to the next focussable node that is being rendered, as sequential focus
+    /// navigation skips one that is not:
+    /// <https://html.spec.whatwg.org/multipage/interaction.html#sequential-navigation-search-algorithm>
     pub fn focus_next_node(&mut self) -> Option<NodeId> {
         let focussed_node_id = self.get_focussed_node_id()?;
-        let id = self.next_node(&self.nodes[focussed_node_id], |node| node.is_focussable())?;
+        let id = self.next_node(&self.nodes[focussed_node_id], |node| {
+            node.is_focussable() && node.shows()
+        })?;
         self.set_focus_to(id);
         Some(id)
     }
@@ -2352,7 +2357,9 @@ impl BaseDocument {
     /// Move focus to the previous focussable node in the document
     pub fn focus_prev_node(&mut self) -> Option<NodeId> {
         let focussed_node_id = self.get_focussed_node_id()?;
-        let id = self.prev_node(&self.nodes[focussed_node_id], |node| node.is_focussable())?;
+        let id = self.prev_node(&self.nodes[focussed_node_id], |node| {
+            node.is_focussable() && node.shows()
+        })?;
         self.set_focus_to(id);
         Some(id)
     }
@@ -2381,6 +2388,19 @@ impl BaseDocument {
         self.focus_node_id = None;
         self.shell_provider.request_redraw();
         Some(id)
+    }
+
+    /// <https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule>: after a
+    /// layout, a focused node that no longer shows — out of the document, under `display: none`
+    /// (the `hidden` attribute is one), or computing a `visibility` other than `visible` — gives
+    /// focus up. No `blur` or `focusout` is queued, as for a node that comes under `inert`.
+    pub(crate) fn give_up_unshown_focus(&mut self) {
+        let Some(id) = self.focus_node_id else {
+            return;
+        };
+        if !self.get_node(id).is_some_and(Node::shows) {
+            self.clear_focus_silently();
+        }
     }
 
     pub fn set_mousedown_node_id(&mut self, node_id: Option<NodeId>) {

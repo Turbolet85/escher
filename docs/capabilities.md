@@ -123,7 +123,11 @@ where the builder gives none, so two runs of one seed read the same state at eve
 across processes. No seed crosses a driver carrier: every driver session and every kept check's replay reads the
 default seed, and a seed reaches a run only from in-process code that builds its VirtualDom.
 
-Witness: `stand_seeded_randomness`.
+A page script's `Math.random` draws from the host unless the code that builds its script document seeds it:
+`ScriptDocument::with_seed` gives one splitmix64 sequence per seed. No driver session or stand boot runs page scripts,
+so no seed reaches one from a carrier.
+
+Witnesses: `stand_seeded_randomness`, blitz-vibey-script's `seeded_random`.
 
 ### The headless screenshot
 
@@ -359,7 +363,8 @@ The driver's own refusal texts state three readings that are off:
   transformed box reads at its client rect. Pinned by `text_extent`. Vertical writing modes are in no default feature
   set.
 - **The focus fixup fires no `blur`.** A node that holds focus when it comes under `inert` gives focus up at the
-  mutator's flush, and no DOM `blur` or `focusout` fires. Pinned by `inert_subtree`.
+  mutator's flush, and one that no longer shows gives it up after the next layout; neither fires a DOM `blur` or
+  `focusout`. Pinned by `inert_subtree` and `focus_fixup_unshown`.
 - **The `select` model's limits.** An option of a closed select is not clicked: a driver click on one is refused
   `covered`, under a group too, and an agent clicks the select first, then the option. A single select's `size` is
   unread, owed by a route entry of its own on the founder's word. A list inside an iframe stays there. Pinned by `select_interaction`, `select_popup` and `stand_act_select`.
@@ -416,9 +421,11 @@ The driver's own refusal texts state three readings that are off:
   included, scrubbed by field name alone, so an app that writes the caller's typed text into a record echoes it in the
   answer. The scrub by name is pinned by `stand_act_error_text`; no check asserts an echo.
 - **The buffered render's same-render limit.** A task polled during a Dioxus render acts on the document as the
-  previous render left it, so a node created in that same render is not yet focusable by a task that render spawned:
-  `MountedData::set_focus` on it does nothing. The runtime probe's pins act on nodes an earlier render mounted. Owned by
-  the residual row `res-433ttjb2` (target: next).
+  previous render left it. A `MountedData` handle exists only for a node the document holds, so a task awaiting the
+  handle of a node its handler shows focuses it once that render has replayed; a handle to a node the same render
+  removes acts on it before the removal, which then leaves focus on the root element. Pinned by
+  `dioxus_runtime_probe`. A task that wakes itself while it waits for such a handle is polled again inside the same
+  render, so it spins there and the handle never comes; asserted by no check.
 - **The bounded record of ids.** The session keeps the last 4,096 ids its screens read, to tell `stale` from
   `not-found`. Past that bound a once-read id can read `not-found`.
 - **Selectors that never match.** `:focus-visible`, `:valid`, `:invalid`, `:required` and `:target` always read false.
@@ -486,8 +493,8 @@ is claimed as met. The three are proven headless on the stand: by `stand_keyboar
 Enter and Space on each stand button), `stand_contrast` (every stand control's text and background pair, row for row)
 and `stand_accessibility_ids`.
 
-The `a11y` CI leg runs eighteen files and read 18 · 163 · 0 · 0 (result lines · passed · failed · ignored) on
-CI#44225111039. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
+The `a11y` CI leg runs nineteen files and read 19 · 177 · 0 · 0 (result lines · passed · failed · ignored) on the
+dev host on 2026-11-21. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
 
 Contrast: the stand's accent controls are white on `#3a5ce5` at 5.47, on its hover shade at 6.83 and on its active
 shade at 8.27, against SC 1.4.3's 4.5. The lint's `contrast` defect uses the same reader and the same exempt rule.
@@ -500,11 +507,13 @@ What is not reached:
   which this version does not reach. The platform adapters have their
   own gaps: Android's `set_focus` and `set_window_bounds` are empty, Windows' `set_focus` and macOS'
   `set_window_bounds` are no-ops.
-- **A focused control that no longer shows keeps focus.** A control hidden while it holds focus, by `hidden`,
-  `display: none` or CSS, keeps focus and takes keys, the tree's focus naming the window, and the next Tab moves on
-  from it: a named SC 2.4.3 gap, since HTML's focus fixup is honoured for `inert` alone. The stand never reaches it:
-  Cells' editor, unmounted by Enter, leaves the root element focused and the tree's focus on the window. Pinned by
-  `inert_subtree` and `key_press_after_container_lost_its_box`.
+- **A focused control that no longer shows gives focus up after the next layout.** A control hidden while it holds
+  focus, by `hidden`, `display: none` or `visibility: hidden` or `collapse`, on it or a container, gives focus up with
+  no `blur`, the engine's, the snapshot's and the tree's focus agreeing on none, and Tab and Shift+Tab skip a control
+  that does not show. Three limits stand: a programmatic `set_focus_to` on a hidden control holds until the next
+  layout, a rule that reads focus (`:focus-within`) restyles one resolve later, and a control whose own
+  `:focus-within` rule hides its container still takes Tab and loses it at the next layout. Pinned by
+  `focus_fixup_unshown` and `key_press_after_container_lost_its_box`.
 - `aria-activedescendant` is unread from a page (SC 4.1.2, outside tier 0), pinned by
   `accessibility_active_descendant_unread`; an open `select` list's select names its highlighted option as its active
   descendant, written by the engine itself (`select_popup`).
@@ -561,7 +570,7 @@ The checks named above live in `tests/blitz-tests/tests/` and `examples/seven_gu
 They run in these CI legs (`.github/scripts/ci-leg.sh`):
 
 - **`test`**: the whole workspace, on linux, macOS and windows.
-- **`a11y`**: the eighteen accessibility files.
+- **`a11y`**: the nineteen accessibility files.
 - **`stand-repeat`**: the `stand_*` files, seventeen named blitz-tests targets and seven_guis' eight process checks,
   three rounds under a zero-failure budget; with 64 files and seventeen named targets it read 273 · 1467 · 0 · 30 on
   CI#44225111039. Among the seventeen: `visible_region_transformed`, `hit_non_invertible_transform`, `open_state`,
