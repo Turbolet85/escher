@@ -1,0 +1,1482 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T07:53:44Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-20-driver-debts",
+"--section-file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-20-driver-debts/report rev 2 · 10 new · 0 revised · 0 retired · 36 kept · tx 2808"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T07:53:47Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-20-driver-debts",
+"--section-file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-20-driver-debts/report rev 3 · 45 new · 0 revised · 0 retired · 46 kept · tx 2809"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T07:54:15Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cites-land-2026-11-20-driver-debts.ndjson",
+"--base",
+"1455525fbff28f92ebd21fbab3ddc275f2681a7f",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T07:54:19Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cites-land-2026-11-20-driver-debts.ndjson",
+"--base",
+"1455525fbff28f92ebd21fbab3ddc275f2681a7f",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 2811"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T07:56:19Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1539 · packs 16 · pack 100 · 389361 B",
+"security-plan: rows 569 · packs 6 · pack 100 · 164427 B",
+"design-system: rows 139 · packs 2 · pack 100 · 38662 B",
+"layout-templates: rows 129 · packs 2 · pack 100 · 32485 B",
+"test-plan: rows 639 · packs 7 · pack 100 · 181242 B",
+"obs-plan: rows 295 · packs 3 · pack 100 · 80802 B",
+"a11y-plan: rows 239 · packs 3 · pack 100 · 75787 B",
+"rows-packs: 7 master(s) · 3549 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 2811"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T07-51-27-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:07:51Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1539 · packs 16 · picked 44 (31 by every draw) · standing 0 · 185635 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 569 · packs 6 · picked 37 (21 by every draw) · standing 0 · 120094 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 139 · packs 2 · picked 9 (4 by every draw) · standing 0 · 18553 B",
+"layout-templates: rows 129 · packs 2 · picked 12 (7 by every draw) · standing 0 · 28324 B",
+"test-plan: rows 639 · packs 7 · picked 31 (18 by every draw) · standing 0 · 132252 B",
+"obs-plan: rows 295 · packs 3 · picked 18 (10 by every draw) · standing 0 · 55722 B",
+"a11y-plan: rows 239 · packs 3 · picked 19 (9 by every draw) · standing 0 · 49117 B",
+"rows-union: 7 master(s) · picked 170 of 3549 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T07-51-27-wrap/arch-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/arch-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/security-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/security-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/design-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/design-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/tests-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/tests-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/obs-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/obs-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:01Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 17 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — Established Decisions: 3 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/ui-graph-crossing · rule: was «The UI graph crosses socket call, command line and MCP as a text block and rests in a kept check as the graph verb's answer: stable ids, owner ids, component, state and handler event names, declared writes, the flag words undeclared and unconfirmed, booleans; never a value, typed text or NodeId.»; now «The UI graph crosses socket call, command line and MCP and rests in a kept check as the graph verb's answer, whole or in parts: stable ids, owner ids, component, state and handler event names, declared writes, flags undeclared and unconfirmed, booleans, part counts; no value, typed text or NodeId.»\n~ contract/graph-verb/arguments · promise: was «The graph verb takes no argument; a call given one is refused malformed with nothing run.»; now «The graph verb takes one optional part, a whole number from 1 to 1000; a part of 0, of 1001 or of text is refused malformed with nothing run.»\n~ decision/large-screen-in-parts · rule: was «A screen over the snapshot budget crosses in parts, a screen within the budget answering whole, with no new verb, carrier, exit, cause, session error, span field or dependency; over MCP a paged answer is its JSON line.»; now «A screen's snapshot or UI graph over the snapshot budget crosses in parts, one within the budget answering whole, with no new verb, carrier, exit, cause, session error, span field or dependency; over MCP a paged answer is its JSON line.»\n**Why:** decision/ui-graph-crossing: The graph verb now answers a graph over the snapshot budget in parts carrying part and parts, so the row's single text-block crossing no longer states the whole crossing. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/graph-verb/arguments: GRAPH.args gains part as ArgKind::Part 1 to 1000, so the promise that graph takes no argument is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ndecision/large-screen-in-parts: The graph now pages at the snapshot budget under the same ratified widening, so the rule naming only the screen's text is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Cross-cutting Patterns: 1 row(s)\n**Section:** Cross-cutting Patterns\n**Change:** ~ decision/reached-recorded-before-handlers · rule: was «Where a reached record is switched on, each node of the dispatch chain whose current listeners hold the event's name is recorded by its stable id before the handlers run.»; now «Where a reached record is switched on, the chain's nodes whose current listeners hold the event's name are resolved by stable id before the handlers run and written after: all while it propagates, the innermost alone when stopped or unwound by a panic, a non-bubbling event's target alone.»\n**Why:** decision/reached-recorded-before-handlers: The reached record is now resolved before the dispatch and written after it with the stop read, so recording every node before the handlers run is false.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Standard Contracts: 4 row(s) (1 of 3)\n**Section:** Standard Contracts\n**Change:** ~ decision/reached-record-before-dispatch · rule: was «The reached record takes each node of the dispatch chain whose current listeners hold the event before the event runs, holding no borrow across the render.»; now «The reached record resolves the chain's nodes whose current listeners hold the event before it runs, holding no borrow across the render, and writes them after: all while it propagates, the innermost alone when stopped or a handler's panic unwinds, a non-bubbling event's target alone.»\n~ contract/handler-coverage/bubbling · promise: was «A bubbling dispatch counts every ancestor listener it passed; a `stopPropagation` is not read.»; now «A bubbling dispatch that still propagates counts every listener it passed; a dispatch a listener stops, or a handler's panic unwinds, counts its innermost listener alone.»\n~ contract/graph-verb/argument · promise: was «`graph` takes no argument; an argument is refused `malformed` with nothing run.»; now «`graph` takes one optional `part`, a whole number from 1 to 1000; a part of 0, of 1001 or of text is refused `malformed` with nothing run.»\n~ contract/graph-verb/no-values · promise: was «The answer `{\"nodes\":[…],\"states\":[…]}` holds ids, component, state and event names, closed flag words and booleans only, never a value.»; now «The answer `{\"nodes\":[…],\"states\":[…]}`, a part's adding `part` and `parts`, holds ids, component, state and event names, closed flag words, booleans and the part counts only, never a value.»\n**Why:** decision/reached-record-before-dispatch: The record is written after the dispatch with the stop read and a drop guard writes an unwound dispatch as stopped, so the row's write before the event runs is false.\ncontract/handler-coverage/bubbling: The limit that a stopPropagation is not read is retired, the reached write now reading the stop.\ncontract/graph-verb/argument: GRAPH.args gains part as ArgKind::Part 1 to 1000, so the promise that graph takes no argument is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/graph-verb/no-values: A graph part is written as the graph keys plus part and parts, so the row's answer form is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Standard Contracts: 4 row(s) (2 of 3)\n**Section:** Standard Contracts\n**Change:** ~ contract/driver-verbs/graph · promise: was «No argument; result nodes and states, the screen's UI graph read whole; dispatches nothing, runs no step.»; now «One optional part (1 to 1000); result nodes and states, plus part and parts when read in parts, the screen's UI graph whole when within the snapshot budget and no part is asked; dispatches nothing, runs no step.»\n~ contract/driver-verbs/press · promise: was «Takes key and optional shift, false when absent; presses on what holds focus, carrying no Ctrl, so non-adjacent rows of a multiple select cannot be built.»; now «Takes key and optional shift and ctrl, each false when absent; presses on what holds focus, ctrl held as the host's action key, Meta on macOS and Control elsewhere.»\n~ contract/escher-session/graph · promise: was «The verb graph takes no argument beside --session.»; now «The verb graph takes an optional --part beside --session.»\n~ contract/command-line/verb-flags · promise: was «--id, --text, --key, --ms and --part each take one value, --shift is bare, and --session <dir> exactly once; the call is validated before the session is asked for.»; now «--id, --text, --key, --ms and --part each take one value, --shift and --ctrl are bare, and --session <dir> exactly once; the call is validated before the session is asked for.»\n**Why:** contract/driver-verbs/graph: GRAPH gains the part argument and the part and parts fields, so the row's no-argument whole read is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/driver-verbs/press: PRESS.args gains the flag ctrl joining the platform action modifier, so the row's carrying no Ctrl is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/escher-session/graph: The command line's usage line now reads graph [--part <part>], so the row's no argument beside --session is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/command-line/verb-flags: The command line takes --ctrl as a bare flag beside --shift, so the row's flag list is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Standard Contracts: 4 row(s) (3 of 3)\n**Section:** Standard Contracts\n**Change:** ~ contract/argument-kinds/part · promise: was «A whole number from 1 to 1000, the snapshot part asked for.»; now «A whole number from 1 to 1000, the snapshot or graph part asked for.»\n~ contract/graph-verb/unpaged · promise: was «`graph` answers the whole screen at once, unpaged, within the 1,048,576-byte answer bound.»; now «graph answers whole when no part is asked and the answer is within the 10,000-byte snapshot text budget, else in parts of whole nodes within it; the states ride in part 1 alone, a later part's empty states meaning read part 1, and a part past the last answers empty nodes and states.»\n− contract/escher-session/press → contract/escher-session/press-key-shift-ctrl: The press verb's form on the command line now carries --ctrl beside --shift, and the item cell naming the form cannot be set.\n+ contract/escher-session/press-key-shift-ctrl — escher-session command line · press --key [--shift] [--ctrl]\n**Why:** contract/argument-kinds/part: The part kind now also serves the graph verb's part, so naming the snapshot alone is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/graph-verb/unpaged: The unpaged-graph limit is retired and the graph pages at the snapshot budget with the states in part 1 alone, so the row's unpaged promise is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/escher-session/press: The usage line gains [--ctrl] on press, so the row's item press --key [--shift] is incomplete and its heir names the new form. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/escher-session/press-key-shift-ctrl: The command line's press gains the bare --ctrl flag, the heir of the retired press row. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Occupied Resources: 2 row(s)\n**Section:** Occupied Resources\n**Change:** ~ contract/driver-graph/answer · promise: was «On both carriers and in a kept check, the answer holds stable ids, owner ids, component names, handler event names, registered state names, declared writes, the flags undeclared and unconfirmed and booleans; never a value, typed text or NodeId.»; now «On both carriers and in a kept check, the answer holds stable ids, owner ids, component names, handler event names, registered state names, declared writes, the flags undeclared and unconfirmed, booleans and a part's part and parts counts; never a value, typed text or NodeId.»\n~ contract/driver-graph/argument · promise: was «graph takes no argument; a call that gives one is refused malformed with nothing run.»; now «graph takes one optional part, a whole number from 1 to 1000; a part of 0, of 1001 or of text is refused malformed with nothing run.»\n**Why:** contract/driver-graph/answer: A graph part's answer adds the closed counts part and parts, so the row's list of what the answer holds is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/driver-graph/argument: GRAPH.args gains part as ArgKind::Part 1 to 1000, so the promise that graph takes no argument is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: 2 in cascade-patterns-architecture-1.toml",
+"dry-run · would land 18 operation(s) · 6 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-patterns-architecture-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:01Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/reached-handler-record-without-log · rejected",
+"fit: fits 10 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/graph-answer-crossing · rule: was «A graph answer carries the screen's UI graph on the socket, the command line, MCP and a kept check: ids, owner ids, component names, registered state names, handler event names, closed flag words and booleans, never a control value, typed text or NodeId.»; now «A graph answer carries the screen's UI graph on the socket, the command line, MCP and a kept check: ids, owner ids, component names, registered state names, handler event names, closed flag words, booleans and a part's part and parts numbers, never a control value, typed text or NodeId.»\n**Why:** decision/graph-answer-crossing: A graph answer may now be a part written with the numbers part and parts beside its nodes and states, so the crossing's carried set must name them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Input Validation: 3 row(s) (1 of 2)\n**Section:** Input Validation\n**Change:** ~ decision/reached-record-deduplicated-survives-removal · rule: was «Handler coverage relies on the reached record holding the stable id and event of each node whose listeners held a dispatched event, deduplicated, so a handler whose run removes its element still counts.»; now «Handler coverage relies on the reached record holding, deduplicated, the stable id and event of each node whose listeners a dispatch reached, the innermost listener alone when the dispatch was stopped, so a handler whose run removes its element still counts.»\n~ contract/driver-verbs/graph · promise: was «Takes no argument (any argument refused malformed, nothing run), runs no step, and answers {\"nodes\":[…],\"states\":[…]} of ids, owner ids, component names, state names, handler event names, flag words and booleans, never a control value, typed text or NodeId.»; now «Takes an optional part from 1 to 1000 (anything else refused malformed, nothing run), runs no step, and answers {\"nodes\":[…],\"states\":[…]}, a part adding part and parts, of ids, owner ids, component, state and handler event names, flag words and booleans, never a control value, typed text or NodeId.»\n~ contract/graph-answer/nodes-states · promise: was «`{\"nodes\":[…],\"states\":[…]}` holding ids, component names, state names, handler event names, the flag words `undeclared` and `unconfirmed` and booleans, never a control value, typed text or NodeId.»; now «`{\"nodes\":[…],\"states\":[…]}` holding ids, component names, state names, handler event names, the flag words `undeclared` and `unconfirmed` and booleans, never a control value, typed text or NodeId; a part adds `part` and `parts`, its states empty past part 1.»\n**Why:** decision/reached-record-deduplicated-survives-removal: A stopped bubbling dispatch now records its innermost listener alone and a non-bubbling event its target alone, so the record no longer holds every node whose listeners held the event.\ncontract/driver-verbs/graph: The graph verb gained the bounded part argument and a part answer, so its promise of taking no argument is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/graph-answer/nodes-states: A graph part is written as the graph keys plus part and parts, so the answer's form must name them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Input Validation: 1 row(s) (2 of 2)\n**Section:** Input Validation\n**Change:** + contract/cli-flags/ctrl — escher-session flags · --ctrl\n**Why:** contract/cli-flags/ctrl: press gained the closed optional flag ctrl, bare on the command line like --shift, and the flag sheet promises each flag's form. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Error Handling: 1 row(s)\n**Section:** Error Handling\n**Change:** ~ contract/refusal-causes/malformed · promise: was «The one cause that carries a fault; a call breaking the schema, such as a `graph` or `actions` call with an argument, is refused with it and nothing runs.»; now «The one cause that carries a fault; a call breaking the schema, such as an `actions` call with an argument or a `graph` part outside 1 to 1000, is refused with it and nothing runs.»\n**Why:** contract/refusal-causes/malformed: A graph call with a part is no longer malformed, so the row's example of a graph call with an argument is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Data Protection: 2 row(s)\n**Section:** Data Protection\n**Change:** ~ decision/kept-check-call-content · rule: was «A kept check holds call content: target ids, press keys, advance ms and text typed into unmasked controls, a masked or unresolved type's text kept as MASKED_STAND_IN.»; now «A kept check holds call content: target ids, press keys and the ctrl flag, graph parts, advance ms and text typed into unmasked controls, a masked or unresolved type's text kept as MASKED_STAND_IN.»\n~ decision/kept-check-graph-answer · rule: was «A kept graph answer holds ids, owner ids, component names, registered state names, handler event names and closed flag words and booleans, never a control value or typed text.»; now «A kept graph answer holds ids, owner ids, component names, registered state names, handler event names, closed flag words, booleans and a part's part and parts numbers, never a control value or typed text.»\n**Why:** decision/kept-check-call-content: A kept check may now hold press with ctrl and graph with part, its format unchanged, so its call-content class must name them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ndecision/kept-check-graph-answer: A kept check may now hold a graph part step whose answer carries part and parts, so the kept graph answer's content must name them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Logging & Monitoring: 1 row(s)\n**Section:** Logging & Monitoring\n**Change:** ~ contract/command-span/verb · promise: was «Records the instance-level verb; a graph, actions or layout call records the verb alone, plus cause when refused.»; now «Records the instance-level verb; a graph call, a graph part's included, an actions or layout call records the verb alone, plus cause when refused, never the part asked or the part count.»\n**Why:** contract/command-span/verb: A graph part's command span records verb alone and neither the part asked nor the part count reaches a log, which the row must state for the new argument. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — API Security: 2 row(s)\n**Section:** API Security\n**Change:** − decision/graph-answer-unpaged → decision/graph-answer-paged: The graph verb now takes a part and a large graph is answered in parts, so an unpaged graph no longer stands.\n+ decision/graph-answer-paged — The graph answer is paged\n**Why:** decision/graph-answer-unpaged: The graph answer is paged under the snapshot budget, contradicting the row's whole-graph-in-one-answer rule and its key. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ndecision/graph-answer-paged: The graph answer is now paged by a bounded part argument, a decision future work on the graph verb must respect. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: 1 in cascade-patterns-security-plan-1.toml",
+"dry-run · would land 11 operation(s) · 7 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-patterns-security-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:05Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 17 · not_master 0 · stands 0",
+"landed tx 2813 · 18 operation(s) · 6 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/reached-handler-record-without-log · rejected",
+"fit: fits 10 · not_master 0 · stands 0",
+"landed tx 2814 · 11 operation(s) · 7 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session/press-ctrl · rejected",
+"fit: fits 9 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ contract/handler-coverage-limits/bubbling-dispatch · promise: was «A bubbling dispatch counts every ancestor listener it passed.»; now «A bubbling dispatch that still propagates counts every listener it passed; one its target or an ancestor stops counts its innermost listener alone, and a non-bubbling event its target alone.»\n**Why:** contract/handler-coverage-limits/bubbling-dispatch: The reached record now reads the stop, so the stated limit that a bubbling dispatch counts every ancestor listener is retired and the promise must state the stop-read count.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — 5. Integration Test Strategy: 3 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/handler-coverage-bubbling-counts-ancestors · rule: was «A bubbling dispatch counts every ancestor listener it passed as exercised, `stopPropagation` unread.»; now «A bubbling dispatch that still propagates counts every listener it passed as exercised; a dispatch stopped by its target or an ancestor counts its innermost listener alone, and a handler's panic unwinding out of the dispatch counts as a stopped dispatch.»\n~ contract/graph-command/argument · promise: was «An argument to graph is refused malformed with nothing run.»; now «graph takes one optional argument, part, a whole number from 1 to 1000; any other argument, or a part of 0, 1001 or a non-number, is refused malformed with nothing run.»\n~ decision/graph-answer-holds-no-value · rule: was «A graph answer carries ids, component names, handler event names, state names, closed flag words and booleans only, never a value such as typed text.»; now «A graph answer carries ids, component names, handler event names, state names, closed flag words, booleans and a part's part and parts counts only, never a value such as typed text.»\n**Why:** decision/handler-coverage-bubbling-counts-ancestors: The coverage record now reads stopPropagation and writes an unwound dispatch as stopped, so the rule stating the stop unread is false.\ncontract/graph-command/argument: graph gained the part argument, so an argument to graph is no longer refused as such. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ndecision/graph-answer-holds-no-value: A paged graph answer now carries the part and parts numbers, which the rule's closed list of what an answer carries omits. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — 3. Test Harness Contract: 3 row(s) (1 of 2)\n**Section:** 3. Test Harness Contract\n**Change:** ~ contract/escher-session-command-line/graph · promise: was «`graph` takes no argument (an argument is refused `malformed`); its accepted answer is one line `{\"nodes\":[…],\"states\":[…]}`, status `0`.»; now «`graph` takes `--part` with one value, a whole number 1 to 1000, anything else refused `malformed`; a whole answer is one line `{\"nodes\":[…],\"states\":[…]}`, a part one line `{\"nodes\":[…],\"states\":[…],\"part\":n,\"parts\":m}` with `states` in part 1 alone, status `0`.»\n~ contract/escher-session-command-line/command-form · promise: was «`escher-session <verb> … --session <dir>` is the whole command line, fifteen verbs; the instance-level verbs take their arguments as flags spelt as the schema spells them (`--id`, `--text`, `--key`, `--ms` and `--part` each with one value, `--shift` bare).»; now «`escher-session <verb> … --session <dir>` is the whole command line, fifteen verbs; the instance-level verbs take their arguments as flags spelt as the schema spells them (`--id`, `--text`, `--key`, `--ms` and `--part` each with one value, `--shift` and `--ctrl` bare).»\n~ contract/escher-session-command-line/usage-line · promise: was «Usage reads `snapshot [--part <part>]`, `start <app> [--record <dir>]`, `host role: serve <app> --session <dir> [--record <dir>]`, `mcp role: mcp [--record <dir>]` and `coverage role: coverage <app> <check>...`, with `graph` after `lint`, `layout --id <id>` after `actions` and `help` after `stop`.»; now «Usage reads `snapshot [--part <part>]`, `graph [--part <part>]` after `lint`, press's `[--ctrl]`, `start <app> [--record <dir>]`, `serve <app> --session <dir> [--record <dir>]`, `mcp [--record <dir>]` and `coverage <app> <check>...`, `layout --id <id>` after `actions`, `help` after `stop`.»\n**Why:** contract/escher-session-command-line/graph: graph is now read in parts at the snapshot budget through `--part`, so the stated no-argument form and its one answer shape are false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/escher-session-command-line/command-form: press gained the bare flag `ctrl`, so the list of bare flags must name `--ctrl` beside `--shift`. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/escher-session-command-line/usage-line: The usage line now carries ` [--ctrl]` and `graph [--part <part>]`, which the stated usage line lacks. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — 3. Test Harness Contract: 2 row(s) (2 of 2)\n**Section:** 3. Test Harness Contract\n**Change:** ~ contract/driver-session/graph · promise: was «Returns `Outcome::Graphed` holding the screen's `UiGraph`.»; now «Returns `Outcome::Graphed` holding the screen's whole `UiGraph` when no part is asked and the answer is within the snapshot budget; else `Outcome::GraphPart`, one part of whole nodes with its `part` and `parts`, the states in part 1 alone and a part past the last empty.»\n~ contract/session-wire/graph-answer · promise: was «Carries ids, owner ids, component names, registered state names, handler event names, the declared writes, the flag words `undeclared` · `unconfirmed` and booleans — never a value or typed text, and no `NodeId`.»; now «Carries ids, owner ids, component names, registered state names, handler event names, the declared writes, the flag words `undeclared` · `unconfirmed`, booleans and a part's `part` and `parts` counts — never a value or typed text, and no `NodeId`.»\n**Why:** contract/driver-session/graph: A new public `Outcome::GraphPart` arm answers a graph cut into parts, so a graph no longer always returns `Outcome::Graphed`. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/session-wire/graph-answer: A graph part's answer adds the `part` and `parts` numbers, which the closed list of what the answer carries omits. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: 1 in cascade-patterns-test-plan-1.toml",
+"dry-run · would land 9 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-patterns-test-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/hosted-call-through-session-run · rejected",
+"contract/escher-session-coverage/reached-listeners · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — 3. Observability Harness Contract: 2 row(s)\n**Section:** 3. Observability Harness Contract\n**Change:** ~ decision/part-answer-never-logged · rule: was «A part's answer ({\"text\":…,\"part\":n,\"parts\":m}) is a command's answer, written over MCP as its JSON line, and is never logged or fielded.»; now «A part's answer, a snapshot part ({\"text\":…,\"part\":n,\"parts\":m}) or a graph part ({\"nodes\":[…],\"states\":[…],\"part\":n,\"parts\":m}), is a command's answer, written over MCP as its JSON line, and is never logged or fielded.»\n~ contract/command-answer/graphed · promise: was «A graph answer is one JSON object of nodes and states holding ids, component names, registered state and handler event names, closed flag words and booleans, never a value.»; now «A graph answer is one JSON object of nodes and states, a part adding its part number and part count, holding ids, component names, registered state and handler event names, closed flag words and booleans, never a value.»\n**Why:** decision/part-answer-never-logged: The graph verb now answers in parts with its own part form, so the rule that a part's answer is never logged must name the graph part beside the snapshot part. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/command-answer/graphed: A graph answer may now be a part carrying part and parts beside nodes and states, so the promise of its form must say so. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — 6. Log Coverage: 2 row(s)\n**Section:** 6. Log Coverage\n**Change:** ~ contract/graph-answer/shape · promise: was «`{\"nodes\":[…],\"states\":[…]}`.»; now «`{\"nodes\":[…],\"states\":[…]}` for a whole graph; a part read is `{\"nodes\":[…],\"states\":[…],\"part\":n,\"parts\":m}`, its states held in part 1 alone.»\n~ contract/command-span/graph · promise: was «A graph's line is `span=\"command\" verb=\"graph\"` (with `cause` when refused, an argument refused `malformed`) and holds no node, state, id or name.»; now «A graph's line, a part read's included, is `span=\"command\" verb=\"graph\"` (with `cause` when refused, an argument or a `part` outside 1 to 1000 refused `malformed`) and holds no node, state, id, name, part number or count.»\n**Why:** contract/graph-answer/shape: The graph answer gains a part form written with part and parts, states carried in part 1 alone, so the shape contract must state it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/command-span/graph: The graph verb gains the part argument 1 to 1000, and a graph part's command span records verb alone, so the span contract must cover the part read and its refusal. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — 8. PII Scrubbing & Compliance: 1 row(s)\n**Section:** 8. PII Scrubbing & Compliance\n**Change:** ~ contract/graph-answer/content · promise: was «Carries stable ids, component names, registered state names, handler event names, the closed flag words undeclared and unconfirmed, and booleans only, never a state's value; a boundary widening, ratified.»; now «Carries stable ids, component names, registered state names, handler event names, the closed flag words undeclared and unconfirmed, booleans, and for a part its part number and part count only, never a state's value; a boundary widening, ratified.»\n**Why:** contract/graph-answer/content: A graph part answer now carries part and parts, numbers the content contract did not list, so the contract must name them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 5 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 5 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-commands/graph-parts · rejected",
+"contract/escher-session-commands/press-ctrl · rejected",
+"contract/escher-session-commands/coverage-stopped-dispatch · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — Surface: desktop-native: 3 row(s)\n**Section:** Surface: desktop-native\n**Change:** ~ contract/escher-session-commands/graph-answer · promise: was «graph answers the screen's whole UI graph as one uncoloured line of JSON {\"nodes\":[…],\"states\":[…]} on stdout, status 0, the same on the session socket's call and in a kept check; over the mcp role the tool result is the text block of that line.»; now «graph answers one uncoloured line of JSON on stdout, status 0, the same on the session socket's call and in a kept check, over the mcp role the text block of that line: {\"nodes\":[…],\"states\":[…]} for a whole graph and {\"nodes\":[…],\"states\":[…],\"part\":n,\"parts\":m} for a graph read in parts.»\n~ contract/escher-session-commands/graph-arguments · promise: was «graph takes no argument; an argument is refused malformed with nothing run.»; now «graph takes one optional --part, 1 to 1000; a part of 0, over 1000 or not a number, or any other argument, is refused malformed with nothing run.»\n~ contract/ui-graph-line/content · promise: was «The line carries ids, owner ids, component names, registered state names, handler event names, the closed flag words undeclared and unconfirmed, and booleans only, never a value or typed text.»; now «The line carries ids, owner ids, component names, registered state names, handler event names, the closed flag words undeclared and unconfirmed, booleans, and for a graph read in parts its part and parts numbers only, never a value or typed text.»\n**Why:** contract/escher-session-commands/graph-answer: graph now answers a part's form beside the whole graph's, so a row promising the whole graph alone is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/escher-session-commands/graph-arguments: graph gained the optional part argument, so the row saying it takes no argument is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\ncontract/ui-graph-line/content: a graph part's line now carries the part and parts numbers, which the row's closed list of content leaves out. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-graph/part · rejected",
+"contract/escher-session-press/ctrl · rejected",
+"contract/escher-session-coverage/stopped-dispatch · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — Surface: cli: 1 row(s)\n**Section:** Surface: cli\n**Change:** ~ contract/escher-session-graph/answer · promise: was «No argument; one uncoloured line {\"nodes\",\"states\"} carrying ids, component names, handler event names, state names, closed flag words and booleans only, never a value.»; now «One uncoloured line {\"nodes\",\"states\"} for a whole graph, {\"nodes\",\"states\",\"part\",\"parts\"} for a part, part 1 alone carrying the states and a later part's empty states meaning read part 1; ids, component names, handler event names, state names, closed flag words and booleans only, never a value.»\n**Why:** contract/escher-session-graph/answer: graph now takes --part and answers a part with part and parts beside nodes and states, so the row's «No argument» and single form are false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I4: «Подтвердить все 41 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/ui-graph-answer/parts · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — 5. Keyboard Navigation: 1 row(s)\n**Section:** 5. Keyboard Navigation\n**Change:** ~ contract/dioxus-document/reached-handlers · promise: was «Returns the stable id and event name of each node whose listeners held the dispatched event, in first-reached order, deduplicated by id and event, a handler that removes its own element still counting; empty when the record was never switched on.»; now «The id and event of each node whose listeners held the event, resolved before the handlers run, first-reached, deduplicated; a dispatch its target or an ancestor stops, or a handler's panic unwinds, counts the innermost listener alone, a non-bubbling event its target alone; empty unless switched on.»\n**Why:** contract/dioxus-document/reached-handlers: The record now reads the stop, so a stopped, unwound or non-bubbling dispatch no longer counts every node whose listeners held the event, and the promise must say so.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — 5. Keyboard Navigation: 1 row(s)\n**Section:** 5. Keyboard Navigation\n**Change:** ~ contract/multiple-select/keys-and-row-clicks · promise: was «A multiple select takes its own keys and row clicks, apart from the single-choice select's handling.»; now «A multiple select takes its own keys and row clicks, apart from the single-choice select's: plain arrows choose the current row alone, arrows with the action key held (Meta on macOS, Control elsewhere) move the current row, and Space flips it, so rows not adjacent are chosen from the keyboard.»\n**Why:** contract/multiple-select/keys-and-row-clicks: The driver's press now carries the action key and the press help states that it moves the current row and Space flips it, a keyboard contract of the multiple select the row stated only as its own keys.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:23Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/multiple-select/keys-and-row-clicks · rejected",
+"contract/ui-graph-answer/parts · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — 5. Keyboard Navigation: 1 row(s)\n**Section:** 5. Keyboard Navigation\n**Change:** ~ contract/dioxus-document/reached-handlers · promise: was «Returns the stable id and event name of each node whose listeners held the dispatched event, in first-reached order, deduplicated by id and event, a handler that removes its own element still counting; empty when the record was never switched on.»; now «The id and event of each node whose listeners held the event, resolved before the handlers run, first-reached, deduplicated; a dispatch its target or an ancestor stops, or a handler's panic unwinds, counts the innermost listener alone, a non-bubbling event its target alone; empty unless switched on.»\n**Why:** contract/dioxus-document/reached-handlers: The record now reads the stop, so a stopped, unwound or non-bubbling dispatch no longer counts every node whose listeners held the event, and the promise must say so.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:23Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/reached-handler-record-without-log · rule: was «Where recording of reached handlers is switched on, each reached handler's stable id and event name is written into a root-context record ahead of the handler's dispatch, with no log site and no `NodeId`.»; now «Where recording of reached handlers is switched on, each reached handler's stable id and event name is written into a root-context record, with no log site and no `NodeId`.»\n**Why:** decision/reached-handler-record-without-log: The record is no longer written ahead of the handler's dispatch but after it, so the row's timing clause is false; the shorter rule keeps the security promise and leaves the timing to architecture's decision/reached-record-before-dispatch.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session/press-ctrl · rejected",
+"fit: fits 9 · not_master 0 · stands 0",
+"landed tx 2815 · 9 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/hosted-call-through-session-run · rejected",
+"contract/escher-session-coverage/reached-listeners · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"landed tx 2816 · 5 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-commands/graph-parts · rejected",
+"contract/escher-session-commands/press-ctrl · rejected",
+"contract/escher-session-commands/coverage-stopped-dispatch · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 2817 · 3 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-graph/part · rejected",
+"contract/escher-session-press/ctrl · rejected",
+"contract/escher-session-coverage/stopped-dispatch · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2818 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/multiple-select/keys-and-row-clicks · rejected",
+"contract/ui-graph-answer/parts · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2819 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:29:30Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2820 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:31:55Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-main-architecture.2.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — Standard Contracts: 1 row(s)\n**Section:** Standard Contracts\n**Change:** ~ decision/reached-record-before-dispatch · name: was «Reached record written before dispatch»; now «Reached record resolved before dispatch, written after»\n**Why:** decision/reached-record-before-dispatch: The rule now resolves the record before the dispatch and writes it after, so the name «written before dispatch» states the retired mechanism.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"## 2026-11-20-driver-debts — Cross-cutting Patterns: 1 row(s)\n**Section:** Cross-cutting Patterns\n**Change:** ~ decision/reached-recorded-before-handlers · name: was «Reached record written before handlers run»; now «Reached record resolved before handlers run»\n**Why:** decision/reached-recorded-before-handlers: The rule now resolves the nodes before the handlers run and writes them after, so the name «written before handlers run» states the retired mechanism.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:31:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-20-driver-debts — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/handler-coverage-bubbling-counts-ancestors · name: was «Bubbling dispatch counts every ancestor listener»; now «Bubbling dispatch counts its listeners until stopped»\n**Why:** decision/handler-coverage-bubbling-counts-ancestors: The rule now counts the innermost listener alone once a dispatch is stopped, so the name «counts every ancestor listener» states the retired limit.\n**Ref:** .andromeda/runs/2026-11-21T07-51-27-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:32:00Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-main-architecture.2.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 2821 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:32:01Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-21T07-51-27-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2822 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+".andromeda/runs/2026-11-21T07-51-27-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:46Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/a11y-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__a11y-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/a11y-summary.md rev 18 · 0 new · 1 revised · 0 retired · tx 2823"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/a11y-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:46Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 18 · 0 new · 1 revised · 0 retired · tx 2824"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:47Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/dioxus-native-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__services__dioxus-native-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/dioxus-native-dom.md rev 17 · 0 new · 1 revised · 0 retired · tx 2825"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/services/dioxus-native-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:47Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 21 · 0 new · 2 revised · 0 retired · tx 2826"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:48Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-telemetry.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__services__escher-telemetry.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-telemetry.md rev 18 · 0 new · 1 revised · 0 retired · tx 2827"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/services/escher-telemetry.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:48Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 30 · 0 new · 10 revised · 0 retired · tx 2828"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:49Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 26 · 0 new · 2 revised · 0 retired · tx 2829"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:49Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 10 · 0 new · 1 revised · 0 retired · tx 2830"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:50Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 39 · 0 new · 2 revised · 0 retired · tx 2831"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:50Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 22 · 0 new · 2 revised · 0 retired · tx 2832"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:51Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 18 · 0 new · 1 revised · 0 retired · tx 2833"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:51Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 33 · 0 new · 5 revised · 0 retired · tx 2834"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:37:52Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 36 · 0 new · 2 revised · 0 retired · tx 2835"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T08:41:13Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-21T07-51-27-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 2840 · run-cdlop4i2 … run-cdlop4i2"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T09:08:32Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-20-driver-debts",
+"--run-dir",
+".andromeda/runs/2026-11-21T07-51-27-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 8 file(s) of 2026-11-20-driver-debts"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

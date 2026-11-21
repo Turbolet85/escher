@@ -1,1 +1,0 @@
-Q1 (wrap Validate card): "Confirm all eight (Recommended)" — The founder confirmed it himself by dialog in the overseer session, 2026-11-20, his label: «Подтвердить все восемь (Recommended)»; relayed by the overseer.

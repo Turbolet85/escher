@@ -1,0 +1,7 @@
+--- a/.andromeda/a11y-plan.md
++++ b/.andromeda/a11y-plan.md
+@@ -131,3 +131,3 @@
+ decision/tab-chooses-and-closes-select-list · Tab chooses the row and closes the list first — With a select's list open, Tab chooses the current row and closes the list before moving focus, in either direction. · why: pinned by tab_chooses_and_closes_before_focus_moves_either_way in the select_popup tests
+-contract/dioxus-document/reached-handlers · Dioxus document reached-handler record · reached_handlers — Returns the stable id and event name of each node whose listeners held the dispatched event, in first-reached order, deduplicated by id and event, a handler that removes its own element still counting; empty when the record was never switched on.
++contract/dioxus-document/reached-handlers · Dioxus document reached-handler record · reached_handlers — The id and event of each node whose listeners held the event, resolved before the handlers run, first-reached, deduplicated; a dispatch its target or an ancestor stops, or a handler's panic unwinds, counts the innermost listener alone, a non-bubbling event its target alone; empty unless switched on.
+ contract/dioxus-document/record-reached · Dioxus document reached-handler record · record_reached — Switches on one reached record for the document, a second call keeping the one record; every other document pays one context lookup per dispatch.

@@ -1,9 +1,6 @@
 # Coverage — escher-0.4.0
 
-verified 3/15 · deferred 0 · planned 11 · implemented 1 · unclaimed 11
-
-## implemented (1)
-- v040-05 · Driver debts · 2026-11-20-driver-debts
+verified 4/15 · deferred 0 · planned 11 · implemented 0 · unclaimed 11
 
 ## planned, unclaimed (11)
 - v040-02 · Upstream sync
@@ -18,7 +15,8 @@ verified 3/15 · deferred 0 · planned 11 · implemented 1 · unclaimed 11
 - v040-14 · The node-graph stand app
 - v040-15 · Cold-agent run
 
-## verified (3)
+## verified (4)
 - v040-01 · Build directory held · 2026-11-19-build-directory-held
 - v040-03 · The version on the GitHub page · 2026-11-20-readme-s-0-3-0-closed
 - v040-04 · Select list and selection debts · 2026-11-20-select-list-and-selection-debts
+- v040-05 · Driver debts · 2026-11-20-driver-debts

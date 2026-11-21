@@ -1,0 +1,77 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -261,3 +261,3 @@
+ decision/lang-and-dir-attributes · lang and dir set language and direction — `lang`/`xml:lang` and `dir` set language and direction. · except: `dir=auto` isolates its content without taking a direction from it.
+-decision/large-screen-in-parts · Screen over the snapshot budget crosses in parts — A screen over the snapshot budget crosses in parts, a screen within the budget answering whole, with no new verb, carrier, exit, cause, session error, span field or dependency; over MCP a paged answer is its JSON line. · why: A boundary widening, ratified.
++decision/large-screen-in-parts · Screen over the snapshot budget crosses in parts — A screen's snapshot or UI graph over the snapshot budget crosses in parts, one within the budget answering whole, with no new verb, carrier, exit, cause, session error, span field or dependency; over MCP a paged answer is its JSON line. · why: A boundary widening, ratified.
+ decision/line-height-normal-approx · line-height normal approximated — For percentage baseline shifts, line-height normal is approximated as 1.2 times the font size.
+@@ -387,3 +387,3 @@
+ decision/ua-stylesheets-used-as-given · User-agent stylesheets used as given — A document uses its configured user-agent stylesheets as given, the default sheet arriving only through the default document config, once.
+-decision/ui-graph-crossing · UI graph crosses the carriers — The UI graph crosses socket call, command line and MCP as a text block and rests in a kept check as the graph verb's answer: stable ids, owner ids, component, state and handler event names, declared writes, the flag words undeclared and unconfirmed, booleans; never a value, typed text or NodeId. · why: A boundary widening, ratified; no new carrier, exit, cause, session error, span field or dependency.
++decision/ui-graph-crossing · UI graph crosses the carriers — The UI graph crosses socket call, command line and MCP and rests in a kept check as the graph verb's answer, whole or in parts: stable ids, owner ids, component, state and handler event names, declared writes, flags undeclared and unconfirmed, booleans, part counts; no value, typed text or NodeId. · why: A boundary widening, ratified; no new carrier, exit, cause, session error, span field or dependency.
+ decision/uniform-border-single-stroke · Uniform border painted as one stroke — A uniform solid border with circular corners is painted as one stroke. · why: partly to work around Vello seams
+@@ -435,3 +435,3 @@
+ contract/form-submission/select-options · form submission · select options — Every chosen option that is not disabled is sent, by its value.
+-contract/graph-verb/arguments · the graph verb · arguments — The graph verb takes no argument; a call given one is refused malformed with nothing run.
++contract/graph-verb/arguments · the graph verb · arguments — The graph verb takes one optional part, a whole number from 1 to 1000; a part of 0, of 1001 or of text is refused malformed with nothing run.
+ contract/mcp-stdio/request-id · the mcp role's stdio · request id — The request id is echoed, an integer or a string of at most 128 bytes.
+@@ -637,3 +637,3 @@
+ decision/per-crate-coverage-floor · Per-crate coverage floor — CI holds a coverage floor per crate. · guard: coverage_floor.py
+-decision/reached-record-before-dispatch · Reached record written before dispatch — The reached record takes each node of the dispatch chain whose current listeners hold the event before the event runs, holding no borrow across the render. · why: So a handler whose own run removes its element still counts.
++decision/reached-record-before-dispatch · Reached record resolved before dispatch, written after — The reached record resolves the chain's nodes whose current listeners hold the event before it runs, holding no borrow across the render, and writes them after: all while it propagates, the innermost alone when stopped or a handler's panic unwinds, a non-bubbling event's target alone. · why: So a handler whose own run removes its element still counts.
+ decision/refusal-causes-closed-at-eight · Refusal causes closed at eight — The set of refusal causes is closed at eight, each with a fixed name, meaning and remedy, and a refusal holds nothing a call supplied. · why: Ratified.
+@@ -750,3 +750,3 @@
+ contract/argument-kinds/name · argument kinds · name — 1 to 32 bytes of a-z, 0-9 and -, the app a start names.
+-contract/argument-kinds/part · argument kinds · part — A whole number from 1 to 1000, the snapshot part asked for.
++contract/argument-kinds/part · argument kinds · part — A whole number from 1 to 1000, the snapshot or graph part asked for.
+ contract/argument-kinds/text · argument kinds · text — 0 to 4096 bytes of text.
+@@ -847,3 +847,3 @@
+ contract/command-line/start · command line · start — start <app> [--record <dir>] spawns the running binary as the host with standard streams closed, waits up to 30 s for it to answer and neither kills nor reaps it; an app the binary does not boot is usage.
+-contract/command-line/verb-flags · command line · verb flags — --id, --text, --key, --ms and --part each take one value, --shift is bare, and --session <dir> exactly once; the call is validated before the session is asked for.
++contract/command-line/verb-flags · command line · verb flags — --id, --text, --key, --ms and --part each take one value, --shift and --ctrl are bare, and --session <dir> exactly once; the call is validated before the session is asked for.
+ contract/command-span/added · command span · added — The length of the diff's added list.
+@@ -939,3 +939,3 @@
+ contract/driver-verbs/click · driver verbs · click — Takes id; clicks the centre of the element's bounds after the disabled, off-screen and covered checks; a click on a select opens its list.
+-contract/driver-verbs/graph · driver verbs · graph — No argument; result nodes and states, the screen's UI graph read whole; dispatches nothing, runs no step.
++contract/driver-verbs/graph · driver verbs · graph — One optional part (1 to 1000); result nodes and states, plus part and parts when read in parts, the screen's UI graph whole when within the snapshot budget and no part is asked; dispatches nothing, runs no step.
+ contract/driver-verbs/help · driver verbs · help — Tool level; no argument; result verbs, node_keys, key_names, busy_classes, causes, exit_statuses and session_errors, each with its help; reaches no session.
+@@ -943,3 +943,3 @@
+ contract/driver-verbs/lint · driver verbs · lint — No argument; result findings, always present; geometry only, no hit, right-to-left and vertical text read as left-to-right lines; dispatches nothing.
+-contract/driver-verbs/press · driver verbs · press — Takes key and optional shift, false when absent; presses on what holds focus, carrying no Ctrl, so non-adjacent rows of a multiple select cannot be built.
++contract/driver-verbs/press · driver verbs · press — Takes key and optional shift and ctrl, each false when absent; presses on what holds focus, ctrl held as the host's action key, Meta on macOS and Control elsewhere.
+ contract/driver-verbs/screenshot · driver verbs · screenshot — One optional id; result width, height and png (base64), always present; an element shot is cropped to its visible bounds; no step, nothing changes.
+@@ -968,3 +968,3 @@
+ contract/escher-session/click · escher-session command line · click --id — The verb click takes --id.
+-contract/escher-session/graph · escher-session command line · graph — The verb graph takes no argument beside --session.
++contract/escher-session/graph · escher-session command line · graph — The verb graph takes an optional --part beside --session.
+ contract/escher-session/help · escher-session command line · help — Needs no --session, admits at most one and reads it not, reaches no session, and answers the self-description's one line with status 0.
+@@ -973,3 +973,3 @@
+ contract/escher-session/mcp · escher-session command line · mcp [--record <dir>] — An MCP server on the binary's standard streams whose start tool boots the same seven tasks through the same boot.
+-contract/escher-session/press · escher-session command line · press --key [--shift] — The verb press takes --key and an optional --shift.
++contract/escher-session/press-key-shift-ctrl · escher-session command line · press --key [--shift] [--ctrl] — The verb press takes --key and the optional bare flags --shift and --ctrl.
+ contract/escher-session/screenshot · escher-session command line · screenshot [--id <id>] — The verb screenshot takes an optional --id.
+@@ -1014,8 +1014,8 @@
+ contract/graph-registry/use-graph-state · Graph registry · use_graph_state — Takes a name, declared writes and subscribers of dioxus-core types alone; the first registering hook provides the registry at the root scope, and each entry leaves with its scope.
+-contract/graph-verb/argument · The graph verb · argument — `graph` takes no argument; an argument is refused `malformed` with nothing run.
+-contract/graph-verb/no-values · The graph verb · content — The answer `{"nodes":[…],"states":[…]}` holds ids, component, state and event names, closed flag words and booleans only, never a value.
++contract/graph-verb/argument · The graph verb · argument — `graph` takes one optional `part`, a whole number from 1 to 1000; a part of 0, of 1001 or of text is refused `malformed` with nothing run.
++contract/graph-verb/no-values · The graph verb · content — The answer `{"nodes":[…],"states":[…]}`, a part's adding `part` and `parts`, holds ids, component, state and event names, closed flag words, booleans and the part counts only, never a value.
+ contract/graph-verb/node · The graph verb · node — A node is keyed `id` · `owner` · `component` · `handlers` · `reads` (`owner`, `component` left out when absent); a handler `event` · `writes`; a write `state` · `declared` · `confirmed` · `flag`, `flag` left out when none.
+ contract/graph-verb/state · The graph verb · state — A state is keyed `name` · `component` · `declared` · `writers` · `readers` (`component` left out when absent); a declaration `id` · `event`; a writer `id` · `event` · `declared` · `confirmed` · `flag`.
+-contract/graph-verb/unpaged · The graph verb · paging — `graph` answers the whole screen at once, unpaged, within the 1,048,576-byte answer bound.
+-contract/handler-coverage/bubbling · Handler coverage reader · bubbling dispatch — A bubbling dispatch counts every ancestor listener it passed; a `stopPropagation` is not read.
++contract/graph-verb/unpaged · The graph verb · paging — graph answers whole when no part is asked and the answer is within the 10,000-byte snapshot text budget, else in parts of whole nodes within it; the states ride in part 1 alone, a later part's empty states meaning read part 1, and a part past the last answers empty nodes and states.
++contract/handler-coverage/bubbling · Handler coverage reader · bubbling dispatch — A bubbling dispatch that still propagates counts every listener it passed; a dispatch a listener stops, or a handler's panic unwinds, counts its innermost listener alone.
+ contract/handler-coverage/canvas · Handler coverage reader · canvas handlers — Handlers inside a canvas are not counted.
+@@ -1422,4 +1422,4 @@
+ contract/driver-diff/differs · the driver diff · differs — A changed node's differs names closed node-key words, bounds among them.
+-contract/driver-graph/answer · the graph verb · answer — On both carriers and in a kept check, the answer holds stable ids, owner ids, component names, handler event names, registered state names, declared writes, the flags undeclared and unconfirmed and booleans; never a value, typed text or NodeId.
+-contract/driver-graph/argument · the graph verb · argument — graph takes no argument; a call that gives one is refused malformed with nothing run.
++contract/driver-graph/answer · the graph verb · answer — On both carriers and in a kept check, the answer holds stable ids, owner ids, component names, handler event names, registered state names, declared writes, the flags undeclared and unconfirmed, booleans and a part's part and parts counts; never a value, typed text or NodeId.
++contract/driver-graph/argument · the graph verb · argument — graph takes one optional part, a whole number from 1 to 1000; a part of 0, of 1001 or of text is refused malformed with nothing run.
+ contract/driver-lint/answer · the lint verb · answer — On both carriers and in a kept check, the answer holds stable ids and the closed defect words and numbers, never a NodeId, page text, colour or control value.
+@@ -1555,3 +1555,3 @@
+ decision/platform-gating · Platform behaviour gating — Platform behaviour is gated with `cfg(target_os = ...)` and an `IS_MOBILE` const.
+-decision/reached-recorded-before-handlers · Reached record written before handlers run — Where a reached record is switched on, each node of the dispatch chain whose current listeners hold the event's name is recorded by its stable id before the handlers run. · why: so a handler whose own run removes its element still counts; every other document pays one context lookup per dispatch
++decision/reached-recorded-before-handlers · Reached record resolved before handlers run — Where a reached record is switched on, the chain's nodes whose current listeners hold the event's name are resolved by stable id before the handlers run and written after: all while it propagates, the innermost alone when stopped or unwound by a panic, a non-bubbling event's target alone. · why: so a handler whose own run removes its element still counts; every other document pays one context lookup per dispatch
+ decision/redraw-requests · When redraws are requested — Redraws are requested after mutations, resource loads, hover, device changes, a focus set or cleared and a select list opening, moving, scrolling or closing; the Tab key asks for none of its own.

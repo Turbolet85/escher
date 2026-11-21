@@ -1,0 +1,14 @@
+--- a/.andromeda/design-system.md
++++ b/.andromeda/design-system.md
+@@ -93,4 +93,4 @@
+ contract/escher-session-commands/coverage-arguments · escher-session commands · coverage arguments — coverage's one shape is coverage <app> <check>..., an app the binary boots then one or more check paths, with no --session and no --record; any other shape is a usage ending, status 2.
+-contract/escher-session-commands/graph-answer · escher-session commands · graph answer — graph answers the screen's whole UI graph as one uncoloured line of JSON {"nodes":[…],"states":[…]} on stdout, status 0, the same on the session socket's call and in a kept check; over the mcp role the tool result is the text block of that line.
+-contract/escher-session-commands/graph-arguments · escher-session commands · graph arguments — graph takes no argument; an argument is refused malformed with nothing run.
++contract/escher-session-commands/graph-answer · escher-session commands · graph answer — graph answers one uncoloured line of JSON on stdout, status 0, the same on the session socket's call and in a kept check, over the mcp role the text block of that line: {"nodes":[…],"states":[…]} for a whole graph and {"nodes":[…],"states":[…],"part":n,"parts":m} for a graph read in parts.
++contract/escher-session-commands/graph-arguments · escher-session commands · graph arguments — graph takes one optional --part, 1 to 1000; a part of 0, over 1000 or not a number, or any other argument, is refused malformed with nothing run.
+ contract/escher-session-commands/help · escher-session commands · help — help answers the tool's self-description as one uncoloured line of JSON on stdout with no ESC byte, status 0, reaching no session.
+@@ -144,3 +144,3 @@
+ contract/snapshot/select-list-row-bounds · The snapshot · a row of an open select list — A row of an open list carries its own bounds in the snapshot.
+-contract/ui-graph-line/content · The UI graph line · content — The line carries ids, owner ids, component names, registered state names, handler event names, the closed flag words undeclared and unconfirmed, and booleans only, never a value or typed text.
++contract/ui-graph-line/content · The UI graph line · content — The line carries ids, owner ids, component names, registered state names, handler event names, the closed flag words undeclared and unconfirmed, booleans, and for a graph read in parts its part and parts numbers only, never a value or typed text.
+ contract/wpt-runner-output/test-name-hyperlink · WPT runner output · test name — A test name is wrapped in an OSC 8 hyperlink to https://wpt.live/{name} only when stdout supports hyperlinks (a terminal, honouring FORCE_HYPERLINK).
