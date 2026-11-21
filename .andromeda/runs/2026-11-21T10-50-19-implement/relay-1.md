@@ -1,8 +1,0 @@
-The operator's answer at implement's stop (2026-11-21), given through the question dialog, verbatim:
-
-Q (Pin (a)): "Engine debts, step 5(a). The plan's task waits for the shown input's MountedData by a future that wakes its own waker. dioxus-core's render_immediate re-polls a self-woken task inside the same render (virtual_dom.rs:608-614), so it spins forever and the handle (built only after the replay) never arrives: a hang in both modes. A task that instead stores its waker and is woken by the input's onmounted passes: engine, snapshot and tree focus all land on the input; pin (b) passes with focus on the root. The founder's F3 premise ('the ordinary pattern works') holds; only the plan's busy-yield form hangs. How should (a) be written?"
-A: "Stored-waker wait (Recommended)"
-
-Q (Tab walk): "Engine debts, the Tab walk. After the new fixup gives a hidden control's focus up, focus sits on the root and Tab restarts from the top. focus_next_node/focus_prev_node use is_focussable alone, which never checks display or visibility, so Tab lands on the hidden control again and the next layout takes it away. key_press_after_container_lost_its_box reads `#after` never reached (it expects it). HTML's sequential navigation skips a node that is not being rendered. What should Tab do?"
-A: "Tab skips unshown (Recommended)"
-notes: The Tab answer is the founder's own, by dialog in the overseer session 2026-11-21, his label: «Tab пропускает скрытое (Recommended)», relayed by the overseer; it is in ~/dev/projects/additional/escher-overseer/relays/engine-debts-founder-2026-11-21.md. The first answer is the operator's technical one.

@@ -1,0 +1,1289 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T12:49:30Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-21-engine-debts",
+"--section-file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-21-engine-debts/report rev 2 · 10 new · 0 revised · 0 retired · 34 kept · tx 2882"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T12:49:31Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-21-engine-debts",
+"--section-file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-21-engine-debts/report rev 3 · 47 new · 0 revised · 0 retired · 44 kept · tx 2883"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T12:49:53Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cites-land-2026-11-21-engine-debts.ndjson",
+"--base",
+"5cf8878da8e809af4952e103f326a5da26f8229b",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T12:49:57Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cites-land-2026-11-21-engine-debts.ndjson",
+"--base",
+"5cf8878da8e809af4952e103f326a5da26f8229b",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 2885"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T12:51:59Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1539 · packs 16 · pack 100 · 390351 B",
+"security-plan: rows 570 · packs 6 · pack 100 · 165129 B",
+"design-system: rows 139 · packs 2 · pack 100 · 38835 B",
+"layout-templates: rows 129 · packs 2 · pack 100 · 32614 B",
+"test-plan: rows 639 · packs 7 · pack 100 · 182053 B",
+"obs-plan: rows 295 · packs 3 · pack 100 · 81172 B",
+"a11y-plan: rows 239 · packs 3 · pack 100 · 75841 B",
+"rows-packs: 7 master(s) · 3550 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 2885"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T12-46-56-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:01:20Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1539 · packs 16 · picked 62 (38 by every draw) · standing 0 · 189044 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 570 · packs 6 · picked 23 (14 by every draw) · standing 0 · 88578 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 139 · packs 2 · picked 16 (9 by every draw) · standing 0 · 24721 B",
+"layout-templates: rows 129 · packs 2 · picked 13 (12 by every draw) · standing 0 · 28385 B",
+"test-plan: rows 639 · packs 7 · picked 29 (17 by every draw) · standing 0 · 145371 B",
+"obs-plan: rows 295 · packs 3 · picked 3 (1 by every draw) · standing 0 · 35002 B",
+"a11y-plan: rows 239 · packs 3 · picked 25 (14 by every draw) · standing 0 · 58936 B",
+"rows-union: 7 master(s) · picked 171 of 3550 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T12-46-56-wrap/arch-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/arch-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/security-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/security-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/design-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/design-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/tests-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/tests-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/obs-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/obs-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:04Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/tab-walk-skips-unshown · rejected",
+"decision/focus-within-hidden-control-takes-tab · rejected",
+"decision/resolve-reconciles-select-list · rejected",
+"fit: fits 12 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — Established Decisions: 3 row(s) (1 of 2)\n**Section:** Established Decisions\n**Change:** ~ decision/focus-fixup-without-events · rule: was «At flush, focus on a node that has become inert is cleared with no blur or focusout fired, a subtree moved under an inert box included.»; now «At flush, focus on a node that has become inert, a subtree moved under an inert box included, and after each layout, focus on a node that no longer shows, is cleared with no blur or focusout fired; a display contents control and a control beside a hidden sibling keep focus.»\n~ decision/hit-focus-form-engine-changes · rule: was «Visible region through transforms, no hit on a non-invertible transform, the focus fixup under inert, tree focus falling back to the window, native toggled, the multiple select, optgroup and change on a checkbox and a radio are direct engine changes for every document, flagged upstreamable.»; now «Visible region through transforms, no hit on a non-invertible transform, focus fixups under inert and after layout, Tab skipping what does not show, tree focus falling back to the window, native toggled, multiple select, optgroup and checkbox and radio change are engine changes for all documents.»\n~ decision/bridge-buffered-render · except: was «»; now «a Dioxus task that wakes its own waker while it waits livelocks inside the render, asserted by no check, so a task that waits for a later render leaves its waker to the producer»\n**Why:** decision/focus-fixup-without-events: The chunk added a second silent focus clear after each layout for a node that does not show, so the row naming the inert path alone is incomplete. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/hit-focus-form-engine-changes: The chunk adds the post-layout focus fixup and the Tab walk's skip as direct engine changes for every document, so the tally must name them. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/bridge-buffered-render: The chunk measured the busy-yield livelock and states it as a limit of the buffered render, which the row does not hold.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Established Decisions: 1 row(s) (2 of 2)\n**Section:** Established Decisions\n**Change:** ~ decision/anonymous-block-drop-clears-layout-parent · rule: was «Dropping an anonymous block clears the layout parent of each child still naming it, so a key press on a control whose anonymous block was dropped does not panic and focus stays.»; now «Dropping an anonymous block clears the layout parent of each child still naming it, so a key press on a control whose anonymous block was dropped does not panic, and once re-focused the key acts.»\n**Why:** decision/anonymous-block-drop-clears-layout-parent: A focused control whose container lost its box now gives focus up after the layout, so the row's claim that focus stays is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Standard Contracts: 3 row(s) (1 of 2)\n**Section:** Standard Contracts\n**Change:** ~ contract/dom-events/focus-change · promise: was «A focus change dispatches blur, focusout, focus, focusin.»; now «A focus change dispatches blur, focusout, focus, focusin, except the focus fixups under inert and after a layout for a node that no longer shows, which clear focus with none.»\n~ contract/event-dispatch/focus-change · promise: was «A focus change, a programmatic one included, dispatches blur, focusout, focus, focusin; only the focus fix-up under inert and the driver's select focus dispatch none.»; now «A focus change, a programmatic one included, dispatches blur, focusout, focus, focusin; only the focus fix-up under inert, the focus fix-up after a layout for a node that no longer shows, and the driver's select focus dispatch none.»\n~ decision/no-seed-on-carriers · rule: was «No run seed crosses the driver's carriers: no verb, argument, command-line flag, MCP tool field, kept-check key or span field carries one, so every driver session and every kept check's replay reads the default seed; a seed reaches a run only from in-process code that builds its VirtualDom.»; now «No run seed crosses the driver's carriers: no verb, argument, command-line flag, MCP tool field, kept-check key or span field carries one, so each driver session and kept check's replay reads the default seed; a seed reaches a run only from in-process code building its VirtualDom or script document.»\n**Why:** contract/dom-events/focus-change: The post-layout fixup is a focus change that dispatches no event, so the promise that every focus change dispatches them is false. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ncontract/event-dispatch/focus-change: The post-layout fixup is a new silent focus path, so the closed list of focus changes that dispatch none must name it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/no-seed-on-carriers: A script document's seed now comes from its building code alone, a second in-process source the row must name.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Standard Contracts: 1 row(s) (2 of 2)\n**Section:** Standard Contracts\n**Change:** ~ contract/dioxus-native-dom-api/boundary-marks · promise: was «Public and re-exported: the document provides a boundary registry at the root scope before its first build, every error boundary built under it registers, and boundary_marks reads them by identity; the registry grows for the document's life, since a dropped boundary cannot be told.»; now «Public and re-exported: the document provides a boundary registry at the root scope before its first build, every error boundary built under it registers, and boundary_marks reads them by identity; dropped boundaries are pruned before each render, so one dropped in a step reads till the next render.»\n**Why:** contract/dioxus-native-dom-api/boundary-marks: The registry no longer grows for the document's life, since the chunk prunes dropped boundaries before each render.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Cross-cutting Patterns: 2 row(s)\n**Section:** Cross-cutting Patterns\n**Change:** ~ decision/changed-set-write-sites · except: was «a page scroll or a move that closes an open select list marks its select at the next resolve»; now «a page scroll or a move that closes an open select list marks its select at the next resolve; a focus given up after a layout marks its node»\n~ decision/one-run-seed · except: was «»; now «a script document's Math.random is seeded only from in-process building code through with_seed, one sequence per seed, and an unseeded script document reads the host's random source»\n**Why:** decision/changed-set-write-sites: The changed set now marks a node whose focus is given up after a layout, which the row's never by layout contradicts. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/one-run-seed: The chunk gave the script document its own seeded Math.random apart from the Dioxus root context, so the row's one-seed rule must name it.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Conventions: 1 row(s)\n**Section:** Conventions\n**Change:** ~ contract/blitz-vibey-script-api/scriptdocument · promise: was «Re-exported, one of the five items blitz-vibey-script re-exports.»; now «Re-exported, one of the five items blitz-vibey-script re-exports; its consuming builder with_seed(u64) seeds the document's Math.random, one sequence per seed.»\n**Why:** contract/blitz-vibey-script-api/scriptdocument: The chunk added the public with_seed builder to ScriptDocument, a new item of its public API the contract must register.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Design Philosophy: 1 row(s)\n**Section:** Design Philosophy\n**Change:** ~ decision/integration-tests-in-blitz-tests · except: was «»; now «blitz-vibey-script keeps its own integration tests in its tests directory»\n**Why:** decision/integration-tests-in-blitz-tests: The chunk added an integration test in blitz-vibey-script's own tests directory beside the crate's standing ones, which the row's rule does not allow.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 12 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 12 operation(s) · 7 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:04Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/tab-walk-skips-unshown · rejected",
+"decision/boundary-registry-pruned-before-render · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — Input Validation: 3 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/inert-focus-clear-silent · rule: was «A node that loses focus by coming under `inert` fires no DOM `blur` or `focusout`.»; now «A focused node gives focus up with no DOM `blur` or `focusout` when it comes under `inert` and, after each layout, when it no longer shows; a `display: contents` control and one beside a hidden sibling keep focus.»\n~ decision/programmatic-focus-events · except: was «The inert fix-up's focus clear and the driver's select focus fire none.»; now «The inert fix-up's focus clear, the post-layout clear of a focused node that no longer shows, and the driver's select focus fire none.»\n~ decision/seeded-source-in-process-seed-only · rule: was «The seeded source of randomness takes its seed only from in-process code, a root context the virtual DOM's builder gives else the default seed 0, and outside any run seeds from the host's per-process random keys, reading no environment variable, file or carrier.»; now «The seeded source of randomness takes its seed only from in-process code: a root context the virtual DOM's builder gives else seed 0, or a script document's building code, whose page Math.random it replaces; outside any run it seeds from the host's random keys, reading no env var, file or carrier.»\n**Why:** decision/inert-focus-clear-silent: The chunk adds a second silent focus clear, the post-layout one for a control that does not show, so the row naming the silent clear must name both paths. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/programmatic-focus-events: The post-layout focus clear queues no blur or focusout, so the exception list of the focus-events rule must name it. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/seeded-source-in-process-seed-only: A script document can now be seeded by its building code alone, its page Math.random replaced by a native seeded function, so the in-process-seed rule must cover that source.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — Error Handling: 1 row(s)\n**Section:** Error Handling\n**Change:** ~ decision/dropped-anonymous-block-clears-parent · rule: was «Dropping an anonymous block clears the layout parent of every child still naming it, so a key press on a control whose block was dropped does not panic and still acts.»; now «Dropping an anonymous block clears the layout parent of every child still naming it, so a key press on a re-focused control whose block was dropped does not panic and still acts.»\n**Why:** decision/dropped-anonymous-block-clears-parent: A control whose container lost its box now gives focus up at the next layout, so a key reaches it only after a re-focus and the row's «still acts» must say so. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:04Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — 2. A11y Strategy: 1 row(s)\n**Section:** 2. A11y Strategy\n**Change:** ~ decision/changed-set-marks · rule: was «The engine's changed set marks a node's mutation, a focus or checked change, a text input, a select's changed choice, a single select's list opening or closing, a closing scroll included, and its highlight moving to another row; node creation, hover, active, other scrolls and layout do not.»; now «The engine's changed set marks a node's mutation, a focus or checked change (post-layout focus loss too), a text input, a select's new choice, a single select's list opening or closing, by scroll too, and its highlight moving rows; node creation, hover, active, other scrolls and layout alone do not.»\n**Why:** decision/changed-set-marks: A focus given up by the post-layout fixup now marks its node in the changed set, so the row's flat «layout do not» no longer holds whole. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — 5. Keyboard Navigation: 4 row(s)\n**Section:** 5. Keyboard Navigation\n**Change:** ~ decision/tab-and-shift-tab-move-focus · rule: was «Tab moves focus to the next focusable node and Shift+Tab to the previous one, dispatching focus events.»; now «Tab moves focus to the next focusable node and Shift+Tab to the previous one, dispatching focus events, in every document, skipping a node that does not show: out of the document, under display: none, or not visibility: visible.»\n− decision/focus-fixup-reads-inert-alone → decision/focus-fixup-gives-up-unshown-focus: The focus fixup no longer reads inertness alone: a focused control that no longer shows gives focus up after the next layout, so the stated SC 2.4.3 gap is closed.\n+ decision/focus-fixup-gives-up-unshown-focus — Focus fixup gives up inert or unshown focus\n+ decision/focus-within-hidden-holder-limit — Focus-within rule hiding its holder, a stated limit\n**Why:** decision/tab-and-shift-tab-move-focus: The Tab walk's filter went from focusable alone to focusable and shown, an engine change for every document that was ratified, so the row must state the skip. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/focus-fixup-reads-inert-alone: The report names this row's «reads is_inert() alone … keeps focus and takes keys» as disproved by the chunk's post-layout fixup, and the key itself names the retired limit. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/focus-fixup-gives-up-unshown-focus: The chunk adds the post-layout give-up of an unshown focused control beside the inert fixup, and this row is the heir of the retired inert-alone row. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\ndecision/focus-within-hidden-holder-limit: The Tab walk's skip leaves one stated limit owned by no residual, which future keyboard work must take into account. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: 1 in cascade-patterns-a11y-plan-1.toml",
+"dry-run · would land 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-patterns-a11y-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:05Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/boxless-focused-select-keeps-focus · rejected",
+"decision/unshown-focused-control-gives-up-focus · rejected",
+"decision/tab-walk-skips-unshown · rejected",
+"decision/buffered-render-replay · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** ~ contract/mounteddata-during-render/document-state · promise: was «A MountedData call made during a render acts on the document as the previous render left it, so a node created in that same render is not yet in it.»; now «A MountedData call made during a render acts on the document as the previous render left it; a task awaiting the handle of a node its handler shows focuses it once mounted, and a call in the render that removes its target leaves focus off it.»\n**Why:** contract/mounteddata-during-render/document-state: The chunk re-states the during-render remnant to the reachable case, so the promise about a node created in the same render no longer reads as the whole limit.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:05Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/key-after-dropped-anonymous-block · rejected",
+"decision/key-after-lost-box-acts-after-refocus · rejected",
+"decision/script-document-tests-seeded · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/count-and-rename-sweeps · rule: was «A change of the driver's verb count sweeps the tests and examples for pins of the verb table's length and of its indices, and a test rename sweeps the old name held as a string literal, such as a requirement's witness.»; now «A change of the driver's verb count or of a CI leg's file count sweeps the tests, examples and CI-script tests for pins of that count held as a literal, and a test rename sweeps the old name held as a string literal, such as a requirement's witness.»\n**Why:** decision/count-and-rename-sweeps: A CI-script test pinned the a11y leg's file count as a literal that moved with the leg and that a sweep over the leg script's names missed, so the sweep rule must reach a leg's file count too.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — 4. Unit Test Strategy: 1 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** + decision/focus-test-pins-where-focus-lands — Focus tests pin where focus lands\n**Why:** decision/focus-test-pins-where-focus-lands: The new post-layout fixup takes focus off a hidden control at the next pump, so a not-focused assertion no longer discriminates and focus tests must pin the landing node.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"## 2026-11-21-engine-debts — 6. E2E Test Strategy: 1 row(s)\n**Section:** 6. E2E Test Strategy\n**Change:** + decision/render-wait-by-stored-waker — Render waits leave the waker to the producer\n**Why:** decision/render-wait-by-stored-waker: A self-waking wait was measured to hang inside the buffered render in both layout modes and was replaced by a stored-waker wait, a convention future tests on the bridge must follow.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:22Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/tab-walk-skips-unshown · rejected",
+"decision/focus-within-hidden-control-takes-tab · rejected",
+"decision/resolve-reconciles-select-list · rejected",
+"fit: fits 12 · not_master 0 · stands 0",
+"landed tx 2887 · 12 operation(s) · 7 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:22Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/tab-walk-skips-unshown · rejected",
+"decision/boundary-registry-pruned-before-render · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 2888 · 4 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:22Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 2889 · 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:23Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/boxless-focused-select-keeps-focus · rejected",
+"decision/unshown-focused-control-gives-up-focus · rejected",
+"decision/tab-walk-skips-unshown · rejected",
+"decision/buffered-render-replay · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2890 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:09:23Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/key-after-dropped-anonymous-block · rejected",
+"decision/key-after-lost-box-acts-after-refocus · rejected",
+"decision/script-document-tests-seeded · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 2891 · 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:10:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — Established Decisions: 1 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/hit-focus-form-engine-changes · why: was «»; now «Each is a direct engine change, flagged upstreamable.»\n**Why:** decision/hit-focus-form-engine-changes: The landed rule set shortened the tally to its bound and dropped that each change is direct and flagged upstreamable, a fact the earlier row held and the chunk did not move.\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:10:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-main-design-system.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** − decision/boxless-focused-select-keeps-focus → none: A focused select whose container lost its box no longer keeps focus: it gives focus up after the next layout and takes a key only once re-focused, a rule a11y-plan's decision/focus-fixup-gives-up-unshown-focus states.\n**Why:** decision/boxless-focused-select-keeps-focus: The post-layout focus fixup makes the row's rule false; its fact's home is a11y-plan, so the row retires with no heir in this master. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:10:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"## 2026-11-21-engine-debts — 1. Test Scope Summary: 1 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** − decision/key-after-dropped-anonymous-block → none: A focused control whose anonymous block was dropped no longer keeps focus: the post-layout fixup gives focus up, and the key acts only after a re-focus, which the code and key_press_after_container_lost_its_box hold.\n**Why:** decision/key-after-dropped-anonymous-block: The post-layout focus fixup makes the row's «focus stays and the key still acts» false; the heir the proposer offered is not master content (fit not_master type 4), so the row retires with no heir. — resolved by the operator (Q1): relayed verbatim by the overseer, 2026-11-21, inputs#I7: «Подтвердить все 16 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-21T12-46-56-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:10:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 2892 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:10:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-main-design-system.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"landed tx 2893 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:10:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-21T12-46-56-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 0 · not_master 0 · stands 0",
+"landed tx 2894 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+".andromeda/runs/2026-11-21T12-46-56-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:13:57Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/a11y-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__a11y-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/a11y-summary.md rev 19 · 0 new · 3 revised · 0 retired · tx 2895"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/a11y-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:13:58Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 19 · 0 new · 3 revised · 0 retired · tx 2896"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:13:58Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/conventions.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__conventions.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/conventions.md rev 13 · 0 new · 1 revised · 0 retired · tx 2897"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/conventions.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:13:59Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__services__blitz-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-dom.md rev 18 · 0 new · 2 revised · 0 retired · tx 2898"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/services/blitz-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:13:59Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/dioxus-native-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__services__dioxus-native-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/dioxus-native-dom.md rev 18 · 0 new · 2 revised · 0 retired · tx 2899"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/services/dioxus-native-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:00Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/gotchas.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__gotchas.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/gotchas.md rev 13 · 0 new · 2 revised · 0 retired · tx 2900"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/gotchas.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:00Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 40 · 0 new · 1 revised · 0 retired · tx 2901"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:01Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 31 · 0 new · 2 revised · 0 retired · tx 2902"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:02Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 27 · 0 new · 1 revised · 0 retired · tx 2903"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:02Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 34 · 0 new · 2 revised · 0 retired · tx 2904"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:03Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 37 · 0 new · 3 revised · 0 retired · tx 2905"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:03Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 36 · 0 new · 3 revised · 0 retired · tx 2906"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:14:04Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 40 · 0 new · 3 revised · 0 retired · tx 2907"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:16:50Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-21T12-46-56-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap",
+"--marker",
+"2026-11-21-engine-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 2911 · run-gb3ocbc7 … run-gb3ocbc7"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T09-17-37-2026-11-21-engine-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T13:44:57Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-21-engine-debts",
+"--run-dir",
+".andromeda/runs/2026-11-21T12-46-56-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 10 file(s) of 2026-11-21-engine-debts"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

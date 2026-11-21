@@ -1,0 +1,60 @@
+## After implement
+- **Report:** 2026-11-21T10-50-19-implement — the newest implement run of 2026-11-21-engine-debts (`rec.py runs --kind '*-implement' --file '*-2026-11-21-engine-debts.json'`, its last run line), its outcome `green`
+- **Commits:** since `last_wrap` 2026-11-21T07:51:27Z: `5cf8878da fix(2026-11-20-driver-debts): driver debts` (the previous chunk's wrap commit) · `970085fba chore(2026-11-21-engine-debts): operator pre-CI commit, for the run this chunk's verdict reads`. From the pre-CI commit's parent `5cf8878da` to HEAD: `970085fba` alone — no fix commit.
+- **Operator pass:** run on the operator's direction (2026-11-21), `{work_dir}/evidence/operator-pass.md`:
+  - entry 11 `gate.py hygiene`: `hygiene: clean — read 197 (runs 188 · evidence 1 · inputs 8) …`, exit 0 · green;
+  - the pre-CI commit `970085fba66d`, the tree clean after it;
+  - entry 12, the push: green, exit 0, `refs/remotes/origin/build/escher-0.4.0 5cf8878d→970085fb` (fast-forward, intended);
+  - entry 13 `ci.py conclusion --sha HEAD --wait 2700`: `970085fba66d verdict: green · checks 17/17 · wall 2294 s · runs CI#44902180979 completed/success` — every job of the push read, no diff-scoped job.
+  - The pass ended **as-left**: no red, no fix commit; HEAD `970085fba` = `origin/build/escher-0.4.0`.
+- **Changes after implement:** none — no commit after the pre-CI one, and no directed edit of the wrap's.
+- **Inputs:** `inputs.py verify` (this run dir's `inputs-2026-11-21-engine-debts.json`): `inputs: 6 entries — unchanged 1 · drifted 1 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 4 · uncited 0 · unparsed 0`.
+  - I1 · message: the operator, at the /andromeda-phase invocation · message · n/a.
+  - I2 · message: the operator, by question dialog · message · n/a.
+  - I3 · `../additional/escher-overseer/relays/engine-debts-founder-2026-11-21.md` · no-repo · **DRIFT — drifted**: the relay file gained its section «At implement — the Tab walk (answered by 2026-11-21T11:09Z)» after I3 was snapped; that addition is snapped whole as I6, and I3's own lines (the five forks' answers) stand unchanged in it.
+  - I4 · message: the operator, by question dialog · message · n/a.
+  - I5 · message: the operator · message · n/a.
+  - I6 · `../additional/escher-overseer/relays/engine-debts-founder-2026-11-21.md` · no-repo · unchanged.
+  - No input snapped at this wrap; no P5 review card is named by an inputs entry.
+- **Scope:** `gate.py scope`: `scope: clean — changed 19 · listed 18 · recorded 1 (companion 1 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 196` — no line appended by this wrap; implement's Deviations carry the one recorded line.
+- **Sweep reach:** `cascade.py sweep --pre-pass` (this run dir's `cascade-2026-11-21-engine-debts-pre-pass.json`, the listing `sweep-pre-pass-1.1.txt`), patterns `report-patterns.toml`. Its first firing refused `a11y-reading` and `tab-walk` (control unfired over the seven masters): that refusal, in the trail, is the basis of each one's master zero; the re-fire ran the other thirteen.
+  - Counts / qualifiers moved:
+    - a11y leg file count 18 → 19 · `a11y-count` · standing 1 (test-plan 1: `decision/a11y-leg-membership`, states no count — no change; its fact's home is the leg script and `docs/capabilities.md`, both edited by the chunk) · owner test-plan.
+    - a11y leg reading 18 · 163 → 19 · 177 · `a11y-reading` · master zero (the refusal) · no master site — `docs/capabilities.md` alone, edited by the chunk.
+    - the fixup's reach · `fixup-inert` · standing 1 (a11y-plan 1: `decision/focus-fixup-reads-inert-alone` — stale) · owner a11y-plan; leaves 4.
+    - the Tab walk's filter · `tab-walk` · master zero (the refusal) · the fact enters as new (architecture `decision/hit-focus-form-engine-changes`'s tally, by `engine-tally`).
+  - Spec claims disproved:
+    - the plan's step 5 (a) yield-once · `same-render` · standing 7 (architecture 2 · design-system 2 · test-plan 2 · obs-plan 1): the plan's mechanism has no master site; `decision/bridge-buffered-render` and `decision/dioxus-bridge-buffered-render` true, the busy-yield limit an add-to; design-system `contract/mounteddata-during-render/document-state` stale (re-stated to the reachable case) and `…/set-focus-to` true; test-plan `decision/buffered-render-on-dioxus-07-bridge` and `decision/buffered-render-unborrowed-document` true; obs-plan `decision/mutation-buffer-memory-only` true.
+    - the plan's step 4 «Its next Tab still lands on `#after`»: no master site — a plan step.
+    - the plan's step 8 «Predicted 2»: no master site — a plan prediction (the registry fact itself, `boundary-reg`, below).
+    - research's «`test_capability_statement.py` … is not edited» · `cap-statement` · standing 3 (architecture 1 · test-plan 2): `decision/capability-statement`, `decision/capability-statement-pinned`, `decision/capability-check-names-held-to-schema` — each true, none states the count.
+    - the masters' «the fixup reads `is_inert()` alone» · `fixup-inert` (above) · stale · owner a11y-plan.
+  - Expected amendments:
+    - a11y-plan `decision/focus-fixup-reads-inert-alone` · `fixup-inert` · a11y-plan 1 · stale · owner a11y-plan.
+    - a11y-plan `decision/changed-set-marks` · `changed-set` · a11y-plan 1 · stale («layout do not») · owner a11y-plan.
+    - a11y-plan `decision/removed-focused-node-drops-focus` · `removed-focus` · a11y-plan 1 · true, no change.
+    - architecture `decision/focus-fixup-without-events`, `decision/inert-focus-fixup`, `contract/dom-events/inert-focus-fixup` · `focus-clear` · architecture 3 · add-to · owner architecture; `contract/event-dispatch/focus-change` (`ctr-vqh5rxza`) no pattern hit — located by `rec.py find --text 'event-dispatch/focus-change'`.
+    - architecture `decision/changed-set-write-sites` · `changed-set` · architecture 1 · stale («never by … layout») · owner architecture.
+    - architecture `decision/hit-focus-form-engine-changes` · `engine-tally` · architecture 1 · add-to · owner architecture.
+    - architecture `decision/resolve-reconciles-select-list` · `resolve-select` · architecture 1 · add-to · owner architecture.
+    - architecture `decision/bridge-buffered-render`, `decision/dioxus-bridge-buffered-render` · `same-render` · architecture 2 · add-to (the busy-yield limit) · owner architecture.
+    - architecture `decision/no-seed-on-carriers`, `decision/one-run-seed` · `seed` · architecture 2 · add-to · owner architecture.
+    - architecture `contract/blitz-vibey-script-api/scriptdocument` (`ctr-xiscpidu`) · `seed` · 0 hits in that row (it names no seed) — located by `rec.py find --text 'blitz-vibey-script-api/scriptdocument'` · add-to (`with_seed`) · owner architecture.
+    - architecture `contract/dioxus-native-dom-api/boundary-marks` · `boundary-reg` · architecture 1 · stale («grows for the document's life») · owner architecture.
+    - security-plan `decision/inert-focus-clear-silent`, `decision/programmatic-focus-events` · `focus-clear` · security-plan 2 · add-to / stale (its except list) · owner security-plan.
+    - security-plan `decision/seeded-source-in-process-seed-only` · `seed` · security-plan 1 · add-to · owner security-plan.
+    - design-system `decision/boxless-focused-select-keeps-focus` · `boxless` · design-system 1 · stale · owner design-system.
+    - design-system `contract/mounteddata-during-render/document-state`, `…/set-focus-to` · `mounted` · design-system 3 · stale / true · owner design-system.
+    - test-plan `decision/key-after-dropped-anonymous-block` · `boxless` · test-plan 1 · stale · owner test-plan.
+    - test-plan `decision/a11y-leg-membership` · `a11y-count` · test-plan 1 · no count stated — no change.
+    - beyond the plan, `.claude/rules/a11y.md` · `fixup-inert` leaf rows · the cascade's.
+    - beyond the plan, `docs/capabilities.md`: no master site — edited by the chunk.
+  - Other master rows the patterns hit: security-plan `decision/dropped-anonymous-block-clears-parent` (`boxless`) stale («still acts»: a key acts after a re-focus); architecture `decision/render-with-document-unborrowed`, design-system `decision/buffered-render-replay`, a11y-plan `decision/buffered-dioxus-render`, test-plan `decision/buffered-render-unborrowed-document` (`mounted`) each true.
+  - Sweep reach: 13 patterns · 28 moved facts, 25 with a pattern (the report's own count: 4 counts, 5 disproved claims, 19 expected-amendment entries; three name `no master site`) · by line 0 lines · 0 offsets.
+- **Outcome, final:**
+  - supersedes «(tests) CI on the pre-CI commit reads `verdict: green`: **not yet**. It is the operator pass's `ci.py` entry.»: met — CI#44902180979 on `970085fba66d`, `verdict: green · checks 17/17`.
+  - supersedes «`gate.py hygiene`, the push and `ci.py conclusion`: `not run — leg operator` — the operator pass.»: entry 11 green, entry 12 green, entry 13 green (operator pass above).
+  - Watches: none folded.
+  - Outcome basis: Setup 4's commit list (`970085fba` alone past `5cf8878da`), the final HEAD's CI run CI#44902180979 in `{work_dir}/evidence/operator-pass.md`, the pass record; implement's report stays the basis for the rest — implement's Outcome otherwise stands.
+- **Decisions & corrections after implement:** none — the pass record holds no correction or ruling, and it ended as-left. The wrap's directive (the operator, at invocation): where a proposal records an engine change for every document the founder answered (his F1 A with F2 A, and his «Tab пропускает скрытое» at implement, `inputs#I3`, `inputs#I6`), stop on one card that cites his recorded words and lists the proposals they cover.
+- **Process hygiene, re-measured:** `gate.py census --comm cargo --comm seven_guis_nati --comm escher-session --args blitz-tests` (this run dir): `census: none running`.

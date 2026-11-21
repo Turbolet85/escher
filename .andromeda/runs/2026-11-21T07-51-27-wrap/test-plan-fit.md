@@ -1,9 +1,0 @@
-@fit n=1 row=contract/handler-coverage-limits/bubbling-dispatch sha=d05aa7178a90 v=fits type=3
-@fit n=2 row=decision/handler-coverage-bubbling-counts-ancestors sha=1999f67cea3d v=fits type=1
-@fit n=3 row=contract/graph-command/argument sha=7a8ffcf546a7 v=fits type=3
-@fit n=4 row=contract/escher-session-command-line/graph sha=58f9584656cb v=fits type=3
-@fit n=5 row=contract/escher-session-command-line/command-form sha=5023cf454861 v=fits type=3
-@fit n=6 row=contract/escher-session-command-line/usage-line sha=f1d9cd3c4c09 v=fits type=3
-@fit n=7 row=contract/driver-session/graph sha=30fce7e9a2d6 v=fits type=3
-@fit n=8 row=contract/session-wire/graph-answer sha=c460ab0ae3cb v=fits type=3
-@fit n=9 row=decision/graph-answer-holds-no-value sha=6810d48824ba v=fits type=1
