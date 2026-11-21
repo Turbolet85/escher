@@ -23,7 +23,7 @@ The headless harness for Blitz documents (unpublished): wraps any blitz-dom `Doc
 - `dom_string()` is a stable one-node-per-line tree with geometry.
 
 ## Crate-specific gotchas
-- The `query` helper panics with "invalid selector" on a selector that fails to parse. With no node focused, the harness's focused reading answers the root html element, never none, so a check that a click clears focus asserts the root element.
+- The `query` helper panics with "invalid selector" on a selector that fails to parse. With no node focused, the harness's focused reading answers the root html element, never none, so a check that a click clears focus asserts the root element. A node a restyle turns `display: none` keeps the client rect it last laid out at, so a check asking whether a node has a box reads its computed display beside its client rect.
 - Synthesized pointer events set page = screen = client coordinates.
 
 ## Entry points for modification

@@ -1,0 +1,109 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -158,6 +158,6 @@
+ decision/click-after-scroll-advances-past-fade · Click after scroll waits out the scrollbar fade — A driver click inside a just-scrolled box advances the virtual clock past the overlay scrollbar's fade first, since a main-button pointerdown in the shown scrollbar band is taken as a thumb drag and dispatches nothing. · why: a measured hazard of the overlay scrollbar, no engine change · except: A row of an open select list is never taken as a thumb drag.
+-decision/click-focuses-button · A click focuses a button — A click on a button of any type or a submit, reset or button input focuses it, then submits the form owner for a submit button; a disabled form control stops the walk first, and a click on any other element still clears focus. · why: ratified · except: a select focuses through its own arm, and a multiple select's row focuses its select
++decision/click-focuses-button · A click focuses a button — A click on a button of any type or a submit, reset or button input focuses it, then submits the form owner for a submit button; a disabled form control stops the walk first, and a click on any other element still clears focus. · why: ratified · except: a select focuses through its own arm, and a list box's row focuses its select
+ decision/client-rect-ignores-own-scroll · Client rect ignores its own scroll offset — A box's client rect never subtracts its own scroll offset.
+ decision/client-rect-own-box · Client rect is the box's own — The shared bounds reader subtracts the scroll offset of every box on the containing-block chain above a node and never the node's own. · why: ratified as a direct engine change for every document; differs from upstream, whose scroll-shifted geometry and scroll-shifted self match are kept out
+-decision/closed-select-options-covered · Closed select options refused as covered — An option of a closed single select, under a group too, takes no click and stays refused `covered`.
++decision/closed-select-options-covered · Closed select options refused as covered — An option of a closed drop-down, a single select of display size 1, under a group too, takes no click and stays refused `covered`.
+ decision/controlled-select-writes-selected · Controlled select writes selected from its input event — A controlled app writes `selected` from its `input` event's value, or a choice reverts. · why: Dioxus writes a dynamic `selected` again on each re-render
+@@ -227,3 +227,3 @@
+ decision/hit-and-paint-skip-dropped-nodes · Hit test and paint tree skip nodes dropped before resolve — A hit test and the paint tree's walk skip a node dropped since the last resolve. · why: Pinned by hit_test_skips_dropped_nodes; hover and pointer events between a mutation and the next resolve rely on it
+-decision/hit-focus-form-engine-changes · Hit, focus and form engine changes — Visible region through transforms, no hit on a non-invertible transform, focus fixups under inert and after layout, Tab skipping what does not show, tree focus falling back to the window, native toggled, multiple select, optgroup and checkbox and radio change are engine changes for all documents. · why: Each is a direct engine change, flagged upstreamable.
++decision/hit-focus-form-engine-changes · Hit, focus and form engine changes — Visible region through transforms, no hit on a non-invertible transform, focus fixups under inert and after layout, Tab skipping what does not show, tree focus falling back to window, native toggled, multiple select, list box, optgroup, checkbox and radio change are engine changes for all documents. · why: Each is a direct engine change, flagged upstreamable.
+ decision/hit-stops-at-clip-padding-box · Hits stop at clipping padding boxes — A hit stops at the padding box of every box paint clips.
+@@ -275,3 +275,3 @@
+ decision/multiple-and-optgroup-modelled · Multiple select and optgroup modelled throughout — A `multiple` select and an `optgroup`'s options are modelled in the keys, pointer, form, tree, sheet, snapshot and bridge.
+-decision/multiple-select-chosen-row-colours · Multiple select chosen-row colours — A multiple select's chosen row is painted with a #c8c8c8 background and #000000 text from the default stylesheet. · why: Chromium's inactive selected pair, hardcoded since the engine holds no tokens · guard: select_interaction
++decision/multiple-select-chosen-row-colours · Multiple select chosen-row colours — A list box's chosen row is painted with a #c8c8c8 background and #000000 text, a multiple select's from the default stylesheet and a single list box's as presentational hints. · why: Chromium's inactive selected pair, hardcoded since the engine holds no tokens · guard: select_interaction
+ decision/multiple-select-row-clicks · Multiple select row clicks choose, flip or span — A plain click on a multiple select's row chooses it alone, Ctrl or Meta flips it, Shift spans, and a disabled row changes nothing. · why: Pinned by a_click_on_a_row_chooses_flips_or_spans_it and the driver test a_press_with_shift_spans_the_rows
+@@ -350,3 +350,3 @@
+ decision/select-ctrl-a-unmodelled · Ctrl+A not modelled in selects — Ctrl+A is not modelled in the select model.
+-decision/select-keyboard-model · Select keyboard model — A focused closed single-choice select takes arrow keys and Home/End to enabled options and an unmodified character as typeahead reset after 1 s of the document's clock; Enter or a Space with no typed text opens its list, every other key does nothing. · why: a direct engine change for every document, remote pages included, flagged upstreamable
++decision/select-keyboard-model · Select keyboard model — A focused closed drop-down, a single select of display size 1, takes arrow keys and Home/End to enabled options and an unmodified character as typeahead reset after 1 s of the document's clock; Enter or a Space with no typed text opens its list, every other key does nothing. · why: a direct engine change for every document, remote pages included, flagged upstreamable
+ decision/select-list-closes-without-event · Open select list closes with no event — An open select list closes with no event on Escape, a second click, a press or wheel outside, a scroll or move of the select's box, and on removal, disabled, hidden or inert. · why: Pinned by escape_a_second_click_a_click_outside_and_the_page_scrolling_close_with_no_event and a_select_made_inert_disabled_hidden_or_removed_with_its_list_open_closes
+@@ -354,3 +354,3 @@
+ decision/select-list-engine-change · Select list as a direct engine change — The select list is a direct engine change for every document, remote pages included. · why: ratified
+-decision/select-list-painted-overlay · Select list painted over the page — A single select opens a list the engine paints over the page, by a click, by Enter, or by a Space with no typed text standing. · why: a ratified direct engine change for every document, remote pages included
++decision/select-list-painted-overlay · Select list painted over the page — A drop-down, a single select of display size 1, opens a list the engine paints over the page, by a click, by Enter, or by a Space with no typed text standing. · why: a ratified direct engine change for every document, remote pages included
+ decision/select-list-rejected-designs · Rejected designs for the select list — The select list is not built as `:open` plus rows as boxes, as a second OS window, as an overlay hit in the hit test, or with its colours in the default stylesheet.
+@@ -360,3 +360,3 @@
+ decision/select-row-scroll-into-view · Scrolling a select row into view moves only the list — Scrolling a select list row into view writes the list's scroll offset at once and moves no scroll chain or viewport.
+-decision/select-size-hint · Select size as a height hint — A `multiple` select's `size` hints its height; a single select's `size` stays unread.
++decision/select-size-hint · Select size as a height hint — A select's `size` is read in every document: a `multiple` select's, or a single select's above 1, hints its height in rows, and a single select of display size 1 stays a drop-down.
+ decision/sequential-style-default · Sequential style threading by default — Style threading defaults to Sequential, which bypasses Stylo's global thread pool.
+@@ -369,3 +369,4 @@
+ decision/single-select-choice-fires-nothing · A single select's choice of its chosen option is silent — A single select's choice of its chosen option fires nothing.
+-decision/single-select-list-opening · Opening a single select's list — A click, Enter and a Space with no typed text open a single select's list, which the engine paints over the page with a group's `label` as a header.
++decision/single-select-list-box · Sized single select as an in-flow list box — A single select whose size parses above 1 is an in-flow list box in every document, display size 1 keeping the drop-down: it opens no list, arrows, Home, End and typeahead choose and scroll the row into view, a row click chooses that row alone whatever modifier, and nothing need be chosen. · why: ratified as a direct engine change for every document, flagged upstreamable · guard: the_display_size_decides_list_box_or_drop_down
++decision/single-select-list-opening · Opening a single select's list — A click, Enter and a Space with no typed text open a drop-down's list, a drop-down being a single select of display size 1, which the engine paints over the page with a group's `label` as a header.
+ decision/skipped-font-formats · Skipped font formats — SVG and EOT fonts are skipped, and WOFF/WOFF2 fonts too without the `woff` feature.
+@@ -673,3 +674,3 @@
+ contract/accessibility-tree/aria-disabled · Accessibility tree · aria-disabled — A value of true sets AccessKit disabled.
+-contract/accessibility-tree/aria-expanded · Accessibility tree · aria-expanded — Read as a boolean on every element but a single select, which reads none and writes expanded from whether its list is open.
++contract/accessibility-tree/aria-expanded · Accessibility tree · aria-expanded — Read as a boolean on every element but a single select, which reads none; a drop-down writes expanded from whether its list is open, and a single list box writes none.
+ contract/accessibility-tree/aria-invalid · Accessibility tree · aria-invalid — true, grammar or spelling sets invalid True, Grammar or Spelling; absent, empty or false sets nothing; any other value sets True.
+@@ -690,3 +691,3 @@
+ contract/accessibility-tree/platform-refresh · blitz-dom accessibility tree · platform tree refresh — blitz-shell refreshes the platform accessibility tree on a redraw, after resolve, when the changed set is non-empty, and then clears the set.
+-contract/accessibility-tree/select-expanded · blitz-dom accessibility tree · single select expanded — A single select writes its native expanded, true while its list stands open, with no aria-expanded read on it; every other element keeps the aria-expanded read.
++contract/accessibility-tree/select-expanded · blitz-dom accessibility tree · single select expanded — A drop-down, a single select of display size 1, writes its native expanded, true while its list stands open, and a single list box writes none; no aria-expanded is read on either, and every other element keeps the aria-expanded read.
+ contract/accessibility-tree/state-attributes · blitz-dom accessibility tree · state attributes — The accessibility tree writes state attributes, each read once.
+@@ -882,3 +883,3 @@
+ contract/dioxus-native-dom-api/use-seeded-random · dioxus-native-dom public API · use_seeded_random and DEFAULT_SEED — Public and re-exported: use_seeded_random returns the root's SeededRandom from a root context, else a generator seeded from the host's per-process random keys, the windowed shell's case outside any run; DEFAULT_SEED is the u64 seed 0.
+-contract/dioxus-native-dom/closed-select-of · dioxus-native-dom · closed_select_of — Answers None for a select whose list is open.
++contract/dioxus-native-dom/closed-select-of · dioxus-native-dom · closed_select_of — Answers None for a select whose list is open and for a select BaseDocument::is_list_box reads true.
+ contract/dioxus-native-launch/config-downcast · dioxus-native launch · configs — Launch configs are downcast to `Features`, `Limits`, `WindowAttributes` or `Config`; an unmatched config is dropped.
+@@ -917,3 +918,3 @@
+ contract/driver-explore/step-budget · escher-driver explore · StepBudget — A step budget is a whole number from 1 to 10,000 (MAX_EXPLORE_STEPS), refused as none at 0 and above the bound, and counts every acting call an exploration runs, re-reach steps included.
+-contract/driver-forms/closed-select-of · driver form-control readers · closed_select_of — The public closed_select_of answers None for a select whose list is open.
++contract/driver-forms/closed-select-of · driver form-control readers · closed_select_of — The public closed_select_of answers None for a select whose list is open and for a select BaseDocument::is_list_box reads true.
+ contract/driver-forms/is-masked-input · driver form-control readers · is_masked_input — is_masked_input is the one masked-control test: a password or file input.
+@@ -921,3 +922,3 @@
+ contract/driver-forms/select-form-data · driver form-control readers · select form data — A select's input and change reach the app as form data, a multiple select's as one (name, FormValue::Text(value)) per chosen option, so evt.values() reads the set and value stays select_value.
+-contract/driver-forms/select-snapshot-options · driver form-control readers · select options in the snapshot — A select's options are its children in the snapshot; a multiple select's rows and groups read client rects of their own, and an open list's rows and groups read select_list_bounds before the client rect.
++contract/driver-forms/select-snapshot-options · driver form-control readers · select options in the snapshot — A select's options are its children in the snapshot; a list box's rows and groups read client rects of their own, and an open list's rows and groups read select_list_bounds before the client rect.
+ contract/driver-json/diff · Driver JSON answer · diff — added and changed are written as nodes keyed by NODE_FIELDS, a changed node carrying differs after bounds, and removed as ids.
+@@ -938,3 +939,3 @@
+ contract/driver-verbs/advance · driver verbs · advance — Takes ms, 1 to 60000; one settled step; adds advanced_ms, exactly ms.
+-contract/driver-verbs/click · driver verbs · click — Takes id; clicks the centre of the element's bounds after the disabled, off-screen and covered checks; a click on a select opens its list.
++contract/driver-verbs/click · driver verbs · click — Takes id; clicks the centre of the element's bounds after the disabled, off-screen and covered checks; a click on a drop-down opens its list, and a click on a list box's row chooses it.
+ contract/driver-verbs/graph · driver verbs · graph — One optional part (1 to 1000); result nodes and states, plus part and parts when read in parts, the screen's UI graph whole when within the snapshot budget and no part is asked; dispatches nothing, runs no step.
+@@ -1006,3 +1007,3 @@
+ contract/geometry/bounding-rect · Geometry · BoundingRect — x, y, width and height in f64.
+-contract/geometry/get-client-bounding-rect · blitz-dom geometry readers · get_client_bounding_rect — get_client_bounding_rect reads an element where its transforms move it.
++contract/geometry/get-client-bounding-rect · blitz-dom geometry readers · get_client_bounding_rect — get_client_bounding_rect reads an element where its transforms move it, and a node a restyle turned display none keeps the client rect it was last laid out at.
+ contract/geometry/text-extent · blitz-dom geometry readers · BaseDocument::text_extent — BaseDocument::text_extent is a read-only reader that mutates nothing.
+@@ -1076,3 +1077,3 @@
+ contract/lint-verb/overlap · The lint verb · overlap — Two nodes, neither an ancestor of the other, whose visible parts intersect, reported once at the highest level on the earlier node; a part scrolled out of view overlaps nothing.
+-contract/lint-verb/overlap-select-rows · The lint verb · overlap of select options and list rows — A closed select's options, read by the element and never the role, and an open list's rows and groups are skipped by `overlap` on either side; a `multiple` select's rows are linted as usual.
++contract/lint-verb/overlap-select-rows · The lint verb · overlap of select options and list rows — A closed drop-down's options, read by the element and never the role, and an open list's rows and groups are skipped by `overlap` on either side; a list box's rows are linted as usual.
+ contract/lint-verb/truncated · The lint verb · truncated — A node that is no text control whose text box does not lie inside its clip region cut by its own padding box where it clips; a node clipped or off-screen that holds text also reads `truncated`.
+@@ -1175,5 +1176,5 @@
+ contract/select-list-default-actions/choice · Select list default actions · choice — A choice from the list dispatches input then change.
+-contract/select-list-default-actions/click-select · Select list default actions · click on select — Clicking a single select opens its list, or closes one standing, focusing the select.
++contract/select-list-default-actions/click-select · Select list default actions · click on select — Clicking a drop-down, a single select of display size 1, opens its list, or closes one standing, focusing the select.
+ contract/select-list-default-actions/label-click · Select list default actions · label click — Clicking a label bound to a single select focuses the select and opens nothing, with no re-dispatch to it.
+-contract/select-list-default-actions/open-keys · Select list default actions · Enter and Space — Enter opens the list, and so does a Space with no typed text standing; a released Space does nothing more.
++contract/select-list-default-actions/open-keys · Select list default actions · Enter and Space — On a drop-down Enter opens the list, and so does a Space with no typed text standing; a released Space does nothing more; on a single list box neither opens anything.
+ contract/select-list-default-actions/pointerdown · Select list default actions · pointerdown — A press in the open list stays there; a press elsewhere closes the list.
+@@ -1190,2 +1191,3 @@
+ contract/select-readers/clear-select-typeahead · BaseDocument select readers · clear_select_typeahead — The public clear_select_typeahead clears a select's typed text; its one non-test caller is the driver's focus_select.
++contract/select-readers/is-list-box · BaseDocument select readers · is_list_box — Public and read-only: true for a select with multiple or a display size above 1; a stale or non-select id reads false.
+ contract/select-readers/select-of · BaseDocument select readers · select_of — select_of is public and read-only and reads an option's or group's select.
+@@ -1243,3 +1245,3 @@
+ contract/snapshot/clickable · Snapshot · clickable — True where the element's current listeners hold click and the element is no disabled form control.
+-contract/snapshot/closed-select-option · Snapshot · closed select option — An option of a closed select, under an optgroup too, reads its select's client rect as bounds and is the select's child, named by its label; while the list is open a row reads its own place in the list.
++contract/snapshot/closed-select-option · Snapshot · closed select option — An option of a closed drop-down, under an optgroup too, reads its select's client rect as bounds and is the select's child, named by its label; while the list is open a row reads its own place in the list.
+ contract/snapshot/enabled · Snapshot · enabled — Reads the presence of the disabled attribute on an element that can be disabled, so disabled="false" and a bare disabled both read Some(false); aria-disabled moves no reading.
+@@ -1248,3 +1250,3 @@
+ contract/snapshot/membership · Snapshot · node membership — A node is an accessibility tree node with an author_id whose element resolves; the Window, the document root and text runs are not nodes, their kept descendants attaching to the nearest kept ancestor.
+-contract/snapshot/multiple-select-bounds · Snapshot · multiple select rows — A multiple select's rows and groups read their own client rects as their bounds.
++contract/snapshot/multiple-select-bounds · Snapshot · multiple select rows — A list box's rows and groups, a multiple select's or a single select's of display size above 1, read their own client rects as their bounds.
+ contract/snapshot/name · Snapshot · name — The node's non-empty label, else the concatenated names of its labelled_by targets, cycle-guarded and trimmed, else the empty string.
+@@ -1569,3 +1571,3 @@
+ decision/sub-document-event-forwarding · Events forwarded to sub-documents and widgets — Events for sub-documents and custom widgets are forwarded to them with coordinates adjusted to their own space.
+-decision/targeted-restyle-on-mutation · Targeted restyle on mutation — Attribute changes, node removal and insertion restyle through targeted attribute-change and child-list-change restyles, never a blanket subtree restyle.
++decision/targeted-restyle-on-mutation · Targeted restyle on mutation — Attribute changes, node removal and insertion restyle through targeted attribute-change and child-list-change restyles, never a blanket subtree restyle. · except: a size or a multiple attribute write on a select restyles its descendants, since both decide its rows' presentational hints
+ decision/telemetry-closed-span-lines · Telemetry prints closed spans — The telemetry sink prints a closed span's line beside an event's. · why: Ratified.

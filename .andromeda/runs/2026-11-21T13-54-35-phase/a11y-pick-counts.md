@@ -1,9 +1,0 @@
-@pack_count n=1 doc=a11y-plan pack=1 draw=1 rows=49 yes=13 no=36 standing=2 file=a11y-pick-p1.md of=0db675fea0e0ee97 rule=any
-@pack_count n=2 doc=a11y-plan pack=1 draw=2 rows=49 yes=12 no=37 standing=2 file=a11y-pick-p1.d2.md of=57f1da0e09e3385e rule=any
-@pack_count n=3 doc=a11y-plan pack=1 draw=3 rows=49 yes=12 no=37 standing=2 file=a11y-pick-p1.d3.md of=87c06b0f2cce0078 rule=any
-@pack_count n=4 doc=a11y-plan pack=2 draw=1 rows=100 yes=34 no=66 standing=2 file=a11y-pick-p2.md of=d0433fecef29859f rule=any
-@pack_count n=5 doc=a11y-plan pack=2 draw=2 rows=100 yes=28 no=72 standing=3 file=a11y-pick-p2.d2.md of=515859f39bbe40f6 rule=any
-@pack_count n=6 doc=a11y-plan pack=2 draw=3 rows=100 yes=33 no=67 standing=3 file=a11y-pick-p2.d3.md of=e2dee77b985650de rule=any
-@pack_count n=7 doc=a11y-plan pack=3 draw=1 rows=91 yes=34 no=57 standing=4 file=a11y-pick-p3.md of=f5c3e0f0411ff244 rule=any
-@pack_count n=8 doc=a11y-plan pack=3 draw=2 rows=91 yes=36 no=55 standing=3 file=a11y-pick-p3.d2.md of=53a67b7939f62a39 rule=any
-@pack_count n=9 doc=a11y-plan pack=3 draw=3 rows=91 yes=43 no=48 standing=5 file=a11y-pick-p3.d3.md of=7a371083d71af062 rule=any

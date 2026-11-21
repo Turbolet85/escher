@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-21 — Iterate new code's lints on the clippy leg, not on `fast`
+`bash .github/scripts/ci-leg.sh fast` stops at the first clippy run that reads red. Two lints in two targets of new code
+(one in a library module, one in its unit test) then cost two full `fast` firings, each rebuilding up to clippy again.
+When a change adds code, run `bash .github/scripts/ci-leg.sh clippy` alone until it reads clean, then fire `fast` once.
+
+---
+
 ## 2026-11-20 — A cargo-mutants `--output` written into a chunk's evidence carries host paths that hygiene refuses
 cargo-mutants writes its run record into the `--output` directory's `mutants.out/`. `debug.log`, the `log/` directory
 and `outcomes.json` there hold absolute host paths (the workspace root, the home dir). So when that directory is a

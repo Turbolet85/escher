@@ -1,0 +1,16 @@
+@fit n=1 row=contract/select-readers/is-list-box sha=e80ae2de9f7e v=fits type=3
+@fit n=2 row=contract/geometry/get-client-bounding-rect sha=7326be018746 v=fits type=3
+@fit n=3 row=decision/targeted-restyle-on-mutation sha=661c32d77915 v=fits type=2
+@fit n=4 row=decision/select-size-hint sha=ff0e254283ad v=fits type=1
+@fit n=5 row=decision/single-select-list-opening sha=93402b0200d5 v=fits type=1
+@fit n=6 row=decision/select-list-painted-overlay sha=3bf2635f3cfb v=fits type=1
+@fit n=7 row=decision/select-keyboard-model sha=bd002391ca18 v=fits type=1
+@fit n=8 row=decision/hit-focus-form-engine-changes sha=d6aa3d23ee2a v=fits type=1
+@fit n=9 row=decision/click-focuses-button sha=dfa0eed7a01f v=fits type=2
+@fit n=10 row=decision/closed-select-options-covered sha=79f1ea71df32 v=fits type=1
+@fit n=11 row=decision/multiple-select-chosen-row-colours sha=7b87edaefb60 v=fits type=1
+@fit n=12 row=contract/accessibility-tree/select-expanded sha=4a9db017a713 v=fits type=3
+@fit n=13 row=contract/accessibility-tree/aria-expanded sha=297027edcced v=fits type=3
+@fit n=14 row=contract/dioxus-native-dom/closed-select-of sha=7161cb61fe1c v=fits type=3
+@fit n=15 row=contract/driver-forms/closed-select-of sha=70ca79ef464d v=fits type=3
+@fit n=16 row=contract/driver-forms/select-snapshot-options sha=d1e9fd7bd999 v=fits type=3

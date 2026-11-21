@@ -1,0 +1,146 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-21T22:13:33Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-21-single-select-sized-as-a-list-box",
+"--run-dir",
+".andromeda/runs/2026-11-21T19-57-48-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-11-21-single-select-sized-as-a-list-box)",
+"pool: unclaimed 10 [v040-02 v040-07 v040-08 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-21T22:13:33Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-21-single-select-sized-as-a-list-box",
+"--run-dir",
+".andromeda/runs/2026-11-21T19-57-48-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-11-21-single-select-sized-as-a-list-box)",
+"pool: unclaimed 10 [v040-02 v040-07 v040-08 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-21T22:13:33Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-04",
+"--text-file",
+".andromeda/runs/2026-11-21T19-57-48-wrap/note-v040-04.md",
+"--run-dir",
+".andromeda/runs/2026-11-21T19-57-48-wrap",
+"--marker",
+"2026-11-21-single-select-sized-as-a-list-box",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-04: +164 chars (total 785) · status verified · ref/acceptance untouched",
+"dry-run: nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": {
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 619
+},
+"after": {
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 785
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-21T22:13:36Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-04",
+"--text-file",
+".andromeda/runs/2026-11-21T19-57-48-wrap/note-v040-04.md",
+"--run-dir",
+".andromeda/runs/2026-11-21T19-57-48-wrap",
+"--marker",
+"2026-11-21-single-select-sized-as-a-list-box"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-04: +164 chars (total 785) · status verified · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-21T13-55-32-2026-11-21-single-select-sized-as-a-list-box.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T13-55-32-2026-11-21-single-select-sized-as-a-list-box.ndjson"
+],
+"before": {
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 619
+},
+"after": {
+"id": "v040-04",
+"chunk": "2026-11-20-select-list-and-selection-debts",
+"status": "verified",
+"method": "integration",
+"ref": "tests/blitz-tests/tests/stand_lint.rs::an_open_lists_highlighted_row_reads_its_painted_pair_and_plain_rows_their_own · t… (1078 chars)",
+"acceptance": "The five debts reached the founder as five forks, answered F1 A · F2 A · F3 A · F4 C · F5 A (inputs#I2). Each fix is pro… (682 chars)",
+"notes_chars": 785
+}
+}
+]

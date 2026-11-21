@@ -1,2 +1,0 @@
-@none
-reason: The chunk changes engine focus handling (post-layout give-up of an unshown focused control, Tab and Shift+Tab skipping unshown nodes), a seeded Math.random builder for script documents and the bridge's boundary-registry prune; it adds no user-facing surface or region (D-layout-surface holds), and no row of layout-templates — the stand's keyboard regions, ids, accessible names, skeleton, viewport, session and CLI contracts — is made false or incomplete by it (fct-xvmt5uxa, fct-mc6o3rqy, fct-u2bi77rx).

@@ -1,0 +1,10 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -264,5 +264,5 @@
+ decision/runtime-probe-leaks-no-read-value · Runtime probe leaks no read value — The dioxus runtime probe lets no read value leave it: its failure messages name a layout mode, a task or page and a link or index only, and its reading quotes no captured stderr, panic payload, signal value or node id.
+-decision/select-chosen-set-never-logged · Select chosen set never logged — A multiple select's chosen set leaves only as form entries, the snapshot's value and the options' tree nodes, never as a log line or field.
++decision/select-chosen-set-never-logged · Select chosen set never logged — A select's chosen state never leaves as a log line, span or field: a multiple select's chosen set leaves only as form entries, the snapshot's value and the options' tree nodes, and a single list box's chosen row and row labels only in the snapshot, the diff and the actions answer.
+ decision/select-list-label-never-logged · Select list row label never logged — A select list row's label holds page text in a public read type, is never logged, and leaves only as a painted pixel and the snapshot's existing name.
+-decision/select-size-attribute-read · Select size attribute read — The size attribute on a multiple select is read as a whole number capped at 65534, carrying no text out and moving no redaction shape, for every document. · why: an engine change for every document and a boundary widening, ratified
++decision/select-size-attribute-read · Select size attribute read — The size attribute on a select, multiple or single, is read as a whole number capped at 65534, carrying no text out and moving no redaction shape, for every document. · why: an engine change for every document and a boundary widening, ratified
+ decision/session-logs-carry-no-page-content · Session logs carry no page content — The session host's, the mcp role's and every client's stderr carries no element id, accessible name, typed text, recording path or recorded content at any log level, under the package-alone and the workspace build. · guard: host_log, mcp_log
