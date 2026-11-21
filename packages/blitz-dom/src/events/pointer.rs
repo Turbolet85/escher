@@ -20,7 +20,7 @@ use taffy::AbsoluteAxis;
 use crate::{
     BaseDocument,
     node::{
-        RangeMove, ScrollbarRef, SpecialElementData,
+        ElementData, RangeMove, ScrollbarRef, SpecialElementData,
         select::{self, RowGesture},
     },
     scrolling::{FlingState, ScrollAnimationState},
@@ -974,31 +974,38 @@ fn click_summary(doc: &mut BaseDocument, node_id: NodeId) -> bool {
 }
 
 /// A click focuses a select and starts its typed text afresh, and the text it hit
-/// inside the select is not selected; on a single select it opens the list, or
-/// closes the one that stands.
+/// inside the select is not selected; on a drop-down select it opens the list, or
+/// closes the one that stands, and on a list box it opens nothing.
 fn click_select(doc: &mut BaseDocument, node_id: NodeId) -> bool {
-    let single = doc.nodes[node_id]
+    let drop_down = doc.nodes[node_id]
         .element_data()
-        .is_some_and(select::is_single_select);
+        .is_some_and(select::is_drop_down);
     let standing = doc.select_list_for(node_id).is_some();
     focus_select(doc, node_id);
     if standing {
         doc.close_select_list();
-    } else if single {
+    } else if drop_down {
         doc.open_select_list(node_id);
     }
     true
 }
 
-/// A `multiple` select's row takes a click, and so does a row of an open list; an
-/// option of a closed select has no box to take one, and the walk goes on to its
-/// select.
+/// A list box's row takes a click, and so does a row of an open list; an option of a
+/// closed drop-down select has no box to take one, and the walk goes on to its select.
 fn click_option(doc: &mut BaseDocument, node_id: NodeId, event: &BlitzPointerEvent) -> bool {
-    if let Some(select) = doc.select_of(node_id).filter(|select| {
-        doc.get_node(*select)
-            .is_some_and(|node| node.attr(local_name!("multiple")).is_some())
-    }) {
+    let list_box = |doc: &BaseDocument, test: fn(&ElementData) -> bool| {
+        doc.select_of(node_id).filter(|select| {
+            doc.get_node(*select)
+                .and_then(|node| node.element_data())
+                .is_some_and(test)
+        })
+    };
+    if let Some(select) = list_box(doc, select::is_multiple_select) {
         click_select_row(doc, select, node_id, event.mods);
+        return true;
+    }
+    if let Some(select) = list_box(doc, select::is_single_list_box) {
+        click_list_box_row(doc, select, node_id);
         return true;
     }
     if let Some(select) = doc.open_select()
@@ -1140,6 +1147,23 @@ fn click_select_row(doc: &mut BaseDocument, select: NodeId, row: NodeId, mods: M
     let disabled = doc.get_node(row).is_some_and(select::option_disabled);
     if !disabled {
         doc.apply_row_gesture(select, &options, gesture);
+    }
+}
+
+/// A click on a row of a list box without `multiple` focuses the select, starts its typed text
+/// afresh and chooses the row alone, whatever modifier is held. A disabled select takes no click,
+/// and a disabled row changes nothing.
+fn click_list_box_row(doc: &mut BaseDocument, select: NodeId, row: NodeId) {
+    if doc
+        .get_node(select)
+        .and_then(|node| node.element_data())
+        .is_some_and(|element| element.is_disabled())
+    {
+        return;
+    }
+    focus_select(doc, select);
+    if !doc.get_node(row).is_some_and(select::option_disabled) {
+        doc.apply_select_choice(select, &[row]);
     }
 }
 

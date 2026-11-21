@@ -236,9 +236,10 @@ impl BaseDocument {
                 Some(_) => builder.set_invalid(Invalid::True),
             }
 
-            // A single select states whether its list is open and reads no author attribute
-            // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox).
-            if select::is_single_select(element_data) {
+            // A drop-down select states whether its list is open and reads no author attribute
+            // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox); a single list box states
+            // neither (https://www.w3.org/TR/html-aam-1.0/#el-select-listbox).
+            if select::is_drop_down(element_data) {
                 let list = self.select_list_for(node.id);
                 builder.set_expanded(list.is_some());
                 // While its list is open the select keeps focus and names the highlighted option
@@ -249,7 +250,8 @@ impl BaseDocument {
                 if let Some(current) = list.and_then(|list| list.current) {
                     builder.set_active_descendant(NodeId(current.as_u64()));
                 }
-            } else if let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
+            } else if !select::is_single_select(element_data)
+                && let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
                 && let Ok(aria_expanded) = aria_expanded.parse()
             {
                 builder.set_expanded(aria_expanded);
@@ -525,10 +527,10 @@ fn role_from_element_data(element_data: &ElementData) -> Option<Role> {
         "button" => Some(Role::Button),
         "label" => Some(Role::Label),
         "legend" => Some(Role::Label),
-        "select" => match element_data.attr(local_name!("multiple")) {
-            Some(_) => Some(Role::ListBox),
-            None => Some(Role::ComboBox),
-        },
+        // https://www.w3.org/TR/html-aam-1.0/#el-select-listbox: a list box, `multiple` or of a
+        // display size above 1, else a combo box.
+        "select" if select::is_list_box(element_data) => Some(Role::ListBox),
+        "select" => Some(Role::ComboBox),
         "option" => Some(Role::ListBoxOption),
         "optgroup" => Some(Role::Group),
         "textarea" => Some(Role::MultilineTextInput),

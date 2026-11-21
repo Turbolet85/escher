@@ -101,7 +101,13 @@ pub(crate) fn handle_key_or_input_event(
             && key_event.state.is_pressed()
         {
             press_range_input_key(doc, node_id, &key_event.key);
-        } else if select::is_single_select(element_data)
+        } else if select::is_single_list_box(element_data)
+            && !element_data.is_disabled()
+            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
+            && key_event.state.is_pressed()
+        {
+            press_list_box_key(doc, node_id, key_event);
+        } else if select::is_drop_down(element_data)
             && !element_data.is_disabled()
             && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
             && key_event.state.is_pressed()
@@ -185,6 +191,38 @@ fn press_select_key(doc: &mut BaseDocument, node_id: NodeId, event: &BlitzKeyEve
         _ => None,
     };
     if let Some(option) = target.and_then(|index| options.get(index).copied()) {
+        doc.apply_select_choice(node_id, &[option]);
+    }
+}
+
+/// A focused list box without `multiple`'s keys: the arrows choose the next or previous option
+/// that is not disabled, Home and End the first and last — with none chosen, ArrowDown reads as
+/// Home and ArrowUp as End — and a character typed with no Ctrl, Alt or Meta, a Space only with
+/// typed text standing, joins the typed text, choosing the first option whose label starts with
+/// it. The row chosen is brought into view in
+/// the box. Shift, Ctrl or Meta held with an arrow changes nothing beyond its plain step, and
+/// every other key, Enter among them, does nothing: no list is opened.
+fn press_list_box_key(doc: &mut BaseDocument, node_id: NodeId, event: &BlitzKeyEvent) {
+    let options = select::options(doc, node_id);
+    let readings = select::readings(doc, &options);
+    let target = match (&event.key, select_step(&event.key)) {
+        (_, Some(step)) => select::stepped(&readings, step, select::last_chosen(&readings)),
+        (Key::Character(text), None)
+            if types_into_select(event.modifiers)
+                && (text != " " || doc.select_text_stands(node_id)) =>
+        {
+            let typed = doc.type_into_select(node_id, text);
+            select::matched(&readings, &typed)
+        }
+        _ => None,
+    };
+    if let Some(option) = target.and_then(|index| options.get(index).copied()) {
+        doc.scroll_into_view(
+            option,
+            ScrollBehavior::Instant,
+            ScrollLogicalPosition::Nearest,
+            ScrollLogicalPosition::Nearest,
+        );
         doc.apply_select_choice(node_id, &[option]);
     }
 }

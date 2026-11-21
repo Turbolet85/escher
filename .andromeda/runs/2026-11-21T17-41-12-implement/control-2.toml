@@ -1,0 +1,10 @@
+[[control]]
+id = 'popup-gate'
+entry = 2
+guard = 'select_list_allowed reads a list box as able to hold a list'
+case = 'a_sized_single_select_opens_no_list'
+
+[[control.edit]]
+path = 'packages/blitz-dom/src/document.rs'
+old = '&& select::is_drop_down(element)'
+new = '&& select::is_single_select(element)'

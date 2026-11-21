@@ -82,8 +82,9 @@ settled step and returns its diff. An id the screen does not read is refused `st
 session read it, else `not-found`; a `click` or a `type` on a target that cannot take it is refused `disabled`,
 `off-screen` or `covered`, in that order. `type` replaces what a control holds, and on a `select` it chooses the first
 enabled option whose label starts with the text, on a `multiple` select that option alone with no click on a row, and
-it leaves no list open. A `click` on a single `select` opens its list or closes the one standing, and a `click` on an
-open list's row chooses it. A `click` on a `multiple` select's row chooses it. `scroll` brings its target into view through every scrolling box that holds
+it leaves no list open. A `click` on a drop-down `select` opens its list or closes the one standing, and a `click` on an
+open list's row chooses it. A `click` on a list box's row chooses it: a `multiple` select's, or a single select's whose
+`size` is above 1. `scroll` brings its target into view through every scrolling box that holds
 it and answers `in_view`. The five acting verbs wait on a page load in flight for up to `LOAD_WAIT`, 5 s of wall
 time, moving no time on the instance; a step that does not go quiet answers `settled: false` with its busy class.
 
@@ -290,7 +291,10 @@ Escher changed the engine, for every document and not the stand alone, in these 
   and a click on a row choose, one `input` then one `change`; Escape, a second click, a click outside, which goes on to
   what it landed on, and the page scrolling close it with no event. Focus stays on the select, whose tree node states
   `expanded` and, while the list is open, names the highlighted option as its active descendant;
-- **`size`** on a `multiple` select makes it that many rows tall, the rest scrolling;
+- **`size`** on a `multiple` select makes it that many rows tall, the rest scrolling, and a single select whose `size`
+  parses above 1 is a list box that many rows tall with no popup: its rows have boxes of their own, a click on a row
+  chooses it alone, its arrows, `Home`, `End` and typed text choose a row and bring it into view, Enter and Space open
+  nothing, its tree node reads `ListBox` with no `expanded`, and it may stand with nothing chosen;
 - **a `multiple` `select` model**: its rows have boxes of their own and take a click, plain, with Ctrl or Meta and with
   Shift; its arrows, `Home` and `End` choose a row alone, with Shift span and with Ctrl or Meta move the current row; a
   Space flips the current row; typed text chooses its match alone; each change fires one `input` and one `change`, a
@@ -366,8 +370,8 @@ The driver's own refusal texts state three readings that are off:
   mutator's flush, and one that no longer shows gives it up after the next layout; neither fires a DOM `blur` or
   `focusout`. Pinned by `inert_subtree` and `focus_fixup_unshown`.
 - **The `select` model's limits.** An option of a closed select is not clicked: a driver click on one is refused
-  `covered`, under a group too, and an agent clicks the select first, then the option. A single select's `size` is
-  unread, owed by a route entry of its own on the founder's word. A list inside an iframe stays there. Pinned by `select_interaction`, `select_popup` and `stand_act_select`.
+  `covered`, under a group too, and an agent clicks the select first, then the option. A list inside an iframe stays
+  there. Pinned by `select_interaction`, `select_popup` and `stand_act_select`.
 - **How the highlight is read.** While a single select's list is open, the tree names the highlighted option as the
   select's active descendant, the engine writing it itself and never reading a page's `aria-activedescendant`; the
   snapshot reads that row `highlighted`, and a highlight move marks the changed set, so an acting call's diff names

@@ -351,8 +351,8 @@ impl DocumentMutator<'_> {
             self.set_option_selectedness(node_id, true);
         }
 
-        if name.local == local_name!("multiple") {
-            self.record_select_of_multiple_write(node_id);
+        if matches!(name.local, local_name!("multiple") | local_name!("size")) {
+            self.record_select_of_box_write(node_id);
         }
 
         let node = &mut self.doc.nodes[node_id];
@@ -534,8 +534,8 @@ impl DocumentMutator<'_> {
             self.set_option_selectedness(node_id, false);
         }
 
-        if name.local == local_name!("multiple") {
-            self.record_select_of_multiple_write(node_id);
+        if matches!(name.local, local_name!("multiple") | local_name!("size")) {
+            self.record_select_of_box_write(node_id);
         }
 
         let node = &mut self.doc.nodes[node_id];
@@ -808,9 +808,13 @@ impl DocumentMutator<'_> {
                     | local_name!("srcdoc")
                     | local_name!("span")
             );
-        // A table's `cellpadding` is a presentational hint on its cells, not on the table.
-        let restyles_cells = *attr == local_name!("cellpadding")
-            && node.data.is_element_with_tag_name(&local_name!("table"));
+        // A table's `cellpadding` is a presentational hint on its cells, not on the table, and a
+        // select's `size` and `multiple`, which decide whether it is a list box, one on its rows
+        // as well as on the select.
+        let restyles_cells = (*attr == local_name!("cellpadding")
+            && node.data.is_element_with_tag_name(&local_name!("table")))
+            || (matches!(*attr, local_name!("size") | local_name!("multiple"))
+                && node.data.is_element_with_tag_name(&local_name!("select")));
         if let Some(mut data) = node.try_stylo_element_data_mut().and_then(|s| s.get_mut()) {
             data.hint |= if is_style {
                 RestyleHint::RESTYLE_STYLE_ATTRIBUTE
@@ -1470,9 +1474,9 @@ impl<'doc> DocumentMutator<'doc> {
         }
     }
 
-    /// A select whose `multiple` is written or removed settles at the flush: one that loses it
-    /// is left one chosen option.
-    fn record_select_of_multiple_write(&mut self, node_id: NodeId) {
+    /// A select whose `multiple` or `size` is written or removed settles at the flush: one left a
+    /// drop-down is left one chosen option.
+    fn record_select_of_box_write(&mut self, node_id: NodeId) {
         if self.doc.nodes[node_id]
             .data
             .is_element_with_tag_name(&local_name!("select"))

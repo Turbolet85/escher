@@ -107,10 +107,11 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         ),
         (
             Some(PRESS.help),
-            "presses one key on the focused element, then settles; on a closed select `enter` and \
-             `space` open its list, and on an open one the arrows, `home` and `end` move its \
+            "presses one key on the focused element, then settles; on a closed drop-down select \
+             `enter` and `space` open its list, and on an open one the arrows, `home` and `end` move its \
              highlight, which only a screenshot shows, `enter` or `space` chooses the highlighted \
-             row and `escape` closes with no choice; on a `multiple` select the arrows, `home` and \
+             row and `escape` closes with no choice; on a single select whose `size` is above 1 \
+             the arrows, `home` and `end` choose a row and nothing opens; on a `multiple` select the arrows, `home` and \
              `end` choose a row alone and with `shift` span to it, and with `ctrl` move the \
              current row without choosing, `space` then flipping it in or out of the set",
         ),
@@ -121,9 +122,10 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
         ),
         (
             Some(CLICK.help),
-            "clicks the element an id names, then settles; a click on a select opens its list or \
-             closes the one standing, and a click on a row of an open list chooses it; a click on \
-             the same point within 500 ms of the session's time after the last click there, \
+            "clicks the element an id names, then settles; a click on a drop-down select opens its \
+             list or closes the one standing, and a click on a row of an open list chooses it; a \
+             click on a row of a list box, a `multiple` select or a single select whose `size` is \
+             above 1, chooses it; a click on the same point within 500 ms of the session's time after the last click there, \
              `type`'s own click included, is a double click, and an `advance` of at least 500 ms \
              separates two single clicks",
         ),

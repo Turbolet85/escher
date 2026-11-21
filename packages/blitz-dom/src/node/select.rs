@@ -98,8 +98,37 @@ pub(crate) fn is_multiple_select(element: &ElementData) -> bool {
     element.name.local == local_name!("select") && element.has_attr(local_name!("multiple"))
 }
 
+/// <https://html.spec.whatwg.org/multipage/form-elements.html#concept-select-size>: a select's
+/// display size, its `size` where that reads a whole number above 0, else 1.
+pub(crate) fn display_size(element: &ElementData) -> u32 {
+    element
+        .attr(local_name!("size"))
+        .and_then(super::select_list::size_rows)
+        .unwrap_or(1)
+}
+
+/// Whether `element` is a `select` rendered as a list box: one with `multiple`, or whose
+/// [display size](display_size) is above 1. Any other select is a drop-down box.
+///
+/// <https://html.spec.whatwg.org/multipage/rendering.html#the-select-element-2>
+pub(crate) fn is_list_box(element: &ElementData) -> bool {
+    element.name.local == local_name!("select")
+        && (element.has_attr(local_name!("multiple")) || display_size(element) > 1)
+}
+
+/// Whether `element` is a `select` without `multiple` rendered as a list box.
+pub(crate) fn is_single_list_box(element: &ElementData) -> bool {
+    is_single_select(element) && display_size(element) > 1
+}
+
+/// Whether `element` is a `select` without `multiple` rendered as a drop-down box: the one kind
+/// of select whose list opens.
+pub(crate) fn is_drop_down(element: &ElementData) -> bool {
+    is_single_select(element) && display_size(element) == 1
+}
+
 /// The select an `option` or an `optgroup` belongs to: its parent, or an option's group's parent.
-fn select_holding(node: &Node) -> Option<NodeId> {
+pub(crate) fn select_holding(node: &Node) -> Option<NodeId> {
     let is_option = node.data.is_element_with_tag_name(&local_name!("option"));
     if !is_option && !node.data.is_element_with_tag_name(&local_name!("optgroup")) {
         return None;
@@ -256,14 +285,18 @@ fn strip_and_collapse(text: &str) -> String {
 }
 
 /// https://html.spec.whatwg.org/multipage/form-elements.html#selectedness-setting-algorithm, for
-/// a select without `multiple`: the index of the option to be its only chosen one — the last
-/// option that is selected, else the first option that is not disabled; `None` where there is
-/// neither.
-pub(crate) fn settled(options: &[OptionReading]) -> Option<usize> {
+/// a select without `multiple` of `display_size`: the index of the option to be its only chosen
+/// one — the last option that is selected, else, at a display size of 1, the first option that is
+/// not disabled; `None` where there is neither, so a list box may stand with nothing chosen.
+pub(crate) fn settled(options: &[OptionReading], display_size: u32) -> Option<usize> {
     options
         .iter()
         .rposition(|option| option.chosen)
-        .or_else(|| options.iter().position(|option| !option.disabled))
+        .or_else(|| {
+            (display_size == 1)
+                .then(|| options.iter().position(|option| !option.disabled))
+                .flatten()
+        })
 }
 
 /// The last of `options` that is chosen: the row a key steps from where nothing else says.
@@ -377,24 +410,84 @@ mod tests {
 
     #[test]
     fn the_selectedness_setting_algorithm_keeps_one_chosen_option() {
-        // (options, the index left chosen)
-        let rows: [(&[Row], Option<usize>); 7] = [
+        // (options, the display size, the index left chosen)
+        let rows: [(&[Row], u32, Option<usize>); 11] = [
             (
                 &[("a", false, false), ("b", false, true), ("c", false, false)],
+                1,
                 Some(1),
             ),
-            (&[("a", false, false), ("b", false, false)], Some(0)),
-            (&[("a", true, false), ("b", false, false)], Some(1)),
+            (&[("a", false, false), ("b", false, false)], 1, Some(0)),
+            (&[("a", true, false), ("b", false, false)], 1, Some(1)),
             (
                 &[("a", false, true), ("b", false, true), ("c", false, false)],
+                1,
                 Some(1),
             ),
-            (&[("a", true, true), ("b", false, false)], Some(0)),
-            (&[("a", true, false), ("b", true, false)], None),
-            (&[], None),
+            (&[("a", true, true), ("b", false, false)], 1, Some(0)),
+            (&[("a", true, false), ("b", true, false)], 1, None),
+            (&[], 1, None),
+            (&[("a", false, false), ("b", false, false)], 3, None),
+            (
+                &[("a", false, true), ("b", false, true), ("c", false, false)],
+                3,
+                Some(1),
+            ),
+            (&[("a", true, false), ("b", false, false)], 2, None),
+            (&[("a", false, false), ("b", false, true)], 2, Some(1)),
         ];
-        for (index, (rows, expected)) in rows.iter().enumerate() {
-            assert_eq!(settled(&options(rows)), *expected, "row {index}");
+        assert_eq!(rows.len(), 11);
+        for (index, (rows, size, expected)) in rows.iter().enumerate() {
+            assert_eq!(settled(&options(rows), *size), *expected, "row {index}");
+        }
+    }
+
+    /// A `select` element carrying `attrs`.
+    fn select_element(attrs: &[(&str, &str)]) -> ElementData {
+        use crate::{Attribute, QualName};
+        let attrs = attrs
+            .iter()
+            .map(|(name, value)| Attribute {
+                name: QualName::new(None, markup5ever::ns!(), (*name).into()),
+                value: (*value).to_string(),
+            })
+            .collect();
+        ElementData::new(
+            QualName::new(None, markup5ever::ns!(html), local_name!("select")),
+            attrs,
+        )
+    }
+
+    #[test]
+    fn the_display_size_makes_a_select_a_list_box_or_a_drop_down() {
+        /// A select's attributes, as `(name, value)`.
+        type Attrs = &'static [(&'static str, &'static str)];
+        // (attributes, display size, list box)
+        let rows: [(Attrs, u32, bool); 11] = [
+            (&[], 1, false),
+            (&[("size", "1")], 1, false),
+            (&[("size", "0")], 1, false),
+            (&[("size", "many")], 1, false),
+            (&[("size", "-3")], 1, false),
+            (&[("size", "")], 1, false),
+            (&[("size", "2")], 2, true),
+            (&[("size", "3")], 3, true),
+            (&[("size", " 4")], 4, true),
+            (&[("multiple", "")], 1, true),
+            (&[("multiple", ""), ("size", "3")], 3, true),
+        ];
+        assert_eq!(rows.len(), 11);
+        for (index, (attrs, size, list_box)) in rows.iter().enumerate() {
+            let element = select_element(attrs);
+            assert_eq!(display_size(&element), *size, "row {index}");
+            assert_eq!(is_list_box(&element), *list_box, "row {index}");
+            let single = !element.has_attr(local_name!("multiple"));
+            assert_eq!(
+                is_single_list_box(&element),
+                single && *list_box,
+                "row {index}"
+            );
+            assert_eq!(is_drop_down(&element), single && !*list_box, "row {index}");
         }
     }
 

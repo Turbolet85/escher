@@ -302,7 +302,7 @@ impl BaseDocument {
         })
     }
 
-    /// An option of a closed single select, read at its select's box, or a row of an open
+    /// An option of a closed drop-down select, read at its select's box, or a row of an open
     /// list, read at the list's row; `None` for any other node.
     fn select_reason(&self, node: &Node) -> Option<LayoutReason> {
         let element = node.element_data()?;
@@ -321,11 +321,7 @@ impl BaseDocument {
                 Vec::new(),
             ));
         }
-        let multiple = self
-            .get_node(select)?
-            .element_data()?
-            .has_attr(local_name!("multiple"));
-        if multiple || self.open_select() == Some(select) {
+        if self.is_list_box(select) || self.open_select() == Some(select) {
             return None;
         }
         let bounds = self.get_client_bounding_rect(select)?;

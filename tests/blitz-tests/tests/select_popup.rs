@@ -9,8 +9,9 @@
 //! list is open names the highlighted option as the select's active descendant; a highlight move,
 //! by key or pointer, marks the changed set. Every row takes the tallest row's height, so a larger
 //! authored font is not cut. Boxes that
-//! clip the select do not clip the list. Hostile markup keeps every box finite, and a `multiple`
-//! select's `size` makes it that many rows tall. In both layout modes, through real dispatch. A
+//! clip the select do not clip the list. Hostile markup keeps every box finite, a `multiple`
+//! select's `size` makes it that many rows tall, and a single select whose `size` is above 1 opens
+//! no list. In both layout modes, through real dispatch. A
 //! failure message carries the layout mode and a row index.
 //!
 //! <https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element>
@@ -917,7 +918,8 @@ fn a_long_list_shows_twenty_rows_and_scrolls_by_key_and_by_wheel() {
     }
 }
 
-/// Hostile markup: `size` non-numeric, `0` and oversized, 2,000 options and a 5,500-character label.
+/// Hostile markup: `size` non-numeric, `0` and oversized, 2,000 options and a 5,500-character label;
+/// a single select sized 70,000 over the 2,000 options among them.
 fn hostile_html() -> String {
     let options: String = (0..2000)
         .map(|row| format!(r#"<option value="{row}">Row {row}</option>"#))
@@ -932,6 +934,7 @@ fn hostile_html() -> String {
         <select id="huge" multiple size="4294967296"><option>A</option></select>
         <select id="vast" multiple size="70000"><option>A</option></select>
         <select id="bad" multiple size="-3"><option>A</option></select>
+        <select id="vast-single" size="70000">{options}</select>
         </body></html>"#
     )
 }
@@ -946,8 +949,8 @@ fn finite(rect: BoundingRect) -> bool {
 fn hostile_markup_keeps_every_box_finite_and_panics_nowhere() {
     let html = hostile_html();
     let opened = ["#many", "#wide", "#word"];
-    let others = ["#zero", "#huge", "#vast", "#bad"];
-    assert_eq!(opened.len() + others.len(), 7);
+    let others = ["#zero", "#huge", "#vast", "#bad", "#vast-single"];
+    assert_eq!(opened.len() + others.len(), 8);
     for incremental in [false, true] {
         let mut harness =
             Harness::<HtmlDocument>::from_html_with(&html, stand::options(incremental));
@@ -981,10 +984,77 @@ fn hostile_markup_keeps_every_box_finite_and_panics_nowhere() {
     }
 }
 
-/// `multiple` selects of six rows: one with `size=3`, one with no `size`.
+#[test]
+fn a_sized_single_select_opens_no_list() {
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(sized_page, incremental);
+        let select = harness.node("#fx-single-sized");
+        for opener in 0..OPENERS {
+            let at = format!("incremental {incremental}: opener {opener}");
+            match opener {
+                0 => click(&mut harness, "#fx-single-sized", &at),
+                key => {
+                    harness.base_mut().set_focus_to(select);
+                    harness.press(if key == 1 {
+                        named(NamedKey::Enter)
+                    } else {
+                        space()
+                    });
+                }
+            }
+            assert_eq!(
+                harness.focused(),
+                Some(select),
+                "{at}: the fixture focuses the select"
+            );
+            assert_eq!(open(&harness), None, "{at}: no list opens");
+            assert!(
+                harness.base().select_list_view().is_none(),
+                "{at}: paint reads no list"
+            );
+            harness.advance_time(std::time::Duration::from_millis(500));
+        }
+
+        // A drop-down whose box a `size` write does not move: the list it holds open closes
+        // because a list box holds none, not because its box moved.
+        let at = format!("incremental {incremental}: the fixed drop-down");
+        let fixed = harness.node("#fx-fixed");
+        click(&mut harness, "#fx-fixed", &at);
+        assert_eq!(
+            open(&harness),
+            Some(fixed),
+            "{at}: the fixture's list opens"
+        );
+        let before = harness.base().get_client_bounding_rect(fixed);
+        harness
+            .base_mut()
+            .mutate()
+            .set_attribute(fixed, attribute("size"), "3");
+        harness.pump();
+        assert_eq!(
+            harness.base().get_client_bounding_rect(fixed),
+            before,
+            "{at}: the write moves no box"
+        );
+        assert_eq!(open(&harness), None, "{at}: the list closes");
+        assert!(
+            harness.base().select_list_view().is_none(),
+            "{at}: paint reads no list"
+        );
+    }
+}
+
+/// `multiple` selects of six rows: one with `size=3`, one with no `size`; a single select of six
+/// rows with `size=3`; and a drop-down whose page fixes its box's size, so a `size` written on it
+/// moves no box.
 fn sized_page() -> Element {
     rsx! {
         div { id: "fx-root",
+            select { id: "fx-single-sized", "size": "3",
+                for row in 0..6 {
+                    option { key: "{row}", id: "fx-ss-{row}", value: "{row}", "Row {row}" }
+                }
+            }
             select { id: "fx-sized", multiple: true, "size": "3",
                 for row in 0..6 {
                     option { key: "{row}", id: "fx-s-{row}", value: "{row}", "Row {row}" }
@@ -994,6 +1064,10 @@ fn sized_page() -> Element {
                 for row in 0..6 {
                     option { key: "{row}", id: "fx-a-{row}", value: "{row}", "Row {row}" }
                 }
+            }
+            select { id: "fx-fixed", style: "width: 80px; height: 60px; vertical-align: top",
+                option { id: "fx-f-a", value: "a", "A" }
+                option { id: "fx-f-b", value: "b", "B" }
             }
         }
     }

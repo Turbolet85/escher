@@ -123,7 +123,7 @@ impl SelectListView {
     pub const BORDER_WIDTH: f64 = BORDER_WIDTH;
 }
 
-/// The `size` a `multiple` select's attribute asks for: a whole number above 0, capped; `None` for
+/// The `size` a select's attribute asks for: a whole number above 0, capped; `None` for
 /// `0` and for what does not parse.
 pub(crate) fn size_rows(value: &str) -> Option<u32> {
     let rows = style::servo::attr::parse_unsigned_integer(value.chars()).ok()?;

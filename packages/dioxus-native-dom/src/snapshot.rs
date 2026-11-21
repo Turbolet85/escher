@@ -266,12 +266,11 @@ pub fn is_masked_input(element: &ElementData) -> bool {
         })
 }
 
-/// The select with no `multiple` and no list open that an `option` or an `optgroup` belongs to;
-/// `None` for any other node.
+/// The select that is no list box ([`BaseDocument::is_list_box`]) and has no list open that an
+/// `option` or an `optgroup` belongs to; `None` for any other node.
 pub fn closed_select_of(doc: &BaseDocument, node: NodeId) -> Option<NodeId> {
     let select = doc.select_of(node)?;
-    let element = doc.get_node(select)?.element_data()?;
-    (!is_multiple_select(element) && doc.open_select() != Some(select)).then_some(select)
+    (!doc.is_list_box(select) && doc.open_select() != Some(select)).then_some(select)
 }
 
 /// Whether `element` is a `select`, which the driver's `type` focuses with no click.

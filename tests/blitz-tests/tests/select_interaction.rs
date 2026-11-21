@@ -16,7 +16,11 @@
 //! then one `change`, `evt.values()` reading the set; `multiple` removed settles it to one option.
 //! An `optgroup`'s options are in its select's list: a single select's keys and text reach them,
 //! the chosen one shows alone with no box for its group, and a disabled group's rows are skipped.
-//! In both layout modes.
+//! A single select whose `size` parses above 1 is a list box `size` rows tall, its rows with boxes
+//! of their own, reading `ListBox` with no `expanded`, and may stand with nothing chosen: its
+//! arrows, Home, End and typed text choose a row and bring it into view, a click on a row chooses
+//! it alone whatever modifier is held, and nothing opens a list; a `size` write moves a select
+//! between list box and drop-down. In both layout modes.
 //!
 //! <https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element>
 
@@ -906,6 +910,416 @@ fn a_multiple_selects_groups_lay_out_and_a_disabled_groups_rows_are_not_chosen()
         assert!(
             group.width > 0.0 && group.height > 0.0,
             "incremental {incremental}: a `multiple` select's group has a box"
+        );
+    }
+}
+
+/// Single selects whose `size` makes them list boxes, in an app that writes `selected` on the
+/// option `fx-sized`'s `input` event names, as a controlled select's app does, and counts its
+/// `input` and `change` events: `fx-sized`, eight rows sized three, Banana chosen and Cherry
+/// disabled; `fx-sized-none`, sized three with nothing written `selected`; `fx-sized-off`, a
+/// disabled one; `fx-drop`, a drop-down; and `fx-ds-0` to `fx-ds-7`, unsized, whose `size` a
+/// check writes.
+fn sized_page() -> Element {
+    let mut inputs = use_signal(|| 0u32);
+    let mut changes = use_signal(|| 0u32);
+    let mut chosen = use_signal(|| "b".to_string());
+    let holds = move |value: &str| *chosen.read() == value;
+    rsx! {
+        div { id: "fx-root",
+            select {
+                id: "fx-sized",
+                size: "3",
+                oninput: move |event| {
+                    *inputs.write() += 1;
+                    chosen.set(event.value());
+                },
+                onchange: move |_| *changes.write() += 1,
+                option { id: "fx-z-a", value: "a", selected: holds("a"), "Apple" }
+                option { id: "fx-z-b", value: "b", selected: holds("b"), "Banana" }
+                option { id: "fx-z-c", value: "c", disabled: true, "Cherry" }
+                option { id: "fx-z-d", value: "d", selected: holds("d"), "Date" }
+                option { id: "fx-z-e", value: "e", selected: holds("e"), "Elder" }
+                option { id: "fx-z-f", value: "f", selected: holds("f"), "Fig" }
+                option { id: "fx-z-g", value: "g", selected: holds("g"), "Grape" }
+                option { id: "fx-z-h", value: "h", selected: holds("h"), "Hazel" }
+            }
+            select { id: "fx-sized-none", size: "3",
+                option { id: "fx-n-r", value: "r", "Red" }
+                option { id: "fx-n-g", value: "g", "Green" }
+                option { id: "fx-n-u", value: "u", "Blue" }
+            }
+            select { id: "fx-sized-off", size: "3", disabled: true,
+                option { id: "fx-o-p", value: "p", "P" }
+                option { id: "fx-o-q", value: "q", "Q" }
+            }
+            select { id: "fx-drop",
+                option { id: "fx-d-x", value: "x", "X" }
+                option { id: "fx-d-y", value: "y", selected: true, "Y" }
+                option { id: "fx-d-z", value: "z", "Z" }
+            }
+            for index in 0..8 {
+                select { key: "{index}", id: "fx-ds-{index}",
+                    option { value: "s", "S" }
+                    option { value: "t", "T" }
+                }
+            }
+            p { id: "fx-inputs", "{inputs}" }
+            p { id: "fx-changes", "{changes}" }
+        }
+    }
+}
+
+/// The accessibility tree's node of the element `selector`.
+fn tree_node(harness: &Page, selector: &str) -> accesskit::Node {
+    let id = accesskit::NodeId(harness.node(selector).as_u64());
+    harness
+        .base()
+        .build_accessibility_tree()
+        .nodes
+        .into_iter()
+        .find(|(node, _)| *node == id)
+        .map(|(_, node)| node)
+        .expect("the tree holds the node")
+}
+
+/// Writes `size` on the select `selector`, or removes it, through the mutator.
+fn write_size(harness: &mut Page, selector: &str, size: Option<&str>) {
+    let select = harness.node(selector);
+    let name = QualName::new(None, ns!(), local_name!("size"));
+    {
+        let mut doc = harness.base_mut();
+        let mut mutator = doc.mutate();
+        match size {
+            Some(size) => mutator.set_attribute(select, name, size),
+            None => mutator.clear_attribute(select, name),
+        }
+    }
+    harness.pump();
+}
+
+/// Whether the element `selector` lays out a box of its own: it computes a `display` other than
+/// `none` and reads a client rect that is not empty. A node that turns `display: none` keeps the
+/// client rect it last laid out at, so the rect alone does not say it lays out nothing.
+fn has_box(harness: &Page, selector: &str) -> bool {
+    let doc = harness.base();
+    let node = harness.node(selector);
+    let displayed = doc
+        .get_node(node)
+        .and_then(|node| node.primary_styles())
+        .is_some_and(|style| !style.get_box().display.is_none());
+    displayed
+        && doc
+            .get_client_bounding_rect(node)
+            .is_some_and(|rect| rect.width > 0.0 && rect.height > 0.0)
+}
+
+/// How far the select `selector`'s box is scrolled.
+fn scroll_top(harness: &Page, selector: &str) -> f64 {
+    let doc = harness.base();
+    doc.get_node(harness.node(selector))
+        .map_or(f64::NAN, |node| node.scroll_offset().y)
+}
+
+#[test]
+fn a_sized_single_select_is_a_list_box_of_its_rows() {
+    const ROWS: [&str; 8] = [
+        "#fx-z-a", "#fx-z-b", "#fx-z-c", "#fx-z-d", "#fx-z-e", "#fx-z-f", "#fx-z-g", "#fx-z-h",
+    ];
+    assert_eq!(ROWS.len(), 8);
+    for incremental in [false, true] {
+        let harness = fixtures::boot(sized_page, incremental);
+        let doc = harness.base();
+        let rect = |selector: &str| {
+            doc.get_client_bounding_rect(harness.node(selector))
+                .expect("the element reads a client rect")
+        };
+        let list = rect("#fx-sized");
+        assert_eq!(
+            list.height, 63.59375,
+            "incremental {incremental}: three rows of 1.2em, the border and the padding"
+        );
+        // Each row starts where the last ends, to within the 1/64 px a rect is snapped to.
+        let mut below = f64::MIN;
+        for (row, selector) in ROWS.into_iter().enumerate() {
+            let read = rect(selector);
+            assert!(
+                read.width > 0.0 && read.height > 0.0 && read.y >= below - 1.0 / 64.0,
+                "incremental {incremental}: row {row} has a box of its own, below the last"
+            );
+            below = read.y + read.height;
+        }
+        drop(doc);
+        let select = tree_node(&harness, "#fx-sized");
+        assert_eq!(
+            select.role(),
+            accesskit::Role::ListBox,
+            "incremental {incremental}"
+        );
+        assert_eq!(select.is_expanded(), None, "incremental {incremental}");
+        assert!(
+            !select.is_multiselectable(),
+            "incremental {incremental}: a single list box is not multiselectable"
+        );
+        let chosen = harness
+            .text_contrast(harness.node("#fx-z-b"))
+            .expect("the chosen row's text is measured");
+        assert!(
+            (chosen.ratio - 12.56).abs() < 0.01,
+            "incremental {incremental}: the chosen row reads the user agent's pair"
+        );
+    }
+}
+
+#[test]
+fn a_sized_single_select_with_nothing_chosen_reads_no_value() {
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(sized_page, incremental);
+        assert_eq!(
+            value(&harness, "#fx-sized-none"),
+            None,
+            "incremental {incremental}: a list box may stand with nothing chosen"
+        );
+        assert!(
+            values(&harness, "#fx-sized-none").is_empty(),
+            "incremental {incremental}: no option reads chosen"
+        );
+        write_size(&mut harness, "#fx-sized-none", None);
+        assert_eq!(
+            value(&harness, "#fx-sized-none").as_deref(),
+            Some("r"),
+            "incremental {incremental}: a drop-down chooses its first enabled option"
+        );
+        write_size(&mut harness, "#fx-sized-none", Some("3"));
+        assert_eq!(
+            value(&harness, "#fx-sized-none").as_deref(),
+            Some("r"),
+            "incremental {incremental}: a list box again keeps the choice"
+        );
+    }
+}
+
+#[test]
+fn the_display_size_decides_list_box_or_drop_down() {
+    // (the `size` written, a list box)
+    const SIZES: [(Option<&str>, bool); 8] = [
+        (Some("1"), false),
+        (Some("0"), false),
+        (Some("many"), false),
+        (Some("-3"), false),
+        (Some(""), false),
+        (None, false),
+        (Some("2"), true),
+        (Some("3"), true),
+    ];
+    assert_eq!(SIZES.len(), 8);
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(sized_page, incremental);
+        for (row, (size, list_box)) in SIZES.into_iter().enumerate() {
+            let selector = format!("#fx-ds-{row}");
+            if size.is_some() {
+                write_size(&mut harness, &selector, size);
+            }
+            let select = harness.node(&selector);
+            assert_eq!(
+                harness.base().is_list_box(select),
+                list_box,
+                "incremental {incremental}: row {row}"
+            );
+            let role = if list_box {
+                accesskit::Role::ListBox
+            } else {
+                accesskit::Role::ComboBox
+            };
+            assert_eq!(
+                tree_node(&harness, &selector).role(),
+                role,
+                "incremental {incremental}: row {row}"
+            );
+            harness.click(&selector);
+            assert_eq!(
+                harness.base().open_select(),
+                (!list_box).then_some(select),
+                "incremental {incremental}: row {row}: a click opens a drop-down's list alone"
+            );
+            harness.press(Key::Named(NamedKey::Escape));
+            harness.advance_time(Duration::from_millis(500));
+        }
+    }
+}
+
+/// Keys pressed in order on the focused `fx-sized`, from Banana, each a second after the last:
+/// the value each leaves, the `input` and `change` events it fires and how far the box then reads
+/// scrolled, as measured: a row brought into view from below sits on the box's bottom edge, and
+/// Home's first row, its top within the box's 2px padding, reads 2.
+fn sized_keys() -> [(Key, Modifiers, &'static str, u32, f64); 14] {
+    let (none, shift, ctrl) = (Modifiers::empty(), Modifiers::SHIFT, Modifiers::CONTROL);
+    let (down, up) = (
+        Key::Named(NamedKey::ArrowDown),
+        Key::Named(NamedKey::ArrowUp),
+    );
+    let (home, end) = (Key::Named(NamedKey::Home), Key::Named(NamedKey::End));
+    [
+        (down.clone(), none, "d", 1, 17.0),
+        (down.clone(), none, "e", 1, 36.0),
+        (end.clone(), none, "h", 1, 94.0),
+        (end, none, "h", 0, 94.0),
+        (up.clone(), none, "g", 1, 94.0),
+        (home, none, "a", 1, 2.0),
+        (up.clone(), none, "a", 0, 2.0),
+        (Key::Character("g".to_string()), none, "g", 1, 74.0),
+        (Key::Named(NamedKey::Enter), none, "g", 0, 74.0),
+        (Key::Character(" ".to_string()), none, "g", 0, 74.0),
+        (up, shift, "f", 1, 74.0),
+        (down.clone(), shift, "g", 1, 74.0),
+        (down, ctrl, "h", 1, 94.0),
+        (Key::Named(NamedKey::ArrowLeft), none, "h", 0, 94.0),
+    ]
+}
+
+#[test]
+fn the_keys_of_a_sized_single_select_choose_and_scroll() {
+    assert_eq!(sized_keys().len(), 14);
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(sized_page, incremental);
+        harness.press(Key::Named(NamedKey::Tab));
+        let sized = harness.node("#fx-sized");
+        assert_eq!(
+            harness.focused(),
+            Some(sized),
+            "incremental {incremental}: Tab focuses the list box"
+        );
+        assert_eq!(
+            value(&harness, "#fx-sized").as_deref(),
+            Some("b"),
+            "incremental {incremental}: the fixture chooses Banana"
+        );
+        for (row, (key, modifiers, expected, events, scrolled)) in
+            sized_keys().into_iter().enumerate()
+        {
+            harness.advance_time(Duration::from_secs(1));
+            let (fired, marked) =
+                measured(&mut harness, |harness| harness.press_with(key, modifiers));
+            assert_eq!(
+                value(&harness, "#fx-sized").as_deref(),
+                Some(expected),
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(
+                fired,
+                (events, events),
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(marked, events > 0, "incremental {incremental}: row {row}");
+            assert_eq!(
+                scroll_top(&harness, "#fx-sized"),
+                scrolled,
+                "incremental {incremental}: row {row}: the chosen row is in view"
+            );
+            assert_eq!(
+                harness.base().open_select(),
+                None,
+                "incremental {incremental}: row {row} opens no list"
+            );
+        }
+    }
+}
+
+#[test]
+fn a_click_on_a_sized_single_selects_row_chooses_it_alone() {
+    let rows: [(&str, Modifiers, &str, u32); 6] = [
+        ("#fx-z-a", Modifiers::empty(), "a", 1),
+        ("#fx-z-b", Modifiers::CONTROL, "b", 1),
+        ("#fx-z-a", Modifiers::META, "a", 1),
+        ("#fx-z-b", Modifiers::SHIFT, "b", 1),
+        ("#fx-z-b", Modifiers::empty(), "b", 0),
+        ("#fx-z-c", Modifiers::empty(), "b", 0),
+    ];
+    assert_eq!(rows.len(), 6);
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(sized_page, incremental);
+        let sized = harness.node("#fx-sized");
+        for (row, (selector, mods, expected, events)) in rows.into_iter().enumerate() {
+            let (fired, _) = measured(&mut harness, |harness| {
+                click_row(harness, selector, mods);
+            });
+            assert_eq!(
+                values(&harness, "#fx-sized"),
+                [expected],
+                "incremental {incremental}: row {row}: one row alone is chosen"
+            );
+            assert_eq!(
+                fired,
+                (events, events),
+                "incremental {incremental}: row {row}"
+            );
+            assert_eq!(
+                harness.focused(),
+                Some(sized),
+                "incremental {incremental}: row {row}: a click focuses the select"
+            );
+            assert_eq!(
+                harness.base().open_select(),
+                None,
+                "incremental {incremental}: row {row} opens no list"
+            );
+        }
+        let off = harness.node("#fx-sized-off");
+        click_row(&mut harness, "#fx-o-q", Modifiers::empty());
+        assert!(
+            values(&harness, "#fx-sized-off").is_empty(),
+            "incremental {incremental}: a disabled list box's row takes no click"
+        );
+        assert_ne!(
+            harness.focused(),
+            Some(off),
+            "incremental {incremental}: a click does not focus a disabled list box"
+        );
+    }
+}
+
+#[test]
+fn a_size_write_turns_a_drop_down_into_a_list_box_and_back() {
+    for incremental in [false, true] {
+        let mut harness = fixtures::boot(sized_page, incremental);
+        let drop = harness.node("#fx-drop");
+        harness.click("#fx-drop");
+        assert_eq!(
+            harness.base().open_select(),
+            Some(drop),
+            "incremental {incremental}: the fixture opens the drop-down's list"
+        );
+        assert!(
+            !has_box(&harness, "#fx-d-x"),
+            "incremental {incremental}: a drop-down lays out its chosen option alone"
+        );
+        write_size(&mut harness, "#fx-drop", Some("3"));
+        assert_eq!(
+            harness.base().open_select(),
+            None,
+            "incremental {incremental}: the list closes"
+        );
+        for (row, selector) in ["#fx-d-x", "#fx-d-y", "#fx-d-z"].into_iter().enumerate() {
+            assert!(
+                has_box(&harness, selector),
+                "incremental {incremental}: row {row} takes a box"
+            );
+        }
+        write_size(&mut harness, "#fx-drop", None);
+        assert!(
+            has_box(&harness, "#fx-d-y"),
+            "incremental {incremental}: the chosen option shows"
+        );
+        for (row, selector) in ["#fx-d-x", "#fx-d-z"].into_iter().enumerate() {
+            assert!(
+                !has_box(&harness, selector),
+                "incremental {incremental}: row {row} lays out nothing"
+            );
+        }
+        assert_eq!(
+            value(&harness, "#fx-drop").as_deref(),
+            Some("y"),
+            "incremental {incremental}: the choice stands"
         );
     }
 }

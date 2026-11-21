@@ -1,0 +1,190 @@
+[
+{
+"sql": "SELECT callee_name, caller, file, line FROM calls WHERE callee_name IN ('is_single_select','is_multiple_select','select_list_allowed','closed_select_of','size_rows','settle_select_choice','click_select_row','press_multiple_select_key','press_select_key','open_select_list') AND callee_kind = 'fn' ORDER BY callee_name, file, line",
+"rows": 30,
+"result": [
+{
+"callee_name": "click_select_row",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/pointer/click_option().",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 1000
+},
+{
+"callee_name": "closed_select_of",
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 crate/",
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"line": 53
+},
+{
+"callee_name": "closed_select_of",
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot/impl#[`Builder<'_>`]visit().",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 169
+},
+{
+"callee_name": "closed_select_of",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 6
+},
+{
+"callee_name": "closed_select_of",
+"caller": "rust-analyzer cargo escher-driver 0.3.0-beta.4 lint/flatten().",
+"file": "packages/escher-driver/src/lint.rs",
+"line": 340
+},
+{
+"callee_name": "is_multiple_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 accessibility/impl#[BaseDocument]build_accessibility_node().",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 174
+},
+{
+"callee_name": "is_multiple_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]select_value().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 857
+},
+{
+"callee_name": "is_multiple_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 109
+},
+{
+"callee_name": "is_multiple_select",
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 crate/",
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"line": 54
+},
+{
+"callee_name": "is_multiple_select",
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 snapshot/closed_select_of().",
+"file": "packages/dioxus-native-dom/src/snapshot.rs",
+"line": 273
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 accessibility/impl#[BaseDocument]build_accessibility_node().",
+"file": "packages/blitz-dom/src/accessibility.rs",
+"line": 240
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]select_value().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 855
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]select_list_allowed().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 915
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]settle_select_choice().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1226
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 103
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/pointer/click_select().",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 981
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/pointer/click_label().",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 1021
+},
+{
+"callee_name": "is_single_select",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 mutator/impl#[`DocumentMutator<'doc>`]set_option_selectedness().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1495
+},
+{
+"callee_name": "open_select_list",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/press_select_key().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 172
+},
+{
+"callee_name": "open_select_list",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/press_select_key().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 177
+},
+{
+"callee_name": "open_select_list",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/pointer/click_select().",
+"file": "packages/blitz-dom/src/events/pointer.rs",
+"line": 987
+},
+{
+"callee_name": "press_multiple_select_key",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 114
+},
+{
+"callee_name": "press_select_key",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/handle_key_or_input_event().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 108
+},
+{
+"callee_name": "select_list_allowed",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]live_select_list().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 926
+},
+{
+"callee_name": "select_list_allowed",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]open_select_list().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 939
+},
+{
+"callee_name": "select_list_allowed",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 document/impl#[BaseDocument]reconcile_select_list().",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1024
+},
+{
+"callee_name": "settle_select_choice",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 mutator/impl#[`DocumentMutator<'doc>`]flush().",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1240
+},
+{
+"callee_name": "size_rows",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 events/keyboard/impl#[BaseDocument]carries_valid_size().",
+"file": "packages/blitz-dom/src/events/keyboard.rs",
+"line": 384
+},
+{
+"callee_name": "size_rows",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/select_list/tests/size_reads_a_whole_number_above_zero_capped().",
+"file": "packages/blitz-dom/src/node/select_list.rs",
+"line": 473
+},
+{
+"callee_name": "size_rows",
+"caller": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 stylo/presentational_hints/compute_presentational_hints().",
+"file": "packages/blitz-dom/src/stylo/presentational_hints.rs",
+"line": 558
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

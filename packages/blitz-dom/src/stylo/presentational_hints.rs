@@ -73,6 +73,64 @@ pub(crate) struct PresentationalHints {
     /// For a table, the padding its `cellpadding` attribute gives its cells. Kept on the table
     /// so that the cells' hints don't depend on their ancestors.
     pub cell_padding: Option<ServoArc<Locked<PropertyDeclarationBlock>>>,
+    /// For a select without `multiple` rendered as a list box, the look its `size` gives its
+    /// rows. Kept on the select, as a table's `cellpadding` is.
+    pub list_box_rows: Option<ListBoxRows>,
+}
+
+/// The look of a list box's rows, the default sheet's rules for a `multiple` select's rows, which
+/// no selector can give a select whose `size` only a parse reads.
+/// <https://html.spec.whatwg.org/multipage/rendering.html#the-select-element-2>
+pub(crate) struct ListBoxRows {
+    /// Every option's.
+    option: ServoArc<Locked<PropertyDeclarationBlock>>,
+    /// A chosen option's, after its every option's.
+    chosen: ServoArc<Locked<PropertyDeclarationBlock>>,
+    /// A group's.
+    group: ServoArc<Locked<PropertyDeclarationBlock>>,
+}
+
+/// The declarations `css` holds, read as a `style` attribute.
+fn declarations(css: &str) -> PropertyDeclarationBlock {
+    style::properties::parse_style_attribute(
+        css,
+        &crate::url::DocumentUrl::default().url_extra_data(),
+        None,
+        style::context::QuirksMode::NoQuirks,
+        style::stylesheets::CssRuleType::Style,
+    )
+}
+
+/// The hints the select holding `node`, an `option` or an `optgroup` in its list, gives its rows
+/// where it is a list box without `multiple`.
+fn list_box_row_hints<'a>(
+    node: &'a Node,
+    elem: &ElementData,
+) -> Option<&'a ServoArc<Locked<PropertyDeclarationBlock>>> {
+    let is_option = elem.name.local == local_name!("option");
+    if !is_option && elem.name.local != local_name!("optgroup") {
+        return None;
+    }
+    let select = node.with(crate::node::select::select_holding(node)?);
+    let rows = presentational_hints(select, select.data.downcast_element()?)
+        .list_box_rows
+        .as_ref()?;
+    Some(if is_option { &rows.option } else { &rows.group })
+}
+
+/// A chosen option's hints in a list box without `multiple`.
+fn list_box_chosen_hints<'a>(
+    node: &'a Node,
+    elem: &ElementData,
+) -> Option<&'a ServoArc<Locked<PropertyDeclarationBlock>>> {
+    if elem.name.local != local_name!("option") || !crate::node::select::is_chosen(node) {
+        return None;
+    }
+    let select = node.with(crate::node::select::select_holding(node)?);
+    let rows = presentational_hints(select, select.data.downcast_element()?)
+        .list_box_rows
+        .as_ref()?;
+    Some(&rows.chosen)
 }
 
 /// Push the declaration blocks of the node's presentational hints into `hints`.
@@ -91,8 +149,14 @@ where
     } else {
         None
     };
-    for block in [element_hints.own.as_ref(), cell_padding]
+    // A row's look comes first, so the row's own hints, `hidden` among them, outrank it.
+    let rows = [
+        list_box_row_hints(node, elem),
+        list_box_chosen_hints(node, elem),
+    ];
+    for block in rows
         .into_iter()
+        .chain([element_hints.own.as_ref(), cell_padding])
         .flatten()
     {
         hints.push(ApplicableDeclarationBlock::from_declarations(
@@ -550,16 +614,24 @@ fn compute_presentational_hints(node: &Node, elem: &ElementData) -> Presentation
             hints.push(transform);
         }
 
-        // A `multiple` select's `size` makes it that many rows tall, each row `1.2em` by the
-        // default sheet's rule. A single select's `size` stays unread: it is a closed box.
+        // A list box's `size` makes it that many rows tall, each row `1.2em` by the default
+        // sheet's rule or by its rows' hints, and the rest scroll.
         if *tag == local_name!("select")
             && *name == local_name!("size")
-            && elem.has_attr(local_name!("multiple"))
+            && crate::node::select::is_list_box(elem)
         {
             if let Some(rows) = crate::node::select_list::size_rows(value) {
                 use style::values::specified::NoCalcLength;
                 let height = LengthPercentage::Length(NoCalcLength::from_em(rows as f32 * 1.2));
                 hints.push(PropertyDeclaration::Height(size(height)));
+            }
+            if crate::node::select::is_single_list_box(elem) {
+                hints.extend(
+                    declarations("overflow-y: auto")
+                        .declarations()
+                        .iter()
+                        .cloned(),
+                );
             }
         }
 
@@ -672,8 +744,18 @@ fn compute_presentational_hints(node: &Node, elem: &ElementData) -> Presentation
             wrap(block.0)
         });
 
+    let list_box_rows = crate::node::select::is_single_list_box(elem).then(|| {
+        let wrap = |css: &str| ServoArc::new(node.guard().wrap(declarations(css)));
+        ListBoxRows {
+            option: wrap("display: block; padding: 0 2px; white-space: nowrap; line-height: 1.2"),
+            chosen: wrap("background-color: #c8c8c8; color: #000000"),
+            group: wrap("display: block"),
+        }
+    });
+
     PresentationalHints {
         own: wrap(hints.0),
         cell_padding,
+        list_box_rows,
     }
 }

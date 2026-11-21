@@ -12,18 +12,24 @@
 //! row is accepted and chooses it, its diff naming the row's selection and the select's value
 //! where the first chosen moved; a `press` with shift spans; a `type` chooses its match alone with
 //! no click on the row at the select's centre; and an option under a closed select's group stays
-//! refused `covered`. A failure message carries the layout mode and a row index, never an id or
-//! what a screen reads.
+//! refused `covered`. A single select whose `size` is above 1 reads `ListBox`, its name, its value
+//! and its rows, each with bounds of its own: a `click` on a row is accepted and chooses it, its
+//! diff naming the select's value and the two rows' selection; `actions` lists each row in view
+//! with no cause on its `click` and a row scrolled out of the box `off-screen`; a `press` of an
+//! arrow chooses with no list open; a `type` chooses by the text's start with no click on the row
+//! at the select's centre; and at boot its page lints only its rows scrolled out of the box. A failure message carries the layout
+//! mode and a row index, never an id or what a screen reads.
 
 use accesskit::Role;
 use dioxus::prelude::*;
 use dioxus_native_dom::Reading;
-use escher_driver::{Cause, Session};
+use escher_driver::{Cause, Defect, Session};
 
 mod fixtures;
 mod session_common;
 use session_common::{
-    Acted, act, advance, click, focused, press, press_ctrl, refused_unchanged, type_into,
+    Acted, act, advance, click, focused, lint, linted, press, press_ctrl, refused_unchanged,
+    type_into,
 };
 
 /// Two buttons around a labelled select, a select named by `aria-label` and a disabled one;
@@ -521,5 +527,225 @@ fn a_press_with_ctrl_builds_a_set_of_rows_that_are_not_adjacent() {
                 );
             }
         }
+    }
+}
+
+/// A single select of five rows whose `size` is 3, its first row chosen; the last two rows lie
+/// scrolled out of its box at boot.
+fn list_box_page() -> Element {
+    rsx! {
+        div { id: "fx-root",
+            select { id: "fx-sized", aria_label: "Sized", size: "3",
+                option { id: "fx-s-one", value: "1", selected: true, "One" }
+                option { id: "fx-s-two", value: "2", "Two" }
+                option { id: "fx-s-three", value: "3", "Three" }
+                option { id: "fx-s-four", value: "4", "Four" }
+                option { id: "fx-s-five", value: "5", "Five" }
+            }
+        }
+    }
+}
+
+fn hold_list_box(incremental: bool) -> Session {
+    fixtures::hold("select", list_box_page, incremental)
+}
+
+/// The rows of `fx-sized`, in order.
+const SIZED_ROWS: [&str; 5] = [
+    "fx-s-one",
+    "fx-s-two",
+    "fx-s-three",
+    "fx-s-four",
+    "fx-s-five",
+];
+
+#[test]
+fn a_sized_single_select_reads_its_role_and_rows_each_with_its_own_bounds() {
+    assert_eq!(SIZED_ROWS.len(), 5);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let session = hold_list_box(incremental);
+        let doc = &session.harness().doc;
+        assert!(
+            doc.unkeyed_actionable().is_empty(),
+            "{mode}: every element an agent can act on reads an author key"
+        );
+        let snapshot = doc.snapshot();
+        assert!(
+            snapshot.get("fx-sized").is_some_and(|select| {
+                (
+                    select.role,
+                    select.name.as_str(),
+                    select.state.value.as_deref(),
+                ) == (Role::ListBox, "Sized", Some("1"))
+            }),
+            "{mode}: the select reads its role, its name and its value"
+        );
+        let select = snapshot.get("fx-sized").map(|select| select.bounds);
+        let bounds: Vec<_> = SIZED_ROWS
+            .into_iter()
+            .filter_map(|id| snapshot.get(id))
+            .map(|row| {
+                assert!(
+                    row.role == Role::ListBoxOption,
+                    "{mode}: a row reads its role"
+                );
+                row.bounds
+            })
+            .collect();
+        assert!(bounds.len() == 5, "{mode}: the select holds its five rows");
+        // Each row starts where the last ends, to within the 1/64 px a rect is snapped to.
+        assert!(
+            bounds
+                .windows(2)
+                .all(|pair| pair[0].y + pair[0].height <= pair[1].y + 1.0 / 64.0),
+            "{mode}: each row reads bounds of its own, below the last"
+        );
+        assert!(
+            select.is_some_and(|select| bounds.iter().all(|row| row.height < select.height)),
+            "{mode}: no row reads the select's own box"
+        );
+    }
+}
+
+#[test]
+fn a_click_on_a_sized_single_selects_row_is_accepted_and_chooses_it() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_list_box(incremental);
+        let clicked = act(&mut session, &click("fx-s-three"))
+            .unwrap_or_else(|| panic!("{mode}: the click is accepted"));
+        assert!(clicked.settled, "{mode}: the click settles");
+        assert!(
+            differs(&clicked, "fx-sized").contains(&Reading::Value),
+            "{mode}: the diff names the select's value"
+        );
+        for (row, id) in ["fx-s-one", "fx-s-three"].into_iter().enumerate() {
+            assert!(
+                differs(&clicked, id).contains(&Reading::Selected),
+                "{mode}: row {row}: the diff names the row's selection"
+            );
+        }
+        assert!(
+            value(&session, "fx-sized").as_deref() == Some("3"),
+            "{mode}: the select reads the row's value"
+        );
+        assert!(
+            session.harness().base().open_select().is_none(),
+            "{mode}: no list opens"
+        );
+    }
+}
+
+#[test]
+fn actions_lists_a_sized_single_selects_rows_with_no_covered() {
+    // (the row, the cause its `click` lists)
+    let rows: [(&str, Option<Cause>); 5] = [
+        ("fx-s-one", None),
+        ("fx-s-two", None),
+        ("fx-s-three", None),
+        ("fx-s-four", Some(Cause::OffScreen)),
+        ("fx-s-five", Some(Cause::OffScreen)),
+    ];
+    assert_eq!(rows.len(), 5);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_list_box(incremental);
+        let nodes = session.actions();
+        for (row, (id, expected)) in rows.into_iter().enumerate() {
+            let listed = nodes
+                .iter()
+                .find(|node| node.id == id)
+                .and_then(|node| node.verbs.iter().find(|reading| reading.verb == "click"))
+                .map(|reading| reading.cause);
+            assert!(
+                listed == Some(expected),
+                "{mode}: row {row}: the row's click lists its cause"
+            );
+        }
+    }
+}
+
+#[test]
+fn press_on_a_sized_single_select_chooses_with_no_list_open() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_list_box(incremental);
+        let tabbed = act(&mut session, &press("tab", false));
+        assert!(
+            tabbed.is_some() && focused(&session).0 == ["fx-sized"],
+            "{mode}: Tab focuses the select"
+        );
+        for (row, (key, expected)) in [("arrow-down", "2"), ("end", "5"), ("enter", "5")]
+            .into_iter()
+            .enumerate()
+        {
+            let pressed = act(&mut session, &press(key, false));
+            assert!(
+                pressed.is_some_and(|pressed| pressed.settled),
+                "{mode}: row {row}: the press is accepted and settled"
+            );
+            assert!(
+                value(&session, "fx-sized").as_deref() == Some(expected),
+                "{mode}: row {row}: the press chooses its row"
+            );
+            assert!(
+                session.harness().base().open_select().is_none(),
+                "{mode}: row {row}: no list opens"
+            );
+        }
+    }
+}
+
+#[test]
+fn type_on_a_sized_single_select_chooses_by_the_texts_start() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_list_box(incremental);
+        let typed = act(&mut session, &type_into("fx-sized", "Fo"))
+            .unwrap_or_else(|| panic!("{mode}: the type is accepted"));
+        assert!(
+            differs(&typed, "fx-s-four").contains(&Reading::Selected),
+            "{mode}: the diff names the matched row's selection"
+        );
+        // The type scrolls the matched row into view, so every row's bounds move; the row at the
+        // select's centre takes no click, so its selection does not.
+        assert!(
+            !differs(&typed, "fx-s-two").contains(&Reading::Selected),
+            "{mode}: the row at the select's centre takes no click"
+        );
+        assert!(
+            value(&session, "fx-sized").as_deref() == Some("4"),
+            "{mode}: the text chooses its match"
+        );
+    }
+}
+
+/// At boot the lint reads the two rows scrolled out of the box as a scrolling box's hidden rows
+/// read — the fourth, 2px of it showing in the box's padding, clipped and truncated, the fifth
+/// truncated and off-screen, as measured — and nothing on the select or on a row in view, and no
+/// `overlap`: the rows are no closed select's options.
+#[test]
+fn a_sized_single_selects_page_lints_only_its_rows_scrolled_out_at_boot() {
+    let expected = [
+        ("fx-s-four", Defect::Clipped),
+        ("fx-s-four", Defect::Truncated),
+        ("fx-s-five", Defect::Truncated),
+        ("fx-s-five", Defect::OffScreen),
+    ];
+    assert_eq!(expected.len(), 4);
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut session = hold_list_box(incremental);
+        let findings =
+            linted(&mut session, &lint()).unwrap_or_else(|| panic!("{mode}: the lint is accepted"));
+        let read: Vec<_> = findings
+            .iter()
+            .map(|finding| (finding.id.as_str(), finding.defect))
+            .collect();
+        assert!(
+            read == expected,
+            "{mode}: the lint reads the rows scrolled out alone"
+        );
     }
 }

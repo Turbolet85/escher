@@ -863,6 +863,17 @@ impl BaseDocument {
         self.get_node(option).map(select::option_value)
     }
 
+    /// Whether `select` is rendered as a list box: a select with `multiple`, or one whose display
+    /// size, its `size` read as a whole number above 0, is above 1; `false` for a drop-down
+    /// select, for any other node and for an id that does not resolve.
+    ///
+    /// <https://html.spec.whatwg.org/multipage/form-elements.html#concept-select-size>
+    pub fn is_list_box(&self, select: NodeId) -> bool {
+        self.get_node(select)
+            .and_then(|node| node.element_data())
+            .is_some_and(select::is_list_box)
+    }
+
     /// The value of every option a select holds chosen, in tree order; empty for any other node.
     pub fn select_values(&self, select: NodeId) -> Vec<String> {
         select::options(self, select)
@@ -884,7 +895,7 @@ impl BaseDocument {
         self.select_typeahead = None;
     }
 
-    /// Whether `select` can hold a list open: a single-choice select in the document that holds
+    /// Whether `select` can hold a list open: a drop-down select in the document that holds
     /// focus, is neither disabled nor inert, computes neither `display: none` nor a hidden
     /// `visibility`, and stands under no transform that shows nothing.
     fn select_list_allowed(&self, select: NodeId) -> bool {
@@ -913,7 +924,7 @@ impl BaseDocument {
         };
         self.focus_node_id == Some(select)
             && node.flags.is_in_document()
-            && select::is_single_select(element)
+            && select::is_drop_down(element)
             && !element.is_disabled()
             && !node.is_inert()
             && shown()
@@ -1219,17 +1230,19 @@ impl BaseDocument {
         Some(layout)
     }
 
-    /// Runs a single-choice select's selectedness setting algorithm, leaving one option chosen.
+    /// Runs a single-choice select's selectedness setting algorithm, leaving at most one option
+    /// chosen, and one where its display size is 1.
     pub(crate) fn settle_select_choice(&mut self, select: NodeId) {
-        if !self
+        let Some(display_size) = self
             .get_node(select)
             .and_then(|node| node.element_data())
-            .is_some_and(select::is_single_select)
-        {
+            .filter(|element| select::is_single_select(element))
+            .map(select::display_size)
+        else {
             return;
-        }
+        };
         let options = select::options(self, select);
-        let settled = select::settled(&select::readings(self, &options));
+        let settled = select::settled(&select::readings(self, &options), display_size);
         let target: Vec<NodeId> = settled
             .and_then(|index| options.get(index).copied())
             .into_iter()
