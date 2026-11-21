@@ -167,6 +167,10 @@ fn a_line_is_read_by_its_rules_in_order() {
         ),
         (&["lint", "--session", DIR], instance("lint", &[])),
         (&["graph", "--session", DIR], instance("graph", &[])),
+        (
+            &["graph", "--part", "2", "--session", DIR],
+            instance("graph", &[("part", ArgValue::Number(2))]),
+        ),
         (&["actions", "--session", DIR], instance("actions", &[])),
         (
             &["layout", "--id", "counter-increment", "--session", DIR],
@@ -217,6 +221,13 @@ fn a_line_is_read_by_its_rules_in_order() {
             instance(
                 "press",
                 &[("shift", ArgValue::Flag(true)), ("key", text("tab"))],
+            ),
+        ),
+        (
+            &["press", "--key", "arrow-down", "--ctrl", "--session", DIR],
+            instance(
+                "press",
+                &[("key", text("arrow-down")), ("ctrl", ArgValue::Flag(true))],
             ),
         ),
         (
@@ -380,6 +391,22 @@ fn a_line_is_read_by_its_rules_in_order() {
             ],
             malformed(Fault::Repeated("shift")),
         ),
+        (
+            &[
+                "press",
+                "--key",
+                "space",
+                "--ctrl",
+                "--ctrl",
+                "--session",
+                DIR,
+            ],
+            malformed(Fault::Repeated("ctrl")),
+        ),
+        (
+            &["graph", "--part", "0", "--session", DIR],
+            malformed(Fault::OutOfBound("part")),
+        ),
         // A value that is missing or not of its kind, or outside its bound.
         (
             &["click", "--session", DIR, "--id"],
@@ -464,7 +491,7 @@ fn a_line_is_read_by_its_rules_in_order() {
         // `start` on an app the binary does not boot.
         (&["start", "timer", "--session", DIR], Line::Usage),
     ];
-    assert_eq!(rows.len(), 111);
+    assert_eq!(rows.len(), 115);
     for (row, (words, read)) in rows.into_iter().enumerate() {
         assert!(line(words) == read, "row {row}");
     }
@@ -579,8 +606,8 @@ fn the_usage_line_is_built_from_the_table_and_the_apps() {
     assert_eq!(
         usage(&APPS),
         "usage: <command> --session <dir>; commands: snapshot [--part <part>] | click --id \
-         <id> | type --id <id> --text <text> | press --key <key> [--shift] | advance --ms <milliseconds> | \
-         scroll --id <id> | screenshot [--id <id>] | lint | graph | actions | layout --id <id> | start <app> \
+         <id> | type --id <id> --text <text> | press --key <key> [--shift] [--ctrl] | advance --ms <milliseconds> | \
+         scroll --id <id> | screenshot [--id <id>] | lint | graph [--part <part>] | actions | layout --id <id> | start <app> \
          [--record <dir>] | status | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
          [--record <dir>]; coverage role: coverage <app> <check>...; apps: counter | flight-booker"
     );

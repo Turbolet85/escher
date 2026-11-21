@@ -14,7 +14,7 @@ pub const MAX_TEXT_BYTES: usize = 4096;
 /// The most time one call may ask for, in milliseconds.
 pub const MAX_MILLISECONDS: u32 = 60_000;
 
-/// The highest part of a screen a `snapshot` may ask for.
+/// The highest part of a screen a `snapshot`, or of a graph a `graph`, may ask for.
 pub const MAX_PART: u32 = 1000;
 
 /// The names a `key` argument admits.
@@ -316,8 +316,8 @@ pub(crate) const PRESS: VerbSpec = VerbSpec {
            `space` open its list, and on an open one the arrows, `home` and `end` move its \
            highlight, which only a screenshot shows, `enter` or `space` chooses the highlighted \
            row and `escape` closes with no choice; on a `multiple` select the arrows, `home` and \
-           `end` choose a row alone and with `shift` span to it, while a set of rows that are \
-           not adjacent needs Ctrl, which this verb does not carry",
+           `end` choose a row alone and with `shift` span to it, and with `ctrl` move the \
+           current row without choosing, `space` then flipping it in or out of the set",
     args: &[
         ArgSpec {
             name: "key",
@@ -330,6 +330,13 @@ pub(crate) const PRESS: VerbSpec = VerbSpec {
             kind: ArgKind::Flag,
             required: false,
             help: "whether shift is held while the key is pressed; false when absent",
+        },
+        ArgSpec {
+            name: "ctrl",
+            kind: ArgKind::Flag,
+            required: false,
+            help: "whether the host's action key is held while the key is pressed: ⌘ (Meta) on \
+                   macOS, Ctrl elsewhere; false when absent",
         },
     ],
     fields: &[SETTLED, BUSY, ADDED, REMOVED, CHANGED, CAUSED, CAUSED_PAST],
@@ -452,8 +459,20 @@ pub(crate) const GRAPH: VerbSpec = VerbSpec {
            the state, shown before the handler runs, each confirmed once a run of it writes the \
            state; only states the app registers are graphed, a write no handler made (a timer, \
            a task) names no handler, and a reader is a component, so every element it rendered \
-           reads the state; no state's value is read",
-    args: &[],
+           reads the state; no state's value is read; a graph whose answer is over 10,000 bytes \
+           is read in parts, each a run of whole nodes of at most 10,000 bytes, and the parts' \
+           nodes in order are the whole graph's; part 1 carries the whole `states` list, and a \
+           later part's empty `states` means read part 1, not no states; without `part`, a graph \
+           over the budget answers part 1, and one inside it answers whole with no `part` or \
+           `parts`; a part past the last holds no nodes and no states; one node longer than the \
+           budget is a part alone; each part is read from the screen as it stands",
+    args: &[ArgSpec {
+        name: "part",
+        kind: ArgKind::Part,
+        required: false,
+        help: "the part of the graph to read, counted from 1; a graph over the budget is read in \
+               parts without it from part 1",
+    }],
     fields: &[
         FieldSpec {
             name: "nodes",
@@ -484,7 +503,20 @@ pub(crate) const GRAPH: VerbSpec = VerbSpec {
                    in declared and on its node alone; and readers, the names of the components that read \
                    it, each once: a state's reading elements are the nodes whose component it \
                    names, each of which names the state among its reads; a state only the app \
-                   root reads is named in its nodes' reads alone",
+                   root reads is named in its nodes' reads alone; read in parts, part 1 holds \
+                   every state and a later part's empty list means read part 1, not no states",
+        },
+        FieldSpec {
+            name: "part",
+            kind: FieldKind::Count,
+            always: false,
+            help: "the part this answer holds, present when the graph is read in parts",
+        },
+        FieldSpec {
+            name: "parts",
+            kind: FieldKind::Count,
+            always: false,
+            help: "how many parts the graph reads as, present with `part`",
         },
     ],
 };

@@ -17,6 +17,7 @@ use crate::actions::ActionNode;
 use crate::caused::{Caused, CausedPast, StepReading, caused};
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
+use crate::json;
 use crate::layout::LayoutExplanation;
 use crate::lint::Finding;
 use crate::refusal::{Cause, Refusal};
@@ -112,10 +113,21 @@ pub enum Outcome {
         /// Every defect found on the screen, as [`Session::lint`] reads it.
         findings: Vec<Finding>,
     },
-    /// What `graph` returns.
+    /// What `graph` returns for a graph read whole.
     Graphed {
         /// The screen's UI graph, as [`DioxusDocument::graph`] reads it.
         graph: UiGraph,
+    },
+    /// What `graph` returns when the graph is read in parts: a `part` asked for, or a graph whose
+    /// answer is over [`SNAPSHOT_TEXT_BUDGET`].
+    GraphPart {
+        /// The part's nodes, in the whole graph's order, and in part 1 alone every state; both
+        /// empty for a part past the last.
+        graph: UiGraph,
+        /// The part this answer holds, counted from 1.
+        part: u32,
+        /// How many parts the graph reads as.
+        parts: u32,
     },
     /// What `actions` returns.
     Actions {
@@ -178,7 +190,10 @@ impl Session {
     ///
     /// `lint` runs no step either: it answers [`Session::lint`]'s findings on the screen as it
     /// stands, or its refusal. Nor does `graph`, which answers the screen's UI graph
-    /// ([`DioxusDocument::graph`]) as it stands, recording every id it reads, nor `actions`,
+    /// ([`DioxusDocument::graph`]) as it stands, recording every id it reads — whole when no
+    /// `part` is asked and its answer is at most [`SNAPSHOT_TEXT_BUDGET`] bytes, otherwise cut,
+    /// as `snapshot` cuts its text, into parts of whole nodes within the budget, the states in
+    /// part 1 alone — nor `actions`,
     /// which answers [`Session::actions`](crate::Session::actions): each actionable element
     /// with the cause the one check below would refuse each of its verbs with now, nor `layout`,
     /// which answers [`Session::layout`](crate::Session::layout) for the element an id names, or
@@ -236,14 +251,16 @@ impl Session {
             Command::Type { ref id, ref text } => {
                 type_into(harness, seen, span, &command, id, text, masked)
             }
-            Command::Press { key, shift } => Ok(press_key(harness, seen, span, key, shift)),
+            Command::Press { key, shift, ctrl } => {
+                Ok(press_key(harness, seen, span, key, shift, ctrl))
+            }
             Command::Advance { ms } => Ok(advance(harness, seen, &mut self.time, span, ms)),
             Command::Scroll { ref id } => scroll(harness, seen, span, &command, id),
             Command::Screenshot { ref id } => screenshot(harness, seen, &command, id.as_deref()),
             Command::Lint => Ok(Outcome::Linted {
                 findings: self.lint()?,
             }),
-            Command::Graph => Ok(graph(harness, seen)),
+            Command::Graph { part } => Ok(graph(harness, seen, part)),
             Command::Actions => Ok(Outcome::Actions {
                 nodes: self.actions(),
             }),
@@ -328,7 +345,7 @@ fn type_step(
     if target.holds_value {
         select_all(harness);
         if text.is_empty() {
-            press(harness, Key::Backspace, false);
+            press(harness, Key::Backspace, false, false);
         }
     }
     // No label starts with a space, and on a select a Space with no text before it
@@ -345,10 +362,11 @@ fn press_key(
     span: &Span,
     key: Key,
     shift: bool,
+    ctrl: bool,
 ) -> Outcome {
     let before = read_screen(harness, seen);
     acted(harness, seen, span, before, |harness| {
-        press(harness, key, shift)
+        press(harness, key, shift, ctrl)
     })
 }
 
@@ -435,13 +453,75 @@ fn screenshot(
     })
 }
 
-/// `graph`: the screen's UI graph, every id it reads recorded.
-fn graph(harness: &Harness<DioxusDocument>, seen: &mut SeenIds) -> Outcome {
-    let graph = harness.doc.graph();
+/// `graph`: the screen's UI graph whole, or the `part` asked of it — part 1 without one — when
+/// one is asked or its answer is over the budget; every id it reads recorded either way.
+fn graph(harness: &Harness<DioxusDocument>, seen: &mut SeenIds, part: Option<u32>) -> Outcome {
+    let mut graph = harness.doc.graph();
     for node in &graph.nodes {
         seen.record(&node.id);
     }
-    Outcome::Graphed { graph }
+    let (nodes, states) = json::graph_lengths(&graph);
+    let whole = GRAPH_WHOLE_FRAME + joined(&nodes) + states;
+    if part.is_none() && whole <= SNAPSHOT_TEXT_BUDGET {
+        return Outcome::Graphed { graph };
+    }
+    let cut = graph_parts(&nodes, states);
+    let part = part.unwrap_or(1);
+    let parts = u32::try_from(cut.len()).unwrap_or(u32::MAX);
+    let range = part
+        .checked_sub(1)
+        .and_then(|index| usize::try_from(index).ok())
+        .and_then(|index| cut.get(index).cloned());
+    let (nodes, states) = match range {
+        Some(range) => {
+            let states = if range.start == 0 {
+                std::mem::take(&mut graph.states)
+            } else {
+                Vec::new()
+            };
+            (graph.nodes.drain(range).collect(), states)
+        }
+        None => (Vec::new(), Vec::new()),
+    };
+    Outcome::GraphPart {
+        graph: UiGraph { nodes, states },
+        part,
+        parts,
+    }
+}
+
+/// The bytes a whole graph's answer takes beyond its nodes and states: `{"nodes":[`, `],
+/// "states":[` and `]}`.
+const GRAPH_WHOLE_FRAME: usize = 24;
+
+/// The most bytes a graph part's answer takes beyond its nodes and states: the whole answer's
+/// frame and `,"part":` and `,"parts":`, each count at its widest `u32`.
+const GRAPH_PART_FRAME: usize = GRAPH_WHOLE_FRAME + 8 + 9 + 2 * 10;
+
+/// The written length of items joined by commas.
+fn joined(lengths: &[usize]) -> usize {
+    lengths.iter().sum::<usize>() + lengths.len().saturating_sub(1)
+}
+
+/// The graph cut into parts of whole nodes, in order: each part's answer at most
+/// [`SNAPSHOT_TEXT_BUDGET`] bytes, the first carrying the states, a node that cannot fit with
+/// its part's other content a part alone. A graph with no node is one part.
+fn graph_parts(nodes: &[usize], states: usize) -> Vec<std::ops::Range<usize>> {
+    let mut cut = Vec::new();
+    let mut start = 0;
+    let mut size = GRAPH_PART_FRAME + states;
+    for (index, length) in nodes.iter().enumerate() {
+        let comma = usize::from(index > start);
+        if index > start && size + comma + length > SNAPSHOT_TEXT_BUDGET {
+            cut.push(start..index);
+            start = index;
+            size = GRAPH_PART_FRAME + length;
+        } else {
+            size += comma + length;
+        }
+    }
+    cut.push(start..nodes.len());
+    cut
 }
 
 /// Records on a call's span what the call returned: the cause of a refusal, or an acting
@@ -458,6 +538,7 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             | Outcome::Shot { .. }
             | Outcome::Linted { .. }
             | Outcome::Graphed { .. }
+            | Outcome::GraphPart { .. }
             | Outcome::Actions { .. }
             | Outcome::Layout { .. },
         ) => return,
@@ -816,12 +897,14 @@ fn select_all(harness: &mut Harness<DioxusDocument>) {
     harness.press_with(KeyboardKey::Character("a".to_string()), ACTION_MODIFIER);
 }
 
-fn press(harness: &mut Harness<DioxusDocument>, key: Key, shift: bool) {
-    let modifiers = if shift {
-        Modifiers::SHIFT
-    } else {
-        Modifiers::default()
-    };
+fn press(harness: &mut Harness<DioxusDocument>, key: Key, shift: bool, ctrl: bool) {
+    let mut modifiers = Modifiers::default();
+    if shift {
+        modifiers |= Modifiers::SHIFT;
+    }
+    if ctrl {
+        modifiers |= ACTION_MODIFIER;
+    }
     harness.press_with(keyboard_key(key), modifiers);
     // A window on macOS delivers the backward delete as a standard key binding, and the
     // editor's own Backspace arm is compiled out there.
@@ -855,6 +938,32 @@ mod tests {
     use crate::schema::VERBS;
 
     #[test]
+    fn a_graph_is_cut_into_parts_of_whole_nodes_within_the_budget() {
+        // The frames are the written form's own: `{"nodes":[`, `],"states":[`, `]}`, and a part's
+        // `,"part":` and `,"parts":` with two ten-digit counts.
+        assert_eq!(GRAPH_WHOLE_FRAME, 24);
+        assert_eq!(GRAPH_PART_FRAME, 61);
+        // No node: one part, the states alone.
+        assert_eq!(graph_parts(&[], 100), [0..0]);
+        // Nodes of 1,000 bytes: the first part holds the states' 1,000 bytes beside eight nodes.
+        let nodes = [1000; 30];
+        let cut = graph_parts(&nodes, 1000);
+        assert_eq!(cut.first(), Some(&(0..8)));
+        assert_eq!(cut.get(1), Some(&(8..17)));
+        assert_eq!(cut.last().map(|range| range.end), Some(30));
+        for pair in cut.windows(2) {
+            assert_eq!(pair[0].end, pair[1].start);
+        }
+        for (index, range) in cut.iter().enumerate() {
+            let states = if index == 0 { 1000 } else { 0 };
+            let size = GRAPH_PART_FRAME + states + joined(&nodes[range.clone()]);
+            assert!(size <= SNAPSHOT_TEXT_BUDGET, "part {index}");
+        }
+        // A node longer than the budget is a part alone.
+        assert_eq!(graph_parts(&[10, 20_000, 10], 0), [0..1, 1..2, 2..3]);
+    }
+
+    #[test]
     fn the_span_has_eight_fields_and_none_is_an_argument_name() {
         let rows = [
             "verb", "cause", "settled", "busy", "passes", "added", "removed", "changed",
@@ -866,7 +975,7 @@ mod tests {
             .flat_map(|verb| verb.args)
             .map(|argument| argument.name)
             .collect();
-        assert_eq!(arguments.len(), 11);
+        assert_eq!(arguments.len(), 13);
         for (row, field) in SPAN_FIELDS.iter().enumerate() {
             assert!(!arguments.contains(field), "row {row}");
         }

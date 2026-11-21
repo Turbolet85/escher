@@ -8,8 +8,10 @@
 //!
 //! The count reads the graph's DOM listeners on agent-visible nodes, so the handlers a canvas
 //! dispatches inside one listener are not counted, and a handler on no screen a replay read is
-//! not listed. A bubbling dispatch reaches every ancestor listener of its event, a
-//! `stopPropagation` unread. The reader holds ids, owner ids and event names only, never a
+//! not listed. A bubbling dispatch nothing stopped reaches every ancestor listener of its event;
+//! one something stopped reaches its innermost listener alone, so where an ancestor stops it, the
+//! listeners between that ancestor and the target read unexercised although they ran; a
+//! non-bubbling event reaches its target alone. The reader holds ids, owner ids and event names only, never a
 //! `NodeId`, a control value or typed text.
 //!
 //! [`DioxusDocument::record_reached`]: dioxus_native_dom::DioxusDocument::record_reached

@@ -91,6 +91,8 @@ pub enum Command {
         key: Key,
         /// Whether shift is held.
         shift: bool,
+        /// Whether the host's action key is held: Meta on macOS, Ctrl elsewhere.
+        ctrl: bool,
     },
     /// Move the app's time forward by `ms` milliseconds.
     Advance {
@@ -109,8 +111,12 @@ pub enum Command {
     },
     /// Read the screen for its visual defects.
     Lint,
-    /// Read the screen's UI graph.
-    Graph,
+    /// Read the screen's UI graph, or one part of a graph read in parts.
+    Graph {
+        /// The part, counted from 1; `None` for the whole graph, or its first part when it is
+        /// read in parts.
+        part: Option<u32>,
+    },
     /// Read what each actionable element of the screen can take now.
     Actions,
     /// Read why the element `id` names sits where it does at its size.
@@ -132,7 +138,7 @@ impl Command {
             Command::Scroll { .. } => &schema::SCROLL,
             Command::Screenshot { .. } => &schema::SCREENSHOT,
             Command::Lint => &schema::LINT,
-            Command::Graph => &schema::GRAPH,
+            Command::Graph { .. } => &schema::GRAPH,
             Command::Actions => &schema::ACTIONS,
             Command::Layout { .. } => &schema::LAYOUT,
         }
@@ -201,9 +207,10 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
             id: (*id).to_owned(),
             text: (*text).to_owned(),
         }),
-        ("press", [Some(Admitted::Key(key)), shift]) => Ok(Command::Press {
+        ("press", [Some(Admitted::Key(key)), shift, ctrl]) => Ok(Command::Press {
             key: *key,
             shift: matches!(shift, Some(Admitted::Flag(true))),
+            ctrl: matches!(ctrl, Some(Admitted::Flag(true))),
         }),
         ("advance", [Some(Admitted::Milliseconds(ms))]) => Ok(Command::Advance { ms: *ms }),
         ("scroll", [Some(Admitted::Id(id))]) => Ok(Command::Scroll {
@@ -214,7 +221,8 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
             id: Some((*id).to_owned()),
         }),
         ("lint", []) => Ok(Command::Lint),
-        ("graph", []) => Ok(Command::Graph),
+        ("graph", [None]) => Ok(Command::Graph { part: None }),
+        ("graph", [Some(Admitted::Part(part))]) => Ok(Command::Graph { part: Some(*part) }),
         ("actions", []) => Ok(Command::Actions),
         ("layout", [Some(Admitted::Id(id))]) => Ok(Command::Layout {
             id: (*id).to_owned(),
@@ -422,6 +430,33 @@ mod tests {
                 Command::Press {
                     key: Key::Tab,
                     shift: true,
+                    ctrl: false,
+                },
+            ),
+            (
+                call(
+                    "press",
+                    &[("key", text("arrow-down")), ("ctrl", ArgValue::Flag(true))],
+                ),
+                Command::Press {
+                    key: Key::ArrowDown,
+                    shift: false,
+                    ctrl: true,
+                },
+            ),
+            (
+                call(
+                    "press",
+                    &[
+                        ("ctrl", ArgValue::Flag(true)),
+                        ("key", text("home")),
+                        ("shift", ArgValue::Flag(true)),
+                    ],
+                ),
+                Command::Press {
+                    key: Key::Home,
+                    shift: true,
+                    ctrl: true,
                 },
             ),
             (
@@ -432,6 +467,7 @@ mod tests {
                 Command::Press {
                     key: Key::Enter,
                     shift: false,
+                    ctrl: false,
                 },
             ),
             (
@@ -466,7 +502,15 @@ mod tests {
                 },
             ),
             (call("lint", &[]), Command::Lint),
-            (call("graph", &[]), Command::Graph),
+            (call("graph", &[]), Command::Graph { part: None }),
+            (
+                call("graph", &[("part", ArgValue::Number(1))]),
+                Command::Graph { part: Some(1) },
+            ),
+            (
+                call("graph", &[("part", ArgValue::Number(1000))]),
+                Command::Graph { part: Some(1000) },
+            ),
             (call("actions", &[]), Command::Actions),
             (
                 call("layout", &[("id", text("counter-increment"))]),
@@ -498,7 +542,11 @@ mod tests {
         for (name, key) in keys {
             rows.push((
                 call("press", &[("key", text(name))]),
-                Command::Press { key, shift: false },
+                Command::Press {
+                    key,
+                    shift: false,
+                    ctrl: false,
+                },
             ));
         }
         rows
@@ -507,7 +555,7 @@ mod tests {
     #[test]
     fn an_admitted_call_becomes_its_command() {
         let rows = admitted_rows();
-        assert_eq!(rows.len(), 37);
+        assert_eq!(rows.len(), 41);
         for (row, (call, command)) in rows.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
         }
@@ -603,7 +651,7 @@ mod tests {
         }
 
         let instance = admitted_rows();
-        assert_eq!(instance.len(), 37);
+        assert_eq!(instance.len(), 41);
         for (row, (call, command)) in instance.iter().enumerate() {
             assert!(validate(call).as_ref() == Ok(command), "row {row}");
             assert!(validate_session(call) == Err(unknown), "row {row}");
@@ -772,6 +820,33 @@ mod tests {
             (part(-1), Fault::OutOfBound("part")),
             (part(i64::MAX), Fault::OutOfBound("part")),
             (
+                call("graph", &[("part", ArgValue::Number(0))]),
+                Fault::OutOfBound("part"),
+            ),
+            (
+                call("graph", &[("part", ArgValue::Number(1001))]),
+                Fault::OutOfBound("part"),
+            ),
+            (
+                call("graph", &[("part", text("2"))]),
+                Fault::WrongKind("part"),
+            ),
+            (
+                call("press", &[("key", text("tab")), ("ctrl", text("true"))]),
+                Fault::WrongKind("ctrl"),
+            ),
+            (
+                call(
+                    "press",
+                    &[
+                        ("key", text("tab")),
+                        ("ctrl", flag.clone()),
+                        ("ctrl", flag.clone()),
+                    ],
+                ),
+                Fault::Repeated("ctrl"),
+            ),
+            (
                 call("snapshot", &[("part", text("2"))]),
                 Fault::WrongKind("part"),
             ),
@@ -792,7 +867,7 @@ mod tests {
                 Fault::OutOfBound("key"),
             ),
         ];
-        assert_eq!(rows.len(), 52);
+        assert_eq!(rows.len(), 57);
         for (row, (call, fault)) in rows.into_iter().enumerate() {
             assert!(validate(&call) == malformed(fault), "row {row}");
         }

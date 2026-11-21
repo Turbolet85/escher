@@ -8,7 +8,8 @@
 //! Counter checks* list only what neither exercised. *The load page*, which registers no state,
 //! reads its button's click exercised. *A `click` refused `disabled`* exercises nothing, and
 //! *`enter` on a Tab-focused button* exercises the click it dispatches. *Cells' editor*, left by
-//! Enter, reads its `keydown` exercised though the step removes it. *A typed sentinel* never
+//! Enter, reads its `keydown` exercised though the step removes it, and *an Enter the editor
+//! stops* leaves the grid's `keydown` unexercised, the stop read. *A typed sentinel* never
 //! reaches the line, and *a check of another app* contributes nothing and does not hold. A
 //! failure message names the layout mode, the task and a row index, never an id or a reading.
 
@@ -374,6 +375,48 @@ fn a_handler_whose_step_removes_its_element_reads_exercised() {
         assert!(
             !unexercised.contains(&editor("keydown")),
             "{at}: its keydown exercised"
+        );
+    }
+}
+
+#[cfg(unix)]
+#[test]
+fn an_enter_the_cell_editor_stops_leaves_the_grids_keydown_unexercised() {
+    for incremental in [false, true] {
+        let at = format!("{} cells", mode_name(incremental));
+        // A click opens the cell's editor with no focus in it, a click on the editor focuses it,
+        // and Enter there commits, the editor's own keydown stopping the event short of the
+        // grid's.
+        let calls = [click("cell-A1"), click("cell-input"), press("enter", false)];
+        let mut session = boot("cells", incremental);
+        for (index, call) in calls.iter().enumerate() {
+            assert!(session.run(call).is_ok(), "{at}: step {index} accepted");
+        }
+        assert!(
+            !session
+                .harness()
+                .doc
+                .graph()
+                .nodes
+                .iter()
+                .any(|node| node.id == "cell-input"),
+            "{at}: the Enter closed the editor"
+        );
+
+        let check = record("cells", incremental, &calls, "stopped");
+        let unexercised = pairs(&coverage("cells", incremental, &[check]));
+        let handler = |id: &str, event: &str| (id.to_string(), event.to_string());
+        assert!(
+            unexercised.contains(&handler("cells-grid", "keydown")),
+            "{at}: the grid's keydown, which the stop kept the event from, reads unexercised"
+        );
+        assert!(
+            !unexercised.contains(&handler("cell-input", "keydown")),
+            "{at}: the editor's own keydown reads exercised"
+        );
+        assert!(
+            !unexercised.contains(&handler("cell-A1", "click")),
+            "{at}: the clicked cell reads exercised"
         );
     }
 }

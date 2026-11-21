@@ -539,6 +539,27 @@ fn the_snapshot_tool_takes_an_optional_part_and_names_its_two_counts() {
 }
 
 #[test]
+fn the_press_tool_lists_ctrl_as_a_boolean_and_the_graph_tool_an_optional_part() {
+    let press = tool(&schema::PRESS, &APPS);
+    assert!(
+        press.contains(
+            r#""ctrl":{"type":"boolean","description":"whether the host's action key is held "#
+        ),
+        "{press}"
+    );
+    assert!(press.contains(r#""required":["key"]"#), "{press}");
+    let graph = tool(&schema::GRAPH, &APPS);
+    let input_schema = concat!(
+        r#""inputSchema":{"type":"object","properties":{"part":{"type":"integer","minimum":1,"#,
+        r#""maximum":1000,"description":"the part of the graph to read, counted from 1; a "#,
+        r#"graph over the budget is read in parts without it from part 1 (a whole number "#,
+        r#"from 1 to 1000)"}},"required":[],"additionalProperties":false}}"#,
+    );
+    assert!(graph.ends_with(input_schema), "{graph}");
+    assert!(description(&schema::GRAPH).ends_with("present with `part`"));
+}
+
+#[test]
 fn the_session_verbs_are_answered_by_the_server() {
     let hello = |served: u64| Hello {
         pid: std::process::id(),

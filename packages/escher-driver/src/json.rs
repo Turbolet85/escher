@@ -3,6 +3,8 @@
 
 use std::fmt::Write as _;
 
+use dioxus_native_dom::UiGraph;
+
 use crate::client::Hello;
 use crate::coverage::Coverage;
 use crate::error::SessionError;
@@ -153,6 +155,26 @@ pub(crate) fn shot_without_image(width: u32, height: u32) -> String {
     shot(width, height).end()
 }
 
+/// The written length of each of `graph`'s nodes, in order, and of its states joined by commas:
+/// what a graph read in parts is cut by.
+pub(crate) fn graph_lengths(graph: &UiGraph) -> (Vec<usize>, usize) {
+    let nodes = graph
+        .nodes
+        .iter()
+        .map(|node| graph::graph_node(node).len())
+        .collect();
+    let states = list(graph.states.iter().map(graph::graph_state)).len() - 2;
+    (nodes, states)
+}
+
+/// A graph's nodes and states, the fields `graph` answers whole and in parts.
+fn graph_members(graph: &UiGraph) -> Object {
+    let mut object = Object::new();
+    object.json("nodes", &list(graph.nodes.iter().map(graph::graph_node)));
+    object.json("states", &list(graph.states.iter().map(graph::graph_state)));
+    object
+}
+
 impl Outcome {
     /// The outcome as one line of JSON: an object keyed by the result fields of its verb, in
     /// the schema's order, each node an object keyed by the schema's node fields. A field that
@@ -215,10 +237,11 @@ impl Outcome {
                 object.json("findings", &list(findings.iter().map(lint::finding)));
                 object.end()
             }
-            Outcome::Graphed { graph } => {
-                let mut object = Object::new();
-                object.json("nodes", &list(graph.nodes.iter().map(graph::graph_node)));
-                object.json("states", &list(graph.states.iter().map(graph::graph_state)));
+            Outcome::Graphed { graph } => graph_members(graph).end(),
+            Outcome::GraphPart { graph, part, parts } => {
+                let mut object = graph_members(graph);
+                object.count("part", u64::from(*part));
+                object.count("parts", u64::from(*parts));
                 object.end()
             }
             Outcome::Actions { nodes } => {

@@ -1,0 +1,78 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-21T06:06:13Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-05",
+"--chunk",
+"2026-11-20-driver-debts",
+"--acceptance-file",
+".andromeda/runs/2026-11-20T18-56-36-phase/acceptance-v040-05.md",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v040-05 → chunk 2026-11-20-driver-debts (was null; status planned kept)",
+"acceptance: Each of the three debts reaches the founder as a fork; the graph is re… (265 chars)",
+"         → The three debts reached the founder as one forks file (`.andromeda/run… (1176 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson · 1 entry changed",
+"pool: unclaimed 11 [v040-02 v040-06 v040-07 v040-08 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-20T18-57-34-2026-11-20-driver-debts.ndjson"
+],
+"before": {
+"id": "v040-05",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "Each of the three debts reaches the founder as a fork; the graph is read in parts as the founder ruled, every part withi… (265 chars)",
+"notes_chars": 0
+},
+"after": {
+"id": "v040-05",
+"chunk": "2026-11-20-driver-debts",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "The three debts reached the founder as one forks file (`.andromeda/runs/2026-11-20T18-56-36-phase/founder-forks.md`), an… (1176 chars)",
+"notes_chars": 0
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bd105b74",
+"ts": "2026-11-21T06:06:13Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-20-driver-debts",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-20-driver-debts: 1 · ## Acceptance Criteria: line 292, 31 lines",
+"v040-05: cited in ## Acceptance Criteria (line 296)",
+"pool: unclaimed 11 [v040-02 v040-06 v040-07 v040-08 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

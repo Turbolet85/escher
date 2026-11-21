@@ -1,10 +1,12 @@
 # Coverage — escher-0.4.0
 
-verified 3/15 · deferred 0 · planned 12 · implemented 0 · unclaimed 12
+verified 3/15 · deferred 0 · planned 11 · implemented 1 · unclaimed 11
 
-## planned, unclaimed (12)
+## implemented (1)
+- v040-05 · Driver debts · 2026-11-20-driver-debts
+
+## planned, unclaimed (11)
 - v040-02 · Upstream sync
-- v040-05 · Driver debts
 - v040-06 · Engine debts
 - v040-07 · Dependency and CI debts
 - v040-08 · Codebase health

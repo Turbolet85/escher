@@ -22,7 +22,9 @@ use escher_driver::{Cause, Session};
 
 mod fixtures;
 mod session_common;
-use session_common::{Acted, act, advance, click, focused, press, refused_unchanged, type_into};
+use session_common::{
+    Acted, act, advance, click, focused, press, press_ctrl, refused_unchanged, type_into,
+};
 
 /// Two buttons around a labelled select, a select named by `aria-label` and a disabled one;
 /// every option carries an author `id`.
@@ -462,5 +464,62 @@ fn an_option_under_a_closed_selects_group_is_refused_covered() {
         let (cause, unchanged) = refused_unchanged(&mut session, &click("fx-closed-b"));
         assert!(cause == Some(Cause::Covered), "{mode}: the refusal's cause");
         assert!(unchanged, "{mode}: the refused call changes nothing");
+    }
+}
+
+#[test]
+fn a_press_with_ctrl_builds_a_set_of_rows_that_are_not_adjacent() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        // With the action key held the arrows move the current row and `space` flips it in; with
+        // no action key the same arrows choose the last row alone, and the space then flips that
+        // row out.
+        for (ctrl, moved_to, expected) in [
+            (true, vec!["fx-one"], vec!["fx-one", "fx-three"]),
+            (false, vec!["fx-three"], vec![]),
+        ] {
+            let mut session = hold_rows(incremental);
+            assert!(
+                act(&mut session, &click("fx-one")).is_some(),
+                "{mode}: ctrl={ctrl}: the click is accepted"
+            );
+            assert!(
+                chosen_rows(&session) == ["fx-one"],
+                "{mode}: ctrl={ctrl}: the click chooses row 1 alone"
+            );
+            for step in 0..2 {
+                let call = if ctrl {
+                    press_ctrl("arrow-down")
+                } else {
+                    press("arrow-down", false)
+                };
+                let moved = act(&mut session, &call);
+                assert!(
+                    moved.is_some_and(|moved| moved.settled),
+                    "{mode}: ctrl={ctrl}: step {step}: the arrow is accepted and settled"
+                );
+            }
+            assert!(
+                chosen_rows(&session) == moved_to,
+                "{mode}: ctrl={ctrl}: the rows chosen after the arrows"
+            );
+            let flipped = act(&mut session, &press("space", false))
+                .unwrap_or_else(|| panic!("{mode}: ctrl={ctrl}: the space is accepted"));
+            assert!(
+                chosen_rows(&session) == expected,
+                "{mode}: ctrl={ctrl}: the rows chosen after the space"
+            );
+            if ctrl {
+                assert!(
+                    differs(&flipped, "fx-three").contains(&Reading::Selected),
+                    "{mode}: the diff names the flipped row's selection"
+                );
+                assert!(
+                    differs(&flipped, "fx-two").is_empty()
+                        && differs(&flipped, "fx-one").is_empty(),
+                    "{mode}: the space flips the current row alone"
+                );
+            }
+        }
     }
 }

@@ -47,6 +47,7 @@ fn each_step_converts_to_the_call_validate_admits_in_schema_order() {
             Command::Press {
                 key: Key::ArrowDown,
                 shift: false,
+                ctrl: false,
             },
         ),
         (STEPS[3], "advance", &["ms"], Command::Advance { ms: 250 }),

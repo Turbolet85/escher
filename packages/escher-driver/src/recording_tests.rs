@@ -204,12 +204,38 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             }),
         ),
         (
+            call("graph", &[("part", ArgValue::Number(2))]),
+            false,
+            Ok(Outcome::GraphPart {
+                graph: UiGraph {
+                    nodes: vec![GraphNode {
+                        id: "row-24".to_string(),
+                        owner: None,
+                        component: Some("Cells".to_string()),
+                        handlers: Vec::new(),
+                        reads: Vec::new(),
+                    }],
+                    states: Vec::new(),
+                },
+                part: 2,
+                parts: 30,
+            }),
+        ),
+        (
+            call(
+                "press",
+                &[("ctrl", ArgValue::Flag(true)), ("key", text("arrow-down"))],
+            ),
+            false,
+            acted(),
+        ),
+        (
             call("click", &[("id", ArgValue::Number(7))]),
             false,
             not_found,
         ),
     ];
-    assert_eq!(calls.len(), 13);
+    assert_eq!(calls.len(), 15);
     for (row, (call, masked, answer)) in calls.iter().enumerate() {
         assert!(recording.record(call, *masked, answer), "row {row}");
     }
@@ -219,12 +245,14 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     assert_eq!(check.app(), "counter");
     assert_eq!(check.steps().len(), calls.len());
     for (row, (step, (call, _, answer))) in check.steps().iter().zip(&calls).enumerate() {
-        // A call's arguments are kept in the schema's order.
-        let verb = schema::verb(&call.verb).expect("a verb of the table");
+        // A call's arguments are kept whole; the file writes them in the schema's order (the
+        // text below), and the reader's JSON object gives them back by name.
         let mut ordered = call.args.clone();
-        ordered.sort_by_key(|(name, _)| verb.args.iter().position(|arg| arg.name == name));
+        ordered.sort_by(|(left, _), (right, _)| left.cmp(right));
+        let mut read = step.call().args.clone();
+        read.sort_by(|(left, _), (right, _)| left.cmp(right));
         assert!(step.call().verb == call.verb, "row {row}");
-        assert!(step.call().args == ordered, "row {row}");
+        assert!(read == ordered, "row {row}");
         assert!(step.accepted() == answer.is_ok(), "row {row}");
         assert!(step.digest() == answer_digest(answer), "row {row}");
         assert!(!step.masked(), "row {row}");
@@ -256,6 +284,11 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     assert_eq!(check.steps()[11].call().verb, "layout");
     assert!(check.steps()[11].answer()["placed"]["by"] == "unexplained");
     assert!(check.steps()[11].answer()["width"]["px"] == 40.0);
+    // A graph part is kept whole, its part and part count beside its nodes.
+    assert_eq!(check.steps()[12].call().verb, "graph");
+    assert!(check.steps()[12].call().args == vec![("part".to_string(), ArgValue::Number(2))]);
+    assert!(check.steps()[12].answer()["nodes"][0]["id"] == "row-24");
+    assert!(check.steps()[12].answer()["part"] == 2 && check.steps()[12].answer()["parts"] == 30);
     let text = String::from_utf8(bytes).expect("the check is text");
     assert!(text.starts_with(
         "[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"},\"format\":1},\n"
@@ -263,6 +296,11 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     assert!(text.contains(
         r#"{"tool":"press","arguments":{"key":"tab","shift":true},"accepted":true,"digest":""#
     ));
+    // A press's flags are kept in the schema's order: key, shift, then ctrl.
+    assert!(text.contains(
+        r#"{"tool":"press","arguments":{"key":"arrow-down","ctrl":true},"accepted":true,"digest":""#
+    ));
+    assert!(text.contains(r#"{"tool":"graph","arguments":{"part":2},"accepted":true,"digest":""#));
     assert!(text.ends_with("}\n]\n"));
     assert!(!text.contains(r#""png""#) && !text.contains("Zm9vYmFy"));
     assert_eq!(text.lines().count(), calls.len() + 3);

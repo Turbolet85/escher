@@ -1,0 +1,237 @@
+[
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-20T19:26:46Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-driver-debts",
+"--message-file",
+".andromeda/runs/2026-11-20T18-56-36-phase/relay-1.md",
+"--origin",
+"the operator, by dialog",
+"--kind",
+"relay",
+"--why",
+"graph paging technical forks: 10,000 B budget, states in part 1 only with help saying later empty states mean read part 1, part JSON = graph keys + part, parts",
+"--step",
+"phase:P4",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I1 · copy message · message: the operator, by dialog",
+"cite: inputs#I1"
+],
+"stderr": null,
+"wrote": [
+"inputs/.gitattributes",
+"inputs/I1-relay-1.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I1",
+"kind": "relay",
+"repo": null,
+"path": "message: the operator, by dialog",
+"form": "copy",
+"state": "message",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "4086f17142f552c9cf9f0fbdfde78b481585d1322efb34d6b6b5ddbecd1c812a",
+"copy": "I1-relay-1.md.txt",
+"link": false,
+"read_at": "2026-11-20T19:26:46Z",
+"step": "phase:P4",
+"why": "graph paging technical forks: 10,000 B budget, states in part 1 only with help saying later empty states mean read part 1, part JSON = graph keys + part, parts"
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-21T05:40:55Z",
+"argv": [
+"snap",
+"--chunk",
+"2026-11-20-driver-debts",
+"--source",
+"~/dev/projects/additional/escher-overseer/relays/driver-debts-founder-2026-11-21.md",
+"--kind",
+"relay",
+"--why",
+"the founder answered F1 A, F2 A, F3 A by dialog, labels verbatim; ratifies --ctrl on press and --part on graph",
+"--step",
+"phase:P4",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"snapped I2 · copy no-repo · ../additional/escher-overseer/relays/driver-debts-founder-2026-11-21.md",
+"cite: inputs#I2"
+],
+"stderr": null,
+"wrote": [
+"inputs/I2-driver-debts-founder-2026-11-21.md.txt",
+"inputs/andromeda-inputs.json"
+],
+"before": null,
+"after": {
+"id": "I2",
+"kind": "relay",
+"repo": null,
+"path": "../additional/escher-overseer/relays/driver-debts-founder-2026-11-21.md",
+"form": "copy",
+"state": "no-repo",
+"commit": null,
+"ref": null,
+"upstream": null,
+"claimed": null,
+"sha256": "32bbd59e16930e32ae60799f3ab749ab7353cf282f97839c7e5f65815bc29457",
+"copy": "I2-driver-debts-founder-2026-11-21.md.txt",
+"link": false,
+"read_at": "2026-11-21T05:40:55Z",
+"step": "phase:P4",
+"why": "the founder answered F1 A, F2 A, F3 A by dialog, labels verbatim; ratifies --ctrl on press and --part on graph"
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-21T05:45:44Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-20-driver-debts",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, by dialog",
+"I1 cited plan.md:22 · plan.md:64 · plan.md:287 · plan.md:289 · plan.md:317",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/driver-debts-founder-2026-11-21.md",
+"I2 cited plan.md:10 · plan.md:36 · plan.md:280 · plan.md:287 · plan.md:292 · plan.md:317 · plan.md:353 · plan.md:357",
+"inputs: 2 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-21T06:02:56Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-20-driver-debts",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, by dialog",
+"I1 cited plan.md:22 · plan.md:64 · plan.md:301 · plan.md:303 · plan.md:334",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/driver-debts-founder-2026-11-21.md",
+"I2 cited plan.md:10 · plan.md:36 · plan.md:294 · plan.md:301 · plan.md:306 · plan.md:334 · plan.md:370 · plan.md:374",
+"inputs: 2 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+},
+{
+"tool": "inputs",
+"v": "1.8",
+"sha8": "363241ce",
+"ts": "2026-11-21T06:03:12Z",
+"argv": [
+"verify",
+"--chunk",
+"2026-11-20-driver-debts",
+"--run-dir",
+".andromeda/runs/2026-11-20T18-56-36-phase",
+"--marker",
+"2026-11-20-driver-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"I1 n/a — a message has no live source · copy message · message: the operator, by dialog",
+"I1 cited plan.md:22 · plan.md:64 · plan.md:303 · plan.md:305 · plan.md:336",
+"I2 unchanged · copy no-repo · ../additional/escher-overseer/relays/driver-debts-founder-2026-11-21.md",
+"I2 cited plan.md:10 · plan.md:36 · plan.md:296 · plan.md:303 · plan.md:308 · plan.md:336 · plan.md:372 · plan.md:376",
+"inputs: 2 entries — unchanged 1 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 1 · uncited 0 · unparsed 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"entries": 2,
+"counts": {
+"unchanged": 1,
+"drifted": 0,
+"vanished": 0,
+"broken": 0,
+"altered": 0,
+"unreachable": 0,
+"n/a": 1
+},
+"uncited": 0,
+"unparsed": 0
+}
+}
+]

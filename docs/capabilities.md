@@ -165,8 +165,11 @@ those names to the nodes' `component`, and each such node names the state among 
 confirms each once a run of the handler writes the state, and flags `undeclared` a write no declaration names and
 `unconfirmed` a declared write once the handler has run and no run of it wrote the state. The stand's seven tasks
 register their signals, and once each of their handlers has run no write reads a flag. On Cells at boot the whole
-`graph` answer is 293,869 bytes, inside the 1,048,576-byte answer bound and not paged: its bulk is the 676 data cells'
-declared `click` writes, listed on each cell's node from boot.
+`graph` answer is 293,869 bytes, its bulk the 676 data cells' declared `click` writes, listed on each cell's node from
+boot. A graph whose answer is over 10,000 bytes is read in parts, as a snapshot is: `graph --part N` (1 to 1000) answers
+a run of whole nodes within 10,000 bytes with `part` and `parts`, part 1 by default, and the parts' nodes in order are the
+whole graph's; part 1 carries every registered state, and a later part's empty `states` means read part 1. A graph
+within the budget, asked no part, answers whole as before.
 
 The stable-id grammar reserves a fifth form for a virtual node, a target an owner element's own handler serves inside
 it: `{owner}///{key}` (`virtual_node_id`), a separator no other id can hold. Nothing produces it yet.
@@ -287,7 +290,9 @@ Escher changed the engine, for every document and not the stand alone, in these 
 - **a `multiple` `select` model**: its rows have boxes of their own and take a click, plain, with Ctrl or Meta and with
   Shift; its arrows, `Home` and `End` choose a row alone, with Shift span and with Ctrl or Meta move the current row; a
   Space flips the current row; typed text chooses its match alone; each change fires one `input` and one `change`, a
-  Dioxus handler reading the set through `evt.values()`;
+  Dioxus handler reading the set through `evt.values()`; through the driver `press --ctrl` holds the host's action key
+  (⌘ on macOS, Ctrl elsewhere), so the arrows with it move the current row and a `press space` flips it, building a set
+  of rows that are not adjacent;
 - **`optgroup`**: its options are in its select's list, chosen by keys and text, a disabled group's rows skipped and left
   out of a form's entries;
 - **`inert`** is honoured: an inert subtree is skipped by Tab, passed through by a hit and left out of the
@@ -381,9 +386,11 @@ The driver's own refusal texts state three readings that are off:
 - **A handler on no screen a replay reached is not listed.** The graph reads the screen at boot and after each
   replayed step, so a handler that only a screen no replay showed carries is in no reading. Pinned by
   `stand_handler_coverage`.
-- **A bubbling dispatch counts every ancestor listener it passed.** A dispatch reaches each element of its chain
-  whose current listeners hold its event; a `stopPropagation` is not read. Pinned by dioxus-native-dom's reached
-  tests.
+- **A dispatch an ancestor stops counts its innermost listener alone.** The reached record reads whether a dispatch was
+  stopped, once, after it returns: an unstopped bubbling dispatch counts every listener of its chain, a stopped one its
+  innermost listener alone, and a non-bubbling event its target alone. Where an ancestor stops the event, the listeners
+  between it and the target ran yet read unexercised. Pinned by dioxus-native-dom's reached tests and
+  `stand_handler_coverage`.
 - **Accepted is not acting.** `actions` answers whether a call would be accepted, not what it would do: `type` reads
   accepted on any enabled, visible, uncovered node, a button included, since the call's only check is the one a
   `click` meets. `press` and `advance` act on focus and the clock, so no node lists them. Pinned by `stand_actions`.
@@ -398,15 +405,11 @@ The driver's own refusal texts state three readings that are off:
 - **Unpaged diffs and findings.** An acting verb's diff and a lint's findings are not paged: on a large screen either
   can pass 10,000 bytes, held only by the 1,048,576-byte answer bound. `snapshot` alone reads a screen in parts. As
   measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md.
-- **An unpaged graph.** `graph` takes no argument and answers the whole screen at once: Cells at boot reads 293,869
-  bytes, nearly all of it its 676 cells' declared `click` writes on their nodes, held only by the answer bound. A graph
-  read in parts, as `snapshot`'s is, would add an argument and is next-version work, owned by the residual row
-  `res-7cc5bi4k` (target: next).
 - **An unpaged actions answer.** `actions` takes no argument and answers the whole screen at once. Cells at boot reads
   118,292 bytes for 678 nodes, held only by the answer bound. A `click` in the overlay scrollbar band of a box just
   scrolled reads accepted and dispatches nothing until the scrollbar fades.
-- **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled;
-  `press` holds no Ctrl, so a set of rows that are not adjacent cannot be built through the driver. A controlled app must
+- **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled. A
+  controlled app must
   write `selected` back, or a choice reverts. A single-choice select shows its chosen option's label alone. The windowed
   list is read and not run: no test launches a window.
 - **`caused` carries an app's own text.** Its messages and fields cross as their author wrote them, the `error` field
@@ -570,9 +573,14 @@ They run in these CI legs (`.github/scripts/ci-leg.sh`):
 The open list's highlight — its active descendant, the `highlighted` reading, its painted pair in the lint — and its
 one row height, the tallest row's, are proven by `select_popup`, `select_popup_painted`, `stand_act_popup` and
 `stand_lint`. The UI graph and the `clickable` reading are proven by `stand_graph`, a `stand_*` file of the `test` and
-`stand-repeat` legs. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs. Handler
+`stand-repeat` legs; the graph read in parts by `stand_graph`'s
+`cells_reads_in_parts_each_within_the_budget_and_together_the_whole_graph`, over MCP by `stand_mcp_tools`, in a kept
+check by `stand_replay` and through the binary by seven_guis' `cli_commands`. `press --ctrl` building a set of rows
+that are not adjacent is proven by `stand_act_select`'s `a_press_with_ctrl_builds_a_set_of_rows_that_are_not_adjacent`. The `actions` read is proven by `stand_actions`, a `stand_*` file of the same two legs. Handler
 coverage is proven by `stand_handler_coverage`, a `stand_*` file of the same two legs, and through the binary by
-seven_guis' `cli_commands` and `host_log`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
+seven_guis' `cli_commands` and `host_log`, a dispatch the editor stops by
+`an_enter_the_cell_editor_stops_leaves_the_grids_keydown_unexercised` and, through the binary,
+`an_enter_the_cell_editor_stops_leaves_the_grids_keydown_unexercised_through_the_coverage_role`; a kept `actions` step's replay by `stand_replay`. A start in a named state is
 proven by `stand_start_in_state`, a `stand_*` file of the same two legs. An exploration is proven by `stand_explore`,
 a `stand_*` file of the same two legs. The layout read is proven by `layout_reason` and by `stand_layout`, a
 `stand_*` file of the same two legs, and the `layout` verb on every carrier by `stand_layout`, `stand_mcp_tools`,

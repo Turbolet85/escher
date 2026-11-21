@@ -8,12 +8,14 @@
 //! two options; Cells' 676 data cells carry `click` and read `clickable` while its grid carries
 //! `keydown` and does not. Every graph node is a snapshot node and the other way, and no id on a
 //! served screen holds the reserved `///`. A graph read changes nothing, its answer holds no text
-//! typed into a control, a `graph` with an argument is refused `malformed` with nothing run, and
-//! the whole Cells answer is within the answer bound. A failure message names a layout mode, a
-//! task and an index only.
+//! typed into a control, a `graph` with an argument it does not take is refused `malformed` with
+//! nothing run, and Cells' graph, over the snapshot budget, is read in parts: each within the
+//! budget, part 1 alone holding the states, the parts' nodes in order the whole graph's, a part
+//! past the last empty and a part outside 1 to 1000 refused, while a small screen answers whole.
+//! A failure message names a layout mode, a task and an index only.
 
 use dioxus::prelude::*;
-use dioxus_native_dom::{DioxusDocument, UiGraph, VIRTUAL_KEY_SEPARATOR};
+use dioxus_native_dom::{DioxusDocument, SNAPSHOT_TEXT_BUDGET, UiGraph, VIRTUAL_KEY_SEPARATOR};
 use escher_driver::{ArgValue, Call, Cause, Outcome, Session};
 use seven_guis::stand::{self, LeanTask};
 use seven_guis::tasks::timer::TimerTicks;
@@ -24,7 +26,8 @@ mod common;
 mod session_common;
 use common::{Drive, GRAPH_DRIVES};
 use session_common::{
-    act, advance, click, graph, graphed, hold, press, refused_unchanged, type_into,
+    act, advance, click, graph, graph_of_part, graph_part, graphed, hold, press, refused_unchanged,
+    type_into,
 };
 
 /// The answer bound of every carrier, in bytes.
@@ -400,22 +403,99 @@ fn a_graph_read_changes_nothing_and_holds_no_typed_text() {
         let (cause, unchanged) = refused_unchanged(&mut crud, &with_argument);
         assert!(
             cause == Some(Cause::Malformed) && unchanged,
-            "{at}: a graph with an argument is refused malformed with nothing run"
+            "{at}: a graph with an argument it does not take is refused malformed with nothing run"
         );
     }
 }
 
 #[test]
-fn the_whole_cells_answer_is_within_the_answer_bound() {
+fn cells_reads_in_parts_each_within_the_budget_and_together_the_whole_graph() {
     for incremental in [false, true] {
+        let at = format!("incremental={incremental} Cells");
         let mut cells = hold_task("Cells", incremental);
-        let Ok(Outcome::Graphed { graph }) = cells.run(&graph()) else {
-            panic!("incremental={incremental} Cells: graph answers");
-        };
-        let size = Outcome::Graphed { graph }.to_json().len();
+        let whole = cells.harness().doc.graph();
+        let whole_size = Outcome::Graphed {
+            graph: whole.clone(),
+        }
+        .to_json()
+        .len();
         assert!(
-            size > 100_000 && size <= ANSWER_BOUND,
-            "incremental={incremental} Cells: the answer is within the bound"
+            whole_size > SNAPSHOT_TEXT_BUDGET && whole.states.len() == 6,
+            "{at}: the whole graph is over the budget and registers six states"
+        );
+
+        let first = cells
+            .run(&graph())
+            .unwrap_or_else(|_| panic!("{at}: graph answers"));
+        let (first_graph, part, parts) = graph_of_part(first.clone());
+        assert!(
+            part == 1 && parts > 1,
+            "{at}: with no part asked the answer is part 1 of more than one"
+        );
+        assert!(
+            first_graph.states == whole.states,
+            "{at}: part 1 holds every state"
+        );
+
+        let mut nodes = Vec::new();
+        for n in 1..=parts {
+            let outcome = cells
+                .run(&graph_part(i64::from(n)))
+                .unwrap_or_else(|_| panic!("{at}: part {n} answers"));
+            let written = outcome.to_json();
+            assert!(
+                written.len() <= SNAPSHOT_TEXT_BUDGET && written.len() <= ANSWER_BOUND,
+                "{at}: part {n} is within the budget"
+            );
+            let (graph, read_part, read_parts) = graph_of_part(outcome);
+            assert!(
+                (read_part, read_parts) == (n, parts),
+                "{at}: part {n} reads its number and the count"
+            );
+            assert!(
+                (n == 1) == !graph.states.is_empty(),
+                "{at}: part {n} holds states only as part 1"
+            );
+            assert!(!graph.nodes.is_empty(), "{at}: part {n} holds nodes");
+            nodes.extend(graph.nodes);
+        }
+        assert!(
+            nodes == whole.nodes,
+            "{at}: the parts' nodes in order are the whole graph's"
+        );
+
+        let past = cells
+            .run(&graph_part(i64::from(parts) + 1))
+            .unwrap_or_else(|_| panic!("{at}: a part past the last answers"));
+        let (past_graph, past_part, past_parts) = graph_of_part(past);
+        assert!(
+            past_graph.nodes.is_empty()
+                && past_graph.states.is_empty()
+                && (past_part, past_parts) == (parts + 1, parts),
+            "{at}: a part past the last holds nothing"
+        );
+
+        for (row, n) in [0, 1001].into_iter().enumerate() {
+            let (cause, unchanged) = refused_unchanged(&mut cells, &graph_part(n));
+            assert!(
+                cause == Some(Cause::Malformed) && unchanged,
+                "{at}: row {row}: a part outside its bound is refused malformed with nothing run"
+            );
+        }
+
+        let at = format!("incremental={incremental} Counter");
+        let (mut counter, _) = hold(LeanTask::Counter, incremental);
+        let answer = counter
+            .run(&graph())
+            .unwrap_or_else(|_| panic!("{at}: graph answers"));
+        assert!(
+            matches!(answer, Outcome::Graphed { .. }),
+            "{at}: a graph within the budget with no part asked answers whole"
+        );
+        let written = answer.to_json();
+        assert!(
+            written.starts_with("{\"nodes\":[") && !written.contains("\"part\""),
+            "{at}: the whole answer holds no part or count"
         );
     }
 }

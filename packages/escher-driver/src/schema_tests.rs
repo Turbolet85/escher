@@ -111,8 +111,8 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
              `space` open its list, and on an open one the arrows, `home` and `end` move its \
              highlight, which only a screenshot shows, `enter` or `space` chooses the highlighted \
              row and `escape` closes with no choice; on a `multiple` select the arrows, `home` and \
-             `end` choose a row alone and with `shift` span to it, while a set of rows that are \
-             not adjacent needs Ctrl, which this verb does not carry",
+             `end` choose a row alone and with `shift` span to it, and with `ctrl` move the \
+             current row without choosing, `space` then flipping it in or out of the set",
         ),
         (
             Some(SCREENSHOT.help),
@@ -226,7 +226,11 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
         ),
         (
             "press",
-            &[("key", ArgKind::Key, true), ("shift", ArgKind::Flag, false)],
+            &[
+                ("key", ArgKind::Key, true),
+                ("shift", ArgKind::Flag, false),
+                ("ctrl", ArgKind::Flag, false),
+            ],
             [&ACTING[..], &["caused", "caused_past"]].concat(),
         ),
         (
@@ -245,7 +249,11 @@ fn each_verb_has_its_stated_shapes_and_the_key_list_its_twelve_names() {
             vec!["width", "height", "png"],
         ),
         ("lint", &[], vec!["findings"]),
-        ("graph", &[], vec!["nodes", "states"]),
+        (
+            "graph",
+            &[("part", ArgKind::Part, false)],
+            vec!["nodes", "states", "part", "parts"],
+        ),
         ("actions", &[], vec!["nodes"]),
         (
             "layout",
@@ -463,6 +471,48 @@ fn the_fifteen_node_keys_are_named_in_order_each_with_its_help() {
         );
     }
     assert!(help("enabled").contains("the reading follows the attribute's presence"));
+}
+
+#[test]
+fn the_graph_states_its_parts_and_a_later_parts_empty_states_and_press_its_action_key() {
+    let field_help = |verb: &VerbSpec, name: &str| {
+        verb.fields
+            .iter()
+            .find(|field| field.name == name)
+            .map(|field| field.help)
+    };
+    assert!(GRAPH.help.contains(
+        "part 1 carries the whole `states` list, and a later part's empty `states` means read \
+         part 1, not no states"
+    ));
+    assert!(
+        GRAPH
+            .help
+            .contains("is read in parts, each a run of whole nodes of at most 10,000 bytes")
+    );
+    assert_eq!(
+        field_help(&GRAPH, "states").map(|help| help.ends_with(
+            "read in parts, part 1 holds every state and a later part's empty list means read \
+             part 1, not no states"
+        )),
+        Some(true)
+    );
+    assert_eq!(
+        field_help(&GRAPH, "parts"),
+        Some("how many parts the graph reads as, present with `part`")
+    );
+    let ctrl = PRESS
+        .args
+        .iter()
+        .find(|arg| arg.name == "ctrl")
+        .map(|arg| arg.help);
+    assert_eq!(
+        ctrl,
+        Some(
+            "whether the host's action key is held while the key is pressed: ⌘ (Meta) on \
+             macOS, Ctrl elsewhere; false when absent"
+        )
+    );
 }
 
 #[test]

@@ -1,0 +1,51 @@
+[[control]]
+id = 'ctrl-nothing'
+entry = 2
+guard = 'press holds the action key for ctrl: the ACTION_MODIFIER join dropped'
+case = 'a_press_with_ctrl_builds_a_set_of_rows_that_are_not_adjacent'
+[[control.edit]]
+path = 'packages/escher-driver/src/execute.rs'
+old = '''    if ctrl {
+        modifiers |= ACTION_MODIFIER;
+    }'''
+new = '''    let _ = ctrl;'''
+
+[[control]]
+id = 'graph-uncut'
+entry = 2
+guard = 'graph cuts an over-budget answer: the whole graph answered whatever its size'
+case = 'cells_reads_in_parts_each_within_the_budget_and_together_the_whole_graph'
+[[control.edit]]
+path = 'packages/escher-driver/src/execute.rs'
+old = '''    if part.is_none() && whole <= SNAPSHOT_TEXT_BUDGET {'''
+new = '''    if part.is_none() && whole <= SNAPSHOT_TEXT_BUDGET * 1000 {'''
+
+[[control]]
+id = 'stop-unit'
+entry = 1
+guard = 'the reached record reads the stop: every resolved entry written whatever propagates reads'
+case = 'a_dispatch_its_target_stops_records_the_target_alone'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/reached.rs'
+old = '''        } else if propagates {'''
+new = '''        } else if propagates || bubbles {'''
+
+[[control]]
+id = 'stop-stand'
+entry = 2
+guard = 'the reached record reads the stop: every resolved entry written whatever propagates reads'
+case = 'an_enter_the_cell_editor_stops_leaves_the_grids_keydown_unexercised'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/reached.rs'
+old = '''        } else if propagates {'''
+new = '''        } else if propagates || bubbles {'''
+
+[[control]]
+id = 'stop-binary'
+entry = 4
+guard = 'the reached record reads the stop: every resolved entry written whatever propagates reads'
+case = 'an_enter_the_cell_editor_stops_leaves_the_grids_keydown_unexercised_through_the_coverage_role'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/reached.rs'
+old = '''        } else if propagates {'''
+new = '''        } else if propagates || bubbles {'''

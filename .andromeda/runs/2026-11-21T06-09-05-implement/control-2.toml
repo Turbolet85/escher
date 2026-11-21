@@ -1,0 +1,11 @@
+[[control]]
+id = 'ctrl-nothing-mcp'
+entry = 2
+guard = 'press holds the action key for ctrl: the ACTION_MODIFIER join dropped (over MCP)'
+case = 'press_tool_calls_with_ctrl_build_a_set_of_rows_that_are_not_adjacent'
+[[control.edit]]
+path = 'packages/escher-driver/src/execute.rs'
+old = '''    if ctrl {
+        modifiers |= ACTION_MODIFIER;
+    }'''
+new = '''    let _ = ctrl;'''

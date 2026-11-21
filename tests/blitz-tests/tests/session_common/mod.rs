@@ -108,6 +108,18 @@ pub fn press(key: &str, shift: bool) -> Call {
     }
 }
 
+/// The driver call that presses `key` with the host's action key held: Meta on macOS, Ctrl
+/// elsewhere.
+pub fn press_ctrl(key: &str) -> Call {
+    call(
+        "press",
+        &[
+            ("key", ArgValue::Text(key.to_string())),
+            ("ctrl", ArgValue::Flag(true)),
+        ],
+    )
+}
+
 /// The driver call that moves the session's clock forward by `ms` milliseconds, then hands
 /// `ms` to the app's time step where the session carries one.
 pub fn advance(ms: i64) -> Call {
@@ -139,6 +151,20 @@ pub fn graph() -> Call {
     call("graph", &[])
 }
 
+/// The driver call that reads part `n` of the screen's UI graph.
+pub fn graph_part(n: i64) -> Call {
+    call("graph", &[("part", ArgValue::Number(n))])
+}
+
+/// What a `graph` read in parts answered: the part's graph, the part and how many parts the
+/// graph reads as. Any other outcome fails the check.
+pub fn graph_of_part(outcome: Outcome) -> (UiGraph, u32, u32) {
+    match outcome {
+        Outcome::GraphPart { graph, part, parts } => (graph, part, parts),
+        other => panic!("a graph read in parts answers a part, not {other:?}"),
+    }
+}
+
 /// The driver call that reads what each actionable element of the screen can take now.
 pub fn actions() -> Call {
     call("actions", &[])
@@ -168,10 +194,26 @@ pub fn actioned(session: &mut Session, call: &Call) -> Option<Vec<ActionNode>> {
 }
 
 /// Runs `call` on `session` through the driver and reads its outcome as a UI graph: `None` for
-/// a refused call and for any other outcome.
+/// a refused call and for any other outcome. A graph answered in parts is read whole: every
+/// part read in turn, its nodes in order and part 1's states.
 pub fn graphed(session: &mut Session, call: &Call) -> Option<UiGraph> {
     match session.run(call).ok()? {
         Outcome::Graphed { graph } => Some(graph),
+        Outcome::GraphPart { parts, .. } => {
+            let mut whole = UiGraph::default();
+            for n in 1..=parts {
+                let Outcome::GraphPart { graph, .. } =
+                    session.run(&graph_part(i64::from(n))).ok()?
+                else {
+                    return None;
+                };
+                whole.nodes.extend(graph.nodes);
+                if n == 1 {
+                    whole.states = graph.states;
+                }
+            }
+            Some(whole)
+        }
         _ => None,
     }
 }
@@ -261,6 +303,7 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
         | Outcome::Shot { .. }
         | Outcome::Linted { .. }
         | Outcome::Graphed { .. }
+        | Outcome::GraphPart { .. }
         | Outcome::Actions { .. }
         | Outcome::Layout { .. } => None,
         Outcome::Acted {

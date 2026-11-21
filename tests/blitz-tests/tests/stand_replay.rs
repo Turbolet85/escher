@@ -14,7 +14,10 @@
 //! steps run, and a copy whose last `actions` answer reads one node's `keyed` flipped stops at
 //! that step, naming `nodes`. *A kept `layout` step replays* the same way: a `layout` of the
 //! Counter's button before and after a click holds on a fresh Counter, and a copy whose last
-//! `layout` answer reads another placing word stops at that step, naming `placed`. A failure
+//! `layout` answer reads another placing word stops at that step, naming `placed`. *A kept
+//! `graph` part step replays* too: a Counter session with `graph --part 1` before and after a
+//! click holds on a fresh Counter, and a copy whose last part reads another part count stops at
+//! that step, naming `parts`. A failure
 //! message names the layout mode, the check's file and a
 //! step index, never an id, a name or a reading.
 
@@ -408,6 +411,57 @@ fn a_kept_layout_step_replays_and_a_changed_one_stops_naming_placed() {
         assert!(
             keys == ["placed"],
             "{mode}: step 3 differs in its placement"
+        );
+    }
+}
+
+/// A Counter session recorded in process, with a `graph` part read before and after a click,
+/// read back and replayed on a fresh Counter; then the same bytes with the last part's count
+/// changed.
+#[cfg(unix)]
+#[test]
+fn a_kept_graph_part_step_replays_and_a_changed_one_stops_naming_parts() {
+    use session_common::{click, graph_part, snapshot, state_dir};
+
+    const PARTS: &str = r#","parts":1}"#;
+    for incremental in [false, true] {
+        let mode = mode_name(incremental);
+        let dir = state_dir(&format!("replay-graph-part-{mode}"));
+        let bytes = recorded_counter(
+            &dir,
+            [snapshot(), graph_part(1), click(BUTTON), graph_part(1)],
+            mode,
+            incremental,
+        );
+        assert_kept_and_holding(
+            &bytes,
+            ["snapshot", "graph", "click", "graph"],
+            mode,
+            incremental,
+        );
+
+        let text = std::str::from_utf8(&bytes).expect("a check is text");
+        assert!(
+            text.matches(r#"{"tool":"graph","arguments":{"part":1},"#)
+                .count()
+                == 2,
+            "{mode}: each graph step keeps its part"
+        );
+        let last = text.rfind(r#""tool":"graph""#).expect("a graph step");
+        let at = last
+            + text[last..]
+                .find(PARTS)
+                .expect("the last part reads its count");
+        let changed = format!(
+            "{}{}{}",
+            &text[..at],
+            r#","parts":2}"#,
+            &text[at + PARTS.len()..]
+        );
+        let keys = stopped_at_step_3(&changed, mode, incremental);
+        assert!(
+            keys == ["parts"],
+            "{mode}: step 3 differs in its part count"
         );
     }
 }

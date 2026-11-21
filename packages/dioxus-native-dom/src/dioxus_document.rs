@@ -464,27 +464,35 @@ impl EventHandler for DioxusEventHandler<'_> {
         };
 
         // Get dioxus vdom id for node
-        let dioxus_id = chain
-            .iter()
-            .find_map(|node_id| doc.inner().get_node(*node_id).and_then(get_dioxus_id));
-        let Some(id) = dioxus_id else {
+        let dioxus_id = chain.iter().find_map(|node_id| {
+            doc.inner()
+                .get_node(*node_id)
+                .and_then(get_dioxus_id)
+                .map(|id| (*node_id, id))
+        });
+        let Some((target, id)) = dioxus_id else {
             return;
         };
 
         // Handle event in vdom, the graph's registry (when an app registered a state) recording
         // each write against this dispatch. The reached record (when coverage switched it on)
-        // resolves its ids now, before a handler can remove its element.
+        // resolves its ids now, before a handler can remove its element, and writes them once the
+        // dispatch has returned, when whether it was stopped can be read — or, should a handler's
+        // panic unwind out of it, as a stopped dispatch when its pending write drops.
         let dx_event = Event::new(event_data.clone(), event.bubbles);
         let runtime = self.vdom.runtime();
-        if let Some(record) = runtime.has_context::<ReachedRecord>(ScopeId::ROOT) {
-            record.record(
-                self.vdom,
-                self.vdom_state,
-                &doc.inner(),
-                chain,
-                event.name(),
-            );
-        }
+        let reached = runtime
+            .has_context::<ReachedRecord>(ScopeId::ROOT)
+            .map(|record| {
+                let resolved = ReachedRecord::resolve(
+                    self.vdom,
+                    self.vdom_state,
+                    &doc.inner(),
+                    chain,
+                    event.name(),
+                );
+                record.pending(resolved, target, event.bubbles)
+            });
         let registry = runtime.has_context::<SignalRegistry>(ScopeId::ROOT);
         if let Some(registry) = &registry {
             registry.begin_dispatch(chain, event.name());
@@ -492,6 +500,9 @@ impl EventHandler for DioxusEventHandler<'_> {
         runtime.handle_event(event.name(), dx_event.clone(), id);
         if let Some(registry) = &registry {
             registry.end_dispatch();
+        }
+        if let Some(reached) = reached {
+            reached.finish(dx_event.propagates());
         }
 
         // Update event state

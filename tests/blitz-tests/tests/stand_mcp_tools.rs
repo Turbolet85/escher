@@ -28,7 +28,11 @@
 //! the same id on a session booted the same way; one with no id is refused malformed and one
 //! naming no element not-found, and the accepted call's `tool_call` parents one command that
 //! records `verb` alone, the not-found one's `verb` and `cause`. A
-//! `help`
+//! `graph` tool call with `part` answers the line of the part `Session::run` writes, and its
+//! command records `verb` alone; a `press` with `ctrl` answers the run's own line; a `part` out of
+//! its bound and a `ctrl` of another kind are refused malformed; on a `multiple` select fixture a
+//! click on row 1, two `press` calls with `ctrl` on `arrow-down` and a `press space` read rows 1
+//! and 3 selected and row 2 not. A `help`
 //! tool call is answered by the server, with or without a held session: its text is the tool's
 //! description of itself, and its `tool_call` span holds `help` and `accepted` and parents no
 //! command. No check here sleeps or reads a clock. A failure message carries a layout mode and
@@ -46,7 +50,8 @@ use tracing::{Event, Metadata, Subscriber};
 mod fixtures;
 mod session_common;
 use session_common::{
-    click, hold, layout, mcp_tool_result, screenshot, serve_lines, shot, slug, snapshot,
+    click, graph_part, hold, layout, mcp_tool_result, press, press_ctrl, screenshot, serve_lines,
+    shot, slug, snapshot,
 };
 
 /// The lean tasks, as the binary hands them to the server.
@@ -725,6 +730,136 @@ fn a_graph_tool_call_answers_the_readers_graph_and_parents_a_command_recording_i
             Outcome::Graphed { graph }.to_json()
         },
     );
+}
+
+#[test]
+fn a_graph_part_and_a_press_with_ctrl_round_trip_over_mcp_as_the_run_answers_them() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        let start = format!(r#"{{"app":"{}"}}"#, slug(LeanTask::Crud));
+        let requests = [
+            tool_call(1, "start", &start),
+            tool_call(2, "graph", r#"{"part":1}"#),
+            tool_call(3, "graph", r#"{"part":2}"#),
+            tool_call(4, "graph", r#"{"part":0}"#),
+            tool_call(5, "press", r#"{"key":"tab"}"#),
+            tool_call(6, "press", r#"{"key":"arrow-down","ctrl":true}"#),
+            tool_call(7, "press", r#"{"key":"tab","ctrl":"yes"}"#),
+            tool_call(8, "stop", "{}"),
+        ];
+        let recorder = Recorder::default();
+        let replies =
+            tracing::subscriber::with_default(recorder.clone(), || serve(&requests, incremental));
+        assert_eq!(replies.len(), 8, "{mode}: one reply per call");
+
+        let (mut direct, _ticks) = hold(LeanTask::Crud, incremental);
+        let calls = [
+            graph_part(1),
+            graph_part(2),
+            press("tab", false),
+            press_ctrl("arrow-down"),
+        ];
+        let expected: Vec<String> = calls
+            .iter()
+            .map(|call| {
+                direct
+                    .run(call)
+                    .map(|outcome| outcome.to_json())
+                    .unwrap_or_else(|_| panic!("{mode}: the direct run answers"))
+            })
+            .collect();
+        for (row, (reply, line)) in [&replies[1], &replies[2], &replies[4], &replies[5]]
+            .into_iter()
+            .zip(&expected)
+            .enumerate()
+        {
+            assert!(
+                result(reply) == (false, line.clone()),
+                "{mode}: row {row}: the text block is the run's own line"
+            );
+        }
+        assert!(
+            expected[0].ends_with(r#""part":1,"parts":1}"#)
+                && expected[1].ends_with(r#""states":[],"part":2,"parts":1}"#),
+            "{mode}: a paged graph result is its JSON line, part 1 of CRUD's one part"
+        );
+        for (row, reply) in [&replies[3], &replies[6]].into_iter().enumerate() {
+            let (is_error, text) = result(reply);
+            assert!(
+                is_error && remedied(&text) == Some(Cause::Malformed),
+                "{mode}: row {row}: an argument out of its bound or kind is refused malformed"
+            );
+        }
+
+        let recorded = recorder.0.lock().unwrap();
+        let graphs = tool_calls(&recorded, "graph");
+        assert_eq!(graphs.len(), 3, "{mode}: one tool_call per graph");
+        let commands: Vec<&Seen> = recorded
+            .spans
+            .iter()
+            .filter(|seen| seen.name == "command" && seen.parent == Some(graphs[0]))
+            .collect();
+        assert!(
+            commands.len() == 1
+                && !commands[0].fields.is_empty()
+                && commands[0]
+                    .fields
+                    .iter()
+                    .all(|(field, value)| *field == "verb" && value == "graph"),
+            "{mode}: a graph part's command records its verb alone, no part or count"
+        );
+    }
+}
+
+/// A `multiple` select of three rows, as `stand_act_select` holds it.
+fn rows_page() -> dioxus::prelude::Element {
+    use dioxus::prelude::*;
+    rsx! {
+        div { id: "fx-root",
+            select { id: "fx-rows", aria_label: "Rows", multiple: true,
+                option { id: "fx-one", value: "1", "One" }
+                option { id: "fx-two", value: "2", "Two" }
+                option { id: "fx-three", value: "3", "Three" }
+            }
+        }
+    }
+}
+
+#[test]
+fn press_tool_calls_with_ctrl_build_a_set_of_rows_that_are_not_adjacent() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        let requests = [
+            tool_call(1, "start", r#"{"app":"rows"}"#),
+            tool_call(2, "click", r#"{"id":"fx-one"}"#),
+            tool_call(3, "press", r#"{"key":"arrow-down","ctrl":true}"#),
+            tool_call(4, "press", r#"{"key":"arrow-down","ctrl":true}"#),
+            tool_call(5, "press", r#"{"key":"space"}"#),
+            tool_call(6, "snapshot", "{}"),
+            tool_call(7, "stop", "{}"),
+        ];
+        let replies = tracing::subscriber::with_default(Recorder::default(), || {
+            serve_lines(&requests, &["rows"], |app: &str| {
+                Session::start(app, || fixtures::boot(rows_page, incremental))
+            })
+        });
+        assert_eq!(replies.len(), 7, "{mode}: one reply per call");
+        for (row, reply) in replies[1..6].iter().enumerate() {
+            assert!(!result(reply).0, "{mode}: row {row}: the call is accepted");
+        }
+        let (_, screen) = result(&replies[5]);
+        let reads = |id: &str| {
+            screen
+                .lines()
+                .find(|line| line.contains(&format!("id=\"{id}\"")))
+                .map(|line| line.split_whitespace().any(|word| word == "selected"))
+        };
+        assert!(
+            (reads("fx-one"), reads("fx-two"), reads("fx-three"))
+                == (Some(true), Some(false), Some(true)),
+            "{mode}: rows 1 and 3 read selected and row 2 not"
+        );
+    }
 }
 
 #[test]

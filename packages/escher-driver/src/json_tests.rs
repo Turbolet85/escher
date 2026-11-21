@@ -333,13 +333,39 @@ fn each_outcome_is_written_with_its_verbs_fields_in_order() {
                 graph: UiGraph::default(),
             },
             &schema::GRAPH,
-            &[][..],
+            &["part", "parts"][..],
             r#"{"nodes":[],"states":[]}"#,
+        ),
+        (
+            Outcome::GraphPart {
+                graph: UiGraph {
+                    nodes: a_graph().nodes.into_iter().skip(1).take(1).collect(),
+                    states: Vec::new(),
+                },
+                part: 2,
+                parts: 3,
+            },
+            &schema::GRAPH,
+            &[][..],
+            concat!(
+                r#"{"nodes":[{"id":"one","owner":"pick","component":"Form","handlers":[],"reads":["mode"]}],"#,
+                r#""states":[],"part":2,"parts":3}"#,
+            ),
+        ),
+        (
+            Outcome::GraphPart {
+                graph: UiGraph::default(),
+                part: 4,
+                parts: 3,
+            },
+            &schema::GRAPH,
+            &[][..],
+            r#"{"nodes":[],"states":[],"part":4,"parts":3}"#,
         ),
         (
             Outcome::Graphed { graph: a_graph() },
             &schema::GRAPH,
-            &[][..],
+            &["part", "parts"][..],
             concat!(
                 r#"{"nodes":[{"id":"pick","component":"Form","handlers":[{"event":"input","writes":[{"state":"mode","declared":true,"confirmed":true}]}],"reads":["mode"]},"#,
                 r#"{"id":"one","owner":"pick","component":"Form","handlers":[],"reads":["mode"]},"#,
@@ -400,7 +426,7 @@ fn each_outcome_is_written_with_its_verbs_fields_in_order() {
             ),
         ),
     ];
-    assert_eq!(rows.len(), 19);
+    assert_eq!(rows.len(), 21);
     for (row, (outcome, verb, absent, json)) in rows.into_iter().enumerate() {
         let line = outcome.to_json();
         assert!(line == json, "row {row}");

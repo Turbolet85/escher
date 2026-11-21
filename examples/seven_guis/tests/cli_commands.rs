@@ -13,7 +13,12 @@
 //! through `start --record`, its button clicked, read back by `coverage counter <check>` answers
 //! one line leaving the back button alone; a file that is no check is refused `malformed` with
 //! nothing of its path written back, and `coverage` on an app the binary does not boot is a usage
-//! error. On a screen inside the budget,
+//! error. A Cells session kept through `start --record`, a cell clicked, its editor clicked and
+//! Enter pressed there, read back by `coverage cells <check>` lists the grid's `keydown`, which the
+//! editor's stop kept the event from, and not the editor's own. Cells' graph, over the budget,
+//! answers part 1 of more than one with no part asked and `graph --part 2` its four fields, a part
+//! outside its bound or of another kind refused `malformed`; `press --ctrl` is accepted and a
+//! repeated `--ctrl` refused. On a screen inside the budget,
 //! `snapshot --part 1` answers that screen's text as part 1 of 1, a part past it the empty text,
 //! and a part outside its bound or of another kind is refused `malformed`, its line the
 //! library's own refusal.
@@ -504,6 +509,109 @@ fn graph_answers_one_line_of_the_ui_graph() {
         "the refusal writes back nothing the line named"
     );
     counter.stop();
+}
+
+#[test]
+fn graph_reads_cells_in_parts_and_press_takes_ctrl() {
+    let cells = Session::start("cc-graph-parts", "cells");
+    let first = cells.accepted(&["graph"]);
+    assert!(
+        keys(&first) == ["nodes", "states", "part", "parts"],
+        "a graph over the budget answers a part's four fields"
+    );
+    let parts = number(&first, "parts").expect("the part count");
+    assert!(
+        first.contains(",\"part\":1,\"parts\":") && parts > 1,
+        "with no part asked, part 1 of more than one"
+    );
+    let second = cells.accepted(&["graph", "--part", "2"]);
+    assert!(
+        keys(&second) == ["nodes", "states", "part", "parts"]
+            && second.contains(r#""states":[],"part":2,"parts":"#),
+        "part 2 holds its nodes and no state"
+    );
+    assert!(
+        !second.contains('\u{1b}') && second.len() <= 10_000,
+        "one uncoloured line within the budget"
+    );
+    let rows: [(&str, Fault); 2] = [
+        ("0", Fault::OutOfBound("part")),
+        ("x", Fault::WrongKind("part")),
+    ];
+    for (row, (part, fault)) in rows.into_iter().enumerate() {
+        let ran = cells.run(&["graph", "--part", part]);
+        assert_eq!(ran.status, Some(1), "row {row}: the command ends refused");
+        assert!(
+            ran.line() == Refusal::malformed(fault).to_json() && ran.stderr.is_empty(),
+            "row {row}: the line is the library's refusal, holding nothing typed"
+        );
+    }
+    let pressed = cells.accepted(&["press", "--key", "arrow-down", "--ctrl"]);
+    assert!(
+        keys(&pressed) == fields("press") && pressed.starts_with("{\"settled\":true,"),
+        "a press with ctrl is accepted and settles"
+    );
+    let ran = cells.run(&["press", "--key", "tab", "--ctrl", "--ctrl"]);
+    assert_eq!(ran.status, Some(1), "a repeated ctrl ends refused");
+    assert!(ran.line() == Refusal::malformed(Fault::Repeated("ctrl")).to_json());
+    cells.stop();
+}
+
+#[test]
+fn an_enter_the_cell_editor_stops_leaves_the_grids_keydown_unexercised_through_the_coverage_role() {
+    let kept = state_dir("cc-cover-stop-rec");
+    let _ = std::fs::remove_dir_all(&kept);
+    std::fs::create_dir_all(&kept).expect("the recording directory is made");
+    {
+        use std::os::unix::fs::PermissionsExt;
+        std::fs::set_permissions(&kept, std::fs::Permissions::from_mode(0o700))
+            .expect("the recording directory is owner-only");
+    }
+    let dir = state_dir("cc-cover-stop");
+    clear(&dir);
+    let ran = client(
+        BINARY,
+        &[
+            "start",
+            "cells",
+            "--session",
+            text(&dir),
+            "--record",
+            text(&kept),
+        ],
+    );
+    assert_eq!(ran.status, Some(0), "start ends accepted");
+    let pid = number(ran.line(), "pid").expect("start answers its host's process id");
+    let cells = Session {
+        started: Started {
+            dir,
+            pid: Some(pid),
+        },
+    };
+    cells.accepted(&["click", "--id", "cell-A1"]);
+    cells.accepted(&["click", "--id", "cell-input"]);
+    cells.accepted(&["press", "--key", "enter"]);
+    cells.stop();
+
+    let check = kept.join("check-1.json");
+    let ran = client(BINARY, &["coverage", "cells", text(&check)]);
+    assert_eq!(ran.status, Some(0), "the coverage run ends accepted");
+    assert!(ran.stderr.is_empty(), "an accepted run writes no stderr");
+    assert!(
+        ran.line()
+            .contains(r#"{"id":"cells-grid","event":"keydown"}"#),
+        "the grid's keydown, which the editor's stop kept the event from, is listed"
+    );
+    assert!(
+        !ran.line()
+            .contains(r#"{"id":"cell-input","event":"keydown"}"#),
+        "the editor's own keydown is not"
+    );
+    assert!(
+        ran.line().ends_with(r#""checks":1,"held":1}"#),
+        "the one check holds"
+    );
+    let _ = std::fs::remove_dir_all(&kept);
 }
 
 #[test]

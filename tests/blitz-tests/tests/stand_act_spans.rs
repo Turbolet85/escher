@@ -39,8 +39,8 @@ mod common;
 mod fixtures;
 mod session_common;
 use session_common::{
-    actions, advance, click, graph, hold, layout, lint, press, screenshot, screenshot_of, scroll,
-    slug, snapshot_part, type_into,
+    actions, advance, click, graph, graph_part, hold, layout, lint, press, screenshot,
+    screenshot_of, scroll, slug, snapshot_part, type_into,
 };
 
 /// The text the driver types into the CRUD name field: synthetic, and no part of any id.
@@ -185,6 +185,7 @@ enum Expect {
     Shot,
     Linted,
     Graphed,
+    GraphPart,
     Actioned,
     Laid,
     Acts,
@@ -201,6 +202,7 @@ fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
         | Outcome::Shot { .. }
         | Outcome::Linted { .. }
         | Outcome::Graphed { .. }
+        | Outcome::GraphPart { .. }
         | Outcome::Actions { .. }
         | Outcome::Layout { .. } => None,
         Outcome::Acted {
@@ -405,6 +407,13 @@ impl<'c> Run<'c> {
                 assert!(
                     !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
                     "{at}: a graph's line carries its verb alone"
+                );
+                self.verbs.extend(verb.map(str::to_string));
+            }
+            (Ok(Outcome::GraphPart { .. }), Expect::GraphPart) => {
+                assert!(
+                    !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
+                    "{at}: a graph part's line carries its verb alone"
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
@@ -661,6 +670,7 @@ fn child_records_each_command_at_info() {
         let _ = run.drive("Crud", &mut crud, &screenshot_of("crud-list"), Expect::Shot);
         let _ = run.drive("Crud", &mut crud, &lint(), Expect::Linted);
         let _ = run.drive("Crud", &mut crud, &graph(), Expect::Graphed);
+        let _ = run.drive("Crud", &mut crud, &graph_part(1), Expect::GraphPart);
         let _ = run.drive("Crud", &mut crud, &actions(), Expect::Actioned);
         let _ = run.drive("Crud", &mut crud, &layout("crud-list"), Expect::Laid);
         let _ = run.drive(
@@ -781,7 +791,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 40, "{}: {} calls", run.mode, run.calls);
+        assert!(run.calls == 41, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }
