@@ -1,2 +1,0 @@
-@none
-reason: The chunk moves escher's additions out of three upstream bodies (accessibility states, keyboard control keys, list-box hints) and the command tests into their own file with behaviour unchanged (fct-zmo72vim, fct-ysuprmlb, fct-irf3vy6k); it adds no UI surface or region (fct-rkpgmslu, D-layout-surface quiet), so every picked row, the stale-marked keyboard, select, id and accessibility rows included, still reads true, and the task brings no fact.

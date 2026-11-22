@@ -1,0 +1,242 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "6281181e",
+"ts": "2026-11-22T21:55:43Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-21-dependency-and-ci-debts",
+"--run-dir",
+".andromeda/runs/2026-11-22T21-23-31-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-21-dependency-and-ci-debts: 2 · to flip 1 · already verified 1 · below 0",
+"flipped v040-08 → verified — The next boundary audit reads the stand tests' duplication back under its earlie… (262 chars)",
+"already verified v040-07 (idempotent)",
+"dry-run: nothing written",
+"version: verified 7/15"
+],
+"stderr": null,
+"wrote": [],
+"before": [
+{
+"id": "v040-08",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "gate#13 of 2026-11-21-dependency-and-ci-debts: the Epoch 2 boundary audit metric row (tx 3071) read beside the correctiv… (254 chars)",
+"acceptance": "The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and ove… (262 chars)",
+"notes_chars": 2539
+}
+],
+"after": [
+{
+"id": "v040-08",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "verified",
+"method": "integration",
+"ref": "gate#13 of 2026-11-21-dependency-and-ci-debts: the Epoch 2 boundary audit metric row (tx 3071) read beside the correctiv… (254 chars)",
+"acceptance": "The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and ove… (262 chars)",
+"notes_chars": 2539
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "6281181e",
+"ts": "2026-11-22T21:55:46Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-21-dependency-and-ci-debts",
+"--run-dir",
+".andromeda/runs/2026-11-22T21-23-31-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-21-dependency-and-ci-debts: 2 · to flip 1 · already verified 1 · below 0",
+"flipped v040-08 → verified — The next boundary audit reads the stand tests' duplication back under its earlie… (262 chars)",
+"already verified v040-07 (idempotent)",
+"landed, rendered ./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson · 1 entry changed",
+"version: verified 7/15"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": [
+{
+"id": "v040-08",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "implemented",
+"method": "integration",
+"ref": "gate#13 of 2026-11-21-dependency-and-ci-debts: the Epoch 2 boundary audit metric row (tx 3071) read beside the correctiv… (254 chars)",
+"acceptance": "The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and ove… (262 chars)",
+"notes_chars": 2539
+}
+],
+"after": [
+{
+"id": "v040-08",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "verified",
+"method": "integration",
+"ref": "gate#13 of 2026-11-21-dependency-and-ci-debts: the Epoch 2 boundary audit metric row (tx 3071) read beside the correctiv… (254 chars)",
+"acceptance": "The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and ove… (262 chars)",
+"notes_chars": 2539
+}
+]
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "6281181e",
+"ts": "2026-11-22T21:55:47Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-07",
+"--text-file",
+".andromeda/runs/2026-11-22T21-23-31-wrap/note-v040-07.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T21-23-31-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-07: +929 chars (total 2271) · status verified · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": {
+"id": "v040-07",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "verified",
+"method": "integration",
+"ref": "bash .github/scripts/ci-leg.sh audit (gate 3: advisories ok, licenses ok, no warning[yanked]) · deny.toml six ignores, R… (573 chars)",
+"acceptance": "`bash .github/scripts/ci-leg.sh audit` reads `advisories ok, licenses ok` with no `warning[yanked]`; `deny.toml`'s six i… (551 chars)",
+"notes_chars": 1340
+},
+"after": {
+"id": "v040-07",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "verified",
+"method": "integration",
+"ref": "bash .github/scripts/ci-leg.sh audit (gate 3: advisories ok, licenses ok, no warning[yanked]) · deny.toml six ignores, R… (573 chars)",
+"acceptance": "`bash .github/scripts/ci-leg.sh audit` reads `advisories ok, licenses ok` with no `warning[yanked]`; `deny.toml`'s six i… (551 chars)",
+"notes_chars": 2271
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "6281181e",
+"ts": "2026-11-22T21:55:47Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-03",
+"--text-file",
+".andromeda/runs/2026-11-22T21-23-31-wrap/note-v040-03.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T21-23-31-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-03: +502 chars (total 1885) · status verified · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": {
+"id": "v040-03",
+"chunk": "2026-11-20-readme-s-0-3-0-closed",
+"status": "verified",
+"method": "manual",
+"ref": "manual: README.md:87 reads `### 0.3.0 — done and verified` on build/escher-0.4.0 (uncommitted at this run), the three cl… (1046 chars)",
+"acceptance": "On `build/escher-0.4.0`, GitHub's default branch, `README.md`'s `## Status` reads `### 0.3.0 — done and verified` — the … (640 chars)",
+"notes_chars": 1381
+},
+"after": {
+"id": "v040-03",
+"chunk": "2026-11-20-readme-s-0-3-0-closed",
+"status": "verified",
+"method": "manual",
+"ref": "manual: README.md:87 reads `### 0.3.0 — done and verified` on build/escher-0.4.0 (uncommitted at this run), the three cl… (1046 chars)",
+"acceptance": "On `build/escher-0.4.0`, GitHub's default branch, `README.md`'s `## Status` reads `### 0.3.0 — done and verified` — the … (640 chars)",
+"notes_chars": 1885
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "6281181e",
+"ts": "2026-11-22T21:55:48Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-08",
+"--text-file",
+".andromeda/runs/2026-11-22T21-23-31-wrap/note-v040-08.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T21-23-31-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-08: +784 chars (total 3325) · status verified · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": {
+"id": "v040-08",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "verified",
+"method": "integration",
+"ref": "gate#13 of 2026-11-21-dependency-and-ci-debts: the Epoch 2 boundary audit metric row (tx 3071) read beside the correctiv… (254 chars)",
+"acceptance": "The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and ove… (262 chars)",
+"notes_chars": 2539
+},
+"after": {
+"id": "v040-08",
+"chunk": "2026-11-21-dependency-and-ci-debts",
+"status": "verified",
+"method": "integration",
+"ref": "gate#13 of 2026-11-21-dependency-and-ci-debts: the Epoch 2 boundary audit metric row (tx 3071) read beside the correctiv… (254 chars)",
+"acceptance": "The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and ove… (262 chars)",
+"notes_chars": 3325
+}
+}
+]

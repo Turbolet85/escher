@@ -21,7 +21,7 @@ The 7GUIs benchmark app ("Seven benchmark tasks for GUI frameworks") in Dioxus �
 - `tasks::timer::TimerTicks` — the timer's tick seam: absent from context, the timer runs its 100 ms `futures_timer::Delay`; present, each `deliver(n)` tick is one 0.1 s step capped at the duration, applied on the next pass — a pump, an input helper's own pump, or a settle (`Harness::settle`, `Session::act`, each acting verb of `Session::run`), so a delivery made after an input helper waits for a later pass. Every stand boot provides one, so an undriven timer holds 0.0 s.
 
 ## Internal conventions
-- Example CSS in `const CSS: &str` raw strings; accent `#3a5ce5` on `#f5f5f5` (one step darker since 2026-10-14-stand-a11y-assertions, `#4a6cf7` until then; white button text on it 5.47), text `#1a1a1a`; invalid `#e53e3e` family, success `#ebf8ee` family.
+- Example CSS in `const CSS: &str` raw strings; accent `#3a5ce5` (hover `#2a4cd3`, active `#1f3fc1`, in every task CSS that declares it) on `#f5f5f5` (one step darker since 2026-10-14-stand-a11y-assertions, `#4a6cf7` until then; white button text on it 5.47), text `#1a1a1a`; invalid `#e53e3e` family, success `#ebf8ee` family.
 - Inputs replace the focus outline with a border colour or box-shadow on focus.
 - `idna_adapter = "=1.0.0"` pin disables unicode URL support. A file that glob-imports the dioxus_native prelude spells a two-parameter result `std::result::Result` — on Android the glob brings manganis's one-parameter `Result` alias, a failure only the CI Android job sees.
 

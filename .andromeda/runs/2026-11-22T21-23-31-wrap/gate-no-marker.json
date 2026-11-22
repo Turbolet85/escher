@@ -1,0 +1,47 @@
+[
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "f22ddc46",
+"ts": "2026-11-22T21:26:19Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis",
+"--args",
+"cargo test",
+"--run-dir",
+".andromeda/runs/2026-11-22T21-23-31-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, rustc, escher-session, seven_guis · args cargo test · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"rustc",
+"escher-session",
+"seven_guis"
+],
+"args": [
+"cargo test"
+],
+"running": []
+}
+}
+}
+]

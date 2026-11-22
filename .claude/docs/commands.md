@@ -42,7 +42,7 @@ _From `doc:architecture`, the `justfile` and `.github/workflows/ci.yml`. The 5 m
 - Exit grammar `0` · `1` failed · `2` usage · `3` precondition unmet; the raw session transcript in `target/cold-agent/transcript.jsonl`; `scripts/cold-agent.ps1` forwards on Windows (contract: test-plan §3)
 
 ## WPT
-- `WPT_DIR=<wpt checkout> cargo run -rp wpt css svg` — the CI suites (default without args: `css/css-flexbox` + `css/css-grid`; `full` = every top-level directory but `encoding`)
+- `WPT_DIR=<wpt checkout> cargo run -rp wpt css svg` — the css and svg suites, which the CI wpt job runs only on the upstream repository and the fork runs on the host (default without args: `css/css-flexbox` + `css/css-grid`; `full` = every top-level directory but `encoding`)
 - Flags: `--verbose`/`-v`, `--run-quarantined`, `--list`; outputs `wpt/output/wpt_expectations.txt` and `wptreport.json`
 - `just wpt {ARGS}` — the same through the justfile
 

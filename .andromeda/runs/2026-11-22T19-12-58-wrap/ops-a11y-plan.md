@@ -1,2 +1,0 @@
-@none
-reason: The chunk moves escher's additions out of three upstream bodies into private functions of escher's own with behaviour unchanged, each ARIA attribute still read once and the same state, key and list-box arms in their former order and gates (fct-ysuprmlb, fct-ifkm64lu, fct-irf3vy6k); it adds no UI element and touches no schema (fct-rkpgmslu, fct-wueyoi6g), the session brings no new fact, so every picked a11y-plan row stays true as it reads.

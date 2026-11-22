@@ -4,7 +4,7 @@ _Extracted from the architecture master `doc:architecture` (the records store) �
 
 ## File & directory naming
 - Crates under `packages/`, apps under `apps/`, example crates under `examples/{name}/`, root examples as `examples/*.rs`; integration tests one file per behaviour in `tests/blitz-tests/tests/` (blitz-vibey-script keeping its own integration tests in its own `tests/` directory), each its own test target — upstream's single-binary `tests/all.rs` stays in the manifest at `test = false`, never built, pinned by `BlitzTestsTargetsTest` — with the stand checks' shared tables and helpers stated once in `tests/blitz-tests/tests/common/mod.rs`, and what the checks that hold a `Session` share in a second such module, `tests/blitz-tests/tests/session_common/mod.rs`, and the fixture boot and hold, the fixture pages more than one check reads and the held network stand-in `HeldNet` in a third, `tests/blitz-tests/tests/fixtures/mod.rs`, read by `mod fixtures;` — a page with one reader staying in its check's file (none of the three a test target); the two committed kept checks `stand_replay` replays sit in `tests/blitz-tests/checks/`.
-- Modules and files open with a `//!` doc; examples open with a `//!` comment saying what they demonstrate.
+- Modules, files and examples open with a `//!` doc, examples saying what they demonstrate, and public items carry `///` — the driver crate opens every file with `//!`, while upstream engine modules and examples largely open without it and some upstream public items carry no `///`.
 - Paint rendering is split one module per concern (`blitz-paint/src/render/*`).
 
 ## Variable & identifier naming
