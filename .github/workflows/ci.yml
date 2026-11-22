@@ -445,11 +445,30 @@ jobs:
         run: ${{ matrix.platform.setup }}
         shell: bash
 
+      # skia-bindings' prebuilt archive, fetched once and checked against .github/skia-archives.toml; the URL keeps
+      # `{key}`, so a build asking for an unrecorded key finds no file.
+      - name: Verified skia archive
+        shell: bash
+        run: |
+          url="$(${{ matrix.platform.os == 'windows-latest' && 'python' || 'python3' }} .github/scripts/skia_archive.py ${{ matrix.platform.target }} target/skia-archives)"
+          echo "SKIA_BINARIES_URL=$url" >> "$GITHUB_ENV"
+
       - name: test
         shell: bash
         run: |
           mkdir -p target/ci-logs
           ${{ env.RUST_CARGO_COMMAND }} ${{ matrix.platform.command }} ${{ matrix.platform.args }} --target ${{ matrix.platform.target }} --locked 2>&1 | tee "target/ci-logs/matrix-${{ matrix.platform.name }}.log"
+
+      # A failed read of the archive falls back to a full source build with no error, so read that the build
+      # script took the verified file.
+      - name: Skia built from the verified archive
+        shell: bash
+        run: |
+          for f in target/${{ matrix.platform.target }}/debug/build/skia-bindings-*/output; do
+            if grep -q 'FROM: file://' "$f" && grep -q 'DOWNLOAD AND INSTALL SUCCEEDED' "$f"; then exit 0; fi
+          done
+          echo "skia-archive: no skia-bindings build read the verified archive" >&2
+          exit 1
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: failure()

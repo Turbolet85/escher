@@ -1,0 +1,53 @@
+[
+{
+"sql": "SELECT from_crate, to_crate FROM crate_edges WHERE to_crate = 'browser_persistence' OR from_crate = 'browser_persistence'",
+"rows": 0,
+"result": [],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT DISTINCT from_crate, to_crate FROM crate_edges WHERE from_crate LIKE '%browser%' OR to_crate LIKE '%browser%'",
+"rows": 9,
+"result": [
+{
+"from_crate": "browser",
+"to_crate": "browser-persistence"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-vibey-script"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-paint"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-net"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-traits"
+},
+{
+"from_crate": "browser",
+"to_crate": "dioxus-native"
+},
+{
+"from_crate": "browser",
+"to_crate": "dioxus-native-dom"
+},
+{
+"from_crate": "browser",
+"to_crate": "blitz-html"
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

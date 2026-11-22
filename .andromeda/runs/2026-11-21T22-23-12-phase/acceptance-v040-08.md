@@ -1,0 +1,1 @@
+The next boundary audit reads the stand tests' duplication back under its earlier reading and each oversize file and over-ceiling function named under its bar or kept by the founder's word; the browser's four mutants read caught or kept; every check stays green.

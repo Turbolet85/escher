@@ -7,6 +7,7 @@ import shlex
 import signal
 import stat
 import subprocess
+import sys
 import tempfile
 import time
 import unittest
@@ -239,6 +240,33 @@ class CiWorkflowTest(unittest.TestCase):
         self.assertEqual(script_jobs, INSTALL_JOBS)
         self.assertEqual(action_jobs, APT_ACTION_JOBS)
 
+    def test_p_matrix_builds_skia_from_the_verified_archive(self):
+        steps = self.jobs["matrix_test"]["steps"]
+        names = [step.get("name") for step in steps]
+        verify, test, witness = (
+            names.index("Verified skia archive"),
+            names.index("test"),
+            names.index("Skia built from the verified archive"),
+        )
+        self.assertLess(names.index("Setup"), verify)
+        self.assertEqual((verify + 1, test + 1), (test, witness))
+        for step in (steps[verify], steps[witness]):
+            with self.subTest(step=step["name"]):
+                # No `if:`, so it stands on every matrix row; a plain shell step, no action.
+                self.assertNotIn("if", step)
+                self.assertNotIn("uses", step)
+                self.assertEqual(step.get("shell"), "bash")
+        run = steps[verify]["run"]
+        for word in (".github/scripts/skia_archive.py ${{ matrix.platform.target }} target/skia-archives",
+                     "SKIA_BINARIES_URL=", '"$GITHUB_ENV"', "'python'", "'python3'"):
+            self.assertIn(word, run)
+        witness_run = steps[witness]["run"]
+        for word in ("target/${{ matrix.platform.target }}/debug/build/skia-bindings-*/output", "FROM: file://",
+                     "DOWNLOAD AND INSTALL SUCCEEDED", "exit 1"):
+            self.assertIn(word, witness_run)
+        # In a crates.io build the flag sends skia-bindings to a full source build.
+        self.assertNotIn("FORCE_SKIA_BINARIES_DOWNLOAD", self.text)
+
 
 class WorkflowPinTest(unittest.TestCase):
     @classmethod
@@ -286,17 +314,80 @@ class UpstreamGuardTest(unittest.TestCase):
 class LegScriptTest(unittest.TestCase):
     MARKER = "ci-leg-shim-marker"
 
-    def run_leg(self, cwd, leg, cargo_exit, echo_args=False):
+    SKIA_LEGS = ("clippy", "test", "build", "msrv", "doc", "coverage", "a11y")
+    SKIA_SHIM_URL = "file:///skia-shim/"
+
+    def run_leg(self, cwd, leg, cargo_exit, echo_args=False, skia_exit=0, env_extra=None):
         bin_dir = Path(cwd) / "bin"
         bin_dir.mkdir(exist_ok=True)
         shim = bin_dir / "cargo"
-        echo = f'echo {self.MARKER} "$@"' if echo_args else f"echo {self.MARKER}"
+        # With echo_args the shim also prints the skia variables cargo runs under.
+        skia_env = '"SKIA_BINARIES_URL=${SKIA_BINARIES_URL-unset}" "FORCE=${FORCE_SKIA_BINARIES_DOWNLOAD-unset}"'
+        echo = f'echo {self.MARKER} "$@" {skia_env}' if echo_args else f"echo {self.MARKER}"
         shim.write_text(f"#!/bin/sh\n{echo}\nexit {cargo_exit}\n", encoding="utf-8")
         shim.chmod(shim.stat().st_mode | stat.S_IXUSR)
+        python_shim = bin_dir / "python3"
+        if not python_shim.exists():
+            # skia_archive.py answers its target's stand-in URL; every other script runs on this interpreter.
+            answer = f'echo "{self.SKIA_SHIM_URL}$2"; ' if skia_exit == 0 else ""
+            python_shim.write_text(
+                f'#!/bin/sh\ncase "$1" in *skia_archive.py) {answer}exit {skia_exit} ;; esac\n'
+                f'exec {shlex.quote(sys.executable)} "$@"\n',
+                encoding="utf-8",
+            )
+            python_shim.chmod(python_shim.stat().st_mode | stat.S_IXUSR)
         env = dict(os.environ, PATH=f"{bin_dir}{os.pathsep}{os.environ['PATH']}")
+        env.pop("SKIA_BINARIES_URL", None)
+        env.pop("FORCE_SKIA_BINARIES_DOWNLOAD", None)
+        env.update(env_extra or {})
         return subprocess.run(
             ["bash", str(LEG_SCRIPT), leg], cwd=cwd, env=env, capture_output=True, text=True
         )
+
+    def leg_log(self, leg, skia_exit=0, env_extra=None):
+        """Runs the leg with cargo exiting 0 and echoing its arguments; returns its exit and its log's lines."""
+        with tempfile.TemporaryDirectory() as tmp:
+            proc = self.run_leg(tmp, leg, 0, echo_args=True, skia_exit=skia_exit, env_extra=env_extra)
+            log = (Path(tmp) / "target" / "ci-logs" / f"{leg}.log").read_text(encoding="utf-8")
+            return proc.returncode, log.splitlines()
+
+    def cargo_lines(self, lines):
+        return [line for line in lines if line.startswith(self.MARKER)]
+
+    def test_skia_legs_build_from_the_verified_archive(self):
+        for leg in self.SKIA_LEGS:
+            with self.subTest(leg=leg):
+                _, lines = self.leg_log(leg)
+                cargo = self.cargo_lines(lines)
+                self.assertTrue(cargo)
+                for line in cargo:
+                    url = re.search(r"SKIA_BINARIES_URL=(\S+)", line).group(1)
+                    self.assertTrue(url.startswith(self.SKIA_SHIM_URL), line)
+                    self.assertGreater(len(url), len(self.SKIA_SHIM_URL), line)
+                    # The flag would send a crates.io build to skia-bindings' source build.
+                    self.assertIn("FORCE=unset", line.split())
+
+    def test_a_callers_skia_url_is_overwritten_by_the_verified_one(self):
+        _, lines = self.leg_log("build", env_extra={"SKIA_BINARIES_URL": "https://example.com/{key}"})
+        for line in self.cargo_lines(lines):
+            self.assertNotIn("example.com", line)
+            self.assertIn(f"SKIA_BINARIES_URL={self.SKIA_SHIM_URL}", line)
+
+    def test_legs_that_build_no_skia_set_no_skia_variable(self):
+        for leg in ("fmt", "audit", "stand-repeat"):
+            with self.subTest(leg=leg):
+                code, lines = self.leg_log(leg)
+                self.assertEqual(code, 0)
+                cargo = self.cargo_lines(lines)
+                self.assertTrue(cargo)
+                for line in cargo:
+                    self.assertIn("SKIA_BINARIES_URL=unset", line.split())
+                    self.assertIn("FORCE=unset", line.split())
+
+    def test_a_refused_archive_ends_the_leg_before_cargo(self):
+        code, lines = self.leg_log("build", skia_exit=1)
+        self.assertNotEqual(code, 0)
+        self.assertEqual(self.cargo_lines(lines), [])
 
     def test_failing_leg_propagates_status_and_writes_its_log(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -407,6 +498,27 @@ class LegScriptTest(unittest.TestCase):
                      "blitz-paint/font-embolden", "--test", "select_popup_painted"):
             self.assertIn(word, words)
         self.assertEqual(words.count(self.MARKER), 1)
+
+    def test_fast_leg_sweeps_under_the_verified_archive(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            # Every python3 call but these two exits 0, so the ci-scripts leg discovers nothing from here.
+            bin_dir = Path(tmp) / "bin"
+            bin_dir.mkdir()
+            seen = Path(tmp) / "sweep-env"
+            python_shim = bin_dir / "python3"
+            python_shim.write_text(
+                "#!/bin/sh\ncase \"$1\" in\n"
+                f'  *skia_archive.py) echo "{self.SKIA_SHIM_URL}$2" ;;\n'
+                f'  *target-sweep.py) echo "SKIA_BINARIES_URL=${{SKIA_BINARIES_URL-unset}}" > {shlex.quote(str(seen))} ;;\n'
+                "esac\nexit 0\n",
+                encoding="utf-8",
+            )
+            python_shim.chmod(python_shim.stat().st_mode | stat.S_IXUSR)
+            proc = self.run_leg(tmp, "fast", 0, env_extra={"CI": ""})
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            line = seen.read_text(encoding="utf-8").strip()
+            self.assertTrue(line.startswith(f"SKIA_BINARIES_URL={self.SKIA_SHIM_URL}"), line)
+            self.assertGreater(len(line), len(f"SKIA_BINARIES_URL={self.SKIA_SHIM_URL}"), line)
 
     def test_stand_repeat_leg_runs_three_rounds(self):
         with tempfile.TemporaryDirectory() as tmp:

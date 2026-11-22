@@ -1,11 +1,15 @@
 # Coverage — escher-0.4.0
 
-verified 5/15 · deferred 0 · planned 10 · implemented 0 · unclaimed 10
+verified 5/15 · deferred 0 · planned 9 · implemented 1 · unclaimed 8
 
-## planned, unclaimed (10)
+## implemented (1)
+- v040-07 · Dependency and CI debts · 2026-11-21-dependency-and-ci-debts
+
+## planned, gated (1)
+- v040-08 · Codebase health · 2026-11-21-dependency-and-ci-debts
+
+## planned, unclaimed (8)
 - v040-02 · Upstream sync
-- v040-07 · Dependency and CI debts
-- v040-08 · Codebase health
 - v040-09 · A canvas painted headless
 - v040-10 · The canvas read as data
 - v040-11 · Virtual nodes inside a canvas

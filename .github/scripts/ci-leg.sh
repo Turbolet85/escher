@@ -7,6 +7,8 @@ set -euo pipefail
 
 LEGS=(fmt clippy test ci-scripts embolden build msrv counter wasm doc audit a11y coverage stand-repeat fast)
 FAST_LEGS=(fmt clippy test ci-scripts embolden)
+# The legs whose --workspace graph builds skia-bindings (`cargo tree --workspace -i skia-bindings`).
+SKIA_LEGS=(clippy test build msrv doc coverage a11y)
 SCRIPTS="$(dirname "$0")"
 
 usage() {
@@ -15,7 +17,28 @@ usage() {
     exit 2
 }
 
+in_list() {
+    local item="$1" l
+    shift
+    for l in "$@"; do
+        [[ "$l" == "$item" ]] && return 0
+    done
+    return 1
+}
+
+# Points skia-bindings at its prebuilt archive, fetched once and verified against .github/skia-archives.toml.
+# FORCE_SKIA_BINARIES_DOWNLOAD is not set: in a crates.io build it takes skia-bindings' git-hash branch, which
+# finds no repository and falls through to a full source build.
+use_verified_skia() {
+    local url
+    url="$(python3 "$SCRIPTS/skia_archive.py" "$(rustc -vV | sed -n 's/^host: //p')" target/skia-archives)" || return
+    export SKIA_BINARIES_URL="$url"
+}
+
 run_leg() {
+    if in_list "$1" "${SKIA_LEGS[@]}"; then
+        use_verified_skia || return
+    fi
     case "$1" in
     fmt) cargo fmt --all --check ;;
     clippy)
@@ -86,9 +109,10 @@ if [[ "$leg" == fast ]]; then
         bash "$0" "$l"
     done
     # The dev host's owning call of the stale-hash sweep, after a green verdict: CI sets CI and sweeps nothing,
-    # and the sweep's exit never reaches the leg's.
+    # and the sweep's exit never reaches the leg's. Its keep runs build skia-bindings too, so they run under the
+    # legs' SKIA_BINARIES_URL: a change of it re-runs skia-bindings' build script and rebuilds its dependents.
     if [[ -z "${CI:-}" ]]; then
-        python3 "$SCRIPTS/../../scripts/target-sweep.py" run || true
+        { use_verified_skia && python3 "$SCRIPTS/../../scripts/target-sweep.py" run; } || true
     fi
     exit 0
 fi

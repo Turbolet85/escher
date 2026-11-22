@@ -1,0 +1,27 @@
+# skia-bindings' prebuilt archives, one per platform CI builds, each pinned to the sha256 of the release asset.
+# `.github/scripts/skia_archive.py` fetches the archive once, checks it against this record and hands the build its
+# local copy through SKIA_BINARIES_URL. `tag` follows skia-bindings' version in Cargo.lock (test_skia_archive.py
+# holds them equal), so a skia move reads red until every key and sum here is measured again by hand.
+
+tag = "0.157.0"
+url = "https://github.com/rust-skia/skia-binaries/releases/download/{tag}/skia-binaries-{key}.tar.gz"
+
+[targets."x86_64-unknown-linux-gnu"]
+key = "30669978c3f39a73e8a7-x86_64-unknown-linux-gnu-ganesh-gl-jpegd-jpege-pdf"
+sha256 = "bc92c2fb1d5f6bf4f681e57d3b3796d8c657157f6d75c53793b28723949f5399"
+
+[targets."aarch64-apple-darwin"]
+key = "30669978c3f39a73e8a7-aarch64-apple-darwin-ganesh-jpegd-jpege-metal-pdf"
+sha256 = "ab57f2687668da89df7dd1e1b625eb2756dc97f18241c52a0367e794decb89b0"
+
+[targets."aarch64-apple-ios"]
+key = "30669978c3f39a73e8a7-aarch64-apple-ios-ganesh-jpegd-jpege-metal-pdf"
+sha256 = "9af4af3fc7c097e9fad1973dfff909a40300285a66dbc72c36273a8ba9ee7732"
+
+[targets."x86_64-pc-windows-msvc"]
+key = "30669978c3f39a73e8a7-x86_64-pc-windows-msvc-d3d-ganesh-gl-jpegd-jpege-pdf"
+sha256 = "5428b8b4b9eadf5fa583d1d583d07e137e239500248531d5366857ee065576d5"
+
+[targets."aarch64-linux-android"]
+key = "30669978c3f39a73e8a7-aarch64-linux-android-ganesh-gl-jpegd-jpege-pdf"
+sha256 = "8633af9552c007f8d1445dd414467cfcc35bd03a1755da00fda2d0dc51a67685"

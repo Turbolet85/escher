@@ -1,0 +1,172 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T22:27:27Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T22-23-12-phase",
+"--side",
+"phase",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1541 · packs 16 · pack 100 · 393141 B",
+"security-plan: rows 570 · packs 6 · pack 100 · 165515 B",
+"design-system: rows 137 · packs 2 · pack 100 · 38407 B",
+"layout-templates: rows 129 · packs 2 · pack 100 · 32614 B",
+"test-plan: rows 642 · packs 7 · pack 100 · 183161 B",
+"obs-plan: rows 295 · packs 3 · pack 100 · 81326 B",
+"a11y-plan: rows 242 · packs 3 · pack 100 · 77479 B",
+"rows-packs: 7 master(s) · 3556 row(s) · 39 pack(s) · 3 draw(s) a pack · pin 2957"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T22-23-12-phase/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T22:37:26Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T22-23-12-phase",
+"--side",
+"phase",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1541 · packs 16 · picked 113 (70 by every draw) · standing 7 · 28569 B",
+"security-plan: rows 570 · packs 6 · picked 28 (24 by every draw) · standing 2 · 11577 B",
+"design-system: rows 137 · packs 2 · picked 18 (15 by every draw) · standing 0 · 7918 B",
+"layout-templates: rows 129 · packs 2 · picked 0 (0 by every draw) · standing 0 · 1437 B",
+"test-plan: rows 642 · packs 7 · picked 45 (30 by every draw) · standing 4 · 13541 B",
+"obs-plan: rows 295 · packs 3 · picked 49 (9 by every draw) · standing 5 · 15634 B",
+"a11y-plan: rows 242 · packs 3 · picked 28 (17 by every draw) · standing 0 · 13878 B",
+"rows-union: 7 master(s) · picked 281 of 3556 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-21T22-23-12-phase/arch-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/arch-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/security-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/security-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/design-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/design-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/layouts-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/layouts-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/tests-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/tests-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/obs-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/obs-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/a11y-rows.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/a11y-standing.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-21T22-23-12-phase/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T23:08:13Z",
+"argv": [
+"query",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T22-23-12-phase",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"select line from coverage_line where version = 'escher-0.4.0'"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"verified 5/15 · deferred 0 · planned 10 · implemented 0 · unclaimed 10",
+"1 row(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T23:08:14Z",
+"argv": [
+"query",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T22-23-12-phase",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"select * from blocked"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"status\tmarker\tversion\tblock",
+"0 row(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-21T23:08:19Z",
+"argv": [
+"query",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-21T22-23-12-phase",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"select * from blocked"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"status\tmarker\tversion\tblock",
+"pending\t2026-11-21-dependency-and-ci-debts\tescher-0.4.0\tBLOCKED-ON: the Epoch 2 boundary audit of escher-0.4.0 recorded, its reading cleared by the operator word (CARRY cry-hpakkesz; inputs#I3)",
+"1 row(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
