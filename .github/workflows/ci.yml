@@ -460,14 +460,23 @@ jobs:
           ${{ env.RUST_CARGO_COMMAND }} ${{ matrix.platform.command }} ${{ matrix.platform.args }} --target ${{ matrix.platform.target }} --locked 2>&1 | tee "target/ci-logs/matrix-${{ matrix.platform.name }}.log"
 
       # A failed read of the archive falls back to a full source build with no error, so read that the build
-      # script took the verified file.
+      # script took the verified file. The build directory's layout moves between Cargo releases, so its output
+      # file is searched for and each one found is printed; /usr/bin/find, as `find` is another tool on Windows.
       - name: Skia built from the verified archive
         shell: bash
         run: |
-          for f in target/${{ matrix.platform.target }}/debug/build/skia-bindings-*/output; do
-            if grep -q 'FROM: file://' "$f" && grep -q 'DOWNLOAD AND INSTALL SUCCEEDED' "$f"; then exit 0; fi
-          done
+          found=0
+          while IFS= read -r f; do
+            echo "skia-archive: build output $f"
+            line="$(grep -m1 'FROM: file://' "$f" || true)"
+            if [ -n "$line" ] && grep -q 'DOWNLOAD AND INSTALL SUCCEEDED' "$f"; then
+              echo "skia-archive: read the verified archive:$line"
+              found=1
+            fi
+          done < <(/usr/bin/find target/${{ matrix.platform.target }} -type f -name output -path '*skia-bindings*')
+          if [ "$found" = 1 ]; then exit 0; fi
           echo "skia-archive: no skia-bindings build read the verified archive" >&2
+          /usr/bin/find target/${{ matrix.platform.target }} -maxdepth 4 -path '*skia-bindings*' >&2 || true
           exit 1
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7

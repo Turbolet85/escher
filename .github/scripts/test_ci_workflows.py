@@ -261,9 +261,13 @@ class CiWorkflowTest(unittest.TestCase):
                      "SKIA_BINARIES_URL=", '"$GITHUB_ENV"', "'python'", "'python3'"):
             self.assertIn(word, run)
         witness_run = steps[witness]["run"]
-        for word in ("target/${{ matrix.platform.target }}/debug/build/skia-bindings-*/output", "FROM: file://",
-                     "DOWNLOAD AND INSTALL SUCCEEDED", "exit 1"):
+        # Searched for under the target's whole build directory, its layout varying by Cargo release, and printed.
+        for word in ("/usr/bin/find target/${{ matrix.platform.target }} -type f -name output -path '*skia-bindings*'",
+                     'echo "skia-archive: build output $f"', "FROM: file://", "DOWNLOAD AND INSTALL SUCCEEDED",
+                     'echo "skia-archive: read the verified archive:$line"', 'if [ "$found" = 1 ]; then exit 0; fi',
+                     "exit 1"):
             self.assertIn(word, witness_run)
+        self.assertNotIn("/debug/build/skia-bindings-*/output", witness_run)
         # In a crates.io build the flag sends skia-bindings to a full source build.
         self.assertNotIn("FORCE_SKIA_BINARIES_DOWNLOAD", self.text)
 
