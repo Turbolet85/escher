@@ -27,9 +27,7 @@ pub(crate) fn handle_key_or_input_event(
 ) {
     if let KeyboardOrTextInputEvent::KeyPress(event) = &event {
         if event.key == Key::Named(NamedKey::Tab) {
-            if let Some(select) = doc.open_select() {
-                choose_current_and_close(doc, select);
-            }
+            close_open_list_before_tab(doc);
             let backwards = event.modifiers.contains(Modifiers::SHIFT);
             if backwards {
                 doc.focus_prev_node();
@@ -68,6 +66,7 @@ pub(crate) fn handle_key_or_input_event(
         if target != node_id {
             return;
         }
+        press_control_key(doc, node_id, &event);
 
         let node = &mut doc.nodes[node_id];
         let Some(element_data) = node.element_data_mut() else {
@@ -95,37 +94,43 @@ pub(crate) fn handle_key_or_input_event(
             if let Some(generated_event) = generated_event {
                 doc.apply_generated_text_input_event(node_id, generated_event);
             }
-        } else if element_data.range_input_data().is_some()
-            && !element_data.has_attr(local_name!("disabled"))
-            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
-            && key_event.state.is_pressed()
-        {
-            press_range_input_key(doc, node_id, &key_event.key);
-        } else if select::is_single_list_box(element_data)
-            && !element_data.is_disabled()
-            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
-            && key_event.state.is_pressed()
-        {
-            press_list_box_key(doc, node_id, key_event);
-        } else if select::is_drop_down(element_data)
-            && !element_data.is_disabled()
-            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
-            && key_event.state.is_pressed()
-        {
-            press_select_key(doc, node_id, key_event);
-        } else if select::is_multiple_select(element_data)
-            && !element_data.is_disabled()
-            && let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
-            && key_event.state.is_pressed()
-        {
-            press_multiple_select_key(doc, node_id, key_event);
-        } else if let KeyboardOrTextInputEvent::KeyPress(key_event) = &event
-            && key_event.state.is_pressed()
-            && key_event.key == Key::Named(NamedKey::Enter)
-            && activates_on_enter(element_data)
-        {
-            dispatch_activation_click(doc, node_id, key_event.modifiers);
         }
+    }
+}
+
+/// Tab chooses an open list's highlighted row and closes the list before focus moves.
+fn close_open_list_before_tab(doc: &mut BaseDocument) {
+    if let Some(select) = doc.open_select() {
+        choose_current_and_close(doc, select);
+    }
+}
+
+/// A pressed key on a focused control that holds no text-input data, taken by the first arm in
+/// order whose control it is: a range input with no `disabled` attribute, then a single list box,
+/// a drop-down and a `multiple` select that are no disabled form control, then Enter's
+/// activation click. An element holding text-input data takes the text-input arm alone, so the
+/// two never both act on one key.
+fn press_control_key(doc: &mut BaseDocument, node_id: NodeId, event: &KeyboardOrTextInputEvent) {
+    let KeyboardOrTextInputEvent::KeyPress(key_event) = event else {
+        return;
+    };
+    let Some(element_data) = doc.get_node(node_id).and_then(|node| node.element_data()) else {
+        return;
+    };
+    if !key_event.state.is_pressed() || element_data.text_input_data().is_some() {
+        return;
+    }
+    if element_data.range_input_data().is_some() && !element_data.has_attr(local_name!("disabled"))
+    {
+        press_range_input_key(doc, node_id, &key_event.key);
+    } else if select::is_single_list_box(element_data) && !element_data.is_disabled() {
+        press_list_box_key(doc, node_id, key_event);
+    } else if select::is_drop_down(element_data) && !element_data.is_disabled() {
+        press_select_key(doc, node_id, key_event);
+    } else if select::is_multiple_select(element_data) && !element_data.is_disabled() {
+        press_multiple_select_key(doc, node_id, key_event);
+    } else if key_event.key == Key::Named(NamedKey::Enter) && activates_on_enter(element_data) {
+        dispatch_activation_click(doc, node_id, key_event.modifiers);
     }
 }
 

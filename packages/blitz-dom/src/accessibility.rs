@@ -155,106 +155,11 @@ impl BaseDocument {
                 .unwrap_or(Role::Unknown);
 
             builder.set_role(role);
-
-            // https://www.w3.org/TR/accname-1.2/#step2C
-            if let Some(label) = element_data
-                .attr(local_name!("aria-label"))
-                .filter(|label| !label.trim().is_empty())
-            {
-                builder.set_label(label);
-            } else if (select::is_select_option(node)
-                || element_data.name.local == local_name!("optgroup"))
-                && let Some(label) = element_data
-                    .attr(local_name!("label"))
-                    .filter(|label| !label.is_empty())
-            {
-                builder.set_label(label);
-            }
-
-            // https://www.w3.org/TR/html-aam-1.0/#att-multiple
-            if select::is_multiple_select(element_data) {
-                builder.set_multiselectable();
-            }
+            self.write_escher_states(node, element_data, role, &mut builder);
 
             // https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion
             if element_data.attr(local_name!("aria-hidden")) == Some("true") {
                 builder.set_hidden();
-            }
-
-            // https://www.w3.org/TR/wai-aria-1.2/#aria-selected
-            // A select's option holds its own selectedness, and reads no `aria-selected`
-            // (https://www.w3.org/TR/html-aam-1.0/#el-option).
-            if select::is_select_option(node) {
-                builder.set_selected(select::is_chosen(node));
-            } else {
-                let selected = element_data.attr(local_name!("aria-selected"));
-                match selected.map(str::trim_ascii) {
-                    Some("true") => builder.set_selected(true),
-                    Some("false") => builder.set_selected(false),
-                    _ => {}
-                }
-            }
-
-            // AccessKit holds a checkable role's `aria-checked` and every other role's
-            // `aria-pressed` as the one `toggled` property, so each element reads one of the two.
-            // A native checkbox or radio reads neither author attribute and writes its own
-            // checkedness where its role is checkable; under another role it writes nothing, so
-            // it never reads pressed (https://www.w3.org/TR/html-aria/#docconformance,
-            // https://www.w3.org/TR/html-aam-1.0/#att-checked).
-            // https://www.w3.org/TR/wai-aria-1.2/#aria-checked
-            // https://www.w3.org/TR/wai-aria-1.2/#aria-pressed
-            if is_native_checkable(element_data) {
-                if is_checkable(role) {
-                    match element_data.checkbox_input_checked() {
-                        Some(true) => builder.set_toggled(Toggled::True),
-                        Some(false) => builder.set_toggled(Toggled::False),
-                        None => {}
-                    }
-                }
-            } else {
-                let toggled = if is_checkable(role) {
-                    element_data.attr(local_name!("aria-checked"))
-                } else {
-                    element_data.attr(local_name!("aria-pressed"))
-                };
-                match toggled.map(str::trim_ascii) {
-                    Some("true") => builder.set_toggled(Toggled::True),
-                    Some("false") => builder.set_toggled(Toggled::False),
-                    Some("mixed") => builder.set_toggled(Toggled::Mixed),
-                    _ => {}
-                }
-            }
-
-            // https://www.w3.org/TR/wai-aria-1.2/#aria-invalid
-            // "Any value not recognized in the list of allowed values MUST be treated by user
-            // agents as if the value true had been provided."
-            let invalid = element_data.attr(local_name!("aria-invalid"));
-            match invalid.map(str::trim_ascii) {
-                None | Some("" | "false") => {}
-                Some("grammar") => builder.set_invalid(Invalid::Grammar),
-                Some("spelling") => builder.set_invalid(Invalid::Spelling),
-                Some(_) => builder.set_invalid(Invalid::True),
-            }
-
-            // A drop-down select states whether its list is open and reads no author attribute
-            // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox); a single list box states
-            // neither (https://www.w3.org/TR/html-aam-1.0/#el-select-listbox).
-            if select::is_drop_down(element_data) {
-                let list = self.select_list_for(node.id);
-                builder.set_expanded(list.is_some());
-                // While its list is open the select keeps focus and names the highlighted option
-                // as its active descendant, which the engine writes itself and never reads from a
-                // page's `aria-activedescendant`
-                // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox,
-                // https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant).
-                if let Some(current) = list.and_then(|list| list.current) {
-                    builder.set_active_descendant(NodeId(current.as_u64()));
-                }
-            } else if !select::is_single_select(element_data)
-                && let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
-                && let Ok(aria_expanded) = aria_expanded.parse()
-            {
-                builder.set_expanded(aria_expanded);
             }
 
             if element_data.attr(local_name!("aria-disabled")) == Some("true") {
@@ -287,6 +192,134 @@ impl BaseDocument {
         parent.push_child(id);
 
         (id, builder)
+    }
+
+    /// Writes the states escher reads beside upstream's: the name, a `multiple` select's
+    /// multiselectable flag, the selection, the toggle per role, the error state and a select's
+    /// open state. Each attribute is read here or in `build_accessibility_node`, never in both.
+    fn write_escher_states(
+        &self,
+        node: &BlitzDomNode,
+        element_data: &ElementData,
+        role: Role,
+        builder: &mut AccessKitNode,
+    ) {
+        write_name(node, element_data, builder);
+
+        // https://www.w3.org/TR/html-aam-1.0/#att-multiple
+        if select::is_multiple_select(element_data) {
+            builder.set_multiselectable();
+        }
+
+        write_selected(node, element_data, builder);
+        write_toggled(element_data, role, builder);
+        write_invalid(element_data, builder);
+        self.write_expanded(node, element_data, builder);
+    }
+
+    /// A drop-down select states whether its list is open and reads no author attribute
+    /// (<https://www.w3.org/TR/html-aam-1.0/#el-select-combobox>); a single list box states
+    /// neither (<https://www.w3.org/TR/html-aam-1.0/#el-select-listbox>).
+    fn write_expanded(
+        &self,
+        node: &BlitzDomNode,
+        element_data: &ElementData,
+        builder: &mut AccessKitNode,
+    ) {
+        if select::is_drop_down(element_data) {
+            let list = self.select_list_for(node.id);
+            builder.set_expanded(list.is_some());
+            // While its list is open the select keeps focus and names the highlighted option
+            // as its active descendant, which the engine writes itself and never reads from a
+            // page's `aria-activedescendant`
+            // (https://www.w3.org/TR/html-aam-1.0/#el-select-combobox,
+            // https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant).
+            if let Some(current) = list.and_then(|list| list.current) {
+                builder.set_active_descendant(NodeId(current.as_u64()));
+            }
+        } else if !select::is_single_select(element_data)
+            && let Some(aria_expanded) = element_data.attr(local_name!("aria-expanded"))
+            && let Ok(aria_expanded) = aria_expanded.parse()
+        {
+            builder.set_expanded(aria_expanded);
+        }
+    }
+}
+
+/// <https://www.w3.org/TR/accname-1.2/#step2C>
+fn write_name(node: &BlitzDomNode, element_data: &ElementData, builder: &mut AccessKitNode) {
+    if let Some(label) = element_data
+        .attr(local_name!("aria-label"))
+        .filter(|label| !label.trim().is_empty())
+    {
+        builder.set_label(label);
+    } else if (select::is_select_option(node) || element_data.name.local == local_name!("optgroup"))
+        && let Some(label) = element_data
+            .attr(local_name!("label"))
+            .filter(|label| !label.is_empty())
+    {
+        builder.set_label(label);
+    }
+}
+
+/// <https://www.w3.org/TR/wai-aria-1.2/#aria-selected>
+/// A select's option holds its own selectedness, and reads no `aria-selected`
+/// (<https://www.w3.org/TR/html-aam-1.0/#el-option>).
+fn write_selected(node: &BlitzDomNode, element_data: &ElementData, builder: &mut AccessKitNode) {
+    if select::is_select_option(node) {
+        builder.set_selected(select::is_chosen(node));
+    } else {
+        let selected = element_data.attr(local_name!("aria-selected"));
+        match selected.map(str::trim_ascii) {
+            Some("true") => builder.set_selected(true),
+            Some("false") => builder.set_selected(false),
+            _ => {}
+        }
+    }
+}
+
+/// AccessKit holds a checkable role's `aria-checked` and every other role's `aria-pressed` as
+/// the one `toggled` property, so each element reads one of the two. A native checkbox or radio
+/// reads neither author attribute and writes its own checkedness where its role is checkable;
+/// under another role it writes nothing, so it never reads pressed
+/// (<https://www.w3.org/TR/html-aria/#docconformance>,
+/// <https://www.w3.org/TR/html-aam-1.0/#att-checked>).
+/// <https://www.w3.org/TR/wai-aria-1.2/#aria-checked>
+/// <https://www.w3.org/TR/wai-aria-1.2/#aria-pressed>
+fn write_toggled(element_data: &ElementData, role: Role, builder: &mut AccessKitNode) {
+    if is_native_checkable(element_data) {
+        if is_checkable(role) {
+            match element_data.checkbox_input_checked() {
+                Some(true) => builder.set_toggled(Toggled::True),
+                Some(false) => builder.set_toggled(Toggled::False),
+                None => {}
+            }
+        }
+    } else {
+        let toggled = if is_checkable(role) {
+            element_data.attr(local_name!("aria-checked"))
+        } else {
+            element_data.attr(local_name!("aria-pressed"))
+        };
+        match toggled.map(str::trim_ascii) {
+            Some("true") => builder.set_toggled(Toggled::True),
+            Some("false") => builder.set_toggled(Toggled::False),
+            Some("mixed") => builder.set_toggled(Toggled::Mixed),
+            _ => {}
+        }
+    }
+}
+
+/// <https://www.w3.org/TR/wai-aria-1.2/#aria-invalid>
+/// "Any value not recognized in the list of allowed values MUST be treated by user agents as if
+/// the value true had been provided."
+fn write_invalid(element_data: &ElementData, builder: &mut AccessKitNode) {
+    let invalid = element_data.attr(local_name!("aria-invalid"));
+    match invalid.map(str::trim_ascii) {
+        None | Some("" | "false") => {}
+        Some("grammar") => builder.set_invalid(Invalid::Grammar),
+        Some("spelling") => builder.set_invalid(Invalid::Spelling),
+        Some(_) => builder.set_invalid(Invalid::True),
     }
 }
 

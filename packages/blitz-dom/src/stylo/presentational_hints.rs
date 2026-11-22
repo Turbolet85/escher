@@ -133,6 +133,41 @@ fn list_box_chosen_hints<'a>(
     Some(&rows.chosen)
 }
 
+/// A list box's own hints, pushed onto `hints`, and the look of its rows where it is a list box
+/// without `multiple`. Its `size` makes it that many rows tall, each row `1.2em` by the default
+/// sheet's rule or by its rows' hints, and the rest scroll.
+fn list_box_hints(node: &Node, elem: &ElementData, hints: &mut Hints) -> Option<ListBoxRows> {
+    if elem.name.local == local_name!("select") && crate::node::select::is_list_box(elem) {
+        let sizes = elem
+            .attrs()
+            .iter()
+            .filter(|attr| attr.name.local == local_name!("size"));
+        for attr in sizes {
+            if let Some(rows) = crate::node::select_list::size_rows(attr.value.as_str()) {
+                let height = LengthPercentage::Length(NoCalcLength::from_em(rows as f32 * 1.2));
+                hints.push(PropertyDeclaration::Height(size(height)));
+            }
+            if crate::node::select::is_single_list_box(elem) {
+                hints.extend(
+                    declarations("overflow-y: auto")
+                        .declarations()
+                        .iter()
+                        .cloned(),
+                );
+            }
+        }
+    }
+
+    crate::node::select::is_single_list_box(elem).then(|| {
+        let wrap = |css: &str| ServoArc::new(node.guard().wrap(declarations(css)));
+        ListBoxRows {
+            option: wrap("display: block; padding: 0 2px; white-space: nowrap; line-height: 1.2"),
+            chosen: wrap("background-color: #c8c8c8; color: #000000"),
+            group: wrap("display: block"),
+        }
+    })
+}
+
 /// Push the declaration blocks of the node's presentational hints into `hints`.
 pub(crate) fn synthesize<'a, V>(node: &'a Node, hints: &mut V)
 where
@@ -614,27 +649,6 @@ fn compute_presentational_hints(node: &Node, elem: &ElementData) -> Presentation
             hints.push(transform);
         }
 
-        // A list box's `size` makes it that many rows tall, each row `1.2em` by the default
-        // sheet's rule or by its rows' hints, and the rest scroll.
-        if *tag == local_name!("select")
-            && *name == local_name!("size")
-            && crate::node::select::is_list_box(elem)
-        {
-            if let Some(rows) = crate::node::select_list::size_rows(value) {
-                use style::values::specified::NoCalcLength;
-                let height = LengthPercentage::Length(NoCalcLength::from_em(rows as f32 * 1.2));
-                hints.push(PropertyDeclaration::Height(size(height)));
-            }
-            if crate::node::select::is_single_list_box(elem) {
-                hints.extend(
-                    declarations("overflow-y: auto")
-                        .declarations()
-                        .iter()
-                        .cloned(),
-                );
-            }
-        }
-
         // The `border` attribute maps to the four border widths as a
         // pixel length, plus the four border styles as `solid` -- width
         // alone would compute back to zero against the default
@@ -744,14 +758,7 @@ fn compute_presentational_hints(node: &Node, elem: &ElementData) -> Presentation
             wrap(block.0)
         });
 
-    let list_box_rows = crate::node::select::is_single_list_box(elem).then(|| {
-        let wrap = |css: &str| ServoArc::new(node.guard().wrap(declarations(css)));
-        ListBoxRows {
-            option: wrap("display: block; padding: 0 2px; white-space: nowrap; line-height: 1.2"),
-            chosen: wrap("background-color: #c8c8c8; color: #000000"),
-            group: wrap("display: block"),
-        }
-    });
+    let list_box_rows = list_box_hints(node, elem, &mut hints);
 
     PresentationalHints {
         own: wrap(hints.0),

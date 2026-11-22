@@ -1,0 +1,158 @@
+[
+{
+"tool": "evolve",
+"v": "1.5",
+"sha8": "1aaec7b5",
+"ts": "2026-11-22T17:51:04Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"2",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-22T17-47-29-implement",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2 record(s) in the store · tx 3106 · 2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson",
+"ts 2026-11-22T17:50:54Z · clock 2026-11-22T17:51:04Z · the builders' bound 2026-11-22T17:45:04Z (line 2955)",
+"ids 2026-11-22T17:50:54Z-a … 2026-11-22T17:50:54Z-b (2)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.5",
+"sha8": "1aaec7b5",
+"ts": "2026-11-22T18:20:04Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"3",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-22T17-47-29-implement",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 3 record(s) in the store · tx 3109 · 2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson",
+"ts 2026-11-22T18:19:49Z · clock 2026-11-22T18:20:04Z · the builders' bound 2026-11-22T17:50:54Z (line 2957)",
+"ids 2026-11-22T18:19:49Z-a … 2026-11-22T18:19:49Z-c (3)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.5",
+"sha8": "1aaec7b5",
+"ts": "2026-11-22T18:20:12Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-22T17-47-29-implement",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"REFUSED ts: 2026-11-22T18:20:40Z · 2026-11-22T18:20:40Z-a — later than the clock 2026-11-22T18:20:12Z"
+],
+"stderr": "refused — nothing written: 1 of 1 record(s) out of time; re-read `date -u`, re-letter the ids, re-fire",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.5",
+"sha8": "1aaec7b5",
+"ts": "2026-11-22T18:20:18Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-22T17-47-29-implement",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) in the store · tx 3110 · 2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson",
+"ts 2026-11-22T18:20:12Z · clock 2026-11-22T18:20:18Z · the builders' bound 2026-11-22T18:19:49Z (line 2960)",
+"ids 2026-11-22T18:20:12Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "evolve",
+"v": "1.5",
+"sha8": "1aaec7b5",
+"ts": "2026-11-22T18:22:14Z",
+"argv": [
+"append",
+"--root",
+".",
+"--count",
+"1",
+"--records-file",
+"-",
+"--run-dir",
+".andromeda/runs/2026-11-22T17-47-29-implement",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) in the store · tx 3112 · 2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson",
+"ts 2026-11-22T18:22:08Z · clock 2026-11-22T18:22:14Z · the builders' bound 2026-11-22T18:20:12Z (line 2961)",
+"ids 2026-11-22T18:22:08Z-a"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson"
+],
+"before": null,
+"after": null
+}
+]
