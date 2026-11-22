@@ -1,2 +1,0 @@
-@none
-reason: The chunk changed only CI scripts, the workflow, deny.toml and Cargo.lock, with no Rust source and no UI surface (fct-x5k7q2yn, fct-562xfksv), and every new surface reads tokens n/a (fct-scmtjoxy), so D-design-tokens finds no drift. The one picked row, decision/mobile-targets-built-not-tested, stays true: the matrix still builds the iOS and Android targets and only adds a verified skia archive step and a witness step (fct-vpyradka, fct-xp4s2p66), and the report says nothing about tests running on them. The task brings no new fact for design-system.

@@ -1,0 +1,246 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:17:48Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap",
+"--marker",
+"no-marker",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 5 record(s) · 5 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:17:52Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 5 record(s) · 5 edge(s) · tx 3073 · chk-saqwjez2 … cry-3licpr2p"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-12T14-22-05-no-marker.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:18:17Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/draft-CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land CLAUDE.md rev 43 · 2 node(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:18:29Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/draft-CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 43 · 0 new · 1 revised · 0 retired · tx 3074"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T16-18-28-2026-11-22T16-15-25-wrap.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:18:30Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/docs/session-learnings.md",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/draft-.claude-docs-session-learnings.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land .claude/docs/session-learnings.md rev 22 · 4 node(s) · 3 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:18:30Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/docs/session-learnings.md",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/draft-.claude-docs-session-learnings.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/session-learnings.md rev 22 · 2 new · 0 revised · 0 retired · tx 3075"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T16-18-28-2026-11-22T16-15-25-wrap.ndjson",
+"./.claude/docs/session-learnings.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:20:30Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T16-15-25-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3077 · run-qcauzzsm … run-qcauzzsm"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-12T14-22-05-no-marker.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:20:56Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"outputs land: no field payload in the run — nothing to land"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T16:21:01Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T16-15-25-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"sealed 2026-11-22T02-02-17-wrap · 167 file(s) · 2026-11-22T02-02-17-wrap.parquet · tx 3078 · 167 removed · 208 set aside",
+"sealed 2026-11-22T08-07-41-evolve-diagnose · 7 file(s) · 2026-11-22T08-07-41-evolve-diagnose.parquet · tx 3079 · 7 removed · 0 set aside",
+"sealed 2026-11-22T08-24-00-code-audit · 71 file(s) · 2026-11-22T08-24-00-code-audit.parquet · tx 3080 · 71 removed · 0 set aside",
+"seal · 3 run(s) · own 2026-11-22T16-15-25-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

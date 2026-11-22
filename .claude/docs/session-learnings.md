@@ -8,6 +8,11 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-22 — The fork's share of a function is read against upstream's text, not by blame
+The Epoch 2 boundary audit split its 94 functions over cognitive 15 by `git blame` at HEAD and named 8 «the fork's». All 8 were upstream-authored: the upstream syncs land as the fork's own commits («operator pre-CI commit»), so blame names the fork for lines it took unchanged — five of the 8 were byte-identical to upstream at `547d7514b`, and the other three read upstream's own score. Blame also missed the fork's real growth inside upstream bodies, where the fork's lines are a minority: comparing each function's score with the same file and name at the last synced upstream rev (rust-code-analysis-cli on `git show {rev}:{path}`) found 13 carrying fork-added complexity, `build_accessibility_node` at 50 against upstream's 19. Measure the fork's share by that comparison, never by blame.
+
+---
+
 ## 2026-11-22 — CI's toolchain moves the build directory's layout
 The CI runners took rustc 1.100.0 while the dev host stayed on cargo 1.99.0. On Cargo 1.100 a target package's build directory is `target/{triple}/debug/build/{package}/{hash}/` and a build script's printed output is `…/{hash}/run/stdout`; Cargo 1.99 keeps `build/{package}-{hash}/output`. The matrix witness of 2026-11-21-dependency-and-ci-debts, pinned to the 1.99 glob, read red on all four non-linux rows twice (CI#44965103559, CI#44967824760) before it read the build tree by content (CI#44971052397).
 

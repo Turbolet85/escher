@@ -1,42 +1,39 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-22T02:33:00Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `fd1d39992`)
+**Last Updated:** 2026-11-22T16:20:51Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `b1806b34e`)
 **Status:** clean
-**Last Commit:** 2026-11-21-dependency-and-ci-debts — feat: dependency and CI debts, gated on the Epoch 2 boundary audit (see `git log -1`)
+**Last Commit:** chore(route): operator-requested adaptation — 0-pending wrap (see `git log -1`)
 
 ## Position
-- Done: 2026-11-21-dependency-and-ci-debts, flipped `gated`.
-  - Skia now builds from a verified prebuilt archive. The advisory ignores are closed or stated as waits. The cancelled-runner watch is retired.
-  - `v040-07` is verified. `v040-08` stays gated: «the Epoch 2 boundary audit of escher-0.4.0 recorded, its reading cleared by the operator word».
-  - CI#44971052397 is green (17/17) on `fd1d39992`.
-- Next: the Epoch 2 boundary audit of escher-0.4.0, then the operator's word on its reading.
-  - Then `/andromeda-implement` in gated mode and this chunk's gated wrap, which closes Epoch 2.
-  - Then «Upstream sync ahead of the canvas» (`/andromeda-phase`).
+- Done: no chunk wrapped. This was a 0-pending route adaptation at the Epoch 2 boundary (run `2026-11-22T16-15-25-wrap`).
+  - The Epoch 2 boundary audit is recorded (tx 3071, run `2026-11-22T08-24-00-code-audit`).
+  - `gated 2026-11-21-dependency-and-ci-debts: standing`. The operator's clearance is not given: v040-08's clause on sizes fails on `packages/escher-driver/src/command.rs` (848 code lines). Its other three clauses hold.
+- Next: «Epoch 2 corrective» (`chk-saqwjez2`), via `/andromeda-phase`. It is the first markerless entry, inside Epoch 2, and claims nothing.
+  - Then `/andromeda-implement` in gated mode for `2026-11-21-dependency-and-ci-debts`. It reads v040-08's four clauses from the corrective chunk's re-measured readings, beside tx 3071 and CI.
+  - Then that chunk's gated wrap, which closes Epoch 2.
+  - Then «Upstream sync ahead of the canvas».
 
 ## Work done
-- P2 landed 15 row operations in 3 masters (tx 3030–3033); 2 were rejected by fit.
-  - security-plan `decision/skia-default-build-fetch` now says the archive is verified (it read «no content check»).
-  - test-plan `decision/hosted-runner-cancel-hand-rerun` landed `state: provisional` (F2 A).
-- The whole-mode leaves pass (operator's word, inputs#I8): 23 comparer findings applied in 12 leaves, 3 declined.
-  - Hand landings (tx 3046–3053): the per-file test counts in a11y.md and tests-summary.md; testing.md's «36 readers»; «(citations live there)» in stack.md and conventions.md; workflow.md:8's default branch (CARRY `cry-g3etodij` discharged); the zip clause in security.md and security-summary.md.
-- Curation: Tier 2 testing.md (the skia sweep hazard); Tier 3 (CI's toolchain moves the build-dir layout); one in-place correction of testing.md's 2026-11-18 extension.
+- Route (tx 3073): the new entry «Epoch 2 corrective — the driver's command module under the 800-line bar; escher's additions to three grown upstream functions apart from their bodies, behaviour unchanged (v040-08)». It carries four CARRYs:
+  - `cry-p3m7lb6q` A1: `command.rs` read 848 at `b1806b34e`. It was 776 at codebase-health's end; driver-debts added 72.
+  - `cry-m4y7ijwf` A2: `build_accessibility_node`, `handle_key_or_input_event` and `compute_presentational_hints` must read upstream's own score at `547d7514b` (19 · 46 · 167). They read 50 · 58 · 176 now. The other ten fork-grown functions stay untouched.
+  - `cry-6gvl75lk` A3: the standing rule «a fork addition to an upstream function over the ceiling goes into a function of escher's own, one call in upstream's body». It lands at the corrective chunk's wrap as an architecture decision row beside `decision/cognitive-complexity-ceiling`.
+  - `cry-3licpr2p` A4: no fresh audit. The corrective chunk's gates re-measure the files over 800, the functions over cognitive 15 and the stand duplication reading at its HEAD, by the audit's own recipes.
+- Curation:
+  - Tier 1: the 2026-10-05 `gh` learning corrected in place. `-R` goes to `gh run` and `gh cache`; the repo is positional for `gh repo view`; the fork's path is written into `gh api`'s.
+  - Tier 3: the fork's share of a function is read against upstream's text, not by blame.
 
 ## Drift resolved
-- Masters stated skia fetched «with no content check». That clause is amended. The archive script's exit codes, the skia legs, the sweep under the verified URL, `SKIA_BINARIES_URL`, the fallback limit, the matrix witness and the CI-flag limit are recorded.
-- 22 duplicate adds were rejected under check 2 (one fact, one home). The `advisory-ignores-by-id` weakening was rejected: RUSTSEC-2026-0192's owner is now `res-y4gizreq`.
-- No escalation.
+- None: a 0-pending wrap runs no reconcile. No master row landed.
 
 ## Notes
-- Operator's dialog answers this wrap (2026-11-22):
-  - «Note + mint 0192 (Recommended)»: a v040-07 ledger note records the six residuals' dispositions. `res-y4gizreq` was minted, and CARRY `cry-rqochxka` on «Upstream sync ahead of the canvas» puts its id in `deny.toml`.
-  - «Defer to gated wrap (Recommended)»: the sidecar consolidation, the Provisional-discharge listing of standing PROVISIONAL marks and the evolve nudge belong to the gated wrap that closes Epoch 2.
-- PROVISIONAL, waiting for the founder's own word: F1 A · F2 A · F3 A (inputs#I4 of this chunk), delegated by the operator.
-  - Where they land: the `deny.toml` reasons, the memmap2 except of security-plan `decision/dependency-audit-cargo-deny`, and test-plan `decision/hosted-runner-cancel-hand-rerun` (`provisional`).
-  - No founder card was written this wrap: nothing went past his rulings.
-- Epoch 2 «Debts of 0.1.0–0.3.0» holds 11 taken-up chunks via insertions. Its boundary is now reached.
-- Measured: Cargo 1.100 on the CI runners writes build-script output to `build/{pkg}/{hash}/run/stdout`. The dev host is on cargo 1.99.
+- The founder's words at this boundary (`~/dev/projects/additional/escher-overseer/relays/epoch2-boundary-founder-2026-11-22.md`, snapped as this run's inputs#I2):
+  - §3 discharges F1 A · F2 A · F3 A of «Dependency and CI debts» as his own words.
+  - The two master rows that read `provisional` (test-plan `decision/hosted-runner-cancel-hand-rerun`, and the memmap2 wording) become standing at the gated wrap's PROVISIONAL listing.
+- Still deferred to the gated wrap that closes Epoch 2: the sidecar consolidation, the PROVISIONAL listing and the evolve nudge.
+- Evolve: escher-0.4.0 Epoch 1 «Foundation» is complete with 11 friction records and has no diagnosis. Epoch 2's diagnosis `2026-11-22T08-07-41-evolve-diagnose` is epoch-to-date.
 - Upstreamable, not yet sent (carried): the single list box; the post-layout focus fixup and the Tab walk's skip of unshown nodes; the inline-box placeholder defect (parley 0.13); the W8 fragment mask as a stamped `data:` URL; upstream's `docs/licensing.md` on `webpki-root-certs`.
 - Carried: security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`; `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Left for the operator to remove: `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
+- Left for the operator to remove: `target/mutants-peak` (the audit's 3.1 GB cache), `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Last failed command: none.
