@@ -1,0 +1,80 @@
+# The site sweep of 2026-11-21-dependency-and-ci-debts' moved facts — one pattern per claim.
+
+# Counts / qualifiers moved
+[[pattern]]
+id = 'skia-legs'
+regex = '''SKIA_LEGS|skia-building legs?|legs? that build skia|use_verified_skia'''
+
+[[pattern]]
+id = 'ci-scripts'
+regex = '''test_skia_archive|ci-scripts leg|Test CI scripts'''
+
+[[pattern]]
+id = 'matrix-steps'
+regex = '''Verified skia archive|Skia built from the verified archive|witness step|matrix_test'''
+
+# Spec claims disproved
+[[pattern]]
+id = 'force-flag'
+regex = '''FORCE_SKIA_BINARIES_DOWNLOAD|force(d)? download'''
+
+[[pattern]]
+id = 'key-request'
+regex = '''recorded key|requests? its (recorded )?key|skia-binaries-\{key\}|\{key\}'''
+
+[[pattern]]
+id = 'sweep-env'
+regex = '''target-sweep|build-directory sweep'''
+
+# Expected amendments
+[[pattern]]
+id = 'skia-fetch'
+regex = '''skia-default-build-fetch|skia-bindings|prebuilt (skia )?(binaries|archive)|skia_archive|skia-archives'''
+
+[[pattern]]
+id = 'memmap2'
+regex = '''memmap2|advise_range|cacache'''
+
+[[pattern]]
+id = 'zip'
+regex = '''\bzip\b|RUSTSEC-2026-036[789]|RUSTSEC-2026-0429|res-h7acz56c'''
+
+[[pattern]]
+id = 'sqlite'
+regex = '''RUSTSEC-2026-0459|libsqlite3-sys|rusqlite|res-j4x7iiqc'''
+
+[[pattern]]
+id = 'ttf-parser'
+regex = '''ttf-parser|RUSTSEC-2026-0192'''
+
+[[pattern]]
+id = 'zbus'
+regex = '''zbus|zvariant|RUSTSEC-2026-037[012]'''
+
+[[pattern]]
+id = 'paste'
+regex = '''RUSTSEC-2024-0436|\bpaste\b \(unmaintained|paste 1\.0'''
+
+[[pattern]]
+id = 'skia-url-env'
+regex = '''SKIA_BINARIES_URL|skia-binaries-url'''
+
+[[pattern]]
+id = 'ci-true'
+regex = '''CI=true|incremental compilation off|CARGO_INCREMENTAL'''
+
+[[pattern]]
+id = 'runner-cancel'
+regex = '''no[- ]runner|cancelled-runner|runner cancel|res-q2tllspz'''
+
+[[pattern]]
+id = 'stderr-lines'
+regex = '''skia-archive:'''
+
+[[pattern]]
+id = 'async-exec'
+regex = '''async-executor|accesskit_\(xplat\|winit\)|adapter probe'''
+
+[[pattern]]
+id = 'yanked'
+regex = '''yanked'''

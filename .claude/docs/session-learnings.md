@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-22 — CI's toolchain moves the build directory's layout
+The CI runners took rustc 1.100.0 while the dev host stayed on cargo 1.99.0. On Cargo 1.100 a target package's build directory is `target/{triple}/debug/build/{package}/{hash}/` and a build script's printed output is `…/{hash}/run/stdout`; Cargo 1.99 keeps `build/{package}-{hash}/output`. The matrix witness of 2026-11-21-dependency-and-ci-debts, pinned to the 1.99 glob, read red on all four non-linux rows twice (CI#44965103559, CI#44967824760) before it read the build tree by content (CI#44971052397).
+
+Any check that reads a build script's output — or any other path under `target/` — reads it by content or by a search that names no layout, and prints what it found, so the first CI run on a newer toolchain measures the layout instead of failing on a guess.
+
+---
+
 ## 2026-11-21 — Iterate new code's lints on the clippy leg, not on `fast`
 `bash .github/scripts/ci-leg.sh fast` stops at the first clippy run that reads red. Two lints in two targets of new code
 (one in a library module, one in its unit test) then cost two full `fast` firings, each rebuilding up to clippy again.

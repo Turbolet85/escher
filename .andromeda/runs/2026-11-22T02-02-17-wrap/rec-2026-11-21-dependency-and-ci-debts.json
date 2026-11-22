@@ -1,0 +1,1192 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:05:03Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-21-dependency-and-ci-debts",
+"--section-file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-21-dependency-and-ci-debts/report rev 2 · 10 new · 0 revised · 0 retired · 60 kept · tx 3026"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:05:03Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-21-dependency-and-ci-debts",
+"--section-file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-21-dependency-and-ci-debts/report rev 3 · 23 new · 0 revised · 0 retired · 70 kept · tx 3027"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:05:27Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cites-land-2026-11-21-dependency-and-ci-debts.ndjson",
+"--base",
+"d8e04c8d6a6de16ac69d6d7f2b7ccb4c3bed359e",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:05:32Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cites-land-2026-11-21-dependency-and-ci-debts.ndjson",
+"--base",
+"d8e04c8d6a6de16ac69d6d7f2b7ccb4c3bed359e",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 3029"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:07:47Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1541 · packs 16 · pack 100 · 393141 B",
+"security-plan: rows 570 · packs 6 · pack 100 · 165515 B",
+"design-system: rows 137 · packs 2 · pack 100 · 38407 B",
+"layout-templates: rows 129 · packs 2 · pack 100 · 32614 B",
+"test-plan: rows 642 · packs 7 · pack 100 · 183161 B",
+"obs-plan: rows 295 · packs 3 · pack 100 · 81326 B",
+"a11y-plan: rows 242 · packs 3 · pack 100 · 77479 B",
+"rows-packs: 7 master(s) · 3556 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 3029"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-22T02-02-17-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:15:15Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1541 · packs 16 · picked 34 (23 by every draw) · standing 0 · 187851 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 570 · packs 6 · picked 21 (13 by every draw) · standing 0 · 85465 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 137 · packs 2 · picked 1 (0 by every draw) · standing 0 · 18211 B",
+"layout-templates: rows 129 · packs 2 · picked 16 (2 by every draw) · standing 0 · 13350 B",
+"test-plan: rows 642 · packs 7 · picked 25 (3 by every draw) · standing 0 · 59214 B",
+"obs-plan: rows 295 · packs 3 · picked 6 (3 by every draw) · standing 0 · 7532 B",
+"a11y-plan: rows 242 · packs 3 · picked 4 (4 by every draw) · standing 0 · 3512 B",
+"rows-union: 7 master(s) · picked 107 of 3556 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-22T02-02-17-wrap/arch-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/arch-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/security-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/security-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/design-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/design-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/tests-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/tests-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/obs-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/obs-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/skia-verified-prebuilt-archive · rejected",
+"decision/no-forced-skia-download · rejected",
+"decision/matrix-skia-archive-witness · rejected",
+"decision/build-output-checks-layout-agnostic · rejected",
+"fit: fits 6 · not_master 0 · stands 0",
+"## 2026-11-21-dependency-and-ci-debts — Standard Contracts: 4 row(s)\n**Section:** Standard Contracts\n**Change:** + contract/skia-archive-exit-codes/0 — skia_archive.py exit codes · 0\n+ contract/skia-archive-exit-codes/1 — skia_archive.py exit codes · 1\n+ contract/skia-archive-exit-codes/2 — skia_archive.py exit codes · 2\n+ decision/skia-legs-verify-archive-first — Skia-building legs verify skia's archive first\n**Why:** contract/skia-archive-exit-codes/0: The chunk lands the skia archive script, whose exit codes are a contract the leg runner and the matrix step read, and no row registers it.\ncontract/skia-archive-exit-codes/1: The chunk lands the skia archive script, whose exit codes are a contract the leg runner and the matrix step read, and no row registers it.\ncontract/skia-archive-exit-codes/2: The chunk lands the skia archive script, whose exit codes are a contract the leg runner and the matrix step read, and no row registers it.\ndecision/skia-legs-verify-archive-first: The leg runner gains a skia arm over seven named legs, a contract of the runner no standing row states.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"## 2026-11-21-dependency-and-ci-debts — Occupied Resources: 1 row(s)\n**Section:** Occupied Resources\n**Change:** + name/other/skia-binaries-url — SKIA_BINARIES_URL\n**Why:** name/other/skia-binaries-url: The leg runner and the matrix test step now set SKIA_BINARIES_URL for skia-bindings' build script, an occupied environment variable not yet registered.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"## 2026-11-21-dependency-and-ci-debts — Infrastructure Patterns: 1 row(s)\n**Section:** Infrastructure Patterns\n**Change:** + decision/cargo-under-verified-skia-url — Every skia-building cargo call under the verified URL\n**Why:** decision/cargo-under-verified-skia-url: The sweep hazard was measured and fixed in the leg runner, a rule future legs and sweeps must keep.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 6 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/advisory-ignores-by-id · rejected",
+"decision/skia-archive-call-validation · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"## 2026-11-21-dependency-and-ci-debts — Dependency Security: 4 row(s)\n**Section:** Dependency Security\n**Change:** ~ decision/skia-default-build-fetch · rule: was «Skia is built by default in the browser app and the WPT runner, its build script fetching prebuilt binaries from GitHub releases at build time with no content check.»; now «Skia is built by default in the browser app and the WPT runner from a prebuilt archive for the locked skia-bindings tag, fetched once per platform and verified against a committed per-target sha256; a differing archive is refused, leaving no file, and the build reads only the verified local copy.»\n~ decision/dependency-audit-cargo-deny · except: was «`unsound` stays at its default, which keeps memmap2's unsound advisory out of the gate.»; now «`unsound` stays at its default, which keeps memmap2's unsound advisory out of the gate, a wait on a cacache release as cacache 13.1.0 uses no advise_range.»\n+ decision/skia-archive-fallback-source-build — Skia archive fallback stated as a limit\n+ decision/no-force-skia-binaries-download — No forced skia binaries download\n**Why:** decision/skia-default-build-fetch: The build-time fetch is no longer unchecked: the archive is verified against a committed sha256 record before the build reads it, so the row's «with no content check» is false.\ndecision/dependency-audit-cargo-deny: The memmap2 exception now carries its stated outcome, a wait on a cacache release, which the row's except leaves out.\ndecision/skia-archive-fallback-source-build: The chunk states the skia archive fallback as a limit read red by a witness, a decision no row holds.\ndecision/no-force-skia-binaries-download: The planned forced download was measured to give a source build and dropped, a deliberate choice no row states.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"## 2026-11-21-dependency-and-ci-debts — Secret Management: 1 row(s)\n**Section:** Secret Management\n**Change:** + contract/environment-variables/skia-binaries-url — Environment variables · SKIA_BINARIES_URL\n**Why:** contract/environment-variables/skia-binaries-url: The chunk adds an environment variable set by CI and read by a build script, and the environment-variable contract lists none for it.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"patterns: 1 in cascade-patterns-security-plan-1.toml",
+"dry-run · would land 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-22T02-02-17-wrap/cascade-patterns-security-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/skia-legs-build-from-verified-archive · rejected",
+"decision/skia-prebuilt-fallback-stated-limit · rejected",
+"contract/skia-archive-exit-codes/0 · rejected",
+"contract/skia-archive-exit-codes/1 · rejected",
+"contract/skia-archive-exit-codes/2 · rejected",
+"decision/hosted-runner-cancel-hand-rerun · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-21-dependency-and-ci-debts — 9. CI Integration: 2 row(s)\n**Section:** 9. CI Integration\n**Change:** + decision/matrix-skia-from-verified-archive — Matrix builds skia from the verified archive\n+ decision/skia-witness-reads-by-content — Skia archive witness reads the build tree by content\n**Why:** decision/matrix-skia-from-verified-archive: The matrix job gained the verified-archive step and its witness, a guarantee of the CI configuration no row of §9 states.\ndecision/skia-witness-reads-by-content: The witness was rewritten after two reds to read by content, a choice with a stated reason that a later edit of the witness must keep.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:11Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/skia-verified-prebuilt-archive · rejected",
+"decision/no-forced-skia-download · rejected",
+"decision/matrix-skia-archive-witness · rejected",
+"decision/build-output-checks-layout-agnostic · rejected",
+"fit: fits 6 · not_master 0 · stands 0",
+"landed tx 3030 · 6 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:12Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/advisory-ignores-by-id · rejected",
+"decision/skia-archive-call-validation · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"landed tx 3031 · 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:12Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/skia-legs-build-from-verified-archive · rejected",
+"decision/skia-prebuilt-fallback-stated-limit · rejected",
+"contract/skia-archive-exit-codes/0 · rejected",
+"contract/skia-archive-exit-codes/1 · rejected",
+"contract/skia-archive-exit-codes/2 · rejected",
+"decision/hosted-runner-cancel-hand-rerun · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3032 · 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:16Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-21-dependency-and-ci-debts — 9. CI Integration: 2 row(s)\n**Section:** 9. CI Integration\n**Change:** + decision/hosted-runner-cancel-hand-rerun — Hosted-runner cancel answered by a hand re-run\n+ decision/ci-flag-rebuild-limit — CI flag rebuild a stated limit\n**Why:** decision/hosted-runner-cancel-hand-rerun: The chunk retired the cancelled-runner watch by its rule and stated the no-runner cancel as a hosted-runner limit with the hand re-run, carried to test-plan §9, on an answer delegated for the founder and held provisional.\ndecision/ci-flag-rebuild-limit: The plan's test-plan §9 entry carries the CI=true rebuild as a measured limit with its override, and no proposer raised it.\n**Ref:** .andromeda/runs/2026-11-22T02-02-17-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:16Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/a11y-leg-verified-skia-archive · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:16Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/skia-archive-cli/usage · rejected",
+"contract/skia-archive-cli/exit-0 · rejected",
+"contract/skia-archive-cli/exit-1 · rejected",
+"contract/skia-archive-cli/exit-2 · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:17Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/skia-archive-lines/success · rejected",
+"contract/skia-archive-lines/attempt · rejected",
+"contract/skia-archive-lines/exit-1 · rejected",
+"contract/skia-archive-lines/exit-2 · rejected",
+"contract/skia-archive-witness-line/match · rejected",
+"contract/skia-archive-witness-line/no-match · rejected",
+"decision/skia-source-fallback-read-red · rejected",
+"decision/refused-skia-archive-ends-leg · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:20:22Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-22T02-02-17-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3033 · 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+".andromeda/runs/2026-11-22T02-02-17-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:18Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 21 · 0 new · 1 revised · 0 retired · tx 3034"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:19Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__services__blitz-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-dom.md rev 20 · 0 new · 2 revised · 0 retired · tx 3035"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/services/blitz-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:20Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/stack.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__stack.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/stack.md rev 17 · 0 new · 1 revised · 0 retired · tx 3036"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/stack.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:20Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 33 · 0 new · 3 revised · 0 retired · tx 3037"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:21Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 29 · 0 new · 4 revised · 0 retired · tx 3038"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:21Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 12 · 0 new · 1 revised · 0 retired · tx 3039"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:22Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 42 · 0 new · 1 revised · 0 retired · tx 3040"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:22Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 20 · 0 new · 3 revised · 0 retired · tx 3041"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:23Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 36 · 0 new · 2 revised · 0 retired · tx 3042"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:23Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 39 · 0 new · 2 revised · 0 retired · tx 3043"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:24Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 38 · 0 new · 1 revised · 0 retired · tx 3044"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:26:25Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 17 · 0 new · 1 revised · 0 retired · tx 3045"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:31:33Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:31:36Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3058 · res-y4gizreq … res-y4gizreq"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:31:43Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/carry-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:31:46Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/carry-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 3059 · cry-rqochxka … cry-rqochxka"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:32:05Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-22T02-02-17-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap",
+"--marker",
+"2026-11-21-dependency-and-ci-debts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3061 · run-xz3mdtoh … run-xz3mdtoh"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-21T22-24-24-2026-11-21-dependency-and-ci-debts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "b3f88735",
+"ts": "2026-11-22T02:42:29Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-21-dependency-and-ci-debts",
+"--run-dir",
+".andromeda/runs/2026-11-22T02-02-17-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 15 file(s) of 2026-11-21-dependency-and-ci-debts"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

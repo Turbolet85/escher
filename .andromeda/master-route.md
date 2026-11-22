@@ -124,4 +124,4 @@
 2026-11-20-driver-debts · complete · Driver debts — press with Ctrl, graph in parts, coverage under a stopped dispatch, each fixed or kept by the founder's word · → chk:2026-11-20-driver-debts
 2026-11-21-engine-debts · complete · engine debts — a hidden focused control, a render-polled task, page-script Math.random, the growing boundary registry, each the founder's fork · → chk:2026-11-21-engine-debts
 2026-11-21-single-select-sized-as-a-list-box · complete · a single select with `size` above 1 shown as an in-flow list box, keys and clicks choosing, no popup · → chk:2026-11-21-single-select-sized-as-a-list-box
-2026-11-21-dependency-and-ci-debts · pending · Dependency and CI debts — the advisory ignores closed or stated as waits, skia's prebuilt archive verified, the cancelled-runner watch acted on · → chk:2026-11-21-dependency-and-ci-debts
+2026-11-21-dependency-and-ci-debts · gated · Dependency and CI debts — the advisory ignores closed or stated as waits, skia's prebuilt archive verified, the cancelled-runner watch acted on · → chk:2026-11-21-dependency-and-ci-debts

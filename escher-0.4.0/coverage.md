@@ -1,9 +1,6 @@
 # Coverage — escher-0.4.0
 
-verified 5/15 · deferred 0 · planned 9 · implemented 1 · unclaimed 8
-
-## implemented (1)
-- v040-07 · Dependency and CI debts · 2026-11-21-dependency-and-ci-debts
+verified 6/15 · deferred 0 · planned 9 · implemented 0 · unclaimed 8
 
 ## planned, gated (1)
 - v040-08 · Codebase health · 2026-11-21-dependency-and-ci-debts
@@ -18,9 +15,10 @@ verified 5/15 · deferred 0 · planned 9 · implemented 1 · unclaimed 8
 - v040-14 · The node-graph stand app
 - v040-15 · Cold-agent run
 
-## verified (5)
+## verified (6)
 - v040-01 · Build directory held · 2026-11-19-build-directory-held
 - v040-03 · The version on the GitHub page · 2026-11-20-readme-s-0-3-0-closed
 - v040-04 · Select list and selection debts · 2026-11-20-select-list-and-selection-debts
 - v040-05 · Driver debts · 2026-11-20-driver-debts
 - v040-06 · Engine debts · 2026-11-21-engine-debts
+- v040-07 · Dependency and CI debts · 2026-11-21-dependency-and-ci-debts

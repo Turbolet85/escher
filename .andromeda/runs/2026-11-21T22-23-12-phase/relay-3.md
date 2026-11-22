@@ -1,1 +1,0 @@
-Answers to the three forks of founder-forks.md, given for the founder while he is away, each the least-change option: F1 A · F2 A · F3 A. Record them as the operator's answers standing for his review in the morning, never as his own words; none of the three changes behaviour or widens a boundary. Resume P4 in the same run dir: the plan, then the review card.
