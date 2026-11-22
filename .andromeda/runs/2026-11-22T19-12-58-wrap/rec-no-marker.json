@@ -1,0 +1,134 @@
+[
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "6138bd27",
+"ts": "2026-11-22T19:34:56Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/docs/session-learnings.md",
+"--file",
+".andromeda/runs/2026-11-22T19-12-58-wrap/draft-.claude-docs-session-learnings.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land .claude/docs/session-learnings.md rev 23 · 5 node(s) · 4 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "6138bd27",
+"ts": "2026-11-22T19:35:00Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/docs/session-learnings.md",
+"--file",
+".andromeda/runs/2026-11-22T19-12-58-wrap/draft-.claude-docs-session-learnings.md",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/session-learnings.md rev 23 · 3 new · 0 revised · 0 retired · tx 3126"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T19-34-59-2026-11-22T19-12-58-wrap.ndjson",
+"./.claude/docs/session-learnings.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "6138bd27",
+"ts": "2026-11-22T19:36:35Z",
+"argv": [
+"query",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"select * from blocked"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"status\tmarker\tversion\tblock",
+"gated\t2026-11-21-dependency-and-ci-debts\tescher-0.4.0\tBLOCKED-ON: the Epoch 2 boundary audit of escher-0.4.0 recorded, its reading cleared by the operator word (CARRY cry-hpakkesz; inputs#I3)",
+"1 row(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "6138bd27",
+"ts": "2026-11-22T20:00:05Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed tx 3132 · 576 record(s) of 110 payload(s)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T19-34-59-2026-11-22T19-12-58-wrap.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.53",
+"sha8": "6138bd27",
+"ts": "2026-11-22T20:00:09Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"sealed 2026-11-22T16-15-25-wrap · 16 file(s) · 2026-11-22T16-15-25-wrap.parquet · tx 3133 · 16 removed · 0 set aside",
+"sealed 2026-11-22T16-25-24-phase · 174 file(s) · 2026-11-22T16-25-24-phase.parquet · tx 3134 · 174 removed · 256 set aside",
+"sealed 2026-11-22T17-32-32-phase · 11 file(s) · 2026-11-22T17-32-32-phase.parquet · tx 3135 · 11 removed · 0 set aside",
+"sealed 2026-11-22T17-47-29-implement · 8 file(s) · 2026-11-22T17-47-29-implement.parquet · tx 3136 · 8 removed · 0 set aside",
+"seal · 4 run(s) · own 2026-11-22T19-12-58-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

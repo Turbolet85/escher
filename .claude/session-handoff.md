@@ -1,42 +1,28 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-22T16:20:51Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `b1806b34e`)
+**Last Updated:** 2026-11-22T19:38:00Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `addbbcca0`)
 **Status:** clean
-**Last Commit:** chore(route): operator-requested adaptation — 0-pending wrap (see `git log -1`)
+**Last Commit:** 2026-11-22-epoch-2-corrective — the chunk's wrap (see `git log -1`)
 
 ## Position
-- Done: no chunk wrapped. This was a 0-pending route adaptation at the Epoch 2 boundary (run `2026-11-22T16-15-25-wrap`).
-  - The Epoch 2 boundary audit is recorded (tx 3071, run `2026-11-22T08-24-00-code-audit`).
-  - `gated 2026-11-21-dependency-and-ci-debts: standing`. The operator's clearance is not given: v040-08's clause on sizes fails on `packages/escher-driver/src/command.rs` (848 code lines). Its other three clauses hold.
-- Next: «Epoch 2 corrective» (`chk-saqwjez2`), via `/andromeda-phase`. It is the first markerless entry, inside Epoch 2, and claims nothing.
-  - Then `/andromeda-implement` in gated mode for `2026-11-21-dependency-and-ci-debts`. It reads v040-08's four clauses from the corrective chunk's re-measured readings, beside tx 3071 and CI.
-  - Then that chunk's gated wrap, which closes Epoch 2.
-  - Then «Upstream sync ahead of the canvas».
+- Done: `2026-11-22-epoch-2-corrective` — `command.rs` 249 code lines (its tests in `command_tests.rs`), escher's additions out of three upstream bodies (13 · 46 · 167), url 2.5.9 closing RUSTSEC-2026-0592; CI#45055038478 green on `addbbcca0`. Wrap run `2026-11-22T19-12-58-wrap`.
+  - `gated 2026-11-21-dependency-and-ci-debts: standing` — the operator's clearance of the Epoch 2 boundary audit (tx 3071) is not given; the size clause it failed on now reads `bars: PASS` at `addbbcca0`. This wrap did not close it or Epoch 2 (the operator's directive, point 4).
+- Next: `/andromeda-implement` in gated mode for `2026-11-21-dependency-and-ci-debts` once the operator's word clears its block — it reads v040-08's four clauses from this chunk's re-measured readings — then its gated wrap, which closes Epoch 2.
+  - Then «Upstream sync ahead of the canvas» (`chk-rpvc7zdi`).
 
 ## Work done
-- Route (tx 3073): the new entry «Epoch 2 corrective — the driver's command module under the 800-line bar; escher's additions to three grown upstream functions apart from their bodies, behaviour unchanged (v040-08)». It carries four CARRYs:
-  - `cry-p3m7lb6q` A1: `command.rs` read 848 at `b1806b34e`. It was 776 at codebase-health's end; driver-debts added 72.
-  - `cry-m4y7ijwf` A2: `build_accessibility_node`, `handle_key_or_input_event` and `compute_presentational_hints` must read upstream's own score at `547d7514b` (19 · 46 · 167). They read 50 · 58 · 176 now. The other ten fork-grown functions stay untouched.
-  - `cry-6gvl75lk` A3: the standing rule «a fork addition to an upstream function over the ceiling goes into a function of escher's own, one call in upstream's body». It lands at the corrective chunk's wrap as an architecture decision row beside `decision/cognitive-complexity-ceiling`.
-  - `cry-3licpr2p` A4: no fresh audit. The corrective chunk's gates re-measure the files over 800, the functions over cognitive 15 and the stand duplication reading at its HEAD, by the audit's own recipes.
-- Curation:
-  - Tier 1: the 2026-10-05 `gh` learning corrected in place. `-R` goes to `gh run` and `gh cache`; the repo is positional for `gh repo view`; the fork's path is written into `gh api`'s.
-  - Tier 3: the fork's share of a function is read against upstream's text, not by blame.
+- Reconcile: architecture + `decision/fork-additions-in-own-functions` (tx 3121), the standing rule the CARRY `cry-6gvl75lk` names, on the founder's word «Выносить наши добавки в хелперы (Recommended)». Leaves `.claude/rules/testing.md:48` and `.claude/docs/stack.md:39` re-derived by comparer findings.
+- Route: residual `res-evkq636g` — a `url` update re-resolves two `syn` edges and breaks `bindgen`, with its reproducing command.
+- Curation: Tier 3 «A lock move is proven by a locked build, not by the audit leg».
 
 ## Drift resolved
-- None: a 0-pending wrap runs no reconcile. No master row landed.
+- 6 proposers: 1 add landed (the rule above). 4 adds rejected: two `syn`-edge holds (a ruling on this chunk's lock alone, routed to the residual) and two «lock move proven by build» gate rules (the pipeline's own phase lesson, routed to curation). 0 escalations.
 
 ## Notes
-- The founder's words at this boundary (`~/dev/projects/additional/escher-overseer/relays/epoch2-boundary-founder-2026-11-22.md`, snapped as this run's inputs#I2):
-  - §3 discharges F1 A · F2 A · F3 A of «Dependency and CI debts» as his own words.
-  - The two master rows that read `provisional` (test-plan `decision/hosted-runner-cancel-hand-rerun`, and the memmap2 wording) become standing at the gated wrap's PROVISIONAL listing.
-- Still deferred to the gated wrap that closes Epoch 2: the sidecar consolidation, the PROVISIONAL listing and the evolve nudge.
-- Evolve: escher-0.4.0 Epoch 1 «Foundation» is complete with 11 friction records and has no diagnosis. Epoch 2's diagnosis `2026-11-22T08-07-41-evolve-diagnose` is epoch-to-date.
+- Still deferred to the gated wrap that closes Epoch 2: the sidecar consolidation, the PROVISIONAL listing (test-plan `decision/hosted-runner-cancel-hand-rerun`, the memmap2 wording), the evolve nudge.
+- Epoch «Epoch 2 — Debts of 0.1.0–0.3.0» has grown to 12 chunks through insertions, with no markerless entry left.
 - Upstreamable, not yet sent (carried): the single list box; the post-layout focus fixup and the Tab walk's skip of unshown nodes; the inline-box placeholder defect (parley 0.13); the W8 fragment mask as a stamped `data:` URL; upstream's `docs/licensing.md` on `webpki-root-certs`.
 - Carried: security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`; `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Left for the operator to remove: `target/mutants-peak` (the audit's 3.1 GB cache), `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
+- Left for the operator to remove: `target/mutants-peak`, `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-22 18:47:19

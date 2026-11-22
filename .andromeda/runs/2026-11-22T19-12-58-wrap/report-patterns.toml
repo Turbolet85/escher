@@ -1,0 +1,33 @@
+# Wrap P1 site sweep — one pattern per moved fact of the report (2026-11-22-epoch-2-corrective)
+
+[[pattern]]
+id = 'cmd-split'
+regex = '''command_tests\.rs|\b848\b|command\.rs[^.\n]{0,80}\b800\b|command::tests'''
+
+[[pattern]]
+id = 'cog-three'
+regex = '''build_accessibility_node|handle_key_or_input_event|compute_presentational_hints|fork-grown|fork-added complexity'''
+
+[[pattern]]
+id = 'drv-cov'
+regex = '''97\.97|97\.80|escher-driver[^.\n]{0,80}\b97\b|per-crate-coverage-floors'''
+
+[[pattern]]
+id = 'stand-dup'
+regex = '''44 pairs|47 pairs|stand duplication|duplication reading|stand_reading'''
+
+[[pattern]]
+id = 'url-bump'
+regex = '''\burl\b[^\n]{0,20}2\.5\.[89]|form_urlencoded|RUSTSEC-2026-0592'''
+
+[[pattern]]
+id = 'lock-resolve'
+regex = '''hand-edited lock|what cargo resolves|syn 3\.0\.6|syn 2\.0\.119|\bbindgen\b|prettyplease'''
+
+[[pattern]]
+id = 'helper-rule'
+regex = '''cognitive-complexity-ceiling|fork addition to an upstream function|one call in upstream'?s body|push_inline_box'''
+
+[[pattern]]
+id = 'moved-cites'
+regex = '''command\.rs:\d|accessibility\.rs:\d|events/keyboard\.rs:\d|presentational_hints\.rs:\d'''

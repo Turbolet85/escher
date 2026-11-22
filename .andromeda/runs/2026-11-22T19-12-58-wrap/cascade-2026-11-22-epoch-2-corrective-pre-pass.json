@@ -1,0 +1,174 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "76d971b8",
+"ts": "2026-11-22T19:14:05Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-22T19-12-58-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline addbbcca (pre-pass — HEAD)",
+"cmd-split · control UNFIRED over the seven masters (bodies and sets) at addbbcca",
+"cog-three · control UNFIRED over the seven masters (bodies and sets) at addbbcca",
+"url-bump · control UNFIRED over the seven masters (bodies and sets) at addbbcca",
+"moved-cites · control UNFIRED over the seven masters (bodies and sets) at addbbcca"
+],
+"stderr": "control: cmd-split, cog-three, url-bump, moved-cites never fired over the seven masters' pre-pass text, bodies and sets (addbbcca) — no master holds them: re-fire with --pattern drv-cov --pattern stand-dup --pattern lock-resolve --pattern helper-rule; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "76d971b8",
+"ts": "2026-11-22T19:14:14Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-22T19-12-58-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--marker",
+"2026-11-22-epoch-2-corrective",
+"--pattern",
+"drv-cov",
+"--pattern",
+"stand-dup",
+"--pattern",
+"lock-resolve",
+"--pattern",
+"helper-rule"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline addbbcca (pre-pass — HEAD)",
+"architecture · 3 rows over 1 files · new 0 · standing 3 · 3 patterns",
+"security-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (4 patterns) · 13 rows over 7 files",
+"per class · new 0/0 · standing 6/3 · leaf 7/4 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-22T19-12-58-wrap/sweep-pre-pass-1.1.txt · 25 lines · 2456 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-22T19-12-58-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "addbbcca02d8eda28ca507365546441f6069574c",
+"how": "pre-pass — HEAD",
+"counts": {
+"drv-cov": {
+"new": 0,
+"standing": 3,
+"leaf": 5,
+"curation": 0,
+"base": 0
+},
+"stand-dup": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"lock-resolve": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"helper-rule": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 3
+},
+"security-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+}
+},
+"per_master": {
+"drv-cov": {
+"architecture": 1,
+"security-plan": 1,
+"test-plan": 1
+},
+"stand-dup": {
+"test-plan": 1
+},
+"lock-resolve": {
+"architecture": 1
+},
+"helper-rule": {
+"architecture": 1
+}
+},
+"forms": {
+"drv-cov": [
+{
+"form": "ninety-seven",
+"from": "97"
+}
+],
+"stand-dup": [
+{
+"form": "forty-four",
+"from": "44"
+},
+{
+"form": "forty-seven",
+"from": "47"
+}
+],
+"helper-rule": [
+{
+"form": "1 call in upstream'?s body",
+"from": "one"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

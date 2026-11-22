@@ -1,0 +1,881 @@
+[
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:13:36Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-22-epoch-2-corrective",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 40ec4749 (the parent of the oldest pre-CI commit addbbcca) · lists new 1 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 6 · listed 6 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 199"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "40ec4749e74a0a3fb3b355f79aec0323ec86fbf6",
+"base_why": "the parent of the oldest pre-CI commit addbbcca",
+"counts": {
+"changed": 6,
+"listed": 6,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 199,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:14:24Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis",
+"--args",
+"cargo test",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, rustc, escher-session, seven_guis · args cargo test · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"rustc",
+"escher-session",
+"seven_guis"
+],
+"args": [
+"cargo test"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:59:30Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-22-epoch-2-corrective",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-22-epoch-2-corrective · entries 20",
+"logs $TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 159",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L147-165: - **Cargo.** The operator held every cargo run (inputs#I1) and lifted the hold for P5's ba… (1821 chars)",
+"  1 unit        green · exit 0 · 28.89s · 6136 B → 1.log · cargo test -p escher-driver --locked --lib command::tests",
+"  2 unit        green · exit 0 · 0.17s · 2 B → 2.log · cargo test -p escher-driver --locked --lib -- --list 2>/de… (104 chars)",
+"  3 probe       green · exit 0 · 0.02s · 70 B → 3.log · python3 .andromeda/cache/chunks/2026-11-22-epoch-2-correct… (132 chars)",
+"  4 probe       green · exit 0 · 0.01s · 228 B → 4.log · { git diff --name-only 40ec4749e74a0a3fb3b355f79aec0323ec8… (279 chars)",
+"  5 probe       green · exit 0 · 0.01s · 392 B → 5.log · git diff -U0 --no-color 40ec4749e74a0a3fb3b355f79aec0323ec… (130 chars)",
+"  6 lint        green · exit 0 · 1.24s · 229 B → 6.log · bash .github/scripts/ci-leg.sh audit",
+"  7 probe       green · exit 1 · 0.01s · 2 B → 7.log · git diff -U0 --no-color 40ec4749e74a0a3fb3b355f79aec0323ec… (397 chars)",
+"  8 integration green · exit 0 · 80.42s · 13106 B → 8.log · SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.… (516 chars)",
+"  9 integration green · exit 0 · 10.8s · 9737 B → 9.log · SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.… (467 chars)",
+" 10 integration green · exit 0 · 14.04s · 12142 B → 10.log · SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.… (482 chars)",
+" 11 integration green · exit 0 · 9.7s · 8210 B → 11.log · SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.… (292 chars)",
+" 12 integration green · exit 0 · 15.12s · 17073 B → 12.log · bash .github/scripts/ci-leg.sh a11y",
+" 13 lint        green · exit 0 · 691.31s · 170028 B → 13.log · bash .github/scripts/ci-leg.sh fast",
+" 14 probe       green · exit 0 · 456.67s · 228890 B → 14.log · bash .github/scripts/ci-leg.sh coverage",
+" 15 probe       green · exit 0 · 0.12s · 3031 B → 15.log · python3 .andromeda/cache/chunks/2026-11-22-epoch-2-correct… (83 chars)",
+" 16 probe       green · exit 0 · 4.69s · 759 B → 16.log · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/re… (183 chars)",
+" 17 probe       green · exit 0 · 0.61s · 470 B → 17.log · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/re… (621 chars)",
+" 18 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 19 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 20 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 20 · green 17 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-22-epoch-2-corrective",
+"plan": "doc:2026-11-22-epoch-2-corrective/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-22T02-46-42-session-2026-11-22.ndjson",
+".andromeda/db/log/2026-11-22T16-26-55-2026-11-22-epoch-2-corrective.ndjson",
+".andromeda/runs/2026-11-22T17-47-29-implement/gate-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T17-47-29-implement/rec-2026-11-22-epoch-2-corrective.json",
+".claude/docs/session-learnings.md",
+".claude/docs/stack.md",
+".claude/rules/testing.md",
+".claude/session-handoff.md",
+".andromeda/db/log/2026-11-22T19-34-59-2026-11-22T19-12-58-wrap.ndjson",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-pick-p3.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/a11y-task.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/after-implement.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p10.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p11.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p12.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p13.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p14.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p15.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p16.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p3.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p4.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p5.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p6.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p7.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p8.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-pick-p9.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-rows.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/arch-task.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/architecture-fit.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/architecture-fit.w2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cascade-2026-11-22-epoch-2-corrective-pre-pass.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cascade-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cascade-dispositions.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cascade-patterns.toml",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cascade-tally.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/citation-dispositions.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/citedisp-leaves.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cites-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/cites-land-2026-11-22-epoch-2-corrective.ndjson",
+".andromeda/runs/2026-11-22T19-12-58-wrap/curation.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-rows.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/design-task.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/draft-.claude-docs-session-learnings.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/evolve-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/fanout-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/fanout-results.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/gate-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/health-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/inputs-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/layouts-task.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-added.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-architecture-1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-architecture-2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-architecture-3.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-architecture-4.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-architecture-5.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-architecture-6.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/leaf-delta-architecture.diff",
+".andromeda/runs/2026-11-22T19-12-58-wrap/new-text.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-pick-p3.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/obs-task.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-a11y-plan.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-architecture.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-design-system.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-layout-templates.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-main-architecture.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-security-plan.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/ops-test-plan.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/rec-2026-11-22-epoch-2-corrective.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/rec-no-marker.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/rec-read-2026-11-22-epoch-2-corrective.ndjson",
+".andromeda/runs/2026-11-22T19-12-58-wrap/report-patterns.toml",
+".andromeda/runs/2026-11-22T19-12-58-wrap/residuals-batch.txt",
+".andromeda/runs/2026-11-22T19-12-58-wrap/rows-packs.json",
+".andromeda/runs/2026-11-22T19-12-58-wrap/run-node.txt",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p3.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p4.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p5.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-pick-p6.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-rows.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/security-task.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/sweep-pass-1.1.txt",
+".andromeda/runs/2026-11-22T19-12-58-wrap/sweep-pre-pass-1.1.txt",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p1.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p3.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p4.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p5.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p6.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-pick-p7.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-rows.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-standing.md",
+".andromeda/runs/2026-11-22T19-12-58-wrap/tests-task.md"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 159,
+"problem": null
+},
+"prose": [
+{
+"from": 147,
+"to": 165,
+"text": "- **Cargo.** The operator held every cargo run (inputs#I1) and lifted the hold for P5's baselines (inputs#I3). Should   the operator hold the host again, /implement waits for the word before its first cargo entry. - **The skia URL.** Every workspace cargo call exports the verified `SKIA_BINARIES_URL` the way `ci-leg.sh`'s   `use_verified_skia` does (architecture · decision/cargo-under-verified-skia-url). - **Behaviour entries per moved body.** These are named in-workspace targets, read under the workspace build, because   a per-package build compiles blitz-dom with other features (test-plan ·   decision/per-package-green-not-workspace-green). - **No smoke entry.** The chunk touches no boot path. No live leg and no UI self-verify apply, since the screen changes   nothing by construction. - **No new check, so no red-before-green control** (tests S2 binds a new test). - **The probes' red baselines are the subject.** `tests_moved_whole.py`, the preservation guard, `fn_scores.py` and   `bars.py` read red on the untouched tree. `fn_scores.py`'s known positive is its scratch-shape reading (research:   shapes measured 13, 46, 167). - **The lock move (revision 1).** The preservation guard now also reads the root `Cargo.toml`, `Cargo.lock` and   `deny.toml`, and lets `Cargo.lock` through by name: a manifest edit or an advisory ignore reads red. The lock-move   entry passes only step 5's lines. The audit leg reads the advisory database, the host's world, so it is NEW every   chunk (validation check 4 (9)); its red baseline is the subject (RUSTSEC-2026-0592, step 5's input). Every cargo   entry after them builds on the moved lock, so the behaviour entries, the fast leg and the coverage leg also read   url 2.5.9; their baselines on the untouched tree stand, since the untouched tree is still `40ec4749e`."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib command::tests",
+"run_sha8": "23215b33",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/1.log",
+"bytes": 6136,
+"log_sha8": "e9438182",
+"exit": 0,
+"seconds": 28.89,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib -- --list 2>/dev/null | grep -c '^command::tests::.*: test$' ",
+"run_sha8": "4e269461",
+"expect": [
+"exit 0",
+"last line 7"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/2.log",
+"bytes": 2,
+"log_sha8": "10159baf",
+"exit": 0,
+"seconds": 0.17,
+"readings": [
+"exit 0 ✓",
+"last line '7' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "python3 .andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/tests_moved_whole.py 40ec4749e74a0a3fb3b355f79aec0323ec86fbf6",
+"run_sha8": "99dde2e2",
+"expect": [
+"exit 0",
+"contains tests moved whole: PASS"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/3.log",
+"bytes": 70,
+"log_sha8": "bc4acb87",
+"exit": 0,
+"seconds": 0.02,
+"readings": [
+"exit 0 ✓",
+"contains 'tests moved whole: PASS' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "probe",
+"run": "{ git diff --name-only 40ec4749e74a0a3fb3b355f79aec0323ec86fbf6 -- packages apps examples tests wpt Cargo.toml Cargo.lock deny.toml; git ls-files --others --exclude-standard -- packages apps examples tests wpt Cargo.toml Cargo.lock deny.toml; } | LC_ALL=C sort -u | paste -sd' ' ",
+"run_sha8": "3bc16f7d",
+"expect": [
+"exit 0",
+"last line Cargo.lock packages/blitz-dom/src/accessibility.rs packages/blitz-dom/src/events/keyboard.rs packages/blitz-dom/src/stylo/presentational_hints.rs packages/escher-driver/src/command.rs packages/escher-driver/src/command_tests.rs"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/4.log",
+"bytes": 228,
+"log_sha8": "63ce707d",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line 'Cargo.lock packages/blitz-dom/src/accessibility.rs packages/blitz-dom/src/events/keyboard.rs packages/blitz-dom/src/stylo/presentational_hints.rs packages/escher-driver/src/command.rs packages/escher-driver/src/command_tests.rs' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "probe",
+"run": "git diff -U0 --no-color 40ec4749e74a0a3fb3b355f79aec0323ec86fbf6 -- Cargo.lock | sed -n 's/^\\([-+][^-+].*\\)$/\\1/p' | paste -sd' ' ",
+"run_sha8": "ad6d68d9",
+"expect": [
+"exit 0",
+"last line -version = \"1.2.2\" +version = \"1.2.3\" -checksum = \"cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf\" +checksum = \"afa489199eaffb1211795df1c6236ce1ad0d41a6fa45250add73e3b02420f06e\" -version = \"2.5.8\" +version = \"2.5.9\" -checksum = \"ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed\" +checksum = \"f00cd2407bb42c0ef17be88d4cf020f5cceffd121665bac9b8b9493a369b3b1a\""
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/5.log",
+"bytes": 392,
+"log_sha8": "4316f6b3",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '-version = \"1.2.2\" +version = \"1.2.3\" -checksum = \"cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf\" +checksum = \"afa489199eaffb1211795df1c6236ce1ad0d41a6fa45250add73e3b02420f06e\" -version = \"2.5.8\" +version = \"2.5.9\" -checksum = \"ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed\" +checksum = \"f00cd2407bb42c0ef17be88d4cf020f5cceffd121665bac9b8b9493a369b3b1a\"' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": [
+"exit 0",
+"contains advisories ok, licenses ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/6.log",
+"bytes": 229,
+"log_sha8": "6bab846c",
+"exit": 0,
+"seconds": 1.24,
+"readings": [
+"exit 0 ✓",
+"contains 'advisories ok, licenses ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff -U0 --no-color 40ec4749e74a0a3fb3b355f79aec0323ec86fbf6 -- packages/escher-driver/src/command.rs packages/blitz-dom/src/accessibility.rs packages/blitz-dom/src/events/keyboard.rs packages/blitz-dom/src/stylo/presentational_hints.rs | grep -cE '^\\+[^+].*(\\.unwrap\\(|\\.expect\\(|panic!|unreachable!|todo!|println!|eprintln!|dbg!|tracing::|info!|warn!|error!|debug!|trace!|env::var|unsafe )' ",
+"run_sha8": "dd120a5f",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.py \"$(rustc -vV | sed -n 's/^host: //p')\" target/skia-archives)\" cargo test --workspace --locked --test stand_session_lifecycle --test stand_replay --test stand_mcp_tools --test stand_snapshot_parts --test stand_graph --test stand_actions --test stand_act_spans --test stand_masks_on_new_answers --test stand_cross_os_readings --test stand_handler_coverage --test cli_commands --test cli_flow --test mcp_server --test recording --test host_log --test mcp_log",
+"run_sha8": "ac79ada2",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/8.log",
+"bytes": 13106,
+"log_sha8": "111152d4",
+"exit": 0,
+"seconds": 80.42,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.py \"$(rustc -vV | sed -n 's/^host: //p')\" target/skia-archives)\" cargo test --workspace --locked --test accessibility_states --test accessibility_label --test accessibility_names --test accessibility_merged_states --test accessibility_active_descendant_unread --test inert_subtree --test select_interaction --test select_popup --test stand_snapshot_state --test stand_act_states --test stand_accessibility_ids",
+"run_sha8": "9b873d67",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/9.log",
+"bytes": 9737,
+"log_sha8": "cfdbd7b7",
+"exit": 0,
+"seconds": 10.8,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.py \"$(rustc -vV | sed -n 's/^host: //p')\" target/skia-archives)\" cargo test --workspace --locked --test stand_keyboard --test stand_act_keys --test select_interaction --test select_popup --test stand_act_select --test stand_act_popup --test range_input_interaction --test stand_act_range --test key_press_after_container_lost_its_box --test focus_fixup_unshown --test checkable_change_event --test text_range_no_change_event",
+"run_sha8": "0dba8a05",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/10.log",
+"bytes": 12142,
+"log_sha8": "e5124be0",
+"exit": 0,
+"seconds": 14.04,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "SKIA_BINARIES_URL=\"$(python3 .github/scripts/skia_archive.py \"$(rustc -vV | sed -n 's/^host: //p')\" target/skia-archives)\" cargo test --workspace --locked --test select_popup --test select_interaction --test stand_act_select --test select_popup_painted --test stand_lint --test stand_contrast",
+"run_sha8": "b331d5cd",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/11.log",
+"bytes": 8210,
+"log_sha8": "e6025187",
+"exit": 0,
+"seconds": 9.7,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/12.log",
+"bytes": 17073,
+"log_sha8": "a9573339",
+"exit": 0,
+"seconds": 15.12,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/13.log",
+"bytes": 170028,
+"log_sha8": "72c86e21",
+"exit": 0,
+"seconds": 691.31,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh coverage",
+"run_sha8": "8c67d572",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/14.log",
+"bytes": 228890,
+"log_sha8": "57fdf5e7",
+"exit": 0,
+"seconds": 456.67,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python3 .andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/fn_scores.py",
+"run_sha8": "09723595",
+"expect": [
+"exit 0",
+"contains fn scores: PASS"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/15.log",
+"bytes": 3031,
+"log_sha8": "e8ebd4ef",
+"exit": 0,
+"seconds": 0.12,
+"readings": [
+"exit 0 ✓",
+"contains 'fn scores: PASS' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/rec.py files --root . 2026-11-20-codebase-health && python3 .andromeda/cache/chunks/2026-11-20-codebase-health/evidence/bars.py",
+"run_sha8": "902bd187",
+"expect": [
+"exit 0",
+"contains ours over 800 outside the seven left for a later entry: 0",
+"contains bars: PASS"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/16.log",
+"bytes": 759,
+"log_sha8": "29a11973",
+"exit": 0,
+"seconds": 4.69,
+"readings": [
+"exit 0 ✓",
+"contains 'ours over 800 outside the seven left for a later entry: 0' ✓",
+"contains 'bars: PASS' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/rec.py files --root . 2026-11-20-stand-test-setup-shared && d=.andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/jscpd-$(date -u +%Y%m%dT%H%M%SZ) && mise exec node@26.8.2 -- jscpd --format rust --absolute --reporters json --output \"$d\" packages apps tests examples wpt/runner >/dev/null && python3 .andromeda/cache/chunks/2026-11-20-stand-test-setup-shared/evidence/sum_dup.py \"$d/jscpd-report.json\" . \"$d/c-duplication.json\" && python3 .andromeda/cache/chunks/2026-11-20-stand-test-setup-shared/evidence/stand_reading.py \"$d/jscpd-report.json\" . 47 550",
+"run_sha8": "c5bd4c50",
+"expect": [
+"exit 0",
+"contains stand reading bar: PASS"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-22-epoch-2-corrective/wrap-2026-11-22T19-12-58/17.log",
+"bytes": 470,
+"log_sha8": "db65e072",
+"exit": 0,
+"seconds": 0.61,
+"readings": [
+"exit 0 ✓",
+"contains 'stand reading bar: PASS' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 19,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 20,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 3000",
+"run_sha8": "3fac7765",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:59:49Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 40ec4749 (the parent of the oldest pre-CI commit addbbcca)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"P1 .andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/jscpd-20261122T195930Z/jscpd-report.json:11 ×1184 · in-root",
+"in-root: a home path under the root in 1 files — respell: gate.py respell --file {path} (the root prefix dropped, never ~/)",
+"hygiene: refused 1 files — P1 1 · P2 0 · P3 0 · read 383 (runs 343 · evidence 21 · inputs 19) · trails 34 not read · copies 15 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [
+"P1 .andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/jscpd-20261122T195930Z/jscpd-report.json:11 ×1184 · in-root"
+],
+"counts": {
+"P1": 1,
+"P2": 0,
+"P3": 0,
+"runs": 343,
+"evidence": 21,
+"inputs": 19,
+"trails": 34,
+"copies": 15,
+"kept": 0,
+"binary": 0,
+"in_root": 1
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:59:53Z",
+"argv": [
+"respell",
+"--file",
+".andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/jscpd-20261122T195930Z/jscpd-report.json",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"respelled .andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/jscpd-20261122T195930Z/jscpd-report.json ×1184 · −41440 B · 9f610849→f8117575"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"path": ".andromeda/cache/chunks/2026-11-22-epoch-2-corrective/evidence/jscpd-20261122T195930Z/jscpd-report.json",
+"occurrences": 1184,
+"bytes": 41440,
+"before": "9f610849",
+"after": "f8117575"
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:59:55Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap",
+"--marker",
+"2026-11-22-epoch-2-corrective"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base 40ec4749 (the parent of the oldest pre-CI commit addbbcca)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 383 (runs 343 · evidence 21 · inputs 19) · trails 34 not read · copies 15 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 343,
+"evidence": 21,
+"inputs": 19,
+"trails": 34,
+"copies": 15,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.38",
+"sha8": "c4d66f32",
+"ts": "2026-11-22T19:59:59Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-22-epoch-2-corrective",
+"--run-dir",
+".andromeda/runs/2026-11-22T19-12-58-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base 40ec4749 (the parent of the oldest pre-CI commit addbbcca) · lists new 1 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 6 · listed 6 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 353"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "40ec4749e74a0a3fb3b355f79aec0323ec86fbf6",
+"base_why": "the parent of the oldest pre-CI commit addbbcca",
+"counts": {
+"changed": 6,
+"listed": 6,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 353,
+"unparsed": 0,
+"widening_without_word": 0
+}
+}
+]
