@@ -261,12 +261,16 @@ class CiWorkflowTest(unittest.TestCase):
                      "SKIA_BINARIES_URL=", '"$GITHUB_ENV"', "'python'", "'python3'"):
             self.assertIn(word, run)
         witness_run = steps[witness]["run"]
-        # Searched for under the target's whole build directory, its layout varying by Cargo release, and printed.
-        for word in ("/usr/bin/find target/${{ matrix.platform.target }} -type f -name output -path '*skia-bindings*'",
-                     'echo "skia-archive: build output $f"', "FROM: file://", "DOWNLOAD AND INSTALL SUCCEEDED",
-                     'echo "skia-archive: read the verified archive:$line"', 'if [ "$found" = 1 ]; then exit 0; fi',
+        # Read by content across skia-bindings' whole build tree, its layout and output file varying by Cargo
+        # release; each match printed, and the tree printed with sizes when none read the archive.
+        for word in ("/usr/bin/find target/${{ matrix.platform.target }} -path '*skia-bindings*/out' -prune -o "
+                     "-type f -path '*skia-bindings*' -size -1024k -print",
+                     "grep -I -m1 'FROM: file://'", 'echo "skia-archive: build output $f:$line"',
+                     "grep -I -q 'DOWNLOAD AND INSTALL SUCCEEDED'", 'if [ "$found" = 1 ]; then exit 0; fi',
+                     "-prune -exec ls -ld {} + \\) -o \\( -path '*skia-bindings*' -exec ls -ld {} + \\) >&2",
                      "exit 1"):
             self.assertIn(word, witness_run)
+        self.assertNotIn("-name output", witness_run)
         self.assertNotIn("/debug/build/skia-bindings-*/output", witness_run)
         # In a crates.io build the flag sends skia-bindings to a full source build.
         self.assertNotIn("FORCE_SKIA_BINARIES_DOWNLOAD", self.text)
