@@ -129,4 +129,4 @@
 2026-11-22-upstream-sync-ahead-of-the-canvas · complete · Upstream sync ahead of the canvas — two-parent merge of upstream/main 165d698c3; forks for the founder; CI, a11y leg and audit green (v040-02) · → chk:2026-11-22-upstream-sync-ahead-of-the-canvas
 2026-11-23-canvas-in-a-headless-shot · complete · Canvas in a headless shot — what an app paints from Rust through a widget appears in a harness and driver shot, measured on the stand first · → chk:2026-11-23-canvas-in-a-headless-shot
 2026-11-23-canvas-placement-and-text · complete · a widget painted at its content box (upstream #1578) and canvas text from the bundled fonts · → chk:2026-11-23-canvas-placement-and-text
-2026-11-23-canvas-shot-across-hosts · pending · a canvas shot's bytes measured on CI's Linux, macOS and Windows hosts; held equal or within a tolerance on the founder's word · → chk:2026-11-23-canvas-shot-across-hosts
+2026-11-23-canvas-shot-across-hosts · complete · a canvas-only shot's bytes held equal on CI's Linux, macOS and Windows hosts by one committed digest table, required on the founder's word · → chk:2026-11-23-canvas-shot-across-hosts

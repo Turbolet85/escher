@@ -1,0 +1,882 @@
+[
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:34:20Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-23-canvas-shot-across-hosts",
+"--section-file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-23-canvas-shot-across-hosts/report rev 2 · 10 new · 0 revised · 0 retired · 42 kept · tx 3402"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:34:21Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-23-canvas-shot-across-hosts",
+"--section-file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-23-canvas-shot-across-hosts/report rev 3 · 21 new · 0 revised · 0 retired · 52 kept · tx 3403"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:34:38Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cites-land-2026-11-23-canvas-shot-across-hosts.ndjson",
+"--base",
+"29aabf8a1b19b7d22ef890bebe292f81294e1321",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:34:43Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cites-land-2026-11-23-canvas-shot-across-hosts.ndjson",
+"--base",
+"29aabf8a1b19b7d22ef890bebe292f81294e1321",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 3405"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:36:25Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1555 · packs 16 · pack 100 · 398324 B",
+"security-plan: rows 577 · packs 6 · pack 100 · 169092 B",
+"design-system: rows 137 · packs 2 · pack 100 · 38407 B",
+"layout-templates: rows 129 · packs 2 · pack 100 · 32614 B",
+"test-plan: rows 647 · packs 7 · pack 100 · 185119 B",
+"obs-plan: rows 295 · packs 3 · pack 100 · 81326 B",
+"a11y-plan: rows 242 · packs 3 · pack 100 · 77479 B",
+"rows-packs: 7 master(s) · 3582 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 3405"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T16-32-42-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:43:20Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1555 · packs 16 · picked 19 (7 by every draw) · standing 0 · 152417 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 577 · packs 6 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"design-system: rows 137 · packs 2 · picked 5 (2 by every draw) · standing 0 · 22139 B",
+"layout-templates: rows 129 · packs 2 · picked 1 (0 by every draw) · standing 0 · 15243 B",
+"test-plan: rows 647 · packs 7 · picked 30 (11 by every draw) · standing 0 · 157423 B",
+"obs-plan: rows 295 · packs 3 · picked 6 (1 by every draw) · standing 0 · 29352 B",
+"a11y-plan: rows 242 · packs 3 · picked 3 (0 by every draw) · standing 0 · 29142 B",
+"rows-union: 7 master(s) · picked 64 of 3582 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T16-32-42-wrap/arch-rows.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/arch-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/security-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/design-rows.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/design-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/tests-rows.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/tests-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/obs-rows.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/obs-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:26Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-shot-across-hosts — Existing Scopes: 1 row(s)\n**Section:** Existing Scopes\n**Change:** ~ decision/no-screenshot-in-cross-os-byte-check · except: was «»; now «A canvas-only shot, held byte-equal on linux x86_64, windows x86_64 and macOS aarch64 by one committed digest table, no pixels committed; a shot holding document text stays out.»\n**Why:** decision/no-screenshot-in-cross-os-byte-check: The capability statement's shot-bytes limit is now scoped to shots holding document text, a canvas-only shot read byte-equal on the three CI hosts, so the cross-OS no-screenshot rule gains the ratified canvas-only exception. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — Occupied Resources: 1 row(s)\n**Section:** Occupied Resources\n**Change:** ~ decision/committed-stand-checks · why: was «A shot's PNG bytes differ by OS, so no screenshot step is kept.»; now «A shot holding document text differs in its PNG bytes by OS, so no screenshot step is kept.»\n**Why:** decision/committed-stand-checks: A shot's PNG bytes now differ by OS only where the shot holds document text, so the reason is scoped while the rule of no screenshot step in the committed checks stands. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:27Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 5 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-shot-across-hosts — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/cross-os-checks-hold-no-shot · except: was «»; now «A shot of a canvas alone, its PNG bytes held equal on linux x86_64, windows x86_64 and macOS aarch64, is compared across OSes by its answer digest.»\n**Why:** decision/cross-os-checks-hold-no-shot: A canvas-only shot is now compared byte for byte across OSes and held equal on all three CI hosts on a ratified requirement of byte equality, so the row's flat ban gains that exception. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — 2. Test Strategy: 2 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/no-shot-in-cross-os-byte-checks · except: was «»; now «A shot of a canvas alone, its PNG bytes held equal on linux x86_64, windows x86_64 and macOS aarch64, is compared across OSes by its answer digest.»\n+ decision/canvas-shots-cross-os-by-digest — Canvas shots compared across hosts by digest\n**Why:** decision/no-shot-in-cross-os-byte-checks: A canvas-only shot is now compared byte for byte across OSes and held equal on all three CI hosts on a ratified requirement of byte equality, so the row's flat ban gains that exception. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\ndecision/canvas-shots-cross-os-by-digest: The chunk brings a ratified cross-host digest comparison of canvas shots that no standing row states, so the test strategy gains it. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ decision/no-screenshot-in-cross-os-checks · except: was «»; now «A `screenshot` of a canvas alone, its PNG bytes held equal on linux x86_64, windows x86_64 and macOS aarch64, is compared across OSes by its answer digest.»\n**Why:** decision/no-screenshot-in-cross-os-checks: A canvas-only shot is now compared byte for byte across OSes and held equal on all three CI hosts on a ratified requirement of byte equality, so the row's flat ban gains that exception. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — 1. Test Scope Summary: 1 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** ~ decision/no-screenshot-step-in-committed-checks · why: was «a shot's PNG bytes differ between linux x86_64 and macOS aarch64, so a shot is byte-identical on one host only»; now «a shot holding document text differs in PNG bytes between linux x86_64 and macOS aarch64, so such a shot is byte-identical on one host only»\n**Why:** decision/no-screenshot-step-in-committed-checks: The stated limit on a shot's PNG bytes across hosts is now scoped to a shot holding document text, a canvas-only shot held equal, so the rule's reason narrows to what was measured while the rule stands. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 5 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:30Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3406 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:31Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 5 · not_master 0 · stands 0",
+"landed tx 3407 · 5 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:34Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-main-architecture.2.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-shot-across-hosts — Existing Scopes: 1 row(s)\n**Section:** Existing Scopes\n**Change:** ~ decision/no-screenshot-in-cross-os-byte-check · why: was «A shot's PNG bytes differ between linux x86_64 and macOS aarch64.»; now «A shot holding document text differs in PNG bytes between linux x86_64 and macOS aarch64; a canvas-only shot reads equal on linux x86_64, windows x86_64 and macOS aarch64.»\n**Why:** decision/no-screenshot-in-cross-os-byte-check: The plan's expected amendment restates the no-shot row's reason to the measured cause, which the founder's F1 «A: требовать побайтовое равенство (Recommended)» (inputs#I3) holds: document text differs by OS, a canvas alone does not. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:34Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-shot-across-hosts — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/cross-os-checks-hold-no-shot · why: was «a shot's PNG bytes differ between OSes»; now «A shot holding document text differs in PNG bytes between linux x86_64 and macOS aarch64; a canvas-only shot reads equal on linux x86_64, windows x86_64 and macOS aarch64.»\n**Why:** decision/cross-os-checks-hold-no-shot: The plan's expected amendment restates each no-shot row's reason to the measured cause, which the founder's F1 «A: требовать побайтовое равенство (Recommended)» (inputs#I3) holds: document text differs by OS, a canvas alone does not. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ decision/no-shot-in-cross-os-byte-checks · why: was «A shot's PNG bytes differ between linux x86_64 and macOS aarch64.»; now «A shot holding document text differs in PNG bytes between linux x86_64 and macOS aarch64; a canvas-only shot reads equal on linux x86_64, windows x86_64 and macOS aarch64.»\n**Why:** decision/no-shot-in-cross-os-byte-checks: The plan's expected amendment restates each no-shot row's reason to the measured cause, which the founder's F1 «A: требовать побайтовое равенство (Recommended)» (inputs#I3) holds: document text differs by OS, a canvas alone does not. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ decision/no-screenshot-in-cross-os-checks · why: was «A shot's PNG bytes differ between linux x86_64 and macOS aarch64.»; now «A shot holding document text differs in PNG bytes between linux x86_64 and macOS aarch64; a canvas-only shot reads equal on linux x86_64, windows x86_64 and macOS aarch64.»\n**Why:** decision/no-screenshot-in-cross-os-checks: The plan's expected amendment restates each no-shot row's reason to the measured cause, which the founder's F1 «A: требовать побайтовое равенство (Recommended)» (inputs#I3) holds: document text differs by OS, a canvas alone does not. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:38Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-main-architecture.2.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3408 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:46:38Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 3409 · 3 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:48:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-shot-across-hosts — 6. E2E Test Strategy: 1 row(s)\n**Section:** 6. E2E Test Strategy\n**Change:** ~ decision/checks-hold-no-screenshot-step · why: was «a shot's PNG bytes differ by OS»; now «a shot holding document text differs in its PNG bytes by OS»\n**Why:** decision/checks-hold-no-screenshot-step: The cascade's sweep of the amended claim reads this reason stated flat; a shot's PNG bytes now differ by OS only where it holds document text, as the committed Counter checks' screens do, so the reason is scoped while the rule stands. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"## 2026-11-23-canvas-shot-across-hosts — 6. E2E Test Strategy: 1 row(s)\n**Section:** 6. E2E Test Strategy\n**Change:** ~ decision/no-screenshot-in-recorded-check-scripts · why: was «a shot's PNG bytes differ by OS»; now «a shot holding document text differs in its PNG bytes by OS»\n**Why:** decision/no-screenshot-in-recorded-check-scripts: The cascade's sweep of the amended claim reads this reason stated flat; a shot's PNG bytes now differ by OS only where it holds document text, as the committed Counter checks' screens do, so the reason is scoped while the rule stands. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-23, inputs#I3: F1 «A: требовать побайтовое равенство (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T16-32-42-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:49:00Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T16-32-42-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3410 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+".andromeda/runs/2026-11-23T16-32-42-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:50:52Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 24 · 0 new · 2 revised · 0 retired · tx 3411"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:50:53Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 32 · 0 new · 1 revised · 0 retired · tx 3412"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:50:53Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 36 · 0 new · 1 revised · 0 retired · tx 3413"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:50:54Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 48 · 0 new · 1 revised · 0 retired · tx 3414"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:50:54Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 42 · 0 new · 2 revised · 0 retired · tx 3415"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:50:55Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 48 · 0 new · 1 revised · 0 retired · tx 3416"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:53:46Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:53:50Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 3420 · cry-vnddnt4v … cry-vnddnt4v"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T16:54:07Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3422 · run-inpiohav … run-inpiohav"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T13-33-21-2026-11-23-canvas-shot-across-hosts.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-23T17:20:41Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-23-canvas-shot-across-hosts",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 10 file(s) of 2026-11-23-canvas-shot-across-hosts"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -1,2 +1,0 @@
-@none
-reason: The chunk changes where a custom widget's scene paints, its pointer frame, and how it receives the document's font context, all inside blitz-paint and blitz-dom. It adds no user-facing surface or region (D-layout-surface) and no verb, argument, field, refusal or element id (fct-wvvcibgm, last line). Every layout-templates row it touches, the seven picker-marked stale rows included, still reads true. The rows its facts belong to are architecture's, security-plan's and test-plan's (fct-ogavdygd), and the task carries no @task_fact.

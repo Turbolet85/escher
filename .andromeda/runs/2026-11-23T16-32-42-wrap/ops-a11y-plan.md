@@ -1,0 +1,2 @@
+@none
+reason: The chunk adds only a test target holding canvas-only shots to one digest table across hosts and edits the capability statement's shot-bytes limit (fct-xzkkr4yh, fct-rpckbvls); it adds no interactive UI element (a11y n/a, fct-mv2lwfif), changes no a11y violation or log schema (fct-uusdr4oi, fct-fwydawgx), and leaves every a11y-plan row true — the stand's boot lint over the four lean tasks, the element shot's crop and the option labels' pixel-only exit are unmoved, the cross-OS digest decision being test-plan's.

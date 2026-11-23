@@ -1,0 +1,126 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-23T16:33:34Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-23T16-32-42-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-23T16-32-42-wrap",
+"--marker",
+"2026-11-23-canvas-shot-across-hosts"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 0ebf3c5e (pre-pass — HEAD)",
+"architecture · 3 rows over 1 files · new 0 · standing 3 · 2 patterns",
+"security-plan · 3 rows over 1 files · new 0 · standing 3 · 2 patterns",
+"test-plan · 9 rows over 1 files · new 0 · standing 9 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (3 patterns) · 41 rows over 14 files",
+"per class · new 0/0 · standing 15/3 · leaf 26/11 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-23T16-32-42-wrap/sweep-pre-pass-1.1.txt · 50 lines · 5868 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T16-32-42-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "0ebf3c5ef8616d852f8959893f78f2ee867849bd",
+"how": "pre-pass — HEAD",
+"counts": {
+"shotos": {
+"new": 0,
+"standing": 11,
+"leaf": 14,
+"curation": 0,
+"base": 0
+},
+"stand70": {
+"new": 0,
+"standing": 2,
+"leaf": 8,
+"curation": 0,
+"base": 0
+},
+"canvasonly": {
+"new": 0,
+"standing": 2,
+"leaf": 4,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 2
+},
+"security-plan": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 2
+},
+"test-plan": {
+"rows": 9,
+"files": 1,
+"new": 0,
+"standing": 9,
+"patterns": 2
+}
+},
+"per_master": {
+"shotos": {
+"architecture": 2,
+"security-plan": 2,
+"test-plan": 7
+},
+"stand70": {
+"test-plan": 2
+},
+"canvasonly": {
+"architecture": 1,
+"security-plan": 1
+}
+},
+"forms": {
+"shotos": [
+{
+"form": "byte[- ]identical (across processes )?on 1 host",
+"from": "one"
+},
+{
+"form": "byte[- ]identical on 1 host only",
+"from": "one"
+}
+],
+"stand70": [
+{
+"form": "sixty-nine",
+"from": "69"
+},
+{
+"form": "seventy",
+"from": "70"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]
