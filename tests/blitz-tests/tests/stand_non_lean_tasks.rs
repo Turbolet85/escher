@@ -64,9 +64,11 @@ fn circle_drawer_with_dialog(incremental: bool) -> Harness<DioxusDocument> {
     let mut harness = open("task-card-circle-drawer", "Circle Drawer", incremental);
     let (x, y) = harness.center_of("#circle-canvas");
     harness.click_at(x, y);
-    assert_eq!(
-        harness.query_all(".circle").len(),
-        1,
+    let circles = harness.attr("#circle-canvas", "data-circles");
+    assert!(
+        circles
+            .as_deref()
+            .is_some_and(|text| !text.is_empty() && !text.contains(';')),
         "a click on the canvas adds a circle"
     );
     // A click within 500 ms of the harness's clock and 2 px of the last one counts as a double
@@ -88,19 +90,20 @@ fn elements_that_react_to_a_click_and_state_no_role_are_counted() {
         ("Timer", 0),
         ("CRUD", 0),
         ("Temperature Converter", 0),
-        ("Circle Drawer", 1),
+        // Circle Drawer's canvas states `role="group"`.
+        ("Circle Drawer", 0),
         // The 676 data cells and the grid, whose listener is its keys and which states no role.
         ("Cells", 677),
     ];
-    // Of them, the ones reading `clickable`: Circle Drawer's canvas and the 676 data cells; the
-    // grid reacts to its keys alone.
+    // Of them, the ones reading `clickable`: the 676 data cells; the grid reacts to its keys
+    // alone.
     const CLICKABLE: [(&str, usize); 7] = [
         ("Counter", 0),
         ("Flight Booker", 0),
         ("Timer", 0),
         ("CRUD", 0),
         ("Temperature Converter", 0),
-        ("Circle Drawer", 1),
+        ("Circle Drawer", 0),
         ("Cells", 676),
     ];
     for incremental in [false, true] {

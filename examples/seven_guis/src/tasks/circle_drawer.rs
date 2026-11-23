@@ -1,13 +1,183 @@
+use anyrender::{AntiAliasing, PaintScene as _};
+use blitz_dom::node::ComputedStyles;
 use dioxus_native::prelude::*;
+use dioxus_native::{CustomWidgetAttr, Widget};
+use peniko::kurbo::{Affine, Circle as Disc, Rect, Stroke, Vec2};
+use peniko::{Color, Fill};
 
 use super::{use_graph_signal, writes};
 use std::rc::Rc;
+use std::sync::{Arc, Mutex, PoisonError};
 
 #[derive(Clone, PartialEq)]
 struct Circle {
     x: f64,
     y: f64,
     r: f64,
+}
+
+/// The width of the `.cd-canvas` border: a click is read against the canvas's border box, and
+/// the widget paints in its content box.
+const CANVAS_BORDER: f64 = 2.0;
+
+/// The circles as the canvas's `data-circles` attribute carries them: `x,y,d` per circle, its
+/// centre in the canvas's content box and its diameter, `;` between circles.
+fn circles_text(circles: &[Circle]) -> String {
+    circles
+        .iter()
+        .map(|c| format!("{},{},{}", c.x, c.y, c.r * 2.0))
+        .collect::<Vec<_>>()
+        .join(";")
+}
+
+/// One circle the canvas paints: its centre and diameter, in CSS px of its content box.
+#[derive(Clone, Copy, Debug, PartialEq)]
+struct Painted {
+    x: f64,
+    y: f64,
+    d: f64,
+}
+
+/// Reads a `data-circles` value: a triple of finite numbers per circle; a triple that is not
+/// one is skipped, so malformed text reads as no circle.
+fn parse_circles(text: &str) -> Vec<Painted> {
+    text.split(';')
+        .filter_map(|triple| {
+            let mut parts = triple.split(',').map(|n| n.trim().parse::<f64>().ok());
+            let (Some(Some(x)), Some(Some(y)), Some(Some(d)), None) =
+                (parts.next(), parts.next(), parts.next(), parts.next())
+            else {
+                return None;
+            };
+            [x, y, d]
+                .iter()
+                .all(|n| n.is_finite())
+                .then_some(Painted { x, y, d })
+        })
+        .collect()
+}
+
+type Fonts = Arc<Mutex<parley::FontContext>>;
+
+/// The drawing area: paints the app's circles and each one's diameter at its centre, the
+/// diameter's glyphs shaped from the font context the document hands it.
+#[derive(Default)]
+struct CircleCanvas {
+    circles: Vec<Painted>,
+    fonts: Option<Fonts>,
+    layouts: parley::LayoutContext<()>,
+}
+
+const FILL: Color = Color::from_rgba8(58, 92, 229, 38);
+const STROKE: Color = Color::from_rgb8(0x3a, 0x5c, 0xe5);
+const LABEL: Color = Color::from_rgb8(0x1a, 0x1a, 0x1a);
+const LABEL_SIZE: f32 = 12.0;
+const RING: f64 = 2.0;
+
+impl CircleCanvas {
+    /// Draws `text` centred on `centre`, `transform` taking CSS px to the scene.
+    fn draw_label(
+        &mut self,
+        scene: &mut anyrender::Scene,
+        fonts: &mut parley::FontContext,
+        transform: Affine,
+        centre: (f64, f64),
+        text: &str,
+    ) {
+        let mut builder = self.layouts.ranged_builder(fonts, text, 1.0, true);
+        builder.push_default(parley::StyleProperty::FontSize(LABEL_SIZE));
+        builder.push_default(parley::GenericFamily::SansSerif);
+        let mut layout = builder.build(text);
+        layout.break_all_lines(None);
+        let at = transform
+            * Affine::translate((
+                centre.0 - f64::from(layout.width()) / 2.0,
+                centre.1 - f64::from(layout.height()) / 2.0,
+            ));
+        for line in layout.lines() {
+            for item in line.items() {
+                if let parley::PositionedLayoutItem::GlyphRun(glyphs) = item {
+                    let run = glyphs.run();
+                    scene.draw_glyphs(
+                        run.font(),
+                        run.font_size(),
+                        true,
+                        &[],
+                        Vec2::default(),
+                        Fill::NonZero,
+                        &anyrender::Paint::from(LABEL),
+                        1.0,
+                        at,
+                        None,
+                        glyphs.positioned_glyphs().map(|g| anyrender::Glyph {
+                            id: g.id as _,
+                            x: g.x,
+                            y: g.y,
+                        }),
+                        AntiAliasing::Enabled,
+                    );
+                }
+            }
+        }
+    }
+}
+
+impl Widget for CircleCanvas {
+    fn attribute_changed(&mut self, name: &str, _old: Option<&str>, new_value: Option<&str>) {
+        if name == "data-circles" {
+            self.circles = new_value.map(parse_circles).unwrap_or_default();
+        }
+    }
+
+    fn fonts(&mut self, fonts: &Fonts) {
+        self.fonts = Some(Arc::clone(fonts));
+    }
+
+    fn paint(
+        &mut self,
+        _ctx: &mut dyn anyrender::RenderContext,
+        _styles: &ComputedStyles,
+        width: u32,
+        height: u32,
+        scale: f64,
+    ) -> anyrender::Scene {
+        let mut scene = anyrender::Scene::new();
+        let transform = Affine::scale(scale);
+        scene.push_clip_layer(
+            Fill::NonZero,
+            Affine::IDENTITY,
+            &Rect::new(0.0, 0.0, f64::from(width), f64::from(height)),
+        );
+        for c in &self.circles {
+            let disc = Disc::new((c.x, c.y), c.d / 2.0);
+            scene.fill(
+                Fill::NonZero,
+                transform,
+                FILL,
+                None,
+                &disc,
+                AntiAliasing::Enabled,
+            );
+            let ring = Disc::new((c.x, c.y), (c.d / 2.0 - RING / 2.0).max(0.0));
+            scene.stroke(
+                &Stroke::new(RING),
+                transform,
+                STROKE,
+                None,
+                &ring,
+                AntiAliasing::Enabled,
+            );
+        }
+        if let Some(fonts) = self.fonts.clone() {
+            let mut fonts = fonts.lock().unwrap_or_else(PoisonError::into_inner);
+            for c in self.circles.clone() {
+                let text = format!("{}", c.d.round());
+                self.draw_label(&mut scene, &mut fonts, transform, (c.x, c.y), &text);
+            }
+        }
+        scene.pop_layer();
+        scene
+    }
 }
 
 #[component]
@@ -50,6 +220,7 @@ pub fn CircleDrawer() -> Element {
     // `mounted` before layout, and `element_coordinates()` is unimplemented.
     let mut canvas_handle: Signal<Option<Rc<MountedData>>> =
         use_graph_signal("canvas_handle", &[], || None);
+    let canvas = use_hook(|| CustomWidgetAttr::new(CircleCanvas::default()));
 
     rsx! {
         div { class: "cd-root",
@@ -79,9 +250,13 @@ pub fn CircleDrawer() -> Element {
                 }
             }
             // Canvas area
-            div {
+            object {
                 id: "circle-canvas",
                 class: "cd-canvas",
+                role: "group",
+                aria_label: "Drawing area",
+                "data": canvas,
+                "data-circles": circles_text(&circles()),
                 onmounted: move |evt: MountedEvent| {
                     canvas_handle.set(Some(evt.data()));
                 },
@@ -93,8 +268,8 @@ pub fn CircleDrawer() -> Element {
                             .unwrap_or((0.0, 0.0)),
                         None => (0.0, 0.0),
                     };
-                    let x = raw.x - ox;
-                    let y = raw.y - oy;
+                    let x = raw.x - ox - CANVAS_BORDER;
+                    let y = raw.y - oy - CANVAS_BORDER;
                     undo_stack.write().push(circles());
                     redo_stack.write().clear();
                     circles.write().push(Circle { x, y, r: 20.0 });
@@ -108,8 +283,8 @@ pub fn CircleDrawer() -> Element {
                             .unwrap_or((0.0, 0.0)),
                         None => (0.0, 0.0),
                     };
-                    let cx = raw.x - ox;
-                    let cy = raw.y - oy;
+                    let cx = raw.x - ox - CANVAS_BORDER;
+                    let cy = raw.y - oy - CANVAS_BORDER;
                     let nearest = circles().iter().enumerate().min_by(|(_, a), (_, b)| {
                         let da = (a.x - cx).powi(2) + (a.y - cy).powi(2);
                         let db = (b.x - cx).powi(2) + (b.y - cy).powi(2);
@@ -120,13 +295,6 @@ pub fn CircleDrawer() -> Element {
                         dialog_r.set(r);
                     }
                 },
-                for (i, circle) in circles().iter().enumerate() {
-                    div {
-                        key: "{i}",
-                        class: "circle",
-                        style: "left: {circle.x - circle.r}px; top: {circle.y - circle.r}px; width: {circle.r * 2.0}px; height: {circle.r * 2.0}px;",
-                    }
-                }
             }
             // Diameter adjustment dialog
             if let Some(idx) = dialog_idx() {
@@ -204,6 +372,7 @@ const CSS: &str = r#"
 }
 
 .cd-canvas {
+    display: block;
     position: relative;
     width: 700px;
     height: 400px;
@@ -212,19 +381,6 @@ const CSS: &str = r#"
     border-radius: 4px;
     overflow: hidden;
     cursor: crosshair;
-}
-
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(58, 92, 229, 0.15);
-    border: 2px solid #3a5ce5;
-    box-sizing: border-box;
-    pointer-events: none;
-}
-
-.circle:hover {
-    background-color: rgba(58, 92, 229, 0.35);
 }
 
 .cd-dialog {
@@ -266,3 +422,25 @@ const CSS: &str = r#"
     background-color: #2a4cd3;
 }
 "#;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn malformed_circle_text_reads_as_no_circle() {
+        let rows: [(&str, usize); 6] = [
+            ("", 0),
+            ("x", 0),
+            ("1,2", 0),
+            ("1,2,NaN", 0),
+            ("1,2,inf", 0),
+            ("10,20,40;bad;30,40,50", 2),
+        ];
+        for (index, (text, read)) in rows.into_iter().enumerate() {
+            let mut canvas = CircleCanvas::default();
+            canvas.attribute_changed("data-circles", None, Some(text));
+            assert!(canvas.circles.len() == read, "row {index}");
+        }
+    }
+}

@@ -5,8 +5,10 @@
 //! to the canvas, in both layout modes. The digest the driver keeps of each answer,
 //! `answer_digest`, the PNG inside it, is held equal to one committed table, so a run on linux,
 //! windows and macOS reading the one table is the cross-OS reading. A shot holding page text is
-//! outside the table: each fixture is first read to paint a canvas alone. A failure names the
-//! fixture, the form and the layout mode only.
+//! outside the table: each fixture is first read to paint a canvas alone. A second table holds
+//! the stand's Circle Drawer: its canvas's element shot after one centre click, a circle and its
+//! diameter's glyphs, while its whole screen holds page text and is never shot here. A failure
+//! names the fixture, the form and the layout mode only.
 
 use std::sync::{Arc, Mutex};
 
@@ -21,7 +23,7 @@ use peniko::{Color, Fill};
 use seven_guis::stand;
 
 mod session_common;
-use session_common::{lint, linted, screenshot, screenshot_of};
+use session_common::{act, click, lint, linted, screenshot, screenshot_of};
 
 /// One reading: the fixture, the form of the shot (`whole` or `element`), the layout mode and
 /// the digest of the answer.
@@ -44,6 +46,16 @@ const TABLE: [Row; ROWS] = [
     ("text", "element", false, 0xe9e590af56fa6500),
     ("text", "whole", true, 0xb2a7df659708ebd9),
     ("text", "element", true, 0xe9e590af56fa6500),
+];
+
+/// How many readings the sample's table holds: one element shot, two layout modes.
+const SAMPLE_ROWS: usize = 2;
+
+/// Circle Drawer's canvas element shot after one click at its centre: a circle and its
+/// diameter painted by the widget.
+const SAMPLE: [Row; SAMPLE_ROWS] = [
+    ("circle-drawer", "element", false, 0x6254311b2b544235),
+    ("circle-drawer", "element", true, 0x6254311b2b544235),
 ];
 
 const FIXTURES: [&str; 3] = ["fill", "edge", "text"];
@@ -320,4 +332,35 @@ fn an_antialiased_edge_reads_its_table() {
 #[test]
 fn canvas_glyphs_read_their_table() {
     reads_its_table("text");
+}
+
+#[test]
+fn circle_drawers_canvas_reads_its_digest() {
+    assert!(
+        SAMPLE.len() == SAMPLE_ROWS,
+        "the sample's table holds its stated row count"
+    );
+    for incremental in [false, true] {
+        let at = format!("circle-drawer element incremental={incremental}");
+        let Some(row) = SAMPLE.iter().find(|row| row.2 == incremental) else {
+            panic!("{at}: the table holds the reading");
+        };
+        let mut session = Session::start("circle-drawer", move || {
+            stand::boot_circle_drawer(stand::options(incremental))
+        })
+        .expect("circle-drawer is a label");
+        assert!(
+            act(&mut session, &click("circle-canvas")).is_some(),
+            "{at}: the click is accepted"
+        );
+        let answer = session.run(&screenshot_of("circle-canvas"));
+        assert!(
+            matches!(answer, Ok(Outcome::Shot { .. })),
+            "{at}: the shot is accepted"
+        );
+        assert!(
+            answer_digest(&answer) == row.3,
+            "{at}: the reading is the table's"
+        );
+    }
 }

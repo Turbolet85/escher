@@ -1,5 +1,5 @@
-//! The headless stand: mounts one of the lean four 7GUIs tasks, Cells, the load page or the
-//! order page inside the stand's `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
+//! The headless stand: mounts one of the lean four 7GUIs tasks, Cells, Circle Drawer, the load
+//! page or the order page inside the stand's `TaskShell` chrome with no window and no GPU, at one pinned viewport, with the
 //! bundled DejaVu Sans, building a fresh document per boot. Every boot is offline but the load
 //! page's, whose one stylesheet an in-process stand-in answers after 200 ms from a thread of its
 //! own, reaching no network.
@@ -265,6 +265,16 @@ fn order_root() -> Element {
     }
 }
 
+/// Boot Circle Drawer in a fresh document, offline, its drawing area a canvas painted from
+/// Rust. In process only: no `escher-session` role serves it.
+pub fn boot_circle_drawer(options: HarnessOptions) -> Harness<DioxusDocument> {
+    Harness::from_vdom(VirtualDom::new(circle_drawer_root), options)
+}
+
+fn circle_drawer_root() -> Element {
+    task_in_shell(Task::CircleDrawer, EventHandler::new(|_| {}))
+}
+
 #[component]
 fn LoadPage() -> Element {
     let mut linked = use_signal(|| false);
@@ -454,6 +464,21 @@ mod tests {
             assert!(
                 harness.text_content("#order-status").is_empty(),
                 "incremental={incremental}: no order is placed at boot"
+            );
+        }
+    }
+
+    #[test]
+    fn circle_drawer_boots_in_the_shell() {
+        for incremental in [false, true] {
+            let harness = boot_circle_drawer(options(incremental));
+            assert!(
+                harness.text_content("#task-title") == "Circle Drawer",
+                "incremental={incremental}: the shell's title names the task"
+            );
+            assert!(
+                harness.query("#circle-canvas").is_some(),
+                "incremental={incremental}: the drawing area is mounted"
             );
         }
     }

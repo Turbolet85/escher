@@ -814,6 +814,26 @@ pub(crate) fn handle_click(doc: &mut BaseDocument, target: NodeId, event: &Blitz
     }
 }
 
+/// The click a pointer press and release make on a custom widget's element, run after the
+/// widget has heard them: the press is counted, the release queues `click` (or `contextmenu`),
+/// and the second click in quick succession queues `dblclick`, as for any element
+/// (<https://w3c.github.io/uievents/#event-type-click>,
+/// <https://w3c.github.io/uievents/#event-type-dblclick>). The click runs no walk and clears no
+/// focus, so the focus the widget's press set stands.
+#[cfg(feature = "custom-widget")]
+pub(crate) fn widget_click_synthesis(doc: &mut BaseDocument, target: NodeId, data: &DomEventData) {
+    match data {
+        DomEventData::PointerDown(event) => {
+            record_pointerdown(doc, event.page_x(), event.page_y());
+        }
+        DomEventData::PointerUp(event) => handle_pointerup(doc, target, event, false),
+        DomEventData::Click(event) if doc.click_count == 2 => {
+            doc.queue_ua_event(target, DomEventData::DoubleClick(event.clone()));
+        }
+        _ => {}
+    }
+}
+
 /// The walk of a click from `target` up through its parents, until an element takes it; reads
 /// whether one did. A disabled form control and a text input take it and do nothing more.
 fn click_walk(doc: &mut BaseDocument, target: NodeId, event: &BlitzPointerEvent) -> bool {

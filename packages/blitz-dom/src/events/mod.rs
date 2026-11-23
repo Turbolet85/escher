@@ -203,6 +203,8 @@ pub(crate) fn handle_dom_event(
             doc.set_focus_to(target_node_id);
         }
 
+        pointer::widget_click_synthesis(doc, target_node_id, &event.data);
+
         return;
     }
 

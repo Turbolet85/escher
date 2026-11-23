@@ -1,0 +1,78 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "afc8a3a0",
+"ts": "2026-11-23T20:31:18Z",
+"argv": [
+"claim",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-09",
+"--chunk",
+"2026-11-23-circle-drawer-on-a-canvas",
+"--acceptance-file",
+".andromeda/runs/2026-11-23T17-30-41-phase/acceptance-v040-09.md",
+"--run-dir",
+".andromeda/runs/2026-11-23T17-30-41-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claim v040-09 → chunk 2026-11-23-circle-drawer-on-a-canvas (was null; status planned kept)",
+"acceptance: On the stand, a shot of Circle Drawer shows the circles its app painte… (281 chars)",
+"         → On the stand, Circle Drawer's canvas element shot after one centre cli… (683 chars)",
+"landed, rendered ./.andromeda/db/log/2026-11-23T17-32-06-2026-11-23-circle-drawer-on-a-canvas.ndjson · 1 entry changed",
+"pool: unclaimed 7 [v040-02 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T17-32-06-2026-11-23-circle-drawer-on-a-canvas.ndjson"
+],
+"before": {
+"id": "v040-09",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, a shot of Circle Drawer shows the circles its app painted from Rust and canvas text drawn from the bundled… (281 chars)",
+"notes_chars": 2585
+},
+"after": {
+"id": "v040-09",
+"chunk": "2026-11-23-circle-drawer-on-a-canvas",
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, Circle Drawer's canvas element shot after one centre click holds the circle ring and its diameter glyphs, … (683 chars)",
+"notes_chars": 2585
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "afc8a3a0",
+"ts": "2026-11-23T20:31:18Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-23-circle-drawer-on-a-canvas",
+"--run-dir",
+".andromeda/runs/2026-11-23T17-30-41-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-23-circle-drawer-on-a-canvas: 1 · ## Acceptance Criteria: line 347, 28 lines",
+"v040-09: cited in ## Acceptance Criteria (line 371)",
+"pool: unclaimed 7 [v040-02 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

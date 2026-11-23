@@ -147,7 +147,13 @@ at boot and after one acting step. A shot holding page text is not among them: i
 systems (see Stated limits). A canvas-only shot, whole or cropped to its canvas, is held to one committed digest table
 on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes.
 
-Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`, `stand_canvas_cross_os`.
+The stand's Circle Drawer draws on such a canvas: a widget painted from Rust paints the app's circles and each
+circle's diameter as text shaped from the bundled font, and its canvas's element shot after one click is a row of that
+digest table. An app's click and double click on an element carrying a widget reach their handlers, the widget still
+hearing every pointer event first. Circle Drawer boots in process and is served by no `escher-session` role.
+
+Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`, `stand_canvas_cross_os`,
+`stand_circle_drawer_canvas`, `stand_canvas_click`.
 
 ### The visual lint
 
@@ -411,6 +417,9 @@ The driver's own refusal texts state three readings that are off:
   and macOS aarch64, as measured at CI#39225375577 and again at CI#45189342642, where windows x86_64 read linux's
   bytes. A canvas-only shot reads the same bytes on all three hosts, pinned by `stand_canvas_cross_os`. A check
   compared byte for byte across operating systems holds no shot of page text.
+- **A click lands at an element's centre.** A driver `click` lands at the centre of its target, so an agent places
+  every Circle Drawer circle at the canvas's centre, and a second click there with no `advance` is a double click,
+  until `drag`. Pinned by `stand_circle_drawer_canvas`.
 
 ### Asserted by no check
 
@@ -605,7 +614,8 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_replay` and seven_guis' `cli_commands` and `mcp_server`. Errors with the action are proven by
 `stand_act_errors`, `stand_act_error_text` and, on the order page, `stand_order_served`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
 `stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, the canvas shot on every host by
-`stand_canvas_cross_os`, Cells' current cell read
+`stand_canvas_cross_os`, Circle Drawer's canvas by `stand_circle_drawer_canvas`, an app's click and double click on a
+canvas by `stand_canvas_click`, Cells' current cell read
 `selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
 layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.

@@ -1,10 +1,12 @@
 # Coverage — escher-0.4.0
 
-verified 7/15 · deferred 0 · planned 8 · implemented 0 · unclaimed 8
+verified 7/15 · deferred 0 · planned 7 · implemented 1 · unclaimed 7
 
-## planned, unclaimed (8)
+## implemented (1)
+- v040-09 · A canvas painted headless · 2026-11-23-circle-drawer-on-a-canvas
+
+## planned, unclaimed (7)
 - v040-02 · Upstream sync
-- v040-09 · A canvas painted headless
 - v040-10 · The canvas read as data
 - v040-11 · Virtual nodes inside a canvas
 - v040-12 · A drag verb
