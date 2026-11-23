@@ -13,6 +13,8 @@ The audit leg reads `Cargo.lock` against advisories and licences alone, so a loc
 
 Measure every lock move — a targeted `cargo update`, an upstream sync's take — by `cargo build --workspace --locked --all-targets` (or a leg that builds the workspace) as well as by the audit leg, and read the lock's diff for edges beyond the packages meant to move.
 
+Extended 2026-11-23: `cargo update -p cookie --precise 0.18.3` re-resolved the same two `syn` edges (`bindgen`, `cssparser-macros` 3.0.6 → 2.0.119), so on this lock a targeted `cargo update -p` is not a lock-only move. A patch bump of one crate is made by editing its `version` and `checksum` lines alone, then read by `git diff --numstat -- Cargo.lock`, a `--locked` build and the audit leg.
+
 ---
 
 ## 2026-11-22 — The fork's share of a function is read against upstream's text, not by blame
@@ -385,8 +387,8 @@ Where it applies: a site sweep or a cascade sweep for the `screenshot` verb, its
 
 ---
 
-## 2026-10-12 — `cascade.py sweep --pattern` takes its ids after one flag
-`--pattern` is a list option: `--pattern A B C` runs the three named patterns, while `--pattern A --pattern B --pattern C` keeps only the last one given and silently runs one. A re-fire that should run only the patterns whose control never fired therefore names them all after a single `--pattern`. Read the count line of each pattern the listing prints before trusting a re-fire: the number of patterns run is in its `total (N patterns)` line.
+## 2026-10-12 — `cascade.py sweep --pattern` is a list option
+`--pattern` is a list option: `--pattern A B C` runs the three named patterns, and so does `--pattern A --pattern B --pattern C` — a repeated `--pattern` adds to its list (cascade v1.37) [corrected 2026-11-23: a P1 re-fire with eight repeated `--pattern` flags printed `total (8 patterns)`; the flag kept only the last one in an older stamp]. A re-fire that should run only the patterns whose control never fired names each of them. Read the count line of each pattern the listing prints before trusting a re-fire: the number of patterns run is in its `total (N patterns)` line.
 
 Where it applies: a wrap's P1 site sweep and P2 step-2 sweep, whenever only part of a patterns file is re-fired.
 

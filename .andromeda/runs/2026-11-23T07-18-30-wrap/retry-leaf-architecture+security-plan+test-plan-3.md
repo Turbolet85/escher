@@ -1,1 +1,0 @@
-.andromeda/runs/2026-11-23T07-18-30-wrap/leaf-architecture+security-plan+test-plan-3.md: `read: CLAUDE.md` quotes «- 2026-11-18: A docs leaf states no per…», the last line opens «<!-- USER:session-learnings end -->» — re-spawn

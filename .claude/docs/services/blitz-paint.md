@@ -21,7 +21,7 @@ Pushes anyrender drawing commands for an already-resolved `BaseDocument` into an
 ## Crate-specific gotchas
 - `LAYER_LIMIT = 1024`; non-finite transformed boxes are culled; `render_element`'s border box and culling stand on the scaled size, `location` and `box_position` kept for the transform (an upstream engine change for every document, upstream #1342); gradients needing >500 tiles are skipped (FIXME).
 - Painting an inline root without inline layout data panics. `render_element` skips the own shadow, background and border of a box whose `Node::is_inline_with_only_block_children` reads true, through `paints_own_box`, read on a frame by `inline_box_decorations_frame` in both layout modes.
-- Custom widgets are pre-painted into Scenes keyed by document and node id.
+- Custom widgets are pre-painted into Scenes keyed by document and node id; a widget's paint size is its content box times the scale (the border box less border and padding, floored at 0) and its scene is appended at the content origin inside the element's transform, unclipped (ratified, answering upstream issue 1578, a direct engine change flagged upstreamable; `stand_canvas_placement`).
 
 ## Entry points for modification
 - `src/lib.rs` (`paint_scene`), `src/render.rs`, `src/render/*.rs`, `src/color.rs` (contrast helper), `src/text.rs` (`stroke_text` delegates to the `pub(crate)` `stroke_text_as`, which takes `RunPaint { color, synthesize_bold }`, every other caller passing `RunPaint::default()`; a synthesized bold, a list group's header, adds one embolden weight to a build's own), `src/layers.rs`, `src/blend.rs` (`convert_blend_mode`)
