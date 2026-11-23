@@ -22,7 +22,7 @@
 ### Epoch 3 — The canvas painted
 
 [2026-11-22-upstream-sync-ahead-of-the-canvas] Upstream sync ahead of the canvas — two-parent merge; left-out commits named with reasons; CI, a11y leg and audit green (v040-02)
-Canvas in a headless shot — what an app paints from Rust appears in a harness shot, measured on the stand first (v040-09)
+[2026-11-23-canvas-in-a-headless-shot] Canvas in a headless shot — what an app paints from Rust appears in a harness shot, measured on the stand first (v040-09)
 Canvas placement and text — the widget placed at its content box (upstream issue 1578), canvas text from the bundled fonts (v040-09)
 Canvas shot across hosts — byte equality on Linux, macOS, Windows measured; required (amending the no-shot cross-OS rule) or toleranced, by the founder's word (v040-09)
 Circle Drawer on a canvas — the first sample, circles painted from Rust; skeleton, keys, boot lint clean; checks in both layout modes, cross-OS digests (v040-09)

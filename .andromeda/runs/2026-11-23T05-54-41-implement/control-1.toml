@@ -1,0 +1,10 @@
+[[control]]
+id = "harness-custom-widget"
+entry = 2
+guard = "blitz-test-harness's blitz-paint line names custom-widget"
+case = "a_widget_painted_from_rust_shows_in_a_harness_shot"
+
+[[control.edit]]
+path = "packages/blitz-test-harness/Cargo.toml"
+old = '''blitz-paint = { workspace = true, default-features = false, features = ["custom-widget"] }'''
+new = '''blitz-paint = { workspace = true, default-features = false }'''
