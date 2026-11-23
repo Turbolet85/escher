@@ -115,9 +115,9 @@ fn process_custom_widget_node(
 ) -> Option<Scene> {
     use blitz_dom::node::{CustomWidgetStatus, ProxyRenderContext};
 
+    let fonts = doc.font_ctx();
     let node = doc.get_node_mut(node_id)?;
-    let width = (node.final_layout().size.width as f64 * scale) as u32;
-    let height = (node.final_layout().size.height as f64 * scale) as u32;
+    let (width, height) = content_box_paint_size(node, scale);
 
     if width == 0 || height == 0 {
         return None;
@@ -137,9 +137,31 @@ fn process_custom_widget_node(
         widget_data.status = CustomWidgetStatus::Active;
     }
 
+    widget_data.widget.fonts(&fonts);
     let widget_scene = widget_data
         .widget
         .paint(&mut render_ctx, &style, width, height, scale);
 
     Some(widget_scene)
+}
+
+/// A custom widget's paint size: its content box (the border box less border and padding),
+/// scaled, so it matches the content-box origin its scene is placed at (upstream #1578).
+#[cfg(feature = "custom-widget")]
+fn content_box_paint_size(node: &blitz_dom::Node, scale: f64) -> (u32, u32) {
+    let layout = node.final_layout();
+    let width = layout.size.width
+        - layout.border.left
+        - layout.border.right
+        - layout.padding.left
+        - layout.padding.right;
+    let height = layout.size.height
+        - layout.border.top
+        - layout.border.bottom
+        - layout.padding.top
+        - layout.padding.bottom;
+    (
+        (width.max(0.0) as f64 * scale) as u32,
+        (height.max(0.0) as f64 * scale) as u32,
+    )
 }

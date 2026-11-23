@@ -1,0 +1,75 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bdd77e5d",
+"ts": "2026-11-23T09:51:57Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-09",
+"--text-file",
+".andromeda/runs/2026-11-23T08-25-01-phase/note-v040-09.md",
+"--run-dir",
+".andromeda/runs/2026-11-23T08-25-01-phase",
+"--marker",
+"2026-11-23-canvas-placement-and-text"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-09: +540 chars (total 949) · status planned · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-23T08-27-08-2026-11-23-canvas-placement-and-text.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T08-27-08-2026-11-23-canvas-placement-and-text.ndjson"
+],
+"before": {
+"id": "v040-09",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, a shot of Circle Drawer shows the circles its app painted from Rust and canvas text drawn from the bundled… (281 chars)",
+"notes_chars": 407
+},
+"after": {
+"id": "v040-09",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, a shot of Circle Drawer shows the circles its app painted from Rust and canvas text drawn from the bundled… (281 chars)",
+"notes_chars": 949
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "bdd77e5d",
+"ts": "2026-11-23T09:51:58Z",
+"argv": [
+"audit",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-23-canvas-placement-and-text",
+"--run-dir",
+".andromeda/runs/2026-11-23T08-25-01-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed by 2026-11-23-canvas-placement-and-text: 0 · ## Acceptance Criteria: line 290, 27 lines",
+"ledger-note entries (P7.3's input, not claim citations): v040-09 (line 316)",
+"pool: unclaimed 8 [v040-02 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

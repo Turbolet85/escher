@@ -122,6 +122,12 @@ pub trait Widget {
         IntrinsicSizes::default()
     }
 
+    /// The document's own font context, handed before each paint, so text the widget
+    /// draws is shaped from the fonts the document's text is.
+    fn fonts(&mut self, fonts: &std::sync::Arc<std::sync::Mutex<parley::FontContext>>) {
+        let _ = fonts;
+    }
+
     /// Callback for the widget to paint it's content.
     ///
     /// Output is recorded to an AnyRender `Scene`.

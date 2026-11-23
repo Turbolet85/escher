@@ -1535,7 +1535,7 @@ impl ElementCx<'_, '_> {
     fn draw_custom_widget(&self, scene: &mut impl PaintScene) {
         if let Some(widget_scene) = self.custom_widget_scene {
             let Point { x, y } = self.frame.content_box().origin();
-            let transform = self.transform.then_translate(Vec2 { x, y });
+            let transform = self.transform.pre_translate(Vec2 { x, y });
 
             // TODO: eliminate clone
             scene.append_scene(widget_scene.clone(), transform);

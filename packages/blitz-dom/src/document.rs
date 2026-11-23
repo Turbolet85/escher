@@ -1410,6 +1410,13 @@ impl BaseDocument {
         has_changes
     }
 
+    /// The document's own font context, shared: the context a custom widget shapes its text
+    /// from, handed to it through `Widget::fonts`.
+    #[cfg(feature = "custom-widget")]
+    pub fn font_ctx(&self) -> Arc<Mutex<parley::FontContext>> {
+        Arc::clone(&self.font_ctx)
+    }
+
     #[cfg(feature = "custom-widget")]
     pub fn custom_widget_node_ids(&self) -> Vec<NodeId> {
         self.custom_widget_nodes.iter().copied().collect()

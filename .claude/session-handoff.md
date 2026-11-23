@@ -28,3 +28,6 @@
 - Left in place on the operator's word: `target/tmp/trial-canvas`, `target/tmp/trial-dioxus8`, `target/tmp/trial-editor` (git worktrees), `target/trial-dioxus8-build` and the scratchpads.
 - Left for the operator to remove: `target/mutants-peak`, `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-23 12:21:34

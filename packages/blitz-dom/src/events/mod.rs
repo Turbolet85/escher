@@ -30,6 +30,18 @@ fn adjust_coords_for_subdocument(
     coords.client_y -= offset.y;
 }
 
+/// A custom widget's event frame: its content-box origin, the border-box origin `pos` past its
+/// left and top border and padding, in CSS px and untransformed, so a widget hears pointer
+/// coordinates in the frame it paints in.
+#[cfg(feature = "custom-widget")]
+fn custom_widget_content_origin(node: &crate::Node, pos: Point<f32>) -> Point<f32> {
+    let layout = node.final_layout();
+    Point {
+        x: pos.x + layout.border.left + layout.padding.left,
+        y: pos.y + layout.border.top + layout.padding.top,
+    }
+}
+
 fn map_dom_event_to_ui_event(
     event: &mut DomEvent,
     node_offset: Point<f32>,
@@ -170,6 +182,8 @@ pub(crate) fn handle_dom_event(
 
     // Handle event forwarding for custom widget
     #[cfg(feature = "custom-widget")]
+    let content_origin = custom_widget_content_origin(node, pos);
+    #[cfg(feature = "custom-widget")]
     if let Some(widget_data) = node
         .element_data_mut()
         .and_then(|el| el.custom_widget_data_mut())
@@ -179,7 +193,7 @@ pub(crate) fn handle_dom_event(
             DomEventData::PointerDown(_) | DomEventData::PointerUp(_)
         );
         let viewport_scroll = Point { x: 0.0, y: 0.0 };
-        let ui_event = map_dom_event_to_ui_event(event, pos, viewport_scroll);
+        let ui_event = map_dom_event_to_ui_event(event, content_origin, viewport_scroll);
 
         if let Some(ui_event) = ui_event {
             widget_data.widget.handle_event(&ui_event);

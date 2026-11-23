@@ -1,0 +1,1 @@
+go — the host is free. Re-fire entries 10 and 13 with --only 10,13 as you proposed, then the controls of step 8, and finish the implement. Do not move the lock for the audit red in this run: put RUSTSEC-2026-0594 on your card with what the audit printed and the crate path that brings cookie in; I answer it there.
