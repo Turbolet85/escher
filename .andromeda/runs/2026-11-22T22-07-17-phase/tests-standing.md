@@ -1,0 +1,20 @@
+# tests · standing conventions
+
+- S1 · each workflow edit keeps every action pinned to a commit SHA, read-only permissions and no secrets, and an upstream-only publishing job keeps its repository guard · 4-unit-test-strategy · unit-test-strategy
+  decision/ci-no-secrets · CI uses no secrets — The CI workflow references no `secrets.`. · guard: test_ci_workflows.py
+  decision/ci-rust-cache · SHA-pinned Rust cache — Every compiling CI job uses the SHA-pinned Swatinem/rust-cache. · except: coverage
+  decision/ci-uses-no-secrets · CI uses no secrets — No CI workflow step reads a `secrets.` value. · guard: CiWorkflowTest
+- S2 · each integration test file is its own test target, one behaviour per file, shared modules no target · test-scope-summary · test-strategy
+  decision/session-checks-share-one-module · Session checks share one module — What the checks that hold a session share, in process and by a host process of their own, is stated in one session test module with no test and no test target of its own, beside the stand checks' module. · why: kept beside the stand checks' module because that module was held unchanged
+  decision/shared-fixtures-in-one-module · Shared fixtures in one module — The fixture boot and hold, and every fixture more than one check reads, are stated once in one fixtures module with no test and no test target, holding no print, tracing call, env read, file, socket, listener or blitz_net. · except: a page with one reader, or whose ids differ, stays in its own check file
+  decision/shared-stand-tables-in-one-module · Shared stand tables in one module — The tables and helpers the stand checks share are stated once in one shared test module with no test and no test target of its own; the tables are stated expectation, never a second role or name mapping. · except: A helper whose body or failure message differs from the shared one stays in its check; stand_element_ids keeps its own boot; task_keys, ceiling, component, the cards array and SECRET stay per file.
+  decision/shared-test-modules-not-targets · Shared test modules are no target — Shared test modules, the flow scripts directory and the committed checks data directory are no test target; checks read shared modules through mod declarations.
+- S3 · each layout assertion runs in both layout modes · integration-test-strategy
+- S4 · each Python CI script test runs under unittest · 3-test-harness-contract
+  decision/python-script-tests-under-unittest · Python script tests under unittest — The Python tests of the CI scripts run under the standard library's unittest, by discovery over the CI scripts directory.
+- S5 · test data stated in code, nothing seeded · 7-test-data-fixtures · test-data-fixtures
+  decision/blitz-dom-fixtures-built-manually · blitz-dom fixtures built without the HTML parser — blitz-dom tests build their DOM fixtures manually through the document mutator rather than by parsing HTML. · why: the HTML parser lives in blitz-html, which would be a circular dev-dependency
+  decision/test-data-in-code · Test data stated in code — Test data is stated in code: inline HTML, literals and byte arrays, directly injected images, fixed viewports, embedded fonts and pages generated in the test. · except: one external benchmark page supplied through PAINT_TREE_BENCH_HTML
+  decision/test-data-is-code · Test data is code, nothing seeded — Nothing is seeded for the agent-run contract: the fixtures are code compiled into their targets, by boot for the blitz-tests targets and by the run's own cargo call for the session selection's seven_guis target.
+- S6 · each CI tally move is attributed by test name, job logs read with ANSI stripped · ci-integration
+  decision/ci-log-ansi-strip · ANSI strip for CI job-log tallies — A per-job tally read from a CI job log strips ANSI codes written both as the escape byte and as the two literal characters ^[. · why: The log spells the escape as literal ^[, so a strip of the escape byte alone leaves every cargo Running line unattributed.
