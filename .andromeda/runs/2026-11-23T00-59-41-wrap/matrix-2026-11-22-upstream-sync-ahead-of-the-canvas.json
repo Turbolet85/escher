@@ -1,0 +1,121 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "913e94cc",
+"ts": "2026-11-23T01:56:43Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-22-upstream-sync-ahead-of-the-canvas",
+"--run-dir",
+".andromeda/runs/2026-11-23T00-59-41-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-11-22-upstream-sync-ahead-of-the-canvas)",
+"pool: unclaimed 8 [v040-02 v040-09 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "913e94cc",
+"ts": "2026-11-23T01:57:00Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-02",
+"--text-file",
+".andromeda/runs/2026-11-23T00-59-41-wrap/note-v040-02.md",
+"--run-dir",
+".andromeda/runs/2026-11-23T00-59-41-wrap",
+"--marker",
+"2026-11-22-upstream-sync-ahead-of-the-canvas",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-02: +681 chars (total 1449) · status planned · ref/acceptance untouched",
+"dry-run: nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": {
+"id": "v040-02",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "At each epoch's first entry, upstream's new work is merged with two parents; the workspace checks, the a11y leg and the … (321 chars)",
+"notes_chars": 766
+},
+"after": {
+"id": "v040-02",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "At each epoch's first entry, upstream's new work is merged with two parents; the workspace checks, the a11y leg and the … (321 chars)",
+"notes_chars": 1449
+}
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "913e94cc",
+"ts": "2026-11-23T01:57:03Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-02",
+"--text-file",
+".andromeda/runs/2026-11-23T00-59-41-wrap/note-v040-02.md",
+"--run-dir",
+".andromeda/runs/2026-11-23T00-59-41-wrap",
+"--marker",
+"2026-11-22-upstream-sync-ahead-of-the-canvas"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-02: +681 chars (total 1449) · status planned · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-22T22-08-45-2026-11-22-upstream-sync-ahead-of-the-canvas.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-22T22-08-45-2026-11-22-upstream-sync-ahead-of-the-canvas.ndjson"
+],
+"before": {
+"id": "v040-02",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "At each epoch's first entry, upstream's new work is merged with two parents; the workspace checks, the a11y leg and the … (321 chars)",
+"notes_chars": 766
+},
+"after": {
+"id": "v040-02",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "At each epoch's first entry, upstream's new work is merged with two parents; the workspace checks, the a11y leg and the … (321 chars)",
+"notes_chars": 1449
+}
+}
+]

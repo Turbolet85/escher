@@ -1,29 +1,26 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-22T21:46:00Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `df99aefd5`)
+**Last Updated:** 2026-11-23T01:30:00Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `9598e04d6`, the merge)
 **Status:** clean
-**Last Commit:** 2026-11-21-dependency-and-ci-debts — gated acceptance (see `git log -1`)
+**Last Commit:** 2026-11-22-upstream-sync-ahead-of-the-canvas — the wrap (see `git log -1`)
 
 ## Position
-- Done: `2026-11-21-dependency-and-ci-debts` — gated wrap: v040-08 verified on the operator's clearance (inputs#I9), the chunk `gated → complete`, Epoch 2 «Debts of 0.1.0–0.3.0» closed. Wrap run `2026-11-22T21-23-31-wrap`.
-- Next: «Upstream sync ahead of the canvas» (`chk-rpvc7zdi`, v040-02) — `/andromeda-phase` to promote and plan it; it carries three CARRYs (Dioxus held at 0.7.3 · re-point `deny.toml`'s RUSTSEC-2026-0192 reason to `res-y4gizreq` · two leaf lines the Epoch 2 leaf pass left).
-  - Epoch 2 is the first boundary of 0.4.0 left undiagnosed at its close: `/andromeda-evolve-diagnose` for it (see the console's Evolve line).
+- Done: `2026-11-22-upstream-sync-ahead-of-the-canvas` — the two-parent merge of upstream/main `165d698c3` (`9598e04d6`), CI#45088249722 green 17/17; the founder's takes E1–E6, the Dioxus hold D1 and L1–L8 kept out stand in the tree. Wrap run `2026-11-23T00-59-41-wrap`.
+- Next: «Canvas in a headless shot» (`chk-qpuisl6y`, v040-09) — `/andromeda-phase` to promote and plan it.
 
 ## Work done
-- Founder's words landed (inputs#I11, inputs#I12): test-plan `decision/hosted-runner-cancel-hand-rerun` provisional → standing (tx 3155); 13 ratifying sidecar entries beside the upstream sync's card entries (tx 3156–3158); F1–F3 discharge and the three route answers as dated ledger notes (v040-07 · v040-03 · v040-08).
-- Epoch close: whole-mode leaf pass (15 findings applied, 9 declined); sidecar consolidation; the four re-carried waits added to the git-ignored `escher-0.5.0-incubator/deferred-from-0.4.0.md`.
+- Architecture rows (TX 3219/3220): `contract/layout/stylo-taffy-exports` set (E2's `ltr` flag); three decisions added, ratified on the founder's «Взять все шесть (Recommended)» (inputs#I2) through answer card Q1, confirmed by the operator — `logical-float-clear-by-direction` (E2), `block-containment-through-display-contents` (E3, E4), `textarea-text-laid-out-once-width-known` (E6).
+- Leaf pass: 5 findings applied (`CLAUDE.md:92`, `.claude/rules/testing.md:48` — CARRY `cry-yojyfzsj` spent — and `blitz-dom.md:21` ×3); two comparers re-spawned RULED once each.
+- Route: CARRY `cry-twrvkwp6` on «Upstream sync ahead of inside the canvas» — re-read the Dioxus hold there or at the first sync after a Dioxus 0.8 release.
+- The git-ignored `escher-0.5.0-incubator/deferred-from-0.4.0.md` gained 9 lines: the Dioxus hold, the seven residuals re-read standing (absorbed into v040-02), the eight left-out groups.
 
 ## Drift resolved
-- 3 proposers: 1 set landed (test-plan state), 1 add rejected (security-plan: a standing rule generalised from F1's one-advisory ruling), architecture `@none`. 0 escalations.
+- 12 proposer operations: 1 applied by the plan's expected amendment, 3 (+1 of main's, E6) confirmed on the answer card, 6 rejected as one fact twice (check 2), 2 security-plan rows (E1 `DOMTokenList.replace`, E5 the composition underline) rejected by fit `not_master` type 4 — left out on the operator's word (2026-11-23). 0 open escalations.
 
 ## Notes
-- The memmap2 wording (`decision/dependency-audit-cargo-deny` `except:`) carries no `state` cell and its entry `amd-266u5epx` names no PROVISIONAL mark — it reads standing already; nothing ratified for it.
-- `decision/layout-read-in-process-only` (`amd-kbdd67bl`) is retired at tx 1641 by `amd-fbmctlxv`; nothing ratified.
 - Upstreamable, not yet sent (carried): the single list box; the post-layout focus fixup and the Tab walk's skip of unshown nodes; the inline-box placeholder defect (parley 0.13); the W8 fragment mask as a stamped `data:` URL; upstream's `docs/licensing.md` on `webpki-root-certs`.
 - Carried: security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`; `host-linux.md` is 9 template lines behind (U04 `noted`).
+- Left in place on the operator's word: `target/tmp/trial-canvas`, `target/tmp/trial-dioxus8`, `target/tmp/trial-editor` (git worktrees) and `target/trial-dioxus8-build`.
 - Left for the operator to remove: `target/mutants-peak`, `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`, the scratch clones `…/scratchpad/guardclone` and `…/guardclone-impl`.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-23 00:31:55

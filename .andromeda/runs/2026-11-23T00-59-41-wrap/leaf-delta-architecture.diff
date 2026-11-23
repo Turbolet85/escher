@@ -1,0 +1,19 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -149,2 +149,3 @@
+ decision/baseline-shift-center-approx · baseline-shift center approximated — baseline-shift: center is approximated with middle alignment.
++decision/block-containment-through-display-contents · Block containment looks through display contents — Block containment looks through display contents, so an element whose display contents child holds a block counts as containing a block, and a display contents element holding only inlines does not break its parent's inline flow. · why: an upstream behaviour change taken, ratified for its take · guard: block_inside_contents_inside_inline_fills_width
+ decision/block-content-alignment-safe · Block-container content alignment is safe — Positional content-alignment on a block container, a table cell included, defaults to safe.
+@@ -267,2 +268,3 @@
+ decision/lockstep-package-versions · Blitz packages versioned together — Blitz packages are versioned together through the one workspace version and the in-repo `=` pins.
++decision/logical-float-clear-by-direction · Logical float and clear sides resolved by direction — Logical float and clear values, inline-start and inline-end, resolve to left or right by the box's direction, left-to-right or right-to-left. · why: an upstream behaviour change taken, ratified for its take
+ decision/lossy-page-decoding · Pages decoded lossily — Page bytes that are not UTF-8 are decoded lossily, replaced and never a panic. · why: an upstream behaviour change taken, ratified for its take
+@@ -388,2 +390,3 @@
+ decision/text-nodes-not-laid-out · Text nodes never laid out individually — Text nodes are never laid out individually.
++decision/textarea-text-laid-out-once-width-known · Textarea text laid out once its width is known — A textarea's text is laid out only once the textarea's width is known, never at a provisional width, in every document. · why: an upstream behaviour change taken, ratified for its take
+ decision/ua-stylesheets-used-as-given · User-agent stylesheets used as given — A document uses its configured user-agent stylesheets as given, the default sheet arriving only through the default document config, once.
+@@ -1064,3 +1067,3 @@
+ contract/layout-reason/size-cause · blitz-dom layout reason · SizeCause — The cause of a size is closed: Style, Min, Max, FlexGrow, FlexShrink, Stretch, Grid, Table, Replaced, Content or Layout.
+-contract/layout/stylo-taffy-exports · blitz-dom layout · stylo_taffy exports — stylo_taffy exports to_taffy_style, TaffyStyloStyle, StyleFlags, Atom, WritingMode and WritingModeExt.
++contract/layout/stylo-taffy-exports · blitz-dom layout · stylo_taffy exports — stylo_taffy exports to_taffy_style, TaffyStyloStyle, StyleFlags, Atom, WritingMode and WritingModeExt; its convert module's float and clear converters take the box's direction as a second argument, an ltr flag.
+ contract/layout/taffy-traits · blitz-dom layout · Taffy traversal and layout traits — The crate-private LayoutPassState implements Taffy's traversal and layout traits for one pass; BaseDocument implements none.
