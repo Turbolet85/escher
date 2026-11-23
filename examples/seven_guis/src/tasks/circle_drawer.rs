@@ -68,6 +68,10 @@ struct CircleCanvas {
     layouts: parley::LayoutContext<()>,
 }
 
+/// PROBE ONLY (branch `build/probe-circle-digest`): what the canvas paints - 0 the circle and
+/// its label, 1 the circle alone, 2 the label alone, 3 neither.
+pub static PROBE_PAINT: std::sync::atomic::AtomicU8 = std::sync::atomic::AtomicU8::new(0);
+
 const FILL: Color = Color::from_rgba8(58, 92, 229, 38);
 const STROKE: Color = Color::from_rgb8(0x3a, 0x5c, 0xe5);
 const LABEL: Color = Color::from_rgb8(0x1a, 0x1a, 0x1a);
@@ -148,7 +152,10 @@ impl Widget for CircleCanvas {
             Affine::IDENTITY,
             &Rect::new(0.0, 0.0, f64::from(width), f64::from(height)),
         );
-        for c in &self.circles {
+        let probe = PROBE_PAINT.load(std::sync::atomic::Ordering::SeqCst);
+        let paint_circles = probe == 0 || probe == 1;
+        let paint_labels = probe == 0 || probe == 2;
+        for c in self.circles.iter().filter(|_| paint_circles) {
             let disc = Disc::new((c.x, c.y), c.d / 2.0);
             scene.fill(
                 Fill::NonZero,
@@ -168,7 +175,7 @@ impl Widget for CircleCanvas {
                 AntiAliasing::Enabled,
             );
         }
-        if let Some(fonts) = self.fonts.clone() {
+        if let Some(fonts) = self.fonts.clone().filter(|_| paint_labels) {
             let mut fonts = fonts.lock().unwrap_or_else(PoisonError::into_inner);
             for c in self.circles.clone() {
                 let text = format!("{}", c.d.round());
