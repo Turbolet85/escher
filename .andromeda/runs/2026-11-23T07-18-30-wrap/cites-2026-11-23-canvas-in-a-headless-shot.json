@@ -1,0 +1,357 @@
+[
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "9904192a",
+"ts": "2026-11-23T07:19:02Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: ac8e6d58 — the parent of the oldest pre-CI commit 661632fa",
+"Cargo.lock — added 1 line(s) in 1 range(s)",
+"packages/blitz-test-harness/Cargo.toml — added 2 line(s) in 1 range(s)",
+"tests/blitz-tests/Cargo.toml — added 1 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_canvas_shot.rs — new file · 165 line(s)",
+"new text: 4 file(s) · 1 new · 4 added range(s) · 169 line(s) · 12 block(s) → .andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md (24 lines) · written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"base": "ac8e6d58afd29ba72b36ddd741bf6d0f5c42b173",
+"counts": {
+"files": 4,
+"new": 1,
+"ranges": 4,
+"lines": 169,
+"blocks": 12
+},
+"out": ".andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md",
+"state": "written",
+"lines": 24
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "9904192a",
+"ts": "2026-11-23T07:21:09Z",
+"argv": [
+"apply",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: ac8e6d58 — the previous sweep (2026-11-23T00-59-41-wrap)",
+"masters: rows — a row holds no citation",
+"sites 6 (bare \":digits\" 19) over 28 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"dry-run · would land 0 fact(s) · 0 edge(s)",
+"dry-run: 0 citation(s) in 0 file(s) — nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "ac8e6d58afd29ba72b36ddd741bf6d0f5c42b173",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at ac8e6d58",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at ac8e6d58",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": false,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:431 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "9904192a",
+"ts": "2026-11-23T07:21:14Z",
+"argv": [
+"apply",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: ac8e6d58 — the previous sweep (2026-11-23T00-59-41-wrap)",
+"masters: rows — a row holds no citation",
+"sites 6 (bare \":digits\" 19) over 28 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"landed 0 fact(s) · 0 edge(s) · tx 3270",
+"re-pointed 0 citation(s) in 0 file(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "ac8e6d58afd29ba72b36ddd741bf6d0f5c42b173",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at ac8e6d58",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at ac8e6d58",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": true,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:431 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 431,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "9904192a",
+"ts": "2026-11-23T07:21:40Z",
+"argv": [
+"dispositions",
+"--write",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dispositions: 1 row(s) · curation home — P3 1",
+".andromeda/runs/2026-11-23T07-18-30-wrap/citation-dispositions.md (2 lines) · written",
+"hand re-points: 0 written in 0 file(s) · 0 already written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T07-18-30-wrap/citation-dispositions.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"rows": 1,
+"tally": {
+"curation home — P3": 1
+},
+"state": "written"
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "9904192a",
+"ts": "2026-11-23T07:44:01Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: ac8e6d58 — the parent of the oldest pre-CI commit 661632fa",
+"Cargo.lock — added 1 line(s) in 1 range(s)",
+"packages/blitz-test-harness/Cargo.toml — added 2 line(s) in 1 range(s)",
+"tests/blitz-tests/Cargo.toml — added 1 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_canvas_shot.rs — new file · 165 line(s)",
+"new text: 4 file(s) · 1 new · 4 added range(s) · 169 line(s) · 12 block(s) → .andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md (24 lines) · unchanged"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"base": "ac8e6d58afd29ba72b36ddd741bf6d0f5c42b173",
+"counts": {
+"files": 4,
+"new": 1,
+"ranges": 4,
+"lines": 169,
+"blocks": 12
+},
+"out": ".andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md",
+"state": "unchanged",
+"lines": 24
+}
+}
+]

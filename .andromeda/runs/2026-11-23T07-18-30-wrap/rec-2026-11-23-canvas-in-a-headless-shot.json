@@ -1,0 +1,1044 @@
+[
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:20:46Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-23-canvas-in-a-headless-shot",
+"--section-file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-23-canvas-in-a-headless-shot/report rev 2 · 10 new · 0 revised · 0 retired · 33 kept · tx 3266"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:20:49Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-23-canvas-in-a-headless-shot",
+"--section-file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-23-canvas-in-a-headless-shot/report rev 3 · 11 new · 0 revised · 0 retired · 43 kept · tx 3267"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:21:09Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/cites-land-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"--base",
+"ac8e6d58afd29ba72b36ddd741bf6d0f5c42b173",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:21:13Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/cites-land-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"--base",
+"ac8e6d58afd29ba72b36ddd741bf6d0f5c42b173",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 3270"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:23:04Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1550 · packs 16 · pack 100 · 396593 B",
+"security-plan: rows 573 · packs 6 · pack 100 · 166925 B",
+"design-system: rows 137 · packs 2 · pack 100 · 38407 B",
+"layout-templates: rows 129 · packs 2 · pack 100 · 32614 B",
+"test-plan: rows 646 · packs 7 · pack 100 · 184764 B",
+"obs-plan: rows 295 · packs 3 · pack 100 · 81326 B",
+"a11y-plan: rows 242 · packs 3 · pack 100 · 77479 B",
+"rows-packs: 7 master(s) · 3572 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 3270"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T07-18-30-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:31:20Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1550 · packs 16 · picked 20 (11 by every draw) · standing 0 · 76325 B",
+"security-plan: rows 573 · packs 6 · picked 16 (13 by every draw) · standing 0 · 81937 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 137 · packs 2 · picked 11 (6 by every draw) · standing 0 · 24775 B",
+"layout-templates: rows 129 · packs 2 · picked 0 (0 by every draw) · standing 0 · no proposer",
+"test-plan: rows 646 · packs 7 · picked 35 (14 by every draw) · standing 0 · 149992 B",
+"obs-plan: rows 295 · packs 3 · picked 11 (5 by every draw) · standing 0 · 29464 B",
+"a11y-plan: rows 242 · packs 3 · picked 2 (1 by every draw) · standing 0 · 19591 B",
+"rows-union: 7 master(s) · picked 95 of 3572 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-23T07-18-30-wrap/arch-rows.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/arch-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/security-rows.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/security-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/design-rows.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/design-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/tests-rows.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/tests-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/obs-rows.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/obs-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-23T07-18-30-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:27Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-in-a-headless-shot — Established Decisions: 2 row(s)\n**Section:** Established Decisions\n**Change:** + decision/canvas-crosses-as-pixels — Canvas content crosses only as pixels\n+ decision/harness-paints-custom-widgets — Harness turns on blitz-paint's custom-widget feature\n**Why:** decision/canvas-crosses-as-pixels: The chunk paints an app's widget into harness and driver shots with no verb, field, cause, exit, log field or span added, and no standing row states how a canvas's content crosses the carriers. — resolved by the operator (Q1): operator, 2026-11-23: «Confirm both (Recommended)» · word: relayed verbatim by the overseer, 2026-11-23, inputs#I4\ndecision/harness-paints-custom-widgets: The harness's blitz-paint dependency now names custom-widget, and no standing row states which crate turns that feature on for headless shots.\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:27Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-in-a-headless-shot — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** + decision/canvas-content-crosses-as-shot-pixels — Canvas content crosses only as shot pixels\n**Why:** decision/canvas-content-crosses-as-shot-pixels: The chunk paints a widget's pixels into the harness and driver shots with no verb, field, cause, exit, log field or span added, and the canvas crossing as pixels was ratified for every carrier, a decision no standing row states. — resolved by the operator (Q1): operator, 2026-11-23: «Confirm both (Recommended)» · word: relayed verbatim by the overseer, 2026-11-23, inputs#I4\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"## 2026-11-23-canvas-in-a-headless-shot — Dependency Security: 1 row(s)\n**Section:** Dependency Security\n**Change:** + decision/harness-blitz-paint-custom-widget — Harness turns on blitz-paint's custom-widget feature\n**Why:** decision/harness-blitz-paint-custom-widget: The harness's feature set widened to compile the widget paint pass into every binary reaching it, a dependency-surface choice no standing row of the section states; peniko as a blitz-tests dev-dependency adds no package and stays within the workspace-inherited rule.\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/harness-turns-on-custom-widget-paint · rejected",
+"decision/canvas-crosses-only-as-shot-pixels · rejected",
+"decision/stand-failure-messages-hold-no-content · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-in-a-headless-shot — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** + decision/app-widget-shows-in-shots — App widget painted from Rust shows in shots\n**Why:** decision/app-widget-shows-in-shots: The chunk adds the stand check that witnesses a Rust-painted widget in harness and driver shots per package and in the workspace build, and no row of the test strategy states that witness.\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:35Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-in-a-headless-shot — Established Decisions: 2 row(s)\n**Section:** Established Decisions\n**Change:** + decision/canvas-crosses-as-pixels — Canvas content crosses only as pixels\n+ decision/harness-paints-custom-widgets — Harness turns on blitz-paint's custom-widget feature\n**Why:** decision/canvas-crosses-as-pixels: The chunk paints an app's widget into harness and driver shots with no verb, field, cause, exit, log field or span added, and no standing row states how a canvas's content crosses the carriers. — resolved by the operator (Q1): operator, 2026-11-23: «Confirm both (Recommended)» · word: relayed verbatim by the overseer, 2026-11-23, inputs#I4: F1 «Ратифицировать для всех каналов (Recommended)»\ndecision/harness-paints-custom-widgets: The harness's blitz-paint dependency now names custom-widget, and no standing row states which crate turns that feature on for headless shots.\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:35Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-23-canvas-in-a-headless-shot — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** + decision/canvas-content-crosses-as-shot-pixels — Canvas content crosses only as shot pixels\n**Why:** decision/canvas-content-crosses-as-shot-pixels: The chunk paints a widget's pixels into the harness and driver shots with no verb, field, cause, exit, log field or span added, and the canvas crossing as pixels was ratified for every carrier, a decision no standing row states. — resolved by the operator (Q1): operator, 2026-11-23: «Confirm both (Recommended)» · word: relayed verbatim by the overseer, 2026-11-23, inputs#I4: F1 «Ратифицировать для всех каналов (Recommended)»\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"## 2026-11-23-canvas-in-a-headless-shot — Dependency Security: 1 row(s)\n**Section:** Dependency Security\n**Change:** + decision/harness-blitz-paint-custom-widget — Harness turns on blitz-paint's custom-widget feature\n**Why:** decision/harness-blitz-paint-custom-widget: The harness's feature set widened to compile the widget paint pass into every binary reaching it, a dependency-surface choice no standing row of the section states; peniko as a blitz-tests dev-dependency adds no package and stays within the workspace-inherited rule.\n**Ref:** .andromeda/runs/2026-11-23T07-18-30-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3271 · 2 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+".andromeda/runs/2026-11-23T07-18-30-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3272 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+".andromeda/runs/2026-11-23T07-18-30-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/harness-turns-on-custom-widget-paint · rejected",
+"decision/canvas-crosses-only-as-shot-pixels · rejected",
+"decision/stand-failure-messages-hold-no-content · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3273 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+".andromeda/runs/2026-11-23T07-18-30-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/screenshot/custom-widget · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/canvas-content-crosses-as-pixels · rejected",
+"decision/pixel-check-failures-name-mode-row-pixel · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:34:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-23T07-18-30-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/canvas-content-leaves-only-as-pixels · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:09Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 24 · 0 new · 1 revised · 0 retired · tx 3274"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:09Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-paint.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__services__blitz-paint.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-paint.md rev 6 · 0 new · 1 revised · 0 retired · tx 3275"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/services/blitz-paint.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:10Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 35 · 0 new · 3 revised · 0 retired · tx 3276"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:11Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 46 · 0 new · 1 revised · 0 retired · tx 3277"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:11Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-test-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__services__blitz-test-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-test-harness.md rev 13 · 0 new · 1 revised · 0 retired · tx 3278"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/services/blitz-test-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:12Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 31 · 0 new · 1 revised · 0 retired · tx 3279"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:12Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 39 · 0 new · 1 revised · 0 retired · tx 3280"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:13Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 42 · 0 new · 2 revised · 0 retired · tx 3281"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:13Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 41 · 0 new · 1 revised · 0 retired · tx 3282"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:40:14Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 18 · 0 new · 1 revised · 0 retired · tx 3283"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:43:13Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/carry-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 1 record(s) · 1 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:43:16Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/carry-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 1 edge(s) · tx 3286 · cry-p6543j6z … cry-p6543j6z"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T07:43:43Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-23T07-18-30-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap",
+"--marker",
+"2026-11-23-canvas-in-a-headless-shot"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3288 · run-cftrhfr2 … run-cftrhfr2"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-23T02-09-45-2026-11-23-canvas-in-a-headless-shot.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.55",
+"sha8": "2f5fb0e8",
+"ts": "2026-11-23T08:15:06Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-23-canvas-in-a-headless-shot",
+"--run-dir",
+".andromeda/runs/2026-11-23T07-18-30-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 16 file(s) of 2026-11-23-canvas-in-a-headless-shot"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

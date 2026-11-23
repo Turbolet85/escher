@@ -127,4 +127,4 @@
 2026-11-21-dependency-and-ci-debts · complete · Dependency and CI debts — the advisory ignores closed or stated as waits, skia's prebuilt archive verified, the cancelled-runner watch acted on · → chk:2026-11-21-dependency-and-ci-debts
 2026-11-22-epoch-2-corrective · complete · Epoch 2 corrective — command.rs under 800, escher's additions out of three upstream bodies, behaviour unchanged · → chk:2026-11-22-epoch-2-corrective
 2026-11-22-upstream-sync-ahead-of-the-canvas · complete · Upstream sync ahead of the canvas — two-parent merge of upstream/main 165d698c3; forks for the founder; CI, a11y leg and audit green (v040-02) · → chk:2026-11-22-upstream-sync-ahead-of-the-canvas
-2026-11-23-canvas-in-a-headless-shot · pending · Canvas in a headless shot — what an app paints from Rust through a widget appears in a harness and driver shot, measured on the stand first · → chk:2026-11-23-canvas-in-a-headless-shot
+2026-11-23-canvas-in-a-headless-shot · complete · Canvas in a headless shot — what an app paints from Rust through a widget appears in a harness and driver shot, measured on the stand first · → chk:2026-11-23-canvas-in-a-headless-shot
