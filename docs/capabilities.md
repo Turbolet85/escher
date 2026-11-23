@@ -143,10 +143,11 @@ Witnesses: `stand_act_screenshot`, `stand_screenshot_repeat`, `password_painted_
 Every stand boot registers one font, the bundled DejaVu Sans, with system fonts off, so every generic family and any
 named family that is unavailable lays out in it. The seven served tasks read the same driver answer digests of
 `snapshot` (every part), `lint` and `actions` on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes,
-at boot and after one acting step. A shot's PNG is not among them: its bytes differ between operating systems (see
-Stated limits).
+at boot and after one acting step. A shot holding page text is not among them: its bytes differ between operating
+systems (see Stated limits). A canvas-only shot, whole or cropped to its canvas, is held to one committed digest table
+on linux x86_64, windows x86_64 and macOS aarch64, in both layout modes.
 
-Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`.
+Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`, `stand_canvas_cross_os`.
 
 ### The visual lint
 
@@ -406,8 +407,10 @@ The driver's own refusal texts state three readings that are off:
 - **Engine items in `caused` on a tracing build.** An engine-sourced `caused` item, such as a failed stylesheet fetch's
   warning, exists only in a build that compiled the engine's `tracing` feature. A check asserts such items only on that
   build, read through the engine's own constant, and runs on both builds. Pinned by `stand_act_error_text`.
-- **A shot's PNG bytes.** They repeat byte for byte on one host and differ between linux x86_64 and macOS aarch64, as
-  measured at CI#39225375577. A check compared byte for byte across operating systems holds no `screenshot` step.
+- **A shot's PNG bytes.** They repeat byte for byte on one host. With document text they differ between linux x86_64
+  and macOS aarch64, as measured at CI#39225375577 and again at CI#45189342642, where windows x86_64 read linux's
+  bytes. A canvas-only shot reads the same bytes on all three hosts, pinned by `stand_canvas_cross_os`. A check
+  compared byte for byte across operating systems holds no shot of page text.
 
 ### Asserted by no check
 
@@ -487,6 +490,8 @@ Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_st
 
 - Windowed end-to-end runs, and typed text in the windowed binary's log.
 - Reduced-motion handling, observed absent.
+- A canvas shot under another SIMD level of the CPU renderer, at a scale other than 1.0, or holding gradients, images,
+  clips, blends or a larger glyph set.
 - The engine's Web Platform Tests conformance. One report-only reading exists: `css/cssom-view` moved from 966 to 967
   subtests passed of 2,292 run.
 
@@ -599,7 +604,8 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_*` file of the same two legs, and the `layout` verb on every carrier by `stand_layout`, `stand_mcp_tools`,
 `stand_replay` and seven_guis' `cli_commands` and `mcp_server`. Errors with the action are proven by
 `stand_act_errors`, `stand_act_error_text` and, on the order page, `stand_order_served`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
-`stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, Cells' current cell read
+`stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, the canvas shot on every host by
+`stand_canvas_cross_os`, Cells' current cell read
 `selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
 layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.

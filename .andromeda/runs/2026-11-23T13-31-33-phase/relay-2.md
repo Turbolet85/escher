@@ -1,0 +1,2 @@
+Measure via: "Throwaway build/ branch (Recommended)" — push one probe commit from a worktree under target/tmp to a new branch `build/probe-canvas-shot`, the full unchanged CI workflow, build/escher-0.4.0 untouched.
+Notes: Push the one probe commit to build/probe-canvas-shot and nothing else there. Do NOT delete the remote branch or the worktree afterwards: name both in your message and leave them; their removal is not yours. The probe commit must pass gate.py hygiene before the push (no temp or home path, no secret).
