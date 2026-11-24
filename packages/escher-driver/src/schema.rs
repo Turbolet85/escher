@@ -431,11 +431,11 @@ pub(crate) const LINT: VerbSpec = VerbSpec {
     help: "reads the screen for six defects, each found on an element by its id with the \
            measured reason: overlap, an element's visible part intersecting another's, neither \
            holding the other; clipped, part of its box cut from view; truncated, part of its \
-           laid-out text cut from view, a text control's value never measured; off-screen, no \
-           part of its box in view; zero-size, content in a box with no width or no height; \
-           contrast, its text below the contrast ratio WCAG 2.x SC 1.4.3 sets, an element that \
-           reads not enabled exempt; geometry only, no hit tested, and right-to-left and \
-           vertical text read as left-to-right lines",
+           laid-out text, or of a label a canvas widget paints, cut from view, a text control's \
+           value never measured; off-screen, no part of its box in view; zero-size, content in \
+           a box with no width or no height; contrast, its text below the contrast ratio WCAG \
+           2.x SC 1.4.3 sets, an element that reads not enabled exempt; geometry only, no hit \
+           tested, and right-to-left and vertical text read as left-to-right lines",
     args: &[],
     fields: &[FieldSpec {
         name: "findings",
@@ -446,9 +446,10 @@ pub(crate) const LINT: VerbSpec = VerbSpec {
                zero-size or contrast) and bounds as a node's, then the reason: other, the id of \
                the element later in document order, and area, where the two intersect, for an \
                overlap; visible, the part of the box that can be seen, for a clip; text, the box \
-               the laid-out lines take, and visible, the part of it that can be seen, left out \
-               when none can, for a truncation; ratio, the measured ratio, and required, 3 for \
-               large text, else 4.5, for contrast; each box x, y, width and height, in pixels",
+               the laid-out lines take, or a canvas label's ink box, and visible, the part of \
+               it that can be seen, left out when none can, for a truncation; ratio, the measured \
+               ratio, and required, 3 for large text, else 4.5, for contrast; each box x, y, \
+               width and height, in pixels",
     }],
 };
 

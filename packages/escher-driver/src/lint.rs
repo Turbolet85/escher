@@ -3,9 +3,12 @@
 
 use std::collections::HashMap;
 
+use anyrender::Scene;
 use blitz_test_harness::Harness;
 use dioxus_native_dom::{DioxusDocument, NodeId, Snapshot, SnapshotNode, closed_select_of};
+use peniko::kurbo::Rect;
 
+use crate::canvas_lint;
 use crate::refusal::{Cause, Refusal};
 use crate::session::Session;
 
@@ -99,7 +102,8 @@ pub enum Defect {
     Overlap,
     /// Part of the element's box is cut from view by a box that clips it, or by the viewport.
     Clipped,
-    /// Part of the element's laid-out text is cut from view.
+    /// Part of the element's laid-out text, or of a label its canvas widget paints, is cut from
+    /// view.
     Truncated,
     /// No part of the element's box can be seen.
     OffScreen,
@@ -155,7 +159,7 @@ pub enum Reason {
     },
     /// The element's laid-out text is partly or wholly cut from view.
     Truncated {
-        /// The box the laid-out lines take.
+        /// The box the laid-out lines take, or a canvas label's ink box.
         text: Bounds,
         /// The part of that box that can be seen; `None` when none can.
         visible: Option<Bounds>,
@@ -205,7 +209,10 @@ impl Session {
     /// - [`Defect::Clipped`]: part of the box, not all of it, lies outside its clip region.
     /// - [`Defect::Truncated`]: the box the element's laid-out lines take is not inside its clip
     ///   region, cut further by its own padding box where it clips. A text control's value is
-    ///   never measured.
+    ///   never measured. On a canvas element, once per label its widget paints, in paint order:
+    ///   the label's ink box — its glyphs' outline bounds — is not inside its region, the
+    ///   element's content box cut by every clip, layer or mask the widget pushed around it and
+    ///   by the element's clip region.
     /// - [`Defect::OffScreen`]: no part of the box lies inside its clip region.
     /// - [`Defect::Contrast`]: an element holding text of its own, or a text control, whose
     ///   [`Harness::text_contrast`] reads below its required ratio; an element that reads not
@@ -215,7 +222,11 @@ impl Session {
     /// name, a value, a form control, a focusable element, or text among its descendants.
     ///
     /// Geometry only: no hit is tested. Right-to-left and vertical text is read as
-    /// left-to-right, horizontal lines. An id two elements share reads the first of them.
+    /// left-to-right, horizontal lines. An id two elements share reads the first of them. A
+    /// canvas's pushed clip, layer or mask path is read as its bounding box; a canvas under a
+    /// transform reads its labels from its client rect's top left, unrotated and unscaled; a
+    /// glyph with no outline adds nothing to a label's ink box; and a canvas element the snapshot
+    /// does not list is not linted.
     ///
     /// It runs no step and settles nothing: no input is dispatched, no time moves and nothing
     /// is marked changed. An app with no font it can paint text with is refused as
@@ -228,7 +239,7 @@ impl Session {
         for node in screen.nodes() {
             self.seen.record(&node.id);
         }
-        Ok(findings(&self.harness, &screen))
+        Ok(findings(&mut self.harness, &screen))
     }
 }
 
@@ -249,7 +260,7 @@ struct Entry<'a> {
     in_select_box: bool,
 }
 
-fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding> {
+fn findings(harness: &mut Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding> {
     let mut elements = HashMap::new();
     for (node, id) in harness.doc.element_ids() {
         elements.entry(id).or_insert(node);
@@ -258,6 +269,8 @@ fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding
     for root in &screen.roots {
         flatten(harness, &elements, root, None, &mut entries);
     }
+    let scenes = canvas_scenes(harness, &entries);
+    let harness = &*harness;
 
     let mut found: Vec<(usize, Finding)> = Vec::new();
     let finding = |entry: &Entry, defect: Defect, reason: Reason| Finding {
@@ -271,11 +284,11 @@ fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding
         let reason = Reason::Overlap { other, area };
         found.push((earlier, finding(&entries[earlier], Defect::Overlap, reason)));
     }
-    for (index, entry) in entries.iter().enumerate() {
+    for (index, (entry, scene)) in entries.iter().zip(&scenes).enumerate() {
         let Some(element) = entry.element else {
             continue;
         };
-        for (defect, reason) in readings(harness, entry, element) {
+        for (defect, reason) in readings(harness, entry, element, scene.as_ref()) {
             found.push((index, finding(entry, defect, reason)));
         }
     }
@@ -283,11 +296,13 @@ fn findings(harness: &Harness<DioxusDocument>, screen: &Snapshot) -> Vec<Finding
 }
 
 /// The defects `entry` reads, each with its reason, in the order they are found: zero-size alone
-/// for a box with no area, else off-screen or clipped, then truncated, then contrast.
+/// for a box with no area, else off-screen or clipped, then truncated — its laid-out lines, then
+/// each label of its canvas `scene` — then contrast.
 fn readings(
     harness: &Harness<DioxusDocument>,
     entry: &Entry,
     element: NodeId,
+    scene: Option<&Scene>,
 ) -> Vec<(Defect, Reason)> {
     if !entry.bounds.has_area() {
         return holds_content(harness, entry.node, element)
@@ -296,10 +311,15 @@ fn readings(
             .collect();
     }
     let lines = truncated(harness, entry, element).map(|reason| (Defect::Truncated, reason));
+    let labels = scene
+        .into_iter()
+        .flat_map(|scene| canvas_truncations(harness, entry, element, scene))
+        .map(|reason| (Defect::Truncated, reason));
     let colours = contrast(harness, entry.node, element).map(|reason| (Defect::Contrast, reason));
     placement(entry)
         .into_iter()
         .chain(lines)
+        .chain(labels)
         .chain(colours)
         .collect()
 }
@@ -531,6 +551,74 @@ fn truncated(harness: &Harness<DioxusDocument>, entry: &Entry, element: NodeId) 
     }
     let visible = region.and_then(|region| text.intersection(region));
     Some(Reason::Truncated { text, visible })
+}
+
+/// The scene each entry's canvas widget records, read for an entry with an element and a box
+/// with an area; `None` for any other entry, and for an element with no widget or an empty
+/// content box.
+fn canvas_scenes(harness: &mut Harness<DioxusDocument>, entries: &[Entry]) -> Vec<Option<Scene>> {
+    entries
+        .iter()
+        .map(|entry| {
+            let element = entry.element.filter(|_| entry.bounds.has_area())?;
+            harness.canvas_scene(element)
+        })
+        .collect()
+}
+
+/// The truncated readings of the labels a canvas's `scene` paints, in paint order: each label
+/// whose ink box is not inside its region — the element's content box, cut by the box its
+/// pushes leave and by the element's clip region.
+fn canvas_truncations(
+    harness: &Harness<DioxusDocument>,
+    entry: &Entry,
+    element: NodeId,
+    scene: &Scene,
+) -> Vec<Reason> {
+    let Some(content) = content_box(harness, element) else {
+        return Vec::new();
+    };
+    let scale = harness.base().get_viewport().scale_f64();
+    // The widget paints in device px with its origin at the content box's top left.
+    let to_css = |rect: Rect| Bounds {
+        x: content.x + rect.x0 / scale,
+        y: content.y + rect.y0 / scale,
+        width: rect.width() / scale,
+        height: rect.height() / scale,
+    };
+    canvas_lint::labels(&scene.commands)
+        .into_iter()
+        .filter_map(|label| {
+            let text = to_css(label.ink);
+            let own = label
+                .clip
+                .map_or(content, |clip| content.cut(to_css(clip), (true, true)));
+            let region = entry.region.map(|region| own.cut(region, (true, true)));
+            if region.is_some_and(|region| text.within(region)) {
+                return None;
+            }
+            let visible = region.and_then(|region| text.intersection(region));
+            Some(Reason::Truncated { text, visible })
+        })
+        .collect()
+}
+
+/// `element`'s content box, relative to the viewport: its client rect less its border and
+/// padding, floored at no size.
+fn content_box(harness: &Harness<DioxusDocument>, element: NodeId) -> Option<Bounds> {
+    let doc = harness.base();
+    let rect = bounds!(doc.get_client_bounding_rect(element)?);
+    let layout = doc.get_node(element)?.final_layout();
+    let (border, padding) = (layout.border, layout.padding);
+    let (left, top) = (border.left + padding.left, border.top + padding.top);
+    let across = left + border.right + padding.right;
+    let down = top + border.bottom + padding.bottom;
+    Some(Bounds {
+        x: rect.x + f64::from(left),
+        y: rect.y + f64::from(top),
+        width: (rect.width - f64::from(across)).max(0.0),
+        height: (rect.height - f64::from(down)).max(0.0),
+    })
 }
 
 /// The contrast reading of an element holding text of its own, or of a text control.

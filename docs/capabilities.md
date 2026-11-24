@@ -163,7 +163,17 @@ On the stand the four lean tasks read 0 findings at boot: an option or a group o
 select's own bounds, overlaps nothing, while a `multiple` select's rows are linted like any element. After twelve
 Creates the last CRUD row, `crud-person-14`, reads `clipped` inside `crud-list`.
 
-Witnesses: `stand_lint`, `text_extent`.
+A canvas element is also read inside: each label its widget paints — a glyph run — whose ink box, its glyphs' outline
+bounds read from the run's own font, is not inside its region reads `truncated` on the canvas element, once per label,
+its `text` the ink box and its `visible` the part inside the region. The region is the canvas's content box, cut by
+every clip, layer or mask the widget pushed around the run and by the element's own clip region. It rides the existing
+`truncated` word: no new defect word, reason key or field. Circle Drawer reads no finding at boot, after a click and at
+12 and 100 circles. Its stated limits, asserted by no check: a pushed clip, layer or mask path is read as its bounding
+box, so a label outside a non-rectangular clip but inside its box reads clean; a canvas under a transform reads its
+labels from its client rect's top left, unrotated and unscaled; a glyph with no outline adds nothing to the ink box;
+and a canvas element the snapshot does not list is not linted.
+
+Witnesses: `stand_lint`, `text_extent`, `stand_canvas_lint`.
 
 ### The UI graph
 
@@ -648,7 +658,8 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, the canvas shot on every host by
 `stand_canvas_cross_os`, Circle Drawer's canvas by `stand_circle_drawer_canvas`, an app's click and double click on a
 canvas by `stand_canvas_click`, a canvas read as data by `stand_canvas_commands` and the `canvas` verb on every carrier
-by `stand_canvas_carriers`, Cells' current cell read
+by `stand_canvas_carriers`, a canvas label past its region read by the lint by `stand_canvas_lint`, Cells' current
+cell read
 `selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
 layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.

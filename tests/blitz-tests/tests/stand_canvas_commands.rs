@@ -13,7 +13,6 @@
 //! too, and answers `canvas` false for an element with no widget. A failure names a layout mode,
 //! a state and an index only.
 
-use blitz_dom::{LocalName, Namespace, QualName};
 use blitz_test_harness::HarnessOptions;
 use dioxus_native_dom::SNAPSHOT_TEXT_BUDGET;
 use escher_driver::{Call, Cause, Outcome, Refusal, Session, answer_digest};
@@ -21,11 +20,10 @@ use seven_guis::stand::{self, LeanTask};
 
 mod session_common;
 use session_common::{
-    act, actioned, actions, advance, canvas, canvas_full, canvas_part, canvased, click, focused,
-    hold, mcp_result_text, refused_unchanged, slug,
+    CIRCLE_CANVAS as CANVAS, act, actioned, actions, advance, canvas, canvas_full, canvas_part,
+    canvased, carried, circle_drawer, click, focused, hold, kinds, mcp_result_text, reach,
+    refused_unchanged, slug,
 };
-
-const CANVAS: &str = "circle-canvas";
 
 /// One reading: the state, the level (`summary`, `full` or `part`), the part (0 but for a
 /// part), the answer's bytes and its digest. Both layout modes read the same row.
@@ -58,88 +56,6 @@ const TABLE: &[Row] = &[
     ("100", "part", 5, 9899, 0x8d96697fbde60b2b),
     ("100", "part", 6, 520, 0xc2ed2f8a10898608),
 ];
-
-/// A session on Circle Drawer, booted in the stand's shell.
-fn circle_drawer(incremental: bool) -> Session {
-    Session::start("circle-drawer", move || {
-        stand::boot_circle_drawer(stand::options(incremental))
-    })
-    .expect("circle-drawer is a label")
-}
-
-/// `n` circles at whole-pixel centres inside a `w` × `h` box, diameters 10 to 79, from a fixed
-/// sequence.
-fn circles(n: usize, w: u64, h: u64) -> String {
-    let mut s: u64 = 0x2545_f491_4f6c_dd1d;
-    let mut next = |m: u64| {
-        s = s
-            .wrapping_mul(6_364_136_223_846_793_005)
-            .wrapping_add(1_442_695_040_888_963_407);
-        (s >> 33) % m
-    };
-    (0..n)
-        .map(|_| {
-            let x = 20 + next(w.saturating_sub(40).max(1));
-            let y = 20 + next(h.saturating_sub(40).max(1));
-            let d = 10 + next(70);
-            format!("{x},{y},{d}")
-        })
-        .collect::<Vec<_>>()
-        .join(";")
-}
-
-/// The circles the canvas carries, as its `data-circles` attribute reads.
-fn carried(session: &Session) -> String {
-    session
-        .harness()
-        .attr(&format!("#{CANVAS}"), "data-circles")
-        .unwrap_or_default()
-}
-
-/// Writes `n` circles of the fixed sequence to the canvas's `data-circles` through the held
-/// harness's mutator, then settles.
-fn draw(session: &mut Session, n: usize, at: &str) {
-    let Some(Outcome::CanvasSummary { width, height, .. }) = canvased(session, &canvas(CANVAS))
-    else {
-        panic!("{at}: the summary reads");
-    };
-    let text = circles(n, width as u64, height as u64);
-    let harness = session.harness_mut();
-    let node = harness.query(&format!("#{CANVAS}")).expect("the canvas");
-    {
-        let mut doc = harness.base_mut();
-        let mut mutator = doc.mutate();
-        mutator.set_attribute(
-            node,
-            QualName::new(None, Namespace::from(""), LocalName::from("data-circles")),
-            &text,
-        );
-    }
-    assert!(harness.settle().is_ok(), "{at}: the drawing settles");
-    assert!(
-        carried(session).split(';').count() == n,
-        "{at}: the canvas carries the circles"
-    );
-}
-
-/// Brings a fresh session to `state`.
-fn reach(state: &str, incremental: bool) -> Session {
-    let at = format!("incremental={incremental} {state}");
-    let mut session = circle_drawer(incremental);
-    match state {
-        "boot" => {}
-        "click" => {
-            assert!(
-                act(&mut session, &click(CANVAS)).is_some(),
-                "{at}: the click is accepted"
-            );
-        }
-        "12" => draw(&mut session, 12, &at),
-        "100" => draw(&mut session, 100, &at),
-        _ => panic!("a state of the table"),
-    }
-    session
-}
 
 /// The text a full answer or a part carries, read from its written line.
 fn text_of(outcome: &Outcome) -> String {
@@ -175,14 +91,6 @@ fn answers(session: &mut Session, at: &str) -> Vec<(&'static str, u32, Result<Ou
         ));
     }
     out
-}
-
-/// The kinds a summary counts.
-fn kinds(session: &mut Session, at: &str) -> [usize; 8] {
-    match canvased(session, &canvas(CANVAS)) {
-        Some(Outcome::CanvasSummary { kinds, .. }) => kinds,
-        _ => panic!("{at}: the summary reads"),
-    }
 }
 
 /// The lines of the longest common subsequence's complement: the lines of `after` it adds and

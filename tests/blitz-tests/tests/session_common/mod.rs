@@ -15,7 +15,7 @@ use std::process::{Child, Command, ExitStatus, Stdio};
 use std::thread;
 use std::time::{Duration, Instant};
 
-use blitz_dom::Document;
+use blitz_dom::{Document, LocalName, Namespace, QualName};
 use dioxus_native_dom::{SnapshotDiff, UiGraph};
 use escher_driver::{
     ActionNode, ArgValue, Busy, Call, Cause, Check, Finding, LayoutExplanation, Outcome, Session,
@@ -779,4 +779,100 @@ pub fn record_check(
         fs::read(dir.join("check-1.json")).unwrap_or_else(|_| panic!("{at}: the check is kept"));
     let _ = fs::remove_dir_all(dir);
     bytes
+}
+
+/// The id of Circle Drawer's canvas.
+pub const CIRCLE_CANVAS: &str = "circle-canvas";
+
+/// A session on Circle Drawer, booted in the stand's shell.
+pub fn circle_drawer(incremental: bool) -> Session {
+    Session::start("circle-drawer", move || {
+        stand::boot_circle_drawer(stand::options(incremental))
+    })
+    .expect("circle-drawer is a label")
+}
+
+/// `n` circles at whole-pixel centres inside a `w` × `h` box, diameters 10 to 79, from a fixed
+/// sequence.
+pub fn circles(n: usize, w: u64, h: u64) -> String {
+    let mut s: u64 = 0x2545_f491_4f6c_dd1d;
+    let mut next = |m: u64| {
+        s = s
+            .wrapping_mul(6_364_136_223_846_793_005)
+            .wrapping_add(1_442_695_040_888_963_407);
+        (s >> 33) % m
+    };
+    (0..n)
+        .map(|_| {
+            let x = 20 + next(w.saturating_sub(40).max(1));
+            let y = 20 + next(h.saturating_sub(40).max(1));
+            let d = 10 + next(70);
+            format!("{x},{y},{d}")
+        })
+        .collect::<Vec<_>>()
+        .join(";")
+}
+
+/// The circles the canvas carries, as its `data-circles` attribute reads.
+pub fn carried(session: &Session) -> String {
+    session
+        .harness()
+        .attr(&format!("#{CIRCLE_CANVAS}"), "data-circles")
+        .unwrap_or_default()
+}
+
+/// Writes `n` circles of the fixed sequence to the canvas's `data-circles` through the held
+/// harness's mutator, then settles.
+pub fn draw(session: &mut Session, n: usize, at: &str) {
+    let Some(Outcome::CanvasSummary { width, height, .. }) =
+        canvased(session, &canvas(CIRCLE_CANVAS))
+    else {
+        panic!("{at}: the summary reads");
+    };
+    let text = circles(n, width as u64, height as u64);
+    let harness = session.harness_mut();
+    let node = harness
+        .query(&format!("#{CIRCLE_CANVAS}"))
+        .expect("the canvas");
+    {
+        let mut doc = harness.base_mut();
+        let mut mutator = doc.mutate();
+        mutator.set_attribute(
+            node,
+            QualName::new(None, Namespace::from(""), LocalName::from("data-circles")),
+            &text,
+        );
+    }
+    assert!(harness.settle().is_ok(), "{at}: the drawing settles");
+    assert!(
+        carried(session).split(';').count() == n,
+        "{at}: the canvas carries the circles"
+    );
+}
+
+/// Brings a fresh session to `state`.
+pub fn reach(state: &str, incremental: bool) -> Session {
+    let at = format!("incremental={incremental} {state}");
+    let mut session = circle_drawer(incremental);
+    match state {
+        "boot" => {}
+        "click" => {
+            assert!(
+                act(&mut session, &click(CIRCLE_CANVAS)).is_some(),
+                "{at}: the click is accepted"
+            );
+        }
+        "12" => draw(&mut session, 12, &at),
+        "100" => draw(&mut session, 100, &at),
+        _ => panic!("a state of the table"),
+    }
+    session
+}
+
+/// The kinds a summary counts.
+pub fn kinds(session: &mut Session, at: &str) -> [usize; 8] {
+    match canvased(session, &canvas(CIRCLE_CANVAS)) {
+        Some(Outcome::CanvasSummary { kinds, .. }) => kinds,
+        _ => panic!("{at}: the summary reads"),
+    }
 }

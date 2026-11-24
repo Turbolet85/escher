@@ -1,0 +1,2 @@
+old: - No new verb, carrier, exit, cause, session error, log field or span unless a fork's answer adds one.
+new: - No new verb, carrier, exit, cause, session error, log field or span unless a fork's answer adds one. Every fork this take-up finds goes to `evidence/founder-forks.md` with its crossing, rule, measured cost, dependences, owner and most conservative building option, and the phase stops there (the operator's directive, inputs#I1).

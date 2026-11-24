@@ -83,9 +83,11 @@
 //!
 //! [`Session::lint`] reads the screen of the held instance for six defects: an element that
 //! overlaps another, is clipped, has text cut from view, lies off-screen, holds content in a box
-//! with no area or reads below its text contrast ratio. Each [`Finding`] names the element's
-//! stable id, its [`Defect`] and the measured [`Reason`], numbers and ids only. It runs no step
-//! and changes nothing. The verb `lint` answers its findings on every surface
+//! with no area or reads below its text contrast ratio. A canvas element also reads a label its
+//! widget paints whose ink box runs past its region — the content box, cut by the widget's
+//! pushed clips and the element's own clip region — as text cut from view. Each [`Finding`]
+//! names the element's stable id, its [`Defect`] and the measured [`Reason`], numbers and ids
+//! only. It runs no step and changes nothing. The verb `lint` answers its findings on every surface
 //! ([`Outcome::Linted`]), and a recorded session keeps them as it keeps every answer.
 //!
 //! The verb `graph` answers the screen's UI graph ([`Outcome::Graphed`], read by
@@ -175,6 +177,7 @@
 
 mod actions;
 mod canvas;
+mod canvas_lint;
 mod caused;
 mod cli;
 mod client;
