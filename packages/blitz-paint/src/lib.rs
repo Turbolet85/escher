@@ -145,6 +145,15 @@ fn process_custom_widget_node(
     Some(widget_scene)
 }
 
+/// The commands one custom widget records for one paint, read outside a raster: the widget is
+/// handed the document's fonts and painted once at `scale` into a fresh recording scene, as
+/// `paint_scene` paints it. `None` for a node that holds no widget or has an empty content box.
+#[cfg(feature = "custom-widget")]
+pub fn custom_widget_scene(doc: &mut BaseDocument, node_id: NodeId, scale: f64) -> Option<Scene> {
+    let mut render_ctx = Scene::new();
+    process_custom_widget_node(doc, &mut render_ctx, node_id, scale)
+}
+
 /// A custom widget's paint size: its content box (the border box less border and padding),
 /// scaled, so it matches the content-box origin its scene is placed at (upstream #1578).
 #[cfg(feature = "custom-widget")]
