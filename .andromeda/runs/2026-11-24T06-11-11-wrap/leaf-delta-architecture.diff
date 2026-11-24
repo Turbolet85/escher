@@ -1,0 +1,7 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -589,3 +589,3 @@
+ decision/bounded-retried-package-install · Bounded, retried package install — Every CI package install goes through one bounded, retried install script; no ci.yml line calls apt-get.
+-decision/canvas-placement-at-click-centre · Canvas placement only at the click centre — A driver click lands at the centre of its target element, so an agent places content on a canvas only at the canvas's centre, no verb landing a pointer elsewhere. · why: Stated as a measured limit of the driver where an agent reads it. · provisional
++decision/canvas-placement-at-click-centre · Canvas placement only at the click centre — A driver click lands at the centre of its target element, so an agent places content on a canvas only at the canvas's centre, no verb landing a pointer elsewhere. · why: Stated as a measured limit of the driver where an agent reads it.
+ decision/capability-statement-matches-schema · Capability statement held to the driver schema — The capability statement and README name every verb and refusal cause and state in words the counts of verbs, refusal causes, session errors, node keys and exit statuses that the driver schema holds. · guard: CapabilityStatementTest

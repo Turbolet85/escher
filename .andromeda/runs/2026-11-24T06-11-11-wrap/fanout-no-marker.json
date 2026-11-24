@@ -1,0 +1,130 @@
+[
+{
+"tool": "fanout",
+"v": "52",
+"sha8": "ead517b0",
+"ts": "2026-11-24T06:16:28Z",
+"argv": [
+"render",
+"--batch",
+"leaf",
+"--side",
+"wrap",
+"--skill-dir",
+"~/.claude/skills/andromeda-wrap-session",
+"--run-dir",
+".andromeda/runs/2026-11-24T06-11-11-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"VERDICT: rendered 11 (leaf 11) · batch leaf · script ./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf.workflow.js"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-architecture-1.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-architecture-2.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-architecture+layout-templates.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-architecture+layout-templates+test-plan+a11y-plan.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-architecture+test-plan-1.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-architecture+test-plan-2.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-layout-templates.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-test-plan-1.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-test-plan-2.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-a11y-plan-1.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf-a11y-plan-2.md",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf.workflow.js",
+"./.andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf.manifest.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "fanout",
+"v": "52",
+"sha8": "ead517b0",
+"ts": "2026-11-24T06:17:15Z",
+"argv": [
+"check",
+"--manifest",
+".andromeda/runs/2026-11-24T06-11-11-wrap/prompts/leaf.manifest.json",
+"--before",
+"tree 8d003c59a6cfb4de01e8a0d91f6b1be0e3a6eb7d index 0d9246d5979c977b76ddda8b7c1e89f1ba494d09 head 83260e492bee0ef24d64f776cbdbb65449e2de43",
+"--after",
+"tree e5ac390c981f02fe9b4b02bcabc3f24f20a12bf9 index 0d9246d5979c977b76ddda8b7c1e89f1ba494d09 head 83260e492bee0ef24d64f776cbdbb65449e2de43",
+"--run-dir",
+".andromeda/runs/2026-11-24T06-11-11-wrap",
+"--marker",
+"no-marker"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"batch leaf · 11 agents · 11 with every named path · trails: none",
+"[PATH_CHECK] PASS · index and head unchanged",
+"leaf: 11 agents · 11 pass",
+"VERDICT: 11 of 11 pass · failed: none"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"sub": "check",
+"batch": "leaf",
+"agents": {
+"leaf-architecture-1": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture-2": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+layout-templates": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+layout-templates+test-plan+a11y-plan": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+test-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-architecture+test-plan-2": {
+"failed": {},
+"yes": null
+},
+"leaf-layout-templates": {
+"failed": {},
+"yes": null
+},
+"leaf-test-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-test-plan-2": {
+"failed": {},
+"yes": null
+},
+"leaf-a11y-plan-1": {
+"failed": {},
+"yes": null
+},
+"leaf-a11y-plan-2": {
+"failed": {},
+"yes": null
+}
+},
+"stray": [],
+"closing_tags": [],
+"trails": [],
+"harness": [],
+"notes": []
+}
+}
+]
