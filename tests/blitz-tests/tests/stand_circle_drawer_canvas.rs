@@ -138,7 +138,7 @@ fn a_click_paints_a_circle_and_its_diameter_on_the_canvas() {
             "{at}: the disc is the measured fill"
         );
         assert!(
-            dark_pixels(&rgba, width, LABEL_BOX) == 40,
+            dark_pixels(&rgba, width, LABEL_BOX) == 41,
             "{at}: the diameter's glyphs are drawn at the centre"
         );
     }

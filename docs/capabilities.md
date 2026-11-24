@@ -417,6 +417,10 @@ The driver's own refusal texts state three readings that are off:
   and macOS aarch64, as measured at CI#39225375577 and again at CI#45189342642, where windows x86_64 read linux's
   bytes. A canvas-only shot reads the same bytes on all three hosts, pinned by `stand_canvas_cross_os`. A check
   compared byte for byte across operating systems holds no shot of page text.
+- **Canvas text across hosts.** Text an app paints on a canvas is byte-equal across hosts only with its glyph origins
+  on whole device pixels, because the CPU renderer snaps glyph origins differently on Apple hosts (CoreGraphics' grid)
+  than elsewhere (Skia's). Circle Drawer places each glyph of a diameter on a whole device pixel; drawn at fractional
+  origins its 12 px label read 37 differing pixels on macOS aarch64. Pinned by `stand_canvas_cross_os`.
 - **A click lands at an element's centre.** A driver `click` lands at the centre of its target, so an agent places
   every Circle Drawer circle at the canvas's centre, and a second click there with no `advance` is a double click,
   until `drag`. Pinned by `stand_circle_drawer_canvas`.

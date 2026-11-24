@@ -75,12 +75,17 @@ const LABEL_SIZE: f32 = 12.0;
 const RING: f64 = 2.0;
 
 impl CircleCanvas {
-    /// Draws `text` centred on `centre`, `transform` taking CSS px to the scene.
+    /// Draws `text` centred on `centre`, in CSS px, `scale` device px to the CSS px.
+    ///
+    /// Each glyph origin is placed on a whole device pixel and drawn with no transform: the CPU
+    /// renderer snaps glyph origins one way on Apple hosts (CoreGraphics' grid) and another
+    /// elsewhere (Skia's), and only a whole-pixel origin lands on the same pixel under both, so
+    /// the canvas's text paints the same bytes on every host.
     fn draw_label(
         &mut self,
         scene: &mut anyrender::Scene,
         fonts: &mut parley::FontContext,
-        transform: Affine,
+        scale: f64,
         centre: (f64, f64),
         text: &str,
     ) {
@@ -89,30 +94,29 @@ impl CircleCanvas {
         builder.push_default(parley::GenericFamily::SansSerif);
         let mut layout = builder.build(text);
         layout.break_all_lines(None);
-        let at = transform
-            * Affine::translate((
-                centre.0 - f64::from(layout.width()) / 2.0,
-                centre.1 - f64::from(layout.height()) / 2.0,
-            ));
+        let origin = (
+            centre.0 - f64::from(layout.width()) / 2.0,
+            centre.1 - f64::from(layout.height()) / 2.0,
+        );
         for line in layout.lines() {
             for item in line.items() {
                 if let parley::PositionedLayoutItem::GlyphRun(glyphs) = item {
                     let run = glyphs.run();
                     scene.draw_glyphs(
                         run.font(),
-                        run.font_size(),
+                        run.font_size() * scale as f32,
                         true,
                         &[],
                         Vec2::default(),
                         Fill::NonZero,
                         &anyrender::Paint::from(LABEL),
                         1.0,
-                        at,
+                        Affine::IDENTITY,
                         None,
                         glyphs.positioned_glyphs().map(|g| anyrender::Glyph {
                             id: g.id as _,
-                            x: g.x,
-                            y: g.y,
+                            x: (scale * (origin.0 + f64::from(g.x))).round() as f32,
+                            y: (scale * (origin.1 + f64::from(g.y))).round() as f32,
                         }),
                         AntiAliasing::Enabled,
                     );
@@ -172,7 +176,7 @@ impl Widget for CircleCanvas {
             let mut fonts = fonts.lock().unwrap_or_else(PoisonError::into_inner);
             for c in self.circles.clone() {
                 let text = format!("{}", c.d.round());
-                self.draw_label(&mut scene, &mut fonts, transform, (c.x, c.y), &text);
+                self.draw_label(&mut scene, &mut fonts, scale, (c.x, c.y), &text);
             }
         }
         scene.pop_layer();

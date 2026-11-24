@@ -54,8 +54,8 @@ const SAMPLE_ROWS: usize = 2;
 /// Circle Drawer's canvas element shot after one click at its centre: a circle and its
 /// diameter painted by the widget.
 const SAMPLE: [Row; SAMPLE_ROWS] = [
-    ("circle-drawer", "element", false, 0x6254311b2b544235),
-    ("circle-drawer", "element", true, 0x6254311b2b544235),
+    ("circle-drawer", "element", false, 0x5d5664142f9a5201),
+    ("circle-drawer", "element", true, 0x5d5664142f9a5201),
 ];
 
 const FIXTURES: [&str; 3] = ["fill", "edge", "text"];
