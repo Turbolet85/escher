@@ -4,6 +4,7 @@ use anyrender::render_to_buffer;
 use anyrender_vello_cpu::VelloCpuImageRenderer;
 use blitz_dom::Document;
 use blitz_paint::paint_scene;
+use blitz_traits::node_id::NodeId;
 
 use crate::Harness;
 
@@ -68,6 +69,16 @@ impl<D: Document> Harness<D> {
             height: y1 - y0,
             rgba,
         })
+    }
+
+    /// The draw commands the custom widget at `node` records for one paint at the viewport's
+    /// scale, read outside a raster through [`blitz_paint::custom_widget_scene`]. It reads the
+    /// layout the last settle left: it runs no resolve, tick or pump, and changes nothing a
+    /// screen reads. `None` for a node that holds no widget or whose content box is empty.
+    pub fn canvas_scene(&mut self, node: NodeId) -> Option<anyrender::Scene> {
+        let mut doc = self.base_mut();
+        let scale = doc.get_viewport().scale_f64();
+        blitz_paint::custom_widget_scene(&mut doc, node, scale)
     }
 
     fn paint_viewport(&mut self) -> Result<Raster, ScreenshotError> {

@@ -1,17 +1,22 @@
 //! The one statement of what the checks beside the stand share: a fixture page booted with the
 //! stand's own options, such a page held in a driver session, the fixture pages more than one
-//! check reads, and a network stand-in that holds every request until the check answers it. A
+//! check reads — a canvas page painted from Rust among them — and a network stand-in that holds every request until the check answers it. A
 //! check declares `mod fixtures;` and reads what it needs. This module holds no test.
 
 #![allow(dead_code)]
 
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 
+use anyrender::{AntiAliasing, PaintScene as _};
+use blitz_dom::Widget;
+use blitz_dom::node::ComputedStyles;
 use blitz_test_harness::Harness;
 use blitz_traits::net::{Bytes, NetHandler, NetProvider, Request};
 use dioxus::prelude::*;
-use dioxus_native_dom::DioxusDocument;
+use dioxus_native_dom::{CustomWidgetAttr, DioxusDocument};
 use escher_driver::{Fixture, Session};
+use peniko::kurbo::{Affine, Circle, Rect, Stroke, Vec2};
+use peniko::{Color, Fill};
 use seven_guis::stand;
 
 /// A fixture booted as the stand boots a task: pinned viewport, bundled font, offline.
@@ -92,6 +97,150 @@ pub fn many_items() -> Element {
                 }
             }
             input { id: "secret", r#type: "password", aria_label: "Secret" }
+        }
+    }
+}
+
+/// The text the small canvas shapes into glyphs: no answer may hold it.
+pub const CANVAS_TEXT: &str = "QZX";
+
+/// How many solid fills the large canvas paints: its full dump passes the budget.
+pub const LARGE_FILLS: usize = 200;
+
+type Fonts = Arc<Mutex<parley::FontContext>>;
+
+/// A widget painting a clip layer over its box, a solid fill, a stroked circle and the glyphs
+/// of [`CANVAS_TEXT`] shaped from the document's own font context, then the pop.
+struct SmallCanvas {
+    fonts: Option<Fonts>,
+    layouts: parley::LayoutContext<()>,
+}
+
+impl Widget for SmallCanvas {
+    fn fonts(&mut self, fonts: &Fonts) {
+        self.fonts = Some(Arc::clone(fonts));
+    }
+
+    fn paint(
+        &mut self,
+        _ctx: &mut dyn anyrender::RenderContext,
+        _styles: &ComputedStyles,
+        width: u32,
+        height: u32,
+        _scale: f64,
+    ) -> anyrender::Scene {
+        let mut scene = anyrender::Scene::new();
+        let bounds = Rect::new(0.0, 0.0, f64::from(width), f64::from(height));
+        scene.push_clip_layer(Fill::NonZero, Affine::IDENTITY, &bounds);
+        scene.fill(
+            Fill::NonZero,
+            Affine::IDENTITY,
+            Color::from_rgb8(240, 240, 240),
+            None,
+            &Rect::new(10.0, 10.0, 60.0, 40.0),
+            AntiAliasing::Enabled,
+        );
+        scene.stroke(
+            &Stroke::new(2.0),
+            Affine::IDENTITY,
+            Color::from_rgb8(20, 20, 20),
+            None,
+            &Circle::new((100.0, 50.0), 30.0),
+            AntiAliasing::Enabled,
+        );
+        if let Some(fonts) = self.fonts.clone() {
+            let mut fonts = fonts.lock().expect("the font context is not poisoned");
+            let mut builder = self
+                .layouts
+                .ranged_builder(&mut fonts, CANVAS_TEXT, 1.0, true);
+            builder.push_default(parley::StyleProperty::FontSize(16.0));
+            builder.push_default(parley::GenericFamily::SansSerif);
+            let mut layout = builder.build(CANVAS_TEXT);
+            layout.break_all_lines(None);
+            for line in layout.lines() {
+                for item in line.items() {
+                    if let parley::PositionedLayoutItem::GlyphRun(glyphs) = item {
+                        let run = glyphs.run();
+                        scene.draw_glyphs(
+                            run.font(),
+                            run.font_size(),
+                            true,
+                            &[],
+                            Vec2::default(),
+                            Fill::NonZero,
+                            &anyrender::Paint::from(Color::from_rgb8(0, 0, 0)),
+                            1.0,
+                            Affine::translate((150.0, 20.0)),
+                            None,
+                            glyphs.positioned_glyphs().map(|g| anyrender::Glyph {
+                                id: g.id as _,
+                                x: g.x.round(),
+                                y: g.y.round(),
+                            }),
+                            AntiAliasing::Enabled,
+                        );
+                    }
+                }
+            }
+        }
+        scene.pop_layer();
+        scene
+    }
+}
+
+/// A widget painting [`LARGE_FILLS`] solid fills.
+struct LargeCanvas;
+
+impl Widget for LargeCanvas {
+    fn paint(
+        &mut self,
+        _ctx: &mut dyn anyrender::RenderContext,
+        _styles: &ComputedStyles,
+        _width: u32,
+        _height: u32,
+        _scale: f64,
+    ) -> anyrender::Scene {
+        let mut scene = anyrender::Scene::new();
+        for index in 0..LARGE_FILLS {
+            let x = (index % 20) as f64 * 10.0;
+            let y = (index / 20) as f64 * 10.0;
+            scene.fill(
+                Fill::NonZero,
+                Affine::IDENTITY,
+                Color::from_rgb8((index % 256) as u8, 100, 200),
+                None,
+                &Rect::new(x, y, x + 8.0, y + 8.0),
+                AntiAliasing::Enabled,
+            );
+        }
+        scene
+    }
+}
+
+/// Two keyed canvases painted from Rust and a keyed button: `small-canvas`, a clip layer, a
+/// fill, a stroke and a glyph run of [`CANVAS_TEXT`] from the document's fonts; `large-canvas`,
+/// [`LARGE_FILLS`] fills; `fx-button`, no canvas.
+pub fn canvas_commands() -> Element {
+    let small = use_hook(|| {
+        CustomWidgetAttr::new(SmallCanvas {
+            fonts: None,
+            layouts: parley::LayoutContext::new(),
+        })
+    });
+    let large = use_hook(|| CustomWidgetAttr::new(LargeCanvas));
+    rsx! {
+        div { id: "fx-root",
+            object {
+                id: "small-canvas",
+                style: "display: block; width: 200px; height: 100px;",
+                "data": small,
+            }
+            object {
+                id: "large-canvas",
+                style: "display: block; width: 200px; height: 100px;",
+                "data": large,
+            }
+            button { id: "fx-button", "Go" }
         }
     }
 }

@@ -706,3 +706,255 @@ fn a_coverage_line_keys_each_handler_and_leaves_out_an_absent_owner() {
     };
     assert_eq!(none.to_json(), r#"{"unexercised":[],"checks":0,"held":0}"#);
 }
+
+#[test]
+fn every_canvas_command_kind_and_brush_form_is_written_once() {
+    use crate::canvas::{CanvasBrush, CanvasCommand, GradientStop, PathStep, Rgba, Transform};
+    let id = Transform([1.0, 0.0, 0.0, 1.0, 0.0, 0.0]);
+    let scaled = Transform([2.0, 0.0, 0.0, 2.0, 0.1234, -0.0001]);
+    let shape = vec![
+        PathStep::Move(0.0, 0.0),
+        PathStep::Line(10.5, 0.0),
+        PathStep::Quad(1.0, 2.0, 3.0, 4.0),
+        PathStep::Cubic(1.0, 2.0, 3.0, 4.0, 5.0, 6.0),
+        PathStep::Close,
+    ];
+    let red = Rgba([255, 0, 0, 255]);
+    let rows: [(CanvasCommand, &str); 13] = [
+        (
+            CanvasCommand::Layer {
+                alpha: 0.5,
+                mix: "multiply",
+                compose: "src-over",
+                fill: "even-odd",
+                transform: id,
+                clip: vec![PathStep::Move(0.0, 0.0), PathStep::Close],
+                filter: true,
+                backdrop: true,
+            },
+            "layer alpha=0.5 blend=multiply,src-over fill=even-odd t=id clip=M0,0Z filter backdrop",
+        ),
+        (
+            CanvasCommand::Layer {
+                alpha: 1.0,
+                mix: "normal",
+                compose: "src-over",
+                fill: "non-zero",
+                transform: scaled,
+                clip: Vec::new(),
+                filter: false,
+                backdrop: false,
+            },
+            "layer alpha=1 blend=normal,src-over fill=non-zero t=2,0,0,2,0.123,0 clip=",
+        ),
+        (
+            CanvasCommand::Clip {
+                transform: id,
+                clip: shape.clone(),
+            },
+            "clip t=id clip=M0,0L10.5,0Q1,2,3,4C1,2,3,4,5,6Z",
+        ),
+        (
+            CanvasCommand::Mask {
+                mode: "luminance",
+                transform: id,
+                clip: Vec::new(),
+            },
+            "mask mode=luminance t=id clip=",
+        ),
+        (CanvasCommand::Pop, "pop"),
+        (
+            CanvasCommand::Fill {
+                fill: "non-zero",
+                brush: CanvasBrush::Solid(red),
+                brush_transform: None,
+                transform: id,
+                shape: vec![PathStep::Move(1.0, 1.0)],
+            },
+            "fill fill=non-zero brush=#ff0000ff t=id shape=M1,1",
+        ),
+        (
+            CanvasCommand::Fill {
+                fill: "even-odd",
+                brush: CanvasBrush::Gradient {
+                    kind: "radial",
+                    stops: vec![
+                        GradientStop {
+                            offset: 0.0,
+                            colour: red,
+                        },
+                        GradientStop {
+                            offset: 0.25,
+                            colour: Rgba([0, 16, 32, 128]),
+                        },
+                    ],
+                },
+                brush_transform: Some(scaled),
+                transform: id,
+                shape: Vec::new(),
+            },
+            "fill fill=even-odd brush=radial:0#ff0000ff,0.25#00102080 bt=2,0,0,2,0.123,0 t=id shape=",
+        ),
+        (
+            CanvasCommand::Fill {
+                fill: "non-zero",
+                brush: CanvasBrush::Image(1),
+                brush_transform: None,
+                transform: id,
+                shape: Vec::new(),
+            },
+            "fill fill=non-zero brush=image:1 t=id shape=",
+        ),
+        (
+            CanvasCommand::Fill {
+                fill: "non-zero",
+                brush: CanvasBrush::Resource,
+                brush_transform: None,
+                transform: id,
+                shape: Vec::new(),
+            },
+            "fill fill=non-zero brush=resource t=id shape=",
+        ),
+        (
+            CanvasCommand::Fill {
+                fill: "non-zero",
+                brush: CanvasBrush::Pattern,
+                brush_transform: None,
+                transform: id,
+                shape: Vec::new(),
+            },
+            "fill fill=non-zero brush=pattern t=id shape=",
+        ),
+        (
+            CanvasCommand::Stroke {
+                width: 2.0,
+                join: "round",
+                start_cap: "butt",
+                end_cap: "round",
+                miter: 4.0,
+                dashes: vec![4.0, 2.0],
+                dash_offset: 1.0,
+                brush: CanvasBrush::Solid(red),
+                brush_transform: None,
+                transform: id,
+                shape: Vec::new(),
+            },
+            "stroke w=2 join=round cap=butt,round miter=4 dash=4,2@1 brush=#ff0000ff t=id shape=",
+        ),
+        (
+            CanvasCommand::Glyphs {
+                font: 0,
+                size: 13.333_333,
+                brush: CanvasBrush::Solid(red),
+                alpha: 0.5,
+                transform: id,
+                count: 3,
+                origins: Some([1.0, f64::NAN, 3.0, 4.0]),
+                ids: 0x00ab_cdef_0123_4567,
+            },
+            "glyphs font=0 size=13.333 brush=#ff0000ff alpha=0.5 t=id n=3 at=1,null,3,4 ids=00abcdef01234567",
+        ),
+        (
+            CanvasCommand::Shadow {
+                transform: id,
+                rect: [0.0, 0.0, 10.0, 20.0],
+                radii: [1.0; 8],
+                offset: (2.0, -2.0),
+                spread: 0.0,
+                deviation: 3.0,
+                colour: Rgba([0, 0, 0, 64]),
+                kind: "outset",
+            },
+            "shadow t=id box=0,0,10,20 radii=1,1,1,1,1,1,1,1 offset=2,-2 spread=0 dev=3 colour=#00000040 kind=outset",
+        ),
+    ];
+    assert_eq!(rows.len(), 13);
+    for (row, (command, line)) in rows.iter().enumerate() {
+        let written = super::canvas::canvas_lines(std::slice::from_ref(command), 0);
+        assert!(written == [format!("{line}\n")], "row {row}");
+    }
+    // A glyph run of no glyph has no origins' box, and its alpha of 1 is left out.
+    let empty = CanvasCommand::Glyphs {
+        font: 2,
+        size: 12.0,
+        brush: CanvasBrush::Solid(red),
+        alpha: 1.0,
+        transform: id,
+        count: 0,
+        origins: None,
+        ids: 0,
+    };
+    assert_eq!(
+        super::canvas::canvas_lines(&[empty], 0),
+        ["glyphs font=2 size=12 brush=#ff0000ff t=id n=0 at=none ids=0000000000000000\n"]
+    );
+}
+
+#[test]
+fn a_canvas_summary_and_a_full_dump_are_written_whole_and_a_part_indents_from_its_depth() {
+    use crate::canvas::{CanvasBrush, CanvasCommand, CanvasReading, PathStep, Rgba, Transform};
+    let id = Transform([1.0, 0.0, 0.0, 1.0, 0.0, 0.0]);
+    let commands = vec![
+        CanvasCommand::Clip {
+            transform: id,
+            clip: vec![PathStep::Move(0.0, 0.0), PathStep::Close],
+        },
+        CanvasCommand::Fill {
+            fill: "non-zero",
+            brush: CanvasBrush::Solid(Rgba([1, 2, 3, 255])),
+            brush_transform: None,
+            transform: id,
+            shape: vec![PathStep::Move(1.0, 1.0)],
+        },
+        CanvasCommand::Pop,
+    ];
+    let summary = Outcome::CanvasSummary {
+        canvas: true,
+        width: 300.0,
+        height: 120.5,
+        kinds: [0, 1, 0, 1, 1, 0, 0, 0],
+        depth: 1,
+        digest: 0x0123_4567_89ab_cdef,
+    };
+    assert_eq!(
+        summary.to_json(),
+        r##"{"canvas":true,"width":300,"height":120.5,"kinds":{"layer":0,"clip":1,"mask":0,"pop":1,"fill":1,"stroke":0,"glyphs":0,"shadow":0},"depth":1,"digest":"0123456789abcdef"}"##
+    );
+    let reading = CanvasReading {
+        canvas: true,
+        width: 300.0,
+        height: 120.5,
+        commands: commands.clone(),
+        fonts: vec![0xfeed_beef_0000_0001],
+        images: Vec::new(),
+    };
+    let dump = Outcome::CanvasDump {
+        reading: reading.clone(),
+    };
+    assert_eq!(
+        dump.to_json(),
+        r##"{"canvas":true,"text":"clip t=id clip=M0,0Z\n  fill fill=non-zero brush=#010203ff t=id shape=M1,1\npop\n","fonts":["feedbeef00000001"],"images":[]}"##
+    );
+    // A part opens inside the clip: its first line is indented from the depth it is given.
+    let part = Outcome::CanvasPart {
+        reading: CanvasReading {
+            commands: commands[1..].to_vec(),
+            fonts: Vec::new(),
+            ..reading
+        },
+        depth: 1,
+        part: 2,
+        parts: 2,
+    };
+    assert_eq!(
+        part.to_json(),
+        r##"{"canvas":true,"text":"  fill fill=non-zero brush=#010203ff t=id shape=M1,1\npop\n","fonts":[],"images":[],"part":2,"parts":2}"##
+    );
+    let none = Outcome::CanvasDump {
+        reading: CanvasReading::none(),
+    };
+    assert_eq!(
+        none.to_json(),
+        r#"{"canvas":false,"text":"","fonts":[],"images":[]}"#
+    );
+}

@@ -145,6 +145,20 @@ fn process_custom_widget_node(
     Some(widget_scene)
 }
 
+/// The commands one custom widget records for one paint, read outside a raster.
+///
+/// The widget is handed the document's fonts and painted once more at `scale` into a fresh
+/// recording [`Scene`], as [`paint_scene`] paints it, and that scene is returned. It changes no
+/// document state, and neither [`paint_scene`] nor any raster sees the scene. `None` for a node
+/// that holds no widget or whose content box is empty.
+///
+/// An escher addition, flagged upstreamable: a read of a widget's recorded commands.
+#[cfg(feature = "custom-widget")]
+pub fn custom_widget_scene(doc: &mut BaseDocument, node_id: NodeId, scale: f64) -> Option<Scene> {
+    let mut render_ctx = Scene::new();
+    process_custom_widget_node(doc, &mut render_ctx, node_id, scale)
+}
+
 /// A custom widget's paint size: its content box (the border box less border and padding),
 /// scaled, so it matches the content-box origin its scene is placed at (upstream #1578).
 #[cfg(feature = "custom-widget")]

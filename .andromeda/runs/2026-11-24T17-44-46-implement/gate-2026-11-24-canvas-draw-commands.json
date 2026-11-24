@@ -1,0 +1,1032 @@
+[
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-24T18:36:44Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-24-canvas-draw-commands",
+"--run-dir",
+".andromeda/runs/2026-11-24T17-44-46-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-24-canvas-draw-commands · entries 14",
+"logs $TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 188 · python 1 · rust 40 · unmapped 1",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L464-477: The gates: - escher-driver's unit tests; - the two new stand targets; - the blitz-tests co… (689 chars)",
+"prose L479-485: What is absent: - No boot-path touchpoint changes a binary's start: `session_host.rs` is u… (579 chars)",
+"prose L487-507: Each new check is controlled red-before-green (tests S4). After the steps are green, /impl… (1725 chars)",
+"prose L509-514: An acceptance reads CI: the windows and macOS legs hold the canvas table and the re-read `… (434 chars)",
+"  1 unit        green · exit 0 · 1.53s · 11277 B → 1.log · cargo test -p escher-driver --locked --lib",
+"  2 integration green · exit 0 · 4.64s · 2032 B → 2.log · cargo test -p blitz-tests --locked --test stand_canvas_com… (92 chars)",
+"  3 integration green · exit 0 · 24.52s · 5038 B → 3.log · cargo test -p blitz-tests --locked --test stand_actions --… (217 chars)",
+"  4 integration green · exit 0 · 8.91s · 4469 B → 4.log · cargo test -p seven_guis --locked --test cli_commands --te… (102 chars)",
+"  5 unit        green · exit 0 · 0.05s · 103 B → 5.log · python3 .github/scripts/test_capability_statement.py",
+"  6 unit        green · exit 0 · 11.43s · 142 B → 6.log · python3 .github/scripts/test_cold_agent.py",
+"  7 probe       green · exit 1 · 0.01s · 2 B → 7.log · git diff 8520d77438661329b8a5e051589341b453d5e998 -- Cargo… (110 chars)",
+"  8 lint        green · exit 0 · 673.55s · 179533 B → 8.log · bash .github/scripts/ci-leg.sh fast",
+"  9 build       green · exit 0 · 84.68s · 3711 B → 9.log · bash .github/scripts/ci-leg.sh doc",
+" 10 probe       green · exit 0 · 1.31s · 229 B → 10.log · bash .github/scripts/ci-leg.sh audit",
+" 11 integration green · exit 0 · 1063.82s · 184389 B → 11.log · bash .github/scripts/ci-leg.sh stand-repeat",
+" 12 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 13 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 14 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 14 · green 11 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-24-canvas-draw-commands",
+"plan": "doc:2026-11-24-canvas-draw-commands/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-24T02-06-46-session-2026-11-24.ndjson",
+".andromeda/db/log/2026-11-24T06-28-08-2026-11-24-upstream-sync-ahead-of-inside-the-canvas.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-24T11-14-59-wrap/evolve-2026-11-24-upstream-sync-ahead-of-inside-the-canvas.json",
+".claude/session-handoff.md",
+"README.md",
+"docs/capabilities.md",
+"escher-0.4.0/working-route.md",
+".andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/db/log/2026-11-24T17-42-11-2026-11-24T12-52-20-phase.ndjson",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/a11y-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p16.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p16.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/arch-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/cascade-tally.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/control-gate7.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/design-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/evolve-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/fanout-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/gate-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/inputs-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/layouts-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/master-desc.txt",
+".andromeda/runs/2026-11-24T12-52-20-phase/matrix-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/note-v040-10.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/obs-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/p5-card-1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/planlint-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/rec-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/rec-read-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T12-52-20-phase/relay-1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/relay-2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/relay-3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/relay-4.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/route-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/rows-packs.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/scope-cite-1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/scope-pin.json",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/security-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-history.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-rows.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-standing.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tests-task.md",
+".andromeda/runs/2026-11-24T12-52-20-phase/tree-query-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T17-44-46-implement/evolve-2026-11-24-canvas-draw-commands.json",
+".andromeda/runs/2026-11-24T17-44-46-implement/rec-2026-11-24-canvas-draw-commands.json"
+],
+"python": [
+".github/scripts/test_cold_agent.py"
+],
+"rust": [
+"Cargo.lock",
+"examples/seven_guis/tests/cli_commands.rs",
+"examples/seven_guis/tests/common/mod.rs",
+"examples/seven_guis/tests/host_log.rs",
+"examples/seven_guis/tests/mcp_log.rs",
+"examples/seven_guis/tests/mcp_server.rs",
+"packages/blitz-paint/src/lib.rs",
+"packages/blitz-test-harness/src/screenshot.rs",
+"packages/escher-driver/Cargo.toml",
+"packages/escher-driver/src/actions.rs",
+"packages/escher-driver/src/cli_tests.rs",
+"packages/escher-driver/src/command.rs",
+"packages/escher-driver/src/command_tests.rs",
+"packages/escher-driver/src/describe.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/explore.rs",
+"packages/escher-driver/src/explore_tests.rs",
+"packages/escher-driver/src/json.rs",
+"packages/escher-driver/src/json_tests.rs",
+"packages/escher-driver/src/lib.rs",
+"packages/escher-driver/src/mcp.rs",
+"packages/escher-driver/src/mcp_tests.rs",
+"packages/escher-driver/src/recording_tests.rs",
+"packages/escher-driver/src/schema.rs",
+"packages/escher-driver/src/schema/spec.rs",
+"packages/escher-driver/src/schema_tests.rs",
+"tests/blitz-tests/tests/fixtures/mod.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_act_scroll.rs",
+"tests/blitz-tests/tests/stand_act_spans.rs",
+"tests/blitz-tests/tests/stand_actions.rs",
+"tests/blitz-tests/tests/stand_cross_os_readings.rs",
+"tests/blitz-tests/tests/stand_masks_on_new_answers.rs",
+"tests/blitz-tests/tests/stand_mcp_tools.rs",
+"tests/blitz-tests/tests/stand_requirement_sweep.rs",
+"packages/escher-driver/src/canvas.rs",
+"packages/escher-driver/src/canvas_tests.rs",
+"packages/escher-driver/src/json/canvas.rs",
+"tests/blitz-tests/tests/stand_canvas_carriers.rs",
+"tests/blitz-tests/tests/stand_canvas_commands.rs"
+]
+},
+"unmapped": [
+"scripts/cold-agent.sh"
+],
+"walk_class": {
+"marked": {},
+"uncommitted": 230,
+"problem": null
+},
+"prose": [
+{
+"from": 464,
+"to": 477,
+"text": "The gates: - escher-driver's unit tests; - the two new stand targets; - the blitz-tests companions the diff moves; - seven_guis' four process checks; - the two CI-script tests; - the lock guard; - the pre-push gate (`fast`); - the `doc` leg. The chunk edits public doc comments (`Harness`, `Session`, `Command`, `Outcome`, `FieldKind`, the   crate doc, a new public read in blitz-paint), and `fast` runs no rustdoc (test-plan ·   decision/doc-leg-gates-public-doc-edits); - the `audit` leg. escher-driver takes two dependencies; the fast leg runs no audit (security-plan ·   decision/local-audit-before-push); - `stand-repeat`. Both new targets are `stand_` files, so they run by its glob."
+},
+{
+"from": 479,
+"to": 485,
+"text": "What is absent: - No boot-path touchpoint changes a binary's start: `session_host.rs` is untouched. `cli_commands`, `mcp_server`,   `host_log` and `mcp_log` drive both binaries' roles and stand in for the smoke. - There is no live leg: the cold-agent pipe takes the tool into its lists and runs no live run. - There is no headful self-verify harness in this project, and this is no UI chunk. - The coverage leg is not run locally. CI's coverage job reads escher-driver's 97 % and blitz-test-harness's 90 %   floors on the pushed tree, and the CI read below asserts green over it."
+},
+{
+"from": 487,
+"to": 507,
+"text": "Each new check is controlled red-before-green (tests S4). After the steps are green, /implement makes four one-shot `gate.py control` runs, never entries. Each names the edit's text and the case by its test name (gate-contract.md §Control), and each enters with the red reading it must produce: - **The read reaching a pass.**   - Edit: the `Command::Canvas` arm in `execute.rs` calls `self.harness.pump()` before `self.canvas(id)`.   - Fired on: the `stand_canvas_commands` entry, case `a_canvas_read_changes_nothing_with_timer_ticks_pending`.   - Red reading: the delivered ticks read applied after the call, `timer-elapsed`'s name moving. - **Glyph ids written.**   - Edit: `json.rs` writes the `glyphs` line's `ids=` as the glyph ids joined by `,` in place of the digest.   - Fired on: the new-targets entry, case `the_fixtures_answers_hold_no_glyph_id_and_no_text`.   - Red reading: the `ids` value is not 16 lowercase hex. - **Exploration's canvas filter removed.**   - Edit: `explorable` in `explore.rs` no longer leaves out the `Commands` and `CommandCounts` kinds.   - Fired on: the escher-driver unit entry, case     `the_verbs_explored_are_the_tables_target_verbs_with_no_image_no_layout_and_no_canvas_reading`.   - Red reading: `canvas` among the explored verbs. - **The budget doubled.**   - Edit: the canvas cut in `execute.rs` measures parts against `2 * SNAPSHOT_TEXT_BUDGET`. A control removing a bound     loosens it to twice the budget (test-plan · decision/mutation-controlled-tests).   - Fired on: the `stand_canvas_commands` entry, case `a_full_dump_over_the_budget_reads_in_parts_each_within_it`.   - Red reading: a part over 10,000 bytes and the 100-circle dump read in fewer parts than its table row."
+},
+{
+"from": 509,
+"to": 514,
+"text": "An acceptance reads CI: the windows and macOS legs hold the canvas table and the re-read `actions` digests, and CI's coverage job holds the floors. So the operator's hygiene, push and CI entries stand. The diff is OS-sensitive in two ways, and the `ci.py` entry's note names both: - the `cfg(unix)` items of the new socket and kept-check tests: the windows leg runs the in-process and MCP tests   alone; - the committed digest tables."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/1.log",
+"bytes": 11277,
+"log_sha8": "2d0fcc67",
+"exit": 0,
+"seconds": 1.53,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_canvas_commands --test stand_canvas_carriers",
+"run_sha8": "b54d2195",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/2.log",
+"bytes": 2032,
+"log_sha8": "954a333c",
+"exit": 0,
+"seconds": 4.64,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_actions --test stand_cross_os_readings --test stand_act_spans --test stand_mcp_tools --test stand_replay --test stand_masks_on_new_answers --test stand_requirement_sweep",
+"run_sha8": "b22304ee",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/3.log",
+"bytes": 5038,
+"log_sha8": "90c21330",
+"exit": 0,
+"seconds": 24.52,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test cli_commands --test mcp_server --test host_log --test mcp_log",
+"run_sha8": "a457ec5a",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/4.log",
+"bytes": 4469,
+"log_sha8": "3b94c0db",
+"exit": 0,
+"seconds": 8.91,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "python3 .github/scripts/test_capability_statement.py",
+"run_sha8": "24e88755",
+"expect": [
+"exit 0",
+"contains OK"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/5.log",
+"bytes": 103,
+"log_sha8": "baf49b59",
+"exit": 0,
+"seconds": 0.05,
+"readings": [
+"exit 0 ✓",
+"contains 'OK' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "unit",
+"run": "python3 .github/scripts/test_cold_agent.py",
+"run_sha8": "ed54868e",
+"expect": [
+"exit 0",
+"contains OK"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/6.log",
+"bytes": 142,
+"log_sha8": "f2063b6b",
+"exit": 0,
+"seconds": 11.43,
+"readings": [
+"exit 0 ✓",
+"contains 'OK' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "probe",
+"run": "git diff 8520d77438661329b8a5e051589341b453d5e998 -- Cargo.lock | grep -c -E '^[+-](name|version|checksum) = '",
+"run_sha8": "8a9a1186",
+"expect": [
+"exit 1",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/7.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 1,
+"seconds": 0.01,
+"readings": [
+"exit 1 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/8.log",
+"bytes": 179533,
+"log_sha8": "1f497edc",
+"exit": 0,
+"seconds": 673.55,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/9.log",
+"bytes": 3711,
+"log_sha8": "b35e31c0",
+"exit": 0,
+"seconds": 84.68,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "bash .github/scripts/ci-leg.sh audit",
+"run_sha8": "510edf14",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/10.log",
+"bytes": 229,
+"log_sha8": "6bab846c",
+"exit": 0,
+"seconds": 1.31,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": [
+"exit 0",
+"last line stand-repeat: 3 of 3 rounds green"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/11.log",
+"bytes": 184389,
+"log_sha8": "f93db44f",
+"exit": 0,
+"seconds": 1063.82,
+"readings": [
+"exit 0 ✓",
+"last line 'stand-repeat: 3 of 3 rounds green' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-24T18:39:10Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-24-canvas-draw-commands",
+"--controls-file",
+".andromeda/runs/2026-11-24T17-44-46-implement/control-1.toml",
+"--run-dir",
+".andromeda/runs/2026-11-24T17-44-46-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-24-canvas-draw-commands · controls 4 · entries 2 (2,1)",
+"logs $TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone ~/.cache/andromeda-control/875780d4 · HEAD 8520d774 · copied 232 · removed 0 · working folder 8 files · free 428.7 G",
+"entry 2 in place green · 67.81s → 2.2.log",
+"entry 1 in place green · 46.96s → 1.2.log",
+"control read-reaching-a-pass · entry 2 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 67.81s · 6.82s → 2.without-read-reaching-a-pass.log",
+"control glyph-ids-written · entry 2 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 67.81s · 5.78s → 2.without-glyph-ids-written.log",
+"control explore-canvas-filter-removed · entry 1 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 46.96s · 1.7s → 1.without-explore-canvas-filter-removed.log",
+"control budget-doubled · entry 2 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 67.81s · 6.29s → 2.without-budget-doubled.log",
+"control: 4 holds · 0 timeout · 0 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-24-canvas-draw-commands",
+"plan": "doc:2026-11-24-canvas-draw-commands/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46",
+"clone": "~/.cache/andromeda-control/875780d4",
+"head": "8520d77438661329b8a5e051589341b453d5e998",
+"copied": 232,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_canvas_commands --test stand_canvas_carriers",
+"run_sha8": "b54d2195",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/2.2.log",
+"bytes": 18995,
+"log_sha8": "a47f9ef9",
+"exit": 0,
+"seconds": 67.81,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/1.2.log",
+"bytes": 16716,
+"log_sha8": "13378be9",
+"exit": 0,
+"seconds": 46.96,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "read-reaching-a-pass",
+"entry": 2,
+"guard": "the canvas arm reads with no pass: the edit pumps the harness before the read",
+"cases": [
+"a_canvas_read_changes_nothing_with_timer_ticks_pending"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/execute.rs",
+"before": "87e247cd",
+"after": "f03d4c27"
+}
+],
+"word": "holds",
+"removed": {
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_canvas_commands --test stand_canvas_carriers",
+"run_sha8": "b54d2195",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/2.without-read-reaching-a-pass.log",
+"bytes": 2623,
+"log_sha8": "2ad8d9b8",
+"exit": 101,
+"seconds": 6.82,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "glyph-ids-written",
+"entry": 2,
+"guard": "a glyph run crosses as a digest of its ids: the edit keeps a glyph id in its place and writes it",
+"cases": [
+"the_fixtures_answers_hold_no_glyph_id_and_no_text"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/canvas.rs",
+"before": "b70c9aa1",
+"after": "aabd049b"
+},
+{
+"path": "packages/escher-driver/src/json/canvas.rs",
+"before": "81401b2a",
+"after": "697a0e38"
+}
+],
+"word": "holds",
+"removed": {
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_canvas_commands --test stand_canvas_carriers",
+"run_sha8": "b54d2195",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/2.without-glyph-ids-written.log",
+"bytes": 1971,
+"log_sha8": "ed127e50",
+"exit": 101,
+"seconds": 5.78,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "explore-canvas-filter-removed",
+"entry": 1,
+"guard": "exploration leaves out a verb answering a canvas reading, by field kind",
+"cases": [
+"the_verbs_explored_are_the_tables_target_verbs_with_no_image_no_layout_and_no_canvas_reading"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/explore.rs",
+"before": "dc247f54",
+"after": "5dc283b5"
+}
+],
+"word": "holds",
+"removed": {
+"n": 1,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/1.without-explore-canvas-filter-removed.log",
+"bytes": 12447,
+"log_sha8": "1c2cc152",
+"exit": 101,
+"seconds": 1.7,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "budget-doubled",
+"entry": 2,
+"guard": "the canvas cut holds each part within the budget: the edit loosens it to twice the budget",
+"cases": [
+"a_full_dump_over_the_budget_reads_in_parts_each_within_it"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/execute.rs",
+"before": "87e247cd",
+"after": "a3853cdd"
+}
+],
+"word": "holds",
+"removed": {
+"n": 2,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_canvas_commands --test stand_canvas_carriers",
+"run_sha8": "b54d2195",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-24-canvas-draw-commands/implement-2026-11-24T17-44-46/2.without-budget-doubled.log",
+"bytes": 2957,
+"log_sha8": "fe8d14e0",
+"exit": 101,
+"seconds": 6.29,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+}
+],
+"removal": "clone removed",
+"at": "budget-doubled"
+}
+},
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-24T18:39:46Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-24-canvas-draw-commands",
+"--run-dir",
+".andromeda/runs/2026-11-24T17-44-46-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 4 · modify 38 · derived 0 · record 2",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"unrecorded tests/blitz-tests/tests/stand_mcp_tools.rs",
+"recorded in-intent packages/escher-driver/src/json/canvas.rs",
+"recorded companion tests/blitz-tests/tests/stand_act_scroll.rs",
+"scope: unrecorded 1 files · changed 44 · listed 41 · recorded 2 (companion 1 · mechanical 0 · in-intent 1 · widening 0) · absorbed 0 · excluded 188"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 44,
+"listed": 41,
+"recorded": 2,
+"unrecorded": 1,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 1,
+"widening": 0
+},
+"excluded": 188,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-24T18:39:53Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-24-canvas-draw-commands",
+"--run-dir",
+".andromeda/runs/2026-11-24T17-44-46-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 4 · modify 38 · derived 0 · record 3",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded in-intent packages/escher-driver/src/json/canvas.rs",
+"recorded companion tests/blitz-tests/tests/stand_act_scroll.rs",
+"recorded in-intent tests/blitz-tests/tests/stand_mcp_tools.rs",
+"scope: clean — changed 44 · listed 41 · recorded 3 (companion 1 · mechanical 0 · in-intent 2 · widening 0) · absorbed 0 · excluded 188"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 44,
+"listed": 41,
+"recorded": 3,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 1,
+"mechanical": 0,
+"in-intent": 2,
+"widening": 0
+},
+"excluded": 188,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-24T18:39:58Z",
+"argv": [
+"census",
+"--comm",
+"escher-session",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--args",
+"stand_canvas_carriers",
+"--args",
+"cli_commands",
+"--args",
+"canvas_host",
+"--run-dir",
+".andromeda/runs/2026-11-24T17-44-46-implement",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm escher-session, cargo, rustc · args stand_canvas_carriers, cli_commands, canvas_host · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"escher-session",
+"cargo",
+"rustc"
+],
+"args": [
+"stand_canvas_carriers",
+"cli_commands",
+"canvas_host"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-24T18:42:26Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-24T17-44-46-implement",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 193 (runs 184 · evidence 2 · inputs 7) · trails 15 not read · copies 5 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 184,
+"evidence": 2,
+"inputs": 7,
+"trails": 15,
+"copies": 5,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+}
+]

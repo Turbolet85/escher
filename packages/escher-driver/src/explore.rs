@@ -152,9 +152,9 @@ pub fn explore(
     Ok(exploration)
 }
 
-/// Whether exploration drives `verb`: none of its result fields holds an image or a layout
-/// reading. A verb answering either reads the screen and changes nothing, so a path ending on
-/// it reaches no new screen.
+/// Whether exploration drives `verb`: none of its result fields holds an image, a layout
+/// reading or a canvas reading. A verb answering any of them reads the screen and changes
+/// nothing, so a path ending on it reaches no new screen.
 fn explorable(verb: &VerbSpec) -> bool {
     !verb.fields.iter().any(|field| {
         matches!(
@@ -164,6 +164,8 @@ fn explorable(verb: &VerbSpec) -> bool {
                 | FieldKind::Placement
                 | FieldKind::Shifts
                 | FieldKind::Size
+                | FieldKind::Commands
+                | FieldKind::CommandCounts
         )
     })
 }

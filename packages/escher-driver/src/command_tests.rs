@@ -195,6 +195,39 @@ fn admitted_rows() -> Vec<(Call, Command)> {
                 id: widest_id.clone(),
             },
         ),
+        (
+            call("canvas", &[("id", text("circle-canvas"))]),
+            Command::Canvas {
+                id: "circle-canvas".to_string(),
+                full: false,
+                part: None,
+            },
+        ),
+        (
+            call(
+                "canvas",
+                &[
+                    ("id", text("circle-canvas")),
+                    ("full", ArgValue::Flag(true)),
+                ],
+            ),
+            Command::Canvas {
+                id: "circle-canvas".to_string(),
+                full: true,
+                part: None,
+            },
+        ),
+        (
+            call(
+                "canvas",
+                &[("id", text("circle-canvas")), ("part", ArgValue::Number(2))],
+            ),
+            Command::Canvas {
+                id: "circle-canvas".to_string(),
+                full: false,
+                part: Some(2),
+            },
+        ),
     ];
     let keys = [
         ("tab", Key::Tab),
@@ -226,7 +259,7 @@ fn admitted_rows() -> Vec<(Call, Command)> {
 #[test]
 fn an_admitted_call_becomes_its_command() {
     let rows = admitted_rows();
-    assert_eq!(rows.len(), 41);
+    assert_eq!(rows.len(), 44);
     for (row, (call, command)) in rows.iter().enumerate() {
         assert!(validate(call).as_ref() == Ok(command), "row {row}");
     }
@@ -322,7 +355,7 @@ fn a_verb_is_checked_at_its_own_level_only() {
     }
 
     let instance = admitted_rows();
-    assert_eq!(instance.len(), 41);
+    assert_eq!(instance.len(), 44);
     for (row, (call, command)) in instance.iter().enumerate() {
         assert!(validate(call).as_ref() == Ok(command), "row {row}");
         assert!(validate_session(call) == Err(unknown), "row {row}");
@@ -396,6 +429,34 @@ fn a_malformed_call_is_refused_with_the_rule_it_broke() {
             Fault::Unnamed,
         ),
         (call("layout", &[id(), id()]), Fault::Repeated("id")),
+        (call("canvas", &[]), Fault::Missing("id")),
+        (
+            call("canvas", &[("full", flag.clone())]),
+            Fault::Missing("id"),
+        ),
+        (
+            call("canvas", &[("id", text(&"i".repeat(MAX_ID_BYTES + 1)))]),
+            Fault::OutOfBound("id"),
+        ),
+        (
+            call("canvas", &[id(), ("part", ArgValue::Number(0))]),
+            Fault::OutOfBound("part"),
+        ),
+        (
+            call("canvas", &[id(), ("part", ArgValue::Number(1001))]),
+            Fault::OutOfBound("part"),
+        ),
+        (
+            call("canvas", &[id(), ("text", text("Ada"))]),
+            Fault::Unnamed,
+        ),
+        (
+            call(
+                "canvas",
+                &[id(), ("full", flag.clone()), ("full", flag.clone())],
+            ),
+            Fault::Repeated("full"),
+        ),
         (
             call("layout", &[("id", text(&"i".repeat(MAX_ID_BYTES + 1)))]),
             Fault::OutOfBound("id"),
@@ -538,7 +599,7 @@ fn a_malformed_call_is_refused_with_the_rule_it_broke() {
             Fault::OutOfBound("key"),
         ),
     ];
-    assert_eq!(rows.len(), 57);
+    assert_eq!(rows.len(), 64);
     for (row, (call, fault)) in rows.into_iter().enumerate() {
         assert!(validate(&call) == malformed(fault), "row {row}");
     }
@@ -610,7 +671,7 @@ fn every_verb_of_the_table_is_reached_and_names_its_own_spec() {
         }
     }
     let table: Vec<&str> = schema::VERBS.iter().map(|verb| verb.name).collect();
-    assert_eq!(table.len(), 15);
+    assert_eq!(table.len(), 16);
     assert_eq!(reached, table);
     let at = |level: Level| {
         schema::VERBS
@@ -620,6 +681,6 @@ fn every_verb_of_the_table_is_reached_and_names_its_own_spec() {
     };
     assert_eq!(
         (at(Level::Instance), at(Level::Session), at(Level::Tool)),
-        (11, 3, 1)
+        (12, 3, 1)
     );
 }

@@ -2,8 +2,9 @@
 //! tool call handled to stderr at `RUST_LOG=trace`: no stable element id, no accessible name, no
 //! typed text and no image byte — while a CRUD flow runs through it by tool calls, a `type`, two
 //! `screenshot`s, the whole screen and one element, a `lint`, a `snapshot` of part 1, a `graph`
-//! and an `actions` among them, and a `layout`, nor any component or registered state name the
-//! graph answered nor any id the actions read listed nor any key of the layout answer — and
+//! and an `actions` among them, a `layout` and a `canvas`, summary and full, nor any component or
+//! registered state name the graph answered nor any id the actions read listed nor any key of the
+//! layout answer nor any key or digest of the canvas answer — and
 //! each tool call leaves exactly one `tool_call` line there, holding only its `tool` and its
 //! `ending` beside the sink's own fields, and each call run on the held instance one `command`
 //! line. Stdout holds protocol lines only. The check reads the binary as its own build makes
@@ -22,8 +23,8 @@ mod common;
 use std::process::Command;
 
 use common::{
-    Needles, Speaker, actions_needles, found, graph_needles, occurrences, stamped_lines,
-    stand_needles, string_at,
+    Needles, Speaker, actions_needles, canvas_needles, found, graph_needles, occurrences,
+    stamped_lines, stand_needles, string_at,
 };
 
 const BINARY: &str = env!("CARGO_BIN_EXE_escher-session");
@@ -127,6 +128,7 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     let Needles { ids, names } = stand_needles(SENTINEL);
     let graph = graph_needles();
     let listed = actions_needles();
+    let canvased = canvas_needles();
     assert!(
         ids.iter().any(|id| id == "crud-name"),
         "the screen's author keys are among the id needles"
@@ -168,9 +170,16 @@ fn mcp_flow(record: Option<&std::path::Path>) {
         ("graph", "{}".to_string(), true, false),
         ("actions", "{}".to_string(), true, false),
         ("layout", r#"{"id":"crud-list"}"#.to_string(), true, false),
+        ("canvas", r#"{"id":"crud-list"}"#.to_string(), true, false),
+        (
+            "canvas",
+            r#"{"id":"crud-list","full":true}"#.to_string(),
+            true,
+            false,
+        ),
         ("stop", "{}".to_string(), false, false),
     ];
-    assert_eq!(calls.len(), 13);
+    assert_eq!(calls.len(), 15);
     for (index, (name, arguments, _, is_error)) in calls.iter().enumerate() {
         let id = index as u32 + 2;
         speaker.send(tool_call(id, name, arguments).as_bytes());
@@ -249,6 +258,16 @@ fn mcp_flow(record: Option<&std::path::Path>) {
                     .all(|key| text.contains(&format!("\"{key}\"")))
         }),
         "the layout result holds its element's reading"
+    );
+    let summary = string_at(&replies[13], "text").unwrap_or_default();
+    let dump = string_at(&replies[14], "text").unwrap_or_default();
+    assert!(
+        canvased[..2]
+            .iter()
+            .chain(&canvased[3..])
+            .all(|needle| summary.contains(needle.as_str()))
+            && dump.contains(canvased[2].as_str()),
+        "the canvas results hold their keys and the summary its digest"
     );
 
     let spoke = speaker.close();
@@ -331,6 +350,7 @@ fn mcp_flow(record: Option<&std::path::Path>) {
     let (ids_found, names_found) = (found(&stderr, &ids), found(&stderr, &names));
     let graph_found = found(&stderr, &graph);
     let listed_found = found(&stderr, &listed);
+    let canvas_found = found(&stderr, &canvased);
     let layout_keys: usize = LAYOUT_KEYS
         .iter()
         .map(|key| stderr.matches(&format!("\"{key}\"")).count())
@@ -347,17 +367,19 @@ fn mcp_flow(record: Option<&std::path::Path>) {
             && names_found == 0
             && graph_found == 0
             && listed_found == 0
+            && canvas_found == 0
             && sentinels == 0
             && nobodies == 0
             && image_bytes == 0,
         "{ids_found} of {} id needles, {names_found} of {} name needles, {graph_found} of {} \
-         graph needles, {listed_found} of {} actions needles, {sentinels} occurrences of the \
-         typed text, {nobodies} of the refused id and {image_bytes} of an image found in {lines} \
-         stderr lines",
+         graph needles, {listed_found} of {} actions needles, {canvas_found} of {} canvas \
+         needles, {sentinels} occurrences of the typed text, {nobodies} of the refused id and \
+         {image_bytes} of an image found in {lines} stderr lines",
         ids.len(),
         names.len(),
         graph.len(),
-        listed.len()
+        listed.len(),
+        canvased.len()
     );
 
     #[cfg(unix)]

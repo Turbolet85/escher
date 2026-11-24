@@ -7,7 +7,8 @@
 //! neither in its check, which replays holding on a fresh session; every path an exploration
 //! keeps holds neither. Over MCP, in process, the snapshot reads the file input's value as the
 //! mask and the path nowhere. A `caused` item holds what its author wrote and stays outside the
-//! mask. A failure message names a layout mode and an index only.
+//! mask. A `canvas` answer, summary and full, on either input holds neither the sentinel nor
+//! the mask. A failure message names a layout mode and an index only.
 
 #[cfg(unix)]
 use std::fs;
@@ -25,7 +26,9 @@ mod fixtures;
 mod session_common;
 #[cfg(unix)]
 use session_common::state_dir;
-use session_common::{actions, graph, layout, mcp_result_text, snapshot, tool_call, type_into};
+use session_common::{
+    actions, canvas, canvas_full, graph, layout, mcp_result_text, snapshot, tool_call, type_into,
+};
 
 /// What the check types into the password input: synthetic, and no part of any id or name.
 const SENTINEL: &str = "Masks-Typed-Sentinel-7qZr";
@@ -95,6 +98,27 @@ fn reads_the_mask(screen: &str, id: &str, at: &str) -> bool {
         panic!("{at}: the screen lists the input");
     };
     line.contains(&format!(" value={MASKED_VALUE:?} "))
+}
+
+#[test]
+fn a_canvas_answer_holds_neither_the_typed_sentinel_nor_the_mask() {
+    for incremental in [false, true] {
+        let at = mode_name(incremental);
+        let mut session = hold_typed(incremental);
+        let calls = [
+            canvas(SECRET),
+            canvas_full(SECRET),
+            canvas(UPLOAD),
+            canvas_full(UPLOAD),
+        ];
+        for (index, call) in calls.iter().enumerate() {
+            let line = answer(&mut session, call, at, index);
+            assert!(
+                holds_no_value(&line) && !line.contains(MASKED_VALUE),
+                "{at}: canvas answer {index} holds neither the sentinel nor the mask"
+            );
+        }
+    }
 }
 
 #[test]

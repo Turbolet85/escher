@@ -39,3 +39,6 @@
   - The scratchpads and scratch clones.
 - Left for the operator to remove: `target/mutants-peak`, `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-24 18:44:36

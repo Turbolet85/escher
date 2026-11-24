@@ -1,6 +1,6 @@
 //! Every driver command leaves one line in escher's sink, and nothing a command handled is on
 //! it. With the sink installed over a capture and `RUST_LOG=info`, in both layout modes, each
-//! call run through `Session::run` — the eleven verbs on the stand's CRUD task and its Timer, and
+//! call run through `Session::run` — the twelve verbs on the stand's CRUD task and its Timer, and
 //! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
 //! that holds no family, a `press` on a fixture that renders on every pass, and a part read of
@@ -14,7 +14,7 @@
 //! the call that never went quiet, `settled=false` with `busy=render` and no passes; a refused
 //! call's line carries the name
 //! of the cause the call returned and none of the settle or diff fields; a `snapshot`'s, a
-//! part read's among them, a `screenshot`'s, a `lint`'s and a `layout`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
+//! part read's among them, a `screenshot`'s, a `lint`'s, a `layout`'s and a `canvas`'s carry neither. Over the whole capture no field name of a driver line is outside the stated set,
 //! none of its values is redacted, and no stable id, row text, label text or typed text of the
 //! driven screens occurs on any line. With `RUST_LOG` removed a command writes no driver line
 //! at all. The level filter is read from the process's environment when the sink is installed,
@@ -39,7 +39,7 @@ mod common;
 mod fixtures;
 mod session_common;
 use session_common::{
-    actions, advance, click, graph, graph_part, hold, layout, lint, press, screenshot,
+    actions, advance, canvas, click, graph, graph_part, hold, layout, lint, press, screenshot,
     screenshot_of, scroll, slug, snapshot_part, type_into,
 };
 
@@ -188,6 +188,7 @@ enum Expect {
     GraphPart,
     Actioned,
     Laid,
+    Canvased,
     Acts,
     /// An acting verb whose instance renders on every pass, so it never settles.
     Restless,
@@ -204,7 +205,10 @@ fn acting(outcome: &Outcome) -> Option<(bool, Option<Busy>, &SnapshotDiff)> {
         | Outcome::Graphed { .. }
         | Outcome::GraphPart { .. }
         | Outcome::Actions { .. }
-        | Outcome::Layout { .. } => None,
+        | Outcome::Layout { .. }
+        | Outcome::CanvasSummary { .. }
+        | Outcome::CanvasDump { .. }
+        | Outcome::CanvasPart { .. } => None,
         Outcome::Acted {
             settled,
             busy,
@@ -431,6 +435,13 @@ impl<'c> Run<'c> {
                 );
                 self.verbs.extend(verb.map(str::to_string));
             }
+            (Ok(Outcome::CanvasSummary { .. }), Expect::Canvased) => {
+                assert!(
+                    !record.has("cause") && ACTING_FIELDS.iter().all(|field| !record.has(field)),
+                    "{at}: a canvas read's line carries its verb alone"
+                );
+                self.verbs.extend(verb.map(str::to_string));
+            }
             (Ok(outcome), Expect::Acts) => {
                 let Some((settled, busy, diff)) = acting(outcome) else {
                     panic!("{at}: the call returns an acting verb's outcome");
@@ -532,8 +543,8 @@ impl<'c> Run<'c> {
             .map(|verb| verb.name)
             .collect();
         assert!(
-            run_by_a_session.len() == 11 && read_back(&self.verbs, run_by_a_session),
-            "{mode}: each of the eleven verbs ran and was read back from its line"
+            run_by_a_session.len() == 12 && read_back(&self.verbs, run_by_a_session),
+            "{mode}: each of the twelve verbs ran and was read back from its line"
         );
         assert!(
             CAUSES.len() == 8 && read_back(&self.causes, CAUSES.map(Cause::name).to_vec()),
@@ -679,6 +690,12 @@ fn child_records_each_command_at_info() {
             &layout(NOBODY),
             Expect::Refused(Cause::NotFound),
         );
+        let _ = run.drive("Crud", &mut crud, &canvas("crud-list"), Expect::Canvased);
+        let no_id = Call {
+            verb: "canvas".to_string(),
+            args: Vec::new(),
+        };
+        let _ = run.drive("Crud", &mut crud, &no_id, Expect::Refused(Cause::Malformed));
         needles.read_graph(&crud);
         let _ = run.drive(
             "Crud",
@@ -791,7 +808,7 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 41, "{}: {} calls", run.mode, run.calls);
+        assert!(run.calls == 43, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

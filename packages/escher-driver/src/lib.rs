@@ -28,9 +28,9 @@
 //! process: [`VERBS`] lists each verb with its level, its argument shapes and its result
 //! shape, [`validate`] turns a [`Call`] into a typed [`Command`] or a [`Refusal`] before
 //! anything runs, and every refusal names one of eight [`Cause`]s ([`CAUSES`]) with a fixed
-//! remedy. Fifteen verbs stand in
-//! three levels. Eleven are asked of the held instance: `snapshot`, `click`, `type`, `press`,
-//! `advance`, `scroll`, `screenshot`, `lint`, `graph`, `actions` and `layout`. Three are asked of the session itself — `start`, `status` and
+//! remedy. Sixteen verbs stand in
+//! three levels. Twelve are asked of the held instance: `snapshot`, `click`, `type`, `press`,
+//! `advance`, `scroll`, `screenshot`, `lint`, `graph`, `actions`, `layout` and `canvas`. Three are asked of the session itself — `start`, `status` and
 //! `stop` — and one of the tool itself, `help`; these four are checked by [`validate_session`],
 //! and a session runs none of them.
 //!
@@ -111,6 +111,15 @@
 //! ([`Outcome::Layout`]) on every surface, and a recorded session keeps it as it keeps every
 //! answer.
 //!
+//! [`Session::canvas`] reads the draw commands an app's widget paints into a canvas element, by
+//! its stable id ([`CanvasReading`]): one [`CanvasCommand`] per command in paint order, as closed
+//! words, numbers and digests — a glyph run as its glyph count, font size, brush, the box of its
+//! glyph origins and a digest of its glyph ids, never a glyph id or text, and each font and image
+//! by an index and a digest of its bytes. It runs no step and changes nothing. The verb `canvas`
+//! answers a summary of it ([`Outcome::CanvasSummary`]) or, with `full`, the commands as one line
+//! each ([`Outcome::CanvasDump`]), read in parts past the budget ([`Outcome::CanvasPart`]), on
+//! every surface, and a recorded session keeps it as it keeps every answer.
+//!
 //! A session can keep itself as a replayable check ([`Session::recording_into`]): every call
 //! [`Session::run`] answers, written to an owner-only file of a directory its launcher names as
 //! the call crossed in, with whether it was accepted, the [`answer_digest`] of its answer and the
@@ -165,6 +174,7 @@
 #![deny(missing_docs)]
 
 mod actions;
+mod canvas;
 mod caused;
 mod cli;
 mod client;
@@ -191,6 +201,10 @@ mod wire;
 
 pub use actions::{ActionNode, VerbReading};
 pub use blitz_test_harness::{Busy, Settled};
+pub use canvas::{
+    COMMAND_KINDS, CanvasBrush, CanvasCommand, CanvasReading, GradientStop, PathStep, Rgba,
+    Transform,
+};
 pub use caused::{
     CAUSED_KEPT, CHAIN_KEPT, Caused, CausedKind, CausedLevel, CausedPast, boundary_word,
 };

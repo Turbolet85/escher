@@ -31,10 +31,10 @@ checks it with `validate` before anything runs. The same session is carried four
 
 A kept check is a fifth medium, at rest (see Session recording and replay below).
 
-The schema holds fifteen verbs in three levels:
+The schema holds sixteen verbs in three levels:
 
 - asked of the held instance: `snapshot` · `click` · `type` · `press` · `advance` · `scroll` · `screenshot` · `lint` ·
-  `graph` · `actions` · `layout`;
+  `graph` · `actions` · `layout` · `canvas`;
 - asked of the session: `start` · `status` · `stop`;
 - asked of the tool itself: `help`.
 
@@ -194,8 +194,8 @@ Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task
 snapshot's order: a focusable element, one of an interactive role, one carrying a handler now (read from the vdom,
 `mounted` left out), or one an owner's handler serves, as a select serves its options and groups. Each node names its
 stable id, its owner and `keyed`, whether its id is an author key. It also names each verb a call can name it by:
-the verb table's instance verbs that take an id, today `click` · `type` · `scroll` · `screenshot` · `layout`, `layout`
-always without a cause. A verb that would
+the verb table's instance verbs that take an id, today `click` · `type` · `scroll` · `screenshot` · `layout` ·
+`canvas`, `layout` always without a cause and `canvas` without one on an app that can paint text. A verb that would
 be accepted now carries no cause. One that would be refused carries the cause the call would return, decided by the
 same check the call's own run meets before it acts, so the two agree by construction. `unkeyed_actionable` reads the
 same actionable rule, its listener reading the current handlers. At boot the seven served screens list 2, 7, 3, 11,
@@ -245,8 +245,8 @@ Witnesses: `stand_start_in_state`, escher-driver's fixture tests.
 A breadth-first exploration in process: `escher_driver::explore` takes a boot and a step budget, from 1 to 10,000
 acting calls, and drives every action the `actions` reader offers on each screen it reaches. Each path of calls runs
 on a fresh session the boot starts, every call through `Session::run`, and the call driven for a node is the one
-`actions` judged. The verbs are the table's id-taking instance verbs whose result holds no image and no layout
-reading, read by field kind: today `click`, `type` and `scroll`. A screen reached before is not explored again. The report names each path's calls and how it
+`actions` judged. The verbs are the table's id-taking instance verbs whose result holds no image, no layout reading
+and no canvas reading, read by field kind: today `click`, `type` and `scroll`. A screen reached before is not explored again. The report names each path's calls and how it
 ended: accepted, refused by its cause, a caught panic (`Panicked`), or a re-reach that diverged. A refused or panicked
 path is not explored further, and the exploration goes on. Given a directory, each path is kept as an owner-only check,
 whose opening record now states its format, `"format":1`, a check without one reading as format 1. The checks hold
@@ -282,6 +282,31 @@ line recording its verb, and, refused, its cause. Written as one line of JSON, i
 
 Witnesses: `layout_reason`, `stand_layout`, `stand_mcp_tools`, `stand_replay`, seven_guis' `cli_commands` and
 `mcp_server`, escher-driver's layout and JSON tests.
+
+### A canvas read as data
+
+`canvas --id <id>` reads the draw commands an app's widget paints into a canvas element, on every carrier — the
+session socket, the command line, MCP and a kept check — and in process as `Session::canvas`, read by blitz-paint's
+`custom_widget_scene`, which paints the widget once more into a recording outside any raster. By default it answers
+a summary: `canvas`, the content box's `width` and `height`, the commands counted per kind (`layer` · `clip` · `mask`
+· `pop` · `fill` · `stroke` · `glyphs` · `shadow`), the deepest layer nesting and a digest of the full dump. With
+`--full` it answers the commands themselves as `text`, one line per command in paint order, a fixed word then
+`key=value` pairs, a layer's commands indented under it and closed by `pop`, every number rounded to 1/1000, so two
+reads of one state answer the same bytes and two states diff line by line. No text is read: a glyph run crosses as
+its glyph count, its font size, its brush, the box of its glyph origins and a 64-bit digest of its glyph ids, and
+each font and image as an index into `fonts` and `images`, a digest of its bytes, never the bytes or a family name.
+A full answer over 10,000 bytes reads in parts of whole lines (`--part`), `fonts` and `images` in part 1 alone. An
+element with no widget answers `canvas` false. It runs no step, changes nothing and waits on no load; an app with no
+`sans-serif` family is refused `fonts-unavailable`.
+
+Measured on Circle Drawer, in both layout modes and held to one committed table: the summary reads 166 to 172 bytes;
+the full text reads 45 bytes at boot, 527 after one circle, 5,915 at 12 circles and 49,266 at 100, where the answer
+reads in six parts, each within the budget. Circle Drawer is read in process alone; the carriers are proven on a
+test-only canvas page. Its stated limits: a layer's filter is read as set or not, its parameters not read, and a
+command has no identity of its own, so a changed command reads in a line diff as one line removed and one added.
+
+Witnesses: `stand_canvas_commands`, `stand_canvas_carriers`, `stand_mcp_tools`, seven_guis' `cli_commands` and
+`mcp_server`, escher-driver's canvas and JSON tests.
 
 ### Engine behaviours every document gets
 
@@ -431,7 +456,7 @@ The driver's own refusal texts state three readings that are off:
   can pass 10,000 bytes, held only by the 1,048,576-byte answer bound. `snapshot` alone reads a screen in parts. As
   measured at escher-0.2.0/chunks/2026-10-20-large-screen-in-parts/report.md.
 - **An unpaged actions answer.** `actions` takes no argument and answers the whole screen at once. Cells at boot reads
-  118,292 bytes for 678 nodes, held only by the answer bound. A `click` in the overlay scrollbar band of a box just
+  130,496 bytes for 678 nodes, held only by the answer bound. A `click` in the overlay scrollbar band of a box just
   scrolled reads accepted and dispatches nothing until the scrollbar fades.
 - **The `select` model's other limits.** A `multiple` select with no `size` lists every row; Ctrl+A is not modelled. A
   controlled app must
@@ -561,6 +586,9 @@ A tool result carries:
   a state's value;
 - an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text;
 - a layout answer: ids, closed words and numbers, never page text or a style value as written;
+- a canvas answer: closed words, numbers and 64-bit digests — a glyph run's count, size, brush, origins' box and ids
+  digest, and each font and image as an index and a digest of its bytes — never a glyph id, page text, a font's or
+  an image's bytes or a family name;
 - an acting verb's `caused`, where its step caused something: each panic's, boundary error's and kept record's
   message, location, boundary, cause chain and fields as their authors wrote them, the `error` field kept within the
   text bound and every other content-named field redacted.
@@ -619,7 +647,8 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_act_errors`, `stand_act_error_text` and, on the order page, `stand_order_served`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
 `stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, the canvas shot on every host by
 `stand_canvas_cross_os`, Circle Drawer's canvas by `stand_circle_drawer_canvas`, an app's click and double click on a
-canvas by `stand_canvas_click`, Cells' current cell read
+canvas by `stand_canvas_click`, a canvas read as data by `stand_canvas_commands` and the `canvas` verb on every carrier
+by `stand_canvas_carriers`, Cells' current cell read
 `selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
 layout answers by `stand_masks_on_new_answers`, each a `stand_*` file of the `test` and `stand-repeat` legs.

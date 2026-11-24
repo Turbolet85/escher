@@ -5,13 +5,15 @@
 //! task the stated one. For every listed node and verb on the four lean tasks at boot, and on a
 //! stated subset of Cells and of the load page with its fetch in flight, the listed acceptance or
 //! cause is what the real call returns: a refused call on the one held session, its instance
-//! unchanged, an accepted `screenshot` or `layout` there too, and every other accepted call on a
-//! fresh boot. Every listed node lists `layout` last, with no cause.
+//! unchanged, an accepted `screenshot`, `layout` or `canvas` there too, and every other accepted
+//! call on a fresh boot. Every listed node lists `layout` then `canvas` last, each with no cause
+//! on an app that can paint text.
 //! The stated cases: the flight booker's two options refused `covered` with owner `flight-type`
 //! until its list opens, its return date refused `disabled` while one-way, the last CRUD row
 //! after twelve Creates refused `off-screen` until a `scroll` and the scrollbar's fade; the
 //! covered fixture's button refused `covered`; an unkeyed button read `keyed` false and named by
-//! `unkeyed_actionable`; every `screenshot` refused `fonts-unavailable` on a boot with no font.
+//! `unkeyed_actionable`; every `screenshot` and `canvas` refused `fonts-unavailable` on a boot with no
+//! font.
 //! The read changes nothing, holds no typed text and no mask, is refused `malformed` with an
 //! argument, and the whole Cells answer is within the answer bound. A failure message names a
 //! layout mode, a task, an index and a verb word only.
@@ -29,8 +31,8 @@ mod fixtures;
 mod session_common;
 use common::ACTIONABLE_AT_BOOT;
 use session_common::{
-    act, actioned, actions, advance, click, focused, hold, hold_served, layout, refused_unchanged,
-    screenshot_of, scroll, slug, type_into,
+    act, actioned, actions, advance, canvas, click, focused, hold, hold_served, layout,
+    refused_unchanged, screenshot_of, scroll, slug, type_into,
 };
 
 /// The answer bound of every carrier, in bytes.
@@ -75,6 +77,7 @@ fn call_for(verb: &str, id: &str) -> Call {
         "scroll" => scroll(id),
         "screenshot" => screenshot_of(id),
         "layout" => layout(id),
+        "canvas" => canvas(id),
         _ => panic!("a verb that names an element"),
     }
 }
@@ -91,7 +94,8 @@ fn read(session: &mut Session, at: &str) -> Vec<ActionNode> {
 }
 
 /// Each reading of `nodes` whose id `pick` takes, compared with the real call: a refused one on
-/// `held`, which it leaves unchanged; an accepted `screenshot` or `layout` on `held`; any other
+/// `held`, which it leaves unchanged; an accepted `screenshot`, `layout` or `canvas` on `held`;
+/// any other
 /// accepted one
 /// on a fresh session from `fresh`. Returns how many pairs were compared.
 #[track_caller]
@@ -118,7 +122,7 @@ fn agree(
                         "{at}: node {index} {verb}: the call is refused with the listed cause, nothing run"
                     );
                 }
-                None if verb == "screenshot" || verb == "layout" => {
+                None if verb == "screenshot" || verb == "layout" || verb == "canvas" => {
                     assert!(
                         held.run(&call).is_ok(),
                         "{at}: node {index} {verb}: the call is accepted"
@@ -156,7 +160,7 @@ fn cause(node: &ActionNode, verb: &str, at: &str) -> Option<Cause> {
 }
 
 /// One listed node: a graph node with its owner, no virtual separator in its id, keyed by its
-/// id, the table's verbs that name an element, `layout` last with no cause.
+/// id, the table's verbs that name an element, `layout` then `canvas` last, each with no cause.
 #[track_caller]
 fn assert_listed_node(node: &ActionNode, index: usize, graph: &UiGraph, at: &str) {
     let in_graph = graph.nodes.iter().find(|graphed| graphed.id == node.id);
@@ -174,14 +178,14 @@ fn assert_listed_node(node: &ActionNode, index: usize, graph: &UiGraph, at: &str
     );
     let verbs: Vec<&str> = node.verbs.iter().map(|reading| reading.verb).collect();
     assert!(
-        verbs == ["click", "type", "scroll", "screenshot", "layout"],
+        verbs == ["click", "type", "scroll", "screenshot", "layout", "canvas"],
         "{at}: node {index} lists the table's verbs that name an element"
     );
     assert!(
-        node.verbs
-            .last()
-            .is_some_and(|reading| reading.cause.is_none()),
-        "{at}: node {index} reads layout with no cause"
+        node.verbs[4..]
+            .iter()
+            .all(|reading| reading.cause.is_none()),
+        "{at}: node {index} reads layout and canvas with no cause"
     );
 }
 
@@ -259,7 +263,7 @@ fn every_listed_cause_on_the_lean_tasks_is_what_the_call_returns() {
             let fresh = || hold(task, incremental).0;
             let compared = agree(&at, &mut held, &fresh, &nodes, &|_| true);
             assert!(
-                compared == nodes.len() * 5,
+                compared == nodes.len() * 6,
                 "{at}: every listed pair is compared"
             );
         }
@@ -307,7 +311,7 @@ fn the_stated_cells_and_load_page_causes_are_what_the_call_returns() {
         let compared = agree(&at, &mut cells, &fresh, &nodes, &|id| {
             stated.iter().any(|stated| stated == id)
         });
-        assert!(compared == stated.len() * 5, "{at}: every stated pair");
+        assert!(compared == stated.len() * 6, "{at}: every stated pair");
 
         let at = format!("incremental={incremental} load");
         let mut load = load_in_flight(incremental);
@@ -318,7 +322,7 @@ fn the_stated_cells_and_load_page_causes_are_what_the_call_returns() {
         let nodes = read(&mut load, &at);
         let fresh = || load_in_flight(incremental);
         let compared = agree(&at, &mut load, &fresh, &nodes, &|id| id == "load-fetch");
-        assert!(compared == 5, "{at}: every pair of the button");
+        assert!(compared == 6, "{at}: every pair of the button");
     }
 }
 
@@ -449,7 +453,7 @@ fn the_fixtures_read_covered_unkeyed_and_fonts_unavailable() {
         );
         let fresh = || fixtures::hold("covered", fixtures::covered, incremental);
         assert!(
-            agree(&at, &mut session, &fresh, &nodes, &|id| id == "fx-under") == 5,
+            agree(&at, &mut session, &fresh, &nodes, &|id| id == "fx-under") == 6,
             "{at}: every pair of the button"
         );
 
@@ -496,9 +500,13 @@ fn the_fixtures_read_covered_unkeyed_and_fonts_unavailable() {
                 cause(node, "screenshot", &at) == Some(Cause::FontsUnavailable),
                 "{at}: node {index} reads fonts-unavailable for a screenshot"
             );
+            assert!(
+                cause(node, "canvas", &at) == Some(Cause::FontsUnavailable),
+                "{at}: node {index} reads fonts-unavailable for a canvas"
+            );
         }
         let pairs = agree(&at, &mut session, &boot, &nodes, &|_| true);
-        assert!(pairs == nodes.len() * 5, "{at}: every pair");
+        assert!(pairs == nodes.len() * 6, "{at}: every pair");
     }
 }
 
@@ -572,7 +580,7 @@ fn the_whole_cells_answer_is_within_the_answer_bound() {
         };
         let size = outcome.to_json().len();
         assert!(
-            size == 118_292 && size <= ANSWER_BOUND,
+            size == 130_496 && size <= ANSWER_BOUND,
             "{at}: the answer of {size} bytes is within the bound"
         );
     }

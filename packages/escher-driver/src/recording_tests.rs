@@ -223,6 +223,24 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
         ),
         (
             call(
+                "canvas",
+                &[
+                    ("id", text("circle-canvas")),
+                    ("full", ArgValue::Flag(false)),
+                ],
+            ),
+            false,
+            Ok(Outcome::CanvasSummary {
+                canvas: true,
+                width: 300.0,
+                height: 180.5,
+                kinds: [0, 1, 0, 1, 2, 2, 2, 0],
+                depth: 1,
+                digest: 0x0123_4567_89ab_cdef,
+            }),
+        ),
+        (
+            call(
                 "press",
                 &[("ctrl", ArgValue::Flag(true)), ("key", text("arrow-down"))],
             ),
@@ -235,7 +253,7 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
             not_found,
         ),
     ];
-    assert_eq!(calls.len(), 15);
+    assert_eq!(calls.len(), 16);
     for (row, (call, masked, answer)) in calls.iter().enumerate() {
         assert!(recording.record(call, *masked, answer), "row {row}");
     }
@@ -289,7 +307,14 @@ fn a_recording_reads_back_as_the_calls_it_kept() {
     assert!(check.steps()[12].call().args == vec![("part".to_string(), ArgValue::Number(2))]);
     assert!(check.steps()[12].answer()["nodes"][0]["id"] == "row-24");
     assert!(check.steps()[12].answer()["part"] == 2 && check.steps()[12].answer()["parts"] == 30);
+    // A canvas answer is kept whole: its counts and digest, never a command's text.
+    assert_eq!(check.steps()[13].call().verb, "canvas");
+    assert!(check.steps()[13].answer()["kinds"]["glyphs"] == 2);
+    assert!(check.steps()[13].answer()["digest"] == "0123456789abcdef");
     let text = String::from_utf8(bytes).expect("the check is text");
+    assert!(text.contains(
+        r#"{"tool":"canvas","arguments":{"id":"circle-canvas","full":false},"accepted":true,"digest":""#
+    ));
     assert!(text.starts_with(
         "[\n{\"tool\":\"start\",\"arguments\":{\"app\":\"counter\"},\"format\":1},\n"
     ));
@@ -508,8 +533,12 @@ fn a_check_in_the_grammar_is_read() {
             OPENING,
             r#"{"tool":"click","arguments":{"id":"x"},"accepted":false,"digest":"0123456789abcdef","answer":{"refused":{"cause":"not-found"}}}"#,
         ]),
+        check(&[
+            OPENING,
+            r#"{"tool":"canvas","arguments":{"id":"c","full":true,"part":2},"accepted":true,"digest":"0123456789abcdef","answer":{"canvas":true,"text":"","fonts":[],"images":[],"part":2,"parts":3}}"#,
+        ]),
     ];
-    assert_eq!(rows.len(), 8);
+    assert_eq!(rows.len(), 9);
     for (row, bytes) in rows.iter().enumerate() {
         assert!(Check::from_bytes(bytes).is_ok(), "row {row}");
     }

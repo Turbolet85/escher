@@ -101,6 +101,16 @@ pub enum FieldKind {
     Shifts,
     /// The cause of one axis's size with its computed inputs, keyed as its field's help names.
     Size,
+    /// A length in CSS pixels.
+    Length,
+    /// A count per draw-command kind, keyed by the kind's word.
+    CommandCounts,
+    /// A 64-bit digest, written as 16 lowercase hexadecimal digits.
+    Digest,
+    /// Draw commands, as text: one line per command, as its field's help states.
+    Commands,
+    /// A list of 64-bit digests, each written as 16 lowercase hexadecimal digits.
+    Digests,
 }
 
 impl FieldKind {
@@ -124,6 +134,11 @@ impl FieldKind {
             FieldKind::Placement => "placement",
             FieldKind::Shifts => "shifts",
             FieldKind::Size => "size",
+            FieldKind::Length => "length",
+            FieldKind::CommandCounts => "command-counts",
+            FieldKind::Digest => "digest",
+            FieldKind::Commands => "commands",
+            FieldKind::Digests => "digests",
         }
     }
 }

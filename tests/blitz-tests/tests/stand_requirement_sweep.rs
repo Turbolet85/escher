@@ -557,7 +557,7 @@ const WITNESSES_020: [(&str, &[Witness]); 9] = [
             (
                 Unit,
                 "packages/escher-driver/src/schema_tests.rs",
-                "the_fifteen_verbs_are_named_in_order_each_at_its_level",
+                "the_sixteen_verbs_are_named_in_order_each_at_its_level",
             ),
             (
                 Unit,
@@ -851,7 +851,7 @@ const WITNESSES_030: [(&str, &[Witness]); 16] = [
             (
                 Unit,
                 "packages/escher-driver/src/mcp_tests.rs",
-                "the_listing_is_the_fifteen_verbs_of_the_table",
+                "the_listing_is_the_sixteen_verbs_of_the_table",
             ),
             (
                 AllFour,

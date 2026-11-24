@@ -502,6 +502,40 @@ pub fn actions_needles() -> Vec<String> {
     needles
 }
 
+/// The canvas answer's needles: its keys `"kinds"`, `"digest"` and `"fonts"`, and the digest the
+/// summary of the CRUD list writes, read here in process on the CRUD screen. Asserts that the
+/// summary holds the keys and the digest.
+#[track_caller]
+pub fn canvas_needles() -> Vec<String> {
+    use seven_guis::stand::{self, LeanTask};
+
+    let harness = stand::boot(LeanTask::Crud, stand::options(true));
+    let mut session =
+        escher_driver::Session::start("crud", || harness).expect("the label is valid");
+    let call = escher_driver::Call {
+        verb: "canvas".to_string(),
+        args: vec![(
+            "id".to_string(),
+            escher_driver::ArgValue::Text("crud-list".to_string()),
+        )],
+    };
+    let summary = session
+        .run(&call)
+        .map(|outcome| outcome.to_json())
+        .expect("the canvas read answers");
+    let digest = string_at(&summary, "digest").expect("the summary holds its digest");
+    assert!(
+        summary.contains("\"kinds\"") && digest.len() == 16,
+        "the summary holds its kinds and its digest"
+    );
+    vec![
+        "\"kinds\"".to_string(),
+        "\"digest\"".to_string(),
+        "\"fonts\"".to_string(),
+        digest,
+    ]
+}
+
 /// Reads the needles of the flight booker's `flight-type` options, booted here in process: each
 /// option's id, its name and its value. Asserts that the two options were read.
 #[track_caller]

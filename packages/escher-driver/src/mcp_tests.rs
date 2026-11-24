@@ -396,7 +396,7 @@ fn listed(verb: &VerbSpec) -> (Vec<&'static str>, Vec<&'static str>, Vec<&'stati
 }
 
 #[test]
-fn the_listing_is_the_fifteen_verbs_of_the_table() {
+fn the_listing_is_the_sixteen_verbs_of_the_table() {
     let Ok(Value::Object(result)) = serde_json::from_str::<Value>(&tool_list(&APPS)) else {
         panic!("the listing is an object");
     };
@@ -405,7 +405,7 @@ fn the_listing_is_the_fifteen_verbs_of_the_table() {
     };
     assert_eq!(result.len(), 1, "no member beside the tools, no cursor");
     assert_eq!(tools.len(), VERBS.len());
-    assert_eq!(VERBS.len(), 15);
+    assert_eq!(VERBS.len(), 16);
     assert_eq!(
         tools.last().map(|tool| &tool["name"]),
         Some(&Value::from("help"))
@@ -434,6 +434,20 @@ fn the_listing_is_the_fifteen_verbs_of_the_table() {
         layout_tool["inputSchema"]["properties"]["id"]["type"],
         "string"
     );
+    let canvas = names.iter().position(|name| **name == "canvas");
+    assert_eq!(canvas, layout.map(|at| at + 1), "canvas right after layout");
+    let Some(canvas_tool) = canvas.and_then(|at| tools.get(at)) else {
+        panic!("the listing holds canvas");
+    };
+    assert_eq!(
+        canvas_tool["inputSchema"]["required"],
+        Value::from(vec!["id"]),
+        "canvas requires its id alone"
+    );
+    let properties = &canvas_tool["inputSchema"]["properties"];
+    assert_eq!(properties["id"]["type"], "string");
+    assert_eq!(properties["full"]["type"], "boolean");
+    assert_eq!(properties["part"]["type"], "integer");
     for (row, (listed_tool, verb)) in tools.iter().zip(VERBS).enumerate() {
         assert!(listed_tool["name"] == verb.name, "row {row}");
         assert_described(row, listed_tool, verb);

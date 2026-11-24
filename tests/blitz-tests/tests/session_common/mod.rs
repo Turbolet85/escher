@@ -175,6 +175,46 @@ pub fn layout(id: &str) -> Call {
     call("layout", &[("id", ArgValue::Text(id.to_string()))])
 }
 
+/// The driver call that reads the summary of the draw commands the canvas `id` names paints.
+pub fn canvas(id: &str) -> Call {
+    call("canvas", &[("id", ArgValue::Text(id.to_string()))])
+}
+
+/// The driver call that reads the draw commands the canvas `id` names paints, whole, or part 1
+/// of a dump over the budget.
+pub fn canvas_full(id: &str) -> Call {
+    call(
+        "canvas",
+        &[
+            ("id", ArgValue::Text(id.to_string())),
+            ("full", ArgValue::Flag(true)),
+        ],
+    )
+}
+
+/// The driver call that reads part `part` of the canvas `id` names's full dump.
+pub fn canvas_part(id: &str, part: i64) -> Call {
+    call(
+        "canvas",
+        &[
+            ("id", ArgValue::Text(id.to_string())),
+            ("full", ArgValue::Flag(true)),
+            ("part", ArgValue::Number(part)),
+        ],
+    )
+}
+
+/// Runs `call` on `session` through the driver and reads its outcome as a canvas answer — a
+/// summary, a whole dump or a part: `None` for a refused call and for any other outcome.
+pub fn canvased(session: &mut Session, call: &Call) -> Option<Outcome> {
+    match session.run(call).ok()? {
+        outcome @ (Outcome::CanvasSummary { .. }
+        | Outcome::CanvasDump { .. }
+        | Outcome::CanvasPart { .. }) => Some(outcome),
+        _ => None,
+    }
+}
+
 /// Runs `call` on `session` through the driver and reads its outcome as a layout answer: `None`
 /// for a refused call and for any other outcome.
 pub fn explained(session: &mut Session, call: &Call) -> Option<LayoutExplanation> {
@@ -294,8 +334,8 @@ pub fn focused(session: &Session) -> (Vec<String>, Vec<String>) {
 }
 
 /// Runs `call` on `session` through the driver and reads its outcome as an acting one: `None`
-/// for a refused call, a `snapshot`, a `screenshot`, a `lint`, a `graph`, an `actions` and a
-/// `layout`.
+/// for a refused call, a `snapshot`, a `screenshot`, a `lint`, a `graph`, an `actions`, a
+/// `layout` and a `canvas`.
 pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
     match session.run(call).ok()? {
         Outcome::Screen { .. }
@@ -305,7 +345,10 @@ pub fn act(session: &mut Session, call: &Call) -> Option<Acted> {
         | Outcome::Graphed { .. }
         | Outcome::GraphPart { .. }
         | Outcome::Actions { .. }
-        | Outcome::Layout { .. } => None,
+        | Outcome::Layout { .. }
+        | Outcome::CanvasSummary { .. }
+        | Outcome::CanvasDump { .. }
+        | Outcome::CanvasPart { .. } => None,
         Outcome::Acted {
             settled,
             busy,

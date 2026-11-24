@@ -14,6 +14,7 @@ use tracing::Span;
 use tracing::field::Empty;
 
 use crate::actions::ActionNode;
+use crate::canvas::{CanvasCommand, CanvasReading};
 use crate::caused::{Caused, CausedPast, StepReading, caused};
 use crate::command::{Call, Command, Key, validate};
 use crate::image;
@@ -141,6 +142,43 @@ pub enum Outcome {
         /// [`Session::layout`](crate::Session::layout) reads it.
         explanation: LayoutExplanation,
     },
+    /// What `canvas` returns without `full` or `part`: a summary of the commands
+    /// [`Session::canvas`](crate::Session::canvas) reads.
+    CanvasSummary {
+        /// Whether the element holds a widget whose content box is not empty.
+        canvas: bool,
+        /// The content box's width, in CSS px; 0 where `canvas` is false.
+        width: f64,
+        /// The content box's height, in CSS px; 0 where `canvas` is false.
+        height: f64,
+        /// How many commands of each kind, in the order of
+        /// [`COMMAND_KINDS`](crate::COMMAND_KINDS): layer, clip, mask, pop, fill, stroke, glyphs
+        /// and shadow.
+        kinds: [usize; 8],
+        /// The deepest nesting of layers, clips and masks.
+        depth: usize,
+        /// The FNV-1a 64 digest of the whole full dump's `text`, as `full` writes it unpaged.
+        digest: u64,
+    },
+    /// What `canvas` returns with `full` for a dump read whole.
+    CanvasDump {
+        /// The commands, as [`Session::canvas`](crate::Session::canvas) reads them.
+        reading: CanvasReading,
+    },
+    /// What `canvas` returns when the full dump is read in parts: a `part` asked for, or a dump
+    /// whose answer is over [`SNAPSHOT_TEXT_BUDGET`].
+    CanvasPart {
+        /// The part's commands, in the whole dump's order, and in part 1 alone every font and
+        /// image; all empty for a part past the last.
+        reading: CanvasReading,
+        /// The layers, clips and masks open where the part's first command stands, which its
+        /// lines are indented from.
+        depth: usize,
+        /// The part this answer holds, counted from 1.
+        part: u32,
+        /// How many parts the dump reads as.
+        parts: u32,
+    },
 }
 
 /// States the fields of a command's span once: the span that carries them, and the table of
@@ -267,6 +305,7 @@ impl Session {
             Command::Layout { ref id } => Ok(Outcome::Layout {
                 explanation: self.layout(id)?,
             }),
+            Command::Canvas { ref id, full, part } => Ok(canvas(self.canvas(id)?, full, part)),
         }
     }
 }
@@ -524,6 +563,121 @@ fn graph_parts(nodes: &[usize], states: usize) -> Vec<std::ops::Range<usize>> {
     cut
 }
 
+/// `canvas`: the summary without `full` or `part`; with `full` the whole dump when its answer is
+/// within the budget, else part 1; with a `part` that part of the full dump.
+fn canvas(mut reading: CanvasReading, full: bool, part: Option<u32>) -> Outcome {
+    if !full && part.is_none() {
+        let mut kinds = [0; 8];
+        for command in &reading.commands {
+            kinds[command.kind()] += 1;
+        }
+        return Outcome::CanvasSummary {
+            canvas: reading.canvas,
+            width: reading.width,
+            height: reading.height,
+            kinds,
+            depth: deepest(&reading.commands),
+            digest: crate::recording::fnv1a(json::canvas_text(&reading.commands, 0).as_bytes()),
+        };
+    }
+    let lines = json::canvas_line_lengths(&reading.commands);
+    let resources = json::canvas_resource_lengths(&reading);
+    let whole = CANVAS_WHOLE_FRAME + lines.iter().sum::<usize>() + resources;
+    if part.is_none() && whole <= SNAPSHOT_TEXT_BUDGET {
+        return Outcome::CanvasDump { reading };
+    }
+    let cut = canvas_parts(&lines, resources);
+    let part = part.unwrap_or(1);
+    let parts = u32::try_from(cut.len()).unwrap_or(u32::MAX);
+    let range = part
+        .checked_sub(1)
+        .and_then(|index| usize::try_from(index).ok())
+        .and_then(|index| cut.get(index).cloned());
+    let (depth, commands, fonts, images) = match range {
+        Some(range) => {
+            let depth = open_at(&reading.commands[..range.start]);
+            let (fonts, images) = if range.start == 0 {
+                (
+                    std::mem::take(&mut reading.fonts),
+                    std::mem::take(&mut reading.images),
+                )
+            } else {
+                (Vec::new(), Vec::new())
+            };
+            (
+                depth,
+                reading.commands.drain(range).collect(),
+                fonts,
+                images,
+            )
+        }
+        None => (0, Vec::new(), Vec::new(), Vec::new()),
+    };
+    Outcome::CanvasPart {
+        reading: CanvasReading {
+            commands,
+            fonts,
+            images,
+            ..reading
+        },
+        depth,
+        part,
+        parts,
+    }
+}
+
+/// The layers, clips and masks left open after `commands`.
+fn open_at(commands: &[CanvasCommand]) -> usize {
+    commands.iter().fold(0, |depth, command| match command {
+        CanvasCommand::Pop => depth.saturating_sub(1),
+        opening if opening.opens() => depth + 1,
+        _ => depth,
+    })
+}
+
+/// The deepest nesting of layers, clips and masks `commands` reach.
+fn deepest(commands: &[CanvasCommand]) -> usize {
+    let mut depth = 0usize;
+    let mut deepest = 0;
+    for command in commands {
+        if matches!(command, CanvasCommand::Pop) {
+            depth = depth.saturating_sub(1);
+        } else if command.opens() {
+            depth += 1;
+            deepest = deepest.max(depth);
+        }
+    }
+    deepest
+}
+
+/// The most bytes a whole full dump's answer takes beyond its text's lines and its resources:
+/// `{"canvas":false,"text":"`, `","fonts":[`, `],"images":[` and `]}`, `canvas` at its widest.
+const CANVAS_WHOLE_FRAME: usize = 49;
+
+/// The most bytes a dump part's answer takes beyond its lines and resources: the whole answer's
+/// frame and `,"part":` and `,"parts":`, each count at its widest `u32`.
+const CANVAS_PART_FRAME: usize = CANVAS_WHOLE_FRAME + 8 + 9 + 2 * 10;
+
+/// The full dump cut into parts of whole lines, in order: each part's answer at most
+/// [`SNAPSHOT_TEXT_BUDGET`] bytes, the first carrying the fonts and images, a line that cannot fit
+/// with its part's other content a part alone. A dump with no line is one part.
+fn canvas_parts(lines: &[usize], resources: usize) -> Vec<std::ops::Range<usize>> {
+    let mut cut = Vec::new();
+    let mut start = 0;
+    let mut size = CANVAS_PART_FRAME + resources;
+    for (index, length) in lines.iter().enumerate() {
+        if index > start && size + length > SNAPSHOT_TEXT_BUDGET {
+            cut.push(start..index);
+            start = index;
+            size = CANVAS_PART_FRAME + length;
+        } else {
+            size += length;
+        }
+    }
+    cut.push(start..lines.len());
+    cut
+}
+
 /// Records on a call's span what the call returned: the cause of a refusal, or an acting
 /// verb's settle reading and the size of its diff.
 fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
@@ -540,7 +694,10 @@ fn record_result(span: &Span, result: &Result<Outcome, Refusal>) {
             | Outcome::Graphed { .. }
             | Outcome::GraphPart { .. }
             | Outcome::Actions { .. }
-            | Outcome::Layout { .. },
+            | Outcome::Layout { .. }
+            | Outcome::CanvasSummary { .. }
+            | Outcome::CanvasDump { .. }
+            | Outcome::CanvasPart { .. },
         ) => return,
         Ok(
             Outcome::Acted {
@@ -700,7 +857,8 @@ impl Cleared {
 /// before its arm acts: `click` and `type` the three of [`action_point`]; `scroll` and `layout`
 /// none; a
 /// `screenshot` of an element out of view, then one whose visible part holds no pixel, then an
-/// app with no font it can paint text with. [`Session::run`](crate::Session::run)'s arms and
+/// app with no font it can paint text with; a `canvas` of an app with no font it can paint text
+/// with. [`Session::run`](crate::Session::run)'s arms and
 /// [`Session::actions`](crate::Session::actions) both decide through it, so the read names the
 /// cause a call meets.
 pub(crate) fn check_target(
@@ -724,6 +882,13 @@ pub(crate) fn check_target(
             Ok(Cleared::Rect(rect))
         }
         Command::Layout { .. } => Ok(Cleared::Free),
+        Command::Canvas { .. } => {
+            if harness.base().can_paint_text() {
+                Ok(Cleared::Free)
+            } else {
+                Err(Refusal::new(Cause::FontsUnavailable))
+            }
+        }
         _ => Ok(Cleared::Free),
     }
 }
@@ -964,6 +1129,31 @@ mod tests {
     }
 
     #[test]
+    fn a_canvas_dump_is_cut_into_parts_of_whole_lines_within_the_budget() {
+        // `{"canvas":false,"text":"`, `","fonts":[`, `],"images":[`, `]}`, and a part's
+        // `,"part":` and `,"parts":` with two ten-digit counts.
+        assert_eq!(
+            CANVAS_WHOLE_FRAME,
+            r#"{"canvas":false,"text":"","fonts":[],"images":[]}"#.len()
+        );
+        assert_eq!(CANVAS_PART_FRAME, 86);
+        assert_eq!(canvas_parts(&[], 100), [0..0]);
+        let lines = [450; 60];
+        let cut = canvas_parts(&lines, 18);
+        assert_eq!(cut.first(), Some(&(0..21)));
+        assert_eq!(cut.last().map(|range| range.end), Some(60));
+        for pair in cut.windows(2) {
+            assert_eq!(pair[0].end, pair[1].start);
+        }
+        for (index, range) in cut.iter().enumerate() {
+            let resources = if index == 0 { 18 } else { 0 };
+            let size = CANVAS_PART_FRAME + resources + lines[range.clone()].iter().sum::<usize>();
+            assert!(size <= SNAPSHOT_TEXT_BUDGET, "part {index}");
+        }
+        assert_eq!(canvas_parts(&[10, 20_000, 10], 0), [0..1, 1..2, 2..3]);
+    }
+
+    #[test]
     fn the_span_has_eight_fields_and_none_is_an_argument_name() {
         let rows = [
             "verb", "cause", "settled", "busy", "passes", "added", "removed", "changed",
@@ -975,7 +1165,7 @@ mod tests {
             .flat_map(|verb| verb.args)
             .map(|argument| argument.name)
             .collect();
-        assert_eq!(arguments.len(), 13);
+        assert_eq!(arguments.len(), 16);
         for (row, field) in SPAN_FIELDS.iter().enumerate() {
             assert!(!arguments.contains(field), "row {row}");
         }

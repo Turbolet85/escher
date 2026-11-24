@@ -20,7 +20,7 @@ MARKER = "cold-agent-reply-marker"
 ARGUMENT_MARKER = "cold-agent-argument-marker"
 ANSWER_MARKER = "cold-agent-answer-marker"
 CHECK_MARKER = "cold-agent-check-marker"
-VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "layout", "start", "status", "stop", "help"]
+VERBS = ["snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "layout", "canvas", "start", "status", "stop", "help"]
 TOOLS = ["mcp__escher__" + verb for verb in VERBS]
 APPS = ("counter", "flight-booker", "timer", "crud", "cells", "load", "order")
 CAUSES = ["unknown-verb", "malformed", "not-found", "stale", "disabled", "covered", "off-screen", "fonts-unavailable"]
@@ -97,7 +97,7 @@ LEFT = {"tool": "mcp__escher__press", "arguments": {"key": "arrowleft"}}
 STOP = {"tool": "mcp__escher__stop"}
 HELP = {"tool": "mcp__escher__help"}
 
-# The fake stands in for the built `escher-session`: its `mcp` role answers the fifteen tools, holds one app at a
+# The fake stands in for the built `escher-session`: its `mcp` role answers the sixteen tools, holds one app at a
 # time, answers a snapshot with the scenario's screen for that app indexed by its count of accepted acting calls — a
 # paged app's as the JSON line of the part asked, its lines cut into the scenario's count of parts — writes one
 # tool_call span line per tools/call on stderr when RUST_LOG=info, as escher's sink does, then one command span line

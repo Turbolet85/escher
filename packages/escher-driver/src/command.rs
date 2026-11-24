@@ -124,6 +124,17 @@ pub enum Command {
         /// The element's id.
         id: String,
     },
+    /// Read the draw commands the widget of the element `id` names paints: a summary, the full
+    /// dump, or one part of a dump read in parts.
+    Canvas {
+        /// The element's id.
+        id: String,
+        /// Whether the full dump is asked rather than the summary.
+        full: bool,
+        /// The part of the full dump, counted from 1; `None` for the summary, or the whole dump —
+        /// its first part when it is read in parts — with `full`.
+        part: Option<u32>,
+    },
 }
 
 impl Command {
@@ -141,6 +152,7 @@ impl Command {
             Command::Graph { .. } => &schema::GRAPH,
             Command::Actions => &schema::ACTIONS,
             Command::Layout { .. } => &schema::LAYOUT,
+            Command::Canvas { .. } => &schema::CANVAS,
         }
     }
 }
@@ -226,6 +238,14 @@ pub fn validate(call: &Call) -> Result<Command, Refusal> {
         ("actions", []) => Ok(Command::Actions),
         ("layout", [Some(Admitted::Id(id))]) => Ok(Command::Layout {
             id: (*id).to_owned(),
+        }),
+        ("canvas", [Some(Admitted::Id(id)), full, part]) => Ok(Command::Canvas {
+            id: (*id).to_owned(),
+            full: matches!(full, Some(Admitted::Flag(true))),
+            part: match part {
+                Some(Admitted::Part(part)) => Some(*part),
+                _ => None,
+            },
         }),
         // A verb the table lists in a shape no command has is not one this function knows.
         _ => Err(Refusal::new(Cause::UnknownVerb)),

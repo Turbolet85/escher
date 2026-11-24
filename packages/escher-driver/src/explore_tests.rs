@@ -25,11 +25,12 @@ fn a_budget_is_a_whole_number_from_one_to_the_bound() {
 }
 
 #[test]
-fn the_verbs_explored_are_the_tables_target_verbs_with_no_image_and_no_layout_reading() {
+fn the_verbs_explored_are_the_tables_target_verbs_with_no_image_no_layout_and_no_canvas_reading() {
     let verbs: Vec<&str> = explored_verbs().iter().map(|verb| verb.name).collect();
     assert_eq!(verbs, ["click", "type", "scroll"]);
     assert!(!verbs.contains(&"screenshot"));
     assert!(!verbs.contains(&"layout"));
+    assert!(!verbs.contains(&"canvas"));
     // Every verb of the table that takes an id and holds no image is explored.
     let taking_an_id = VERBS
         .iter()
@@ -82,6 +83,20 @@ const EXTENT: FieldSpec = FieldSpec {
     help: "",
 };
 
+const LINES: FieldSpec = FieldSpec {
+    name: "lines",
+    kind: FieldKind::Commands,
+    always: false,
+    help: "",
+};
+
+const TALLY: FieldSpec = FieldSpec {
+    name: "tally",
+    kind: FieldKind::CommandCounts,
+    always: false,
+    help: "",
+};
+
 const COUNT: FieldSpec = FieldSpec {
     name: "png",
     kind: FieldKind::Count,
@@ -92,7 +107,7 @@ const COUNT: FieldSpec = FieldSpec {
 #[test]
 fn a_verb_whose_result_holds_an_image_or_a_layout_reading_is_left_out_by_its_field_not_its_name() {
     // A synthetic verb, its result fields and whether it is explored.
-    let rows: [(VerbSpec, bool); 9] = [
+    let rows: [(VerbSpec, bool); 11] = [
         (
             VerbSpec {
                 name: "click",
@@ -183,8 +198,28 @@ fn a_verb_whose_result_holds_an_image_or_a_layout_reading_is_left_out_by_its_fie
             },
             true,
         ),
+        (
+            VerbSpec {
+                name: "click",
+                level: Level::Instance,
+                help: "",
+                args: &[ID],
+                fields: &[COUNT, LINES],
+            },
+            false,
+        ),
+        (
+            VerbSpec {
+                name: "type",
+                level: Level::Instance,
+                help: "",
+                args: &[ID],
+                fields: &[TALLY],
+            },
+            false,
+        ),
     ];
-    assert_eq!(rows.len(), 9);
+    assert_eq!(rows.len(), 11);
     for (row, (verb, explored)) in rows.iter().enumerate() {
         assert!(explorable(verb) == *explored, "row {row}");
     }

@@ -142,7 +142,7 @@ mod tests {
             .collect();
         assert!(at.windows(2).all(|pair| pair[0] < pair[1]));
         assert!(text.starts_with("{\"verbs\":["));
-        let counts = [15, 15, 12, 3, 8, 4, 15];
+        let counts = [16, 15, 12, 3, 8, 4, 15];
         for (row, (key, count)) in keys.iter().zip(counts).enumerate() {
             assert!(entries(&document, key).len() == count, "row {row}");
         }
@@ -158,6 +158,18 @@ mod tests {
             ("height", "size"),
         ] {
             let written = format!(r#"{{"name":"{name}","kind":"{kind}","always":true,"#);
+            assert!(text.contains(&written), "{name}");
+        }
+        // The five kinds of the canvas answer, each written once with its word.
+        for (name, kind, always) in [
+            ("canvas", "flag", true),
+            ("width", "length", false),
+            ("kinds", "command-counts", false),
+            ("digest", "digest", false),
+            ("text", "commands", false),
+            ("fonts", "digests", false),
+        ] {
+            let written = format!(r#"{{"name":"{name}","kind":"{kind}","always":{always},"#);
             assert!(text.contains(&written), "{name}");
         }
         assert!(text.contains(

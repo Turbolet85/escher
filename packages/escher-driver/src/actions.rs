@@ -142,7 +142,10 @@ mod tests {
     #[test]
     fn every_call_named_for_a_target_verb_validates() {
         let verbs: Vec<&str> = target_verbs().map(|spec| spec.name).collect();
-        assert_eq!(verbs, ["click", "type", "scroll", "screenshot", "layout"]);
+        assert_eq!(
+            verbs,
+            ["click", "type", "scroll", "screenshot", "layout", "canvas"]
+        );
         for spec in target_verbs() {
             assert!(validate(&call_naming(spec, "go")).is_ok(), "{}", spec.name);
         }

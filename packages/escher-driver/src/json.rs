@@ -117,6 +117,8 @@ pub(crate) fn list(items: impl Iterator<Item = String>) -> String {
     text
 }
 
+pub(crate) use canvas::{canvas_line_lengths, canvas_resource_lengths, canvas_text};
+
 /// The size fields of what `screenshot` returns, in the schema's order.
 fn shot(width: u32, height: u32) -> Object {
     let mut object = Object::new();
@@ -250,6 +252,21 @@ impl Outcome {
                 object.end()
             }
             Outcome::Layout { explanation } => layout::layout_answer(explanation),
+            Outcome::CanvasSummary {
+                canvas,
+                width,
+                height,
+                kinds,
+                depth,
+                digest,
+            } => canvas::canvas_summary(*canvas, (*width, *height), kinds, *depth, *digest),
+            Outcome::CanvasDump { reading } => canvas::canvas_full(reading, 0, None),
+            Outcome::CanvasPart {
+                reading,
+                depth,
+                part,
+                parts,
+            } => canvas::canvas_full(reading, *depth, Some((*part, *parts))),
         }
     }
 }
@@ -314,6 +331,7 @@ pub(crate) fn stopped() -> String {
 }
 
 mod actions;
+mod canvas;
 mod caused;
 mod diff;
 mod graph;

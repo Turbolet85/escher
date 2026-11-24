@@ -1,5 +1,5 @@
 //! Every driver command through the real `escher-session` binary: `start`, `status`, `stop` and
-//! each of the eleven verbs answer one line of uncoloured JSON on stdout and end with a status
+//! each of the twelve verbs answer one line of uncoloured JSON on stdout and end with a status
 //! that tells accepted (`0`) from refused (`1`) and from a session error (`3`); each of the seven
 //! served tasks — the four lean tasks, Cells, the load page and the order page — starts, answers
 //! and stops, and the usage line names the seven. The snapshot's
@@ -22,6 +22,10 @@
 //! `snapshot --part 1` answers that screen's text as part 1 of 1, a part past it the empty text,
 //! and a part outside its bound or of another kind is refused `malformed`, its line the
 //! library's own refusal.
+//! On a canvas page of this file's own, served by a test host, `canvas` answers its summary,
+//! `--full` its dump and `--full --part 1` its part, each one line of the table's keys, a
+//! `canvas` with no id is refused `malformed`, and on the served Counter a button answers
+//! `canvas` false.
 //! `help` answers the library's own description of the tool, reaching no session. Every
 //! refusal the binary is driven to — six causes, all but `covered` and `fonts-unavailable` — and
 //! every session error
@@ -154,7 +158,7 @@ impl Session {
 
 #[test]
 fn each_task_starts_answers_and_stops() {
-    assert_eq!(VERBS.len(), 15);
+    assert_eq!(VERBS.len(), 16);
     for (index, task) in TASKS.into_iter().enumerate() {
         let dir = state_dir(&format!("cc-life-{index}"));
         clear(&dir);
@@ -620,7 +624,7 @@ fn actions_answers_one_line_of_the_actionable_nodes() {
     let answer = counter.accepted(&["actions"]);
     assert!(keys(&answer) == fields("actions"), "the read's fields");
     assert!(
-        answer.contains(r#"{"id":"counter-increment","keyed":true,"verbs":[{"verb":"click"},{"verb":"type"},{"verb":"scroll"},{"verb":"screenshot"},{"verb":"layout"}]}"#),
+        answer.contains(r#"{"id":"counter-increment","keyed":true,"verbs":[{"verb":"click"},{"verb":"type"},{"verb":"scroll"},{"verb":"screenshot"},{"verb":"layout"},{"verb":"canvas"}]}"#),
         "the button's node reads keyed with every verb accepted"
     );
     let ran = counter.run(&["actions", "--id", NOBODY]);
@@ -1094,4 +1098,173 @@ fn a_state_directory_at_the_bound_holds_a_session_and_one_byte_more_is_refused(b
         "stderr is the error's fixed message"
     );
     assert!(!dir.exists(), "no state directory is created");
+}
+
+type Fonts = std::sync::Arc<std::sync::Mutex<parley::FontContext>>;
+
+/// A widget painting a clip layer, a fill, a stroke and a glyph run shaped from the document's
+/// own fonts, then the pop.
+struct SevenCanvas {
+    fonts: Option<Fonts>,
+    layouts: parley::LayoutContext<()>,
+}
+
+impl dioxus_native::Widget for SevenCanvas {
+    fn fonts(&mut self, fonts: &Fonts) {
+        self.fonts = Some(std::sync::Arc::clone(fonts));
+    }
+
+    fn paint(
+        &mut self,
+        _ctx: &mut dyn anyrender::RenderContext,
+        _styles: &blitz_dom::node::ComputedStyles,
+        width: u32,
+        height: u32,
+        _scale: f64,
+    ) -> anyrender::Scene {
+        use anyrender::{AntiAliasing, PaintScene as _};
+        use peniko::kurbo::{Affine, Circle, Rect, Stroke, Vec2};
+        use peniko::{Color, Fill};
+
+        let mut scene = anyrender::Scene::new();
+        let bounds = Rect::new(0.0, 0.0, f64::from(width), f64::from(height));
+        scene.push_clip_layer(Fill::NonZero, Affine::IDENTITY, &bounds);
+        scene.fill(
+            Fill::NonZero,
+            Affine::IDENTITY,
+            Color::from_rgb8(200, 220, 240),
+            None,
+            &Rect::new(4.0, 4.0, 40.0, 30.0),
+            AntiAliasing::Enabled,
+        );
+        scene.stroke(
+            &Stroke::new(1.5),
+            Affine::IDENTITY,
+            Color::from_rgb8(0, 0, 0),
+            None,
+            &Circle::new((80.0, 40.0), 20.0),
+            AntiAliasing::Enabled,
+        );
+        if let Some(fonts) = self.fonts.clone() {
+            let mut fonts = fonts.lock().expect("the font context is not poisoned");
+            let mut builder = self.layouts.ranged_builder(&mut fonts, "Go", 1.0, true);
+            builder.push_default(parley::StyleProperty::FontSize(14.0));
+            builder.push_default(parley::GenericFamily::SansSerif);
+            let mut layout = builder.build("Go");
+            layout.break_all_lines(None);
+            for line in layout.lines() {
+                for item in line.items() {
+                    if let parley::PositionedLayoutItem::GlyphRun(glyphs) = item {
+                        let run = glyphs.run();
+                        scene.draw_glyphs(
+                            run.font(),
+                            run.font_size(),
+                            true,
+                            &[],
+                            Vec2::default(),
+                            Fill::NonZero,
+                            &anyrender::Paint::from(Color::from_rgb8(0, 0, 0)),
+                            1.0,
+                            Affine::translate((110.0, 20.0)),
+                            None,
+                            glyphs.positioned_glyphs().map(|g| anyrender::Glyph {
+                                id: g.id as _,
+                                x: g.x.round(),
+                                y: g.y.round(),
+                            }),
+                            AntiAliasing::Enabled,
+                        );
+                    }
+                }
+            }
+        }
+        scene.pop_layer();
+        scene
+    }
+}
+
+/// This check's own canvas page: one keyed canvas painted from Rust.
+fn seven_canvas_page() -> dioxus_native::prelude::Element {
+    use dioxus_native::prelude::*;
+    let canvas = use_hook(|| {
+        dioxus_native::CustomWidgetAttr::new(SevenCanvas {
+            fonts: None,
+            layouts: parley::LayoutContext::new(),
+        })
+    });
+    rsx! {
+        object {
+            id: "seven-canvas",
+            style: "display: block; width: 200px; height: 80px;",
+            "data": canvas,
+        }
+    }
+}
+
+/// The state directory the canvas page's test host serves.
+const CANVAS_DIR: &str = "cc-canvas";
+
+#[test]
+#[ignore = "spawned as the session host by canvas_answers_one_line_through_the_binary"]
+fn canvas_host() {
+    let session = escher_driver::Session::start("canvas", || {
+        stand::boot_alone(seven_canvas_page, || (), stand::options(true))
+    })
+    .expect("canvas is a label");
+    escher_driver::serve(&state_dir(CANVAS_DIR), session, Duration::from_secs(120))
+        .expect("the host serves until it is stopped");
+}
+
+#[test]
+fn canvas_answers_one_line_through_the_binary() {
+    let dir = state_dir(CANVAS_DIR);
+    clear(&dir);
+    let mut host_command =
+        Command::new(std::env::current_exe().expect("the test binary has a path"));
+    host_command
+        .args(["--ignored", "--exact", "canvas_host", "--nocapture"])
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null());
+    let started = escher_driver::start(&dir, host_command, Duration::from_secs(60))
+        .expect("the canvas host starts");
+    let _host = common::Host(started.child);
+    let run = |args: &[&str]| {
+        let mut line = args.to_vec();
+        line.extend(["--session", text(&dir)]);
+        client(BINARY, &line)
+    };
+    let rows: [(&[&str], &[&str]); 3] = [
+        (
+            &["canvas", "--id", "seven-canvas"],
+            &["canvas", "width", "height", "kinds", "depth", "digest"],
+        ),
+        (
+            &["canvas", "--id", "seven-canvas", "--full"],
+            &["canvas", "text", "fonts", "images"],
+        ),
+        (
+            &["canvas", "--id", "seven-canvas", "--full", "--part", "1"],
+            &["canvas", "text", "fonts", "images", "part", "parts"],
+        ),
+    ];
+    for (row, (args, stated)) in rows.into_iter().enumerate() {
+        let ran = run(args);
+        assert_eq!(ran.status, Some(0), "row {row}: the read ends accepted");
+        assert!(ran.stderr.is_empty(), "row {row}: nothing on stderr");
+        assert!(keys(ran.line()) == stated, "row {row}: the answer's keys");
+    }
+    let ran = run(&["canvas"]);
+    assert_eq!(ran.status, Some(1), "a canvas with no id ends refused");
+    assert_eq!(remedied(ran.line()), "malformed");
+    assert!(ran.stderr.is_empty(), "a refusal writes nothing to stderr");
+    assert!(escher_driver::stop(&dir).is_ok(), "the canvas host stops");
+
+    let counter = Session::start("cc-canvas-c", "counter");
+    let answer = counter.accepted(&["canvas", "--id", "counter-increment"]);
+    assert!(
+        answer.starts_with(r#"{"canvas":false,"#),
+        "a button holds no canvas"
+    );
+    counter.stop();
 }

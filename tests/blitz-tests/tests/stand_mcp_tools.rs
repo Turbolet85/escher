@@ -27,7 +27,10 @@
 //! `layout` tool result on each lean task is one text block, the line `Session::run` writes for
 //! the same id on a session booted the same way; one with no id is refused malformed and one
 //! naming no element not-found, and the accepted call's `tool_call` parents one command that
-//! records `verb` alone, the not-found one's `verb` and `cause`. A
+//! records `verb` alone, the not-found one's `verb` and `cause`. A `canvas` tool result on the
+//! canvas fixture, summary and full, is one text block, the line `Session::run` writes for the
+//! same call, one with no id is refused malformed, and each accepted call's `tool_call` parents
+//! one command that records `verb` alone. A
 //! `graph` tool call with `part` answers the line of the part `Session::run` writes, and its
 //! command records `verb` alone; a `press` with `ctrl` answers the run's own line; a `part` out of
 //! its bound and a `ctrl` of another kind are refused malformed; on a `multiple` select fixture a
@@ -50,8 +53,8 @@ use tracing::{Event, Metadata, Subscriber};
 mod fixtures;
 mod session_common;
 use session_common::{
-    click, graph_part, hold, layout, mcp_tool_result, press, press_ctrl, screenshot, serve_lines,
-    shot, slug, snapshot,
+    canvas, canvas_full, click, graph_part, hold, layout, mcp_tool_result, press, press_ctrl,
+    screenshot, serve_lines, shot, slug, snapshot,
 };
 
 /// The lean tasks, as the binary hands them to the server.
@@ -966,6 +969,70 @@ fn a_layout_tool_call_answers_the_runs_line_and_parents_a_command_recording_its_
             assert!(
                 not_found.len() == 1 && fields == [("cause", "not-found"), ("verb", "layout")],
                 "{mode}: task {row}: the refused layout's command records its verb and cause"
+            );
+        }
+    }
+}
+
+#[test]
+fn a_canvas_tool_call_answers_the_runs_line_and_parents_a_command_recording_its_verb_alone() {
+    for incremental in [false, true] {
+        let mode = if incremental { "incremental" } else { "full" };
+        let hold_fixture = || fixtures::hold("canvas", fixtures::canvas_commands, incremental);
+        let calls = [canvas("small-canvas"), canvas_full("small-canvas")];
+        let expected: Vec<String> = calls
+            .iter()
+            .enumerate()
+            .map(|(index, call)| {
+                hold_fixture()
+                    .run(call)
+                    .map(|outcome| outcome.to_json())
+                    .unwrap_or_else(|_| panic!("{mode}: call {index}: the run answers"))
+            })
+            .collect();
+        let requests = [
+            tool_call(1, "start", r#"{"app":"canvas"}"#),
+            tool_call(2, "canvas", r#"{"id":"small-canvas"}"#),
+            tool_call(3, "canvas", r#"{"id":"small-canvas","full":true}"#),
+            tool_call(4, "canvas", "{}"),
+            tool_call(5, "stop", "{}"),
+        ];
+        let recorder = Recorder::default();
+        let replies = tracing::subscriber::with_default(recorder.clone(), || {
+            serve_lines(&requests, &["canvas"], |app: &str| {
+                Ok(fixtures::hold(app, fixtures::canvas_commands, incremental))
+            })
+        });
+        assert_eq!(replies.len(), 5, "{mode}: one reply per call");
+        for (index, line) in expected.iter().enumerate() {
+            assert!(
+                result(&replies[index + 1]) == (false, line.clone()),
+                "{mode}: call {index}: the text block is the line the run writes"
+            );
+        }
+        let (is_error, text) = result(&replies[3]);
+        assert!(
+            is_error && remedied(&text) == Some(Cause::Malformed),
+            "{mode}: a canvas with no id is refused malformed"
+        );
+
+        let recorded = recorder.0.lock().unwrap();
+        let calls = tool_calls(&recorded, "canvas");
+        assert_eq!(calls.len(), 3, "{mode}: one tool_call per canvas");
+        for (index, at) in calls[..2].iter().enumerate() {
+            let children: Vec<&Seen> = recorded
+                .spans
+                .iter()
+                .filter(|seen| seen.name == "command" && seen.parent == Some(*at))
+                .collect();
+            assert!(
+                children.len() == 1
+                    && !children[0].fields.is_empty()
+                    && children[0]
+                        .fields
+                        .iter()
+                        .all(|(field, value)| *field == "verb" && value == "canvas"),
+                "{mode}: call {index}: the accepted canvas's command records its verb alone"
             );
         }
     }

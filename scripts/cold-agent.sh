@@ -51,7 +51,7 @@ SERVER_LOG = os.path.join(STATE, "server.log")
 CHECK = os.path.join(STATE, "check.json")
 RECORD = os.path.join(STATE, "record")
 PREFIX = "mcp__escher__"
-VERBS = ("snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "layout", "start", "status", "stop", "help")
+VERBS = ("snapshot", "click", "type", "press", "advance", "scroll", "screenshot", "lint", "graph", "actions", "layout", "canvas", "start", "status", "stop", "help")
 TOOLS = {PREFIX + verb for verb in VERBS}
 ACTING = {"click", "type", "press", "advance", "scroll"}
 SPACER = "task-header-spacer"
@@ -68,7 +68,8 @@ DONE = {
 APPS = tuple(DONE)
 # The verbs whose accepted calls the verdict counts, each a capability the run must exercise at least once: the
 # visual lint, the screenshot and time passed, and 0.3.0's three carried reads, the UI graph, the actions and the
-# layout.
+# layout. `canvas` is not counted: no served app holds a canvas (Circle Drawer is held in process alone), so every
+# run would read capability-unused.
 COUNTED = ("lint", "screenshot", "advance", "graph", "actions", "layout")
 # The driver's eight refusal causes, in the schema's order. A refusal is counted by the closed cause word its command
 # span line records, which only an instance verb's call writes: a session verb the server refuses itself writes no

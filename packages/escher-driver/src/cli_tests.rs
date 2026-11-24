@@ -181,6 +181,41 @@ fn a_line_is_read_by_its_rules_in_order() {
             instance("layout", &[("id", text("form//input[2]: a b"))]),
         ),
         (
+            &["canvas", "--id", "x", "--session", DIR],
+            instance("canvas", &[("id", text("x"))]),
+        ),
+        (
+            &["canvas", "--id", "x", "--full", "--session", DIR],
+            instance(
+                "canvas",
+                &[("id", text("x")), ("full", ArgValue::Flag(true))],
+            ),
+        ),
+        (
+            &[
+                "canvas",
+                "--id",
+                "x",
+                "--full",
+                "--part",
+                "2",
+                "--session",
+                DIR,
+            ],
+            instance(
+                "canvas",
+                &[
+                    ("id", text("x")),
+                    ("full", ArgValue::Flag(true)),
+                    ("part", ArgValue::Number(2)),
+                ],
+            ),
+        ),
+        (
+            &["canvas", "--session", DIR],
+            malformed(Fault::Missing("id")),
+        ),
+        (
             &["click", "--id", "save", "--session", DIR],
             instance("click", &[("id", text("save"))]),
         ),
@@ -491,7 +526,7 @@ fn a_line_is_read_by_its_rules_in_order() {
         // `start` on an app the binary does not boot.
         (&["start", "timer", "--session", DIR], Line::Usage),
     ];
-    assert_eq!(rows.len(), 115);
+    assert_eq!(rows.len(), 119);
     for (row, (words, read)) in rows.into_iter().enumerate() {
         assert!(line(words) == read, "row {row}");
     }
@@ -607,7 +642,7 @@ fn the_usage_line_is_built_from_the_table_and_the_apps() {
         usage(&APPS),
         "usage: <command> --session <dir>; commands: snapshot [--part <part>] | click --id \
          <id> | type --id <id> --text <text> | press --key <key> [--shift] [--ctrl] | advance --ms <milliseconds> | \
-         scroll --id <id> | screenshot [--id <id>] | lint | graph [--part <part>] | actions | layout --id <id> | start <app> \
+         scroll --id <id> | screenshot [--id <id>] | lint | graph [--part <part>] | actions | layout --id <id> | canvas --id <id> [--full] [--part <part>] | start <app> \
          [--record <dir>] | status | stop | help; host role: serve <app> --session <dir> [--record <dir>]; mcp role: mcp \
          [--record <dir>]; coverage role: coverage <app> <check>...; apps: counter | flight-booker"
     );

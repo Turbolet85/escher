@@ -14,7 +14,8 @@ pub const MAX_TEXT_BYTES: usize = 4096;
 /// The most time one call may ask for, in milliseconds.
 pub const MAX_MILLISECONDS: u32 = 60_000;
 
-/// The highest part of a screen a `snapshot`, or of a graph a `graph`, may ask for.
+/// The highest part of a screen a `snapshot`, of a graph a `graph`, or of a dump a `canvas`, may
+/// ask for.
 pub const MAX_PART: u32 = 1000;
 
 /// The names a `key` argument admits.
@@ -625,6 +626,135 @@ pub(crate) const LAYOUT: VerbSpec = VerbSpec {
     ],
 };
 
+pub(crate) const CANVAS: VerbSpec = VerbSpec {
+    name: "canvas",
+    level: Level::Instance,
+    help: "reads the draw commands the app's widget paints into the canvas element an id names, \
+           as data: by default a summary, the content box, the commands counted per kind, the \
+           deepest layer nesting and a digest of the full dump; with `full` the commands \
+           themselves, one line per command in paint order, a layer's commands indented two \
+           spaces under it and closed by `pop`, each a fixed word then key=value pairs, every \
+           number rounded to 1/1000; no text is read: a glyph run is its glyph count, font \
+           size, brush, the box of its glyph origins and a digest of its glyph ids, and fonts \
+           and images are named by an index into `fonts` and `images`, each a digest of the \
+           resource's bytes; a full dump whose answer is over 10,000 bytes is read in parts, \
+           each a run of whole lines of at most 10,000 bytes, and the parts' text in order is \
+           the whole dump's; a `part` reads that part of the full dump, `full` or not; part 1 \
+           carries `fonts` and `images`, and a later part's empty lists mean read part 1; a part \
+           past the last holds no line; one line longer than the budget is a part alone; an \
+           element that holds no widget, or whose content box is empty, answers `canvas` false; \
+           a layer's filter is read as set or not, its parameters not read; a command has no \
+           identity of its own, so a changed command reads in a line diff as one line removed \
+           and one added; it runs no step and changes nothing",
+    args: &[
+        ArgSpec {
+            name: "id",
+            kind: ArgKind::Id,
+            required: true,
+            help: "the id of the canvas element to read, as a snapshot lists it",
+        },
+        ArgSpec {
+            name: "full",
+            kind: ArgKind::Flag,
+            required: false,
+            help: "whether to read the commands themselves rather than the summary; false when \
+                   absent",
+        },
+        ArgSpec {
+            name: "part",
+            kind: ArgKind::Part,
+            required: false,
+            help: "the part of the full dump to read, counted from 1; a dump over the budget is \
+                   read in parts with `full` from part 1",
+        },
+    ],
+    fields: &[
+        FieldSpec {
+            name: "canvas",
+            kind: FieldKind::Flag,
+            always: true,
+            help: "whether the element holds a widget whose content box is not empty, so its \
+                   commands were read",
+        },
+        FieldSpec {
+            name: "width",
+            kind: FieldKind::Length,
+            always: false,
+            help: "the width of the element's content box, in pixels; in the summary alone, 0 \
+                   where `canvas` is false",
+        },
+        FieldSpec {
+            name: "height",
+            kind: FieldKind::Length,
+            always: false,
+            help: "the height of the element's content box, in pixels; in the summary alone, 0 \
+                   where `canvas` is false",
+        },
+        FieldSpec {
+            name: "kinds",
+            kind: FieldKind::CommandCounts,
+            always: false,
+            help: "how many commands of each kind the widget paints, keyed layer, clip, mask, \
+                   pop, fill, stroke, glyphs and shadow; in the summary alone",
+        },
+        FieldSpec {
+            name: "depth",
+            kind: FieldKind::Count,
+            always: false,
+            help: "the deepest nesting of layers, clips and masks; in the summary alone",
+        },
+        FieldSpec {
+            name: "digest",
+            kind: FieldKind::Digest,
+            always: false,
+            help: "the 64-bit FNV-1a digest of the whole full dump's text, as `full` writes it \
+                   unpaged; in the summary alone",
+        },
+        FieldSpec {
+            name: "text",
+            kind: FieldKind::Commands,
+            always: false,
+            help: "the commands, or the part of them asked for, one line per command each ended \
+                   by a newline: layer alpha= blend= fill= t= clip=, then filter and backdrop \
+                   where set; clip t= clip=; mask mode= t= clip=; pop; fill fill= brush= bt= t= \
+                   shape=; stroke w= join= cap= miter= dash= brush= bt= t= shape=; glyphs font= \
+                   size= brush= alpha= t= n= at= ids=; shadow t= box= radii= offset= spread= \
+                   dev= colour= kind=; a transform t= or bt= is id or its six coefficients, a \
+                   path is SVG letters M, L, Q, C and Z with their points, a colour #rrggbbaa, a \
+                   gradient linear, radial or sweep then its stops, an image brush image:n, \
+                   resource and pattern unread; bt= and dash= written only when set, alpha= only \
+                   when not 1; at= the least and greatest glyph origin, ids= the digest of the \
+                   glyph ids; with `full` or a `part` alone",
+        },
+        FieldSpec {
+            name: "fonts",
+            kind: FieldKind::Digests,
+            always: false,
+            help: "the digest of each distinct font's bytes, in first use order, a glyph run's \
+                   font= its index here; with `full` or a `part` alone, empty past part 1",
+        },
+        FieldSpec {
+            name: "images",
+            kind: FieldKind::Digests,
+            always: false,
+            help: "the digest of each distinct image's bytes, in first use order, an image \
+                   brush's index here; with `full` or a `part` alone, empty past part 1",
+        },
+        FieldSpec {
+            name: "part",
+            kind: FieldKind::Count,
+            always: false,
+            help: "the part this answer holds, present when the dump is read in parts",
+        },
+        FieldSpec {
+            name: "parts",
+            kind: FieldKind::Count,
+            always: false,
+            help: "how many parts the dump reads as, present with `part`",
+        },
+    ],
+};
+
 const LABEL: FieldSpec = FieldSpec {
     name: "label",
     kind: FieldKind::Text,
@@ -746,11 +876,11 @@ pub(crate) const HELP: VerbSpec = VerbSpec {
     ],
 };
 
-/// The verb set, in the schema's order: the eleven verbs asked of the held instance, the three
+/// The verb set, in the schema's order: the twelve verbs asked of the held instance, the three
 /// asked of the session, then `help`, asked of the tool itself.
 pub const VERBS: &[VerbSpec] = &[
-    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, ACTIONS, LAYOUT, START,
-    STATUS, STOP, HELP,
+    SNAPSHOT, CLICK, TYPE, PRESS, ADVANCE, SCROLL, SCREENSHOT, LINT, GRAPH, ACTIONS, LAYOUT,
+    CANVAS, START, STATUS, STOP, HELP,
 ];
 
 /// One way a run of the command line ends: its status, its name and what it means.
