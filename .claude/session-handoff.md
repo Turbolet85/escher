@@ -1,44 +1,34 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-24T11:52:00Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `895a134f2`, the pre-CI merge commit)
+**Last Updated:** 2026-11-24T20:37:00Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `f8558e388`, the pre-CI commit)
 **Status:** clean
-**Last Commit:** feat(2026-11-24-upstream-sync-ahead-of-inside-the-canvas) — this wrap's commit (see `git log -1`)
+**Last Commit:** feat(2026-11-24-canvas-draw-commands) — this wrap's commit (see `git log -1`)
 
 ## Position
-- Done: «Upstream sync ahead of inside the canvas» (v040-02, Epoch 4's head) is wrapped. It is the two-parent merge `895a134f2` of upstream/main `29a439e05`, and CI#45375406542 reads green 17/17. Taffy is now 0.16.0 from crates.io and the workspace takes no git dependency. It also takes upstream's drop input, one-axis `overflow: clip` paint, `<br>` in the text's flex item and `preventDefault` ignored on a non-cancelable event.
-- `v040-02` stays pooled and unclaimed; its ledger note records this sync. L (the left-out set) was not ruled. `evidence/left-out-recheck.md` stays as the measurement for the founder and the next sync.
-- Next: «Canvas draw commands» (v040-10) is the first markerless entry of Epoch 4. It carries WATCH `cry-em4q2mag`, now at 1 of 3.
+- Done: «Canvas draw commands» (`2026-11-24-canvas-draw-commands`) is wrapped. The `canvas` verb is the sixteenth driver verb, on every carrier, and CI#45464827106 at `f8558e388` reads green 17/17. `v040-10` stays pooled and unclaimed; its ledger note records what this chunk proves of it.
+- Next: «Canvas lint» (v040-10) is the first markerless entry of Epoch 4. It carries WATCH `cry-uqifds5z` (Circle Drawer's canvas digest across hosts), now at 2 of 3.
 
 ## Work done
-- Report closed (`## After implement`, `## New text, by line`). The wrap directive was snapped as `inputs#I4`.
-- Masters: 25 operations in 6 TXs (3565–3570).
-  - Architecture and security-plan: the git exception is retired from 6 rows (2 architecture, 4 security-plan), and Taffy 0.16.
-  - Engine changes C1, B1 and P1, plus `CalcHandle`, landed on the founder's own answers (inputs#I2).
-  - The drop input: architecture `decision/os-drop-input` and 7 contracts; security-plan `dropped-file-read-unrestricted` and `os-drag-and-drop-untrusted`.
-  - a11y-plan `absence/keyboard-drag-and-drop`; obs-plan `dropped-data-never-logged`.
-- Leaves: 15 comparer findings applied, 3 declined, and 1 written by hand (`docs/workflow.md`'s merge base). CLAUDE.md's warning now reads «The workspace takes no git dependency».
-- Curation: CARRY `cry-3lvz2y2v` discharged (the four stale figures removed), and `host-linux.md`'s `git grep` entry extended.
-- Route: the Dioxus-hold CARRY was re-pinned on «Upstream sync ahead of drag, pan and zoom» (`cry-72op4j6x`). Residuals `res-jczchrrm` (the dropped-file reader's 136 untested lines) and `res-2zajbqhg` (the drop input's lack of harness reach) were added, both with lines in `escher-0.5.0-incubator/deferred-from-0.4.0.md`.
+- Report closed. Masters: 69 operations in 8 TXs (3642–3649). The canvas crossing is re-stated in both «pixels alone» rows (architecture `decision/canvas-crossing`, security-plan `decision/canvas-content-crossing`) on the founder's own F1 B and F3 A. Answer card Q1 (15 operations) was confirmed by him: «Подтвердить все 15 (Recommended)», inputs#I8.
+- Leaves: 92 comparer findings applied over 17 leaves, 0 by hand, 0 declined. Curation: `testing.md`'s 2026-11-20 entry extended with the `VERBS.len()` literal pins.
+- Route: the WATCH migrated to «Canvas lint» at 2/3. CARRY `cry-jn6dfv44` (command identity) is on «Circle Drawer's circles as virtual nodes». CARRY `cry-6wfcesr6` (`canvas` uncounted by the cold-agent pipe) is on «Cold-agent bar». Residual `res-n35ffmjz` (a layer's filter as a flag only) is added. All three have lines in `escher-0.5.0-incubator/deferred-from-0.4.0.md`.
 
 ## Drift resolved
-- 41 proposals: 16 applied, 12 escalated as a boundary widening by upstream merge, 11 rejected as one fact held in two places, and 2 rejected at check 1. Fit read 6 `not_master`.
-- Answer card Q1 covered 10 drop-input operations. It was confirmed by the escher overseer as a **delegate**, so those rows stand **PROVISIONAL** (`decision` rows `state: provisional`; contract rows marked in their sidecar entries). They wait for the founder's own word in the Epoch 4 boundary batch.
-- Two security-plan adds read `not_master` and were not landed: `os-drop-input` and `root-drop-examples`.
+- 95 proposals: 69 applied, 15 of them through card Q1, and 26 rejected under check 2 (one fact, one home). Fit read 67 fits, 0 `not_master`, 0 `stands`.
+- PROVISIONAL, awaiting the founder (delegate's word, F2 A · F4 A · F6 A–F9 A):
+  - architecture: `decision/canvas-dump-in-parts`, `contract/driver-verbs/canvas`, `contract/canvas-verb/command-kinds`, `contract/argument-kinds/part`, `contract/command-line/verb-flags`, `contract/escher-session/canvas`, `contract/paint/custom-widget-scene` and `contract/test-harness/canvas-scene`;
+  - security-plan: `contract/driver-verbs/canvas` and `contract/cli-flags/full`;
+  - test-plan: `contract/escher-session-command-line/canvas`;
+  - obs-plan: `decision/part-answer-never-logged`;
+  - layout-templates: `contract/escher-session-mcp/canvas-tool`.
 
 ## Notes
-- PROVISIONAL, awaiting the founder: the 10 card-Q1 rows above (`rec.py marks`).
-- Upstreamable, not yet sent: the click synthesis on a custom-widget target (`res-bwyu6dcw`), the paint placement (#1578), the widget pointer frame, `Widget::fonts` and `BaseDocument::font_ctx()`.
-  - Also carried: the single list box; the post-layout focus fixup and the Tab walk's skip of unshown nodes; the inline-box placeholder defect (parley 0.13); the W8 fragment mask as a stamped `data:` URL; and upstream's `docs/licensing.md` on `webpki-root-certs`.
+- NOT discharged: the last sync's ten drag-and-drop marks (`rec.py marks`: rows 3 · entries 8). The founder confirmed them himself, «Подтвердить все 10 (Recommended)» (snapped as this chunk's inputs#I7). But a chunk wrap's letter gives no door for the entry half: the new-entry arm stands on the 0-pending path alone. Per the directive, they are left for the boundary wrap (or a 0-pending wrap). The «Provisional discharge» playbook rule escalates such an amendment.
+- Upstreamable, not yet sent: `custom_widget_scene` (blitz-paint), and the carried list from the last handoff — the custom-widget click synthesis (`res-bwyu6dcw`), the paint placement (#1578), the widget pointer frame, `Widget::fonts` and `BaseDocument::font_ctx()`, the single list box, the post-layout focus fixup and the Tab walk's skip of unshown nodes, the inline-box placeholder defect (parley 0.13), the W8 fragment mask and upstream's `docs/licensing.md` on `webpki-root-certs`.
 - Carried:
   - security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`.
   - `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Left in place on the operator's word:
-  - Worktrees: `../escher-trial-inside-canvas`; `target/tmp/probe-circle-digest` and `../escher-probe-snap`, with the branch `build/probe-circle-digest` (local and origin); `target/tmp/probe-canvas-shot`, with the branch `build/probe-canvas-shot`; `target/tmp/trial-canvas`, `target/tmp/trial-dioxus8` and `target/tmp/trial-editor`.
-  - Build directories: `target/trial-inside-canvas-build`, `target/tic`, `target/probe-circle-build`, `target/trial-dioxus8-build`.
-  - The scratchpads and scratch clones.
+- Left in place on the operator's word: every probe branch, worktree, scratch clone and build directory the last handoff named.
 - Left for the operator to remove: `target/mutants-peak`, `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas` and `target/tmp/escher-session.head`.
 - Last failed command: none.
-
-## Session End Status
-Completed normally at 2026-11-24 18:44:36

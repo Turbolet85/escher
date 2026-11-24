@@ -1,0 +1,105 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -159,3 +159,5 @@
+ decision/browser-prefetches-external-scripts · Browser prefetches external scripts — With the browser's javascript feature, external scripts are prefetched through the net provider. · why: the script fetcher is synchronous
+-decision/canvas-crosses-as-pixels · Canvas content crosses only as pixels — A canvas's app-painted content crosses the driver's carriers only as pixels in a screenshot, on every ratified carrier, with no new carrier, verb, field, exit, refusal cause, session error, log field or span. · why: ratified
++decision/canvas-crossing · Canvas content crosses as draw commands and pixels — A canvas's app-painted content crosses the driver's carriers, the session socket, the command line, MCP and a kept check, as the canvas verb's answer of draw commands beside a screenshot's pixels, with no new carrier, exit, cause, session error or span field. · why: A boundary widening, ratified.
++decision/canvas-dump-in-parts · Canvas dump over the snapshot budget crosses in parts — A canvas's full dump over the snapshot text budget crosses in parts of whole command lines, each within the budget, the fonts in part 1 alone, one within the budget answering whole, with no new verb, carrier, exit, cause, session error or span field. · provisional
++decision/canvas-reading-diffable · Canvas reading deterministic and diffable by line — A canvas reading is deterministic and diffable by line: two reads give the same bytes, a changed command reads as one line removed and one added, and a layer's filter is written as a flag only.
+ decision/checkbox-change-from-engine · Checkbox and radio change from the engine — A checkbox's or radio's change event comes from the engine and the script runtime synthesises none. · why: so a page's script hears one change
+@@ -260,3 +262,3 @@
+ decision/kept-check-masking · Kept check keeps masking — A kept check records a masked or unresolved type as one fixed stand-in, and keeps each answer as a 64-bit digest and whole, masked as on every carrier, a shot's without its pixels.
+-decision/kept-check-never-logged · Kept check never logged — A kept check's screens, ids, names, values, snapshot text, diffs, findings, graph and actions answers rest at rest only, never logged and never named by a tool call.
++decision/kept-check-never-logged · Kept check never logged — A kept check's screens, ids, names, values, snapshot text, diffs, findings, graph, actions and canvas answers rest at rest only, never logged and never named by a tool call.
+ decision/kept-check-replays-through-run · Kept check replays through the one run path — A kept check replays through the session's one call-running path alone, and a coverage role reading one from a named path bounds the read at the check size limit plus one byte.
+@@ -292,3 +294,3 @@
+ decision/no-local-font-sources · No local() font sources — `local()` font sources are not supported.
+-decision/no-node-id-across-session · No NodeId crosses a session — Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.
++decision/no-node-id-across-session · No NodeId crosses a session — Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, canvas readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.
+ decision/node-id-layout · NodeId as slot index plus version — `NodeId` packs a 32-bit slot index and a 32-bit version, ordered by index then version. · why: the ordering roughly matches creation order
+@@ -724,3 +726,3 @@
+ contract/actions-verb/stale · The actions verb · stale — A node that resolves to no element reads `stale`.
+-contract/actions-verb/target-verbs · The actions verb · target verbs — For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout`, `layout` with no cause.
++contract/actions-verb/target-verbs · The actions verb · target verbs — For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout` · `canvas`, `layout` with no cause and `canvas` with none on a document that can paint text.
+ contract/actions-verb/unpaged · The actions verb · paging — `actions` takes no argument and answers the whole screen at once, unpaged, within the 1,048,576-byte answer bound.
+@@ -764,3 +766,3 @@
+ contract/argument-kinds/name · argument kinds · name — 1 to 32 bytes of a-z, 0-9 and -, the app a start names.
+-contract/argument-kinds/part · argument kinds · part — A whole number from 1 to 1000, the snapshot or graph part asked for.
++contract/argument-kinds/part · argument kinds · part — A whole number from 1 to 1000, the snapshot, graph or canvas dump part asked for.
+ contract/argument-kinds/text · argument kinds · text — 0 to 4096 bytes of text.
+@@ -797,2 +799,4 @@
+ contract/busy-classes/render · busy classes · render — A busy class word of an instance that did not go quiet, and of an acting step whose settle panicked a second time.
++contract/canvas-verb/brush-forms · The canvas verb · brush forms — A brush is one of five closed forms: solid, gradient, image, resource or pattern.
++contract/canvas-verb/command-kinds · The canvas verb · command kinds — The command kind set is closed at eight, named Layer · Clip · Mask · Pop · Fill · Stroke · Glyphs · Shadow.
+ contract/check-replay/another-app · Check replay · another app — A replay runs nothing on a session whose label is not the check's app.
+@@ -864,3 +868,3 @@
+ contract/command-line/start · command line · start — start <app> [--record <dir>] spawns the running binary as the host with standard streams closed, waits up to 30 s for it to answer and neither kills nor reaps it; an app the binary does not boot is usage.
+-contract/command-line/verb-flags · command line · verb flags — --id, --text, --key, --ms and --part each take one value, --shift and --ctrl are bare, and --session <dir> exactly once; the call is validated before the session is asked for.
++contract/command-line/verb-flags · command line · verb flags — --id, --text, --key, --ms and --part each take one value, --shift, --ctrl and --full are bare, and --session <dir> exactly once; the call is validated before the session is asked for.
+ contract/command-span/added · command span · added — The length of the diff's added list.
+@@ -869,3 +873,3 @@
+ contract/command-span/changed · command span · changed — The length of the diff's changed list.
+-contract/command-span/never-fielded · command span · never fielded — No screen text, image, findings, graph, actions answer, label, id record, argument, call, outcome or refusal value is ever a field.
++contract/command-span/never-fielded · command span · never fielded — No screen text, image, findings, graph, actions answer, canvas answer, label, id record, argument, call, outcome or refusal value is ever a field.
+ contract/command-span/passes · command span · passes — Settle's pass count, recorded when settle answered quiet.
+@@ -932,3 +936,3 @@
+ contract/driver-explore/explore · escher-driver explore · explore — An in-process call that boots once to read the first screen, unrecorded and costing no step, then runs paths of calls off a breadth-first frontier, each on a fresh session from the caller's boot re-reaching through its earlier calls; a boot error ends it.
+-contract/driver-explore/explored-verbs · escher-driver explore · explored verbs — The verbs explored are the actions table's target verbs less any whose result holds an image or a layout reading field (png, rect, placement, shifts or size kind), selected by the field's kind and never its name; today click, type and scroll.
++contract/driver-explore/explored-verbs · escher-driver explore · explored verbs — The verbs explored are the actions table's target verbs less any whose result holds an image, a layout reading or a canvas reading field (png, rect, placement, shifts, size, commands or command-counts kind), selected by the field's kind and never its name; today click, type and scroll.
+ contract/driver-explore/path-ending · escher-driver explore · PathEnding — An explored path ends accepted (settled or not), refused with its cause, panicked, or diverged at a step; a handler panic is caught per path and the exploration goes on.
+@@ -945,3 +949,4 @@
+ contract/driver-recording/replay · escher-driver recording · Check::replay — Check::replay runs a kept check's calls again through Session::run.
+-contract/driver-session/command-schema · escher-driver session · command and refusal schema — The command and refusal schema is stated once as 'static data: fifteen verbs, eight closed causes.
++contract/driver-session/canvas · escher-driver session · Session::canvas — A read answering a CanvasReading of one canvas in process, resolving its id as Session::layout does, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.
++contract/driver-session/command-schema · escher-driver session · command and refusal schema — The command and refusal schema is stated once as 'static data: sixteen verbs, eight closed causes.
+ contract/driver-session/layout · escher-driver session · Session::layout — A read answering a LayoutExplanation of String ids, closed words and numbers with no NodeId, in process or by the layout verb inside its call's command span; it resolves its id as the run path does, refusing stale or not-found, runs no step, pump, tick or settle and opens no span of its own.
+@@ -956,2 +961,3 @@
+ contract/driver-verbs/advance · driver verbs · advance — Takes ms, 1 to 60000; one settled step; adds advanced_ms, exactly ms.
++contract/driver-verbs/canvas · driver verbs · canvas — Instance level, after layout; takes id, optional full and part (1 to 1000); answers a summary of per-kind command counts and digests, with full a line-per-command dump, in parts past the snapshot text budget; refused not-found, stale, fonts-unavailable or malformed; changes nothing.
+ contract/driver-verbs/click · driver verbs · click — Takes id; clicks the centre of the element's bounds after the disabled, off-screen and covered checks; a click on a drop-down opens its list, and a click on a list box's row chooses it.
+@@ -985,2 +991,3 @@
+ contract/escher-session/answer-line · escher-session command line · answer — A command answers one uncoloured line of JSON on stdout.
++contract/escher-session/canvas · escher-session command line · canvas --id [--full] [--part] — The verb canvas takes --id and the optional bare --full and --part.
+ contract/escher-session/click · escher-session command line · click --id — The verb click takes --id.
+@@ -1052,3 +1059,3 @@
+ contract/kept-check-reader/refusal · Kept check reader · malformed refusal — Anything else is refused `Cause::Malformed` with no fault, nothing of the file held and no panic path.
+-contract/kept-check-reader/strict-read · Kept check reader · strict read — A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the eleven instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.
++contract/kept-check-reader/strict-read · Kept check reader · strict read — A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the twelve instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.
+ contract/kept-check/accepted · Kept check file · accepted — Each record states whether the call was accepted.
+@@ -1058,3 +1065,3 @@
+ contract/kept-check/digest · Kept check file · digest — `digest` is a hand-written FNV-1a 64 (offset basis 0xcbf29ce484222325, prime 0x100000001b3) over the answer's JSON line, written as 16 lowercase hex digits.
+-contract/kept-check/kept-verbs · Kept check file · kept verbs — Only calls of the eleven instance verbs are kept, `lint`, `graph`, `actions` and `layout` among them with their answers whole; any other call is not kept.
++contract/kept-check/kept-verbs · Kept check file · kept verbs — Only calls of the twelve instance verbs are kept, `lint`, `graph`, `actions`, `layout` and `canvas` among them with their answers whole; any other call is not kept.
+ contract/kept-check/masked · Kept check file · masked — `masked` is written `true` on a `type` record alone; a `type` whose element resolves to a masked control or to none keeps the text `"masked"` and `masked:true`, every other `type` keeps its text as it crossed.
+@@ -1100,3 +1107,3 @@
+ contract/load-wait/no-time-moves · Driver acting step · wait side effects — No time moves on the held instance while it waits: no tick, no time step, no changed-set drain, no print and no tracing call.
+-contract/load-wait/verbs · Driver acting step · waiting verbs — The five acting verbs (`click` · `type` · `press` · `advance` · `scroll`) wait on every carrier; `snapshot`, `screenshot`, `lint`, `graph` and `actions` wait on nothing.
++contract/load-wait/verbs · Driver acting step · waiting verbs — The five acting verbs (`click` · `type` · `press` · `advance` · `scroll`) wait on every carrier; `snapshot`, `screenshot`, `lint`, `graph`, `actions` and `canvas` wait on nothing.
+ contract/mcp-server/id-echo · MCP server · id echo — An id is echoed only as an i64 or a string of at most 128 bytes, else -32600 with id null.
+@@ -1113,3 +1120,3 @@
+ contract/mcp-server/tools-call · MCP server · tools/call — Runs one tool; a string argument is text, an i64 a number, a bool a flag, any other value refused malformed; start, status, stop and help are answered by the server.
+-contract/mcp-server/tools-list · MCP server · tools/list — The fifteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.
++contract/mcp-server/tools-list · MCP server · tools/list — The sixteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.
+ contract/mutation-query/cssom · blitz-dom mutation, query and CSSOM · CSSOM addressing — CSSOM is addressed by owner NodeId and an index path.
+@@ -1141,2 +1148,3 @@
+ contract/nodes-widgets/widget-trait · blitz-dom nodes and widgets · Widget trait — A widget's resources are unregistered when its node drops.
++contract/paint/custom-widget-scene · blitz-paint · custom_widget_scene — custom_widget_scene returns one custom widget's scene outside a raster at a given scale, behind the custom-widget feature, beside build_custom_widget_scenes; an escher addition flagged upstreamable.
+ contract/paint/paint-scene · blitz-paint · paint_scene — paint_scene paints a document into a PaintScene; a shell or renderer reaches painting through paint_scene alone.
+@@ -1158,3 +1166,3 @@
+ contract/refusal-causes/disabled · refusal causes · disabled — A click or type target reads enabled false; checked first of the three screen-level causes.
+-contract/refusal-causes/fonts-unavailable · refusal causes · fonts-unavailable — The app has no font it can paint text with; screenshot and lint refuse with nothing painted or read; remedy: boot the app with a font it can decode.
++contract/refusal-causes/fonts-unavailable · refusal causes · fonts-unavailable — The app has no font it can paint text with; screenshot, lint and canvas refuse with nothing painted or read; remedy: boot the app with a font it can decode.
+ contract/refusal-causes/malformed · refusal causes · malformed — An argument is unnamed, repeated, missing, of another kind or out of bound, carried with its fault; returned by validation.
+@@ -1294,2 +1302,3 @@
+ contract/stylesheet-handler/document-url · blitz-dom StylesheetHandler · document_url — StylesheetHandler carries a public document_url, the URL of the document whose linked sheet it loads, used to stamp that sheet's @import and @font-face requests.
++contract/target-check/canvas · Per-verb target check · canvas — `canvas` meets `fonts-unavailable` alone.
+ contract/target-check/click-type · Per-verb target check · click and type — `click` and `type` are refused `disabled`, then `off-screen`, then `covered`.
+@@ -1319,2 +1328,3 @@
+ contract/test-harness/busy · Test harness · Busy — Names only a class, Render, Layout or Loads, with no node, element, name, URL or value; NotSettled displays one fixed message per class.
++contract/test-harness/canvas-scene · blitz-test-harness · canvas_scene — Harness::canvas_scene reads one custom widget's scene at the viewport's scale, with no resolve, tick or pump.
+ contract/test-harness/contrast-ratio · Test harness · contrast_ratio — Returns the WCAG 2.x ratio (L1 + 0.05) / (L2 + 0.05), lighter over darker, from relative luminance with alpha ignored.
+@@ -1343,3 +1353,3 @@
+ contract/validation-order/first-failure · call validation · first failure — One answer a call, the first failure in order: the verb by exact name, then the call's arguments as passed, then the verb's arguments in the schema's order; a refused call changes nothing.
+-contract/verb-table/order · Driver verb table · VERBS — The verb table holds fifteen verbs, `graph` listed after `lint`, `actions` after `graph` and `layout` after `actions`.
++contract/verb-table/order · Driver verb table · VERBS — The verb table holds sixteen verbs, `graph` listed after `lint`, `actions` after `graph`, `layout` after `actions` and `canvas` after `layout`.
+ contract/viewport/scale · Viewport · scale — The scale is the hidpi scale multiplied by the zoom.

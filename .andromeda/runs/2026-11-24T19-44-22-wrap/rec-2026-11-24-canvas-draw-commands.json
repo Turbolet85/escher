@@ -1,0 +1,1577 @@
+[
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T19:47:29Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-24-canvas-draw-commands",
+"--section-file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-24-canvas-draw-commands/report rev 2 · 10 new · 0 revised · 0 retired · 73 kept · tx 3637"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T19:47:33Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-24-canvas-draw-commands",
+"--section-file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-24-canvas-draw-commands/report rev 3 · 155 new · 0 revised · 0 retired · 83 kept · tx 3638"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T19:47:53Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cites-land-2026-11-24-canvas-draw-commands.ndjson",
+"--base",
+"8520d77438661329b8a5e051589341b453d5e998",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T19:47:57Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cites-land-2026-11-24-canvas-draw-commands.ndjson",
+"--base",
+"8520d77438661329b8a5e051589341b453d5e998",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 3640"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T19:51:50Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1567 · packs 16 · pack 100 · 402625 B",
+"security-plan: rows 580 · packs 6 · pack 100 · 169886 B",
+"design-system: rows 138 · packs 2 · pack 100 · 38842 B",
+"layout-templates: rows 130 · packs 2 · pack 100 · 33041 B",
+"test-plan: rows 650 · packs 7 · pack 100 · 187423 B",
+"obs-plan: rows 296 · packs 3 · pack 100 · 81679 B",
+"a11y-plan: rows 243 · packs 3 · pack 100 · 77904 B",
+"rows-packs: 7 master(s) · 3604 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 3640"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-24T19-44-22-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:03:59Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1567 · packs 16 · picked 89 (60 by every draw) · standing 0 · 185052 B · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 580 · packs 6 · picked 66 (43 by every draw) · standing 0 · 125153 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 138 · packs 2 · picked 24 (16 by every draw) · standing 0 · 27287 B",
+"layout-templates: rows 130 · packs 2 · picked 21 (14 by every draw) · standing 0 · 28933 B",
+"test-plan: rows 650 · packs 7 · picked 64 (48 by every draw) · standing 0 · 136971 B",
+"obs-plan: rows 296 · packs 3 · picked 54 (34 by every draw) · standing 0 · 65870 B",
+"a11y-plan: rows 243 · packs 3 · picked 18 (15 by every draw) · standing 0 · 20186 B",
+"rows-union: 7 master(s) · picked 336 of 3604 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-24T19-44-22-wrap/arch-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/arch-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/security-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/security-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/design-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/design-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/tests-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/tests-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/obs-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/obs-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:09:42Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-main-security-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:security-plan",
+"PASS · standing · 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:15Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-verb/content · rejected",
+"fit: fits 25 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — Established Decisions: 5 row(s) (1 of 2)\n**Section:** Established Decisions\n**Change:** ~ decision/no-node-id-across-session · rule: was «Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.»; now «Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, canvas readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.»\n~ decision/kept-check-never-logged · rule: was «A kept check's screens, ids, names, values, snapshot text, diffs, findings, graph and actions answers rest at rest only, never logged and never named by a tool call.»; now «A kept check's screens, ids, names, values, snapshot text, diffs, findings, graph, actions and canvas answers rest at rest only, never logged and never named by a tool call.»\n− decision/canvas-crosses-as-pixels → decision/canvas-crossing: A canvas's content no longer crosses only as pixels: its draw commands now cross every carrier as the canvas verb's answer.\n+ decision/canvas-crossing — Canvas content crosses as draw commands and pixels\n+ decision/canvas-reading-diffable — Canvas reading deterministic and diffable by line\n**Why:** decision/no-node-id-across-session: The canvas verb now carries a canvas reading across every carrier with no NodeId held by CanvasReading, so the closed list of what crosses must name it. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/kept-check-never-logged: A kept check now holds canvas answers whole, and the canvas answer is never logged, so the list of kept answers that rest unlogged must name it. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-crosses-as-pixels: The founder's own answers re-state the pixels-alone decision, so the row is false in its name and rule and its heir states the new crossing. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-crossing: The canvas verb crosses socket, command line, MCP and kept check, ratified on the founder's own answers, replacing the pixels-alone decision. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-reading-diffable: The canvas answer is read as a line-per-command dump whose two reads give the same bytes, a stated limit future work on command identity must respect.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Established Decisions: 1 row(s) (2 of 2)\n**Section:** Established Decisions\n**Change:** + decision/canvas-dump-in-parts — Canvas dump over the snapshot budget crosses in parts\n**Why:** decision/canvas-dump-in-parts: The canvas dump now pages within the snapshot text budget on a delegate's answer, so it stands provisional beside the ratified snapshot and graph paging. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 4 row(s) (1 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/actions-verb/target-verbs · promise: was «For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout`, `layout` with no cause.»; now «For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout` · `canvas`, `layout` with no cause and `canvas` with none on a document that can paint text.»\n~ contract/argument-kinds/part · promise: was «A whole number from 1 to 1000, the snapshot or graph part asked for.»; now «A whole number from 1 to 1000, the snapshot, graph or canvas dump part asked for.»\n~ contract/command-line/verb-flags · promise: was «--id, --text, --key, --ms and --part each take one value, --shift and --ctrl are bare, and --session <dir> exactly once; the call is validated before the session is asked for.»; now «--id, --text, --key, --ms and --part each take one value, --shift, --ctrl and --full are bare, and --session <dir> exactly once; the call is validated before the session is asked for.»\n~ contract/command-span/never-fielded · promise: was «No screen text, image, findings, graph, actions answer, label, id record, argument, call, outcome or refusal value is ever a field.»; now «No screen text, image, findings, graph, actions answer, canvas answer, label, id record, argument, call, outcome or refusal value is ever a field.»\n**Why:** contract/actions-verb/target-verbs: Target verbs per listed node moved from five to six, canvas last with no cause on an app that can paint text. — on relayed verbatim by the escher overseer, 2026-11-24, inputs#I3\ncontract/argument-kinds/part: The canvas verb takes the part argument for its paged dump, so the argument kind now serves three answers. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/command-line/verb-flags: The command line gains the canvas verb's bare --full flag, a new flag the contract must register. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/command-span/never-fielded: The canvas answer is never logged, its command span recording verb alone and cause when refused, so the never-fielded list must name it.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 4 row(s) (2 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/driver-explore/explored-verbs · promise: was «The verbs explored are the actions table's target verbs less any whose result holds an image or a layout reading field (png, rect, placement, shifts or size kind), selected by the field's kind and never its name; today click, type and scroll.»; now «The verbs explored are the actions table's target verbs less any whose result holds an image, a layout reading or a canvas reading field (png, rect, placement, shifts, size, commands or command-counts kind), selected by the field's kind and never its name; today click, type and scroll.»\n~ contract/driver-session/command-schema · promise: was «The command and refusal schema is stated once as 'static data: fifteen verbs, eight closed causes.»; now «The command and refusal schema is stated once as 'static data: sixteen verbs, eight closed causes.»\n~ contract/kept-check-reader/strict-read · promise: was «A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the eleven instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.»; now «A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the twelve instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.»\n~ contract/kept-check/kept-verbs · promise: was «Only calls of the eleven instance verbs are kept, `lint`, `graph`, `actions` and `layout` among them with their answers whole; any other call is not kept.»; now «Only calls of the twelve instance verbs are kept, `lint`, `graph`, `actions`, `layout` and `canvas` among them with their answers whole; any other call is not kept.»\n**Why:** contract/driver-explore/explored-verbs: The explorer's filter by field kind now also leaves out the commands and command-counts kinds, the explored verbs unchanged.\ncontract/driver-session/command-schema: The verb table moved from fifteen to sixteen verbs, a count this cell holds. — on relayed verbatim by the escher overseer, 2026-11-24, inputs#I3\ncontract/kept-check-reader/strict-read: Instance verbs moved from eleven to twelve and the reader accepts a canvas record, a count this cell holds. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ncontract/kept-check/kept-verbs: Instance verbs moved from eleven to twelve and a canvas call is kept with its answer whole. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 6 row(s) (3 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/load-wait/verbs · promise: was «The five acting verbs (`click` · `type` · `press` · `advance` · `scroll`) wait on every carrier; `snapshot`, `screenshot`, `lint`, `graph` and `actions` wait on nothing.»; now «The five acting verbs (`click` · `type` · `press` · `advance` · `scroll`) wait on every carrier; `snapshot`, `screenshot`, `lint`, `graph`, `actions` and `canvas` wait on nothing.»\n~ contract/mcp-server/tools-list · promise: was «The fifteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.»; now «The sixteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.»\n~ contract/refusal-causes/fonts-unavailable · promise: was «The app has no font it can paint text with; screenshot and lint refuse with nothing painted or read; remedy: boot the app with a font it can decode.»; now «The app has no font it can paint text with; screenshot, lint and canvas refuse with nothing painted or read; remedy: boot the app with a font it can decode.»\n~ contract/verb-table/order · promise: was «The verb table holds fifteen verbs, `graph` listed after `lint`, `actions` after `graph` and `layout` after `actions`.»; now «The verb table holds sixteen verbs, `graph` listed after `lint`, `actions` after `graph`, `layout` after `actions` and `canvas` after `layout`.»\n+ contract/driver-verbs/canvas — driver verbs · canvas\n+ contract/canvas-verb/command-kinds — The canvas verb · command kinds\n**Why:** contract/load-wait/verbs: The canvas read runs no step and waits on nothing, so the list of verbs that wait on nothing must name it.\ncontract/mcp-server/tools-list: The MCP tool listing moved from fifteen to sixteen, canvas after layout, a count this cell holds. — on relayed verbatim by the escher overseer, 2026-11-24, inputs#I3\ncontract/refusal-causes/fonts-unavailable: Session::canvas and the canvas target-check arm refuse fonts-unavailable where the document cannot paint text.\ncontract/verb-table/order: The verb row CANVAS joins VERBS after LAYOUT, moving the count from fifteen to sixteen. — on relayed verbatim by the escher overseer, 2026-11-24, inputs#I3\ncontract/driver-verbs/canvas: The chunk lands canvas as the sixteenth driver verb, a new verb the verb contracts must register. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/canvas-verb/command-kinds: The canvas answer's command kinds are a new closed set written on every carrier. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 6 row(s) (4 of 4)\n**Section:** Standard Contracts\n**Change:** + contract/canvas-verb/brush-forms — The canvas verb · brush forms\n+ contract/driver-session/canvas — escher-driver session · Session::canvas\n+ contract/escher-session/canvas — escher-session command line · canvas --id [--full] [--part]\n+ contract/target-check/canvas — Per-verb target check · canvas\n+ contract/paint/custom-widget-scene — blitz-paint · custom_widget_scene\n+ contract/test-harness/canvas-scene — blitz-test-harness · canvas_scene\n**Why:** contract/canvas-verb/brush-forms: The canvas answer's brush forms are a new closed set written on every carrier. — on relayed verbatim by the escher overseer, 2026-11-24, inputs#I3\ncontract/driver-session/canvas: Session::canvas is a new public in-process read of the driver session.\ncontract/escher-session/canvas: The command line gains the canvas verb, a new command form beside each other verb's row. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/target-check/canvas: The target check gains a canvas arm refusing fonts-unavailable and clearing every other target.\ncontract/paint/custom-widget-scene: blitz-paint gains a new public entry point reading one widget's scene, which the driver's canvas read relies on. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/test-harness/canvas-scene: The test harness gains a new public reader of one widget's scene. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 15 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 26 operation(s) · 6 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-verb/content · rejected",
+"fit: fits 25 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — Established Decisions: 5 row(s) (1 of 2)\n**Section:** Established Decisions\n**Change:** ~ decision/no-node-id-across-session · rule: was «Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.»; now «Only ids, names, masked values, snapshot text, diffs, shots, lint findings, a step's caused text, layout readings, canvas readings, closed words, booleans, counts and numbers cross a driver session, never a `NodeId`.»\n~ decision/kept-check-never-logged · rule: was «A kept check's screens, ids, names, values, snapshot text, diffs, findings, graph and actions answers rest at rest only, never logged and never named by a tool call.»; now «A kept check's screens, ids, names, values, snapshot text, diffs, findings, graph, actions and canvas answers rest at rest only, never logged and never named by a tool call.»\n− decision/canvas-crosses-as-pixels → decision/canvas-crossing: A canvas's content no longer crosses only as pixels: its draw commands now cross every carrier as the canvas verb's answer.\n+ decision/canvas-crossing — Canvas content crosses as draw commands and pixels\n+ decision/canvas-reading-diffable — Canvas reading deterministic and diffable by line\n**Why:** decision/no-node-id-across-session: The canvas verb now carries a canvas reading across every carrier with no NodeId held by CanvasReading, so the closed list of what crosses must name it. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/kept-check-never-logged: A kept check now holds canvas answers whole, and the canvas answer is never logged, so the list of kept answers that rest unlogged must name it. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-crosses-as-pixels: The founder's own answers re-state the pixels-alone decision, so the row is false in its name and rule and its heir states the new crossing. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-crossing: The canvas verb crosses socket, command line, MCP and kept check, ratified on the founder's own answers, replacing the pixels-alone decision. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-reading-diffable: The canvas answer is read as a line-per-command dump whose two reads give the same bytes, a stated limit future work on command identity must respect.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Established Decisions: 1 row(s) (2 of 2)\n**Section:** Established Decisions\n**Change:** + decision/canvas-dump-in-parts — Canvas dump over the snapshot budget crosses in parts\n**Why:** decision/canvas-dump-in-parts: The canvas dump now pages within the snapshot text budget on a delegate's answer, so it stands provisional beside the ratified snapshot and graph paging. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 4 row(s) (1 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/actions-verb/target-verbs · promise: was «For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout`, `layout` with no cause.»; now «For each node listed, the read covers each instance verb that takes an id argument, in table order, today `click` · `type` · `scroll` · `screenshot` · `layout` · `canvas`, `layout` with no cause and `canvas` with none on a document that can paint text.»\n~ contract/argument-kinds/part · promise: was «A whole number from 1 to 1000, the snapshot or graph part asked for.»; now «A whole number from 1 to 1000, the snapshot, graph or canvas dump part asked for.»\n~ contract/command-line/verb-flags · promise: was «--id, --text, --key, --ms and --part each take one value, --shift and --ctrl are bare, and --session <dir> exactly once; the call is validated before the session is asked for.»; now «--id, --text, --key, --ms and --part each take one value, --shift, --ctrl and --full are bare, and --session <dir> exactly once; the call is validated before the session is asked for.»\n~ contract/command-span/never-fielded · promise: was «No screen text, image, findings, graph, actions answer, label, id record, argument, call, outcome or refusal value is ever a field.»; now «No screen text, image, findings, graph, actions answer, canvas answer, label, id record, argument, call, outcome or refusal value is ever a field.»\n**Why:** contract/actions-verb/target-verbs: Target verbs per listed node moved from five to six, canvas last with no cause on an app that can paint text. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/argument-kinds/part: The canvas verb takes the part argument for its paged dump, so the argument kind now serves three answers. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/command-line/verb-flags: The command line gains the canvas verb's bare --full flag, a new flag the contract must register. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/command-span/never-fielded: The canvas answer is never logged, its command span recording verb alone and cause when refused, so the never-fielded list must name it.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 3 row(s) (2 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/driver-explore/explored-verbs · promise: was «The verbs explored are the actions table's target verbs less any whose result holds an image or a layout reading field (png, rect, placement, shifts or size kind), selected by the field's kind and never its name; today click, type and scroll.»; now «The verbs explored are the actions table's target verbs less any whose result holds an image, a layout reading or a canvas reading field (png, rect, placement, shifts, size, commands or command-counts kind), selected by the field's kind and never its name; today click, type and scroll.»\n~ contract/driver-session/command-schema · promise: was «The command and refusal schema is stated once as 'static data: fifteen verbs, eight closed causes.»; now «The command and refusal schema is stated once as 'static data: sixteen verbs, eight closed causes.»\n~ contract/kept-check-reader/strict-read · promise: was «A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the eleven instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.»; now «A kept check is read strictly: at most 1,048,576 bytes, a JSON array of at most 400 records, closed keys, the twelve instance verbs, schema argument names, `masked` on `type` alone, `digest` 16 lowercase hex, `answer` a required JSON object; key order is not enforced.»\n**Why:** contract/driver-explore/explored-verbs: The explorer's filter by field kind now also leaves out the commands and command-counts kinds, the explored verbs unchanged.\ncontract/driver-session/command-schema: The verb table moved from fifteen to sixteen verbs, a count this cell holds. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/kept-check-reader/strict-read: Instance verbs moved from eleven to twelve and the reader accepts a canvas record, a count this cell holds. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 4 row(s) (3 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/kept-check/kept-verbs · promise: was «Only calls of the eleven instance verbs are kept, `lint`, `graph`, `actions` and `layout` among them with their answers whole; any other call is not kept.»; now «Only calls of the twelve instance verbs are kept, `lint`, `graph`, `actions`, `layout` and `canvas` among them with their answers whole; any other call is not kept.»\n~ contract/load-wait/verbs · promise: was «The five acting verbs (`click` · `type` · `press` · `advance` · `scroll`) wait on every carrier; `snapshot`, `screenshot`, `lint`, `graph` and `actions` wait on nothing.»; now «The five acting verbs (`click` · `type` · `press` · `advance` · `scroll`) wait on every carrier; `snapshot`, `screenshot`, `lint`, `graph`, `actions` and `canvas` wait on nothing.»\n~ contract/mcp-server/tools-list · promise: was «The fifteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.»; now «The sixteen verbs in table order, help last, each with its help and its result fields as description and an inputSchema with additionalProperties false.»\n~ contract/refusal-causes/fonts-unavailable · promise: was «The app has no font it can paint text with; screenshot and lint refuse with nothing painted or read; remedy: boot the app with a font it can decode.»; now «The app has no font it can paint text with; screenshot, lint and canvas refuse with nothing painted or read; remedy: boot the app with a font it can decode.»\n**Why:** contract/kept-check/kept-verbs: Instance verbs moved from eleven to twelve and a canvas call is kept with its answer whole. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ncontract/load-wait/verbs: The canvas read runs no step and waits on nothing, so the list of verbs that wait on nothing must name it.\ncontract/mcp-server/tools-list: The MCP tool listing moved from fifteen to sixteen, canvas after layout, a count this cell holds. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/refusal-causes/fonts-unavailable: Session::canvas and the canvas target-check arm refuse fonts-unavailable where the document cannot paint text.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Standard Contracts: 9 row(s) (4 of 4)\n**Section:** Standard Contracts\n**Change:** ~ contract/verb-table/order · promise: was «The verb table holds fifteen verbs, `graph` listed after `lint`, `actions` after `graph` and `layout` after `actions`.»; now «The verb table holds sixteen verbs, `graph` listed after `lint`, `actions` after `graph`, `layout` after `actions` and `canvas` after `layout`.»\n+ contract/driver-verbs/canvas — driver verbs · canvas\n+ contract/canvas-verb/command-kinds — The canvas verb · command kinds\n+ contract/canvas-verb/brush-forms — The canvas verb · brush forms\n+ contract/driver-session/canvas — escher-driver session · Session::canvas\n+ contract/escher-session/canvas — escher-session command line · canvas --id [--full] [--part]\n+ contract/target-check/canvas — Per-verb target check · canvas\n+ contract/paint/custom-widget-scene — blitz-paint · custom_widget_scene\n+ contract/test-harness/canvas-scene — blitz-test-harness · canvas_scene\n**Why:** contract/verb-table/order: The verb row CANVAS joins VERBS after LAYOUT, moving the count from fifteen to sixteen. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/driver-verbs/canvas: The chunk lands canvas as the sixteenth driver verb, a new verb the verb contracts must register. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/canvas-verb/command-kinds: The canvas answer's command kinds are a new closed set written on every carrier. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/canvas-verb/brush-forms: The canvas answer's brush forms are a new closed set written on every carrier. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F3 A «Без текста, только сводка (Recommended)»\ncontract/driver-session/canvas: Session::canvas is a new public in-process read of the driver session.\ncontract/escher-session/canvas: The command line gains the canvas verb, a new command form beside each other verb's row. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/target-check/canvas: The target check gains a canvas arm refusing fonts-unavailable and clearing every other target.\ncontract/paint/custom-widget-scene: blitz-paint gains a new public entry point reading one widget's scene, which the driver's canvas read relies on. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\ncontract/test-harness/canvas-scene: The test harness gains a new public reader of one widget's scene. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 15 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 26 operation(s) · 6 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:32Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-verb/content · rejected",
+"fit: fits 25 · not_master 0 · stands 0",
+"landed tx 3642 · 26 operation(s) · 6 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:36Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/session-canvas-read-in-process · rejected",
+"decision/canvas-answer-paged · rejected",
+"fit: fits 11 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — Threat Model Summary: 4 row(s)\n**Section:** Threat Model Summary\n**Change:** − decision/canvas-content-crosses-as-shot-pixels → decision/canvas-content-crossing: A canvas's content no longer crosses only as shot pixels: the canvas verb carries its draw commands as closed words, numbers and digests on the socket, the command line, MCP and a kept check.\n+ decision/canvas-content-crossing — Canvas content crossing\n+ decision/cold-agent-canvas-to-provider — Cold-agent runs carry canvas answers to the provider\n~ contract/actions-answer/verbs · promise: was «A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed node carries layout with no cause.»; now «A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed node carries layout with no cause, and canvas with no cause on an app that can paint text.»\n**Why:** decision/canvas-content-crosses-as-shot-pixels: The chunk adds the canvas verb on every carrier, so the row's name, rule and key, all built on pixels alone, are false and an heir states the widened crossing. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/canvas-content-crossing: The canvas verb carries a canvas's draw commands on every ratified carrier as closed values and digests, replacing the pixels-only crossing. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/cold-agent-canvas-to-provider: The cold-agent pipe's allowlist takes canvas, and the standing provider row cannot take the canvas answer within its bound. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ncontract/actions-answer/verbs: The actions answer now lists canvas among each node's target verbs, with no cause where the app can paint text. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Input Validation: 4 row(s)\n**Section:** Input Validation\n**Change:** ~ contract/recorded-check/tool · promise: was «One of the eleven instance verbs.»; now «One of the twelve instance verbs.»\n+ contract/driver-verbs/canvas — Driver verbs · canvas\n+ name/command/canvas — canvas\n+ contract/cli-flags/full — escher-session flags · --full\n**Why:** contract/recorded-check/tool: The instance verbs moved from eleven to twelve with canvas, and a kept check's tool may name it. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ncontract/driver-verbs/canvas: The chunk adds the canvas verb as a new external-input surface validated by the closed schema, and its argument contract stands nowhere. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\nname/command/canvas: The chunk occupies canvas as the driver verb and the MCP tool name.\ncontract/cli-flags/full: The escher-session command line gains the bare --full flag of the canvas command. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — API Security: 1 row(s)\n**Section:** API Security\n**Change:** ~ decision/time-moves-only-on-advance · rule: was «Time on a held instance moves only when a caller asks for it with advance, 1 to 60000 ms a call; no driver verb has an argument or result field of a wait, and snapshot, screenshot, lint, graph and actions wait on no load.»; now «Time on a held instance moves only when a caller asks for it with advance, 1 to 60000 ms a call; no driver verb has an argument or result field of a wait, and snapshot, screenshot, lint, graph, actions and canvas wait on no load.»\n**Why:** decision/time-moves-only-on-advance: The canvas read moves no clock and leaves timer ticks unapplied, so it joins the verbs that wait on no load.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Logging & Monitoring: 2 row(s)\n**Section:** Logging & Monitoring\n**Change:** ~ decision/no-screen-content-in-logs · rule: was «No driver call or in-process read puts screen content in a log: typed text, element ids, accessible names, a shot's image, lint findings, a part's text, a UI graph, an actions answer, a layout answer, a coverage check and a step's caused text reach no log line at any level.»; now «No driver call or in-process read puts screen content in a log: typed text, element ids, accessible names, a shot's image, lint findings, a part's text, a UI graph, an actions answer, a layout answer, a canvas answer, a coverage check and a step's caused text reach no log line at any level.»\n~ contract/command-span/verb · promise: was «Records the instance-level verb; a graph call, a graph part's included, an actions or layout call records the verb alone, plus cause when refused, never the part asked or the part count.»; now «Records the instance-level verb; a graph call, a graph part's included, an actions, layout or canvas call records the verb alone, plus cause when refused, never the part asked or the part count.»\n**Why:** decision/no-screen-content-in-logs: No canvas answer content reaches the host or MCP role log at trace, so the canvas answer joins the content kept out of logs.\ncontract/command-span/verb: The command span records the canvas verb alone and, refused, its cause.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Data Protection: 1 row(s)\n**Section:** Data Protection\n**Change:** + decision/kept-check-canvas-answer — Kept check holds the canvas answer\n**Why:** decision/kept-check-canvas-answer: A kept check now records canvas calls whole, a new content class beside the layout, graph and actions answers it keeps. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 6 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 12 operation(s) · 5 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:36Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** ~ decision/socket-carries-screen-reading · rule: was «An answer carries what the screen reads: ids, accessible names, control values, password and file input masked, snapshot text, diff, lint findings, UI graph, layout readings and an acting step's caused text scrubbed by its own field names, error kept, never a NodeId or an attribute value as typed.»; now «An answer carries what the screen reads: ids, accessible names, control values, password and file input masked, snapshot text, diff, lint findings, UI graph, layout and canvas readings and a step's caused text scrubbed by its field names, error kept, never a NodeId or an attribute value as typed.»\n**Why:** decision/socket-carries-screen-reading: The canvas verb is answered over the session socket's call, so its canvas readings join what the socket carries out, as the plan's expected amendment names. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:40Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/session-canvas-read-in-process · rejected",
+"decision/canvas-answer-paged · rejected",
+"fit: fits 11 · not_master 0 · stands 0",
+"landed tx 3643 · 12 operation(s) · 5 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:40Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3644 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:40Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session/canvas · rejected",
+"decision/canvas-answer-holds-no-content · rejected",
+"contract/session-run/canvas-repeatable · rejected",
+"contract/driver-session/canvas-parts · rejected",
+"contract/canvas-answer/changed-command · rejected",
+"contract/canvas-answer/layer-filter · rejected",
+"fit: fits 13 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — 1. Test Scope Summary: 2 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** ~ contract/driver-refusal-causes/fonts-unavailable · promise: was «A screenshot or lint on an app with no usable font is refused fonts-unavailable with nothing changed.»; now «A screenshot, lint or canvas on an app with no usable font is refused fonts-unavailable with nothing changed.»\n~ contract/mcp-server/tools-list · promise: was «tools/list offers the fifteen verbs in order, `layout` after `actions` and `help` last.»; now «tools/list offers the sixteen verbs in order, `layout` after `actions`, `canvas` after `layout` and `help` last.»\n**Why:** contract/driver-refusal-causes/fonts-unavailable: Session::canvas is refused fonts-unavailable where the app cannot paint text, so the row's list of verbs so refused must name canvas.\ncontract/mcp-server/tools-list: The MCP tool listing moved from fifteen to sixteen with `canvas` after `layout`, so the stated count and order are false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 3. Test Harness Contract: 2 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ contract/cold-agent-check/step · promise: was «A step holds `tool` among the fifteen driver verbs, `arguments` an object and `expect` a list of strings; a check holds at most 400 steps.»; now «A step holds `tool` among the sixteen driver verbs, `arguments` an object and `expect` a list of strings; a check holds at most 400 steps.»\n~ contract/cold-agent-verdict/isolated · promise: was «True when the init tools are exactly the fifteen `mcp__escher__{verb}` tools, one MCP server `escher` is connected, skills and slash commands are empty, the API key source is none and no `cwd` or `memory_paths` names the repository root's basename.»; now «True when the init tools are exactly the sixteen `mcp__escher__{verb}` tools, one MCP server `escher` is connected, skills and slash commands are empty, the API key source is none and no `cwd` or `memory_paths` names the repository root's basename.»\n**Why:** contract/cold-agent-check/step: The cold-agent pipe's verb list takes canvas and moved from fifteen to sixteen, so a step's tool is one of sixteen verbs. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/cold-agent-verdict/isolated: The MCP server now lists sixteen tools and the pipe reads sixteen, so the isolation check's tool count of fifteen is false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 3. Test Harness Contract: 4 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ decision/socket-carries-commands · rule: was «The session socket carries a call's element id and typed text in, and ids, accessible names, control values (a password's or file input's as the fixed mask), the snapshot's text, the diff, a step's caused with its error text, lint findings and layout answers out.»; now «The session socket carries a call's element id and typed text in, and ids, accessible names, control values (a password's or file input's as the fixed mask), the snapshot's text, the diff, a step's caused with its error text, lint findings, layout answers and canvas answers out.»\n~ contract/driver-session/reading-verbs · promise: was «`snapshot`, `screenshot`, `lint`, `graph` and `layout` run no step and wait on nothing.»; now «`snapshot`, `screenshot`, `lint`, `graph`, `layout` and `canvas` run no step and wait on nothing.»\n~ contract/escher-session-command-line/command-form · promise: was «`escher-session <verb> … --session <dir>` is the whole command line, fifteen verbs; the instance-level verbs take their arguments as flags spelt as the schema spells them (`--id`, `--text`, `--key`, `--ms` and `--part` each with one value, `--shift` and `--ctrl` bare).»; now «`escher-session <verb> … --session <dir>` is the whole command line, sixteen verbs; the instance-level verbs take their arguments as flags spelt as the schema spells them (`--id`, `--text`, `--key`, `--ms` and `--part` each with one value, `--shift`, `--ctrl` and `--full` bare).»\n+ contract/escher-session-command-line/canvas — escher-session command line · canvas\n**Why:** decision/socket-carries-commands: The canvas verb is served over the session socket's call, so canvas answers now cross it outward and the list of what crosses is incomplete. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ncontract/driver-session/reading-verbs: The canvas verb is a new reading verb that runs no step and waits on no load, so the closed list of reading verbs must name it.\ncontract/escher-session-command-line/command-form: The command line gains the canvas command with a bare `--full` flag and the verb count moved from fifteen to sixteen. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/escher-session-command-line/canvas: The usage line gains the canvas command, which would pass the usage row's bound, so the command's form stands as a row of its own. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 4. Unit Test Strategy: 2 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** ~ contract/driver-verbs/verb-table · promise: was «Fifteen verbs in a stated order at three levels — `instance`, `session`, `tool` — each with help, arguments and at least one result field.»; now «Sixteen verbs in a stated order at three levels — `instance`, `session`, `tool` — each with help, arguments and at least one result field.»\n+ decision/control-leaves-earlier-target-green — Control edit leaves earlier test targets green\n**Why:** contract/driver-verbs/verb-table: The verb table moved from fifteen to sixteen verbs with canvas after layout, so the stated count is false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ndecision/control-leaves-earlier-target-green: The chunk measured that a control reddening an earlier target leaves its own case unrun, a rule for building controls no row states.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/typed-password-never-returned · rule: was «A password typed through the driver and a file input's path occur nowhere in what a call returns, graph, actions and layout answers included, nor in a kept or an explored path's check, in both layout modes; the value reads the mask, and a typed password never leaves as pixels.»; now «A password typed through the driver and a file input's path occur nowhere in what a call returns, graph, actions, layout and canvas answers included, nor in a kept or an explored path's check, in both layout modes; the value reads the mask, and a typed password never leaves as pixels.»\n**Why:** decision/typed-password-never-returned: The masks check now reads the new canvas answer for the typed sentinel and the file input, so the answers the rule covers include canvas.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 6. E2E Test Strategy: 1 row(s)\n**Section:** 6. E2E Test Strategy\n**Change:** ~ contract/mcp-tools-list/order · promise: was «`tools/list` offers the fifteen verbs in order, `graph` after `lint`, `actions` after `graph`, `layout` after `actions` and `help` last.»; now «`tools/list` offers the sixteen verbs in order, `graph` after `lint`, `actions` after `graph`, `layout` after `actions`, `canvas` after `layout` and `help` last.»\n**Why:** contract/mcp-tools-list/order: The MCP tool listing moved from fifteen to sixteen with `canvas` after `layout`, so the stated count and order are false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** + decision/canvas-commands-table-across-hosts — Canvas commands held to one table across hosts\n**Why:** decision/canvas-commands-table-across-hosts: The chunk adds a cross-host committed table for canvas command reads, a test strategy no standing row states, the shot rows covering pixels alone.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 10 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 13 operation(s) · 7 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:41Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-answer/content · rejected",
+"contract/canvas-answer/logging · rejected",
+"decision/cold-agent-canvas-uncounted · rejected",
+"fit: fits 7 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — 4. Span / Trace Coverage: 2 row(s)\n**Section:** 4. Span / Trace Coverage\n**Change:** ~ contract/command-span/settled · promise: was «Recorded from an acting verb's outcome only; snapshot, screenshot, lint, graph, actions, layout and a part read record verb alone, and a refusal records verb and cause alone.»; now «Recorded from an acting verb's outcome only; snapshot, screenshot, lint, graph, actions, layout, canvas and a part read record verb alone, and a refusal records verb and cause alone.»\n~ contract/tool-call-span/tool · promise: was «The verb table's word for the tool, one of its fifteen; unrecorded for an unknown tool.»; now «The verb table's word for the tool, one of its sixteen; unrecorded for an unknown tool.»\n**Why:** contract/command-span/settled: The canvas verb's command span records verb alone and, refused, verb and cause, so the verb-alone list must name canvas.\ncontract/tool-call-span/tool: The MCP tool listing and the verb table moved from fifteen to sixteen with canvas, so the count the cell holds must follow. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 6. Log Coverage: 2 row(s)\n**Section:** 6. Log Coverage\n**Change:** ~ contract/command-span/verb · promise: was «The verb table's own word for a known verb, run or refused, one of its fifteen words; never the caller's verb text; unrecorded for a verb the table lacks; the three session-level words and the tool-level help appear only beside the cause unknown-verb.»; now «The verb table's own word for a known verb, run or refused, one of its sixteen words; never the caller's verb text; unrecorded for a verb the table lacks; the three session-level words and the tool-level help appear only beside the cause unknown-verb.»\n+ contract/command-span/canvas — The driver's command span · canvas\n**Why:** contract/command-span/verb: The verb table moved from fifteen to sixteen verbs with canvas, so the count the cell holds must follow. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/command-span/canvas: The chunk adds the canvas verb, whose command span records verb alone and, refused, verb and cause, as its siblings' per-verb line rows state.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 3. Observability Harness Contract: 2 row(s)\n**Section:** 3. Observability Harness Contract\n**Change:** ~ decision/sink-host-read-at-trace · rule: was «A sink-installing host and its mcp role are read at trace under both builds, and must show no id, name, typed-sentinel or layout-answer key needle in what they write.»; now «A sink-installing host and its mcp role are read at trace under both builds, and must show no id, name, typed-sentinel, layout-answer key or canvas needle in what they write.»\n~ decision/part-answer-never-logged · rule: was «A part's answer, a snapshot part ({\"text\":…,\"part\":n,\"parts\":m}) or a graph part ({\"nodes\":[…],\"states\":[…],\"part\":n,\"parts\":m}), is a command's answer, written over MCP as its JSON line, and is never logged or fielded.»; now «A part's answer, a snapshot part ({\"text\":…,\"part\":n,\"parts\":m}), a graph part ({\"nodes\":[…],\"states\":[…],\"part\":n,\"parts\":m}) or a canvas part, is a command's answer, written over MCP as its JSON line, and is never logged or fielded.»\n**Why:** decision/sink-host-read-at-trace: host_log and mcp_log now read zero canvas needles at trace, so the needle list the decision names must include them.\ndecision/part-answer-never-logged: The canvas full dump now answers in parts (Outcome::CanvasPart), so the decision's list of part answers is incomplete without it. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 4. Span / Trace Coverage: 1 row(s)\n**Section:** 4. Span / Trace Coverage\n**Change:** + decision/canvas-read-opens-no-span — The canvas read opens no span\n**Why:** decision/canvas-read-opens-no-span: The chunk adds Session::canvas with no span by design, a decision future instrumentation work must respect.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 5 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 7 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/driver-session/canvas · rejected",
+"decision/canvas-answer-holds-no-content · rejected",
+"contract/session-run/canvas-repeatable · rejected",
+"contract/driver-session/canvas-parts · rejected",
+"contract/canvas-answer/changed-command · rejected",
+"contract/canvas-answer/layer-filter · rejected",
+"fit: fits 13 · not_master 0 · stands 0",
+"landed tx 3645 · 13 operation(s) · 7 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-answer/content · rejected",
+"contract/canvas-answer/logging · rejected",
+"decision/cold-agent-canvas-uncounted · rejected",
+"fit: fits 7 · not_master 0 · stands 0",
+"landed tx 3646 · 7 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-canvas/answer · rejected",
+"decision/canvas-answer-holds-no-text · rejected",
+"contract/escher-session-canvas/part · rejected",
+"decision/canvas-read-changes-nothing · rejected",
+"decision/circle-drawer-canvas-reads-deterministically · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** ~ decision/circle-drawer-circles-painted-on-canvas · rule: was «Circle Drawer's circles are painted by a canvas widget from one data-circles attribute (x,y,d per circle, semicolon-joined, malformed text read as no circle), never as DOM nodes, so they reach no snapshot, tree, graph or lint and cross as shot pixels alone.»; now «Circle Drawer's circles are painted by a canvas widget from one data-circles attribute (x,y,d per circle, semicolon-joined, malformed text read as no circle), never as DOM nodes, so they reach no snapshot, tree, graph or lint and cross as shot pixels and canvas draw commands alone.»\n**Why:** decision/circle-drawer-circles-painted-on-canvas: The canvas verb now reads Circle Drawer's draw commands on every carrier, so the circles no longer cross as shot pixels alone. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Surface: cli: 4 row(s)\n**Section:** Surface: cli\n**Change:** ~ contract/escher-session-command/form · promise: was «Every command is escher-session <verb> [arguments] --session <dir> over the fifteen verbs of the driver's verb table, --session exactly once on every command but help.»; now «Every command is escher-session <verb> [arguments] --session <dir> over the sixteen verbs of the driver's verb table, --session exactly once on every command but help.»\n~ contract/escher-session-mcp/tools · promise: was «Lists the fifteen verbs of the verb table as tools in order, layout after actions and help last, each description the verb's help then \". Returns: \" and its result fields.»; now «Lists the sixteen verbs of the verb table as tools in order, layout after actions, canvas after layout and help last, each description the verb's help then \". Returns: \" and its result fields.»\n~ contract/escher-session-refusals/fonts-unavailable · promise: was «screenshot or lint on an app with no font it can paint text with is refused fonts-unavailable, exit 1.»; now «screenshot, lint or canvas on an app with no font it can paint text with is refused fonts-unavailable, exit 1.»\n+ contract/escher-session-mcp/canvas-tool — escher-session MCP server · canvas tool\n**Why:** contract/escher-session-command/form: The verb table moved from fifteen to sixteen verbs with canvas, so the command form's verb count must follow. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/escher-session-mcp/tools: The MCP tool listing moved from fifteen to sixteen tools with canvas after layout, so the listing's promise must follow. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I3: F1 B «Глагол canvas на всех каналах (Recommended)»\ncontract/escher-session-refusals/fonts-unavailable: The canvas read is refused fonts-unavailable where the app cannot paint text, so the refusal's list of verbs must name it.\ncontract/escher-session-mcp/canvas-tool: The MCP server gains a canvas tool whose input schema and answer are a contract to MCP clients. — on delegate the escher overseer, 2026-11-24, inputs#I3, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:46Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-commands/canvas-arguments · rejected",
+"contract/escher-session-commands/canvas-answer · rejected",
+"contract/escher-session-commands/canvas-parts · rejected",
+"contract/canvas-line/content · rejected",
+"absence/canvas-command-identity · rejected",
+"contract/canvas-line/layer-filter · rejected",
+"contract/escher-session-mcp/canvas-input-schema · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** + decision/canvas-line-form-conventions — Canvas line form conventions\n**Why:** decision/canvas-line-form-conventions: The chunk settles the canvas line's open form choices, a convention future readers and writers of the line must keep.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — Motion (calibrated to expression level `unrecorded`): 1 row(s)\n**Section:** Motion (calibrated to expression level `unrecorded`)\n**Change:** + contract/driver-verbs-and-virtual-clock/canvas — driver verbs and the virtual clock · canvas\n**Why:** contract/driver-verbs-and-virtual-clock/canvas: The chunk adds a verb whose relation to the virtual clock is promised beside advance, click, press and type.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-answer/glyph-run · rejected",
+"decision/canvas-commands-carry-no-identity · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-24-canvas-draw-commands — 7. Screen Reader Support: 2 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ decision/circle-drawer-canvas-pixels-only · rule: was «Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed and clickable, and its circles and diameter labels reach no DOM, snapshot, accessibility tree, UI graph or lint, leaving only as shot pixels.»; now «Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed and clickable, and its circles and diameter labels reach no DOM, snapshot, accessibility tree, UI graph or lint, leaving only as shot pixels and as the canvas verb's draw commands, no label's text among them.»\n~ decision/readers-of-one-snapshot-model · rule: was «The text form, the diff, the text parts, MCP tool results, the node keys' help and the screenshot read only the one snapshot model, with no second role or name mapping.»; now «The text form, the diff, the text parts, MCP tool results, the node keys' help and the screenshot read only the one snapshot model, with no second role or name mapping; the canvas read, which reads one canvas element's draw commands, is no reader of the snapshot model.»\n**Why:** decision/circle-drawer-canvas-pixels-only: Circle Drawer's canvas is now read in process and on every carrier as draw commands with no text, so «only as shot pixels» no longer holds while the canvas stays one named node. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-24, inputs#I8: «Подтвердить все 15 (Recommended)»\ndecision/readers-of-one-snapshot-model: The canvas verb's MCP result reads draw commands rather than the snapshot model, so the row must say the canvas read is no snapshot reader.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"## 2026-11-24-canvas-draw-commands — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ decision/snapshot-model-single-source · rule: was «The snapshot's text form, parts, diff, MCP results, node-key help and screenshot read the snapshot model and nothing else.»; now «The snapshot's text form, parts, diff, MCP results, node-key help and screenshot read the snapshot model and nothing else; the canvas read, which reads one canvas element's draw commands, is no reader of the snapshot model.»\n**Why:** decision/snapshot-model-single-source: The canvas verb's MCP result reads draw commands rather than the snapshot model, so the row must say the canvas read is no snapshot reader.\n**Ref:** .andromeda/runs/2026-11-24T19-44-22-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:50Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-canvas/answer · rejected",
+"decision/canvas-answer-holds-no-text · rejected",
+"contract/escher-session-canvas/part · rejected",
+"decision/canvas-read-changes-nothing · rejected",
+"decision/circle-drawer-canvas-reads-deterministically · rejected",
+"fit: fits 5 · not_master 0 · stands 0",
+"landed tx 3647 · 5 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:51Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-commands/canvas-arguments · rejected",
+"contract/escher-session-commands/canvas-answer · rejected",
+"contract/escher-session-commands/canvas-parts · rejected",
+"contract/canvas-line/content · rejected",
+"absence/canvas-command-identity · rejected",
+"contract/canvas-line/layer-filter · rejected",
+"contract/escher-session-mcp/canvas-input-schema · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 3648 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:26:51Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-24T19-44-22-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-answer/glyph-run · rejected",
+"decision/canvas-commands-carry-no-identity · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 3649 · 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+".andromeda/runs/2026-11-24T19-44-22-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:38Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/a11y-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__a11y-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/a11y-summary.md rev 23 · 0 new · 1 revised · 0 retired · tx 3650"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/a11y-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:39Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 23 · 0 new · 1 revised · 0 retired · tx 3651"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:39Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-paint.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__services__blitz-paint.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-paint.md rev 9 · 0 new · 1 revised · 0 retired · tx 3652"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/services/blitz-paint.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:40Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 27 · 0 new · 2 revised · 0 retired · tx 3653"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:41Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-telemetry.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__services__escher-telemetry.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-telemetry.md rev 19 · 0 new · 3 revised · 0 retired · tx 3654"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/services/escher-telemetry.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:41Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 38 · 0 new · 11 revised · 0 retired · tx 3655"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:42Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 34 · 0 new · 4 revised · 0 retired · tx 3656"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:42Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-test-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__services__blitz-test-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-test-harness.md rev 15 · 0 new · 1 revised · 0 retired · tx 3657"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/services/blitz-test-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:43Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 15 · 0 new · 3 revised · 0 retired · tx 3658"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:43Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 53 · 0 new · 4 revised · 0 retired · tx 3659"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:44Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 27 · 0 new · 2 revised · 0 retired · tx 3660"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:44Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 23 · 0 new · 2 revised · 0 retired · tx 3661"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:45Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 41 · 0 new · 7 revised · 0 retired · tx 3662"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:45Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 46 · 0 new · 3 revised · 0 retired · tx 3663"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:46Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 45 · 0 new · 2 revised · 0 retired · tx 3664"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:46Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/verification-harness.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__rules__verification-harness.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/verification-harness.md rev 21 · 0 new · 2 revised · 0 retired · tx 3665"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/rules/verification-harness.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:31:47Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 50 · 0 new · 2 revised · 0 retired · tx 3666"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:35:31Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 4 record(s) · 3 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:35:35Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 4 record(s) · 3 edge(s) · tx 3670 · cry-uqifds5z … res-n35ffmjz"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T20:36:14Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-24T19-44-22-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap",
+"--marker",
+"2026-11-24-canvas-draw-commands"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3672 · run-jxcppweg … run-jxcppweg"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T12-53-43-2026-11-24-canvas-draw-commands.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T21:06:35Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-24-canvas-draw-commands",
+"--run-dir",
+".andromeda/runs/2026-11-24T19-44-22-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 12 file(s) of 2026-11-24-canvas-draw-commands"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

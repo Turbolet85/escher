@@ -1,0 +1,173 @@
+@task_prose part=session
+The session added canvas, the sixteenth driver verb and twelfth at the instance level, after layout: it reads the draw commands an app's custom widget paints into a canvas element, as a summary of counts and digests by default, as a full line-per-command dump with full, and in parts with part when the dump passes the snapshot text budget.
+The verb rides every carrier: the session socket call, the escher-session command line (canvas --id <id> [--full] [--part <part>]), the MCP tool canvas (after layout, help last) and a kept check's tool canvas; in process it is Session::canvas, which resolves an id as layout does and opens no span of its own.
+The answer holds eight closed command kinds (Layer, Clip, Mask, Pop, Fill, Stroke, Glyphs, Shadow) and five brush forms, written as closed words, numbers and 64-bit FNV-1a digests; no glyph id, glyph position, text, font bytes or family name crosses any carrier, log or kept check.
+The engine gained blitz_paint::custom_widget_scene (one widget's commands outside a raster, beside build_custom_widget_scenes, paint_scene unedited, flagged upstreamable) and the test harness Harness::canvas_scene; escher-driver takes the workspace's anyrender and peniko.
+Measured: full dump 527, 5,915 and 49,266 bytes at 1, 12 and 100 circles, the summary 166 to 172 bytes, 100 circles in 6 parts each within 10,000 bytes; the Cells actions answer grew to 130,496 bytes, within its 1,048,576-byte bound; the canvas table reads the same on linux, windows and macOS.
+No refusal cause, session error, exit status, node key, argument kind, span field or carrier was added; nothing was retired.
+@task_file n=1 path=packages/escher-driver/src/canvas.rs
+what: new: the driver's canvas reader — Session::canvas and the public CanvasReading, CanvasCommand, CanvasBrush, GradientStop, PathStep, Rgba, Transform and COMMAND_KINDS types
+@task_file n=2 path=packages/escher-driver/src/json/canvas.rs
+what: new: the driver's own JSON writer for the canvas answer — the summary, the full dump, a part, line lengths and resource digests
+@task_file n=3 path=tests/blitz-tests/tests/stand_canvas_commands.rs
+what: new: the stand check that reads Circle Drawer's canvas in process in both layout modes against one committed table, its parts, its read-changes-nothing and its refusals
+@task_file n=4 path=tests/blitz-tests/tests/stand_canvas_carriers.rs
+what: new: the stand check of the canvas verb on the carriers — socket hosts, MCP, a kept check replayed, and the no-glyph-id, no-text crossing
+@task_file n=5 path=packages/blitz-paint/src/lib.rs
+what: edited: blitz-paint's paint entry points — paint_scene and the custom widget scenes; gains custom_widget_scene, an escher addition
+@task_file n=6 path=packages/blitz-test-harness/src/screenshot.rs
+what: edited: the test harness's screenshot readers; gains Harness::canvas_scene
+@task_file n=7 path=packages/escher-driver/Cargo.toml
+what: edited: escher-driver's manifest; takes anyrender and peniko as workspace dependencies
+@task_file n=8 path=Cargo.lock
+what: edited: the workspace lockfile; only escher-driver's dependency list moved, no package, version or checksum
+@task_file n=9 path=packages/escher-driver/src/schema.rs
+what: edited: the driver verb table VERBS and its verb specs; gains the CANVAS row after LAYOUT and its argument and field rows
+@task_file n=10 path=packages/escher-driver/src/schema/spec.rs
+what: edited: the verb spec types; FieldKind gains length, command-counts, digest, commands and digests
+@task_file n=11 path=packages/escher-driver/src/command.rs
+what: edited: the driver's command and validation schema; gains Command::Canvas with id, full and part
+@task_file n=12 path=packages/escher-driver/src/execute.rs
+what: edited: the driver's command execution and outcomes; gains the canvas outcomes, the cut of a dump into parts within the snapshot text budget and the canvas target-check arm
+@task_file n=13 path=packages/escher-driver/src/json.rs
+what: edited: the driver's own JSON answer writer; writes the canvas outcomes
+@task_file n=14 path=packages/escher-driver/src/json_tests.rs
+what: edited: the JSON writer's tests; every canvas command kind and brush form, summary, dump and part
+@task_file n=15 path=packages/escher-driver/src/explore.rs
+what: edited: the driver's explorer and its explored-verb filter by field kind; leaves out the commands and command-counts kinds
+@task_file n=16 path=packages/escher-driver/src/actions.rs
+what: edited: the actions verb's answer; canvas listed as a target verb, cause fonts-unavailable
+@task_file n=17 path=packages/escher-driver/src/describe.rs
+what: edited: the driver's one self-description for command line and MCP; describes canvas
+@task_file n=18 path=packages/escher-driver/src/mcp.rs
+what: edited: the MCP server's tool listing; sixteen tools
+@task_file n=19 path=packages/escher-driver/src/mcp_tests.rs
+what: edited: the MCP server's tests; the canvas tool and its inputSchema
+@task_file n=20 path=packages/escher-driver/src/cli_tests.rs
+what: edited: the escher-session command line's tests; the canvas verb's flags
+@task_file n=21 path=packages/escher-driver/src/recording_tests.rs
+what: edited: the kept check reader's and recording's tests; a canvas record read strictly
+@task_file n=22 path=packages/escher-driver/src/lib.rs
+what: edited: the escher-driver crate root and its public re-exports and crate doc; re-exports the canvas types, sixteen verbs
+@task_file n=23 path=tests/blitz-tests/tests/fixtures/mod.rs
+what: edited: the shared blitz-tests fixtures; gains the canvas_commands fixture with a small and a large canvas widget
+@task_file n=24 path=tests/blitz-tests/tests/session_common/mod.rs
+what: edited: the shared stand-check session helpers; gains canvas, canvas_full, canvas_part and canvased
+@task_file n=25 path=tests/blitz-tests/tests/stand_actions.rs
+what: edited: the actions verb's stand check; six target verbs and the Cells answer bound
+@task_file n=26 path=tests/blitz-tests/tests/stand_cross_os_readings.rs
+what: edited: the cross-OS readings stand check; its 14 actions digests re-read
+@task_file n=27 path=tests/blitz-tests/tests/stand_act_spans.rs
+what: edited: the command and tool_call span stand check; canvas calls in each mode
+@task_file n=28 path=tests/blitz-tests/tests/stand_act_scroll.rs
+what: edited: the scroll stand check; its literal verb-count pin moved to 16
+@task_file n=29 path=tests/blitz-tests/tests/stand_mcp_tools.rs
+what: edited: the MCP tools stand check; a canvas tool call parenting one command span recording its verb alone
+@task_file n=30 path=tests/blitz-tests/tests/stand_masks_on_new_answers.rs
+what: edited: the masked-input stand check over new answers; a canvas answer holds neither typed sentinel nor mask
+@task_file n=31 path=tests/blitz-tests/tests/stand_requirement_sweep.rs
+what: edited: the requirement sweep stand check; counts canvas among the verbs
+@task_file n=32 path=examples/seven_guis/tests/cli_commands.rs
+what: edited: seven_guis' command line process checks; a canvas host answering one line through the binary, verb-count pin 16
+@task_file n=33 path=examples/seven_guis/tests/mcp_server.rs
+what: edited: seven_guis' MCP server process checks; a canvas read the same through MCP and the command line
+@task_file n=34 path=examples/seven_guis/tests/host_log.rs
+what: edited: seven_guis' session host log process check; no canvas content in the host log at trace
+@task_file n=35 path=examples/seven_guis/tests/mcp_log.rs
+what: edited: seven_guis' MCP role log process check; no canvas content in the MCP log at trace
+@task_file n=36 path=examples/seven_guis/tests/common/mod.rs
+what: edited: seven_guis' shared process-check helpers; gains canvas_needles
+@task_file n=37 path=scripts/cold-agent.sh
+what: edited: the cold-agent pipe; its VERBS list takes canvas, COUNTED unchanged
+@task_file n=38 path=.github/scripts/test_cold_agent.py
+what: edited: the cold-agent pipe's stdlib Python test; sixteen tools
+@task_file n=39 path=docs/capabilities.md
+what: edited: the capability statement; sixteen verbs, canvas named, its measured sizes and the unpaged actions limit
+@task_file n=40 path=README.md
+what: edited: the root README, escher's own front page; the sixteen driver commands as MCP tools
+@task_item n=1 part=touches
+decision/canvas-crosses-as-pixels is broken: canvas content now also crosses as draw commands (closed words, numbers and digests, never text or glyph ids) on every carrier, the reversal on the founder's own word; the rows saying canvas content crosses as pixels alone must be re-stated.
+@task_item n=2 part=touches
+decision/no-node-id-across-session, decision/no-node-id-crosses-the-socket and contract/driver-session/no-nodeid gain the canvas readings: CanvasReading holds no NodeId.
+@task_item n=3 part=touches
+The verb table count moves fifteen to sixteen and CANVAS sits after LAYOUT: contract/verb-table/order, contract/driver-session/command-schema, contract/driver-session/schema-carriers and the driver-verbs rows.
+@task_item n=4 part=touches
+The MCP tool listing moves fifteen to sixteen, canvas after layout and help last: contract/mcp-server/tools-list, contract/mcp-role/tool-listing, contract/root-readme/mcp-tool-count.
+@task_item n=5 part=touches
+Instance verbs move eleven to twelve and a kept check may record tool canvas: contract/kept-check/kept-verbs, contract/kept-check/tool, contract/kept-check-reader/strict-read.
+@task_item n=6 part=touches
+contract/actions-verb/target-verbs: target verbs per listed node move five to six, canvas last, with no cause on an app that can paint text; the Cells actions answer at 130,496 bytes stays within the actions answer bound.
+@task_item n=7 part=touches
+contract/driver-explore/explored-verbs: the explorer's filter by field kind also leaves out commands and command-counts; the explored verbs stay click, type and scroll.
+@task_item n=8 part=touches
+contract/load-wait/verbs: canvas is among the verbs that wait on nothing.
+@task_item n=9 part=touches
+contract/refusal-causes/fonts-unavailable lists canvas; the per-verb target-check rows (contract/target-check/*) gain a canvas arm, fonts-unavailable else free; decision/refusal-causes-closed-at-eight still holds, no cause added.
+@task_item n=10 part=touches
+decision/large-screen-in-parts and decision/snapshot-text-budget gain the canvas full dump, cut into parts of whole lines within the snapshot text budget, fonts in part 1 alone, a part past the last empty; contract/argument-kinds/part bounds part 1 to 1000 for canvas.
+@task_item n=11 part=touches
+contract/paint/paint-scene gains custom_widget_scene, a second reader of one custom widget's scene; decision/fork-additions-in-own-functions and decision/direct-engine-changes-flagged-upstreamable govern it.
+@task_item n=12 part=touches
+contract/test-harness/harness and contract/test-harness/screenshot gain Harness::canvas_scene, taking a NodeId at the viewport's scale with no resolve, tick or pump.
+@task_item n=13 part=touches
+contract/command-span/verb, contract/command-span/settled and contract/tool-call-span/tool move to sixteen words; a canvas command span records verb alone, and cause when refused.
+@task_item n=14 part=touches
+decision/driver-logs-no-content, decision/no-snapshot-in-logs and decision/snapshot-text-never-logged extend to the canvas answer: host and MCP logs hold no canvas content at trace.
+@task_item n=15 part=touches
+The escher-session command line rows (contract/escher-session/*, contract/escher-session-cli/usage, contract/command-line/verb-flags) gain canvas --id <id> [--full] [--part <part>].
+@task_item n=16 part=touches
+decision/answers-written-by-own-json-writer and decision/hand-written-answers cover a new written answer, the canvas summary, dump and part; the answer-json rows gain a canvas sibling beside layout's.
+@task_item n=17 part=touches
+decision/layout-answer-crossing, decision/actions-answer-crossing, decision/ui-graph-crossing and decision/socket-carries-driver-calls gain a sibling: the canvas answer crosses the same carriers, no new carrier.
+@task_item n=18 part=touches
+decision/validated-verb-set-widened-by-ratification: the validated verb set widened by canvas on the founder's answer F1 B.
+@task_item n=19 part=touches
+decision/one-self-description-for-cli-and-mcp, decision/measured-limits-stated-in-the-tool and decision/capability-statement-matches-schema: canvas's help text and the capability statement state its measured sizes and sixteen verbs.
+@task_item n=20 part=touches
+decision/stand-readings-same-on-every-ci-os: the canvas table reads the same on linux, windows and macOS, and the 14 cross-OS actions digests were re-read.
+@task_item n=21 part=touches
+decision/screenshot-in-band, decision/screen-pixels-in-band and decision/custom-widget-content-box-paint: canvas content is no longer reachable by a screenshot's pixels alone.
+@task_item n=22 part=touches
+decision/workspace-dependencies and decision/anyrender-rendering-abstraction: escher-driver now depends on anyrender and peniko through the workspace, reading anyrender's recorded scene.
+@task_item n=23 part=touches
+The cold-agent pipe's verb list moves to sixteen with COUNTED unchanged: the cold-agent-verdict rows gain no canvas counter.
+@task_item n=24 part=touches
+decision/one-virtual-clock and decision/advance-moves-session-clock: a canvas read leaves the clock unmoved and applies no pending timer tick.
+@task_fact n=1 slug=standard-contracts
+fact: The canvas verb reads the draw commands an app's widget paints into the canvas element an id names: id required, full a flag, part 1 to 1000; a summary of per-kind counts and digests by default, a full line-per-command dump with full, in parts when the dump passes the snapshot text budget; refused not-found, stale, fonts-unavailable or malformed; the read changes nothing.
+@task_fact n=2 slug=standard-contracts
+fact: The canvas answer holds eight closed command kinds (Layer, Clip, Mask, Pop, Fill, Stroke, Glyphs, Shadow) and five brush forms (solid, gradient, image, resource, pattern) as closed words, numbers and 64-bit FNV-1a digests; fonts and images are indexed by digest; no glyph id, glyph position, text, font bytes or family name is ever written.
+@task_fact n=3 slug=standard-contracts
+fact: Session::canvas reads one canvas in process, resolving an id as Session::layout does, refusing fonts-unavailable where the document cannot paint text, and opening no span of its own.
+@task_fact n=4 slug=established-decisions
+fact: A canvas reading is deterministic and diffable by line: two reads give the same bytes; a changed command reads as one line removed and one added until virtual nodes give commands an identity; a layer's filter is written as a flag only.
+@task_fact n=5 slug=established-decisions
+fact: Canvas draw commands cross every carrier (session socket, command line, MCP, kept check) as the canvas answer, beside screenshot pixels, on the founder's answers F1 B and F3 A.
+@task_fact n=6 slug=standard-contracts
+fact: blitz_paint::custom_widget_scene returns one custom widget's scene outside a raster at a given scale, an escher addition beside build_custom_widget_scenes, flagged upstreamable; Harness::canvas_scene reads it at the viewport's scale.
+@task_fact n=7 slug=standard-contracts
+fact: The canvas answer is never logged: its command span records verb alone, and cause when refused; its tool_call span records tool and ending.
+@task_fact n=8 slug=standard-contracts
+fact: The verb table's field kinds include length, command-counts, digest, commands and digests; the explorer leaves the commands and command-counts kinds out.
+@task_fact n=9 slug=standard-contracts
+fact: The canvas dump's measured sizes are stated where an agent reads the tool: full text about 527, 5,915 and 49,266 bytes at 1, 12 and 100 circles, the summary 166 to 172 bytes, 100 circles in 6 parts each within 10,000 bytes.
+@task_item n=1 part=untouched
+Style, layout, text, Stylo, Taffy and Parley decisions: no engine pass changed and paint_scene is unedited.
+@task_item n=2 part=untouched
+The session wire rows (version v3, hello, call, stop, reply and request bounds): no wire field or version moved.
+@task_item n=3 part=untouched
+Session errors and exit-code rows for escher-session, its host and its MCP roles: none added.
+@task_item n=4 part=untouched
+Snapshot, snapshot diff, node keys and stable element id rows: no node key, snapshot field or id tier changed; the canvas read is no snapshot reader.
+@task_item n=5 part=untouched
+Accessibility tree and AccessKit rows: the canvas read has no accessibility surface.
+@task_item n=6 part=untouched
+Browser, WPT runner, rdme, Boa script and networking rows: outside the driver.
+@task_item n=7 part=untouched
+Select list, form control, scroll and hit-test rows: unchanged.
+@task_item n=8 part=untouched
+Upstream sync and two-parent merge rows: this session merged nothing.
+@task_item n=9 part=untouched
+absence/exploration-on-carriers, absence/component-alone-on-carriers and absence/served-network-port still hold: no new carrier, role or listener.
+@task_item n=10 part=untouched
+Per-crate coverage floor rows: the floors held unmoved.

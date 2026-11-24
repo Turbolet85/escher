@@ -1,0 +1,10 @@
+@fit n=1 row=decision/canvas-content-crossing sha=0e1feed27d35 v=fits type=1
+@fit n=2 row=decision/cold-agent-canvas-to-provider sha=4b89bd2b3984 v=fits type=1
+@fit n=3 row=contract/actions-answer/verbs sha=f185df6729b7 v=fits type=3
+@fit n=4 row=contract/recorded-check/tool sha=74e79d262fa7 v=fits type=3
+@fit n=5 row=decision/time-moves-only-on-advance sha=c9ef4f581463 v=fits type=1
+@fit n=6 row=decision/no-screen-content-in-logs sha=ce6d5cb54fa7 v=fits type=1
+@fit n=7 row=contract/command-span/verb sha=05ae9e11c3e0 v=fits type=3
+@fit n=8 row=contract/driver-verbs/canvas sha=72b4f677f558 v=fits type=3
+@fit n=9 row=name/command/canvas sha=16f871b5d3a9 v=fits type=5
+@fit n=10 row=contract/cli-flags/full sha=64e4cd9cee9d v=fits type=3

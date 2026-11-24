@@ -1,0 +1,14 @@
+@fit n=1 row=decision/no-node-id-across-session sha=6ab803468d08 v=fits type=1
+@fit n=2 row=decision/kept-check-never-logged sha=fe6cef9bfc84 v=fits type=1
+@fit n=3 row=contract/actions-verb/target-verbs sha=664f9f5685a0 v=fits type=3
+@fit n=4 row=contract/argument-kinds/part sha=f344ad3ce30f v=fits type=3
+@fit n=5 row=contract/command-line/verb-flags sha=8f519740807e v=fits type=3
+@fit n=6 row=contract/command-span/never-fielded sha=32fac225b25f v=fits type=3
+@fit n=7 row=contract/driver-explore/explored-verbs sha=d21bff8ed016 v=fits type=3
+@fit n=8 row=contract/driver-session/command-schema sha=150becf6694b v=fits type=3
+@fit n=9 row=contract/kept-check-reader/strict-read sha=4e97848669a9 v=fits type=3
+@fit n=10 row=contract/kept-check/kept-verbs sha=b1c8fa5eb173 v=fits type=3
+@fit n=11 row=contract/load-wait/verbs sha=d2b23db3cdd7 v=fits type=3
+@fit n=12 row=contract/mcp-server/tools-list sha=76a8edb2f7fb v=fits type=3
+@fit n=13 row=contract/refusal-causes/fonts-unavailable sha=09984d31fb20 v=fits type=3
+@fit n=14 row=contract/verb-table/order sha=c980506439c2 v=fits type=3

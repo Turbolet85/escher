@@ -1,0 +1,34 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -31,6 +31,6 @@
+ decision/one-span-per-command · One span per driver command — Each driver command opens exactly one command span, which writes only where a process has installed a sink at info or below.
+-decision/part-answer-never-logged · A part's answer is never logged — A part's answer, a snapshot part ({"text":…,"part":n,"parts":m}) or a graph part ({"nodes":[…],"states":[…],"part":n,"parts":m}), is a command's answer, written over MCP as its JSON line, and is never logged or fielded.
++decision/part-answer-never-logged · A part's answer is never logged — A part's answer, a snapshot part ({"text":…,"part":n,"parts":m}), a graph part ({"nodes":[…],"states":[…],"part":n,"parts":m}) or a canvas part, is a command's answer, written over MCP as its JSON line, and is never logged or fielded.
+ decision/replay-children-uninstrumented · Replay children uninstrumented — A judged check is replayed on further escher-session mcp children spawned directly, without --record, with stderr to /dev/null. · why: uninstrumented by design
+ decision/session-id-record-unprinted · Session id record kept private — The session's record of the ids its screens have read is bounded, has no reader outside the driver crate and no Debug, and is never printed, logged or fielded.
+-decision/sink-host-read-at-trace · Sink-installing host read at trace — A sink-installing host and its mcp role are read at trace under both builds, and must show no id, name, typed-sentinel or layout-answer key needle in what they write. · guard: host_log, mcp_log
++decision/sink-host-read-at-trace · Sink-installing host read at trace — A sink-installing host and its mcp role are read at trace under both builds, and must show no id, name, typed-sentinel, layout-answer key or canvas needle in what they write. · guard: host_log, mcp_log
+ decision/sink-installed-first-in-main · Telemetry sink installed first in each native main — Each native binary of the seven_guis package installs escher's telemetry sink in its native main before anything boots, reporting a failed install on stderr and continuing.
+@@ -58,2 +58,3 @@
+ ## obs-plan · 4-span-trace-coverage · twin span-trace-coverage
++decision/canvas-read-opens-no-span · The canvas read opens no span — The driver's in-process canvas read opens no span of its own, as the layout read does not; reached by the canvas verb it runs inside that call's command span. · why: No span of its own by design.
+ decision/driver-emits-no-event · Driver emits no event and installs no subscriber — escher-driver emits no log event and installs no sink, setting only escher-telemetry's scoped capture around an acting step, which keeps the step's records and panics in process and prints nothing; its telemetry is its spans alone.
+@@ -87,3 +88,3 @@
+ contract/command-span/removed · The driver's command span · removed — The length of the returned diff's removed list, recorded from an acting verb's outcome.
+-contract/command-span/settled · The driver's command span · settled — Recorded from an acting verb's outcome only; snapshot, screenshot, lint, graph, actions, layout and a part read record verb alone, and a refusal records verb and cause alone.
++contract/command-span/settled · The driver's command span · settled — Recorded from an acting verb's outcome only; snapshot, screenshot, lint, graph, actions, layout, canvas and a part read record verb alone, and a refusal records verb and cause alone.
+ contract/command-span/span · The driver's command span · span — One span per call handed to the session's run, target escher_driver, name command, level INFO, entered before validation and held until the run returns, so a refusal is inside it.
+@@ -103,3 +104,3 @@
+ contract/tool-call-span/span · The MCP tool_call span · span — One span, target escher_driver, name tool_call, level INFO, opened once per MCP tools/call request before its params are read and held until its reply is written.
+-contract/tool-call-span/tool · The MCP tool_call span · tool — The verb table's word for the tool, one of its fifteen; unrecorded for an unknown tool.
++contract/tool-call-span/tool · The MCP tool_call span · tool — The verb table's word for the tool, one of its sixteen; unrecorded for an unknown tool.
+ ## obs-plan · 5-metric-coverage · twin metric-coverage
+@@ -181,2 +182,3 @@
+ contract/command-span/actions · The driver's command span · actions — An actions line is `span="command" verb="actions"` (with `cause` when refused, an argument refused `malformed`) and holds no node, id, owner, verb word or cause word of its answer.
++contract/command-span/canvas · The driver's command span · canvas — A canvas's line, a part read's included, is `span="command" verb="canvas"` (with `cause` when refused) and holds no id, full flag, part number or anything of its answer.
+ contract/command-span/field-count · The driver's command span · field count — The `command` span keeps its eight fields; the driver's fixed help and meaning texts add no log site or span field.
+@@ -188,3 +190,3 @@
+ contract/command-span/snapshot-part · The driver's command span · snapshot part read — A part read's line is `span="command" verb="snapshot"` (with `cause` when refused, a `part` outside 1 to 1000 refused `malformed`) and holds no part number, count, size or text.
+-contract/command-span/verb · The driver's command span · verb — The verb table's own word for a known verb, run or refused, one of its fifteen words; never the caller's verb text; unrecorded for a verb the table lacks; the three session-level words and the tool-level help appear only beside the cause unknown-verb.
++contract/command-span/verb · The driver's command span · verb — The verb table's own word for a known verb, run or refused, one of its sixteen words; never the caller's verb text; unrecorded for a verb the table lacks; the three session-level words and the tool-level help appear only beside the cause unknown-verb.
+ contract/escher-session-commands/help · escher-session commands · help — `help` (at most one `--session <dir>`, not read) writes the self-description's one line of JSON on stdout, status 0, reaching no session; `help` with an argument is refused `malformed`, status 1.

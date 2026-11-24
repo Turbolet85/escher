@@ -1,0 +1,10 @@
+--- a/.andromeda/design-system.md
++++ b/.andromeda/design-system.md
+@@ -51,2 +51,3 @@
+ contract/driver-verbs-and-virtual-clock/advance · driver verbs and the virtual clock · advance — The driver's advance moves the VirtualClock by exactly its ms and, through the step a session's caller hands it, the app's own time together.
++contract/driver-verbs-and-virtual-clock/canvas · driver verbs and the virtual clock · canvas — The driver's canvas read changes nothing, neither snapshot, focus, diff nor VirtualClock, and applies no pending Timer tick.
+ contract/driver-verbs-and-virtual-clock/click · driver verbs and the virtual clock · click — The driver's click leaves the VirtualClock where it was.
+@@ -71,2 +72,3 @@
+ decision/buffered-render-replay · Render buffered, then replayed under one borrow — On every Dioxus document, windowed and headless alike, a render is recorded into a mutation buffer with the document unborrowed, then replayed under one borrow. · why: so code the vdom runs during a render, a component body or a polled task can call MountedData's methods with no RefCell already borrowed panic
++decision/canvas-line-form-conventions · Canvas line form conventions — The canvas line writes colours as rgba hex and a Custom paint as #00000000, blend= as mix,compose, cap= as one word where both caps agree, dash= as the lengths, @, then the offset, and a glyph run with no glyph as at=none. · why: Settled from neighbouring code and stated in the text field's help.
+ decision/default-ua-sheet-via-default-config · Default user-agent sheet through the default config — Every document gets the blitz default user-agent stylesheet once, through the default document config. · why: pinned by default_config_uses_the_default_sheet; the test harness and Dioxus documents take the sheet only through DocumentConfig default

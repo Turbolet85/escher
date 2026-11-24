@@ -1,0 +1,99 @@
+@pick n=1 row=decision/keyed-wire-form v=no
+@pick n=2 row=decision/layout-answer-crossing v=yes mode=add-to fact=F2
+@pick n=3 row=decision/lint-own-bounds-type v=no
+@pick n=4 row=decision/listener-mark-outlives-listener v=no
+@pick n=5 row=decision/listeners-read-from-vdom v=no
+@pick n=6 row=decision/load-page-message-hidden-until-sheet v=no
+@pick n=7 row=decision/masked-input-values v=no
+@pick n=8 row=decision/mcp-current-revision-not-taken v=no
+@pick n=9 row=decision/measured-limits-stated-in-the-tool v=yes mode=add-to fact=F9
+@pick n=10 row=decision/mixed-toggle-reads-unchecked v=no
+@pick n=11 row=decision/multiple-removal-settles-one-option v=no
+@pick n=12 row=decision/nested-scroll-written-instantly v=no
+@pick n=13 row=decision/no-base64-crate v=no
+@pick n=14 row=decision/no-echo-of-typed-input v=no
+@pick n=15 row=decision/no-node-id-crosses-the-socket v=yes mode=add-to fact=F1
+@pick n=16 row=decision/no-script-text-selection-readers v=no
+@pick n=17 row=decision/no-seed-on-carriers v=no
+@pick n=18 row=decision/no-snapshot-in-logs v=yes mode=add-to fact=F7
+@pick n=19 row=decision/no-wall-time-outside-clock v=no
+@pick n=20 row=decision/one-actionable-rule v=no
+@pick n=21 row=decision/one-axis-clip-readings-kept v=no
+@pick n=22 row=decision/one-ci-leg-runner v=no
+@pick n=23 row=decision/one-disabled-reading v=no
+@pick n=24 row=decision/one-self-description-for-cli-and-mcp v=yes mode=add-to fact=F9
+@pick n=25 row=decision/one-virtual-clock v=yes mode=add-to fact=F1
+@pick n=26 row=decision/package-install-repair-before-retry v=no
+@pick n=27 row=decision/password-caret-placed-by-bullets v=no
+@pick n=28 row=decision/password-input-painted-masked v=no
+@pick n=29 row=decision/per-crate-coverage-floor v=no
+@pick n=30 row=decision/reached-record-before-dispatch v=no
+@pick n=31 row=decision/refusal-causes-closed-at-eight v=no
+@pick n=32 row=decision/refused-call-records-no-ids v=no
+@pick n=33 row=decision/render-with-document-unborrowed v=no
+@pick n=34 row=decision/replay-hook-after-each-step v=no
+@pick n=35 row=decision/resolve-reconciles-select-list v=no
+@pick n=36 row=decision/screenshot-png-in-band v=yes mode=add-to fact=F1
+@pick n=37 row=decision/screenshot-reads-session-clock v=no
+@pick n=38 row=decision/scrolled-box-bounds v=no
+@pick n=39 row=decision/seen-ids-record-bounded v=no
+@pick n=40 row=decision/select-choice-single-write-path v=no
+@pick n=41 row=decision/select-list-colours-engine-constants v=no
+@pick n=42 row=decision/select-list-rows-and-placement v=no
+@pick n=43 row=decision/select-tests-name-element v=no
+@pick n=44 row=decision/session-apps-one-table v=no
+@pick n=45 row=decision/session-moves-clock-not-time-step v=no
+@pick n=46 row=decision/settle-never-waits-on-time-or-loads v=no
+@pick n=47 row=decision/skia-legs-verify-archive-first v=no
+@pick n=48 row=decision/snapshot-text-budget v=yes mode=add-to fact=F1
+@pick n=49 row=decision/snapshot-text-never-logged v=yes mode=add-to fact=F7
+@pick n=50 row=decision/stale-mounted-event-skipped v=no
+@pick n=51 row=decision/stand-offline v=no
+@pick n=52 row=decision/stand-pinned-environment v=no
+@pick n=53 row=decision/stand-readings-same-on-every-ci-os v=yes mode=stale
+@pick n=54 row=decision/stand-typography-dejavu-sans v=no
+@pick n=55 row=decision/toggle-read-per-role v=no
+@pick n=56 row=decision/tool-call-span-tool-and-ending v=yes mode=add-to fact=F7
+@pick n=57 row=decision/transformed-element-bounds v=no
+@pick n=58 row=decision/type-replaces-control-content v=no
+@pick n=59 row=decision/upstream-only-workflows v=no
+@pick n=60 row=decision/validated-commands-only v=no
+@pick n=61 row=decision/validated-verb-set-widened-by-ratification v=yes mode=add-to fact=F1
+@pick n=62 row=decision/visibility-from-geometry-not-hit v=no
+@pick n=63 row=decision/windows-entries-pass-through v=no
+@pick n=64 row=contract/accessibility-tree/active-descendant v=no
+@pick n=65 row=contract/accessibility-tree/aria-checked v=no
+@pick n=66 row=contract/accessibility-tree/aria-disabled v=no
+@pick n=67 row=contract/accessibility-tree/aria-expanded v=no
+@pick n=68 row=contract/accessibility-tree/aria-invalid v=no
+@pick n=69 row=contract/accessibility-tree/aria-labelledby v=no
+@pick n=70 row=contract/accessibility-tree/aria-level v=no
+@pick n=71 row=contract/accessibility-tree/aria-pressed v=no
+@pick n=72 row=contract/accessibility-tree/aria-selected v=no
+@pick n=73 row=contract/accessibility-tree/author-id v=no
+@pick n=74 row=contract/accessibility-tree/build-accessibility-tree v=no
+@pick n=75 row=contract/accessibility-tree/checked-state v=no
+@pick n=76 row=contract/accessibility-tree/descriptions v=no
+@pick n=77 row=contract/accessibility-tree/focus v=no
+@pick n=78 row=contract/accessibility-tree/img-empty-alt v=no
+@pick n=79 row=contract/accessibility-tree/name-sources v=no
+@pick n=80 row=contract/accessibility-tree/native-control-toggled v=no
+@pick n=81 row=contract/accessibility-tree/node-names v=no
+@pick n=82 row=contract/accessibility-tree/non-checkable-role v=no
+@pick n=83 row=contract/accessibility-tree/platform-refresh v=no
+@pick n=84 row=contract/accessibility-tree/select-expanded v=no
+@pick n=85 row=contract/accessibility-tree/state-attributes v=no
+@pick n=86 row=contract/accesskit-xplat/adapter v=no
+@pick n=87 row=contract/accesskit-xplat/platform-adapter v=no
+@pick n=88 row=contract/accesskit-xplat/window-event v=no
+@pick n=89 row=contract/acting-verb-results/added v=no
+@pick n=90 row=contract/acting-verb-results/busy v=no
+@pick n=91 row=contract/acting-verb-results/caused v=no
+@pick n=92 row=contract/acting-verb-results/caused-past v=no
+@pick n=93 row=contract/acting-verb-results/changed v=no
+@pick n=94 row=contract/acting-verb-results/removed v=no
+@pick n=95 row=contract/acting-verb-results/settled v=no
+@pick n=96 row=contract/actionable-element/definition v=no
+@pick n=97 row=contract/actionable-nodes/actionable-nodes v=no
+@pick n=98 row=contract/actionable-readers/actionable-nodes v=no
+@pick n=99 row=contract/actionable-readers/unkeyed-actionable v=no
