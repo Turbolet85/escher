@@ -1,2 +1,0 @@
-@none
-reason: The chunk adds one test target and scopes the capability statement's shot-bytes limit (fct-xzkkr4yh, fct-rpckbvls); it adds no user-facing surface or region (fct-mv2lwfif: no product surface; fct-4g2qy3ep: no UI-surface change), its canvas fixtures with ids canvas-fill, canvas-edge, canvas-text are private to the test target and no stand task (fct-w4fut5je), and no stand page's boot lint, ids, skeleton or viewport moved (fct-fwydawgx), so every row of layout-templates read here, the picked decision/stand-lints-clean-at-boot included, stays true.

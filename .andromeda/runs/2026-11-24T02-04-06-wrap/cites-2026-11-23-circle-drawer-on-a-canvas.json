@@ -1,0 +1,371 @@
+[
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "5fadec18",
+"ts": "2026-11-24T02:04:46Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: a199c213 — the parent of the oldest pre-CI commit 32a0354d",
+"Cargo.lock — added 4 line(s) in 3 range(s)",
+"docs/capabilities.md — added 16 line(s) in 3 range(s)",
+"examples/seven_guis/Cargo.toml — added 4 line(s) in 1 range(s)",
+"examples/seven_guis/src/stand.rs — added 27 line(s) in 3 range(s)",
+"examples/seven_guis/src/tasks/circle_drawer.rs — added 207 line(s) in 11 range(s)",
+"packages/blitz-dom/src/events/mod.rs — added 2 line(s) in 1 range(s)",
+"packages/blitz-dom/src/events/pointer.rs — added 20 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_canvas_click.rs — new file · 180 line(s)",
+"tests/blitz-tests/tests/stand_canvas_cross_os.rs — added 46 line(s) in 4 range(s)",
+"tests/blitz-tests/tests/stand_circle_drawer_canvas.rs — new file · 230 line(s)",
+"tests/blitz-tests/tests/stand_non_lean_tasks.rs — added 10 line(s) in 4 range(s)",
+"new text: 11 file(s) · 2 new · 33 added range(s) · 746 line(s) · 60 block(s) → .andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md (85 lines) · written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"base": "a199c213e0d3a1804de61f35867e95ad08c0a789",
+"counts": {
+"files": 11,
+"new": 2,
+"ranges": 33,
+"lines": 746,
+"blocks": 60
+},
+"out": ".andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md",
+"state": "written",
+"lines": 85
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "5fadec18",
+"ts": "2026-11-24T02:06:57Z",
+"argv": [
+"apply",
+"--dry-run",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: a199c213 — the previous sweep (2026-11-23T16-32-42-wrap)",
+"masters: rows — a row holds no citation",
+"sites 6 (bare \":digits\" 19) over 30 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"dry-run · would land 0 fact(s) · 0 edge(s)",
+"dry-run: 0 citation(s) in 0 file(s) — nothing written"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "a199c213e0d3a1804de61f35867e95ad08c0a789",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at a199c213",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at a199c213",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": false,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:433 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "5fadec18",
+"ts": "2026-11-24T02:07:02Z",
+"argv": [
+"apply",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: a199c213 — the previous sweep (2026-11-23T16-32-42-wrap)",
+"masters: rows — a row holds no citation",
+"sites 6 (bare \":digits\" 19) over 30 file(s) · unmoved 3 · moved 0 · stretched 0 · changed 0",
+"out-of-range 1 · unresolved 2 · new 0 · repointed 0 · hand 0 · held 0 · INDETERMINATE 0 · listed, not written 0",
+"rows: 1 owed a read — the cites batch reads them from this call's trail record",
+"unresolved 2: their rows are `map`'s — another repository's file is never touched",
+"landed 0 fact(s) · 0 edge(s) · tx 3478",
+"re-pointed 0 citation(s) in 0 file(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"mode": "sweep",
+"base": "a199c213e0d3a1804de61f35867e95ad08c0a789",
+"counts": {
+"unmoved": 3,
+"moved": 0,
+"stretched": 0,
+"changed": 0,
+"out-of-range": 1,
+"unresolved": 2,
+"new": 0,
+"repointed": 0,
+"hand": 0,
+"INDETERMINATE": 0,
+"held": 0,
+"listed": 0
+},
+"rows": [
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"col": 123,
+"path": "tests/common/mod.rs",
+"now": "1-4",
+"base": "1-4",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at a199c213",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 0,
+"since": null
+},
+{
+"class": "unresolved",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"col": 169,
+"path": "tests/common/mod.rs",
+"now": "1-40",
+"base": "1-40",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the name fits several files at a199c213",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 1,
+"since": null
+},
+{
+"class": "out-of-range",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"col": 571,
+"path": "host.rs",
+"now": "350",
+"base": "350",
+"to": null,
+"write": false,
+"listed": "leaf",
+"detail": "the file held 231 lines at the base",
+"text": "",
+"sha": [],
+"citing": "daa03a939c75",
+"nth": 3,
+"since": null
+}
+],
+"applied": true,
+"owed": [
+{
+"row": "out-of-range .claude/docs/session-learnings.md:433 host.rs:350 — the file held 231 lines at the base",
+"file": ".claude/docs/session-learnings.md",
+"line": 433,
+"class": "out-of-range",
+"home": "leaf",
+"listed": "leaf",
+"path": "host.rs",
+"nth": 3,
+"at": "350"
+}
+]
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "5fadec18",
+"ts": "2026-11-24T02:07:32Z",
+"argv": [
+"dispositions",
+"--write",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dispositions: 1 row(s) · curation home — P3 1",
+".andromeda/runs/2026-11-24T02-04-06-wrap/citation-dispositions.md (2 lines) · written",
+"hand re-points: 0 written in 0 file(s) · 0 already written"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-24T02-04-06-wrap/citation-dispositions.md"
+],
+"before": null,
+"after": null,
+"extra": {
+"rows": 1,
+"tally": {
+"curation home — P3": 1
+},
+"state": "written"
+}
+},
+{
+"tool": "cites",
+"v": "1.17",
+"sha8": "5fadec18",
+"ts": "2026-11-24T02:37:32Z",
+"argv": [
+"added",
+"--out",
+".andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"base: a199c213 — the parent of the oldest pre-CI commit 32a0354d",
+"Cargo.lock — added 4 line(s) in 3 range(s)",
+"docs/capabilities.md — added 16 line(s) in 3 range(s)",
+"examples/seven_guis/Cargo.toml — added 4 line(s) in 1 range(s)",
+"examples/seven_guis/src/stand.rs — added 27 line(s) in 3 range(s)",
+"examples/seven_guis/src/tasks/circle_drawer.rs — added 207 line(s) in 11 range(s)",
+"packages/blitz-dom/src/events/mod.rs — added 2 line(s) in 1 range(s)",
+"packages/blitz-dom/src/events/pointer.rs — added 20 line(s) in 1 range(s)",
+"tests/blitz-tests/tests/stand_canvas_click.rs — new file · 180 line(s)",
+"tests/blitz-tests/tests/stand_canvas_cross_os.rs — added 46 line(s) in 4 range(s)",
+"tests/blitz-tests/tests/stand_circle_drawer_canvas.rs — new file · 230 line(s)",
+"tests/blitz-tests/tests/stand_non_lean_tasks.rs — added 10 line(s) in 4 range(s)",
+"new text: 11 file(s) · 2 new · 33 added range(s) · 746 line(s) · 60 block(s) → .andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md (85 lines) · unchanged"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"base": "a199c213e0d3a1804de61f35867e95ad08c0a789",
+"counts": {
+"files": 11,
+"new": 2,
+"ranges": 33,
+"lines": 746,
+"blocks": 60
+},
+"out": ".andromeda/runs/2026-11-24T02-04-06-wrap/new-text.md",
+"state": "unchanged",
+"lines": 85
+}
+}
+]

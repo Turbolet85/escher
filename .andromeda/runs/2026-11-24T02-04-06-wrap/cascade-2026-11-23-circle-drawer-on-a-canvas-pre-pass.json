@@ -1,0 +1,242 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-24T02:05:09Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-24T02-04-06-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 276d5d12 (pre-pass — HEAD)",
+"glyphsnap · control UNFIRED over the seven masters (bodies and sets) at 276d5d12",
+"lockdeps · control UNFIRED over the seven masters (bodies and sets) at 276d5d12"
+],
+"stderr": "control: glyphsnap, lockdeps never fired over the seven masters' pre-pass text, bodies and sets (276d5d12) — no master holds them: re-fire with --pattern nonlean --pattern crossos --pattern capstmt --pattern newstand --pattern clicksynth --pattern standboot --pattern lintboot --pattern obssilent; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-24T02:05:19Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-24T02-04-06-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--marker",
+"2026-11-23-circle-drawer-on-a-canvas",
+"--pattern",
+"nonlean",
+"--pattern",
+"crossos",
+"--pattern",
+"capstmt",
+"--pattern",
+"newstand",
+"--pattern",
+"clicksynth",
+"--pattern",
+"standboot",
+"--pattern",
+"lintboot",
+"--pattern",
+"obssilent"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 276d5d12 (pre-pass — HEAD)",
+"architecture · 15 rows over 1 files · new 0 · standing 15 · 4 patterns",
+"security-plan · 15 rows over 1 files · new 0 · standing 15 · 4 patterns",
+"design-system · 7 rows over 1 files · new 0 · standing 7 · 1 pattern",
+"layout-templates · 12 rows over 1 files · new 0 · standing 12 · 3 patterns",
+"test-plan · 16 rows over 1 files · new 0 · standing 16 · 4 patterns",
+"obs-plan · 10 rows over 1 files · new 0 · standing 10 · 3 patterns",
+"a11y-plan · 10 rows over 1 files · new 0 · standing 10 · 4 patterns",
+"by line · 0 lines · 0 offsets",
+"total (8 patterns) · 164 rows over 28 files",
+"per class · new 0/0 · standing 85/7 · leaf 79/21 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-24T02-04-06-wrap/sweep-pre-pass-1.1.txt · 183 lines · 22205 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-24T02-04-06-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "276d5d1275181da4e43c4e8ce5ef1c3ababa8972",
+"how": "pre-pass — HEAD",
+"counts": {
+"nonlean": {
+"new": 0,
+"standing": 31,
+"leaf": 19,
+"curation": 0,
+"base": 0
+},
+"crossos": {
+"new": 0,
+"standing": 5,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"capstmt": {
+"new": 0,
+"standing": 11,
+"leaf": 11,
+"curation": 0,
+"base": 0
+},
+"newstand": {
+"new": 0,
+"standing": 6,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"clicksynth": {
+"new": 0,
+"standing": 13,
+"leaf": 13,
+"curation": 0,
+"base": 0
+},
+"standboot": {
+"new": 0,
+"standing": 7,
+"leaf": 10,
+"curation": 0,
+"base": 0
+},
+"lintboot": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"obssilent": {
+"new": 0,
+"standing": 10,
+"leaf": 11,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 15,
+"files": 1,
+"new": 0,
+"standing": 15,
+"patterns": 4
+},
+"security-plan": {
+"rows": 15,
+"files": 1,
+"new": 0,
+"standing": 15,
+"patterns": 4
+},
+"design-system": {
+"rows": 7,
+"files": 1,
+"new": 0,
+"standing": 7,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 12,
+"files": 1,
+"new": 0,
+"standing": 12,
+"patterns": 3
+},
+"test-plan": {
+"rows": 16,
+"files": 1,
+"new": 0,
+"standing": 16,
+"patterns": 4
+},
+"obs-plan": {
+"rows": 10,
+"files": 1,
+"new": 0,
+"standing": 10,
+"patterns": 3
+},
+"a11y-plan": {
+"rows": 10,
+"files": 1,
+"new": 0,
+"standing": 10,
+"patterns": 4
+}
+},
+"per_master": {
+"nonlean": {
+"security-plan": 5,
+"design-system": 7,
+"layout-templates": 4,
+"test-plan": 3,
+"obs-plan": 5,
+"a11y-plan": 7
+},
+"crossos": {
+"architecture": 1,
+"test-plan": 4
+},
+"capstmt": {
+"architecture": 5,
+"security-plan": 1,
+"test-plan": 3,
+"obs-plan": 1,
+"a11y-plan": 1
+},
+"newstand": {
+"layout-templates": 6
+},
+"clicksynth": {
+"architecture": 8,
+"security-plan": 4,
+"a11y-plan": 1
+},
+"standboot": {
+"architecture": 1,
+"test-plan": 6
+},
+"lintboot": {
+"layout-templates": 2
+},
+"obssilent": {
+"security-plan": 5,
+"obs-plan": 4,
+"a11y-plan": 1
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

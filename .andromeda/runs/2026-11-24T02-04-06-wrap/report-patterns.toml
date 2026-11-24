@@ -1,0 +1,41 @@
+[[pattern]]
+id = 'nonlean'
+regex = '''stand_non_lean_tasks|MEASURED|CLICKABLE'''
+
+[[pattern]]
+id = 'crossos'
+regex = '''stand_canvas_cross_os|canvas-shots-cross-os-by-digest|canvas[- ]only shot'''
+
+[[pattern]]
+id = 'capstmt'
+regex = '''capabilities\.md|capability statement'''
+
+[[pattern]]
+id = 'newstand'
+regex = '''stand_canvas_click|stand_circle_drawer_canvas|Circle Drawer|circle-drawer|circle_drawer'''
+ignore_case = true
+
+[[pattern]]
+id = 'clicksynth'
+regex = '''widget_click_synthesis|custom[- ]widget|Widget::handle_event|a click on a (canvas|widget)'''
+
+[[pattern]]
+id = 'standboot'
+regex = '''boot_circle_drawer|headless-stand/boot|stand::boot|boot_[a-z_]+\(HarnessOptions'''
+
+[[pattern]]
+id = 'lintboot'
+regex = '''stand-lints-clean-at-boot|stand-element-ids/circle-canvas|circle-canvas'''
+
+[[pattern]]
+id = 'obssilent'
+regex = '''no log site|silent check'''
+
+[[pattern]]
+id = 'glyphsnap'
+regex = '''glyph origin|GlyphOriginSnap|Canvas text across hosts|whole device pixel'''
+ignore_case = true
+
+[[pattern]]
+id = 'lockdeps'
+regex = '''seven_guis.{0,40}depend|anyrender.{0,20}parley.{0,20}peniko'''

@@ -1,0 +1,110 @@
+[
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T02:33:12Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-24T02-04-06-wrap/draft-CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land CLAUDE.md rev 51 · 5 node(s) · 2 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T02:33:16Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-24T02-04-06-wrap/draft-CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 51 · 2 new · 2 revised · 0 retired · tx 3501"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T02-33-15-2026-11-24T02-04-06-wrap.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T03:27:28Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed tx 3508 · 858 record(s) of 128 payload(s)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T02-33-15-2026-11-24T02-04-06-wrap.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.56",
+"sha8": "85fa9b6f",
+"ts": "2026-11-24T03:27:33Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-24T02-04-06-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"sealed 2026-11-23T16-32-42-wrap · 159 file(s) · 2026-11-23T16-32-42-wrap.parquet · tx 3509 · 159 removed · 199 set aside",
+"sealed 2026-11-23T17-30-41-phase · 306 file(s) · 2026-11-23T17-30-41-phase.parquet · tx 3510 · 306 removed · 398 set aside",
+"sealed 2026-11-23T21-22-31-implement · 8 file(s) · 2026-11-23T21-22-31-implement.parquet · tx 3511 · 8 removed · 0 set aside",
+"sealed 2026-11-23T22-07-35-phase · 9 file(s) · 2026-11-23T22-07-35-phase.parquet · tx 3512 · 9 removed · 0 set aside",
+"sealed 2026-11-23T22-16-09-implement · 6 file(s) · 2026-11-23T22-16-09-implement.parquet · tx 3513 · 6 removed · 0 set aside",
+"seal · 5 run(s) · own 2026-11-24T02-04-06-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
