@@ -26,3 +26,6 @@
 - Left in place on the operator's word: the branch `build/probe-circle-digest` (local and origin) and its worktrees `target/tmp/probe-circle-digest` and `../escher-probe-snap`; `target/probe-circle-build`; the branch `build/probe-canvas-shot` and its worktree `target/tmp/probe-canvas-shot`; `target/tmp/trial-canvas`, `target/tmp/trial-dioxus8`, `target/tmp/trial-editor` (git worktrees); `target/trial-dioxus8-build`; the scratchpads and scratch clones.
 - Left for the operator to remove: `target/mutants-peak`, `target/mutants-tmp`, `target/mutants-raw-2026-11-20/`, `target/tmp/upstream-547d`, `target/p5-baseline-debug`, `target/cold-agent/` (`bash scripts/cold-agent.sh cleanup`), `target/tmp/smoke-order-1`, `target/tmp/trial-pas`, `target/tmp/escher-session.head`.
 - Last failed command: none.
+
+## Session End Status
+Completed normally at 2026-11-24 10:33:58

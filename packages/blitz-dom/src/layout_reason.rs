@@ -818,7 +818,7 @@ fn resolve(lp: &LengthPercentage, basis: f32) -> f32 {
         Unpacked::Length(length) => length.px(),
         Unpacked::Percentage(percentage) => percentage.0 * basis,
         Unpacked::Calc(calc) => stylo_taffy::convert::resolve_calc_value(
-            calc as *const CalcLengthPercentage as *const (),
+            taffy::CalcHandle::from_ptr(calc as *const CalcLengthPercentage as *const ()),
             basis,
         ),
     }
