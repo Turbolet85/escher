@@ -69,7 +69,8 @@ struct CircleCanvas {
 }
 
 /// PROBE ONLY (branch `build/probe-circle-digest`): what the canvas paints - 0 the circle and
-/// its label, 1 the circle alone, 2 the label alone, 3 neither.
+/// its label, 1 the circle alone, 2 the label alone, 3 neither, 4 the label alone with its glyph
+/// origins on whole device pixels, 5 the circle and that snapped label.
 pub static PROBE_PAINT: std::sync::atomic::AtomicU8 = std::sync::atomic::AtomicU8::new(0);
 
 const FILL: Color = Color::from_rgba8(58, 92, 229, 38);
@@ -87,36 +88,55 @@ impl CircleCanvas {
         transform: Affine,
         centre: (f64, f64),
         text: &str,
+        snap: bool,
     ) {
         let mut builder = self.layouts.ranged_builder(fonts, text, 1.0, true);
         builder.push_default(parley::StyleProperty::FontSize(LABEL_SIZE));
         builder.push_default(parley::GenericFamily::SansSerif);
         let mut layout = builder.build(text);
         layout.break_all_lines(None);
-        let at = transform
-            * Affine::translate((
-                centre.0 - f64::from(layout.width()) / 2.0,
-                centre.1 - f64::from(layout.height()) / 2.0,
-            ));
+        let origin = (
+            centre.0 - f64::from(layout.width()) / 2.0,
+            centre.1 - f64::from(layout.height()) / 2.0,
+        );
+        let at = transform * Affine::translate(origin);
+        // PROBE: with `snap`, each glyph origin is placed on a whole device pixel and drawn with
+        // no transform, so neither host's glyph-origin snap moves it.
+        let scale = transform.as_coeffs()[0];
         for line in layout.lines() {
             for item in line.items() {
                 if let parley::PositionedLayoutItem::GlyphRun(glyphs) = item {
                     let run = glyphs.run();
+                    let (size, glyph_transform) = if snap {
+                        (run.font_size() * scale as f32, Affine::IDENTITY)
+                    } else {
+                        (run.font_size(), at)
+                    };
                     scene.draw_glyphs(
                         run.font(),
-                        run.font_size(),
+                        size,
                         true,
                         &[],
                         Vec2::default(),
                         Fill::NonZero,
                         &anyrender::Paint::from(LABEL),
                         1.0,
-                        at,
+                        glyph_transform,
                         None,
-                        glyphs.positioned_glyphs().map(|g| anyrender::Glyph {
-                            id: g.id as _,
-                            x: g.x,
-                            y: g.y,
+                        glyphs.positioned_glyphs().map(|g| {
+                            if snap {
+                                anyrender::Glyph {
+                                    id: g.id as _,
+                                    x: (scale * (origin.0 + f64::from(g.x))).round() as f32,
+                                    y: (scale * (origin.1 + f64::from(g.y))).round() as f32,
+                                }
+                            } else {
+                                anyrender::Glyph {
+                                    id: g.id as _,
+                                    x: g.x,
+                                    y: g.y,
+                                }
+                            }
                         }),
                         AntiAliasing::Enabled,
                     );
@@ -153,8 +173,9 @@ impl Widget for CircleCanvas {
             &Rect::new(0.0, 0.0, f64::from(width), f64::from(height)),
         );
         let probe = PROBE_PAINT.load(std::sync::atomic::Ordering::SeqCst);
-        let paint_circles = probe == 0 || probe == 1;
-        let paint_labels = probe == 0 || probe == 2;
+        let paint_circles = matches!(probe, 0 | 1 | 5);
+        let paint_labels = matches!(probe, 0 | 2 | 4 | 5);
+        let snap = matches!(probe, 4 | 5);
         for c in self.circles.iter().filter(|_| paint_circles) {
             let disc = Disc::new((c.x, c.y), c.d / 2.0);
             scene.fill(
@@ -179,7 +200,7 @@ impl Widget for CircleCanvas {
             let mut fonts = fonts.lock().unwrap_or_else(PoisonError::into_inner);
             for c in self.circles.clone() {
                 let text = format!("{}", c.d.round());
-                self.draw_label(&mut scene, &mut fonts, transform, (c.x, c.y), &text);
+                self.draw_label(&mut scene, &mut fonts, transform, (c.x, c.y), &text, snap);
             }
         }
         scene.pop_layer();

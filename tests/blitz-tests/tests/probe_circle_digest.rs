@@ -15,7 +15,14 @@ use seven_guis::tasks::circle_drawer::PROBE_PAINT;
 mod session_common;
 use session_common::{act, click, screenshot_of};
 
-const VARIANTS: [(&str, u8); 4] = [("both", 0), ("circle", 1), ("text", 2), ("none", 3)];
+const VARIANTS: [(&str, u8); 6] = [
+    ("both", 0),
+    ("circle", 1),
+    ("text", 2),
+    ("none", 3),
+    ("text-snapped", 4),
+    ("both-snapped", 5),
+];
 
 fn reference_path(variant: &str, incremental: bool) -> String {
     format!(
