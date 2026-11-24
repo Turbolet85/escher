@@ -1,0 +1,54 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -120,3 +120,3 @@
+ decision/stylo-css-engine · Servo Stylo as the CSS engine — Servo Stylo 0.24, with selectors and cssparser, does styling and selector matching.
+-decision/taffy-layout · Taffy for layout — Taffy 0.15 from upstream's git source, pinned to one revision, does block, flexbox, grid, leaf, cached and out-of-flow layout through the stylo_taffy bridge, and is part of blitz-dom's public API through its signatures, with no re-export.
++decision/taffy-layout · Taffy for layout — Taffy 0.16 from crates.io does block, flexbox, grid, leaf, cached and out-of-flow layout through the stylo_taffy bridge, and is part of blitz-dom's public API through its signatures, with no re-export.
+ decision/trunk-wasm-example-builds · Trunk for browser-target example builds — Browser-target builds of the examples go through Trunk and wasm-bindgen.
+@@ -152,2 +152,3 @@
+ decision/boa-annex-b · annex-b enabled — The JavaScript engine runs with `annex-b` enabled.
++decision/br-in-flex-text-item · A br between text breaks the line in its flex item — A br between text in a flex or grid container breaks the line inside the text's anonymous item, also when hoisted from display contents, while a trailing br and a br between flex items add no line. · why: an upstream behaviour change taken, ratified for its take · guard: flex_br
+ decision/bridge-buffered-render · The bridge's buffered render — The Dioxus bridge renders into a mutation buffer with the document unborrowed, then borrows the document once and replays, so a task polled during render can reach the document with no borrow panic. · why: ratified; a port of upstream's buffered render onto the Dioxus 0.7 bridge, not upstreamable since upstream holds it in its 0.8 form · guard: dioxus_runtime_probe mounted_data_in_a_task_a_key_handler_spawned_acts tests · except: a Dioxus task that wakes its own waker while it waits livelocks inside the render, asserted by no check, so a task that waits for a later render leaves its waker to the producer
+@@ -289,3 +290,3 @@
+ decision/nix-single-derivation · Nix flake builds in one derivation — The Nix flake builds dependencies and crate in one derivation.
+-decision/no-git-dependencies · No git dependencies — Every dependency in the manifest is a crates.io registry version, with no git source. · except: The taffy crate alone may take a git source; every other crate stays a crates.io registry version, and a git Taffy still passes the lock, audit and MSRV legs.
++decision/no-git-dependencies · No git dependencies — Every dependency in the manifest is a crates.io registry version, with no git source.
+ decision/no-local-font-sources · No local() font sources — `local()` font sources are not supported.
+@@ -306,2 +307,3 @@
+ decision/option-disabled-own-or-group · Option disabled by itself or its group — An option is disabled by its own attribute or its group's.
++decision/os-drop-input · OS drag-and-drop input through the shell's drop source — blitz-shell's winit drop source turns OS drags into the UiEvent variants DragOver, DragLeave and Drop, and a dropped file arrives only through a file URI. · why: ratified · provisional
+ decision/overflow-auto-as-scroll · overflow auto laid out as scroll — `overflow: auto` is laid out as scroll overflow. · why: Stylo or Taffy lack the feature, so the engine approximates it.
+@@ -639,3 +641,3 @@
+ decision/one-actionable-rule · One actionable rule — Both actionable readers read one actionable rule: focusable, an interactive role, or current listeners holding an event other than mounted.
+-decision/one-axis-clip-readings-kept · One-axis clip readings kept as measured — A box clipped on one axis stops the hit at its whole padding box while the visible region narrows only on the clipped axis, so a driver click on a target outside along the visible axis is refused as covered; neither reader is changed. · why: Ratified to measure and record the difference rather than move either reader. · guard: stand_act_obstructed
++decision/one-axis-clip-readings-kept · One-axis clip readings kept as measured — A box clipped on one axis stops the hit at its whole padding box while the visible region and paint narrow only on the clipped axis, so a driver click on a target outside along the visible axis is refused as covered; neither reader is changed. · why: Ratified to measure and record the difference rather than move either reader. · guard: stand_act_obstructed
+ decision/one-ci-leg-runner · One CI leg runner — Every linux CI job runs its leg through one bash leg runner, the same command the dev host runs. · except: The cross-platform test matrix, its linux android entry included, runs cargo or cross directly.
+@@ -781,2 +783,4 @@
+ contract/blitz-net-provider/fetch · blitz-net Provider · fetch — Calls the handler's bytes with the final URL on a success or the handler's error with the URL and error text on a failure, then wakes the waker for the document.
++contract/blitz-traits-data-transfer/blitz-data-transfer · blitz-traits DataTransfer model · BlitzDataTransfer — Holds string and file items with their types and files, effectAllowed and dropEffect, and a store mode, the operations named by BlitzDragOperation and BlitzDragOperations.
++contract/blitz-traits-data-transfer/blitz-drag-event · blitz-traits DataTransfer model · BlitzDragEvent — Carries the pointer coordinates and the shared data transfer of a drag.
+ contract/blitz-traits-net/request-initiator · blitz-traits net types · Request initiator — Request carries a public initiator, the URL of the document a sub-resource is loaded for, None for a top-level load, set by the consuming builder initiator.
+@@ -886,2 +890,3 @@
+ contract/dioxus-bridge/virtual-node-id · Dioxus DOM bridge · virtual_node_id — A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk.
++contract/dioxus-drag-events/native-drag-data · Dioxus drag events · NativeDragData — Implements Dioxus's NativeDataTransfer, HasFileData, HasDataTransferData, HasDragData and ModifiersInteraction, so a Dioxus drag handler reads the data transfer, the dropped files and the keyboard modifiers.
+ contract/dioxus-form-events/multiple-select-values · Dioxus form events · multiple select values — On Input and Change a multiple select fills values with one text entry per chosen option, so evt.values() reads the set, while value stays the select's value.
+@@ -1074,3 +1079,3 @@
+ contract/layout-reason/size-cause · blitz-dom layout reason · SizeCause — The cause of a size is closed: Style, Min, Max, FlexGrow, FlexShrink, Stretch, Grid, Table, Replaced, Content or Layout.
+-contract/layout/stylo-taffy-exports · blitz-dom layout · stylo_taffy exports — stylo_taffy exports to_taffy_style, TaffyStyloStyle, StyleFlags, Atom, WritingMode and WritingModeExt; its convert module's float and clear converters take the box's direction as a second argument, an ltr flag.
++contract/layout/stylo-taffy-exports · blitz-dom layout · stylo_taffy exports — stylo_taffy exports to_taffy_style, TaffyStyloStyle, StyleFlags, Atom, WritingMode and WritingModeExt; its convert module's float and clear converters take the box's direction as a second argument, an ltr flag, and its calc resolver takes Taffy's CalcHandle.
+ contract/layout/taffy-traits · blitz-dom layout · Taffy traversal and layout traits — The crate-private LayoutPassState implements Taffy's traversal and layout traits for one pass; BaseDocument implements none.
+@@ -1133,2 +1138,3 @@
+ contract/nodes-widgets/try-layout-data · blitz-dom nodes and widgets · Node::try_layout_data — Public and read-only: a node's layout data, None before the first layout.
++contract/nodes-widgets/widget-drop-acceptance · blitz-dom nodes and widgets · Widget drop acceptance — A custom widget accepts a drop only by setting the DragOver event's dropEffect.
+ contract/nodes-widgets/widget-fonts · blitz-dom nodes and widgets · Widget::fonts — A defaulted method that hands the widget the document's own shared Parley font context before each paint; the default ignores it.
+@@ -1322,2 +1328,5 @@
+ contract/tool-call-span/ending · the tool_call span · ending — One of the only two fields the tool_call span holds, beside tool: accepted, refused or error (a session error or a protocol error).
++contract/ui-event/drag-leave · UiEvent · DragLeave — Fires DOM dragleave, also when the drag leaves the document.
++contract/ui-event/drag-over · UiEvent · DragOver — Dispatches DOM dragenter and dragover to the node under the drag.
++contract/ui-event/drop · UiEvent · Drop — Dispatches DOM drop to the node under the drag; a drop effect takes only where the drag source allows it.
+ contract/ui-event/pointer-leave · UiEvent · PointerLeave — Clears hover, in a hosted sub-document too, and fires the leave events.
+@@ -1548,3 +1557,3 @@
+ decision/damage-propagation · Damage propagation — Damage propagates up the DOM and to anonymous ancestors and is cleared in one visit.
+-decision/default-action-event-order · Default-action event order — Default-action events are queued and processed in order, handlers running before the default action unless cancelled. · except: a cancelled pointerup still clicks and still ends a scrollbar drag
++decision/default-action-event-order · Default-action event order — Default-action events are queued and processed in order, handlers running before the default action unless cancelled, and preventDefault on a non-cancelable event cancels nothing. · except: a cancelled pointerup still clicks and still ends a scrollbar drag
+ decision/device-read-flushes-pending · Reading the stylist device flushes changes — Reading the stylist device first flushes pending device changes. · guard: device_coalescing

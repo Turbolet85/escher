@@ -1,0 +1,6 @@
+--- a/.andromeda/obs-plan.md
++++ b/.andromeda/obs-plan.md
+@@ -258,2 +258,3 @@
+ decision/driver-span-fields-print · Driver span fields tool and ending print — The tool_call span's fields tool and ending are not in the content-named set and print. · why: both are closed words; the closed-span line was ratified
++decision/dropped-data-never-logged · Dropped data never logged — Dropped data (dropped file paths, dragged text and the contents of a file a Dioxus handler reads) is never logged: the OS drop source, the drag dispatch and the dropped-file reader write it to no log line, span or field.
+ decision/engine-target-safe-fields · Engine targets print safe fields only — Under an engine target (blitz, dioxus_native, stylo_taffy, accesskit_xplat, debug_timer, js_console) the sink prints only node_id, status, waiting_nodes, property, log.module_path, log.file and log.line, every other field as {name}=[redacted].

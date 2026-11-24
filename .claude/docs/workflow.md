@@ -12,7 +12,7 @@ _Extracted from architecture.md and project conventions by `/andromeda-setup-pro
 
 ## Andromeda workflow
 
-This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `23b9b26a9` (merge commit `3eda07bc`, 2026-10-17), the next sync's merge base; upstream `main` was last read at `563d3db73`, an upstream sync merging DioxusLabs/blitz main with two parents, every upstream commit left out named with its reason, the twenty-nine commits of that take ratified as engine behaviour changes for every document (Taffy now from upstream's git source, pinned to one revision); Dioxus is held at 0.7.3, the Dioxus 0.8 move kept out of the upstream take.
+This project was adopted into the Andromeda pipeline (`/andromeda-adopt` at `0f60502e`); its masters describe the code as built. Upstream DioxusLabs/blitz `main` was last merged at `29a439e05` (merge commit `895a134f2`, 2026-11-24), the next sync's merge base, an upstream sync merging DioxusLabs/blitz main with two parents, every upstream commit left out named with its reason; Taffy is 0.16 from crates.io, the workspace taking no git source; Dioxus is held at 0.7.3, the Dioxus 0.8 move kept out of the upstream take.
 
 **Initial planning (done):** adopt → architecture + 6 specialist plans → `/andromeda-route` (escher-0.1.0 working route) → `/andromeda-setup-project` (this ecosystem).
 

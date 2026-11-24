@@ -1,0 +1,205 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-24T11:15:52Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-24T11-14-59-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-24T11-14-59-wrap",
+"--marker",
+"2026-11-24-upstream-sync-ahead-of-inside-the-canvas"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 895a134f (pre-pass — HEAD)",
+"COV · control UNFIRED over the seven masters (bodies and sets) at 895a134f",
+"BASE · control UNFIRED over the seven masters (bodies and sets) at 895a134f",
+"DROP · control UNFIRED over the seven masters (bodies and sets) at 895a134f",
+"BR · control UNFIRED over the seven masters (bodies and sets) at 895a134f",
+"CALC · control UNFIRED over the seven masters (bodies and sets) at 895a134f"
+],
+"stderr": "control: COV, BASE, DROP, BR, CALC never fired over the seven masters' pre-pass text, bodies and sets (895a134f) — no master holds them: re-fire with --pattern GITDEP --pattern TAFFY --pattern TARGETS --pattern LEFTOUT --pattern CLIP --pattern PREVENT; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-24T11:16:01Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-24T11-14-59-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-24T11-14-59-wrap",
+"--marker",
+"2026-11-24-upstream-sync-ahead-of-inside-the-canvas",
+"--pattern",
+"GITDEP",
+"--pattern",
+"TAFFY",
+"--pattern",
+"TARGETS",
+"--pattern",
+"LEFTOUT",
+"--pattern",
+"CLIP",
+"--pattern",
+"PREVENT"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 895a134f (pre-pass — HEAD)",
+"architecture · 20 rows over 1 files · new 0 · standing 20 · 5 patterns",
+"security-plan · 8 rows over 1 files · new 0 · standing 8 · 3 patterns",
+"design-system · 3 rows over 1 files · new 0 · standing 3 · 1 pattern",
+"layout-templates · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"test-plan · 5 rows over 1 files · new 0 · standing 5 · 2 patterns",
+"obs-plan · 2 rows over 1 files · new 0 · standing 2 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (6 patterns) · 71 rows over 21 files",
+"per class · new 0/0 · standing 40/6 · leaf 31/15 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-24T11-14-59-wrap/sweep-pre-pass-1.1.txt · 86 lines · 10021 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-24T11-14-59-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "895a134f2789d28ce740ac16a3470a6e77e2f1fe",
+"how": "pre-pass — HEAD",
+"counts": {
+"GITDEP": {
+"new": 0,
+"standing": 5,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"TAFFY": {
+"new": 0,
+"standing": 1,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"TARGETS": {
+"new": 0,
+"standing": 1,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"LEFTOUT": {
+"new": 0,
+"standing": 29,
+"leaf": 16,
+"curation": 0,
+"base": 0
+},
+"CLIP": {
+"new": 0,
+"standing": 2,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"PREVENT": {
+"new": 0,
+"standing": 2,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 20,
+"files": 1,
+"new": 0,
+"standing": 20,
+"patterns": 5
+},
+"security-plan": {
+"rows": 8,
+"files": 1,
+"new": 0,
+"standing": 8,
+"patterns": 3
+},
+"design-system": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 1
+},
+"layout-templates": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+},
+"test-plan": {
+"rows": 5,
+"files": 1,
+"new": 0,
+"standing": 5,
+"patterns": 2
+},
+"obs-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 1
+}
+},
+"per_master": {
+"GITDEP": {
+"architecture": 2,
+"security-plan": 3
+},
+"TAFFY": {
+"architecture": 1
+},
+"TARGETS": {
+"test-plan": 1
+},
+"LEFTOUT": {
+"architecture": 14,
+"security-plan": 4,
+"design-system": 3,
+"layout-templates": 2,
+"test-plan": 4,
+"obs-plan": 2
+},
+"CLIP": {
+"architecture": 2
+},
+"PREVENT": {
+"architecture": 1,
+"security-plan": 1
+}
+},
+"forms": {},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]
