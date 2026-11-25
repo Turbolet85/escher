@@ -151,9 +151,14 @@ fn the_fixtures_answers_hold_no_glyph_id_and_no_text() {
             .filter_map(|pair| pair.split_once('='))
             .collect();
         let keys: Vec<&str> = pairs.iter().map(|(key, _)| *key).collect();
+        // `n` is the run's glyph count; `node`, the line's last key, its node tag.
         assert!(
-            keys == ["font", "size", "brush", "t", "n", "at", "ids"],
+            keys == ["font", "size", "brush", "t", "n", "at", "ids", "node"],
             "{at}: the glyph line holds its keys alone"
+        );
+        assert!(
+            pairs.last() == Some(&("node", "-")),
+            "{at}: a canvas declaring no node tags its line none"
         );
         let value = |key: &str| {
             pairs

@@ -19,9 +19,11 @@ mod session_common;
 use fixtures::{
     VIRTUAL_IDS, VIRTUAL_NAMES, declares_five, virtual_canvas_listened_page, virtual_canvas_page,
 };
+#[cfg(unix)]
+use session_common::snapshot;
 use session_common::{
     act, actioned, actions, canvas, click, explained, focused, graph, graphed, layout,
-    refused_unchanged, screenshot_of, scroll, snapshot, type_into,
+    refused_unchanged, screenshot_of, scroll, type_into,
 };
 
 /// The label the fixture's sessions are started under.
@@ -406,9 +408,13 @@ fn a_replayed_virtual_click_reaches_its_canvas_listener() {
     for incremental in [false, true] {
         let at = mode(incremental);
         declares_five(listened(incremental).harness(), &at);
-        let rows = [(click(VIRTUAL_IDS[0]), false), (click("vn-drop"), true)];
+        // The step, then whether the canvas's click and the first node's click read unexercised.
+        let rows = [
+            (click(VIRTUAL_IDS[0]), false, false),
+            (click("vn-drop"), true, true),
+        ];
         assert_eq!(rows.len(), 2, "{at}: two checks");
-        for (row, (step, unexercised)) in rows.into_iter().enumerate() {
+        for (row, (step, canvas_unexercised, first_unexercised)) in rows.into_iter().enumerate() {
             let at = format!("{at} row {row}");
             let dir = state_dir(&format!("vnr-cov-{incremental}-{row}"));
             let bytes = record_check(&dir, || listened(incremental), &[snapshot(), step], &at);
@@ -418,17 +424,25 @@ fn a_replayed_virtual_click_reaches_its_canvas_listener() {
                 panic!("{at}: the boots start");
             };
             assert!(coverage.held == 1, "{at}: the replay holds");
-            let listed = coverage
-                .unexercised
-                .iter()
-                .any(|handler| handler.id == CANVAS && handler.event == "click");
+            let listed = |id: &str| {
+                coverage
+                    .unexercised
+                    .iter()
+                    .find(|handler| handler.id == id && handler.event == "click")
+            };
             assert!(
-                listed == unexercised,
+                listed(CANVAS).is_some() == canvas_unexercised,
                 "{at}: the canvas's click reads unexercised as stated"
             );
             assert!(
-                !coverage.to_json().contains("///"),
-                "{at}: the coverage line holds no virtual id"
+                listed(VIRTUAL_IDS[0]).is_some() == first_unexercised,
+                "{at}: the first node's click reads unexercised as stated"
+            );
+            let second = listed(VIRTUAL_IDS[1])
+                .unwrap_or_else(|| panic!("{at}: the unclicked node's click reads unexercised"));
+            assert!(
+                second.owner.as_deref() == Some(CANVAS),
+                "{at}: owned by its canvas"
             );
         }
     }

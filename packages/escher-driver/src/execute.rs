@@ -577,10 +577,12 @@ fn canvas(mut reading: CanvasReading, full: bool, part: Option<u32>) -> Outcome 
             height: reading.height,
             kinds,
             depth: deepest(&reading.commands),
-            digest: crate::recording::fnv1a(json::canvas_text(&reading.commands, 0).as_bytes()),
+            digest: crate::recording::fnv1a(
+                json::canvas_text(&reading.commands, &reading.nodes, 0).as_bytes(),
+            ),
         };
     }
-    let lines = json::canvas_line_lengths(&reading.commands);
+    let lines = json::canvas_line_lengths(&reading.commands, &reading.nodes);
     let resources = json::canvas_resource_lengths(&reading);
     let whole = CANVAS_WHOLE_FRAME + lines.iter().sum::<usize>() + resources;
     if part.is_none() && whole <= SNAPSHOT_TEXT_BUDGET {
@@ -593,8 +595,13 @@ fn canvas(mut reading: CanvasReading, full: bool, part: Option<u32>) -> Outcome 
         .checked_sub(1)
         .and_then(|index| usize::try_from(index).ok())
         .and_then(|index| cut.get(index).cloned());
-    let (depth, commands, fonts, images) = match range {
+    let (depth, commands, nodes, fonts, images) = match range {
         Some(range) => {
+            let nodes = reading
+                .nodes
+                .get(range.clone())
+                .map(<[Option<usize>]>::to_vec)
+                .unwrap_or_default();
             let depth = open_at(&reading.commands[..range.start]);
             let (fonts, images) = if range.start == 0 {
                 (
@@ -607,15 +614,17 @@ fn canvas(mut reading: CanvasReading, full: bool, part: Option<u32>) -> Outcome 
             (
                 depth,
                 reading.commands.drain(range).collect(),
+                nodes,
                 fonts,
                 images,
             )
         }
-        None => (0, Vec::new(), Vec::new(), Vec::new()),
+        None => (0, Vec::new(), Vec::new(), Vec::new(), Vec::new()),
     };
     Outcome::CanvasPart {
         reading: CanvasReading {
             commands,
+            nodes,
             fonts,
             images,
             ..reading

@@ -707,8 +707,13 @@ fn a_coverage_line_keys_each_handler_and_leaves_out_an_absent_owner() {
     assert_eq!(none.to_json(), r#"{"unexercised":[],"checks":0,"held":0}"#);
 }
 
-#[test]
-fn every_canvas_command_kind_and_brush_form_is_written_once() {
+/// Every command kind and brush form beside the line it writes before its tag, then a glyph run
+/// of no glyph — its line written whole, tag ` node=-` included.
+fn canvas_line_rows() -> (
+    [(crate::canvas::CanvasCommand, &'static str); 13],
+    crate::canvas::CanvasCommand,
+    &'static str,
+) {
     use crate::canvas::{CanvasBrush, CanvasCommand, GradientStop, PathStep, Rgba, Transform};
     let id = Transform([1.0, 0.0, 0.0, 1.0, 0.0, 0.0]);
     let scaled = Transform([2.0, 0.0, 0.0, 2.0, 0.1234, -0.0001]);
@@ -868,11 +873,6 @@ fn every_canvas_command_kind_and_brush_form_is_written_once() {
             "shadow t=id box=0,0,10,20 radii=1,1,1,1,1,1,1,1 offset=2,-2 spread=0 dev=3 colour=#00000040 kind=outset",
         ),
     ];
-    assert_eq!(rows.len(), 13);
-    for (row, (command, line)) in rows.iter().enumerate() {
-        let written = super::canvas::canvas_lines(std::slice::from_ref(command), 0);
-        assert!(written == [format!("{line}\n")], "row {row}");
-    }
     // A glyph run of no glyph has no origins' box, and its alpha of 1 is left out.
     let empty = CanvasCommand::Glyphs {
         font: 2,
@@ -884,10 +884,54 @@ fn every_canvas_command_kind_and_brush_form_is_written_once() {
         origins: None,
         ids: 0,
     };
-    assert_eq!(
-        super::canvas::canvas_lines(&[empty], 0),
-        ["glyphs font=2 size=12 brush=#ff0000ff t=id n=0 at=none ids=0000000000000000\n"]
-    );
+    (
+        rows,
+        empty,
+        "glyphs font=2 size=12 brush=#ff0000ff t=id n=0 at=none ids=0000000000000000 node=-\n",
+    )
+}
+
+#[test]
+fn every_canvas_command_kind_and_brush_form_is_written_once() {
+    let (rows, empty, empty_line) = canvas_line_rows();
+    assert_eq!(rows.len(), 13);
+    for (row, (command, line)) in rows.iter().enumerate() {
+        let written = super::canvas::canvas_lines(std::slice::from_ref(command), &[None], 0);
+        assert!(written == [format!("{line} node=-\n")], "row {row}");
+        let grouped = super::canvas::canvas_lines(std::slice::from_ref(command), &[Some(7)], 0);
+        assert!(grouped == [format!("{line} node=7\n")], "row {row} grouped");
+    }
+    assert_eq!(super::canvas::canvas_lines(&[empty], &[], 0), [empty_line]);
+}
+
+#[test]
+fn no_canvas_line_holds_a_key_twice() {
+    let (rows, empty, _) = canvas_line_rows();
+    assert_eq!(rows.len(), 13);
+    let commands: Vec<_> = rows
+        .into_iter()
+        .map(|(command, _)| command)
+        .chain([empty])
+        .collect();
+    assert_eq!(commands.len(), 14);
+    for (row, command) in commands.iter().enumerate() {
+        for node in [None, Some(7)] {
+            let lines = super::canvas::canvas_lines(std::slice::from_ref(command), &[node], 0);
+            let mut keys: Vec<&str> = lines
+                .iter()
+                .flat_map(|line| line.split_whitespace())
+                .filter_map(|word| word.split_once('=').map(|(key, _)| key))
+                .collect();
+            let all = keys.len();
+            keys.sort_unstable();
+            keys.dedup();
+            assert!(
+                keys.len() == all,
+                "row {row}, grouped {}: a key stands twice",
+                node.is_some()
+            );
+        }
+    }
 }
 
 #[test]
@@ -925,6 +969,7 @@ fn a_canvas_summary_and_a_full_dump_are_written_whole_and_a_part_indents_from_it
         width: 300.0,
         height: 120.5,
         commands: commands.clone(),
+        nodes: vec![None, Some(1), None],
         fonts: vec![0xfeed_beef_0000_0001],
         images: Vec::new(),
     };
@@ -933,12 +978,13 @@ fn a_canvas_summary_and_a_full_dump_are_written_whole_and_a_part_indents_from_it
     };
     assert_eq!(
         dump.to_json(),
-        r##"{"canvas":true,"text":"clip t=id clip=M0,0Z\n  fill fill=non-zero brush=#010203ff t=id shape=M1,1\npop\n","fonts":["feedbeef00000001"],"images":[]}"##
+        r##"{"canvas":true,"text":"clip t=id clip=M0,0Z node=-\n  fill fill=non-zero brush=#010203ff t=id shape=M1,1 node=1\npop node=-\n","fonts":["feedbeef00000001"],"images":[]}"##
     );
     // A part opens inside the clip: its first line is indented from the depth it is given.
     let part = Outcome::CanvasPart {
         reading: CanvasReading {
             commands: commands[1..].to_vec(),
+            nodes: vec![Some(1), None],
             fonts: Vec::new(),
             ..reading
         },
@@ -948,7 +994,7 @@ fn a_canvas_summary_and_a_full_dump_are_written_whole_and_a_part_indents_from_it
     };
     assert_eq!(
         part.to_json(),
-        r##"{"canvas":true,"text":"  fill fill=non-zero brush=#010203ff t=id shape=M1,1\npop\n","fonts":[],"images":[],"part":2,"parts":2}"##
+        r##"{"canvas":true,"text":"  fill fill=non-zero brush=#010203ff t=id shape=M1,1 node=1\npop node=-\n","fonts":[],"images":[],"part":2,"parts":2}"##
     );
     let none = Outcome::CanvasDump {
         reading: CanvasReading::none(),

@@ -1,5 +1,6 @@
 use anyrender::{AntiAliasing, PaintScene as _};
 use blitz_dom::node::ComputedStyles;
+use blitz_dom::{BoundingRect, VirtualNodeDeclaration, VirtualNodeRole};
 use dioxus_native::prelude::*;
 use dioxus_native::{CustomWidgetAttr, Widget};
 use peniko::kurbo::{Affine, Circle as Disc, Rect, Stroke, Vec2};
@@ -14,47 +15,81 @@ struct Circle {
     x: f64,
     y: f64,
     r: f64,
+    /// The id the app gave the circle when a click added it, from 1, never reused.
+    id: u64,
 }
 
 /// The width of the `.cd-canvas` border: a click is read against the canvas's border box, and
 /// the widget paints in its content box.
 const CANVAS_BORDER: f64 = 2.0;
 
-/// The circles as the canvas's `data-circles` attribute carries them: `x,y,d` per circle, its
-/// centre in the canvas's content box and its diameter, `;` between circles.
+/// The width of the `.cd-canvas` content box, in CSS px: its 700 px border box less the border
+/// on either side. A circle's region is cut to it.
+const CANVAS_WIDTH: f64 = 696.0;
+
+/// The height of the `.cd-canvas` content box, in CSS px: its 400 px border box less the border.
+const CANVAS_HEIGHT: f64 = 396.0;
+
+/// The circles as the canvas's `data-circles` attribute carries them: `x,y,d,id` per circle, its
+/// centre in the canvas's content box, its diameter and its id, `;` between circles.
 fn circles_text(circles: &[Circle]) -> String {
     circles
         .iter()
-        .map(|c| format!("{},{},{}", c.x, c.y, c.r * 2.0))
+        .map(|c| format!("{},{},{},{}", c.x, c.y, c.r * 2.0, c.id))
         .collect::<Vec<_>>()
         .join(";")
 }
 
-/// One circle the canvas paints: its centre and diameter, in CSS px of its content box.
+/// One circle the canvas paints: its centre and diameter, in CSS px of its content box, and its
+/// id.
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Painted {
     x: f64,
     y: f64,
     d: f64,
+    id: u64,
 }
 
-/// Reads a `data-circles` value: a triple of finite numbers per circle; a triple that is not
-/// one is skipped, so malformed text reads as no circle.
+/// Reads a `data-circles` value: per circle three finite numbers and an id, a whole number from
+/// 1; an entry that is not one is skipped, so malformed text reads as no circle.
 fn parse_circles(text: &str) -> Vec<Painted> {
     text.split(';')
-        .filter_map(|triple| {
-            let mut parts = triple.split(',').map(|n| n.trim().parse::<f64>().ok());
-            let (Some(Some(x)), Some(Some(y)), Some(Some(d)), None) =
-                (parts.next(), parts.next(), parts.next(), parts.next())
-            else {
+        .filter_map(|entry| {
+            let mut parts = entry.split(',').map(str::trim);
+            let (Some(x), Some(y), Some(d), Some(id), None) = (
+                parts.next(),
+                parts.next(),
+                parts.next(),
+                parts.next(),
+                parts.next(),
+            ) else {
                 return None;
             };
-            [x, y, d]
-                .iter()
-                .all(|n| n.is_finite())
-                .then_some(Painted { x, y, d })
+            let (Ok(x), Ok(y), Ok(d), Ok(id)) = (
+                x.parse::<f64>(),
+                y.parse::<f64>(),
+                d.parse::<f64>(),
+                id.parse::<u64>(),
+            ) else {
+                return None;
+            };
+            ([x, y, d].iter().all(|n| n.is_finite()) && id >= 1).then_some(Painted { x, y, d, id })
         })
         .collect()
+}
+
+/// The region a circle's virtual node declares: its bounding square cut to the content box, or
+/// none where the cut leaves it empty.
+fn circle_region(c: &Painted) -> Option<BoundingRect> {
+    let r = c.d / 2.0;
+    let (left, top) = ((c.x - r).max(0.0), (c.y - r).max(0.0));
+    let (right, bottom) = ((c.x + r).min(CANVAS_WIDTH), (c.y + r).min(CANVAS_HEIGHT));
+    (right > left && bottom > top).then_some(BoundingRect {
+        x: left,
+        y: top,
+        width: right - left,
+        height: bottom - top,
+    })
 }
 
 type Fonts = Arc<Mutex<parley::FontContext>>;
@@ -182,6 +217,21 @@ impl Widget for CircleCanvas {
         scene.pop_layer();
         scene
     }
+
+    fn virtual_nodes(&self) -> Vec<VirtualNodeDeclaration> {
+        self.circles
+            .iter()
+            .filter_map(|c| {
+                circle_region(c).map(|region| VirtualNodeDeclaration {
+                    key: format!("c{}", c.id),
+                    role: VirtualNodeRole::Image,
+                    name: format!("Circle {}, {} px", c.id, c.d.round()),
+                    region,
+                    disabled: false,
+                })
+            })
+            .collect()
+    }
 }
 
 #[component]
@@ -199,6 +249,12 @@ pub fn CircleDrawer() -> Element {
         use_graph_signal("undo_stack", HISTORY, Vec::new);
     let mut redo_stack: Signal<Vec<Vec<Circle>>> =
         use_graph_signal("redo_stack", HISTORY, Vec::new);
+    // the id the next circle a click adds takes
+    let mut next_id: Signal<u64> = use_graph_signal(
+        "next_id",
+        const { &[writes("circle-canvas", "click")] },
+        || 1,
+    );
     // index of circle being resized, if dialog is open
     let mut dialog_idx: Signal<Option<usize>> = use_graph_signal(
         "dialog_idx",
@@ -276,7 +332,9 @@ pub fn CircleDrawer() -> Element {
                     let y = raw.y - oy - CANVAS_BORDER;
                     undo_stack.write().push(circles());
                     redo_stack.write().clear();
-                    circles.write().push(Circle { x, y, r: 20.0 });
+                    let id = next_id();
+                    next_id.set(id + 1);
+                    circles.write().push(Circle { x, y, r: 20.0, id });
                 },
                 ondoubleclick: move |evt| async move {
                     evt.stop_propagation();
@@ -433,14 +491,20 @@ mod tests {
 
     #[test]
     fn malformed_circle_text_reads_as_no_circle() {
-        let rows: [(&str, usize); 6] = [
+        let rows: [(&str, usize); 11] = [
             ("", 0),
             ("x", 0),
             ("1,2", 0),
-            ("1,2,NaN", 0),
-            ("1,2,inf", 0),
-            ("10,20,40;bad;30,40,50", 2),
+            ("1,2,40", 0),
+            ("1,2,40,0", 0),
+            ("1,2,40,-1", 0),
+            ("1,2,40,1.5", 0),
+            ("1,2,NaN,1", 0),
+            ("1,2,inf,1", 0),
+            ("1,2,40,1,5", 0),
+            ("10,20,40,1;bad;30,40,50;30,40,50,2", 2),
         ];
+        assert!(rows.len() == 11, "the table's row count");
         for (index, (text, read)) in rows.into_iter().enumerate() {
             let mut canvas = CircleCanvas::default();
             canvas.attribute_changed("data-circles", None, Some(text));

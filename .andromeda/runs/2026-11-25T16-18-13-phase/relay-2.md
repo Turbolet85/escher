@@ -1,0 +1,1 @@
+F9 B is the operator's answer: blitz-dom re-exports the role type beside VirtualNodeDeclaration, behind custom-widget — an app that declares a virtual node gets the type it must name from the crate that defines the declaration; no manifest or lock move. State it in the plan as an escher addition to the engine crate's public surface. Go on to the plan and the P5 card.

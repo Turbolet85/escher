@@ -729,7 +729,9 @@ pub(crate) const CANVAS: VerbSpec = VerbSpec {
                    gradient linear, radial or sweep then its stops, an image brush image:n, \
                    resource and pattern unread; bt= and dash= written only when set, alpha= only \
                    when not 1; at= the least and greatest glyph origin, ids= the digest of the \
-                   glyph ids; with `full` or a `part` alone",
+                   glyph ids; every line closed by node=, the 1-based index of the canvas's \
+                   virtual node whose region holds the command's centre, nearest centre first, \
+                   or - for none; with `full` or a `part` alone",
         },
         FieldSpec {
             name: "fonts",

@@ -59,3 +59,6 @@
 - recurrence-despite-learning: `testing.md` 2026-10-19 (a `cfg(unix)` change checked by a windows `cargo check
   --tests`) — not run before the push; the unused import reached CI as a warning.
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-11-25 20:30:55

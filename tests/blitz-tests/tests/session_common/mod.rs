@@ -793,7 +793,7 @@ pub fn circle_drawer(incremental: bool) -> Session {
 }
 
 /// `n` circles at whole-pixel centres inside a `w` × `h` box, diameters 10 to 79, from a fixed
-/// sequence.
+/// sequence, written `x,y,d,k`, `k` the circle's place in the sequence from 1, its id.
 pub fn circles(n: usize, w: u64, h: u64) -> String {
     let mut s: u64 = 0x2545_f491_4f6c_dd1d;
     let mut next = |m: u64| {
@@ -802,12 +802,12 @@ pub fn circles(n: usize, w: u64, h: u64) -> String {
             .wrapping_add(1_442_695_040_888_963_407);
         (s >> 33) % m
     };
-    (0..n)
-        .map(|_| {
+    (1..=n)
+        .map(|k| {
             let x = 20 + next(w.saturating_sub(40).max(1));
             let y = 20 + next(h.saturating_sub(40).max(1));
             let d = 10 + next(70);
-            format!("{x},{y},{d}")
+            format!("{x},{y},{d},{k}")
         })
         .collect::<Vec<_>>()
         .join(";")
@@ -822,7 +822,7 @@ pub fn carried(session: &Session) -> String {
 }
 
 /// Writes `n` circles of the fixed sequence to the canvas's `data-circles` through the held
-/// harness's mutator, then settles.
+/// harness's mutator, each `x,y,d,k` with its place `k` its id, then settles.
 pub fn draw(session: &mut Session, n: usize, at: &str) {
     let Some(Outcome::CanvasSummary { width, height, .. }) =
         canvased(session, &canvas(CIRCLE_CANVAS))

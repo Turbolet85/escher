@@ -1,10 +1,12 @@
 # Coverage — escher-0.4.0
 
-verified 8/15 · deferred 0 · planned 7 · implemented 0 · unclaimed 7
+verified 8/15 · deferred 0 · planned 6 · implemented 1 · unclaimed 6
 
-## planned, unclaimed (7)
+## implemented (1)
+- v040-10 · The canvas read as data · 2026-11-25-circle-drawer-virtual-nodes
+
+## planned, unclaimed (6)
 - v040-02 · Upstream sync
-- v040-10 · The canvas read as data
 - v040-11 · Virtual nodes inside a canvas
 - v040-12 · A drag verb
 - v040-13 · Pan and zoom under a transform

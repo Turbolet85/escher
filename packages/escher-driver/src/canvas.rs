@@ -6,8 +6,9 @@ use std::collections::HashMap;
 
 use anyrender::recording::RenderCommand;
 use anyrender::{BoxShadowKind, MaskMode, Paint};
+use dioxus_native_dom::BoundingRect;
 use peniko::color::Srgb;
-use peniko::kurbo::{Affine, BezPath, PathEl};
+use peniko::kurbo::{Affine, BezPath, PathEl, Rect, Shape as _};
 use peniko::{BlendMode, Color, Compose, Fill, GradientKind, Mix};
 
 use crate::execute::resolve;
@@ -29,6 +30,10 @@ pub struct CanvasReading {
     pub height: f64,
     /// The commands, in paint order.
     pub commands: Vec<CanvasCommand>,
+    /// Each command's virtual node, in step with `commands`: the 1-based index of the node it is
+    /// grouped under among the canvas's taken nodes in declaration order, or `None`. A command
+    /// past the list's end is read under none.
+    pub nodes: Vec<Option<usize>>,
     /// The FNV-1a 64 digest of each distinct font's bytes, in first-use order; a glyph run names
     /// its font by its index here.
     pub fonts: Vec<u64>,
@@ -45,6 +50,7 @@ impl CanvasReading {
             width: 0.0,
             height: 0.0,
             commands: Vec::new(),
+            nodes: Vec::new(),
             fonts: Vec::new(),
             images: Vec::new(),
         }
@@ -265,8 +271,11 @@ impl Session {
     /// anything is painted, since a glyph run's text would be skipped. The widget is painted once
     /// more into a recording at the viewport's scale, outside any raster, from the layout the
     /// last settle left. It runs no step, pump or settle and changes nothing a screen reads. An
-    /// element with no widget, or whose content box is empty, reads `canvas` false. The `canvas`
-    /// verb reaches it through [`Session::run`].
+    /// element with no widget, or whose content box is empty, reads `canvas` false. Each command
+    /// is grouped under the canvas's virtual node that covers it: the one whose region holds the
+    /// centre of the command's bounds and whose own centre lies nearest it, ties to the first
+    /// declared; a canvas whose declarations cannot be read groups nothing. The `canvas` verb
+    /// reaches it through [`Session::run`].
     pub fn canvas(&mut self, id: &str) -> Result<CanvasReading, Refusal> {
         let (_, target) = resolve(&self.harness, &mut self.seen, id)?;
         if !self.harness.base().can_paint_text() {
@@ -294,7 +303,20 @@ impl Session {
                     - layout.padding.bottom;
                 (f64::from(width.max(0.0)), f64::from(height.max(0.0)))
             });
+        let regions: Vec<BoundingRect> = self
+            .harness
+            .doc
+            .virtual_nodes(node)
+            .map(|read| {
+                read.nodes
+                    .into_iter()
+                    .map(|taken| taken.declaration.region)
+                    .collect()
+            })
+            .unwrap_or_default();
+        let scale = self.harness.base().get_viewport().scale_f64();
         let mut reading = read_commands(&scene.commands);
+        reading.nodes = group(&scene.commands, &regions, scale);
         reading.width = width;
         reading.height = height;
         Ok(reading)
@@ -304,7 +326,7 @@ impl Session {
 /// The reading of recorded `commands`, its size zero.
 pub(crate) fn read_commands(commands: &[RenderCommand]) -> CanvasReading {
     let mut resources = Resources::default();
-    let commands = commands
+    let commands: Vec<CanvasCommand> = commands
         .iter()
         .map(|command| read_command(command, &mut resources))
         .collect();
@@ -312,10 +334,89 @@ pub(crate) fn read_commands(commands: &[RenderCommand]) -> CanvasReading {
         canvas: true,
         width: 0.0,
         height: 0.0,
+        nodes: vec![None; commands.len()],
         commands,
         fonts: resources.fonts.digests,
         images: resources.images.digests,
     }
+}
+
+/// Each command's virtual node: the 1-based index into `regions`, in CSS px of the content box,
+/// of the region that holds the centre of the command's bounds and whose own centre lies nearest
+/// it, ties to the first declared; `None` for a layer push or pop, a command that draws nothing,
+/// or one whose centre no region holds. A command's bounds are read in the scene's frame, under
+/// its transform, then divided by `scale` into CSS px: a fill's or stroke's shape's bounding box,
+/// a glyph run's ink box (the canvas lint's: its glyphs' outline bounds), else, where no glyph
+/// reads an outline, the box of its glyph origins, a box shadow's rect. A run's origins sit on
+/// its baseline, off the centre of what it paints, so its ink box is read first. The index is
+/// positional: it names
+/// a node by its place in the list, not by its key.
+pub(crate) fn group(
+    commands: &[RenderCommand],
+    regions: &[BoundingRect],
+    scale: f64,
+) -> Vec<Option<usize>> {
+    commands
+        .iter()
+        .map(|command| {
+            let centre = command_bounds(command)?.center();
+            let (x, y) = (centre.x / scale, centre.y / scale);
+            let mut best: Option<(usize, f64)> = None;
+            for (index, region) in regions.iter().enumerate() {
+                let holds = region.x <= x
+                    && x <= region.x + region.width
+                    && region.y <= y
+                    && y <= region.y + region.height;
+                if !holds {
+                    continue;
+                }
+                let dx = region.x + region.width / 2.0 - x;
+                let dy = region.y + region.height / 2.0 - y;
+                let distance = dx * dx + dy * dy;
+                if best.is_none_or(|(_, nearest)| distance < nearest) {
+                    best = Some((index, distance));
+                }
+            }
+            best.map(|(index, _)| index + 1)
+        })
+        .collect()
+}
+
+/// A command's bounds in the scene's frame, under its transform; `None` for a layer push or pop
+/// and for a command that draws nothing.
+fn command_bounds(command: &RenderCommand) -> Option<Rect> {
+    match command {
+        RenderCommand::PushLayer(_)
+        | RenderCommand::PushClipLayer(_)
+        | RenderCommand::PushMaskLayer(_)
+        | RenderCommand::PopLayer => None,
+        RenderCommand::Fill(fill) => shape_bounds(&fill.shape, fill.transform),
+        RenderCommand::Stroke(stroke) => shape_bounds(&stroke.shape, stroke.transform),
+        RenderCommand::GlyphRun(run) => {
+            if let Some(ink) = crate::canvas_lint::ink(run) {
+                return Some(ink);
+            }
+            let first = run.glyphs.first()?;
+            let start = Rect::new(
+                f64::from(first.x),
+                f64::from(first.y),
+                f64::from(first.x),
+                f64::from(first.y),
+            );
+            let origins = run.glyphs.iter().fold(start, |bounds, glyph| {
+                bounds.union_pt((f64::from(glyph.x), f64::from(glyph.y)))
+            });
+            Some(run.transform.transform_rect_bbox(origins))
+        }
+        RenderCommand::BoxShadow(shadow) => {
+            Some(shadow.transform.transform_rect_bbox(shadow.box_shape.rect))
+        }
+    }
+}
+
+/// A path's bounding box under `transform`; `None` for a path with no element.
+fn shape_bounds(shape: &BezPath, transform: Affine) -> Option<Rect> {
+    (!shape.elements().is_empty()).then(|| transform.transform_rect_bbox(shape.bounding_box()))
 }
 
 /// The distinct resources a reading names, each by its index.

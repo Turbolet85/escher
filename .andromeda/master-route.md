@@ -137,3 +137,4 @@
 2026-11-25-virtual-nodes-declared · complete · Virtual nodes declared — an app declares keyed, named, role-bearing regions inside a canvas, validated, each given the reserved id `{owner}///{key}` · → chk:2026-11-25-virtual-nodes-declared
 2026-11-25-virtual-nodes-as-elements · complete · Virtual nodes as elements — a canvas's virtual nodes in the accessibility tree, snapshot and diff, taking click and refused like elements · → chk:2026-11-25-virtual-nodes-as-elements
 2026-11-25-virtual-nodes-in-every-read · complete · Virtual nodes in every read — a canvas's virtual nodes in the UI graph, actions, handler coverage, layout explained and exploration, and the other id verbs (v040-11) · → chk:2026-11-25-virtual-nodes-in-every-read
+2026-11-25-circle-drawer-virtual-nodes · pending · Circle Drawer's circles as virtual nodes — each circle a declared node on the stand, its draw commands grouped by it, read on the binary · → chk:2026-11-25-circle-drawer-virtual-nodes

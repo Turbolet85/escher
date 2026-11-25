@@ -442,7 +442,8 @@ pub const HANDLERS_AT_BOOT: [(&str, &[(&str, &str)]); 7] = [
 
 /// Per stand task with a [`GRAPH_DRIVES`] row, by its title, the handlers a check of exactly
 /// those drives leaves unexercised, each as (id, event), in the order first seen. CRUD's Create
-/// adds the row `crud-person-3`, which no drive clicks. Cells' grid then leaves each of its cells'
+/// adds the row `crud-person-3`, which no drive clicks; Circle Drawer's drives add three circles,
+/// whose nodes' `click` no drive names. Cells' grid then leaves each of its cells'
 /// `click` but [`CELLS_CLICKED_BY_DRIVES`] after the rows stated here.
 pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 8] = [
     ("Counter", &[("back-btn", "click")]),
@@ -457,7 +458,15 @@ pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 8] = [
         ],
     ),
     ("Temperature Converter", &[("back-btn", "click")]),
-    ("Circle Drawer", &[("back-btn", "click")]),
+    (
+        "Circle Drawer",
+        &[
+            ("back-btn", "click"),
+            ("circle-canvas///c1", "click"),
+            ("circle-canvas///c2", "click"),
+            ("circle-canvas///c3", "click"),
+        ],
+    ),
     ("Cells", &[("back-btn", "click")]),
     ("Order", &[("back-btn", "click"), ("order-export", "click")]),
 ];
@@ -472,3 +481,23 @@ pub fn grid_cells() -> Vec<String> {
         .flat_map(|row| ('A'..='Z').map(move |column| format!("cell-{column}{row}")))
         .collect()
 }
+
+/// Of the 100 circles of the fixed sequence on Circle Drawer's 696 × 396 content box, each one
+/// whose bounding square spills the box: its id and its cut region (x, y, width, height), as the
+/// sequence measures them.
+pub const CIRCLE_SPILLS: [(u64, (f64, f64, f64, f64)); 7] = [
+    (19, (89.0, 341.0, 62.0, 55.0)),
+    (23, (125.0, 0.0, 70.0, 56.0)),
+    (24, (652.0, 189.0, 44.0, 46.0)),
+    (26, (0.0, 279.5, 68.5, 77.0)),
+    (46, (634.5, 19.5, 61.5, 65.0)),
+    (48, (107.0, 0.0, 72.0, 65.0)),
+    (85, (0.0, 28.5, 50.5, 55.0)),
+];
+
+/// The causes `actions` lists for a Circle Drawer circle's node, per target verb in the table's
+/// order: `click`, `type`, `scroll`, `screenshot`, `layout`, `canvas`.
+pub const CIRCLE_NODE_CAUSES: [Option<escher_driver::Cause>; 6] = {
+    const N: Option<escher_driver::Cause> = Some(escher_driver::Cause::NotFound);
+    [None, N, N, N, None, N]
+};

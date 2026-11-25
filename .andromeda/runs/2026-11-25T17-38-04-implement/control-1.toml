@@ -1,0 +1,98 @@
+[[control]]
+id = "C1"
+entry = 6
+guard = "CircleCanvas::virtual_nodes declares no circle: an empty list"
+case = "one_click_reads_a_circle_node_in_the_tree_and_the_snapshot"
+[[control.edit]]
+path = "examples/seven_guis/src/tasks/circle_drawer.rs"
+old = '''        self.circles
+            .iter()
+            .filter_map(|c| {'''
+new = '''        self.circles
+            .iter()
+            .filter(|_| false)
+            .filter_map(|c| {'''
+
+[[control]]
+id = "C2"
+entry = 6
+guard = "the region cut removed: each circle's bounding square declared whole"
+case = "at_twelve_and_a_hundred_circles_every_circle_reads_a_node"
+[[control.edit]]
+path = "examples/seven_guis/src/tasks/circle_drawer.rs"
+old = '''    let (left, top) = ((c.x - r).max(0.0), (c.y - r).max(0.0));
+    let (right, bottom) = ((c.x + r).min(CANVAS_WIDTH), (c.y + r).min(CANVAS_HEIGHT));'''
+new = '''    let (left, top) = (c.x - r, c.y - r);
+    let (right, bottom) = (c.x + r, c.y + r);
+    let _ = (CANVAS_WIDTH, CANVAS_HEIGHT);'''
+
+[[control]]
+id = "C3"
+entry = 6
+guard = "the key from the circle's place in the list, not its app-given id"
+case = "an_undone_circle_reads_stale_and_its_redo_keeps_its_id"
+[[control.edit]]
+path = "examples/seven_guis/src/tasks/circle_drawer.rs"
+old = '''            .filter_map(|c| {
+                circle_region(c).map(|region| VirtualNodeDeclaration {
+                    key: format!("c{}", c.id),'''
+new = '''            .enumerate()
+            .filter_map(|(index, c)| {
+                circle_region(c).map(|region| VirtualNodeDeclaration {
+                    key: format!("c{}", index + 1),'''
+
+[[control]]
+id = "C4"
+entry = 6
+guard = "the grouping's nearest-centre and tie rule: the last declared region holding the centre wins"
+case = "each_circle_s_commands_carry_its_own_index"
+[[control.edit]]
+path = "packages/escher-driver/src/canvas.rs"
+old = '''                if best.is_none_or(|(_, nearest)| distance < nearest) {'''
+new = '''                if best.is_none_or(|(_, nearest)| distance < nearest) || best.is_some() {'''
+
+[[control]]
+id = "C5a"
+entry = 6
+guard = "coverage's virtual-node arm: a node's click is never listed"
+case = "a_kept_check_lists_the_unclicked_circle_s_click"
+[[control.edit]]
+path = "packages/escher-driver/src/coverage.rs"
+old = '''        if canvas_clicks {
+            add(&node.id, Some(owner), "click");
+        }'''
+new = '''        let _ = canvas_clicks;'''
+
+[[control]]
+id = "C5b"
+entry = 7
+guard = "coverage's virtual-node arm: a node's click is never listed"
+case = "a_replayed_virtual_click_reaches_its_canvas_listener"
+[[control.edit]]
+path = "packages/escher-driver/src/coverage.rs"
+old = '''        if canvas_clicks {
+            add(&node.id, Some(owner), "click");
+        }'''
+new = '''        let _ = canvas_clicks;'''
+
+[[control]]
+id = "C6"
+entry = 4
+guard = "parse_circles reads a three-field entry as a circle again, its id defaulted"
+case = "malformed_circle_text_reads_as_no_circle"
+[[control.edit]]
+path = "examples/seven_guis/src/tasks/circle_drawer.rs"
+old = '''            let (Some(x), Some(y), Some(d), Some(id), None) = (
+                parts.next(),
+                parts.next(),
+                parts.next(),
+                parts.next(),
+                parts.next(),
+            ) else {'''
+new = '''            let (Some(x), Some(y), Some(d), Some(id), None) = (
+                parts.next(),
+                parts.next(),
+                parts.next(),
+                Some(parts.next().unwrap_or("1")),
+                parts.next(),
+            ) else {'''

@@ -251,17 +251,28 @@ fn command_line(out: &mut String, command: &CanvasCommand) {
 }
 
 /// Each command's line, in order, indented two spaces per layer open before it — `depth` open
-/// where the first stands, a `pop` at the indent of the layer it closes — and ended by `\n`.
-pub(crate) fn canvas_lines(commands: &[CanvasCommand], depth: usize) -> Vec<String> {
+/// where the first stands, a `pop` at the indent of the layer it closes — closed by its node's
+/// tag, ` node={k}` for the 1-based index `nodes` holds at its place or ` node=-` for none — a
+/// key no command's own pairs write — and ended by `\n`.
+pub(crate) fn canvas_lines(
+    commands: &[CanvasCommand],
+    nodes: &[Option<usize>],
+    depth: usize,
+) -> Vec<String> {
     let mut depth = depth;
     commands
         .iter()
-        .map(|command| {
+        .enumerate()
+        .map(|(index, command)| {
             if matches!(command, CanvasCommand::Pop) {
                 depth = depth.saturating_sub(1);
             }
             let mut line = "  ".repeat(depth);
             command_line(&mut line, command);
+            match nodes.get(index).copied().flatten() {
+                Some(node) => line.push_str(&format!(" node={node}")),
+                None => line.push_str(" node=-"),
+            }
             line.push('\n');
             if command.opens() {
                 depth += 1;
@@ -272,13 +283,21 @@ pub(crate) fn canvas_lines(commands: &[CanvasCommand], depth: usize) -> Vec<Stri
 }
 
 /// The commands' lines as one text: a full dump's `text`.
-pub(crate) fn canvas_text(commands: &[CanvasCommand], depth: usize) -> String {
-    canvas_lines(commands, depth).concat()
+pub(crate) fn canvas_text(
+    commands: &[CanvasCommand],
+    nodes: &[Option<usize>],
+    depth: usize,
+) -> String {
+    canvas_lines(commands, nodes, depth).concat()
 }
 
-/// The written length of each command's line inside a JSON string, in order, from depth 0.
-pub(crate) fn canvas_line_lengths(commands: &[CanvasCommand]) -> Vec<usize> {
-    canvas_lines(commands, 0)
+/// The written length of each command's line inside a JSON string, its tag included, in order,
+/// from depth 0.
+pub(crate) fn canvas_line_lengths(
+    commands: &[CanvasCommand],
+    nodes: &[Option<usize>],
+) -> Vec<usize> {
+    canvas_lines(commands, nodes, 0)
         .iter()
         .map(|line| {
             let mut written = String::new();
@@ -333,7 +352,10 @@ pub(crate) fn canvas_full(
 ) -> String {
     let mut object = Object::new();
     object.flag("canvas", reading.canvas);
-    object.text("text", &canvas_text(&reading.commands, depth));
+    object.text(
+        "text",
+        &canvas_text(&reading.commands, &reading.nodes, depth),
+    );
     object.json("fonts", &digests(&reading.fonts));
     object.json("images", &digests(&reading.images));
     if let Some((part, parts)) = part {

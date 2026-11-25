@@ -151,9 +151,13 @@ The stand's Circle Drawer draws on such a canvas: a widget painted from Rust pai
 circle's diameter as text shaped from the bundled font, and its canvas's element shot after one click is a row of that
 digest table. An app's click and double click on an element carrying a widget reach their handlers, the widget still
 hearing every pointer event first. Circle Drawer boots in process and is served by no `escher-session` role.
+Each circle it paints is a virtual node `circle-canvas///c{id}`, keyed by the id the app gives the circle when a click
+adds it, from 1 and never reused, which `data-circles` carries as each circle's fourth field (`x,y,d,id`); its role is
+`Image`, its name `Circle {id}, {d} px`, and its region its bounding square cut to the canvas's 696 × 396 content box.
+Undo and redo keep a circle's id, so an undone circle's node reads `stale` and its redo brings it back.
 
 Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`, `stand_canvas_cross_os`,
-`stand_circle_drawer_canvas`, `stand_canvas_click`.
+`stand_circle_drawer_canvas`, `stand_canvas_click`, `stand_circle_nodes`.
 
 ### The visual lint
 
@@ -200,9 +204,12 @@ state, and the snapshot and its diff read it from there, its bounds its region m
 origin. `click` takes such an id and acts at its region's centre on its canvas, refused `disabled`, `off-screen`,
 `covered`, `not-found` or `stale` in the one order. The UI graph holds each, owned by its canvas with no handler
 or read of its own; `actions` lists each with its canvas as owner; `layout` takes its id and places it by `app`
-inside its canvas; handler coverage counts a click on one under its canvas's listener; and exploration acts on
-each as on every listed node. Each of these answers carries its id and no declared name. No walk writes the form.
-Witnesses: `virtual_nodes_as_elements`, `virtual_nodes_in_every_read`.
+inside its canvas; handler coverage lists a node's `click` under its own id, owned by its canvas, wherever the
+canvas carries a `click` listener, exercised where a replayed accepted `click` named that id, the dispatch counting
+the canvas's listener under the canvas's id; and exploration acts on each as on every listed node. Each of these
+answers carries its id and no declared name. No walk writes the form. Circle Drawer's circles are the stand's
+virtual nodes.
+Witnesses: `virtual_nodes_as_elements`, `virtual_nodes_in_every_read`, `stand_circle_nodes`.
 
 Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task), `dioxus_runtime_probe`.
 
@@ -311,7 +318,12 @@ a summary: `canvas`, the content box's `width` and `height`, the commands counte
 · `pop` · `fill` · `stroke` · `glyphs` · `shadow`), the deepest layer nesting and a digest of the full dump. With
 `--full` it answers the commands themselves as `text`, one line per command in paint order, a fixed word then
 `key=value` pairs, a layer's commands indented under it and closed by `pop`, every number rounded to 1/1000, so two
-reads of one state answer the same bytes and two states diff line by line. No text is read: a glyph run crosses as
+reads of one state answer the same bytes and two states diff line by line. Each line ends ` node={k}`, the 1-based
+index, among the canvas's taken virtual nodes in declaration order, of the node whose region holds the centre of the
+command's bounds and whose own centre lies nearest it, ties to the first declared, or ` node=-` for none: a layer push
+or pop, a command that draws nothing, or one no region holds. A command's bounds are its shape's bounding box under
+its transform, a glyph run's ink box (its origins' box where no glyph has an outline) and a box shadow's rect; the
+tag is a number, never a node's id or name, under a key no other pair of a line holds. No text is read: a glyph run crosses as
 its glyph count, its font size, its brush, the box of its glyph origins and a 64-bit digest of its glyph ids, and
 each font and image as an index into `fonts` and `images`, a digest of its bytes, never the bytes or a family name.
 A full answer over 10,000 bytes reads in parts of whole lines (`--part`), `fonts` and `images` in part 1 alone. An
@@ -319,13 +331,17 @@ element with no widget answers `canvas` false. It runs no step, changes nothing 
 `sans-serif` family is refused `fonts-unavailable`.
 
 Measured on Circle Drawer, in both layout modes and held to one committed table: the summary reads 166 to 172 bytes;
-the full text reads 45 bytes at boot, 527 after one circle, 5,915 at 12 circles and 49,266 at 100, where the answer
+the full text reads 59 bytes at boot, 562 after one circle, 6,190 at 12 circles and 51,656 at 100, where the answer
 reads in six parts, each within the budget. Circle Drawer is read in process alone; the carriers are proven on a
-test-only canvas page. Its stated limits: a layer's filter is read as set or not, its parameters not read, and a
-command has no identity of its own, so a changed command reads in a line diff as one line removed and one added.
+test-only canvas page. Each of Circle Drawer's circles' fill, stroke and label reads its own circle's index, at 12
+and at 100 circles. Its stated limits: a layer's filter is read as set or not, its parameters not read; a changed
+command still reads in a line diff as one line removed and one added, the two carrying one ` node=`, which names its
+node; and the index is positional — a node that takes another's place in the list reads that index, and nodes of one
+region read the first's, so Circle Drawer's circles, every one a driver click adds standing at the canvas's centre,
+read index 1 alike.
 
-Witnesses: `stand_canvas_commands`, `stand_canvas_carriers`, `stand_mcp_tools`, seven_guis' `cli_commands` and
-`mcp_server`, escher-driver's canvas and JSON tests.
+Witnesses: `stand_canvas_commands`, `stand_canvas_carriers`, `stand_circle_nodes`, `stand_mcp_tools`, seven_guis'
+`cli_commands` and `mcp_server`, escher-driver's canvas and JSON tests.
 
 ### Engine behaviours every document gets
 
@@ -408,10 +424,17 @@ The driver's own refusal texts state three readings that are off:
 
 - **The boolean model's two limits.** A mixed toggle reads unpressed, and a grammar or spelling error reads invalid.
 - **Only `click` and `layout` take a virtual node.** `type`, `scroll`, `screenshot` with an id and `canvas` read a
-  canvas's virtual node `not-found`, and `actions` lists those four so; the lint holds none. A virtual node's
-  `keyed` reads false. Pinned by `virtual_nodes_in_every_read` and `virtual_nodes_as_elements`.
+  canvas's virtual node `not-found`, and `actions` lists those four so; the lint holds none, Circle Drawer's
+  overlapping circles reading no finding at 12 and 100 circles. A virtual node's `keyed` reads false. Pinned by
+  `virtual_nodes_in_every_read`, `virtual_nodes_as_elements` and `stand_circle_nodes`.
 - **A virtual node's `covered`.** A virtual node reads `covered` only by an element over its region's centre, never
-  by another node of its canvas. Pinned by `virtual_nodes_as_elements`.
+  by another node of its canvas: a Circle Drawer circle under another at its centre takes a click. Pinned by
+  `virtual_nodes_as_elements` and `stand_circle_nodes`.
+- **A click on a circle's node adds a circle.** Circle Drawer's canvas adds a circle at every click, so a `click` on a
+  circle's node adds one at that circle's centre; nothing selects a circle. Pinned by `stand_circle_nodes`.
+- **A canvas label's region is the content box.** The lint reads a canvas label against the content box and the clips
+  around it, never against its circle or its virtual node, so a diameter label wider than its circle reads no
+  `truncated` finding. Pinned by `stand_circle_nodes`.
 - **A virtual node's `clickable`.** A virtual node's `clickable` reads false. Pinned by `virtual_nodes_as_elements`.
   These are pinned at unit and engine level only: dioxus-native-dom's unit tests and the engine's accessibility
   checks. No stand screen shows either.
@@ -448,9 +471,10 @@ The driver's own refusal texts state three readings that are off:
   handler, not a bubbled one or a native activation. Pinned by `stand_graph` and dioxus-native-dom's graph tests.
 - **Handlers inside a canvas are not counted.** Handler coverage counts the UI graph's DOM listeners on agent-visible
   nodes, so the handlers a canvas dispatches inside one listener are invisible to it; 0.4.0 extends the count rather
-  than redefining it. A canvas's virtual node carries no handler, so none is listed for it; a click on one counts
-  its canvas's own listener, under the canvas's id. Pinned by `stand_handler_coverage` and
-  `virtual_nodes_in_every_read`.
+  than redefining it. A canvas's virtual node carries no handler in the graph; coverage lists its `click` under its
+  own id wherever its canvas carries a `click` listener, read exercised only where a replayed `click` named the
+  node's id, while a click on the canvas's own id that lands inside a node's region counts the canvas's listener
+  alone. Pinned by `stand_handler_coverage`, `virtual_nodes_in_every_read` and `stand_circle_nodes`.
 - **A handler on no screen a replay reached is not listed.** The graph reads the screen at boot and after each
   replayed step, so a handler that only a screen no replay showed carries is in no reading. Pinned by
   `stand_handler_coverage`.
@@ -682,7 +706,8 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, the canvas shot on every host by
 `stand_canvas_cross_os`, Circle Drawer's canvas by `stand_circle_drawer_canvas`, an app's click and double click on a
 canvas by `stand_canvas_click`, a canvas read as data by `stand_canvas_commands` and the `canvas` verb on every carrier
-by `stand_canvas_carriers`, a canvas label past its region read by the lint by `stand_canvas_lint`, Cells' current
+by `stand_canvas_carriers`, a canvas label past its region read by the lint by `stand_canvas_lint`, Circle Drawer's
+circles as virtual nodes and the canvas answer grouped by node by `stand_circle_nodes`, Cells' current
 cell read
 `selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and

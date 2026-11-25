@@ -115,7 +115,7 @@ fn a_click_paints_a_circle_and_its_diameter_on_the_canvas() {
             "{at}: the click is accepted"
         );
         assert!(
-            circles(&session).as_deref() == Some("348,198,40"),
+            circles(&session).as_deref() == Some("348,198,40,1"),
             "{at}: the canvas carries one circle of diameter 40 at the centre"
         );
         let after = canvas_shot(&mut session);
@@ -204,11 +204,11 @@ fn two_centre_clicks_open_the_dialog_and_its_slider_resizes_the_circle() {
         );
         let after = (circles(&session), canvas_shot(&mut session));
         assert!(
-            before.0.as_deref() == Some("348,198,40;348,198,40"),
+            before.0.as_deref() == Some("348,198,40,1;348,198,40,2"),
             "{at}: both clicks added a circle at the centre"
         );
         assert!(
-            after.0.as_deref() == Some("348,198,53;348,198,40"),
+            after.0.as_deref() == Some("348,198,53,1;348,198,40,2"),
             "{at}: the slider resizes the circle the dialog names"
         );
         assert!(after.1 != before.1, "{at}: the canvas repaints the circle");

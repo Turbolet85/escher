@@ -1,0 +1,3 @@
+The operator, invoking /andromeda-phase in this session:
+
+Revise the plan of the pending chunk 2026-11-25-circle-drawer-virtual-nodes before its operator pass: the node tag must not share a key with a field a line already holds. A glyph line now reads «n=0 … n=-», two values under one key, so a reader that parses key=value pairs loses one of them. Spell the tag ` node={k}` and ` node=-` on every line (F2 B is unchanged: the node's number, at the line's end), sweep every pin and doc line that names ` n=` as the tag, re-measure the committed tables and sizes, and add one unit row that reads no key twice on any command kind's line, with its red reading. Then the short P5 card.

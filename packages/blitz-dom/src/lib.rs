@@ -108,6 +108,10 @@ pub use crate::layout_reason::{
 pub use crate::node::VirtualNodeDeclaration;
 #[cfg(feature = "custom-widget")]
 pub use crate::node::Widget;
+/// The type a [`VirtualNodeDeclaration`]'s `role` takes, re-exported so an app that declares a
+/// virtual node names its role from this crate. An escher addition, upstreamable.
+#[cfg(feature = "custom-widget")]
+pub use accesskit::Role as VirtualNodeRole;
 
 pub use blitz_traits::node_id::NodeId;
 pub use clock::{Clock, VirtualClock, WallClock};

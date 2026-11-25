@@ -65,7 +65,7 @@ fn path_box(transform: Affine, path: &BezPath) -> Rect {
 /// embolden and mapped through its glyph transform and its transform. `None` when no glyph
 /// adds an outline: an empty run, glyphs with no outline, a font skrifa cannot read, or glyph
 /// ids past its count.
-fn ink(run: &GlyphRunCommand) -> Option<Rect> {
+pub(crate) fn ink(run: &GlyphRunCommand) -> Option<Rect> {
     let font = FontRef::from_index(run.font_data.data.data(), run.font_data.index).ok()?;
     let coords: Vec<NormalizedCoord> = run
         .normalized_coords

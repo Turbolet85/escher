@@ -1,0 +1,2477 @@
+[
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T18:20:21Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-25-circle-drawer-virtual-nodes · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 188 · rust 16",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L226-236: **The gates:** - a probe that no manifest or lock changed, from the base `a5d18f604`; - th… (767 chars)",
+"prose L238-244: **What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle … (495 chars)",
+"prose L246-247: **The controls** are step 12's one-shot runs. The diff moves one OS-conditional site, step… (177 chars)",
+"  1 probe       green · exit 0 · 0.0s · 0 B → 1.log · git diff --quiet a5d18f604a88533232d9164b5db1afd3e6159070 … (244 chars)",
+"  2 build       green · exit 0 · 15.77s · 2125 B → 2.log · bash .github/scripts/ci-leg.sh build",
+"  3 unit        green · exit 0 · 2.3s · 11921 B → 3.log · cargo test -p escher-driver --locked --lib",
+"  4 unit        green · exit 0 · 3.18s · 1548 B → 4.log · cargo test -p seven_guis --locked --lib",
+"  5 unit        green · exit 0 · 21.58s · 13337 B → 5.log · cargo test -p dioxus-native-dom --locked --lib",
+"  6 integration green · exit 0 · 6.4s · 1222 B → 6.log · cargo test -p blitz-tests --locked --test stand_circle_nod… (60 chars)",
+"  7 integration green · exit 0 · 11.83s · 1970 B → 7.log · cargo test -p blitz-tests --locked --test virtual_nodes_in… (132 chars)",
+"  8 integration green · exit 0 · 175.89s · 11841 B → 8.log · cargo test -p blitz-tests --locked --test stand_circle_dra… (471 chars)",
+"  9 integration green · exit 0 · 47.12s · 19611 B → 9.log · bash .github/scripts/ci-leg.sh a11y",
+" 10 integration green · exit 0 · 1041.77s · 188479 B → 10.log · bash .github/scripts/ci-leg.sh stand-repeat",
+" 11 lint        red · exit 0 ✗ (exit 101) · exit 101 · 6.37s · 2885 B → 11.log · bash .github/scripts/ci-leg.sh fast",
+" 12 build       red · exit 0 ✗ (exit 101) · exit 101 · 75.7s · 2950 B → 12.log · bash .github/scripts/ci-leg.sh doc",
+" 13 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 14 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · gh api repos/Turbolet85/escher/actions/runs/<id>/jobs --pa… (418 chars)",
+"entries 16 · green 10 · red 2 (11,12) · recorded 0 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-25-circle-drawer-virtual-nodes",
+"plan": "doc:2026-11-25-circle-drawer-virtual-nodes/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-25T01-56-47-session-2026-11-25.ndjson",
+".andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/evolve-2026-11-25-virtual-nodes-in-every-read.json",
+".claude/session-handoff.md",
+"docs/capabilities.md",
+"escher-0.4.0/coverage.md",
+"escher-0.4.0/working-route.md",
+".andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/db/log/2026-11-25T17-35-19-2026-11-25T16-18-13-phase.ndjson",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/acceptance-v040-10.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/cascade-tally.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/control-probes.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/evolve-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/fanout-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/gate-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/inputs-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/master-desc.txt",
+".andromeda/runs/2026-11-25T16-18-13-phase/matrix-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/note-v040-11.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/p5-card-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/planlint-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-read-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/route-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rows-packs.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/scope-cite-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/scope-pin.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tree-query-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/evolve-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/rec-2026-11-25-circle-drawer-virtual-nodes.json"
+],
+"rust": [
+"examples/seven_guis/src/tasks/circle_drawer.rs",
+"packages/blitz-dom/src/lib.rs",
+"packages/escher-driver/src/canvas.rs",
+"packages/escher-driver/src/canvas_lint.rs",
+"packages/escher-driver/src/canvas_tests.rs",
+"packages/escher-driver/src/coverage.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/json/canvas.rs",
+"packages/escher-driver/src/json_tests.rs",
+"tests/blitz-tests/tests/common/mod.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_canvas_carriers.rs",
+"tests/blitz-tests/tests/stand_canvas_commands.rs",
+"tests/blitz-tests/tests/stand_circle_drawer_canvas.rs",
+"tests/blitz-tests/tests/virtual_nodes_in_every_read.rs",
+"tests/blitz-tests/tests/stand_circle_nodes.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 204,
+"problem": null
+},
+"prose": [
+{
+"from": 226,
+"to": 236,
+"text": "**The gates:** - a probe that no manifest or lock changed, from the base `a5d18f604`; - the `--locked` workspace build; - the three crates' unit tests; - the new target, the edited virtual-node target and its two siblings; - the stand companions that read Circle Drawer, the canvas, coverage, the graph and the carriers; - CARRY 5's read of the CI windows job's log (an operator entry; the local windows check cannot build here, step 13); - the `a11y` leg, which runs `virtual_nodes_as_elements`; - the `stand-repeat` leg, which takes the new `stand_` file by its glob; - the pre-push gate (`fast`), which runs the CI-script tests, `test_capability_statement` among them; - the `doc` leg, because step 1 adds a public item with a doc and step 4 restates doc comments."
+},
+{
+"from": 238,
+"to": 244,
+"text": "**What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle Drawer stays served by no role, F7 A), so no   smoke entry. - There is no live leg (a live run is «Cold-agent live run»'s), and no headful self-verify harness in this project. - There is no `audit` leg: the probe holds every manifest and the lock unchanged. - The coverage leg is not run locally. CI's coverage job reads the escher-driver floor on the pushed tree, and the CI   read asserts green over it."
+},
+{
+"from": 246,
+"to": 247,
+"text": "**The controls** are step 12's one-shot runs. The diff moves one OS-conditional site, step 8's import behind `#[cfg(unix)]`, which the CI read and its windows job-log read name."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git diff --quiet a5d18f604a88533232d9164b5db1afd3e6159070 -- Cargo.lock Cargo.toml packages/blitz-dom/Cargo.toml packages/dioxus-native-dom/Cargo.toml packages/escher-driver/Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis/Cargo.toml",
+"run_sha8": "f6903447",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/1.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh build",
+"run_sha8": "32c5cbb0",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/2.log",
+"bytes": 2125,
+"log_sha8": "14e4dbf9",
+"exit": 0,
+"seconds": 15.77,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/3.log",
+"bytes": 11921,
+"log_sha8": "f355eeb1",
+"exit": 0,
+"seconds": 2.3,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/4.log",
+"bytes": 1548,
+"log_sha8": "4424c269",
+"exit": 0,
+"seconds": 3.18,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/5.log",
+"bytes": 13337,
+"log_sha8": "8b886c3e",
+"exit": 0,
+"seconds": 21.58,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.log",
+"bytes": 1222,
+"log_sha8": "c4970cfe",
+"exit": 0,
+"seconds": 6.4,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_in_every_read --test virtual_nodes_as_elements --test virtual_nodes_declared",
+"run_sha8": "95c7e64b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/7.log",
+"bytes": 1970,
+"log_sha8": "dac80796",
+"exit": 0,
+"seconds": 11.83,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_drawer_canvas --test stand_canvas_commands --test stand_canvas_cross_os --test stand_canvas_lint --test stand_canvas_carriers --test stand_canvas_click --test stand_non_lean_tasks --test stand_graph --test stand_handler_coverage --test stand_actions --test stand_layout --test stand_explore --test stand_masks_on_new_answers --test stand_mcp_tools --test stand_lint --test stand_replay --test stand_cross_os_readings",
+"run_sha8": "cea18bbc",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/8.log",
+"bytes": 11841,
+"log_sha8": "bccd0e32",
+"exit": 0,
+"seconds": 175.89,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/9.log",
+"bytes": 19611,
+"log_sha8": "e3b3b770",
+"exit": 0,
+"seconds": 47.12,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/10.log",
+"bytes": 188479,
+"log_sha8": "ca551ff6",
+"exit": 0,
+"seconds": 1041.77,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/11.log",
+"bytes": 2885,
+"log_sha8": "1a36610b",
+"exit": 101,
+"seconds": 6.37,
+"readings": [
+"exit 0 ✗ (exit 101)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+},
+{
+"n": 12,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/12.log",
+"bytes": 2950,
+"log_sha8": "270a1083",
+"exit": 101,
+"seconds": 75.7,
+"readings": [
+"exit 0 ✗ (exit 101)"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2700",
+"run_sha8": "d04716c7",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "gh api repos/Turbolet85/escher/actions/runs/<id>/jobs --paginate --jq '.jobs[] | select(.name == \"Test (windows)\") | .id' | while read j; do gh api --allow-escape-sequences repos/Turbolet85/escher/actions/jobs/$j/logs; done | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk '/Compiling blitz-tests v/ {r++} /unused import: `snapshot`/ {s++} END {if (r < 1) {print \"log unread\"; exit 2} print \"snapshot \" s+0; exit (s > 0)}' ",
+"run_sha8": "23456e78",
+"expect": [
+"exit 0",
+"last line snapshot 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T18:20:26Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--n",
+"11"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"11 lint red · exit 0 ✗ (exit 101)",
+"run (b93c6d21): bash .github/scripts/ci-leg.sh fast",
+"  exit 0 ✗ (exit 101)",
+"log $TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/11.log · 2885 B · 1a36610b · $TMPDIR = /tmp",
+"--- failing block from L24 ---",
+"error: unnecessary closure used with `bool::then`",
+"  --> examples/seven_guis/src/tasks/circle_drawer.rs:87:5",
+"   |",
+"87 | /     (right > left && bottom > top).then(|| BoundingRect {",
+"88 | |         x: left,",
+"89 | |         y: top,",
+"90 | |         width: right - left,",
+"91 | |         height: bottom - top,",
+"92 | |     })",
+"   | |______^",
+"   |",
+"   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.99.0/index.html#unnecessary_lazy_evaluations",
+"   = note: `-D clippy::unnecessary-lazy-evaluations` implied by `-D warnings`",
+"   = help: to override `-D warnings` add `#[allow(clippy::unnecessary_lazy_evaluations)]`",
+"help: use `then_some` instead",
+"   |",
+"87 ~     (right > left && bottom > top).then_some(BoundingRect {",
+"88 +         x: left,",
+"89 +         y: top,",
+"90 +         width: right - left,"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T18:20:27Z",
+"argv": [
+"show",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--n",
+"12"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"12 build red · exit 0 ✗ (exit 101)",
+"run (5bc2a184): bash .github/scripts/ci-leg.sh doc",
+"  exit 0 ✗ (exit 101)",
+"log $TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/12.log · 2950 B · 270a1083 · $TMPDIR = /tmp",
+"--- failing block from L25 ---",
+"error: public documentation for `canvas` links to private item `group`",
+"   --> packages/escher-driver/src/canvas.rs:275:73",
+"    |",
+"275 |     /// is grouped under the canvas's virtual node that covers it, by [`group`]'s rule; a canvas",
+"    |                                                                         ^^^^^ this item is private",
+"    |",
+"    = note: this link will resolve properly if you pass `--document-private-items`",
+"    = note: `-D rustdoc::private-intra-doc-links` implied by `-D warnings`",
+"    = help: to override `-D warnings` add `#[allow(rustdoc::private_intra_doc_links)]`",
+"",
+"error: could not document `escher-driver`",
+"warning: build failed, waiting for other jobs to finish...",
+""
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T18:35:08Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--only",
+"11,12"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-25-circle-drawer-virtual-nodes · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 190 · rust 16",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L226-236: **The gates:** - a probe that no manifest or lock changed, from the base `a5d18f604`; - th… (767 chars)",
+"prose L238-244: **What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle … (495 chars)",
+"prose L246-247: **The controls** are step 12's one-shot runs. The diff moves one OS-conditional site, step… (177 chars)",
+" 11 lint        green · exit 0 · 770.33s · 184094 B → 11.2.log · bash .github/scripts/ci-leg.sh fast",
+" 12 build       green · exit 0 · 99.4s · 3617 B → 12.2.log · bash .github/scripts/ci-leg.sh doc",
+"not run — excluded · 14: 1-10,13-16",
+"entries 16 · green 2 · red 0 · recorded 0 · timeout 0 · not-run 14"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-25-circle-drawer-virtual-nodes",
+"plan": "doc:2026-11-25-circle-drawer-virtual-nodes/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-25T01-56-47-session-2026-11-25.ndjson",
+".andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/evolve-2026-11-25-virtual-nodes-in-every-read.json",
+".claude/session-handoff.md",
+"docs/capabilities.md",
+"escher-0.4.0/coverage.md",
+"escher-0.4.0/working-route.md",
+".andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/db/log/2026-11-25T17-35-19-2026-11-25T16-18-13-phase.ndjson",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/acceptance-v040-10.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/cascade-tally.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/control-probes.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/evolve-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/fanout-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/gate-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/inputs-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/master-desc.txt",
+".andromeda/runs/2026-11-25T16-18-13-phase/matrix-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/note-v040-11.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/p5-card-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/planlint-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-read-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/route-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rows-packs.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/scope-cite-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/scope-pin.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tree-query-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/control-1.toml",
+".andromeda/runs/2026-11-25T17-38-04-implement/evolve-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/gate-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/rec-2026-11-25-circle-drawer-virtual-nodes.json"
+],
+"rust": [
+"examples/seven_guis/src/tasks/circle_drawer.rs",
+"packages/blitz-dom/src/lib.rs",
+"packages/escher-driver/src/canvas.rs",
+"packages/escher-driver/src/canvas_lint.rs",
+"packages/escher-driver/src/canvas_tests.rs",
+"packages/escher-driver/src/coverage.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/json/canvas.rs",
+"packages/escher-driver/src/json_tests.rs",
+"tests/blitz-tests/tests/common/mod.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_canvas_carriers.rs",
+"tests/blitz-tests/tests/stand_canvas_commands.rs",
+"tests/blitz-tests/tests/stand_circle_drawer_canvas.rs",
+"tests/blitz-tests/tests/virtual_nodes_in_every_read.rs",
+"tests/blitz-tests/tests/stand_circle_nodes.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 206,
+"problem": null
+},
+"prose": [
+{
+"from": 226,
+"to": 236,
+"text": "**The gates:** - a probe that no manifest or lock changed, from the base `a5d18f604`; - the `--locked` workspace build; - the three crates' unit tests; - the new target, the edited virtual-node target and its two siblings; - the stand companions that read Circle Drawer, the canvas, coverage, the graph and the carriers; - CARRY 5's read of the CI windows job's log (an operator entry; the local windows check cannot build here, step 13); - the `a11y` leg, which runs `virtual_nodes_as_elements`; - the `stand-repeat` leg, which takes the new `stand_` file by its glob; - the pre-push gate (`fast`), which runs the CI-script tests, `test_capability_statement` among them; - the `doc` leg, because step 1 adds a public item with a doc and step 4 restates doc comments."
+},
+{
+"from": 238,
+"to": 244,
+"text": "**What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle Drawer stays served by no role, F7 A), so no   smoke entry. - There is no live leg (a live run is «Cold-agent live run»'s), and no headful self-verify harness in this project. - There is no `audit` leg: the probe holds every manifest and the lock unchanged. - The coverage leg is not run locally. CI's coverage job reads the escher-driver floor on the pushed tree, and the CI   read asserts green over it."
+},
+{
+"from": 246,
+"to": 247,
+"text": "**The controls** are step 12's one-shot runs. The diff moves one OS-conditional site, step 8's import behind `#[cfg(unix)]`, which the CI read and its windows job-log read name."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git diff --quiet a5d18f604a88533232d9164b5db1afd3e6159070 -- Cargo.lock Cargo.toml packages/blitz-dom/Cargo.toml packages/dioxus-native-dom/Cargo.toml packages/escher-driver/Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis/Cargo.toml",
+"run_sha8": "f6903447",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh build",
+"run_sha8": "32c5cbb0",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_in_every_read --test virtual_nodes_as_elements --test virtual_nodes_declared",
+"run_sha8": "95c7e64b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_drawer_canvas --test stand_canvas_commands --test stand_canvas_cross_os --test stand_canvas_lint --test stand_canvas_carriers --test stand_canvas_click --test stand_non_lean_tasks --test stand_graph --test stand_handler_coverage --test stand_actions --test stand_layout --test stand_explore --test stand_masks_on_new_answers --test stand_mcp_tools --test stand_lint --test stand_replay --test stand_cross_os_readings",
+"run_sha8": "cea18bbc",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/11.2.log",
+"bytes": 184094,
+"log_sha8": "ad5e9f5d",
+"exit": 0,
+"seconds": 770.33,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/12.2.log",
+"bytes": 3617,
+"log_sha8": "16998422",
+"exit": 0,
+"seconds": 99.4,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2700",
+"run_sha8": "d04716c7",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "gh api repos/Turbolet85/escher/actions/runs/<id>/jobs --paginate --jq '.jobs[] | select(.name == \"Test (windows)\") | .id' | while read j; do gh api --allow-escape-sequences repos/Turbolet85/escher/actions/jobs/$j/logs; done | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk '/Compiling blitz-tests v/ {r++} /unused import: `snapshot`/ {s++} END {if (r < 1) {print \"log unread\"; exit 2} print \"snapshot \" s+0; exit (s > 0)}' ",
+"run_sha8": "23456e78",
+"expect": [
+"exit 0",
+"last line snapshot 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T18:37:27Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--controls-file",
+".andromeda/runs/2026-11-25T17-38-04-implement/control-1.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--timeout",
+"1200"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-25-circle-drawer-virtual-nodes · controls 7 · entries 3 (6,7,4)",
+"logs $TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone ~/.cache/andromeda-control/ef35c86e · HEAD a5d18f60 · copied 206 · removed 0 · working folder 8 files · free 499.4 G",
+"entry 6 in place green · 43.1s → 6.2.log",
+"entry 7 in place green · 11.82s → 7.2.log",
+"entry 4 in place green · 28.99s → 4.2.log",
+"control C1 · entry 6 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 43.1s · 2.28s → 6.without-C1.log",
+"control C2 · entry 6 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 43.1s · 6.34s → 6.without-C2.log",
+"control C3 · entry 6 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 43.1s · 6.35s → 6.without-C3.log",
+"control C4 · entry 6 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 43.1s · 6.87s → 6.without-C4.log",
+"control C5a · entry 6 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 43.1s · 6.82s → 6.without-C5a.log",
+"control C5b · entry 7 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 11.82s · 12.82s → 7.without-C5b.log",
+"control C6 · entry 4 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 28.99s · 1.62s → 4.without-C6.log",
+"control: 7 holds · 0 timeout · 0 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-25-circle-drawer-virtual-nodes",
+"plan": "doc:2026-11-25-circle-drawer-virtual-nodes/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04",
+"clone": "~/.cache/andromeda-control/ef35c86e",
+"head": "a5d18f604a88533232d9164b5db1afd3e6159070",
+"copied": 206,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.2.log",
+"bytes": 18286,
+"log_sha8": "11a607f7",
+"exit": 0,
+"seconds": 43.1,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_in_every_read --test virtual_nodes_as_elements --test virtual_nodes_declared",
+"run_sha8": "95c7e64b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/7.2.log",
+"bytes": 1984,
+"log_sha8": "57312431",
+"exit": 0,
+"seconds": 11.82,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/4.2.log",
+"bytes": 5080,
+"log_sha8": "ede75da2",
+"exit": 0,
+"seconds": 28.99,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "C1",
+"entry": 6,
+"guard": "CircleCanvas::virtual_nodes declares no circle: an empty list",
+"cases": [
+"one_click_reads_a_circle_node_in_the_tree_and_the_snapshot"
+],
+"edits": [
+{
+"path": "examples/seven_guis/src/tasks/circle_drawer.rs",
+"before": "ff41e43e",
+"after": "44d09e2a"
+}
+],
+"word": "holds",
+"removed": {
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.without-C1.log",
+"bytes": 4517,
+"log_sha8": "490defa4",
+"exit": 101,
+"seconds": 2.28,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "C2",
+"entry": 6,
+"guard": "the region cut removed: each circle's bounding square declared whole",
+"cases": [
+"at_twelve_and_a_hundred_circles_every_circle_reads_a_node"
+],
+"edits": [
+{
+"path": "examples/seven_guis/src/tasks/circle_drawer.rs",
+"before": "ff41e43e",
+"after": "a4873239"
+}
+],
+"word": "holds",
+"removed": {
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.without-C2.log",
+"bytes": 2333,
+"log_sha8": "ce1e7e1b",
+"exit": 101,
+"seconds": 6.34,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "C3",
+"entry": 6,
+"guard": "the key from the circle's place in the list, not its app-given id",
+"cases": [
+"an_undone_circle_reads_stale_and_its_redo_keeps_its_id"
+],
+"edits": [
+{
+"path": "examples/seven_guis/src/tasks/circle_drawer.rs",
+"before": "ff41e43e",
+"after": "dcb68b95"
+}
+],
+"word": "holds",
+"removed": {
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.without-C3.log",
+"bytes": 2059,
+"log_sha8": "34adf85d",
+"exit": 101,
+"seconds": 6.35,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "C4",
+"entry": 6,
+"guard": "the grouping's nearest-centre and tie rule: the last declared region holding the centre wins",
+"cases": [
+"each_circle_s_commands_carry_its_own_index"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/canvas.rs",
+"before": "c0b5aab5",
+"after": "37a8c697"
+}
+],
+"word": "holds",
+"removed": {
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.without-C4.log",
+"bytes": 1851,
+"log_sha8": "f1e70967",
+"exit": 101,
+"seconds": 6.87,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "C5a",
+"entry": 6,
+"guard": "coverage's virtual-node arm: a node's click is never listed",
+"cases": [
+"a_kept_check_lists_the_unclicked_circle_s_click"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/coverage.rs",
+"before": "50481774",
+"after": "af9a623c"
+}
+],
+"word": "holds",
+"removed": {
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.without-C5a.log",
+"bytes": 1873,
+"log_sha8": "4e2865c9",
+"exit": 101,
+"seconds": 6.82,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "C5b",
+"entry": 7,
+"guard": "coverage's virtual-node arm: a node's click is never listed",
+"cases": [
+"a_replayed_virtual_click_reaches_its_canvas_listener"
+],
+"edits": [
+{
+"path": "packages/escher-driver/src/coverage.rs",
+"before": "50481774",
+"after": "af9a623c"
+}
+],
+"word": "holds",
+"removed": {
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_in_every_read --test virtual_nodes_as_elements --test virtual_nodes_declared",
+"run_sha8": "95c7e64b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/7.without-C5b.log",
+"bytes": 2741,
+"log_sha8": "40ccaaf8",
+"exit": 101,
+"seconds": 12.82,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "C6",
+"entry": 4,
+"guard": "parse_circles reads a three-field entry as a circle again, its id defaulted",
+"cases": [
+"malformed_circle_text_reads_as_no_circle"
+],
+"edits": [
+{
+"path": "examples/seven_guis/src/tasks/circle_drawer.rs",
+"before": "ff41e43e",
+"after": "6180502b"
+}
+],
+"word": "holds",
+"removed": {
+"n": 4,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/4.without-C6.log",
+"bytes": 2064,
+"log_sha8": "1d3909d3",
+"exit": 101,
+"seconds": 1.62,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+}
+],
+"removal": "clone removed",
+"at": "C6"
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:13:17Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-25-circle-drawer-virtual-nodes · entries 16",
+"logs $TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 190 · rust 16",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L226-236: **The gates:** - a probe that no manifest or lock changed, from the base `a5d18f604`; - th… (767 chars)",
+"prose L238-244: **What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle … (495 chars)",
+"prose L246-247: **The controls** are step 12's one-shot runs. The diff moves one OS-conditional site, step… (177 chars)",
+"  1 probe       green · exit 0 · 0.0s · 0 B → 1.2.log · git diff --quiet a5d18f604a88533232d9164b5db1afd3e6159070 … (244 chars)",
+"  2 build       green · exit 0 · 10.09s · 1325 B → 2.2.log · bash .github/scripts/ci-leg.sh build",
+"  3 unit        green · exit 0 · 28.05s · 16760 B → 3.2.log · cargo test -p escher-driver --locked --lib",
+"  4 unit        green · exit 0 · 0.44s · 1359 B → 4.3.log · cargo test -p seven_guis --locked --lib",
+"  5 unit        green · exit 0 · 21.27s · 13600 B → 5.2.log · cargo test -p dioxus-native-dom --locked --lib",
+"  6 integration green · exit 0 · 6.56s · 1222 B → 6.3.log · cargo test -p blitz-tests --locked --test stand_circle_nod… (60 chars)",
+"  7 integration green · exit 0 · 11.6s · 1970 B → 7.3.log · cargo test -p blitz-tests --locked --test virtual_nodes_in… (132 chars)",
+"  8 integration green · exit 0 · 175.37s · 11841 B → 8.2.log · cargo test -p blitz-tests --locked --test stand_circle_dra… (471 chars)",
+"  9 integration green · exit 0 · 47.88s · 19611 B → 9.2.log · bash .github/scripts/ci-leg.sh a11y",
+" 10 integration green · exit 0 · 1067.43s · 188479 B → 10.2.log · bash .github/scripts/ci-leg.sh stand-repeat",
+" 11 lint        green · exit 0 · 670.19s · 180728 B → 11.3.log · bash .github/scripts/ci-leg.sh fast",
+" 12 build       green · exit 0 · 95.1s · 3617 B → 12.3.log · bash .github/scripts/ci-leg.sh doc",
+" 13 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 14 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 15 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+" 16 probe       not run — leg operator (the letter drives it) · gh api repos/Turbolet85/escher/actions/runs/<id>/jobs --pa… (418 chars)",
+"entries 16 · green 12 · red 0 · recorded 0 · timeout 0 · not-run 4"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-25-circle-drawer-virtual-nodes",
+"plan": "doc:2026-11-25-circle-drawer-virtual-nodes/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-25T01-56-47-session-2026-11-25.ndjson",
+".andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/evolve-2026-11-25-virtual-nodes-in-every-read.json",
+".claude/session-handoff.md",
+"docs/capabilities.md",
+"escher-0.4.0/coverage.md",
+"escher-0.4.0/working-route.md",
+".andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/db/log/2026-11-25T17-35-19-2026-11-25T16-18-13-phase.ndjson",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/a11y-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/acceptance-v040-10.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p16.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/arch-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/cascade-tally.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/control-probes.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/design-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/evolve-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/fanout-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/gate-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/inputs-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/layouts-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/master-desc.txt",
+".andromeda/runs/2026-11-25T16-18-13-phase/matrix-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/note-v040-11.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/obs-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/p5-card-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/planlint-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rec-read-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/relay-3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/route-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/rows-packs.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/scope-cite-1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/scope-pin.json",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/security-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-history.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-rows.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-standing.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tests-task.md",
+".andromeda/runs/2026-11-25T16-18-13-phase/tree-query-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/control-1.toml",
+".andromeda/runs/2026-11-25T17-38-04-implement/evolve-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/gate-2026-11-25-circle-drawer-virtual-nodes.json",
+".andromeda/runs/2026-11-25T17-38-04-implement/rec-2026-11-25-circle-drawer-virtual-nodes.json"
+],
+"rust": [
+"examples/seven_guis/src/tasks/circle_drawer.rs",
+"packages/blitz-dom/src/lib.rs",
+"packages/escher-driver/src/canvas.rs",
+"packages/escher-driver/src/canvas_lint.rs",
+"packages/escher-driver/src/canvas_tests.rs",
+"packages/escher-driver/src/coverage.rs",
+"packages/escher-driver/src/execute.rs",
+"packages/escher-driver/src/json/canvas.rs",
+"packages/escher-driver/src/json_tests.rs",
+"tests/blitz-tests/tests/common/mod.rs",
+"tests/blitz-tests/tests/session_common/mod.rs",
+"tests/blitz-tests/tests/stand_canvas_carriers.rs",
+"tests/blitz-tests/tests/stand_canvas_commands.rs",
+"tests/blitz-tests/tests/stand_circle_drawer_canvas.rs",
+"tests/blitz-tests/tests/virtual_nodes_in_every_read.rs",
+"tests/blitz-tests/tests/stand_circle_nodes.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 206,
+"problem": null
+},
+"prose": [
+{
+"from": 226,
+"to": 236,
+"text": "**The gates:** - a probe that no manifest or lock changed, from the base `a5d18f604`; - the `--locked` workspace build; - the three crates' unit tests; - the new target, the edited virtual-node target and its two siblings; - the stand companions that read Circle Drawer, the canvas, coverage, the graph and the carriers; - CARRY 5's read of the CI windows job's log (an operator entry; the local windows check cannot build here, step 13); - the `a11y` leg, which runs `virtual_nodes_as_elements`; - the `stand-repeat` leg, which takes the new `stand_` file by its glob; - the pre-push gate (`fast`), which runs the CI-script tests, `test_capability_statement` among them; - the `doc` leg, because step 1 adds a public item with a doc and step 4 restates doc comments."
+},
+{
+"from": 238,
+"to": 244,
+"text": "**What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle Drawer stays served by no role, F7 A), so no   smoke entry. - There is no live leg (a live run is «Cold-agent live run»'s), and no headful self-verify harness in this project. - There is no `audit` leg: the probe holds every manifest and the lock unchanged. - The coverage leg is not run locally. CI's coverage job reads the escher-driver floor on the pushed tree, and the CI   read asserts green over it."
+},
+{
+"from": 246,
+"to": 247,
+"text": "**The controls** are step 12's one-shot runs. The diff moves one OS-conditional site, step 8's import behind `#[cfg(unix)]`, which the CI read and its windows job-log read name."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git diff --quiet a5d18f604a88533232d9164b5db1afd3e6159070 -- Cargo.lock Cargo.toml packages/blitz-dom/Cargo.toml packages/dioxus-native-dom/Cargo.toml packages/escher-driver/Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis/Cargo.toml",
+"run_sha8": "f6903447",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/1.2.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh build",
+"run_sha8": "32c5cbb0",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/2.2.log",
+"bytes": 1325,
+"log_sha8": "aee3a950",
+"exit": 0,
+"seconds": 10.09,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/3.2.log",
+"bytes": 16760,
+"log_sha8": "9c2d4a8d",
+"exit": 0,
+"seconds": 28.05,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/4.3.log",
+"bytes": 1359,
+"log_sha8": "6fa5d520",
+"exit": 0,
+"seconds": 0.44,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/5.2.log",
+"bytes": 13600,
+"log_sha8": "618b1e0b",
+"exit": 0,
+"seconds": 21.27,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/6.3.log",
+"bytes": 1222,
+"log_sha8": "8908ceb6",
+"exit": 0,
+"seconds": 6.56,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_in_every_read --test virtual_nodes_as_elements --test virtual_nodes_declared",
+"run_sha8": "95c7e64b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/7.3.log",
+"bytes": 1970,
+"log_sha8": "06efa177",
+"exit": 0,
+"seconds": 11.6,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_drawer_canvas --test stand_canvas_commands --test stand_canvas_cross_os --test stand_canvas_lint --test stand_canvas_carriers --test stand_canvas_click --test stand_non_lean_tasks --test stand_graph --test stand_handler_coverage --test stand_actions --test stand_layout --test stand_explore --test stand_masks_on_new_answers --test stand_mcp_tools --test stand_lint --test stand_replay --test stand_cross_os_readings",
+"run_sha8": "cea18bbc",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/8.2.log",
+"bytes": 11841,
+"log_sha8": "b481906c",
+"exit": 0,
+"seconds": 175.37,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/9.2.log",
+"bytes": 19611,
+"log_sha8": "bcbfcbbd",
+"exit": 0,
+"seconds": 47.88,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/10.2.log",
+"bytes": 188479,
+"log_sha8": "2332ef67",
+"exit": 0,
+"seconds": 1067.43,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 11,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/11.3.log",
+"bytes": 180728,
+"log_sha8": "952f351e",
+"exit": 0,
+"seconds": 670.19,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 12,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-circle-drawer-virtual-nodes/implement-2026-11-25T17-38-04/12.3.log",
+"bytes": 3617,
+"log_sha8": "4658a753",
+"exit": 0,
+"seconds": 95.1,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 13,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 14,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2700",
+"run_sha8": "d04716c7",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "gh api repos/Turbolet85/escher/actions/runs/<id>/jobs --paginate --jq '.jobs[] | select(.name == \"Test (windows)\") | .id' | while read j; do gh api --allow-escape-sequences repos/Turbolet85/escher/actions/jobs/$j/logs; done | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk '/Compiling blitz-tests v/ {r++} /unused import: `snapshot`/ {s++} END {if (r < 1) {print \"log unread\"; exit 2} print \"snapshot \" s+0; exit (s > 0)}' ",
+"run_sha8": "23456e78",
+"expect": [
+"exit 0",
+"last line snapshot 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:13:52Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 1 · modify 13 · derived 0 · record 3",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"recorded companion packages/escher-driver/src/execute.rs",
+"recorded in-intent packages/escher-driver/src/canvas_lint.rs",
+"recorded companion tests/blitz-tests/tests/stand_canvas_carriers.rs",
+"scope: clean — changed 17 · listed 14 · recorded 3 (companion 2 · mechanical 0 · in-intent 1 · widening 0) · absorbed 0 · excluded 190"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 17,
+"listed": 14,
+"recorded": 3,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 2,
+"mechanical": 0,
+"in-intent": 1,
+"widening": 0
+},
+"excluded": 190,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:13:52Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis_nati",
+"--args",
+"stand_circle_nodes",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, rustc, escher-session, seven_guis_nati · args stand_circle_nodes · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"rustc",
+"escher-session",
+"seven_guis_nati"
+],
+"args": [
+"stand_circle_nodes"
+],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:15:52Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"P1 .andromeda/runs/2026-11-25T16-18-13-phase/control-probes.md:32 ×1 · drive",
+"hygiene: refused 1 files — P1 1 · P2 0 · P3 0 · read 194 (runs 185 · evidence 2 · inputs 7) · trails 16 not read · copies 5 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [
+"P1 .andromeda/runs/2026-11-25T16-18-13-phase/control-probes.md:32 ×1 · drive"
+],
+"counts": {
+"P1": 1,
+"P2": 0,
+"P3": 0,
+"runs": 185,
+"evidence": 2,
+"inputs": 7,
+"trails": 16,
+"copies": 5,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:16:25Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"P1 .andromeda/runs/2026-11-25T17-38-04-implement/relay-1.md:1 ×1 · drive",
+"hygiene: refused 1 files — P1 1 · P2 0 · P3 0 · read 197 (runs 187 · evidence 2 · inputs 8) · trails 17 not read · copies 6 not read by P1 — 1 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [
+"P1 .andromeda/runs/2026-11-25T17-38-04-implement/relay-1.md:1 ×1 · drive"
+],
+"counts": {
+"P1": 1,
+"P2": 0,
+"P3": 0,
+"runs": 187,
+"evidence": 2,
+"inputs": 8,
+"trails": 17,
+"copies": 6,
+"kept": 1,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:16:33Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 197 (runs 187 · evidence 2 · inputs 8) · trails 17 not read · copies 6 not read by P1 — 1 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 187,
+"evidence": 2,
+"inputs": 8,
+"trails": 17,
+"copies": 6,
+"kept": 1,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-25T19:16:47Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-25T17-38-04-implement",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 197 (runs 187 · evidence 2 · inputs 8) · trails 17 not read · copies 6 not read by P1 — 1 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 187,
+"evidence": 2,
+"inputs": 8,
+"trails": 17,
+"copies": 6,
+"kept": 1,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+}
+]

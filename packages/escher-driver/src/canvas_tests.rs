@@ -409,6 +409,88 @@ fn an_empty_scene_reads_a_canvas_with_no_command_and_none_reads_no_canvas() {
     ));
 }
 
+/// A 2 × 2 CSS px square filled at `centre`, drawn under `scale` as a widget paints.
+fn fill_at(centre: (f64, f64), scale: f64) -> RenderCommand {
+    RenderCommand::Fill(FillCommand {
+        fill: Fill::NonZero,
+        transform: Affine::scale(scale),
+        brush: Paint::Solid(RED),
+        brush_transform: None,
+        shape: Rect::new(
+            centre.0 - 1.0,
+            centre.1 - 1.0,
+            centre.0 + 1.0,
+            centre.1 + 1.0,
+        )
+        .to_path(0.1),
+        anti_aliasing: AntiAliasing::Enabled,
+    })
+}
+
+fn region(x: f64, y: f64) -> BoundingRect {
+    BoundingRect {
+        x,
+        y,
+        width: 20.0,
+        height: 20.0,
+    }
+}
+
+#[test]
+fn a_command_is_grouped_under_the_region_holding_its_centre_whose_centre_lies_nearest() {
+    let a = region(0.0, 0.0);
+    let b = region(10.0, 10.0);
+    let c = region(40.0, 0.0);
+    let clip = RenderCommand::PushClipLayer(ClipCommand {
+        fill: Fill::NonZero,
+        transform: Affine::IDENTITY,
+        clip: square(),
+    });
+    let rows: [(&str, RenderCommand, Vec<BoundingRect>, f64, Option<usize>); 6] = [
+        (
+            "in one region",
+            fill_at((5.0, 5.0), 1.0),
+            vec![a, b],
+            1.0,
+            Some(1),
+        ),
+        (
+            "in two, the nearer centre",
+            fill_at((17.0, 17.0), 1.0),
+            vec![a, b],
+            1.0,
+            Some(2),
+        ),
+        (
+            "a tie, the first declared",
+            fill_at((50.0, 10.0), 1.0),
+            vec![c, c],
+            1.0,
+            Some(1),
+        ),
+        (
+            "in none",
+            fill_at((100.0, 100.0), 1.0),
+            vec![a, b],
+            1.0,
+            None,
+        ),
+        ("a layer line", clip, vec![a, b], 1.0, None),
+        (
+            "a scale of 2",
+            fill_at((17.0, 17.0), 2.0),
+            vec![a, b],
+            2.0,
+            Some(2),
+        ),
+    ];
+    assert_eq!(rows.len(), 6);
+    for (name, command, regions, scale, expected) in rows {
+        let grouped = group(std::slice::from_ref(&command), &regions, scale);
+        assert!(grouped == [expected], "{name}");
+    }
+}
+
 #[test]
 fn changed_glyph_ids_change_the_digest_and_nothing_else() {
     let before = read_commands(&[glyphs(font(b"f"), &[36, 61, 59])]);
