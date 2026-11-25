@@ -1,41 +1,42 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-25T00:53:00Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `923188939`)
+**Last Updated:** 2026-11-25T04:31:00Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `a8ee63f0d`)
 **Status:** clean
-**Last Commit:** 2026-11-24-canvas-lint — canvas lint: a canvas label past its region reads `truncated` (see `git log -1`)
+**Last Commit:** 2026-11-25-virtual-nodes-declared — virtual nodes declared: a canvas declares keyed, named, role-bearing regions, read and validated in process (see `git log -1`)
 
 ## Position
-- Done: 2026-11-24-canvas-lint. The lint reads labels a canvas widget paints, and a label whose ink box leaves its region reads `truncated`. CI#45512306663 is green 17/17 on `923188939`.
-- Next: «Virtual nodes declared» (v040-11), Epoch 4's first markerless entry. It carries two CARRYs from this wrap.
+- Done: 2026-11-25-virtual-nodes-declared. A canvas widget declares virtual nodes through the defaulted `Widget::virtual_nodes`. `DioxusDocument::virtual_nodes` reads them in process, validates them and gives each taken node the id `{owner}///{key}`. Nothing crosses a carrier. CI#45538903978 is green 17/17 on `a8ee63f0d`.
+- Next: «Virtual nodes as elements» (v040-11), Epoch 4's first markerless entry. It carries three CARRYs from this wrap. The founder's own word on F3 (the names' crossing) is asked before it starts.
 
 ## Work done
-- Wrap `.andromeda/runs/2026-11-25T00-26-07-wrap/`: 15 master operations landed in 6 TXs (3722–3727), 5 rejected.
-- 27 leaf findings applied across 13 leaves. 1 Tier 3 learning added.
-- Route: 3 CARRYs and 4 residual rows. The WATCH `cry-uqifds5z` retired at 3 green runs.
+- Wrap `.andromeda/runs/2026-11-25T04-01-11-wrap/`: 15 master operations landed in 7 TXs (3785–3791), over architecture, security-plan, test-plan, obs-plan and a11y-plan. 0 escalations.
+- 14 leaf findings applied across 11 leaves, and 1 written by hand (`CLAUDE.md:33`). 2 Tier 3 learnings added.
+- Route: 4 CARRYs pinned, 0 residuals.
 
 ## Drift resolved
-- Answer card Q1: seven operations resting on the founder's own F1 A were confirmed by the escher overseer as delegate («Confirm all 7 (Recommended)»), the founder being away.
-  - They land PROVISIONAL for his batch at the epoch boundary.
-  - The rows: architecture `contract/lint-verb/truncated` and `contract/lint-verb/finding`; security-plan `decision/canvas-label-lint-crossing` and `decision/lint-findings-closed-content`; layout-templates `decision/circle-drawer-circles-painted-on-canvas`; test-plan `contract/lint-findings/order`; a11y-plan `decision/circle-drawer-canvas-pixels-only`.
-- PROVISIONAL on the delegate's F2 A, F3 B, F4 A and F5 A:
-  - architecture: `decision/canvas-label-region`, `decision/skrifa-glyph-outline-bounds` and `absence/canvas-lint-checks-beyond-truncation`;
-  - security-plan: `decision/skrifa-glyph-outline-bounds`;
-  - layout-templates: `decision/stand-lints-clean-at-boot`.
+- Every answer of this chunk is a delegate's, none the founder's. The rows resting on one land PROVISIONAL:
+  - architecture: `contract/nodes-widgets/virtual-nodes` (overseer1, F2 A), `contract/dioxus-bridge/virtual-nodes`, `contract/dioxus-bridge/virtual-node-refusal`, `decision/virtual-node-role-is-accesskit-role` (F4 A) and `decision/virtual-node-declaration-marks-nothing` (F1 B′, F6 A);
+  - security-plan: `absence/virtual-nodes-on-carriers` (F3 A, defer) and `decision/virtual-node-declarations-validated`.
+- Unmarked changes:
+  - the reserved form is now produced in process — architecture's two `virtual-node-id` contracts, security-plan's `virtual-node-form` and `no-collision`;
+  - a11y-plan's two snapshot-model readers rows name the declared-node read;
+  - obs-plan `decision/declared-node-read-logs-nothing`.
+- CARRY `cry-ax6q6t4w` closed: test-plan `decision/no-screenshot-step-in-committed-checks` now bounds its one-host clause to a shot holding document text.
 - Rejected:
-  - by check 2: design-system's region row, obs-plan's crossing row, and a11y-plan's absence and contract rows — each fact has one home;
-  - by check 3: test-plan's `except` on `decision/no-screenshot-step-in-committed-checks` — carried as `cry-ax6q6t4w`;
-  - by fit (not_master type 5): test-plan's planted-cases row.
+  - by check 2: 19 repeats of one fact in another master;
+  - by fit: architecture's gating-list set (type 5), and two decisions that stated no reason (type 4). Main re-raised those two with the forks' trade, and they fit.
 
 ## Notes
-- v040-10 stays pooled and unclaimed. Its ledger note records what this chunk proves (P7.3).
-- Carried to «Virtual nodes declared»: the two `security-summary.md` drag-and-drop gaps (`cry-tjzqz3hz`) — the leaf pass reached the file, but no comparer wrote them — and test-plan's one-host screenshot clause (`cry-ax6q6t4w`).
-- Carried to «Circle Drawer's circles as virtual nodes»: a label's region as the shape or virtual node under it, F2 B and C (`cry-yf3l6oh7`).
-- New residuals for the four F4 A checks: `res-zahb4t5s`, `res-afru4fnu`, `res-6djljwev`, `res-5aosveco`, each with a line in `escher-0.5.0-incubator/deferred-from-0.4.0.md`.
+- v040-11 stays pooled and unclaimed. Its ledger note records what this chunk proves (P7.3).
+- Carried to «Virtual nodes as elements» (the P5 card's three rows): F3 the names' crossing, the founder's fork; F1's invalidation half and F6's mark; the mutation control of the no-carrier check.
+- Carried again, to «Canvas keyboard path»: `cry-tjzqz3hz`, the two `security-summary.md` drag-and-drop gaps. That entry closes Epoch 4, so its wrap's leaf pass runs whole. This wrap's comparer read the leaf and wrote nothing.
+- Upstreamable, not sent: `Widget::virtual_nodes` and `VirtualNodeDeclaration` in blitz-dom. They are recorded as flagged and no more. The earlier list stands unchanged.
 - Carried from before: security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`, and `host-linux.md` is 9 template lines behind (U04 `noted`).
-- Upstreamable, not yet sent: the list in the previous handoffs stands unchanged.
 - Left in place on the operator's word: every probe branch, worktree, scratch clone and build directory.
 - Last failed command: none.
 
-## Session End Status
-Completed normally at 2026-11-25 03:42:40
+## Deferred learnings
+1 learning analyzed but not applied:
+- recurrence-despite-learning: `.claude/docs/session-learnings.md` «A CI job log read through `gh api …/logs` is refused when its text carries terminal escape sequences…». The operator pass hit the refusal again before re-firing with `--allow-escape-sequences`.
+Review with `/andromeda-wrap-session --review` if any should be applied.

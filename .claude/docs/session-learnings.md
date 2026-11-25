@@ -8,6 +8,16 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-25 — A decision resting on a fork's answer carries the trade the forks file measured
+At a wrap's Validate, check 7's fit reader reads a proposed decision row whose `rule` only restates what the code does — a field's type, a mark the read does not write — and whose `why` is empty as code retold (`not_master` type 4), even when the row records a fork's answer the plan expected. The reason exists: the chunk's `evidence/founder-forks.md` measured each option's cost. Raise such a decision as your own operation with the chosen option's trade in its `why` (what the rejected option would have cost), then fit reads it as a choice.
+
+---
+
+## 2026-11-25 — `gate.py control` names a libtest unit case by its bare function name
+`gate.py control` matches a control's case against the test runner's names by suffix (`::{case}`), so a case inside a library's `#[cfg(test)] mod tests` is named by its bare function name, never its `module::tests::` path; the controls of a unit entry then read `holds` with the case named as written.
+
+---
+
 ## 2026-11-25 — A delegate's answer-card confirm names the founder's answer only where its resolved line does
 At a wrap's Validate, `rec.py rows-land` writes each landed operation's sidecar entry Why from the proposer's `because:` and from its disposition line's `· resolved: …` text. So a row resolved through an answer card that a delegate confirmed — the founder away — carries only the delegate's confirm into its sidecar, and the founder's own answer that the card covers is named nowhere in the entry.
 

@@ -1,0 +1,20 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -248,2 +248,3 @@
+ decision/url-search-params-bootstrap · URLSearchParams through a bootstrap script — URLSearchParams and a URL's live searchParams, href and search reach page script through a bootstrap script, bad calls and receivers throwing TypeError and values passing USV conversion. · why: A realization on the registered script crossing, no boundary widening; ratified. · guard: url_search_params
++decision/virtual-node-declarations-validated · Declared virtual nodes validated by a closed refusal set — A canvas's declared virtual nodes are validated by their reader in declaration order against a closed refusal set: empty key, key holding a slash, later duplicate key with the first kept, empty name, region outside the canvas content box; a refusal holds the index and reason alone, no panic path. · guard: virtual_node::tests, virtual_nodes_declared · provisional
+ decision/visible-region-open-list-row · Visible region of an open select list row — For a row or a group of an open select list, the visible region answers the list's scrollport. · why: An engine change for every document, ratified.
+@@ -366,3 +367,3 @@
+ contract/stable-element-id/keyed-list-segment · Stable element id · keyed list row segment — A keyed list row's segment carries its Dioxus key as `{tag}[{key}]`; a Dioxus key that is empty or holds `/` is refused and the row reads the positional `{tag}:{n}` segment instead.
+-contract/stable-element-id/no-collision · Stable element id · uniqueness — An author key holds no `/`, an anchored path is the only id holding `//`, and a component or document path has no empty segment, so no `id` attribute can make two ids equal, a key spelled like a component name included.
++contract/stable-element-id/no-collision · Stable element id · uniqueness — An author key holds no `/`, an anchored path is the only served id holding `//`, and a component or document path has no empty segment, so no `id` attribute can make two ids equal, a key spelled like a component name included.
+ contract/stable-element-id/no-node-id · The stable element id · NodeId — No `NodeId` crosses any carrier of the stable element id.
+@@ -370,3 +371,3 @@
+ contract/stable-element-id/unresolved-node · Stable element id · non-element, stale or detached node — A non-element, stale or detached node reads no id, and no path computation panics.
+-contract/stable-element-id/virtual-node-form · Stable element id · virtual-node form — The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/`; no served id holds `///`, and the anchored path stays the only served id holding `//`.
++contract/stable-element-id/virtual-node-form · Stable element id · virtual-node form — The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and produced in process only for a canvas's taken declared nodes; no served id holds `///`, and the anchored path stays the only served id holding `//`.
+ absence/dioxus-native-form-validation — Form data validation in the Dioxus native bridge: form data always reads valid
+@@ -374,2 +375,3 @@
+ absence/url-taking-driver-verb — A driver verb that takes a URL
++absence/virtual-nodes-on-carriers — Virtual nodes on any carrier: no snapshot, graph, canvas answer, accessibility tree or MCP result holds a declared node
+ name/command/canvas — canvas

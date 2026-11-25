@@ -1,7 +1,0 @@
---- a/.andromeda/obs-plan.md
-+++ b/.andromeda/obs-plan.md
-@@ -58,3 +58,3 @@
- ## obs-plan · 4-span-trace-coverage · twin span-trace-coverage
--decision/canvas-read-opens-no-span · The canvas read opens no span — The driver's in-process canvas read opens no span of its own, as the layout read does not; reached by the canvas verb it runs inside that call's command span. · why: No span of its own by design.
-+decision/canvas-read-opens-no-span · The canvas read opens no span — The driver's in-process canvas read opens no span of its own, as the layout read does not; reached by the canvas verb it runs inside that call's command span, and the lint's canvas label reading opens no span and logs nothing, running inside the lint call's command span. · why: No span of its own by design.
- decision/driver-emits-no-event · Driver emits no event and installs no subscriber — escher-driver emits no log event and installs no sink, setting only escher-telemetry's scoped capture around an acting step, which keeps the step's records and panics in process and prints nothing; its telemetry is its spans alone.
