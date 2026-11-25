@@ -36,7 +36,8 @@ pub struct GraphNode {
     /// The node's stable element id, as its snapshot node reads it.
     pub id: String,
     /// The stable id of the element whose handler serves this node, where that is another
-    /// element: a select for its options and groups. `None` where the node is its own.
+    /// element: a select for its options and groups, a canvas for the nodes it declares. `None`
+    /// where the node is its own.
     pub owner: Option<String>,
     /// The name of the component whose render holds the element; `None` outside every
     /// component the author wrote.
@@ -136,9 +137,9 @@ struct StateReading {
 impl DioxusDocument {
     /// The screen's [`UiGraph`], read on demand; it writes nothing.
     ///
-    /// It holds one node per snapshot node but a canvas's virtual nodes, whose ids hold
-    /// [`VIRTUAL_KEY_SEPARATOR`](crate::VIRTUAL_KEY_SEPARATOR): the graph reads none until
-    /// «Virtual nodes in every read».
+    /// It holds one node per snapshot node. A canvas's virtual node, whose id holds
+    /// [`VIRTUAL_KEY_SEPARATOR`](crate::VIRTUAL_KEY_SEPARATOR), is owned by its canvas, takes its
+    /// canvas's component, and carries no handler or read of its own.
     pub fn graph(&self) -> UiGraph {
         let snapshot = self.snapshot();
         let facts = element_facts(&self.vdom, &self.vdom_state, &self.inner.borrow());
@@ -166,10 +167,21 @@ impl DioxusDocument {
         let mut nodes = Vec::new();
         let mut writers: Vec<Vec<GraphWriter>> = vec![Vec::new(); states.len()];
         let mut readers: Vec<Vec<String>> = vec![Vec::new(); states.len()];
-        for snapshot_node in snapshot
-            .nodes()
-            .filter(|node| !node.id.contains(crate::VIRTUAL_KEY_SEPARATOR))
-        {
+        for snapshot_node in snapshot.nodes() {
+            if let Some((canvas_id, _)) = snapshot_node.id.split_once(crate::VIRTUAL_KEY_SEPARATOR)
+            {
+                let canvas = by_id.get(canvas_id).copied();
+                nodes.push(GraphNode {
+                    id: snapshot_node.id.clone(),
+                    owner: canvas.map(|canvas| canvas.id.clone()),
+                    component: canvas
+                        .and_then(|canvas| canvas.component)
+                        .map(str::to_string),
+                    handlers: Vec::new(),
+                    reads: Vec::new(),
+                });
+                continue;
+            }
             let fact = by_id.get(snapshot_node.id.as_str()).copied();
             let owner = fact
                 .and_then(|fact| doc.select_of(fact.node))

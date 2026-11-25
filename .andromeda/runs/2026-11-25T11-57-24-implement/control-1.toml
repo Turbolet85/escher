@@ -1,0 +1,87 @@
+[[control]]
+id = 'W1'
+entry = 5
+guard = "step 1's owner of a virtual node, set back to None"
+case = 'the_graph_holds_each_virtual_node_owned_by_its_canvas'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/graph.rs'
+old = '''                    owner: canvas.map(|canvas| canvas.id.clone()),'''
+new = '''                    owner: canvas.map(|_| None).unwrap_or(None),'''
+
+[[control]]
+id = 'W2'
+entry = 5
+guard = "the snapshot filter restored over step 1's loop"
+case = 'the_graph_holds_each_virtual_node_owned_by_its_canvas'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/graph.rs'
+old = '''        for snapshot_node in snapshot.nodes() {'''
+new = '''        for snapshot_node in snapshot
+            .nodes()
+            .filter(|node| !node.id.contains(crate::VIRTUAL_KEY_SEPARATOR))
+        {'''
+
+[[control]]
+id = 'W3'
+entry = 5
+guard = "step 4's canvas lookup for a virtual id removed"
+case = 'actions_lists_each_virtual_node_with_the_cause_its_call_returns'
+[[control.edit]]
+path = 'packages/escher-driver/src/actions.rs'
+old = '''                    let element = elements.get(virtual_owner.unwrap_or(&node.id))?;'''
+new = '''                    let element = elements.get(&node.id)?;'''
+
+[[control]]
+id = 'W4'
+entry = 5
+guard = "step 4's read of step 3's table removed"
+case = 'actions_lists_each_virtual_node_with_the_cause_its_call_returns'
+[[control.edit]]
+path = 'packages/escher-driver/src/actions.rs'
+old = '''                                Some(_) if virtual_owner.is_some() && !takes_virtual_id(spec) => {
+                                    Some(Cause::NotFound)
+                                }
+'''
+new = ''
+
+[[control]]
+id = 'W5'
+entry = 5
+guard = "step 5's virtual arm removed: layout resolved as a verb that takes no virtual id"
+case = 'layout_explains_a_virtual_node_placed_by_its_app'
+[[control.edit]]
+path = 'packages/escher-driver/src/layout.rs'
+old = '''resolve_for(&self.harness, &mut self.seen, &schema::LAYOUT, id)?;'''
+new = '''resolve_for(&self.harness, &mut self.seen, &schema::SCROLL, id)?;'''
+
+[[control]]
+id = 'W6'
+entry = 5
+guard = "step 5's subtraction of the canvas's bounds from at"
+case = 'layout_explains_a_virtual_node_placed_by_its_app'
+[[control.edit]]
+path = 'packages/escher-driver/src/layout.rs'
+old = '''    let at = (bounds.x - canvas_bounds.x, bounds.y - canvas_bounds.y);'''
+new = '''    let at = (bounds.x, bounds.y);'''
+
+[[control]]
+id = 'W7'
+entry = 5
+guard = "step 3's virtual arm of the resolver click calls"
+case = 'a_replayed_virtual_click_reaches_its_canvas_listener'
+[[control.edit]]
+path = 'packages/escher-driver/src/execute.rs'
+old = '''    if !takes_virtual_id(spec) || !id.contains(VIRTUAL_KEY_SEPARATOR) {'''
+new = '''    if !takes_virtual_id(spec) || !id.contains(VIRTUAL_KEY_SEPARATOR) || spec.name == "click" {'''
+
+[[control]]
+id = 'L1'
+entry = 6
+guard = "lint.rs reads a virtual id's element through its owner"
+case = 'the_lint_holds_no_virtual_node'
+[[control.edit]]
+path = 'packages/escher-driver/src/lint.rs'
+old = '''    let element = elements.get(&node.id).copied();'''
+new = '''    let element = elements
+        .get(node.id.split_once("///").map_or(node.id.as_str(), |(owner, _)| owner))
+        .copied();'''

@@ -4,25 +4,26 @@
 //! node's; the snapshot reads it from there with its region moved by its canvas's content-box
 //! origin; the driver's `click` takes its id and acts at its region's centre, and refuses it
 //! `disabled`, `off-screen`, `covered`, `not-found` or `stale` in the run path's one order, with
-//! nothing run. Every other id verb reads a virtual id `not-found`, and the graph, actions and
-//! lint answers hold none. The id and name cross MCP and a kept check, which replays. Each case
+//! nothing run. `type`, `scroll`, `screenshot` and `canvas` read a virtual id `not-found`, and the
+//! lint answer holds none; the graph, actions and layout reads of a virtual node are
+//! `virtual_nodes_in_every_read`'s. The id and name cross MCP and a kept check, which replays. Each case
 //! runs in both layout modes, its fixture's condition asserted first. A failure message names a
 //! layout mode and a case or row only.
 
 use accesskit::Role;
 use blitz_dom::Document;
-use dioxus_native_dom::{DioxusDocument, Reading, Snapshot, SnapshotNode};
+use dioxus_native_dom::{Reading, Snapshot, SnapshotNode};
 use escher_driver::{Cause, Session, SessionError};
-
-use blitz_test_harness::Harness;
 
 mod fixtures;
 mod session_common;
 
-use fixtures::{VIRTUAL_CANVAS_INSET, VIRTUAL_IDS, VIRTUAL_NAMES, virtual_canvas_page};
+use fixtures::{
+    VIRTUAL_CANVAS_INSET, VIRTUAL_IDS, VIRTUAL_NAMES, declares_five, virtual_canvas_page,
+};
 use session_common::{
-    act, actions, canvas, click, graph, layout, lint, mcp_result_text, mcp_tool_result,
-    refused_unchanged, screenshot_of, scroll, serve_lines, snapshot, tool_call, type_into,
+    act, canvas, click, lint, mcp_result_text, mcp_tool_result, refused_unchanged, screenshot_of,
+    scroll, serve_lines, snapshot, tool_call, type_into,
 };
 
 /// The label the fixture's session is started under.
@@ -53,31 +54,6 @@ fn hold(incremental: bool) -> Session {
 
 fn mode(incremental: bool) -> String {
     format!("incremental={incremental}")
-}
-
-/// Asserts the fixture's condition: the in-process read of the canvas takes the five nodes of
-/// [`VIRTUAL_IDS`] with the first five names, so every needle of a case is live.
-#[track_caller]
-fn declares_five(harness: &Harness<DioxusDocument>, at: &str) {
-    let canvas = harness
-        .doc
-        .inner
-        .borrow()
-        .get_element_by_id(CANVAS)
-        .expect("the fixture's canvas is in the document");
-    let Ok(read) = harness.doc.virtual_nodes(canvas) else {
-        panic!("{at}: the canvas reads its declarations");
-    };
-    let ids: Vec<&str> = read.nodes.iter().map(|n| n.id.as_str()).collect();
-    let names: Vec<&str> = read
-        .nodes
-        .iter()
-        .map(|n| n.declaration.name.as_str())
-        .collect();
-    assert!(
-        ids == VIRTUAL_IDS && names == VIRTUAL_NAMES[..5] && read.refused.is_empty(),
-        "{at}: the fixture declares its five nodes"
-    );
 }
 
 /// The snapshot node of the canvas.
@@ -311,9 +287,13 @@ fn the_other_id_verbs_read_a_virtual_id_not_found() {
             type_into(id, "x"),
             scroll(id),
             screenshot_of(id),
-            layout(id),
             canvas(id),
         ];
+        assert_eq!(
+            calls.len(),
+            4,
+            "{at}: four verbs read a virtual id not found"
+        );
         for (row, call) in calls.iter().enumerate() {
             let (read, unchanged) = refused_unchanged(&mut session, call);
             assert!(
@@ -325,21 +305,21 @@ fn the_other_id_verbs_read_a_virtual_id_not_found() {
     }
 }
 
+/// On this page `a` and `e` overlap and `c` lies past its holder's clip, so a lint that read
+/// virtual nodes would find them.
 #[test]
-fn the_graph_actions_and_lint_hold_no_virtual_node() {
+fn the_lint_holds_no_virtual_node() {
     for incremental in [false, true] {
         let at = mode(incremental);
         let mut session = hold(incremental);
         declares_five(session.harness(), &at);
-        for (row, call) in [graph(), actions(), lint()].iter().enumerate() {
-            let Ok(answer) = session.run(call) else {
-                panic!("{at}: row {row}: the call is accepted");
-            };
-            assert!(
-                !answer.to_json().contains("///"),
-                "{at}: row {row}: the answer holds no virtual node"
-            );
-        }
+        let Ok(answer) = session.run(&lint()) else {
+            panic!("{at}: the lint is accepted");
+        };
+        assert!(
+            !answer.to_json().contains("///"),
+            "{at}: the lint answer holds no virtual node"
+        );
     }
 }
 

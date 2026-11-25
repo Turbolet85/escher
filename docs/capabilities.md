@@ -198,7 +198,11 @@ it: `{owner}///{key}` (`virtual_node_id`), a separator no other id can hold. A c
 it: each enters the accessibility tree as a child of its canvas's node, with its declared role, name and disabled
 state, and the snapshot and its diff read it from there, its bounds its region moved by its canvas's content-box
 origin. `click` takes such an id and acts at its region's centre on its canvas, refused `disabled`, `off-screen`,
-`covered`, `not-found` or `stale` in the one order. No walk writes the form. Witness: `virtual_nodes_as_elements`.
+`covered`, `not-found` or `stale` in the one order. The UI graph holds each, owned by its canvas with no handler
+or read of its own; `actions` lists each with its canvas as owner; `layout` takes its id and places it by `app`
+inside its canvas; handler coverage counts a click on one under its canvas's listener; and exploration acts on
+each as on every listed node. Each of these answers carries its id and no declared name. No walk writes the form.
+Witnesses: `virtual_nodes_as_elements`, `virtual_nodes_in_every_read`.
 
 Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task), `dioxus_runtime_probe`.
 
@@ -287,8 +291,9 @@ placing algorithm (`Block`, `Flex`, `Grid`, `Table`, `Inline`, `Float`, `Absolut
 `Stretch`, `Grid`, `Table`, `Replaced`, `Content`, `Layout`) with the computed `size`, `min`, `max` and flex inputs.
 It holds ids, closed words and numbers, never page text or a style value as written. Its `bounds` are the snapshot's.
 An element the snapshot lists for which the engine reads no reason, such as one styled `display: contents`, which
-has no box of its own, is placed by `unexplained` at its snapshot bounds, in no container. One placer is reserved,
-`App { canvas }`, for a node an app places inside a canvas; nothing produces it yet. The id resolves as a call's
+has no box of its own, is placed by `unexplained` at its snapshot bounds, in no container. A canvas's virtual node is
+placed by `App { canvas }`, at its region's offset from the canvas's border box, with the canvas's shifts and
+each size cause `Layout`; the engine is never asked of the region. The id resolves as a call's
 does, refused `stale` or `not-found`. It runs no step and changes nothing, waits on no load and leaves one `command`
 line recording its verb, and, refused, its cause. Written as one line of JSON, its words are kebab-case (`flex`,
 `select-list`, `flex-grow`, `min-content`) and a computed length is a word or an object keyed `px`, `percent` or
@@ -402,9 +407,9 @@ The driver's own refusal texts state three readings that are off:
 ### Pinned by a check
 
 - **The boolean model's two limits.** A mixed toggle reads unpressed, and a grammar or spelling error reads invalid.
-- **Only `click` takes a virtual node.** `type`, `scroll`, `screenshot` with an id, `layout` and `canvas` read a
-  canvas's virtual node `not-found`, and the UI graph, `actions`, the lint and exploration hold none. Pinned by
-  `virtual_nodes_as_elements` and `virtual_nodes_declared`.
+- **Only `click` and `layout` take a virtual node.** `type`, `scroll`, `screenshot` with an id and `canvas` read a
+  canvas's virtual node `not-found`, and `actions` lists those four so; the lint holds none. A virtual node's
+  `keyed` reads false. Pinned by `virtual_nodes_in_every_read` and `virtual_nodes_as_elements`.
 - **A virtual node's `covered`.** A virtual node reads `covered` only by an element over its region's centre, never
   by another node of its canvas. Pinned by `virtual_nodes_as_elements`.
 - **A virtual node's `clickable`.** A virtual node's `clickable` reads false. Pinned by `virtual_nodes_as_elements`.
@@ -443,7 +448,9 @@ The driver's own refusal texts state three readings that are off:
   handler, not a bubbled one or a native activation. Pinned by `stand_graph` and dioxus-native-dom's graph tests.
 - **Handlers inside a canvas are not counted.** Handler coverage counts the UI graph's DOM listeners on agent-visible
   nodes, so the handlers a canvas dispatches inside one listener are invisible to it; 0.4.0 extends the count rather
-  than redefining it. Pinned by `stand_handler_coverage`.
+  than redefining it. A canvas's virtual node carries no handler, so none is listed for it; a click on one counts
+  its canvas's own listener, under the canvas's id. Pinned by `stand_handler_coverage` and
+  `virtual_nodes_in_every_read`.
 - **A handler on no screen a replay reached is not listed.** The graph reads the screen at boot and after each
   replayed step, so a handler that only a screen no replay showed carries is in no reading. Pinned by
   `stand_handler_coverage`.
@@ -608,9 +615,11 @@ A tool result carries:
 - a shot as an MCP `image` block (a PNG, base64), with any password input painted masked;
 - a lint's findings: ids, closed defect words and numbers;
 - a UI graph: ids, component names, registered state names, handler event names, closed flag words and booleans, never
-  a state's value;
-- an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text;
-- a layout answer: ids, closed words and numbers, never page text or a style value as written;
+  a state's value — a virtual node's id among the ids, never its declared name;
+- an actions answer: ids, owner ids, verb names, closed cause words and booleans, never a value or typed text — a
+  virtual node's id among the ids, never its declared name;
+- a layout answer: ids, closed words and numbers, never page text or a style value as written — a virtual node's id
+  among the ids, never its declared name;
 - a canvas answer: closed words, numbers and 64-bit digests — a glyph run's count, size, brush, origins' box and ids
   digest, and each font and image as an index and a digest of its bytes — never a glyph id, page text, a font's or
   an image's bytes or a family name;

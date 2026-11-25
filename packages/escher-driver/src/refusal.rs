@@ -66,7 +66,7 @@ impl Cause {
             Cause::Malformed => "the call's arguments are not the ones the verb's schema states",
             Cause::NotFound => {
                 "no element on the screen reads the id, or the id names a node a canvas declares, \
-                 which only `click` takes"
+                 which only `click` and `layout` take"
             }
             Cause::Stale => {
                 "the id read an element earlier in this session and no element reads it now"
@@ -246,7 +246,7 @@ mod tests {
             (
                 "not-found",
                 "no element on the screen reads the id, or the id names a node a canvas declares, \
-                 which only `click` takes",
+                 which only `click` and `layout` take",
                 "take a snapshot and use an id it lists",
             ),
             (

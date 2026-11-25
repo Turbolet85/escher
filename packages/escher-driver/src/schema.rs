@@ -486,7 +486,8 @@ pub(crate) const GRAPH: VerbSpec = VerbSpec {
             always: true,
             help: "one entry per element a snapshot lists, in its order, keyed id; owner, the id \
                    of the element whose handler serves it — a select's for its options and \
-                   groups — left out where it is its own; component, the name of the component \
+                   groups, a canvas's for the nodes it declares — left out where it is its own; \
+                   component, the name of the component \
                    that rendered it, left out outside every component the app wrote; handlers, \
                    one per handler it carries now, keyed event and writes, each write keyed \
                    state, declared, whether the state's declaration names the handler, \
@@ -545,8 +546,9 @@ pub(crate) const ACTIONS: VerbSpec = VerbSpec {
         always: true,
         help: "one entry per actionable element, in the snapshot's order, keyed id; owner, the \
                id of the element whose handler serves it — a select's for its options and \
-               groups — left out where it is its own; keyed, whether its id is an author key \
-               rather than a path; and verbs, one per verb a call can name it by, in the \
+               groups, a canvas's for the nodes it declares — left out where it is its own; \
+               keyed, whether its id is an author key rather than a path, a node a canvas \
+               declares reading false; and verbs, one per verb a call can name it by, in the \
                table's order, keyed verb and cause, the cause a call would be refused with now, \
                left out where the call would be accepted",
     }],
@@ -594,7 +596,7 @@ pub(crate) const LAYOUT: VerbSpec = VerbSpec {
             always: true,
             help: "what placed it, keyed by, the placing word: block, flex, grid, table, inline, \
                    float, absolute, fixed, root, select, select-list or unexplained, or app for \
-                   an element the app places inside a canvas; container, the id of the element \
+                   a node a canvas declares, inside its canvas; container, the id of the element \
                    whose box it was placed in, left out for the root and where that element has \
                    no id; canvas, the canvas element's id, with app alone; at, the offset of its \
                    border box from its container's, keyed x and y; and relative, the \

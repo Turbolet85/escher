@@ -5,7 +5,7 @@
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
 //! that holds no family, a `press` on a fixture that renders on every pass, and a part read of
 //! a screen that pages, part 2 of the fixture of 400 keyed buttons, and a `snapshot`, a `click` and
-//! a refused `layout` on a canvas declaring virtual nodes, whose five ids and six names join the
+//! a `layout` on a canvas declaring virtual nodes, whose five ids and six names join the
 //! needles — leaves exactly one line
 //! under `escher_driver`: at INFO, stamped with the
 //! service identity, its `span` reading `command`, its `verb` the table's word and absent for a
@@ -847,7 +847,7 @@ fn child_records_each_command_at_info() {
             "virtual fixture",
             &mut declaring,
             &layout(fixtures::VIRTUAL_IDS[0]),
-            Expect::Refused(Cause::NotFound),
+            Expect::Laid,
         );
         needles.read(&declaring);
         for id in fixtures::VIRTUAL_IDS {

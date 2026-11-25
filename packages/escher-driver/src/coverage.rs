@@ -8,7 +8,8 @@
 //!
 //! The count reads the graph's DOM listeners on agent-visible nodes, so the handlers a canvas
 //! dispatches inside one listener are not counted, and a handler on no screen a replay read is
-//! not listed. A bubbling dispatch nothing stopped reaches every ancestor listener of its event;
+//! not listed. A node a canvas declares carries no handler, so none is listed for it; a click on
+//! one reaches its canvas's listener, counted under the canvas's id. A bubbling dispatch nothing stopped reaches every ancestor listener of its event;
 //! one something stopped reaches its innermost listener alone, so where an ancestor stops it, the
 //! listeners between that ancestor and the target read unexercised although they ran; a
 //! non-bubbling event reaches its target alone. The reader holds ids, owner ids and event names only, never a
@@ -26,7 +27,7 @@ pub struct HandlerRef {
     /// The stable id of the graph node carrying the handler.
     pub id: String,
     /// The stable id of the element whose handler serves the node, where that is another
-    /// element: a select for its options and groups.
+    /// element: a select for its options and groups, a canvas for the nodes it declares.
     pub owner: Option<String>,
     /// The handler's event name, without its `on`.
     pub event: String,

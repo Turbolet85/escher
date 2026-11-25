@@ -53,9 +53,11 @@ pub struct ActionableNode {
     /// The node's stable element id, as its snapshot node reads it.
     pub id: String,
     /// The stable id of the element whose handler serves this node, as the UI graph reads it:
-    /// a select for its options and groups. `None` where the node is its own.
+    /// a select for its options and groups, a canvas for the nodes it declares. `None` where the
+    /// node is its own.
     pub owner: Option<String>,
-    /// Whether the id is an author key, which holds no `/`; every path id holds one.
+    /// Whether the id is an author key, which holds no `/`; every path id holds one, and so
+    /// does a canvas's declared node's, which reads false.
     pub keyed: bool,
 }
 
@@ -117,7 +119,9 @@ impl DioxusDocument {
 
     /// Every actionable node of the screen, in snapshot pre-order: each node of the UI graph
     /// ([`graph`](Self::graph)) that the rule of [`unkeyed_actionable`](Self::unkeyed_actionable)
-    /// holds for, or whose graph `owner` is another element. Read on demand; it writes nothing.
+    /// holds for, or whose graph `owner` is another element — a select's options and groups, a
+    /// canvas's declared nodes. A declared node's id holds a `/`, so it reads not `keyed`. Read on
+    /// demand; it writes nothing.
     pub fn actionable_nodes(&self) -> Vec<ActionableNode> {
         let graph = self.graph();
         let roles = self.roles();

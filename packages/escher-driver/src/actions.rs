@@ -3,10 +3,10 @@
 
 use std::collections::HashMap;
 
-use dioxus_native_dom::NodeId;
+use dioxus_native_dom::{NodeId, VIRTUAL_KEY_SEPARATOR};
 
 use crate::command::{ArgValue, Call, validate};
-use crate::execute::{check_target, target_of};
+use crate::execute::{check_target, takes_virtual_id, target_of};
 use crate::refusal::Cause;
 use crate::schema::{ArgKind, KEY_NAMES, Level, VERBS, VerbSpec};
 use crate::session::Session;
@@ -19,9 +19,10 @@ pub struct ActionNode {
     /// The node's stable element id.
     pub id: String,
     /// The stable id of the element whose handler serves this node — a select for its options
-    /// and groups — or `None` where the node is its own.
+    /// and groups, a canvas for the nodes it declares — or `None` where the node is its own.
     pub owner: Option<String>,
-    /// Whether the id is an author key rather than a positional path.
+    /// Whether the id is an author key rather than a positional path; a canvas's declared node
+    /// reads false.
     pub keyed: bool,
     /// One reading per verb of the table that names an element, in the table's order.
     pub verbs: Vec<VerbReading>,
@@ -46,7 +47,9 @@ impl Session {
     /// given a fixed value within its kind's bound, and decides it as [`Session::run`] does
     /// before acting: through [`validate`], then the one check that verb's arm meets once its
     /// target resolves. So a listed cause is the cause that call would return now, and a verb
-    /// with none would be accepted — accepted, not that it would change anything.
+    /// with none would be accepted — accepted, not that it would change anything. A canvas's
+    /// declared node is checked on its canvas at its region; a verb that takes no such id reads
+    /// it not found, as its call does.
     ///
     /// It runs no step, dispatches nothing and changes nothing; the ids it reads join the
     /// session's record of ids read, as a `snapshot`'s do.
@@ -66,8 +69,14 @@ impl Session {
             .actionable_nodes()
             .into_iter()
             .map(|node| {
+                // A canvas's declared node is acted on through its canvas, the element whose
+                // stable id is the text before the separator.
+                let virtual_owner = node
+                    .id
+                    .split_once(VIRTUAL_KEY_SEPARATOR)
+                    .map(|(owner, _)| owner);
                 let target = screen.get(&node.id).and_then(|listed| {
-                    let element = elements.get(&node.id)?;
+                    let element = elements.get(virtual_owner.unwrap_or(&node.id))?;
                     target_of(harness, listed, *element)
                 });
                 let verbs = verbs
@@ -80,6 +89,9 @@ impl Session {
                             // does not resolve would read it stale.
                             Ok(command) => match &target {
                                 None => Some(Cause::Stale),
+                                Some(_) if virtual_owner.is_some() && !takes_virtual_id(spec) => {
+                                    Some(Cause::NotFound)
+                                }
                                 Some(target) => check_target(harness, &command, target)
                                     .err()
                                     .map(|refusal| refusal.cause()),

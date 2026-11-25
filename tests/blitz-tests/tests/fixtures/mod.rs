@@ -429,6 +429,76 @@ pub fn virtual_canvas_page() -> Element {
     }
 }
 
+/// The [`virtual_canvas_page`] canvas and its five declarations, its holder standing at
+/// (40, 30) with no clip; an `onclick` on the canvas counting its clicks into a `span`
+/// `vn-clicks`; and the buttons `vn-drop` and `vn-hide` as on the first page.
+pub fn virtual_canvas_listened_page() -> Element {
+    let canvas = use_hook(|| {
+        CustomWidgetAttr::new(VirtualCanvas {
+            set: VirtualSet::Full,
+            pressed: false,
+        })
+    });
+    let mut set = use_signal(|| "full");
+    let mut hidden = use_signal(|| false);
+    let mut clicks = use_signal(|| 0_u32);
+    rsx! {
+        style { {VIRTUAL_CSS} }
+        div { id: "vn-root", style: "position: relative; width: 600px; height: 400px;",
+            div {
+                id: "vn-holder",
+                class: if hidden() { "vn-hidden" } else { "" },
+                style: "position: absolute; left: 40px; top: 30px; width: 220px; height: 140px;",
+                object {
+                    id: "vn-canvas",
+                    style: "display: block; box-sizing: content-box; width: 200px; height: 120px; padding: 5px; border: 2px solid black;",
+                    "data-set": set(),
+                    "data": canvas,
+                    onclick: move |_| clicks += 1,
+                }
+            }
+            span { id: "vn-clicks", "{clicks}" }
+            button {
+                id: "vn-drop",
+                style: "position: absolute; left: 300px; top: 20px;",
+                onclick: move |_| set.set("less"),
+                "Drop"
+            }
+            button {
+                id: "vn-hide",
+                style: "position: absolute; left: 300px; top: 80px;",
+                onclick: move |_| hidden.set(true),
+                "Hide"
+            }
+        }
+    }
+}
+
+/// Asserts a virtual canvas page's condition: the in-process read of `vn-canvas` takes the five
+/// nodes of [`VIRTUAL_IDS`] with the first five names, so every needle of a case is live.
+#[track_caller]
+pub fn declares_five(harness: &Harness<DioxusDocument>, at: &str) {
+    let canvas = harness
+        .doc
+        .inner
+        .borrow()
+        .get_element_by_id("vn-canvas")
+        .expect("the fixture's canvas is in the document");
+    let Ok(read) = harness.doc.virtual_nodes(canvas) else {
+        panic!("{at}: the canvas reads its declarations");
+    };
+    let ids: Vec<&str> = read.nodes.iter().map(|n| n.id.as_str()).collect();
+    let names: Vec<&str> = read
+        .nodes
+        .iter()
+        .map(|n| n.declaration.name.as_str())
+        .collect();
+    assert!(
+        ids == VIRTUAL_IDS && names == VIRTUAL_NAMES[..5] && read.refused.is_empty(),
+        "{at}: the fixture declares its five nodes"
+    );
+}
+
 /// A `NetProvider` that keeps every request with its handler for the check to answer.
 #[derive(Default)]
 pub struct HeldNet {

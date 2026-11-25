@@ -3,8 +3,9 @@
 //! box with the reserved id `{owner}///{key}`, or refuses it by index with one closed reason. On a
 //! padded, bordered canvas a region that fits the border box but not the content box is refused;
 //! a widget that declares nothing reads no node, and an element holding no widget reads no
-//! canvas. A declaring canvas puts no `///` and no declared name on the graph the driver answers;
-//! the snapshot reading them is `virtual_nodes_as_elements`'s. Each case runs in both layout
+//! canvas. A declaring canvas puts each taken id, and no declared name or refused declaration's
+//! key, on the graph the driver answers; the snapshot reading them is
+//! `virtual_nodes_as_elements`'s. Each case runs in both layout
 //! modes. A failure message names a layout mode only.
 
 use accesskit::Role;
@@ -156,7 +157,7 @@ fn call(verb: &str) -> Call {
 }
 
 #[test]
-fn a_declaring_canvas_puts_nothing_on_the_graph() {
+fn a_declaring_canvas_puts_its_ids_and_no_name_on_the_graph() {
     for incremental in [false, true] {
         let at = format!("incremental={incremental}");
         let mut session = fixtures::hold("virtual-nodes", page, incremental);
@@ -172,19 +173,31 @@ fn a_declaring_canvas_puts_nothing_on_the_graph() {
                 "{at}: the in-process read holds the reserved id and a planted name"
             );
         }
-        for verb in ["graph"] {
-            let Ok(answer) = session.run(&call(verb)) else {
-                panic!("{at}: {verb} is accepted");
-            };
-            let line = answer.to_json();
-            assert!(!line.contains("///"), "{at}: {verb} holds no reserved id");
-            for name in planted()
-                .iter()
-                .map(|d| d.name.as_str())
-                .filter(|n| !n.is_empty())
-            {
-                assert!(!line.contains(name), "{at}: {verb} holds no declared name");
-            }
+        let Ok(answer) = session.run(&call("graph")) else {
+            panic!("{at}: the graph is accepted");
+        };
+        let line = answer.to_json();
+        for id in ["vn-canvas///a", "vn-canvas///b"] {
+            assert!(
+                line.contains(&format!("\"{id}\"")),
+                "{at}: the graph holds each taken id"
+            );
+        }
+        for id in ["vn-canvas///c", "vn-canvas///d", "vn-canvas///e/f"] {
+            assert!(
+                !line.contains(id),
+                "{at}: the graph holds no refused declaration's key"
+            );
+        }
+        for name in planted()
+            .iter()
+            .map(|d| d.name.as_str())
+            .filter(|n| !n.is_empty())
+        {
+            assert!(
+                !line.contains(name),
+                "{at}: the graph holds no declared name"
+            );
         }
     }
 }

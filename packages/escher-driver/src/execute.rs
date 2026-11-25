@@ -22,7 +22,7 @@ use crate::json;
 use crate::layout::LayoutExplanation;
 use crate::lint::Finding;
 use crate::refusal::{Cause, Refusal};
-use crate::schema::{self, BUSY_CLASSES};
+use crate::schema::{self, BUSY_CLASSES, VerbSpec};
 use crate::session::{SeenIds, Session, TimeStep, settle_waiting};
 
 /// What a call that ran returns: one variant per result shape of the verb table.
@@ -338,7 +338,7 @@ fn click(
     command: &Command,
     id: &str,
 ) -> Result<Outcome, Refusal> {
-    let (before, target) = resolve_click(harness, seen, id)?;
+    let (before, target) = resolve_for(harness, seen, command.spec(), id)?;
     let (x, y) = check_target(harness, command, &target)?.point();
     Ok(acted(harness, seen, span, before, |harness| {
         harness.click_at(x, y)
@@ -832,9 +832,21 @@ pub(crate) fn target_of(
     })
 }
 
+/// The verbs a canvas's virtual node id is taken by: `click` and `layout`. Every other verb that
+/// names an element reads such an id not found, through [`resolve`].
+const VIRTUAL_ID_VERBS: [&VerbSpec; 2] = [&schema::CLICK, &schema::LAYOUT];
+
+/// Whether the verb `spec` names takes a canvas's virtual node id; [`resolve_for`] and
+/// [`Session::actions`](crate::Session::actions) both read it, so a listed cause and a call's
+/// refusal agree.
+pub(crate) fn takes_virtual_id(spec: &VerbSpec) -> bool {
+    VIRTUAL_ID_VERBS.iter().any(|verb| verb.name == spec.name)
+}
+
 /// Reads the screen and finds the element `id` names on it, or refuses: as stale when an
 /// earlier screen of the session read the id, as not found when none did. The screen read
-/// here is recorded once that answer is decided.
+/// here is recorded once that answer is decided. An id holding [`VIRTUAL_KEY_SEPARATOR`] is
+/// refused not found: only `click` and `layout` take one, through [`resolve_for`].
 pub(crate) fn resolve(
     harness: &Harness<DioxusDocument>,
     seen: &mut SeenIds,
@@ -855,15 +867,17 @@ pub(crate) fn resolve(
     }
 }
 
-/// [`resolve`] for `click`, the one verb a canvas's virtual node takes: an id holding
-/// [`VIRTUAL_KEY_SEPARATOR`] that the screen lists is found on its canvas, at its region's
-/// centre; one it does not list is refused as stale or not found, as any id.
-fn resolve_click(
+/// [`resolve`] for the verb `spec` names. For `click` and `layout`, the verbs a canvas's virtual
+/// node takes ([`takes_virtual_id`]), an id holding [`VIRTUAL_KEY_SEPARATOR`] that the screen
+/// lists is found on its canvas, at its region's centre; one it does not list is refused as
+/// stale or not found, as any id.
+pub(crate) fn resolve_for(
     harness: &Harness<DioxusDocument>,
     seen: &mut SeenIds,
+    spec: &VerbSpec,
     id: &str,
 ) -> Result<(Snapshot, Target), Refusal> {
-    if !id.contains(VIRTUAL_KEY_SEPARATOR) {
+    if !takes_virtual_id(spec) || !id.contains(VIRTUAL_KEY_SEPARATOR) {
         return resolve(harness, seen, id);
     }
     let screen = harness.doc.snapshot();
@@ -1145,6 +1159,15 @@ fn keyboard_key(key: Key) -> KeyboardKey {
 mod tests {
     use super::*;
     use crate::schema::VERBS;
+
+    #[test]
+    fn click_and_layout_alone_take_a_virtual_id() {
+        let taking: Vec<&str> = crate::actions::target_verbs()
+            .filter(|spec| takes_virtual_id(spec))
+            .map(|spec| spec.name)
+            .collect();
+        assert_eq!(taking, ["click", "layout"]);
+    }
 
     #[test]
     fn a_graph_is_cut_into_parts_of_whole_nodes_within_the_budget() {
