@@ -1,0 +1,17 @@
+--- a/.andromeda/security-plan.md
++++ b/.andromeda/security-plan.md
+@@ -39,3 +39,3 @@
+ decision/stale-iframe-responses-discarded · Stale iframe responses discarded — An iframe response whose iframe was removed or re-navigated since the request is discarded by request id.
+-decision/virtual-node-crossing · Virtual node crossing — A canvas's virtual node id `{owner}///{key}` and its author-declared name cross the accessibility tree, the snapshot text, the diff, MCP results, kept checks and the socket and command-line answer line, while the graph, actions answer, lint, canvas answer and exploration hold none. · why: A boundary widening, ratified. · guard: the_mcp_role_carries_the_virtual_node, the_graph_actions_and_lint_hold_no_virtual_node
++decision/virtual-node-crossing · Virtual node crossing — A canvas's virtual node id `{owner}///{key}` and its author-declared name cross the accessibility tree, snapshot text, diff, MCP results, kept checks and socket and command-line answer line; the graph, actions and layout answers carry the id, never the name; the lint and canvas answer hold none. · why: A boundary widening, ratified. · guard: the_mcp_role_carries_the_virtual_node, the_new_answers_carry_the_id_and_no_declared_name, the_lint_holds_no_virtual_node
+ decision/wpt-post-results-trusted-scripts · WPT post-results workflow runs trusted scripts — The WPT post-results workflow runs only in the DioxusLabs/blitz repository, only for successful pull-request-triggered WPT runs, and checks out its scripts from the default branch.
+@@ -43,3 +43,3 @@
+ contract/actions-answer/owner · The actions answer · owner — The node's owner id.
+-contract/actions-answer/verbs · The actions answer · verbs — A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed node carries layout with no cause, and canvas with no cause on an app that can paint text.
++contract/actions-answer/verbs · The actions answer · verbs — A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed element carries layout with no cause, and canvas with no cause on an app that can paint text; a listed virtual node reads not-found on every verb but click and layout.
+ contract/driver-session-reply/masked-control-values · driver session socket replies · control values — A password's or file input's control value is carried masked.
+@@ -372,3 +372,3 @@
+ contract/stable-element-id/unresolved-node · Stable element id · non-element, stale or detached node — A non-element, stale or detached node reads no id, and no path computation panics.
+-contract/stable-element-id/virtual-node-form · Stable element id · virtual-node form — The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the accessibility tree and, from it, the snapshot and its diff; no element's id holds `///`.
++contract/stable-element-id/virtual-node-form · Stable element id · virtual-node form — The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the accessibility tree and, from it, the snapshot, its diff and the graph, actions and layout answers; no element's id holds `///`.
+ absence/dioxus-native-form-validation — Form data validation in the Dioxus native bridge: form data always reads valid

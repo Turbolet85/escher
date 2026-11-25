@@ -1,0 +1,1770 @@
+[
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T13:43:26Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-25-virtual-nodes-in-every-read",
+"--section-file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-25-virtual-nodes-in-every-read/report rev 2 · 10 new · 0 revised · 0 retired · 59 kept · tx 3924"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T13:43:27Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-25-virtual-nodes-in-every-read",
+"--section-file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-25-virtual-nodes-in-every-read/report rev 3 · 41 new · 0 revised · 0 retired · 69 kept · tx 3925"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T13:43:45Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cites-land-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"--base",
+"b0e2d1c31f543d77c6d1e6ba9f8c27f6e8d28620",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T13:43:49Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cites-land-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"--base",
+"b0e2d1c31f543d77c6d1e6ba9f8c27f6e8d28620",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 3927"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T13:45:48Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1587 · packs 16 · pack 100 · 410753 B",
+"security-plan: rows 588 · packs 6 · pack 100 · 173240 B",
+"design-system: rows 140 · packs 2 · pack 100 · 39623 B",
+"layout-templates: rows 131 · packs 2 · pack 100 · 33477 B",
+"test-plan: rows 654 · packs 7 · pack 100 · 189821 B",
+"obs-plan: rows 299 · packs 3 · pack 100 · 82835 B",
+"a11y-plan: rows 243 · packs 3 · pack 100 · 78650 B",
+"rows-packs: 7 master(s) · 3642 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 3927"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T13-41-29-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T13:56:44Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1587 · packs 16 · picked 51 (32 by every draw) · standing 0 · 183977 B · Established Decisions: by boundary, the rest under `also here:` · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 588 · packs 6 · picked 49 (29 by every draw) · standing 0 · 128814 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 140 · packs 2 · picked 15 (11 by every draw) · standing 0 · 20238 B",
+"layout-templates: rows 131 · packs 2 · picked 10 (9 by every draw) · standing 0 · 29217 B",
+"test-plan: rows 654 · packs 7 · picked 51 (26 by every draw) · standing 0 · 138990 B",
+"obs-plan: rows 299 · packs 3 · picked 26 (9 by every draw) · standing 0 · 57745 B",
+"a11y-plan: rows 243 · packs 3 · picked 23 (17 by every draw) · standing 0 · 39087 B",
+"rows-union: 7 master(s) · picked 225 of 3642 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T13-41-29-wrap/arch-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/arch-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/security-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/security-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/design-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/design-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/tests-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/tests-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/obs-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/obs-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:01:47Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-architecture.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:architecture",
+"PASS · standing · 2 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:01:48Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-test-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:test-plan",
+"PASS · standing · 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:01:48Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-test-plan.2.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"rows-check · standing · doc:test-plan",
+"decision/reserved-graph-id-form · stale — seen=3, the row stands at r2 — read it again",
+"REFUSED · standing · 1 row(s) of 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:01:48Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-security-plan.2.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"rows-check · standing · doc:security-plan",
+"decision/virtual-node-crossing · stale — seen=2, the row stands at r1 — read it again",
+"REFUSED · standing · 1 row(s) of 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:08:48Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/handler-coverage/canvas · rejected",
+"fit: fits 10 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 4 row(s) (1 of 3)\n**Section:** Standard Contracts\n**Change:** ~ contract/driver-verbs/click-virtual-node · promise: was «click is the one verb taking a virtual node id: it acts on the canvas at the virtual region and is refused in the one order disabled, off-screen, covered, not-found, stale with nothing run; type, scroll, screenshot with an id, layout and canvas read a virtual id not-found.»; now «click takes a virtual node id, as layout does: it acts on the canvas at the virtual region and is refused in the one order disabled, off-screen, covered, not-found, stale with nothing run; type, scroll, screenshot with an id and canvas read a virtual id not-found.»\n~ contract/refusal-causes/not-found · promise: was «The id names no element on the screen as it reads now and the session's record does not hold it, or names a virtual node to a verb other than click; nothing runs.»; now «The id names no element on the screen as it reads now and the session's record does not hold it, or names a virtual node to a verb other than click and layout; nothing runs.»\n~ contract/ui-graph/graph · promise: was «Read-only under accessibility, returns one node per snapshot node in pre-order, a virtual node excepted, each with id, owner, component, handlers and reads, and states with name, component, declared, writers and readers.»; now «Read-only under accessibility, returns one node per snapshot node in pre-order, each with id, owner, component, handlers and reads, and states with name, component, declared, writers and readers.»\n~ contract/ui-graph/owner · promise: was «The stable id of the select an option or an optgroup belongs to.»; now «The stable id of the select an option or an optgroup belongs to, or of the canvas that declares a virtual node.»\n**Why:** contract/driver-verbs/click-virtual-node: The stated limit that only click takes a virtual id is retired, layout now taking one too, so the row's claim that layout reads a virtual id not-found is false. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\ncontract/refusal-causes/not-found: not-found's fixed meaning now names click and layout as the verbs taking a virtual id, so the cause's promise must follow. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\ncontract/ui-graph/graph: The filter that dropped a virtual node from the graph is lifted, so every snapshot node, a virtual node included, is one graph node and the exception is false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2\ncontract/ui-graph/owner: A virtual node in the graph is now owned by its canvas, so the owner promise naming only a select is incomplete. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 3 row(s) (2 of 3)\n**Section:** Standard Contracts\n**Change:** ~ contract/dioxus-bridge/virtual-node-id · promise: was «A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk; DioxusDocument::virtual_nodes gives it in process to a canvas's taken nodes, and the accessibility tree serves it, and from it the snapshot and its diff.»; now «A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk; DioxusDocument::virtual_nodes gives it in process to a canvas's taken nodes, and the accessibility tree serves it, and from it the snapshot, its diff, the UI graph, actions and layout.»\n~ contract/stable-element-id/virtual-node-id · promise: was «A reserved fifth form {owner}///{key}, given a canvas's taken nodes and served in the accessibility tree and from it the snapshot and its diff, is spelled by the public VIRTUAL_KEY_SEPARATOR and virtual_node_id, which answers None for an empty or /-bearing key.»; now «A reserved fifth form {owner}///{key}, given a canvas's taken nodes and served in the accessibility tree and from it the snapshot, its diff, the UI graph, actions and layout, is spelled by the public VIRTUAL_KEY_SEPARATOR and virtual_node_id, which answers None for an empty or /-bearing key.»\n~ contract/driver-session/canvas · promise: was «A read answering a CanvasReading of one canvas in process, resolving its id as Session::layout does, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.»; now «A read answering a CanvasReading of one canvas in process, resolving its id as the run path does with a virtual id read not-found, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.»\n**Why:** contract/dioxus-bridge/virtual-node-id: The graph, actions and layout answers now carry a virtual node's id, so the reads the row names as serving it are incomplete. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2\ncontract/stable-element-id/virtual-node-id: The graph, actions and layout answers now carry a virtual node's id, so the reads the row names as serving it are incomplete. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2\ncontract/driver-session/canvas: Session::layout now resolves a virtual id while canvas still refuses one not-found, so resolving as Session::layout does is no longer true. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 3 row(s) (3 of 3)\n**Section:** Standard Contracts\n**Change:** + contract/driver-session/layout-virtual-node — escher-driver session · app placer of a virtual node\n+ decision/virtual-id-verb-table — One table of the verbs taking a virtual id\n+ contract/actions-verb/virtual-node — The actions verb · virtual node\n**Why:** contract/driver-session/layout-virtual-node: Layout now explains a virtual node instead of refusing it, a new answer at the session's boundary no row states. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\ndecision/virtual-id-verb-table: The chunk chose one shared table for the verbs taking a virtual id, a decision future verbs must respect and no row holds. — on default, implement's own choice\ncontract/actions-verb/virtual-node: Actions now lists a virtual node with its target found through its canvas, which the target-verbs row cannot hold within its bound. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: 1 in cascade-patterns-architecture-1.toml",
+"dry-run · would land 10 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-patterns-architecture-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:08:58Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/handler-coverage/canvas · rejected",
+"fit: fits 10 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 4 row(s) (1 of 3)\n**Section:** Standard Contracts\n**Change:** ~ contract/driver-verbs/click-virtual-node · promise: was «click is the one verb taking a virtual node id: it acts on the canvas at the virtual region and is refused in the one order disabled, off-screen, covered, not-found, stale with nothing run; type, scroll, screenshot with an id, layout and canvas read a virtual id not-found.»; now «click takes a virtual node id, as layout does: it acts on the canvas at the virtual region and is refused in the one order disabled, off-screen, covered, not-found, stale with nothing run; type, scroll, screenshot with an id and canvas read a virtual id not-found.»\n~ contract/refusal-causes/not-found · promise: was «The id names no element on the screen as it reads now and the session's record does not hold it, or names a virtual node to a verb other than click; nothing runs.»; now «The id names no element on the screen as it reads now and the session's record does not hold it, or names a virtual node to a verb other than click and layout; nothing runs.»\n~ contract/ui-graph/graph · promise: was «Read-only under accessibility, returns one node per snapshot node in pre-order, a virtual node excepted, each with id, owner, component, handlers and reads, and states with name, component, declared, writers and readers.»; now «Read-only under accessibility, returns one node per snapshot node in pre-order, each with id, owner, component, handlers and reads, and states with name, component, declared, writers and readers.»\n~ contract/ui-graph/owner · promise: was «The stable id of the select an option or an optgroup belongs to.»; now «The stable id of the select an option or an optgroup belongs to, or of the canvas that declares a virtual node.»\n**Why:** contract/driver-verbs/click-virtual-node: The stated limit that only click takes a virtual id is retired, layout now taking one too, so the row's claim that layout reads a virtual id not-found is false. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\ncontract/refusal-causes/not-found: not-found's fixed meaning now names click and layout as the verbs taking a virtual id, so the cause's promise must follow. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\ncontract/ui-graph/graph: The filter that dropped a virtual node from the graph is lifted, so every snapshot node, a virtual node included, is one graph node and the exception is false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\ncontract/ui-graph/owner: A virtual node in the graph is now owned by its canvas, so the owner promise naming only a select is incomplete. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 3 row(s) (2 of 3)\n**Section:** Standard Contracts\n**Change:** ~ contract/dioxus-bridge/virtual-node-id · promise: was «A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk; DioxusDocument::virtual_nodes gives it in process to a canvas's taken nodes, and the accessibility tree serves it, and from it the snapshot and its diff.»; now «A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk; DioxusDocument::virtual_nodes gives it in process to a canvas's taken nodes, and the accessibility tree serves it, and from it the snapshot, its diff, the UI graph, actions and layout.»\n~ contract/stable-element-id/virtual-node-id · promise: was «A reserved fifth form {owner}///{key}, given a canvas's taken nodes and served in the accessibility tree and from it the snapshot and its diff, is spelled by the public VIRTUAL_KEY_SEPARATOR and virtual_node_id, which answers None for an empty or /-bearing key.»; now «A reserved fifth form {owner}///{key}, given a canvas's taken nodes and served in the accessibility tree and from it the snapshot, its diff, the UI graph, actions and layout, is spelled by the public VIRTUAL_KEY_SEPARATOR and virtual_node_id, which answers None for an empty or /-bearing key.»\n~ contract/driver-session/canvas · promise: was «A read answering a CanvasReading of one canvas in process, resolving its id as Session::layout does, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.»; now «A read answering a CanvasReading of one canvas in process, resolving its id as the run path does with a virtual id read not-found, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.»\n**Why:** contract/dioxus-bridge/virtual-node-id: The graph, actions and layout answers now carry a virtual node's id, so the reads the row names as serving it are incomplete. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\ncontract/stable-element-id/virtual-node-id: The graph, actions and layout answers now carry a virtual node's id, so the reads the row names as serving it are incomplete. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\ncontract/driver-session/canvas: Session::layout now resolves a virtual id while canvas still refuses one not-found, so resolving as Session::layout does is no longer true. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 3 row(s) (3 of 3)\n**Section:** Standard Contracts\n**Change:** + contract/driver-session/layout-virtual-node — escher-driver session · app placer of a virtual node\n+ decision/virtual-id-verb-table — One table of the verbs taking a virtual id\n+ contract/actions-verb/virtual-node — The actions verb · virtual node\n**Why:** contract/driver-session/layout-virtual-node: Layout now explains a virtual node instead of refusing it, a new answer at the session's boundary no row states. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\ndecision/virtual-id-verb-table: The chunk chose one shared table for the verbs taking a virtual id, a decision future verbs must respect and no row holds. — on default, implement's own choice\ncontract/actions-verb/virtual-node: Actions now lists a virtual node with its target found through its canvas, which the target-verbs row cannot hold within its bound. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: 1 in cascade-patterns-architecture-1.toml",
+"dry-run · would land 10 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-patterns-architecture-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:02Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/handler-coverage/canvas · rejected",
+"fit: fits 10 · not_master 0 · stands 0",
+"landed tx 3929 · 10 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:03Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/keyed-wire-form · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — Standard Contracts: 1 row(s)\n**Section:** Standard Contracts\n**Change:** ~ contract/handler-coverage/canvas · promise: was «Handlers inside a canvas are not counted.»; now «Handlers inside a canvas are not counted: a virtual node a canvas declares carries none, and a click on one counts its canvas's own listener under the canvas's id.»\n**Why:** contract/handler-coverage/canvas: A replayed click on a virtual id now counts the canvas's own listener under the canvas's id, while a handler inside the canvas still goes uncounted, so the row keeps its true clause and names the virtual click. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/keyed-wire-form · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3930 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/virtual-id-verbs · rejected",
+"decision/virtual-node-keyed-clickable-false · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — Threat Model Summary: 2 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/virtual-node-crossing · rule: was «A canvas's virtual node id `{owner}///{key}` and its author-declared name cross the accessibility tree, the snapshot text, the diff, MCP results, kept checks and the socket and command-line answer line, while the graph, actions answer, lint, canvas answer and exploration hold none.»; now «A canvas's virtual node id `{owner}///{key}` and its author-declared name cross the accessibility tree, snapshot text, diff, MCP results, kept checks and socket and command-line answer line; the graph, actions and layout answers carry the id, never the name; the lint and canvas answer hold none.»\n~ contract/actions-answer/verbs · promise: was «A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed node carries layout with no cause, and canvas with no cause on an app that can paint text.»; now «A list of entries each holding verb, a word of the verb table, and cause, a closed cause word left out when absent; every listed element carries layout with no cause, and canvas with no cause on an app that can paint text; a listed virtual node reads not-found on every verb but click and layout.»\n**Why:** decision/virtual-node-crossing: The graph, actions and layout answers now carry a virtual node's id and no declared name, leaving only the lint and the canvas answer holding none, so the row's list of reads holding none is false. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I5: «Подтвердить все 3 (Recommended)», on his F13 «A — id во всех чтениях записи (Recommended)» (inputs#I2)\ncontract/actions-answer/verbs: The actions answer now lists virtual nodes, whose target is found through their canvas and which read not-found on every verb that takes no virtual id, canvas included, so every listed node no longer carries canvas with no cause. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** ~ contract/stable-element-id/virtual-node-form · promise: was «The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the accessibility tree and, from it, the snapshot and its diff; no element's id holds `///`.»; now «The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the accessibility tree and, from it, the snapshot, its diff and the graph, actions and layout answers; no element's id holds `///`.»\n**Why:** contract/stable-element-id/virtual-node-form: The graph, actions and layout answers now carry a virtual node's id, so the row's list of where the id is served is incomplete. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I5: «Подтвердить все 3 (Recommended)», on his F13 «A — id во всех чтениях записи (Recommended)» (inputs#I2)\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:12Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/virtual-id-verbs · rejected",
+"decision/virtual-node-keyed-clickable-false · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 3931 · 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:12Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-security-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/virtual-node-crossing · guard: was «the_mcp_role_carries_the_virtual_node, the_graph_actions_and_lint_hold_no_virtual_node»; now «the_mcp_role_carries_the_virtual_node, the_new_answers_carry_the_id_and_no_declared_name, the_lint_holds_no_virtual_node»\n**Why:** decision/virtual-node-crossing: The guard named the_graph_actions_and_lint_hold_no_virtual_node, renamed to the_lint_holds_no_virtual_node, and the new answers' crossing is pinned by the_new_answers_carry_the_id_and_no_declared_name. — resolved by the operator (Q1): relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I5: «Подтвердить все 3 (Recommended)», on his F13 «A — id во всех чтениях записи (Recommended)» (inputs#I2)\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: 1 in cascade-patterns-security-plan-1.toml",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-patterns-security-plan-1.toml"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:16Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-security-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3932 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:17Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/actions-line/content · rejected",
+"contract/ui-graph-line/content · rejected",
+"contract/coverage-line/content · rejected",
+"decision/virtual-id-verbs-click-and-layout · rejected",
+"contract/escher-session-commands/layout-answer-virtual-node · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** ~ contract/actions-line/nodes · promise: was «Every actionable node is listed in snapshot pre-order: focusable, of an interactive role, holding a current listener for an event other than mounted, or owned by another node, each with the id-taking instance verbs and the cause each would be refused with. A virtual node is never listed.»; now «Every actionable node is listed in snapshot pre-order: focusable, of an interactive role, holding a current listener for an event other than mounted, or owned by another node, each with the id-taking instance verbs and the cause each would be refused with. A virtual node is listed.»\n**Why:** contract/actions-line/nodes: The actions answer now lists each virtual node, owned by its canvas, so the row's «A virtual node is never listed» is false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:17Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/handler-coverage-limits/canvas-handler · rejected",
+"decision/reserved-graph-id-form · rejected",
+"decision/handler-coverage-canvas-uncounted · rejected",
+"decision/lint-holds-no-virtual-node · rejected",
+"decision/handler-coverage-virtual-click-counts-canvas · rejected",
+"contract/session-run/layout-virtual-node · rejected",
+"contract/driver-verbs/actions-virtual-node · rejected",
+"contract/exploration/virtual-nodes · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ contract/refusal-cause/not-found · promise: was «A call naming an id not on the screen, or a virtual node's id on any verb but `click`, is refused `not-found`, the instance unchanged.»; now «A call naming an id not on the screen, or a virtual node's id on any verb but `click` and `layout`, is refused `not-found`, the instance unchanged.»\n**Why:** contract/refusal-cause/not-found: The verbs taking a virtual id moved from `click` alone to `click` and `layout`, so `layout` no longer refuses a virtual id not-found. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — 1. Test Scope Summary: 1 row(s)\n**Section:** 1. Test Scope Summary\n**Change:** ~ contract/driver-refusal-causes/not-found · promise: was «An id no screen of the session read, or that no element carries, is refused not-found; every id verb but `click` refuses a virtual node's id not-found.»; now «An id no screen of the session read, or that no element carries, is refused not-found; every id verb but `click` and `layout` refuses a virtual node's id not-found.»\n**Why:** contract/driver-refusal-causes/not-found: The verbs taking a virtual id moved from `click` alone to `click` and `layout`, so the row's exception must name both. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — 3. Test Harness Contract: 1 row(s)\n**Section:** 3. Test Harness Contract\n**Change:** ~ contract/driver-session/stale-or-not-found · promise: was «An id that names no element on the screen as it reads now is refused with nothing run: `stale` when the session's record of read ids holds it, `not-found` when not; a virtual node's id is read `not-found` by every verb but `click`, which acts on a virtual node the screen lists.»; now «An id that names no element on the screen as it reads now is refused with nothing run: `stale` when the session's record of read ids holds it, `not-found` when not; a virtual node's id is read `not-found` by every verb but `click` and `layout`, which take a virtual node the screen lists.»\n**Why:** contract/driver-session/stale-or-not-found: `click` and `layout` now share the resolver that takes a virtual id, so `layout` no longer reads one not-found. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — 4. Unit Test Strategy: 1 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** ~ contract/element-id/virtual-form · promise: was «The form `{owner}///{key}` is reserved for a canvas's virtual nodes and served in the accessibility tree, the snapshot and its diff: no id the walk writes holds the virtual separator, and a key that is empty or holds `/` makes no virtual id.»; now «The form `{owner}///{key}` is reserved for a canvas's virtual nodes and served in the accessibility tree, the snapshot and its diff, the UI graph, the actions answer and the layout answer: no id the walk writes holds the virtual separator, and a key that is empty or holds `/` makes no virtual id.»\n**Why:** contract/element-id/virtual-form: The graph, actions and layout answers now carry a virtual node's `{owner}///{key}` id, so the places the form is served grew. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 4 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:17Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/virtual-id-verbs · rejected",
+"contract/layout-answer/virtual-node · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ decision/ui-graph-one-node-per-snapshot-node · rule: was «The read-only UI graph holds one node per snapshot node but a canvas's virtual nodes, which it excepts, so the actions answer and exploration hold none of them; names and closed words only.»; now «The read-only UI graph holds one node per snapshot node, a canvas's virtual nodes among them, each owned by its canvas with no handlers or reads, so the actions answer, handler coverage and exploration hold them too; names and closed words only.»\n**Why:** decision/ui-graph-one-node-per-snapshot-node: The graph no longer excepts a canvas's virtual nodes, and the actions answer and exploration now hold them, so the row's exception and its consequence are false. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"## 2026-11-25-virtual-nodes-in-every-read — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ contract/node-id/reserved-separator · promise: was «The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff; no element's id holds ///.»; now «The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff, the UI graph, the actions answer and the layout answer, these three never carrying the node's declared name; no element's id holds ///.»\n**Why:** contract/node-id/reserved-separator: The graph, actions and layout answers now carry a virtual node's {owner}///{key} id and no declared name, so the places the reserved form is served grew. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:23Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/actions-line/content · rejected",
+"contract/ui-graph-line/content · rejected",
+"contract/coverage-line/content · rejected",
+"decision/virtual-id-verbs-click-and-layout · rejected",
+"contract/escher-session-commands/layout-answer-virtual-node · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3933 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:24Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/handler-coverage-limits/canvas-handler · rejected",
+"decision/reserved-graph-id-form · rejected",
+"decision/handler-coverage-canvas-uncounted · rejected",
+"decision/lint-holds-no-virtual-node · rejected",
+"decision/handler-coverage-virtual-click-counts-canvas · rejected",
+"contract/session-run/layout-virtual-node · rejected",
+"contract/driver-verbs/actions-virtual-node · rejected",
+"contract/exploration/virtual-nodes · rejected",
+"fit: fits 4 · not_master 0 · stands 0",
+"landed tx 3934 · 4 operation(s) · 4 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:24Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/reserved-graph-id-form · rule: was «No id of the UI graph, the actions answer or the lint answer holds the reserved `{owner}///{key}` form.»; now «No id of the lint answer holds the reserved `{owner}///{key}` form, nor of the stand's UI graph or actions answer while the stand declares no virtual node.»\n**Why:** decision/reserved-graph-id-form: The UI graph and the actions answer now carry a virtual node's id, so the row narrows to the lint answer and to the stand's reads while the stand declares none, as the plan's expected amendment names. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:28Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3935 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:29Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — 5. Integration Test Strategy: 1 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/reserved-graph-id-form · guard: was «stand_graph»; now «stand_graph, the_lint_holds_no_virtual_node»\n**Why:** decision/reserved-graph-id-form: The narrowed rule's lint half is now pinned by the_lint_holds_no_virtual_node beside stand_graph, which still pins the stand's half. — on delegate the escher overseer, 2026-11-25, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:39Z",
+"argv": [
+"rows-check",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-a11y-plan.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"rows-check · standing · doc:a11y-plan",
+"PASS · standing · 1 operation(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-test-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3936 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:39Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/ui-graph-one-node-per-snapshot-node · rejected",
+"decision/virtual-id-verbs · rejected",
+"contract/layout-answer/virtual-node · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ contract/node-id/reserved-separator · promise: was «The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff; no element's id holds ///.»; now «The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff, the UI graph, the actions answer and the layout answer, these three never carrying the node's declared name; no element's id holds ///.»\n**Why:** contract/node-id/reserved-separator: The graph, actions and layout answers now carry a virtual node's {owner}///{key} id and no declared name, so the places the reserved form is served grew. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:44Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/ui-graph-one-node-per-snapshot-node · rejected",
+"decision/virtual-id-verbs · rejected",
+"contract/layout-answer/virtual-node · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3937 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:45Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/virtual-node-answers-carry-id-alone · rejected",
+"decision/virtual-node-reads-open-no-span · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:09:45Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/escher-session-actions/answer · rejected",
+"contract/escher-session-lint/answer · rejected",
+"decision/virtual-id-verbs · rejected",
+"contract/escher-session-layout/virtual-node · rejected",
+"contract/escher-session-graph/virtual-node · rejected",
+"contract/escher-session-coverage/virtual-node-click · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:10:14Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-virtual-nodes-in-every-read — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ decision/ui-graph-one-node-per-snapshot-node · rule: was «The read-only UI graph holds one node per snapshot node but a canvas's virtual nodes, which it excepts, so the actions answer and exploration hold none of them; names and closed words only.»; now «The read-only UI graph holds one node per snapshot node, a canvas's virtual nodes among them, each owned by its canvas with no handlers or reads, so the actions answer and exploration hold them too; names and closed words only.»\n**Why:** decision/ui-graph-one-node-per-snapshot-node: The graph no longer excepts a canvas's virtual nodes, and the actions answer and exploration now hold them; handler coverage lists none, a virtual node carrying no handler, so the row names it nowhere. — on relayed verbatim by overseer1 and the escher overseer, 2026-11-25, inputs#I2: «A — id во всех чтениях записи (Recommended)»\n**Ref:** .andromeda/runs/2026-11-25T13-41-29-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:10:17Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/ops-main-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T13-41-29-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 3938 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+".andromeda/runs/2026-11-25T13-41-29-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:02Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/a11y-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__a11y-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/a11y-summary.md rev 27 · 0 new · 1 revised · 0 retired · tx 3939"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/a11y-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:02Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 26 · 0 new · 1 revised · 0 retired · tx 3940"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:03Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/dioxus-native-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__services__dioxus-native-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/dioxus-native-dom.md rev 23 · 0 new · 2 revised · 0 retired · tx 3941"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/services/dioxus-native-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:04Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 58 · 0 new · 1 revised · 0 retired · tx 3942"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:04Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 42 · 0 new · 5 revised · 0 retired · tx 3943"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:05Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 37 · 0 new · 1 revised · 0 retired · tx 3944"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:05Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 18 · 0 new · 1 revised · 0 retired · tx 3945"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:06Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 44 · 0 new · 3 revised · 0 retired · tx 3946"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:06Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 51 · 0 new · 1 revised · 0 retired · tx 3947"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:14:07Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 48 · 0 new · 1 revised · 0 retired · tx 3948"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:17:30Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 3 record(s) · 3 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:17:30Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 3 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:17:34Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 3 record(s) · 3 edge(s) · tx 3951 · cry-dvektvzh … cry-5zhvg5ed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:17:35Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 3 record(s) · 0 edge(s) · tx 3952 · res-qytby7yb … res-77aoengs"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:18:20Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T13-41-29-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-in-every-read"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 3954 · run-tmt7a67l … run-tmt7a67l"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T10-53-58-2026-11-25-virtual-nodes-in-every-read.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T14:39:27Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-25-virtual-nodes-in-every-read",
+"--run-dir",
+".andromeda/runs/2026-11-25T13-41-29-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 9 file(s) of 2026-11-25-virtual-nodes-in-every-read"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

@@ -1,0 +1,51 @@
+--- a/.andromeda/architecture.md
++++ b/.andromeda/architecture.md
+@@ -687,2 +687,3 @@
+ decision/validated-verb-set-widened-by-ratification · Validated verb set widened only by ratification — The driver's validated verb set is closed; a verb joins it only as a ratified widening of that set, at the instance, session or tool level. · why: Each verb beyond the first acting verbs joined as a ratified widening of the validated verb set.
++decision/virtual-id-verb-table · One table of the verbs taking a virtual id — The verbs that may take a virtual node id are named in one table keyed on the verb, which the run path, the in-process layout and actions all read, so no reader keeps its own list of them. · why: Keyed on the verb rather than a command, so the in-process layout, which holds no command, reads the same table as click and actions. · provisional
+ decision/visibility-from-geometry-not-hit · Visibility is read from geometry, never from a hit — Whether an element can be seen is read from the visible-region geometry of its clipping chain and never from a hit test.
+@@ -732,2 +733,3 @@
+ contract/actions-verb/unpaged · The actions verb · paging — `actions` takes no argument and answers the whole screen at once, unpaged, within the 1,048,576-byte answer bound.
++contract/actions-verb/virtual-node · The actions verb · virtual node — A listed virtual node's verbs are read against its canvas, each cause the one its call returns: a verb that takes no virtual id reads not-found, and click and layout meet the checks their call meets.
+ contract/agent-run-events/boot · agent-run.sh JSON-line events · boot — `boot` is one of the closed set of JSON-line events the agent-run test pipe emits.
+@@ -897,3 +899,3 @@
+ contract/dioxus-bridge/use-graph-state · Dioxus DOM bridge · use_graph_state — An app registers graphed state through the ungated use_graph_state.
+-contract/dioxus-bridge/virtual-node-id · Dioxus DOM bridge · virtual_node_id — A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk; DioxusDocument::virtual_nodes gives it in process to a canvas's taken nodes, and the accessibility tree serves it, and from it the snapshot and its diff.
++contract/dioxus-bridge/virtual-node-id · Dioxus DOM bridge · virtual_node_id — A reserved fifth id form {owner}///{key} is spelled by the public virtual_node_id and written by no walk; DioxusDocument::virtual_nodes gives it in process to a canvas's taken nodes, and the accessibility tree serves it, and from it the snapshot, its diff, the UI graph, actions and layout.
+ contract/dioxus-bridge/virtual-node-refusal · Dioxus DOM bridge · VirtualNodeRefusal — Validated in declaration order, a declaration is refused with one closed reason: EmptyKey, KeyHoldsSlash, DuplicateKey (the first of a key kept), EmptyName or RegionOutside (not inside the content box with positive size, NaN and infinities failing); a refusal holds the declaration's index alone.
+@@ -955,3 +957,3 @@
+ contract/driver-recording/replay · escher-driver recording · Check::replay — Check::replay runs a kept check's calls again through Session::run.
+-contract/driver-session/canvas · escher-driver session · Session::canvas — A read answering a CanvasReading of one canvas in process, resolving its id as Session::layout does, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.
++contract/driver-session/canvas · escher-driver session · Session::canvas — A read answering a CanvasReading of one canvas in process, resolving its id as the run path does with a virtual id read not-found, refusing fonts-unavailable where the document cannot paint text, changing nothing and opening no span of its own.
+ contract/driver-session/command-schema · escher-driver session · command and refusal schema — The command and refusal schema is stated once as 'static data: sixteen verbs, eight closed causes.
+@@ -959,2 +961,3 @@
+ contract/driver-session/layout-unexplained · escher-driver session · unexplained placer — An element the snapshot lists but the engine gives no layout reason, such as a display contents group, answers placed by unexplained at its snapshot bounds.
++contract/driver-session/layout-virtual-node · escher-driver session · app placer of a virtual node — Layout on a virtual node id answers it placed by app in its canvas, at the region's offset from the canvas's border box, with the snapshot's bounds, the canvas's shifts and both size causes layout; the engine is never asked for a region's reason.
+ contract/driver-session/lint · escher-driver session · Session::lint — Session::lint reads the screen and changes nothing.
+@@ -969,3 +972,3 @@
+ contract/driver-verbs/click · driver verbs · click — Takes id; clicks the centre of the element's bounds after the disabled, off-screen and covered checks; a click on a drop-down opens its list, and a click on a list box's row chooses it.
+-contract/driver-verbs/click-virtual-node · driver verbs · click on a virtual node id — click is the one verb taking a virtual node id: it acts on the canvas at the virtual region and is refused in the one order disabled, off-screen, covered, not-found, stale with nothing run; type, scroll, screenshot with an id, layout and canvas read a virtual id not-found.
++contract/driver-verbs/click-virtual-node · driver verbs · click on a virtual node id — click takes a virtual node id, as layout does: it acts on the canvas at the virtual region and is refused in the one order disabled, off-screen, covered, not-found, stale with nothing run; type, scroll, screenshot with an id and canvas read a virtual id not-found.
+ contract/driver-verbs/graph · driver verbs · graph — One optional part (1 to 1000); result nodes and states, plus part and parts when read in parts, the screen's UI graph whole when within the snapshot budget and no part is asked; dispatches nothing, runs no step.
+@@ -1052,3 +1055,3 @@
+ contract/handler-coverage/bubbling · Handler coverage reader · bubbling dispatch — A bubbling dispatch that still propagates counts every listener it passed; a dispatch a listener stops, or a handler's panic unwinds, counts its innermost listener alone.
+-contract/handler-coverage/canvas · Handler coverage reader · canvas handlers — Handlers inside a canvas are not counted.
++contract/handler-coverage/canvas · Handler coverage reader · canvas handlers — Handlers inside a canvas are not counted: a virtual node a canvas declares carries none, and a click on one counts its canvas's own listener under the canvas's id.
+ contract/handler-coverage/per-check-boot · Handler coverage reader · per-check boot — A fresh session is booted for each check; a check whose app is not the label runs nothing and contributes nothing.
+@@ -1176,3 +1179,3 @@
+ contract/refusal-causes/malformed · refusal causes · malformed — An argument is unnamed, repeated, missing, of another kind or out of bound, carried with its fault; returned by validation.
+-contract/refusal-causes/not-found · refusal causes · not-found — The id names no element on the screen as it reads now and the session's record does not hold it, or names a virtual node to a verb other than click; nothing runs.
++contract/refusal-causes/not-found · refusal causes · not-found — The id names no element on the screen as it reads now and the session's record does not hold it, or names a virtual node to a verb other than click and layout; nothing runs.
+ contract/refusal-causes/off-screen · refusal causes · off-screen — The element lies outside the viewport or a scrolling box's visible part, or a screenshot crop holds no pixel; remedy: bring it into view with scroll, then act again.
+@@ -1309,3 +1312,3 @@
+ contract/stable-element-id/tier-distinctness · Stable element ids · tier distinctness — No id of one tier equals an id of another: an author key holds no /, only an anchored path holds //, and a document or app-root path starts with one / with no empty segment after it.
+-contract/stable-element-id/virtual-node-id · Stable element ids · virtual_node_id — A reserved fifth form {owner}///{key}, given a canvas's taken nodes and served in the accessibility tree and from it the snapshot and its diff, is spelled by the public VIRTUAL_KEY_SEPARATOR and virtual_node_id, which answers None for an empty or /-bearing key.
++contract/stable-element-id/virtual-node-id · Stable element ids · virtual_node_id — A reserved fifth form {owner}///{key}, given a canvas's taken nodes and served in the accessibility tree and from it the snapshot, its diff, the UI graph, actions and layout, is spelled by the public VIRTUAL_KEY_SEPARATOR and virtual_node_id, which answers None for an empty or /-bearing key.
+ contract/stylesheet-handler/document-url · blitz-dom StylesheetHandler · document_url — StylesheetHandler carries a public document_url, the URL of the document whose linked sheet it loads, used to stamp that sheet's @import and @font-face requests.
+@@ -1351,4 +1354,4 @@
+ contract/ui-event/pointer-leave · UiEvent · PointerLeave — Clears hover, in a hosted sub-document too, and fires the leave events.
+-contract/ui-graph/graph · UI graph · graph — Read-only under accessibility, returns one node per snapshot node in pre-order, a virtual node excepted, each with id, owner, component, handlers and reads, and states with name, component, declared, writers and readers.
+-contract/ui-graph/owner · UI graph · owner — The stable id of the select an option or an optgroup belongs to.
++contract/ui-graph/graph · UI graph · graph — Read-only under accessibility, returns one node per snapshot node in pre-order, each with id, owner, component, handlers and reads, and states with name, component, declared, writers and readers.
++contract/ui-graph/owner · UI graph · owner — The stable id of the select an option or an optgroup belongs to, or of the canvas that declares a virtual node.
+ contract/ui-graph/readers · UI graph · readers — A state's readers name each reading component once, in the pre-order of its first node; a state only the app root reads is named in its nodes' reads alone.

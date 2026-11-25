@@ -1,0 +1,27 @@
+[[pattern]]
+id = 'click-only'
+regex = '''only `?click`? (takes?|accepts?)|`?click`? (alone|is the one verb) tak|click-virtual-node|which only `click`'''
+
+[[pattern]]
+id = 'hold-none'
+regex = '''hold(s)? none|hold no virtual|virtual node is never listed|a virtual node excepted|the_graph_actions_and_lint_hold_no_virtual_node'''
+
+[[pattern]]
+id = 'other-verbs'
+regex = '''the_other_id_verbs_read_a_virtual_id_not_found|every other id verb|other id verbs? read'''
+
+[[pattern]]
+id = 'placer-app'
+regex = '''nothing places a node|Placer::App|App \{ canvas \}'''
+
+[[pattern]]
+id = 'decl-graph'
+regex = '''a_declaring_canvas_puts_(nothing|its_ids)_on_the_graph|puts nothing on the graph'''
+
+[[pattern]]
+id = 'keyed-virtual'
+regex = '''keyed-wire-form|`keyed` (reads )?false|keyed.{0,30}no `/`'''
+
+[[pattern]]
+id = 'cov-canvas'
+regex = '''handler-coverage-canvas-uncounted|canvas-handler|canvas's (own )?listener'''

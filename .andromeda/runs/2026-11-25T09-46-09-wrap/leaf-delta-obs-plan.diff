@@ -1,7 +1,0 @@
---- a/.andromeda/obs-plan.md
-+++ b/.andromeda/obs-plan.md
-@@ -116,3 +116,3 @@
- decision/capture-framework-targets-warn-up · Capture counts framework targets at warn and above — The scoped log capture admits the Dioxus framework targets (dioxus*, generational_box, warnings) and the engine targets only at warn and error, escher_ targets never, and every other outside target at every level. · why: The framework traces on every re-render and signal write, so counting it at every level would mark every ordinary step.
--decision/declared-node-read-logs-nothing · The declared-node read logs nothing — The in-process read of a canvas's declared virtual nodes, its validation and its answer have no log site, print, span or field; a refused declaration holds a closed reason and its index alone.
-+decision/declared-node-read-logs-nothing · The declared-node read logs nothing — The in-process read of a canvas's declared virtual nodes, its validation and its answer, and the virtual nodes' place in the accessibility tree, the snapshot and a click on one, have no log site, print, span or field; a refused declaration holds a closed reason and its index alone.
- decision/escher-session-fixed-diagnostics · escher-session diagnostics are fixed strings — Every escher-session diagnostic is a fixed string holding no path, label, id or value, and no ending holds anything the caller typed.
