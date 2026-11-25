@@ -1,6 +1,7 @@
 //! The one statement of what the checks beside the stand share: a fixture page booted with the
 //! stand's own options, such a page held in a driver session, the fixture pages more than one
-//! check reads — a canvas page painted from Rust among them — and a network stand-in that holds every request until the check answers it. A
+//! check reads — a canvas page painted from Rust and a canvas declaring virtual nodes among
+//! them — and a network stand-in that holds every request until the check answers it. A
 //! check declares `mod fixtures;` and reads what it needs. This module holds no test.
 
 #![allow(dead_code)]
@@ -241,6 +242,189 @@ pub fn canvas_commands() -> Element {
                 "data": large,
             }
             button { id: "fx-button", "Go" }
+        }
+    }
+}
+
+/// The declaring canvas's five virtual node ids under `full`, in declaration order.
+pub const VIRTUAL_IDS: [&str; 5] = [
+    "vn-canvas///a",
+    "vn-canvas///e",
+    "vn-canvas///b",
+    "vn-canvas///d",
+    "vn-canvas///c",
+];
+
+/// The names the declaring canvas declares, none of them text the page holds elsewhere: its five
+/// nodes' under `full`, in declaration order, then `a`'s once clicked.
+pub const VIRTUAL_NAMES: [&str; 6] = [
+    "Planted alpha",
+    "Planted echo",
+    "Planted beta",
+    "Planted delta",
+    "Planted gamma",
+    "Planted alpha pressed",
+];
+
+/// Which list the declaring canvas answers, from its `data-set` attribute.
+#[derive(Clone, Copy, PartialEq)]
+enum VirtualSet {
+    /// All five nodes.
+    Full,
+    /// `a` alone.
+    Less,
+}
+
+/// A widget declaring virtual nodes from its `data-set` attribute, `less` declaring `a` alone and
+/// any other value all five; a pointer up inside `a`'s region renames it.
+struct VirtualCanvas {
+    set: VirtualSet,
+    pressed: bool,
+}
+
+/// One declaration of the declaring canvas.
+fn virtual_declared(
+    key: &str,
+    role: accesskit::Role,
+    name: &str,
+    (x, y, width, height): (f64, f64, f64, f64),
+    disabled: bool,
+) -> blitz_dom::VirtualNodeDeclaration {
+    blitz_dom::VirtualNodeDeclaration {
+        key: key.to_string(),
+        role,
+        name: name.to_string(),
+        region: blitz_dom::BoundingRect {
+            x,
+            y,
+            width,
+            height,
+        },
+        disabled,
+    }
+}
+
+/// `a`'s region in the canvas's content box.
+const VIRTUAL_A: (f64, f64, f64, f64) = (0.0, 0.0, 60.0, 30.0);
+
+impl Widget for VirtualCanvas {
+    fn attribute_changed(&mut self, name: &str, _old_value: Option<&str>, new_value: Option<&str>) {
+        if name == "data-set" {
+            self.set = match new_value {
+                Some("less") => VirtualSet::Less,
+                _ => VirtualSet::Full,
+            };
+        }
+    }
+
+    fn handle_event(&mut self, event: &blitz_traits::events::UiEvent) {
+        if let blitz_traits::events::UiEvent::PointerUp(event) = event {
+            let (x, y) = (
+                f64::from(event.coords.client_x),
+                f64::from(event.coords.client_y),
+            );
+            let (left, top, width, height) = VIRTUAL_A;
+            if x >= left && x < left + width && y >= top && y < top + height {
+                self.pressed = true;
+            }
+        }
+    }
+
+    fn virtual_nodes(&self) -> Vec<blitz_dom::VirtualNodeDeclaration> {
+        use accesskit::Role;
+        let alpha = if self.pressed {
+            VIRTUAL_NAMES[5]
+        } else {
+            VIRTUAL_NAMES[0]
+        };
+        let a = virtual_declared("a", Role::Button, alpha, VIRTUAL_A, false);
+        if self.set == VirtualSet::Less {
+            return vec![a];
+        }
+        vec![
+            a,
+            virtual_declared(
+                "e",
+                Role::Button,
+                VIRTUAL_NAMES[1],
+                (40.0, 20.0, 40.0, 30.0),
+                false,
+            ),
+            virtual_declared(
+                "b",
+                Role::CheckBox,
+                VIRTUAL_NAMES[2],
+                (100.0, 0.0, 40.0, 30.0),
+                true,
+            ),
+            virtual_declared(
+                "d",
+                Role::Button,
+                VIRTUAL_NAMES[3],
+                (0.0, 60.0, 40.0, 30.0),
+                false,
+            ),
+            virtual_declared(
+                "c",
+                Role::Button,
+                VIRTUAL_NAMES[4],
+                (150.0, 90.0, 40.0, 30.0),
+                false,
+            ),
+        ]
+    }
+}
+
+/// The declaring canvas's border plus padding, on each side, in CSS px: its content box's
+/// origin from its border box's.
+pub const VIRTUAL_CANVAS_INSET: f64 = 7.0;
+
+const VIRTUAL_CSS: &str = ".vn-hidden { display: none; }";
+
+/// A canvas `vn-canvas` painted from Rust, its content box 200 × 120 inside a 2 px border and
+/// 5 px of padding, declaring the five nodes of [`VIRTUAL_IDS`] — `b` disabled — inside a holder
+/// `vn-holder` that clips its bottom 30 px; a `vn-cover` over `d`'s centre; a button `vn-drop`
+/// whose click makes the canvas declare `a` alone; and a button `vn-hide` whose click hides the
+/// holder by a class.
+pub fn virtual_canvas_page() -> Element {
+    let canvas = use_hook(|| {
+        CustomWidgetAttr::new(VirtualCanvas {
+            set: VirtualSet::Full,
+            pressed: false,
+        })
+    });
+    let mut set = use_signal(|| "full");
+    let mut hidden = use_signal(|| false);
+    rsx! {
+        style { {VIRTUAL_CSS} }
+        div { id: "vn-root", style: "position: relative; width: 600px; height: 400px;",
+            div {
+                id: "vn-holder",
+                class: if hidden() { "vn-hidden" } else { "" },
+                style: "position: absolute; left: 0; top: 0; width: 220px; height: 104px; overflow: hidden;",
+                object {
+                    id: "vn-canvas",
+                    style: "display: block; box-sizing: content-box; width: 200px; height: 120px; padding: 5px; border: 2px solid black;",
+                    "data-set": set(),
+                    "data": canvas,
+                }
+            }
+            div {
+                id: "vn-cover",
+                style: "position: absolute; left: 17px; top: 72px; width: 20px; height: 20px; z-index: 5; background: #cccccc;",
+            }
+            button {
+                id: "vn-drop",
+                style: "position: absolute; left: 300px; top: 20px;",
+                onclick: move |_| set.set("less"),
+                "Drop"
+            }
+            button {
+                id: "vn-hide",
+                style: "position: absolute; left: 300px; top: 80px;",
+                onclick: move |_| hidden.set(true),
+                "Hide"
+            }
         }
     }
 }

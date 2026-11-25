@@ -135,6 +135,10 @@ struct StateReading {
 
 impl DioxusDocument {
     /// The screen's [`UiGraph`], read on demand; it writes nothing.
+    ///
+    /// It holds one node per snapshot node but a canvas's virtual nodes, whose ids hold
+    /// [`VIRTUAL_KEY_SEPARATOR`](crate::VIRTUAL_KEY_SEPARATOR): the graph reads none until
+    /// «Virtual nodes in every read».
     pub fn graph(&self) -> UiGraph {
         let snapshot = self.snapshot();
         let facts = element_facts(&self.vdom, &self.vdom_state, &self.inner.borrow());
@@ -162,7 +166,10 @@ impl DioxusDocument {
         let mut nodes = Vec::new();
         let mut writers: Vec<Vec<GraphWriter>> = vec![Vec::new(); states.len()];
         let mut readers: Vec<Vec<String>> = vec![Vec::new(); states.len()];
-        for snapshot_node in snapshot.nodes() {
+        for snapshot_node in snapshot
+            .nodes()
+            .filter(|node| !node.id.contains(crate::VIRTUAL_KEY_SEPARATOR))
+        {
             let fact = by_id.get(snapshot_node.id.as_str()).copied();
             let owner = fact
                 .and_then(|fact| doc.select_of(fact.node))

@@ -4,7 +4,9 @@
 //! a refused call for each of the eight causes, the `covered` one on a fixture booted with the
 //! stand's options and the `fonts-unavailable` one on the CRUD task booted with a font context
 //! that holds no family, a `press` on a fixture that renders on every pass, and a part read of
-//! a screen that pages, part 2 of the fixture of 400 keyed buttons — leaves exactly one line
+//! a screen that pages, part 2 of the fixture of 400 keyed buttons, and a `snapshot`, a `click` and
+//! a refused `layout` on a canvas declaring virtual nodes, whose five ids and six names join the
+//! needles — leaves exactly one line
 //! under `escher_driver`: at INFO, stamped with the
 //! service identity, its `span` reading `command`, its `verb` the table's word and absent for a
 //! verb the table lacks. Any other line a call leaves is an engine record, which a build with
@@ -808,7 +810,54 @@ fn child_records_each_command_at_info() {
         );
         needles.read(&restless);
 
-        assert!(run.calls == 43, "{}: {} calls", run.mode, run.calls);
+        let mut declaring =
+            fixtures::hold("virtual-nodes", fixtures::virtual_canvas_page, incremental);
+        let read = run.drive(
+            "virtual fixture",
+            &mut declaring,
+            &Call {
+                verb: "snapshot".to_string(),
+                args: Vec::new(),
+            },
+            Expect::Screen,
+        );
+        let line = read.map(|outcome| outcome.to_json()).unwrap_or_default();
+        assert!(
+            fixtures::VIRTUAL_IDS
+                .iter()
+                .chain(&fixtures::VIRTUAL_NAMES[..5])
+                .all(|needle| line.contains(needle)),
+            "{}: virtual fixture: the snapshot holds the five ids and names",
+            run.mode
+        );
+        let clicked = run.drive(
+            "virtual fixture",
+            &mut declaring,
+            &click(fixtures::VIRTUAL_IDS[0]),
+            Expect::Acts,
+        );
+        assert!(
+            clicked
+                .map(|outcome| outcome.to_json())
+                .is_ok_and(|line| line.contains(fixtures::VIRTUAL_NAMES[5])),
+            "{}: virtual fixture: the click renames its node",
+            run.mode
+        );
+        let _ = run.drive(
+            "virtual fixture",
+            &mut declaring,
+            &layout(fixtures::VIRTUAL_IDS[0]),
+            Expect::Refused(Cause::NotFound),
+        );
+        needles.read(&declaring);
+        for id in fixtures::VIRTUAL_IDS {
+            needles.ids.push(id.to_string());
+        }
+        for name in fixtures::VIRTUAL_NAMES {
+            needles.names.push(name.to_string());
+        }
+
+        assert!(run.calls == 46, "{}: {} calls", run.mode, run.calls);
         run.finish(&needles);
     }
 }

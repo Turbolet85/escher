@@ -439,7 +439,7 @@ class LegScriptTest(unittest.TestCase):
                       "accessibility_label", "accessibility_description", "accessibility_merged_states",
                       "accessibility_active_descendant_unread", "inert_subtree", "select_interaction",
                       "stand_act_select", "key_press_after_container_lost_its_box", "focus_fixup_unshown", "select_popup",
-                      "select_popup_painted", "stand_act_popup")),
+                      "select_popup_painted", "stand_act_popup", "virtual_nodes_as_elements")),
         ):
             with self.subTest(leg=leg):
                 words = self.leg_log_words(leg)

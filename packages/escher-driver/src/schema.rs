@@ -111,7 +111,7 @@ pub const NODE_FIELDS: [NodeFieldSpec; 15] = [
         name: "clickable",
         help: "whether the element reacts to a click: it carries a click handler of the app's \
                own and is not a disabled form control; a native activation with no app handler, \
-               and a handler on an ancestor, read false",
+               and a handler on an ancestor, read false; a node a canvas declares reads false",
     },
     NodeFieldSpec {
         name: "highlighted",
@@ -276,7 +276,9 @@ pub(crate) const CLICK: VerbSpec = VerbSpec {
            click on a row of a list box, a `multiple` select or a single select whose `size` is \
            above 1, chooses it; a click on the same point within 500 ms of the session's time after the last click there, \
            `type`'s own click included, is a double click, and an `advance` of at least 500 ms \
-           separates two single clicks",
+           separates two single clicks; an id a snapshot lists for a node a canvas declares is \
+           clicked at the centre of its region, on its canvas, whose own code reads which node \
+           the point falls in",
     args: &[ArgSpec {
         name: "id",
         kind: ArgKind::Id,

@@ -40,3 +40,6 @@
 1 learning analyzed but not applied:
 - recurrence-despite-learning: `.claude/docs/session-learnings.md` «A CI job log read through `gh api …/logs` is refused when its text carries terminal escape sequences…». The operator pass hit the refusal again before re-firing with `--allow-escape-sequences`.
 Review with `/andromeda-wrap-session --review` if any should be applied.
+
+## Session End Status
+Completed normally at 2026-11-25 08:26:59

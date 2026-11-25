@@ -8,7 +8,7 @@ use blitz_test_harness::{
 };
 use dioxus_native_dom::{
     DioxusDocument, NodeId, SNAPSHOT_TEXT_BUDGET, Snapshot, SnapshotDiff, SnapshotNode, UiGraph,
-    is_masked_input, is_select,
+    VIRTUAL_KEY_SEPARATOR, is_masked_input, is_select,
 };
 use tracing::Span;
 use tracing::field::Empty;
@@ -338,7 +338,7 @@ fn click(
     command: &Command,
     id: &str,
 ) -> Result<Outcome, Refusal> {
-    let (before, target) = resolve(harness, seen, id)?;
+    let (before, target) = resolve_click(harness, seen, id)?;
     let (x, y) = check_target(harness, command, &target)?.point();
     Ok(acted(harness, seen, span, before, |harness| {
         harness.click_at(x, y)
@@ -788,6 +788,24 @@ fn locate(harness: &Harness<DioxusDocument>, screen: &Snapshot, id: &str) -> Opt
     target_of(harness, listed, node)
 }
 
+/// The virtual node `id` names on `screen`: the node the snapshot lists under the id, acted on
+/// at its region's centre on its canvas, the first element whose stable id is the id's owner,
+/// the text before [`VIRTUAL_KEY_SEPARATOR`].
+fn locate_virtual(
+    harness: &Harness<DioxusDocument>,
+    screen: &Snapshot,
+    id: &str,
+) -> Option<Target> {
+    let listed = screen.get(id)?;
+    let (owner, _) = id.split_once(VIRTUAL_KEY_SEPARATOR)?;
+    let (canvas, _) = harness
+        .doc
+        .element_ids()
+        .into_iter()
+        .find(|(_, read)| read == owner)?;
+    target_of(harness, listed, canvas)
+}
+
 /// The [`Target`] of `node`, which the snapshot lists as `listed`; `None` where the node no
 /// longer resolves.
 pub(crate) fn target_of(
@@ -823,8 +841,34 @@ pub(crate) fn resolve(
     id: &str,
 ) -> Result<(Snapshot, Target), Refusal> {
     let screen = harness.doc.snapshot();
+    if id.contains(VIRTUAL_KEY_SEPARATOR) {
+        record(seen, &screen);
+        return Err(Refusal::new(Cause::NotFound));
+    }
     let read_earlier = seen.holds(id);
     let target = locate(harness, &screen, id);
+    record(seen, &screen);
+    match target {
+        Some(target) => Ok((screen, target)),
+        None if read_earlier => Err(Refusal::new(Cause::Stale)),
+        None => Err(Refusal::new(Cause::NotFound)),
+    }
+}
+
+/// [`resolve`] for `click`, the one verb a canvas's virtual node takes: an id holding
+/// [`VIRTUAL_KEY_SEPARATOR`] that the screen lists is found on its canvas, at its region's
+/// centre; one it does not list is refused as stale or not found, as any id.
+fn resolve_click(
+    harness: &Harness<DioxusDocument>,
+    seen: &mut SeenIds,
+    id: &str,
+) -> Result<(Snapshot, Target), Refusal> {
+    if !id.contains(VIRTUAL_KEY_SEPARATOR) {
+        return resolve(harness, seen, id);
+    }
+    let screen = harness.doc.snapshot();
+    let read_earlier = seen.holds(id);
+    let target = locate_virtual(harness, &screen, id);
     record(seen, &screen);
     match target {
         Some(target) => Ok((screen, target)),

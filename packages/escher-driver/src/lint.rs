@@ -225,8 +225,8 @@ impl Session {
     /// left-to-right, horizontal lines. An id two elements share reads the first of them. A
     /// canvas's pushed clip, layer or mask path is read as its bounding box; a canvas under a
     /// transform reads its labels from its client rect's top left, unrotated and unscaled; a
-    /// glyph with no outline adds nothing to a label's ink box; and a canvas element the snapshot
-    /// does not list is not linted.
+    /// glyph with no outline adds nothing to a label's ink box; a canvas element the snapshot
+    /// does not list is not linted; and a canvas's virtual nodes are not linted.
     ///
     /// It runs no step and settles nothing: no input is dispatched, no time moves and nothing
     /// is marked changed. An app with no font it can paint text with is refused as

@@ -194,7 +194,11 @@ whole graph's; part 1 carries every registered state, and a later part's empty `
 within the budget, asked no part, answers whole as before.
 
 The stable-id grammar reserves a fifth form for a virtual node, a target an owner element's own handler serves inside
-it: `{owner}///{key}` (`virtual_node_id`), a separator no other id can hold. Nothing produces it yet.
+it: `{owner}///{key}` (`virtual_node_id`), a separator no other id can hold. A canvas's taken virtual nodes carry
+it: each enters the accessibility tree as a child of its canvas's node, with its declared role, name and disabled
+state, and the snapshot and its diff read it from there, its bounds its region moved by its canvas's content-box
+origin. `click` takes such an id and acts at its region's centre on its canvas, refused `disabled`, `off-screen`,
+`covered`, `not-found` or `stale` in the one order. No walk writes the form. Witness: `virtual_nodes_as_elements`.
 
 Witnesses: `stand_graph`, `stand_non_lean_tasks` (the `clickable` count per task), `dioxus_runtime_probe`.
 
@@ -398,6 +402,12 @@ The driver's own refusal texts state three readings that are off:
 ### Pinned by a check
 
 - **The boolean model's two limits.** A mixed toggle reads unpressed, and a grammar or spelling error reads invalid.
+- **Only `click` takes a virtual node.** `type`, `scroll`, `screenshot` with an id, `layout` and `canvas` read a
+  canvas's virtual node `not-found`, and the UI graph, `actions`, the lint and exploration hold none. Pinned by
+  `virtual_nodes_as_elements` and `virtual_nodes_declared`.
+- **A virtual node's `covered`.** A virtual node reads `covered` only by an element over its region's centre, never
+  by another node of its canvas. Pinned by `virtual_nodes_as_elements`.
+- **A virtual node's `clickable`.** A virtual node's `clickable` reads false. Pinned by `virtual_nodes_as_elements`.
   These are pinned at unit and engine level only: dioxus-native-dom's unit tests and the engine's accessibility
   checks. No stand screen shows either.
 - **The layout read's size rule.** The cause of a size is a stated rule, first match wins, read at 1/64 px. Vertical
@@ -481,6 +491,12 @@ The driver's own refusal texts state three readings that are off:
   removes acts on it before the removal, which then leaves focus on the root element. Pinned by
   `dioxus_runtime_probe`. A task that wakes itself while it waits for such a handle is polled again inside the same
   render, so it spins there and the handle never comes; asserted by no check.
+- **A transformed canvas's virtual nodes.** A virtual node's bounds are its region moved by its canvas's content-box
+  origin, read from the canvas's client rect: exact under a translate, a rotated or scaled canvas read unrotated and
+  unscaled.
+- **A declaration change reaches a windowed adapter late.** A change of what a canvas declares marks nothing, so a
+  windowed platform adapter receives it only at the next redraw that finds the changed set non-empty; every driver
+  reading is current, the snapshot building the tree on every read.
 - **The bounded record of ids.** The session keeps the last 4,096 ids its screens read, to tell `stale` from
   `not-found`. Past that bound a once-read id can read `not-found`.
 - **Selectors that never match.** `:focus-visible`, `:valid`, `:invalid`, `:required` and `:target` always read false.
@@ -531,7 +547,6 @@ Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_st
 ### Not built
 
 - A settle verb, or a reply naming the busy source.
-- A producer of the reserved virtual-node id form.
 - A producer of the `App { canvas }` placer.
 
 ### Unmeasured
@@ -550,8 +565,8 @@ is claimed as met. The three are proven headless on the stand: by `stand_keyboar
 Enter and Space on each stand button), `stand_contrast` (every stand control's text and background pair, row for row)
 and `stand_accessibility_ids`.
 
-The `a11y` CI leg runs nineteen files and read 19 · 177 · 0 · 0 (result lines · passed · failed · ignored) on the
-dev host on 2026-11-21. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
+The `a11y` CI leg runs twenty files and read 20 · 199 · 0 · 0 (result lines · passed · failed · ignored) on the
+dev host on 2026-11-25. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
 
 Contrast: the stand's accent controls are white on `#3a5ce5` at 5.47, on its hover shade at 6.83 and on its active
 shade at 8.27, against SC 1.4.3's 4.5. The lint's `contrast` defect uses the same reader and the same exempt rule.
@@ -587,7 +602,7 @@ authentication beyond its `0700` state directory and `0600` socket.
 
 A tool result carries:
 
-- element ids and accessible names;
+- element ids and accessible names, a canvas's virtual node's `{owner}///{key}` id and declared name among them;
 - control values, with a password's and a file input's value as a fixed mask;
 - snapshot text and diffs;
 - a shot as an MCP `image` block (a PNG, base64), with any password input painted masked;
@@ -630,7 +645,7 @@ The checks named above live in `tests/blitz-tests/tests/` and `examples/seven_gu
 They run in these CI legs (`.github/scripts/ci-leg.sh`):
 
 - **`test`**: the whole workspace, on linux, macOS and windows.
-- **`a11y`**: the nineteen accessibility files.
+- **`a11y`**: the twenty accessibility files.
 - **`stand-repeat`**: the `stand_*` files, seventeen named blitz-tests targets and seven_guis' eight process checks,
   three rounds under a zero-failure budget; with 64 files and seventeen named targets it read 273 · 1467 · 0 · 30 on
   CI#44225111039. Among the seventeen: `visible_region_transformed`, `hit_non_invertible_transform`, `open_state`,

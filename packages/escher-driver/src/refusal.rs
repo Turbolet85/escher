@@ -64,7 +64,10 @@ impl Cause {
         match self {
             Cause::UnknownVerb => "the call names no verb of the verb set",
             Cause::Malformed => "the call's arguments are not the ones the verb's schema states",
-            Cause::NotFound => "no element on the screen reads the id",
+            Cause::NotFound => {
+                "no element on the screen reads the id, or the id names a node a canvas declares, \
+                 which only `click` takes"
+            }
             Cause::Stale => {
                 "the id read an element earlier in this session and no element reads it now"
             }
@@ -78,7 +81,8 @@ impl Cause {
                  one axis stops a hit at its whole padding box, so an element lying outside it \
                  along the axis it does not clip can read `covered` though it shows; a box with no \
                  width or no height is hit at its centre on the element that holds it, so it can \
-                 read `covered` though nothing covers it"
+                 read `covered` though nothing covers it; a node a canvas declares reads covered only by \
+                 an element over its region's centre, never by another node of its canvas"
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
@@ -241,7 +245,8 @@ mod tests {
             ),
             (
                 "not-found",
-                "no element on the screen reads the id",
+                "no element on the screen reads the id, or the id names a node a canvas declares, \
+                 which only `click` takes",
                 "take a snapshot and use an id it lists",
             ),
             (
@@ -263,7 +268,8 @@ mod tests {
                  one axis stops a hit at its whole padding box, so an element lying outside it \
                  along the axis it does not clip can read `covered` though it shows; a box with no \
                  width or no height is hit at its centre on the element that holds it, so it can \
-                 read `covered` though nothing covers it",
+                 read `covered` though nothing covers it; a node a canvas declares reads covered only by \
+                 an element over its region's centre, never by another node of its canvas",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (

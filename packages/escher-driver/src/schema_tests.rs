@@ -128,7 +128,9 @@ fn every_verb_states_its_help_its_arguments_and_a_result() {
              click on a row of a list box, a `multiple` select or a single select whose `size` is \
              above 1, chooses it; a click on the same point within 500 ms of the session's time after the last click there, \
              `type`'s own click included, is a double click, and an `advance` of at least 500 ms \
-             separates two single clicks",
+             separates two single clicks; an id a snapshot lists for a node a canvas declares is \
+             clicked at the centre of its region, on its canvas, whose own code reads which node \
+             the point falls in",
         ),
         (
             Some(ADVANCE.help),

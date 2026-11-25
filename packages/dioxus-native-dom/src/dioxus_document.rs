@@ -349,9 +349,29 @@ impl Document for DioxusDocument {
     }
 
     /// The base tree, with each element's node carrying its stable element id (see
-    /// [`element_id`](DioxusDocument::element_id)) as its AccessKit `author_id`.
+    /// [`element_id`](DioxusDocument::element_id)) as its AccessKit `author_id`, and each
+    /// canvas's taken virtual nodes (see [`virtual_nodes`](DioxusDocument::virtual_nodes)) as
+    /// children of its node, after its own.
     #[cfg(feature = "accessibility")]
     fn accessibility_tree(&self) -> accesskit::TreeUpdate {
+        self.accessibility_tree_with_virtual().0
+    }
+}
+
+impl DioxusDocument {
+    /// The accessibility tree, and where each virtual node in it stands, its page bounds, keyed
+    /// by its tree id.
+    ///
+    /// The virtual nodes are added after the author ids are set, so no DOM-keyed lookup meets
+    /// one. A canvas the base tree leaves out (hidden, collapsed or inert) takes none, and a
+    /// canvas whose declarations cannot be read takes none.
+    #[cfg(feature = "accessibility")]
+    pub(crate) fn accessibility_tree_with_virtual(
+        &self,
+    ) -> (
+        accesskit::TreeUpdate,
+        HashMap<accesskit::NodeId, VirtualPlace>,
+    ) {
         let mut tree = self.inner.borrow().build_accessibility_tree();
         let mut ids: HashMap<u64, String> = self
             .element_ids()
@@ -363,8 +383,55 @@ impl Document for DioxusDocument {
                 node.set_author_id(id);
             }
         }
-        tree
+
+        let canvases: Vec<(usize, NodeId)> = {
+            let inner = self.inner.borrow();
+            tree.nodes
+                .iter()
+                .enumerate()
+                .filter_map(|(index, (tree_id, _))| {
+                    let node = NodeId::from_u64(tree_id.0);
+                    inner.get_node(node)?.element_data()?.custom_widget_data()?;
+                    Some((index, node))
+                })
+                .collect()
+        };
+        let mut places = HashMap::new();
+        let mut added = Vec::new();
+        for (index, canvas) in canvases {
+            let Ok(read) = self.virtual_nodes(canvas) else {
+                continue;
+            };
+            for (n, taken) in read.nodes.into_iter().enumerate() {
+                let Some(id) = crate::virtual_node::tree_id(canvas, n) else {
+                    break;
+                };
+                let declaration = &taken.declaration;
+                let Some(bounds) = self.page_bounds(canvas, &declaration.region) else {
+                    continue;
+                };
+                let mut node = accesskit::Node::new(declaration.role);
+                node.set_label(declaration.name.clone());
+                node.set_author_id(taken.id);
+                if declaration.disabled {
+                    node.set_disabled();
+                }
+                tree.nodes[index].1.push_child(id);
+                added.push((id, node));
+                places.insert(id, VirtualPlace { bounds });
+            }
+        }
+        tree.nodes.extend(added);
+        (tree, places)
     }
+}
+
+/// Where a virtual node in the accessibility tree stands: its page bounds. Read by the snapshot
+/// alone; it crosses nothing.
+#[cfg(feature = "accessibility")]
+pub(crate) struct VirtualPlace {
+    /// The node's region moved by its canvas's content-box origin, in CSS px of the viewport.
+    pub(crate) bounds: blitz_dom::BoundingRect,
 }
 
 impl DioxusDocument {

@@ -7,6 +7,7 @@ use accesskit::{Node as TreeNode, NodeId as TreeNodeId, Role, Toggled, TreeUpdat
 use blitz_dom::{BaseDocument, BoundingRect, Document, ElementData, NodeId, local_name};
 
 use crate::DioxusDocument;
+use crate::dioxus_document::VirtualPlace;
 
 /// What a password or file `input` holding a value reads as its [`NodeState::value`]: one fixed
 /// marker, whatever was typed or chosen, so no text, length or file path is in a [`Snapshot`].
@@ -106,11 +107,17 @@ impl DioxusDocument {
     /// its id and role from that tree, its name resolved over that tree, its bounds from
     /// [`BaseDocument::get_client_bounding_rect`] and its state from the element — but for
     /// selected, pressed, invalid and an ARIA checked, which that tree's node holds.
+    ///
+    /// A canvas's taken virtual nodes (see [`DioxusDocument::virtual_nodes`]) are read as its
+    /// children: each with its reserved id, its declared role and name, `enabled` its declared
+    /// state, never `clickable`, and its bounds its region moved by its canvas's content-box
+    /// origin.
     pub fn snapshot(&self) -> Snapshot {
-        let tree = self.accessibility_tree();
+        let (tree, places) = self.accessibility_tree_with_virtual();
         let doc = self.inner();
         let builder = Builder {
             doc: &doc,
+            places,
             nodes: tree.nodes.iter().map(|(id, node)| (*id, node)).collect(),
             focus: tree.focus,
             clicked: crate::element_id::element_listeners(&self.vdom, &self.vdom_state)
@@ -138,6 +145,8 @@ fn tree_root(tree: &TreeUpdate) -> Option<TreeNodeId> {
 
 struct Builder<'a> {
     doc: &'a BaseDocument,
+    /// Where each virtual node of the tree stands, keyed by its tree id.
+    places: HashMap<TreeNodeId, VirtualPlace>,
     nodes: HashMap<TreeNodeId, &'a TreeNode>,
     focus: TreeNodeId,
     /// The elements carrying an app `click` listener now.
@@ -161,6 +170,26 @@ impl Builder<'_> {
         let Some(tree_node) = self.nodes.get(&id) else {
             return;
         };
+        // A virtual node's tree id is no DOM id: read before any decode, which would alias the
+        // live node of its slot.
+        if let Some(place) = self.places.get(&id) {
+            if let Some(author_id) = tree_node.author_id() {
+                out.push(SnapshotNode {
+                    id: author_id.to_string(),
+                    role: tree_node.role(),
+                    name: self.name(tree_node, &mut HashSet::new()).trim().to_string(),
+                    state: NodeState {
+                        enabled: Some(!tree_node.is_disabled()),
+                        invalid: tree_node.invalid().is_some(),
+                        focused: id == self.focus,
+                        ..NodeState::default()
+                    },
+                    bounds: place.bounds,
+                    children: Vec::new(),
+                });
+            }
+            return;
+        }
         let element = tree_node.author_id().and_then(|author_id| {
             let node_id = NodeId::from_u64(id.0);
             let node = self.doc.get_node(node_id)?;

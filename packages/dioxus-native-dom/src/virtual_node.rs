@@ -109,6 +109,41 @@ impl DioxusDocument {
     }
 }
 
+#[cfg(feature = "accessibility")]
+impl DioxusDocument {
+    /// The page bounds of `region`, a taken node's region in the content box of `canvas`: the
+    /// canvas's bounding client rect moved by its left and top border and padding, then by the
+    /// region's origin, at the region's size. Exact under a translate; a rotated or scaled canvas
+    /// is read unrotated and unscaled. `None` where the canvas has no client rect.
+    pub(crate) fn page_bounds(
+        &self,
+        canvas: NodeId,
+        region: &blitz_dom::BoundingRect,
+    ) -> Option<blitz_dom::BoundingRect> {
+        let inner = self.inner.borrow();
+        let rect = inner.get_client_bounding_rect(canvas)?;
+        let layout = inner.get_node(canvas)?.final_layout();
+        let left = f64::from(layout.border.left + layout.padding.left);
+        let top = f64::from(layout.border.top + layout.padding.top);
+        Some(blitz_dom::BoundingRect {
+            x: rect.x + left + region.x,
+            y: rect.y + top + region.y,
+            width: region.width,
+            height: region.height,
+        })
+    }
+}
+
+/// The accessibility tree id of the `n`th taken node of `canvas`: the canvas's slot index in the
+/// low 32 bits and `2·(n+1)` in the high 32. Its high half is even, so it equals no DOM node's id,
+/// whose version is always odd, nor the window's `u64::MAX`. `None` past 2³¹ − 1 nodes a canvas.
+#[cfg(feature = "accessibility")]
+pub(crate) fn tree_id(canvas: NodeId, n: usize) -> Option<accesskit::NodeId> {
+    let high = u32::try_from(n.checked_add(1)?.checked_mul(2)?).ok()?;
+    let index = canvas.as_u64() & u64::from(u32::MAX);
+    Some(accesskit::NodeId((u64::from(high) << 32) | index))
+}
+
 /// Reads each declaration in order against a content box of `width` × `height` and takes it
 /// with its id under `owner`, or refuses it.
 pub(crate) fn validate(
@@ -182,6 +217,7 @@ mod tests {
                 width,
                 height,
             },
+            disabled: false,
         }
     }
 

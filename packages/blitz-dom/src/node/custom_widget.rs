@@ -168,8 +168,8 @@ pub trait Widget {
     // fn layout(&mut self, inputs: LayoutInput, styles: &ComputedStyles) -> LayoutOutput;
 }
 
-/// One virtual node a [`Widget`] declares: an author key, an accessibility role, a name and a
-/// region.
+/// One virtual node a [`Widget`] declares: an author key, an accessibility role, a name, a
+/// region and whether it is disabled.
 ///
 /// The region is in CSS px of the widget's content box, its origin at the content box's top
 /// left: the frame [`Widget::paint`] draws in. Its reader validates the declaration. An escher
@@ -184,6 +184,9 @@ pub struct VirtualNodeDeclaration {
     pub name: String,
     /// The node's region in the widget's content box.
     pub region: crate::BoundingRect,
+    /// Whether the node is disabled. A disabled node is written disabled on its accessibility
+    /// node and read not enabled, and the driver refuses a click on it as `disabled`.
+    pub disabled: bool,
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]

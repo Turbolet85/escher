@@ -3,9 +3,9 @@
 //! box with the reserved id `{owner}///{key}`, or refuses it by index with one closed reason. On a
 //! padded, bordered canvas a region that fits the border box but not the content box is refused;
 //! a widget that declares nothing reads no node, and an element holding no widget reads no
-//! canvas. A declaring canvas puts no `///` and no declared name on the snapshot or the graph the
-//! driver answers. Each case runs in both layout modes. A failure message names a layout mode
-//! only.
+//! canvas. A declaring canvas puts no `///` and no declared name on the graph the driver answers;
+//! the snapshot reading them is `virtual_nodes_as_elements`'s. Each case runs in both layout
+//! modes. A failure message names a layout mode only.
 
 use accesskit::Role;
 use blitz_dom::{BoundingRect, VirtualNodeDeclaration, Widget};
@@ -47,6 +47,7 @@ fn declared(
             width,
             height,
         },
+        disabled: false,
     }
 }
 
@@ -155,7 +156,7 @@ fn call(verb: &str) -> Call {
 }
 
 #[test]
-fn a_declaring_canvas_puts_nothing_on_the_snapshot_or_graph() {
+fn a_declaring_canvas_puts_nothing_on_the_graph() {
     for incremental in [false, true] {
         let at = format!("incremental={incremental}");
         let mut session = fixtures::hold("virtual-nodes", page, incremental);
@@ -171,7 +172,7 @@ fn a_declaring_canvas_puts_nothing_on_the_snapshot_or_graph() {
                 "{at}: the in-process read holds the reserved id and a planted name"
             );
         }
-        for verb in ["snapshot", "graph"] {
+        for verb in ["graph"] {
             let Ok(answer) = session.run(&call(verb)) else {
                 panic!("{at}: {verb} is accepted");
             };

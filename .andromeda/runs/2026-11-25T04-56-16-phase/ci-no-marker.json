@@ -1,0 +1,107 @@
+[
+{
+"tool": "ci",
+"v": "1.3",
+"sha8": "8e509768",
+"ts": "2026-11-25T04:56:21Z",
+"argv": [
+"conclusion",
+"--sha",
+"739132d5fce08e0f08cd5287587c70b65bfd94c9",
+"--run-dir",
+".andromeda/runs/2026-11-25T04-56-16-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"repo Turbolet85/escher (the push remote `origin`)",
+"739132d5fce0 verdict: in progress · checks 4/4 · runs CI#45549340227 in_progress/-",
+"runs: CI#45549340227 push in_progress/-",
+"running 1: oldest Test [default features] 434 s",
+"run open: CI#45549340227 in_progress"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"repo": "Turbolet85/escher",
+"host": "github.com",
+"repo_source": "the push remote `origin`",
+"names": [],
+"shas": [
+{
+"sha": "739132d5fce08e0f08cd5287587c70b65bfd94c9",
+"word": "in progress",
+"polls": [
+"in progress"
+]
+}
+]
+}
+},
+{
+"tool": "ci",
+"v": "1.3",
+"sha8": "8e509768",
+"ts": "2026-11-25T06:43:11Z",
+"argv": [
+"conclusion",
+"--sha",
+"739132d5fe",
+"--sha",
+"a8ee63f0d",
+"--run-dir",
+".andromeda/runs/2026-11-25T04-56-16-phase"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--sha 739132d5fe: resolves to no commit here and is not a full 40-hex sha",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "ci",
+"v": "1.3",
+"sha8": "8e509768",
+"ts": "2026-11-25T06:43:15Z",
+"argv": [
+"conclusion",
+"--sha",
+"739132d5fce08e0f08cd5287587c70b65bfd94c9",
+"--run-dir",
+".andromeda/runs/2026-11-25T04-56-16-phase"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"repo Turbolet85/escher (the push remote `origin`)",
+"739132d5fce0 verdict: green · checks 17/17 · wall 2472 s · runs CI#45549340227 completed/success",
+"runs: CI#45549340227 push completed/success",
+"checks: Accessibility (a11y) tests · Build [default features] · Build counter example · Build wasm examples · Clippy",
+"  Coverage report · Dependency audit · Documentation · MSRV Build [Rust 1.91] · Rustfmt · Stand checks repeated",
+"  Test (android) · Test (ios) · Test (macos) · Test (windows) · Test CI scripts · Test [default features]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"repo": "Turbolet85/escher",
+"host": "github.com",
+"repo_source": "the push remote `origin`",
+"names": [],
+"shas": [
+{
+"sha": "739132d5fce08e0f08cd5287587c70b65bfd94c9",
+"word": "green",
+"polls": [
+"green"
+]
+}
+]
+}
+}
+]
