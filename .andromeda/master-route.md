@@ -135,4 +135,4 @@
 2026-11-24-canvas-draw-commands · complete · a driver read of a canvas's draw commands, summary and full levels, deterministic, diffable, size measured · → chk:2026-11-24-canvas-draw-commands
 2026-11-24-canvas-lint · complete · Canvas lint — lint-like checks inside a canvas, a label overflowing its region among them · → chk:2026-11-24-canvas-lint
 2026-11-25-virtual-nodes-declared · complete · Virtual nodes declared — an app declares keyed, named, role-bearing regions inside a canvas, validated, each given the reserved id `{owner}///{key}` · → chk:2026-11-25-virtual-nodes-declared
-2026-11-25-virtual-nodes-as-elements · pending · Virtual nodes as elements — a canvas's virtual nodes in the accessibility tree, snapshot and diff, taking click and refused like elements · → chk:2026-11-25-virtual-nodes-as-elements
+2026-11-25-virtual-nodes-as-elements · complete · Virtual nodes as elements — a canvas's virtual nodes in the accessibility tree, snapshot and diff, taking click and refused like elements · → chk:2026-11-25-virtual-nodes-as-elements

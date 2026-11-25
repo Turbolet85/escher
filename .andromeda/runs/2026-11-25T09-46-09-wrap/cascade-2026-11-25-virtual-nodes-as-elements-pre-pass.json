@@ -1,0 +1,242 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "bfc2ec06",
+"ts": "2026-11-25T09:47:11Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-25T09-46-09-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T09-46-09-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-as-elements"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline c34877cc (pre-pass — HEAD)",
+"LINTVN · control UNFIRED over the seven masters (bodies and sets) at c34877cc",
+"LITPIN · control UNFIRED over the seven masters (bodies and sets) at c34877cc",
+"CLICKVN · control UNFIRED over the seven masters (bodies and sets) at c34877cc"
+],
+"stderr": "control: LINTVN, LITPIN, CLICKVN never fired over the seven masters' pre-pass text, bodies and sets (c34877cc) — no master holds them: re-fire with --pattern A11YLEG --pattern SPANS --pattern PRODUCER --pattern CROSSING --pattern VNCONTRACT --pattern MARKS --pattern GRAPHID --pattern OBSLOG; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "bfc2ec06",
+"ts": "2026-11-25T09:47:23Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-25T09-46-09-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T09-46-09-wrap",
+"--marker",
+"2026-11-25-virtual-nodes-as-elements",
+"--pattern",
+"A11YLEG",
+"--pattern",
+"SPANS",
+"--pattern",
+"PRODUCER",
+"--pattern",
+"CROSSING",
+"--pattern",
+"VNCONTRACT",
+"--pattern",
+"MARKS",
+"--pattern",
+"GRAPHID",
+"--pattern",
+"OBSLOG"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline c34877cc (pre-pass — HEAD)",
+"architecture · 18 rows over 1 files · new 0 · standing 18 · 5 patterns",
+"security-plan · 6 rows over 1 files · new 0 · standing 6 · 4 patterns",
+"design-system · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"test-plan · 9 rows over 1 files · new 0 · standing 9 · 4 patterns",
+"obs-plan · 4 rows over 1 files · new 0 · standing 4 · 3 patterns",
+"a11y-plan · 4 rows over 1 files · new 0 · standing 4 · 2 patterns",
+"by line · 0 lines · 0 offsets",
+"total (8 patterns) · 103 rows over 22 files",
+"per class · new 0/0 · standing 42/6 · leaf 61/16 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-25T09-46-09-wrap/sweep-pre-pass-1.1.txt · 122 lines · 14424 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T09-46-09-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "c34877ccdcea53fdfc57f19d6ef5820c2c3757f0",
+"how": "pre-pass — HEAD",
+"counts": {
+"A11YLEG": {
+"new": 0,
+"standing": 10,
+"leaf": 25,
+"curation": 0,
+"base": 0
+},
+"SPANS": {
+"new": 0,
+"standing": 5,
+"leaf": 11,
+"curation": 0,
+"base": 0
+},
+"PRODUCER": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"CROSSING": {
+"new": 0,
+"standing": 12,
+"leaf": 12,
+"curation": 0,
+"base": 0
+},
+"VNCONTRACT": {
+"new": 0,
+"standing": 7,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"MARKS": {
+"new": 0,
+"standing": 3,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"GRAPHID": {
+"new": 0,
+"standing": 3,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"OBSLOG": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 18,
+"files": 1,
+"new": 0,
+"standing": 18,
+"patterns": 5
+},
+"security-plan": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 4
+},
+"design-system": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+},
+"test-plan": {
+"rows": 9,
+"files": 1,
+"new": 0,
+"standing": 9,
+"patterns": 4
+},
+"obs-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 3
+},
+"a11y-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 2
+}
+},
+"per_master": {
+"A11YLEG": {
+"architecture": 4,
+"test-plan": 3,
+"a11y-plan": 3
+},
+"SPANS": {
+"security-plan": 1,
+"test-plan": 2,
+"obs-plan": 2
+},
+"PRODUCER": {
+"security-plan": 1
+},
+"CROSSING": {
+"architecture": 5,
+"security-plan": 3,
+"test-plan": 2,
+"obs-plan": 1,
+"a11y-plan": 1
+},
+"VNCONTRACT": {
+"architecture": 6,
+"security-plan": 1
+},
+"MARKS": {
+"architecture": 2,
+"design-system": 1
+},
+"GRAPHID": {
+"architecture": 1,
+"test-plan": 2
+},
+"OBSLOG": {
+"obs-plan": 1
+}
+},
+"forms": {
+"SPANS": [
+{
+"form": "forty-three",
+"from": "43"
+},
+{
+"form": "forty-six",
+"from": "46"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

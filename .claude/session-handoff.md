@@ -1,45 +1,49 @@
 # Session Handoff
 
-**Last Updated:** 2026-11-25T04:31:00Z
-**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `a8ee63f0d`)
+**Last Updated:** 2026-11-25T10:25:00Z
+**Branch:** build/escher-0.4.0 · 0 ahead of origin/build/escher-0.4.0 as read at this wrap's Setup (HEAD `c34877ccd`)
 **Status:** clean
-**Last Commit:** 2026-11-25-virtual-nodes-declared — virtual nodes declared: a canvas declares keyed, named, role-bearing regions, read and validated in process (see `git log -1`)
+**Last Commit:** 2026-11-25-virtual-nodes-as-elements — virtual nodes as elements: a canvas's virtual nodes in the accessibility tree, snapshot and diff, taking `click` and refused like elements (see `git log -1`)
 
 ## Position
-- Done: 2026-11-25-virtual-nodes-declared. A canvas widget declares virtual nodes through the defaulted `Widget::virtual_nodes`. `DioxusDocument::virtual_nodes` reads them in process, validates them and gives each taken node the id `{owner}///{key}`. Nothing crosses a carrier. CI#45538903978 is green 17/17 on `a8ee63f0d`.
-- Next: «Virtual nodes as elements» (v040-11), Epoch 4's first markerless entry. It carries three CARRYs from this wrap. The founder's own word on F3 (the names' crossing) is asked before it starts.
+- Done: 2026-11-25-virtual-nodes-as-elements.
+  - A canvas's taken virtual nodes are children of its accessibility node, and the snapshot and its diff read them, with their `{owner}///{key}` id and declared name.
+  - `click` alone takes a virtual id. It acts at the node's region and is refused in the one order.
+  - The graph, actions, lint and exploration hold none.
+  - CI#45580739068 is green 17/17 on `c34877ccd`.
+- Next: «Virtual nodes in every read» (v040-11), Epoch 4's first markerless entry. It carries one CARRY from this wrap.
 
 ## Work done
-- Wrap `.andromeda/runs/2026-11-25T04-01-11-wrap/`: 15 master operations landed in 7 TXs (3785–3791), over architecture, security-plan, test-plan, obs-plan and a11y-plan. 0 escalations.
-- 14 leaf findings applied across 11 leaves, and 1 written by hand (`CLAUDE.md:33`). 2 Tier 3 learnings added.
+- Wrap `.andromeda/runs/2026-11-25T09-46-09-wrap/`: 35 master operations landed in 9 TXs (3858–3866), over six masters (all but layout-templates).
+- One answer card, Q1: F3 A, 10 operations. The founder confirmed it in his own words, «Подтвердить все 10 (Recommended)» (inputs#I7).
+- 31 leaf findings were applied across 16 leaves, none by hand and none declined. One Tier 2 learning was added (`testing.md`).
 - Route: 4 CARRYs pinned, 0 residuals.
 
 ## Drift resolved
-- Every answer of this chunk is a delegate's, none the founder's. The rows resting on one land PROVISIONAL:
-  - architecture: `contract/nodes-widgets/virtual-nodes` (overseer1, F2 A), `contract/dioxus-bridge/virtual-nodes`, `contract/dioxus-bridge/virtual-node-refusal`, `decision/virtual-node-role-is-accesskit-role` (F4 A) and `decision/virtual-node-declaration-marks-nothing` (F1 B′, F6 A);
-  - security-plan: `absence/virtual-nodes-on-carriers` (F3 A, defer) and `decision/virtual-node-declarations-validated`.
-- Unmarked changes:
-  - the reserved form is now produced in process — architecture's two `virtual-node-id` contracts, security-plan's `virtual-node-form` and `no-collision`;
-  - a11y-plan's two snapshot-model readers rows name the declared-node read;
-  - obs-plan `decision/declared-node-read-logs-nothing`.
-- CARRY `cry-ax6q6t4w` closed: test-plan `decision/no-screenshot-step-in-committed-checks` now bounds its one-host clause to a shot holding document text.
+- These land ratified on the founder's own word (inputs#I2, inputs#I7):
+  - F3 A — the crossing: security-plan `decision/virtual-node-crossing` (new) and the retire of `absence/virtual-nodes-on-carriers`, plus the reserved-form rows of four masters;
+  - F11 A — architecture `decision/declaration-change-marks-nothing`, which replaces the retired provisional `…-declaration-marks-nothing`;
+  - F8 A with F2 A — architecture `contract/nodes-widgets/virtual-nodes` and a11y-plan `contract/snapshot/enabled`.
+- These land with a PROVISIONAL mark in their sidecar entries, resting on a delegate's word:
+  - F9 A, F10 B, F12 A: the tree, snapshot, `click`, `covered` and `not-found` rows;
+  - the V2 ruling: test-plan `decision/inert-guard-dropped`, state provisional.
 - Rejected:
-  - by check 2: 19 repeats of one fact in another master;
-  - by fit: architecture's gating-list set (type 5), and two decisions that stated no reason (type 4). Main re-raised those two with the forks' trade, and they fit.
+  - by check 2: 34 repeats of one fact in another master;
+  - by fit `not_master`: the tree-id add, and test-plan's lengthened `reserved-graph-id-form` set. Main re-set that row shorter, and it fits.
+- Directive point 4: this chunk wrap's letter has no door to end another chunk's sidecar-entry marks. The F2 A marks of «Virtual nodes declared» (entries `amd-cbkr7gme`, `amd-v6evyr7o`) stand for a 0-pending wrap's `rec.py amend` arm.
 
 ## Notes
-- v040-11 stays pooled and unclaimed. Its ledger note records what this chunk proves (P7.3).
-- Carried to «Virtual nodes as elements» (the P5 card's three rows): F3 the names' crossing, the founder's fork; F1's invalidation half and F6's mark; the mutation control of the no-carrier check.
-- Carried again, to «Canvas keyboard path»: `cry-tjzqz3hz`, the two `security-summary.md` drag-and-drop gaps. That entry closes Epoch 4, so its wrap's leaf pass runs whole. This wrap's comparer read the leaf and wrote nothing.
-- Upstreamable, not sent: `Widget::virtual_nodes` and `VirtualNodeDeclaration` in blitz-dom. They are recorded as flagged and no more. The earlier list stands unchanged.
-- Carried from before: security-plan `dec-kxrtstbq`'s `verified_was` still quotes `Cargo.lock:8040-8041`, and `host-linux.md` is 9 template lines behind (U04 `noted`).
+- v040-11 stays pooled and unclaimed. Its ledger note is written at P7.3.
+- Carried, with a line each in `escher-0.5.0-incubator/deferred-from-0.4.0.md`:
+  - `cry-q5re2cbp` → «Virtual nodes in every read»: only `click` takes a virtual id; `clickable` reads false.
+  - `cry-llqauv26` → «Circle Drawer's circles as virtual nodes»: `covered` by another virtual node.
+  - `cry-kou37dij` → the same entry: the carriers are not read on the binary (P5 card row 1).
+  - `cry-2gya4rcg` → «Pan and zoom»: a rotated or scaled canvas read unrotated and unscaled.
+- Carried from before: `cry-tjzqz3hz`, the two drag-and-drop gaps, on «Canvas keyboard path». Also security-plan `dec-kxrtstbq`'s `verified_was`, and `host-linux.md` 9 template lines behind.
 - Left in place on the operator's word: every probe branch, worktree, scratch clone and build directory.
 - Last failed command: none.
 
 ## Deferred learnings
 1 learning analyzed but not applied:
-- recurrence-despite-learning: `.claude/docs/session-learnings.md` «A CI job log read through `gh api …/logs` is refused when its text carries terminal escape sequences…». The operator pass hit the refusal again before re-firing with `--allow-escape-sequences`.
+- recurrence: `testing.md:22` already rules that a change of a CI leg's file count sweeps the literal pins of that count. The `fast` leg's second firing still read `test_the_leg_counts_are_stated_in_words` `20 != 19`.
 Review with `/andromeda-wrap-session --review` if any should be applied.
-
-## Session End Status
-Completed normally at 2026-11-25 08:26:59

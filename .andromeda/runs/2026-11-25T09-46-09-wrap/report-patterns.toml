@@ -1,0 +1,56 @@
+# Wrap P1 site sweep — 2026-11-25-virtual-nodes-as-elements; one pattern per moved fact, its name token beside its wording.
+
+# Counts / qualifiers moved — the a11y CI leg's file count nineteen -> twenty (token: virtual_nodes_as_elements, the new a11y target)
+[[pattern]]
+id = 'A11YLEG'
+regex = '(?i)(nineteen|twenty) (accessibility |a11y )?(files|targets)|a11y leg|virtual_nodes_as_elements'
+
+# Counts / qualifiers moved — stand_act_spans' child call count 43 -> 46
+[[pattern]]
+id = 'SPANS'
+regex = 'stand_act_spans|(43|46|forty-three|forty-six) (child )?calls'
+
+# Counts / qualifiers moved — capabilities.md: the reserved form now produced; five stated limits added
+[[pattern]]
+id = 'PRODUCER'
+regex = '(?i)nothing produces it|producer of the reserved|reserved (virtual-node )?(id )?form|produced in process'
+
+# Spec claims disproved — research's lint-overlap premise; the lint excludes virtual nodes by construction (token: overlaps)
+[[pattern]]
+id = 'LINTVN'
+regex = '(?i)not linted|lint\w*[^.]{0,80}virtual|virtual[^.]{0,80}lint\w*|the_graph_actions_and_lint_hold_no_virtual_node'
+
+# Spec claims disproved — plan's «no other literal pin»; the pins of click help and Cause::Covered (tokens: schema_tests, refusal.rs)
+[[pattern]]
+id = 'LITPIN'
+regex = 'schema_tests|every_verb_states_its_help|refusal\.rs'
+
+# Expected amendments — security-plan names' crossing (F3 A) and the narrowed carriers absence
+[[pattern]]
+id = 'CROSSING'
+regex = '(?i)virtual-nodes-on-carriers|holds? a canvas.s declared virtual node|declared virtual node|\{owner\}///\{key\}'
+
+# Expected amendments — architecture / a11y contracts on virtual nodes (tokens: VirtualNodeDeclaration, virtual_nodes, virtual-node-id)
+[[pattern]]
+id = 'VNCONTRACT'
+regex = 'VirtualNodeDeclaration|virtual-node-id|virtual_nodes|nodes-widgets/virtual-nodes|virtual-node-role|VirtualNodeRefusal'
+
+# Expected amendments — decision/virtual-node-declaration-marks-nothing (drop «yet»), F11 A
+[[pattern]]
+id = 'MARKS'
+regex = '(?i)virtual-node-declaration-marks-nothing|marks nothing|changed-set mark|invalidation signal'
+
+# Expected amendments — test-plan reserved graph id form / element-id virtual form
+[[pattern]]
+id = 'GRAPHID'
+regex = 'reserved-graph-id-form|element-id/virtual-form|VIRTUAL_KEY_SEPARATOR'
+
+# Expected amendments — obs-plan decision/declared-node-read-logs-nothing widened
+[[pattern]]
+id = 'OBSLOG'
+regex = 'declared-node-read-logs-nothing'
+
+# Expected amendments — click on a virtual id; covered / not-found meanings; clickable false (F10 B, F12 A)
+[[pattern]]
+id = 'CLICKVN'
+regex = '(?i)Cause::Covered|Cause::NotFound|resolve_click|locate_virtual|clickable[^.]{0,60}(false|virtual)'

@@ -1,0 +1,100 @@
+@pick n=1 row=contract/cli-help/output v=no
+@pick n=2 row=contract/cli-exit-codes/3 v=no
+@pick n=3 row=contract/cli-exit-codes/2 v=no
+@pick n=4 row=contract/cli-exit-codes/1 v=no
+@pick n=5 row=contract/cli-coverage-role/stdout v=no
+@pick n=6 row=contract/cli-actions/output v=no
+@pick n=7 row=contract/cli-actions/argument v=no
+@pick n=8 row=decision/select-list-painted-by-paint-scene v=no
+@pick n=9 row=decision/render-wait-by-stored-waker v=no
+@pick n=10 row=decision/no-screenshot-in-recorded-check-scripts v=no
+@pick n=11 row=decision/buffered-render-unborrowed-document v=no
+@pick n=12 row=decision/wpt-upstream-only v=no
+@pick n=13 row=decision/wpt-reftests-thai-font v=no
+@pick n=14 row=decision/unscrolled-containers-no-scrollbar-thumbs v=no
+@pick n=15 row=decision/ui-driven-through-session-binary v=no
+@pick n=16 row=decision/real-mcp-client-outside-ci v=no
+@pick n=17 row=decision/mcp-tested-as-child-and-in-process v=no
+@pick n=18 row=decision/example-fixtures-are-manual v=no
+@pick n=19 row=decision/cli-checks-through-own-binary v=no
+@pick n=20 row=decision/checks-hold-no-screenshot-step v=no
+@pick n=21 row=decision/checks-byte-equal-to-recording v=no
+@pick n=22 row=contract/session-status/served v=no
+@pick n=23 row=contract/session-state-directory/session-sock v=no
+@pick n=24 row=contract/session-run/type-on-select v=no
+@pick n=25 row=contract/session-run/type v=yes mode=add-to fact=F2
+@pick n=26 row=contract/session-run/scroll v=yes mode=add-to fact=F2
+@pick n=27 row=contract/session-run/screenshot v=yes mode=add-to fact=F2
+@pick n=28 row=contract/session-run/layout-answer v=yes mode=add-to fact=F2
+@pick n=29 row=contract/session-run/graph v=yes mode=add-to fact=F1
+@pick n=30 row=contract/session-run/diff v=no
+@pick n=31 row=contract/session-run/changed-node-states v=no
+@pick n=32 row=contract/session-protocol/hello v=no
+@pick n=33 row=contract/session-layout/changes-nothing v=yes mode=add-to fact=F2
+@pick n=34 row=contract/session-host-stderr/service-name v=no
+@pick n=35 row=contract/session-host-stderr/command-span v=no
+@pick n=36 row=contract/session-errors/unsupported v=no
+@pick n=37 row=contract/session-errors/nosession v=no
+@pick n=38 row=contract/session-errors/dead v=no
+@pick n=39 row=contract/session-errors/alreadyrunning v=no
+@pick n=40 row=contract/session-act/settle v=no
+@pick n=41 row=contract/refusal-cause/unknown-verb v=no
+@pick n=42 row=contract/refusal-cause/stale v=no
+@pick n=43 row=contract/refusal-cause/off-screen v=no
+@pick n=44 row=contract/refusal-cause/not-found v=yes mode=stale
+@pick n=45 row=contract/refusal-cause/malformed v=no
+@pick n=46 row=contract/refusal-cause/fonts-unavailable v=no
+@pick n=47 row=contract/refusal-cause/disabled v=no
+@pick n=48 row=contract/refusal-cause/covered v=yes mode=stale
+@pick n=49 row=contract/mcp-role-stdout/protocol-lines v=no
+@pick n=50 row=contract/mcp-role-stderr/tool-call v=no
+@pick n=51 row=contract/handler-coverage/refused-step v=no
+@pick n=52 row=contract/handler-coverage/other-app-check v=no
+@pick n=53 row=contract/graph-command/argument v=no
+@pick n=54 row=contract/actions-command/argument v=no
+@pick n=55 row=decision/typed-password-never-returned v=no
+@pick n=56 row=decision/stated-tolerance-read-inclusively v=no
+@pick n=57 row=decision/start-in-state-reads-as-by-hand-path v=no
+@pick n=58 row=decision/sink-drops-third-party-targets v=no
+@pick n=59 row=decision/session-state-owner-only v=no
+@pick n=60 row=decision/session-refuses-out-of-grammar v=no
+@pick n=61 row=decision/session-logs-no-screen-content v=no
+@pick n=62 row=decision/session-idle-expiry v=no
+@pick n=63 row=decision/root-boundary-err-on-own-session v=no
+@pick n=64 row=decision/reserved-graph-id-form v=yes mode=contradict
+@pick n=65 row=decision/refusal-leaves-instance-unchanged v=no
+@pick n=66 row=decision/no-sleep-or-wall-clock-in-checks v=no
+@pick n=67 row=decision/mcp-result-decoded-whole v=no
+@pick n=68 row=decision/load-wait-bound v=no
+@pick n=69 row=decision/listeners-read-from-vdom-walk v=no
+@pick n=70 row=decision/layout-tests-in-both-layout-modes v=no
+@pick n=71 row=decision/layout-reason-words-each-read v=no
+@pick n=72 row=decision/harness-click-waits-on-nothing v=no
+@pick n=73 row=decision/handler-coverage-unreached-screens v=no
+@pick n=74 row=decision/handler-coverage-reads-every-replayed-screen v=no
+@pick n=75 row=decision/handler-coverage-holds-no-typed-text v=no
+@pick n=76 row=decision/handler-coverage-canvas-uncounted v=no
+@pick n=77 row=decision/handler-coverage-bubbling-counts-ancestors v=no
+@pick n=78 row=decision/graph-signal-registration v=no
+@pick n=79 row=decision/graph-answer-holds-no-value v=yes mode=add-to fact=F1
+@pick n=80 row=decision/file-urls-only-for-file-documents v=no
+@pick n=81 row=decision/exhaustion-asserted-on-finite-page v=no
+@pick n=82 row=decision/driver-log-fixed-words-only v=yes mode=stale
+@pick n=83 row=decision/change-event-from-engine-only v=no
+@pick n=84 row=decision/caused-owner-pinned-as-graph-reads v=no
+@pick n=85 row=decision/advance-accepted-on-every-session v=no
+@pick n=86 row=decision/actions-answer-holds-no-value v=yes mode=add-to fact=F1
+@pick n=87 row=contract/session-host/non-unix v=no
+@pick n=88 row=contract/driver-verbs/graph v=yes mode=add-to fact=F1
+@pick n=89 row=contract/driver-verbs/actions v=yes mode=add-to fact=F1
+@pick n=90 row=contract/driver-session/run v=no
+@pick n=91 row=contract/driver-session/refused-call v=no
+@pick n=92 row=contract/driver-session/password v=no
+@pick n=93 row=contract/driver-session/held-state v=no
+@pick n=94 row=contract/driver-log/per-call-line v=no
+@pick n=95 row=contract/driver-log/default-level v=no
+@pick n=96 row=decision/session-writes-no-screen-content v=no
+@pick n=97 row=decision/recorded-dispatch-bypasses-document v=no
+@pick n=98 row=decision/no-wall-time-in-session-checks v=no
+@pick n=99 row=decision/host-stderr-no-screen-content v=no
+@pick n=100 row=contract/snapshot-node/clickable v=yes mode=add-to fact=F3

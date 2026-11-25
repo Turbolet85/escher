@@ -1,0 +1,47 @@
+@row_set n=1 row=contract/stable-element-id/virtual-node-form cell=promise seen=2 detector=none
+value: The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the accessibility tree and, from it, the snapshot and its diff; no element's id holds `///`.
+basis: fct-w2gujpju
+because: The reserved form is now served in the accessibility tree, snapshot and diff, so «produced in process only» and «no served id holds ///» are false.
+@row_set n=2 row=contract/stable-element-id/no-collision cell=promise seen=2 detector=none
+value: An author key holds no `/`, an anchored path is the only element id holding `//`, and a component or document path has no empty segment, so no `id` attribute can make two ids equal, a key spelled like a component name included.
+basis: fct-uelmicw4
+because: A served virtual node id `{owner}///{key}` now holds `//`, so the anchored path is the only element id holding it, no longer the only served id.
+@row_set n=3 row=decision/author-id-on-accessibility-nodes cell=rule seen=1 detector=none
+value: Under the accessibility feature each element node of the accessibility tree carries its stable id as its AccessKit author id, and each virtual node a canvas adds carries its `{owner}///{key}` id, never on a text run, the document root or the synthetic window node.
+basis: fct-w2gujpju
+because: The tree now adds each canvas's virtual nodes under the canvas with author id `{owner}///{key}`, so the row naming element nodes alone is incomplete.
+@row_set n=4 row=decision/target-refusal-order cell=rule seen=1 detector=none
+value: A click or type on an element, or a click on a virtual node, that cannot take it is refused with nothing run, the first of disabled, off-screen, covered that holds, leaving the snapshot and both focus readings as they were; scroll reports in_view instead of refusing.
+basis: fct-7yeqdilt
+because: A click on a virtual node is now refused disabled, off-screen and covered in the same fixed order through the one target check.
+@row_set n=5 row=contract/refusal-causes/covered cell=promise seen=1 fact=F6 detector=none
+value: The target is covered at its hit point; its fixed meaning states the hit's limits, among them that an option of a closed select reads covered, remedied by clicking the select first, and that a virtual node reads covered only by an element over its region.
+basis: fct-w2gujpju
+because: The covered cause's fixed meaning changed to state that a virtual node reads covered only by an element over its region.
+@row_add n=1 row=decision/virtual-node-crossing area=threat-model-summary fact=F1 detector=none
+name: Virtual node crossing
+rule: A canvas's virtual node id `{owner}///{key}` and its author-declared name cross the accessibility tree, the snapshot text, the diff, MCP results, kept checks and the socket and command-line answer line, while the graph, actions answer, lint, canvas answer and exploration hold none.
+why: A boundary widening, ratified.
+guard: the_mcp_role_carries_the_virtual_node, the_graph_actions_and_lint_hold_no_virtual_node
+basis: fct-uelmicw4
+because: The chunk widened the ratified carriers to a virtual node's id and declared name, and no threat-model row states that crossing.
+@row_add n=2 row=decision/click-only-verb-taking-virtual-id area=input-validation fact=F2 detector=D-security-input
+name: Click is the only verb taking a virtual node id
+rule: Click is the only verb that takes a virtual node id, locating it at its owning canvas and acting on its region through the one target check; type, scroll, screenshot with an id, layout and canvas read a virtual id not-found.
+guard: the_other_id_verbs_read_a_virtual_id_not_found, a_click_on_a_virtual_node_acts_on_its_region
+basis: fct-w2gujpju
+because: A virtual id is a new caller-supplied input to the id verbs, and no row states which verb takes it and how the others refuse it.
+@row_add n=3 row=decision/virtual-node-snapshot-readings area=input-validation fact=F3 detector=none
+name: Virtual node snapshot readings
+rule: A virtual node in the snapshot reads enabled from its declared disabled flag, clickable false, highlighted false, no checked, value, selected or pressed, bounds its region moved by its canvas's content-box origin, and no children.
+guard: the_snapshot_reads_each_virtual_node
+basis: fct-w2gujpju
+because: The snapshot now carries virtual nodes, and no row states the closed readings it gives them.
+@row_add n=4 row=decision/virtual-nodes-only-from-shown-canvas area=input-validation fact=F4 detector=none
+name: Virtual nodes only from a shown canvas with a good read
+rule: A hidden, collapsed or inert canvas, or one whose declared-node read errs, contributes no virtual node to the accessibility tree or the snapshot.
+guard: a_hidden_canvas_holds_no_virtual_node
+basis: fct-w2gujpju
+because: The tree and snapshot now take virtual nodes, and no row states which canvases contribute none.
+@row_none n=1 fact=F5 type=4
+relied: The lint answer names no virtual node id, held by the behaviour check the_graph_actions_and_lint_hold_no_virtual_node; the crossing itself is held by decision/virtual-node-crossing.
