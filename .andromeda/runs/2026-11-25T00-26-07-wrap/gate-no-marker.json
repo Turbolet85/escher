@@ -1,0 +1,65 @@
+[
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-25T00:27:26Z",
+"argv": [
+"census",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "census: --comm NAME or --args TEXT, at least one",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "gate",
+"v": "1.39",
+"sha8": "cb6114c9",
+"ts": "2026-11-25T00:27:28Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--comm",
+"escher-session",
+"--comm",
+"seven_guis_nati",
+"--args",
+"stand_canvas_lint",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, rustc, escher-session, seven_guis_nati · args stand_canvas_lint · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"rustc",
+"escher-session",
+"seven_guis_nati"
+],
+"args": [
+"stand_canvas_lint"
+],
+"running": []
+}
+}
+}
+]

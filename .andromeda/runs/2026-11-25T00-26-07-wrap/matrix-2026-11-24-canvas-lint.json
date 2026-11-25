@@ -1,0 +1,75 @@
+[
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "afc8a3a0",
+"ts": "2026-11-25T01:25:40Z",
+"argv": [
+"flip",
+"--dir",
+"escher-0.4.0",
+"--chunk",
+"2026-11-24-canvas-lint",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"claimed 0 — gate no-op (no entry carries chunk 2026-11-24-canvas-lint)",
+"pool: unclaimed 7 [v040-02 v040-10 v040-11 v040-12 v040-13 v040-14 v040-15]"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "matrix",
+"v": "1.13",
+"sha8": "afc8a3a0",
+"ts": "2026-11-25T01:25:50Z",
+"argv": [
+"note",
+"--dir",
+"escher-0.4.0",
+"--id",
+"v040-10",
+"--text-file",
+".andromeda/runs/2026-11-25T00-26-07-wrap/note-v040-10.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap",
+"--marker",
+"2026-11-24-canvas-lint"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"note v040-10: +1090 chars (total 3498) · status planned · ref/acceptance untouched",
+"landed, rendered ./.andromeda/db/log/2026-11-24T21-29-24-2026-11-24-canvas-lint.ndjson · 1 entry changed"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-24T21-29-24-2026-11-24-canvas-lint.ndjson"
+],
+"before": {
+"id": "v040-10",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, the verb answers Circle Drawer's draw commands at a summary and a full level, the same answer on two runs … (445 chars)",
+"notes_chars": 2406
+},
+"after": {
+"id": "v040-10",
+"chunk": null,
+"status": "planned",
+"method": "integration",
+"ref": "null",
+"acceptance": "On the stand, the verb answers Circle Drawer's draw commands at a summary and a full level, the same answer on two runs … (445 chars)",
+"notes_chars": 3498
+}
+}
+]

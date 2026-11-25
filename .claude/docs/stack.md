@@ -15,7 +15,7 @@ _Mirrors `doc:architecture` §Stack and Technologies. A convenience reference, r
 | CSS engine | Servo Stylo 0.24 (stylo, stylo_traits, stylo_atoms, stylo_static_prefs, stylo_dom); selectors 0.43.0; cssparser 0.38.0 |
 | HTML / XML parsing | html5ever 0.40.1, markup5ever 0.40.0, xml5ever 0.40.0 |
 | Layout | Taffy 0.16 (crates.io registry, no git source; std, flexbox, flexbox_balance, grid, block_layout, content_size, calc, detailed_layout_info) via `stylo_taffy` |
-| Text & fonts | Parley 0.13 (registry), skrifa 0.49, fontique; ICU4X 2.3 (icu_casemap, icu_locale_core, icu_properties, icu_segmenter) with writeable 0.6 — icu_casemap and writeable behind blitz-dom's default `text-transform-icu`; `wuff` for WOFF/WOFF2 |
+| Text & fonts | Parley 0.13 (registry), skrifa 0.49 (since 2026-11-24-canvas-lint also escher-driver's reader of a glyph's outline bounds for the canvas lint, no package added), fontique; ICU4X 2.3 (icu_casemap, icu_locale_core, icu_properties, icu_segmenter) with writeable 0.6 — icu_casemap and writeable behind blitz-dom's default `text-transform-icu`; `wuff` for WOFF/WOFF2 |
 | Rendering | anyrender 0.15.0 + anyrender_vello / _vello_cpu / _vello_gpu / _skia / _svg / _serialize; wgpu 30 |
 | Graphics | color 0.3, peniko 0.6.0, kurbo 0.13.1, usvg 0.50.0, svgtypes 0.16.2, euclid 0.22, app_units 0.7.5 |
 | Windowing & input | winit `=0.31.0-beta.4`, raw-window-handle 0.6, clipboard text through winit, rfd 0.17.1, keyboard-types 0.8 (lock 0.8.3; Dioxus 0.7.3 carries its own 0.7, so two versions stand in the graph), cursor-icon 1 |

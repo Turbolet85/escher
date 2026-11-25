@@ -1,0 +1,52 @@
+## After implement
+- **Report:** 2026-11-24T22-17-57-implement — the newest implement run of 2026-11-24-canvas-lint (`rec.py runs --kind '*-implement' --file '*-2026-11-24-canvas-lint.json'`, its last run line), its outcome `green`.
+- **Commits:** since last_wrap 2026-11-24T21:15:59Z (the `state` view):
+  - `239c197c1 chore(session): no chunk wrapped — session 144 · the drag-and-drop marks discharged` — the base, not this chunk's;
+  - `923188939 chore(2026-11-24-canvas-lint): operator pre-CI commit, for the run this chunk's verdict reads`.
+- **Operator pass:** as-left green, no fix commit (`evidence/operator-pass.md`).
+  - Entry 13, `gate.py hygiene`: `hygiene: clean — read 192 … 0 host paths kept`.
+  - Entry 14, the guarded push: refused twice with an HTTP 500 from the remote (request ids `EB1C:12527A:3F875:B2ECC:6B062055`, `FD57:2BC4D5:40728:B40E9:6B06205D`), accepted on the operator's re-fire at 2026-11-24T23:43:06Z, `239c197c1..923188939`. No force, no other remote, no change to the commit.
+  - Entry 15, `ci.py conclusion --sha 9231889395c2…`: `verdict: green · checks 17/17 · wall 2336 s · runs CI#45512306663 completed/success`.
+  - Test (windows) job 138869363501 and Test (macos) job 138869363529 each read `stand_canvas_lint` `test result: ok. 3 passed; 0 failed`, and `circle_drawers_canvas_reads_its_digest ... ok`.
+- **Changes after implement:** none — no commit after the pre-CI one, and no directed edit of the wrap's.
+- **Inputs:** `inputs.py verify`, fired at this wrap: `inputs: 5 entries — unchanged 2 · drifted 0 · vanished 0 · broken 0 · altered 0 · unreachable 0 · n/a 3 · uncited 1 · unparsed 0`.
+  - I1 · message · the operator, the /andromeda-phase invocation, 2026-11-24 21:28Z · n/a.
+  - I2 · `../additional/escher-overseer/relays/canvas-lint-founder-2026-11-24.md` · copy no-repo · unchanged — the founder's F1 A, «A — слово truncated в lint (Recommended)», his own word; F2 A · F3 B · F4 A · F5 A the escher overseer's, shown to him and left standing.
+  - I3 · message · the operator, the /andromeda-phase invocation, 2026-11-24 21:59Z · n/a.
+  - I4 · message · the operator, the P5 review's answer, 2026-11-24 22:15Z · n/a.
+  - inputs#I5 · `../additional/escher-overseer/relays/canvas-lint-wrap-directive-2026-11-25.md` · copy no-repo · unchanged — the operator's wrap directive, snapped `--step wrap` at this wrap and cited here (`verify` printed it `UNCITED` before this close). What it changes:
+    - CI#45512306663 on `923188939` read green 17/17 by the operator, and the WATCH `cry-uqifds5z` takes it as its third green run and meets its retire condition;
+    - whose word each answer is: F1 A the founder's own; F2 A, F3 B, F4 A and F5 A the delegate's — a row resting only on one of them lands PROVISIONAL;
+    - the two rows the founder ratified on 2026-11-24 that say Circle Drawer's labels «reach no … lint» are re-stated to what F1 A now reads;
+    - the answer card: the founder is away; the operator's confirm is a delegate's and its rows land PROVISIONAL;
+    - v040-10 stays pooled, its ledger note recording what this chunk proves of it;
+    - every residual or deferral left open gets a row and a line in `escher-0.5.0-incubator/deferred-from-0.4.0.md`: the four checks left out under F4 A (labels overlapping one another, a label's contrast against the fill under it, a command wholly outside its region, a shape with no area), each a residual row, and «a label's region as the shape or the virtual node under it» (F2 B and C), owned by «Circle Drawer's circles as virtual nodes» if a CARRY may name it;
+    - the two gaps in `.claude/docs/security-summary.md` (drag-and-drop as an untrusted input; the dropped-file reader with no path restriction) answered by a comparer if the leaf pass reaches that file, else named and carried.
+- **Scope:** none — `gate.py scope` at this wrap: `scope: clean — changed 11 · listed 11 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 188`.
+- **Sweep reach:** `cascade.py sweep --pre-pass`, trail `cascade-2026-11-24-canvas-lint-pre-pass.json`, listing `sweep-pre-pass-1.1.txt`, the patterns `report-patterns.toml`. Its first firing was refused for two unfired controls, `canvas-lint-test` and `label-region` (no master holds them) — that refusal, its trail record, is the basis of each one's master zero. Per moved fact:
+  - Counts — `stand_canvas_lint` joins the stand targets: `canvas-lint-test` · 0 in the masters (the refusal) · the new test-plan row (below) is its one master home.
+  - Spec claims disproved — `fx-in-clipped-box` at x 110: no master site — a plan premise alone.
+  - architecture `contract/lint-verb/truncated`: `lint-truncated` · standing 8 (architecture 3 · test-plan 3 · obs-plan 2) · owed: `ctr-s5ximkln` (architecture) and `ctr-cduiifk4` (test-plan `contract/lint-defects/truncated`); no-change: `ctr-s7re5gag` (the six-word defect list, unchanged), and five rows sharing the token for a log truncated at a leg's or run's start (`ctr-nvwuflok`, `ctr-eyb6zba2`, `ctr-e7oft3vl`, `dec-5wcgg2ke`, `dec-5koubufu`). Owner: architecture.
+  - architecture `contract/lint-verb/finding`: `lint-finding` · standing 1 (architecture 1) · owed: `ctr-saozb5cg`. Owner: architecture.
+  - architecture `contract/driver-verbs/lint`: `lint-verb` · standing 4 (architecture 3 · obs-plan 1) · owed: `ctr-ualaeppi`; read, no change expected: `dec-rt72f4s5`, `ctr-wtcbchbt`, `ctr-4lvvwzu4` (the answer's form and the span are unchanged). Owner: architecture.
+  - architecture Established Decisions, new row (the label's region, F2 A): `label-region` · 0 in the masters (the refusal) · a new row. Owner: architecture.
+  - architecture Stack and Technologies, new row (escher-driver takes skrifa, F3 B): `skrifa` · standing 2 (architecture 2) · read: `dec-qvdsgthp` (the stack row naming skrifa for font metrics), `dec-oi76y4w6` (skrifa follows parley — true, no change). Owner: architecture.
+  - security-plan `decision/canvas-content-crossing`: `canvas-crossing` · standing 1 (security-plan 1) · owed: `dec-y7fvqq6a`. Owner: security-plan.
+  - security-plan `decision/lint-findings-closed-content`: `lint-closed` · standing 1 (security-plan 1) · owed: `dec-i6hdc3hr`. Owner: security-plan.
+  - security-plan Dependency Security, new row (skrifa, one lock edge): `skrifa` · 0 in security-plan · a new row. Owner: security-plan.
+  - test-plan §5, new row (the canvas lint's proof): `canvas-lint-test` · 0 in the masters · a new row. Owner: test-plan.
+  - obs-plan `decision/canvas-read-opens-no-span`: `canvas-no-span` · standing 1 (obs-plan 1) · owed: `dec-nwhdhtlo`. Owner: obs-plan.
+  - a11y-plan `decision/circle-drawer-canvas-pixels-only`: `cd-pixels-only` · standing 2 (layout-templates 1 · a11y-plan 1) · owed: `dec-bg6u7ulu` (a11y-plan) and `dec-tp5vibgi` (layout-templates) — the two founder-ratified rows saying Circle Drawer's labels «reach no … lint», re-stated to F1 A. Owners: a11y-plan, layout-templates.
+  - layout-templates `decision/circle-drawer-circles-painted-on-canvas`: `cd-circles` · standing 1 (layout-templates 1) · owed: `dec-tp5vibgi`, the same row. Owner: layout-templates.
+  - layout-templates `decision/stand-lints-clean-at-boot`: `lints-clean` · standing 1 (layout-templates 1) · owed: `dec-emcqlk3f`. Owner: layout-templates.
+  - Sweep reach: 10 patterns · 15 moved facts, 14 with a pattern (the report's own count: 1 count, 1 disproved claim, 13 expected amendments; the disproved claim has no master site) · by line 0 lines · 0 offsets.
+- **Outcome, final:**
+  - supersedes «**Acceptance (CI).** Not yet read. It is the operator pass's, by the `ci.py conclusion` entry.»: holds — CI#45512306663 at `9231889395c2c2f0afd0018ca22ba1b685c9fa89`, `verdict: green · checks 17/17`; `stand_canvas_lint` 3 passed on Test (windows) and Test (macos).
+  - supersedes «The three `leg = 'operator'` entries were not run — they are the operator pass's»: entry 13 `gate.py hygiene` green (`hygiene: clean`); entry 14 the push accepted on its third firing; entry 15 `ci.py conclusion` green 17/17 (`evidence/operator-pass.md`).
+  - supersedes «**Watches.** `cry-uqifds5z` … is not exercised on the other OSes by this run»: watches — `cry-uqifds5z` (Circle Drawer's canvas digest in `stand_canvas_cross_os`) · 3 green runs [CI#45375406542 at `895a134f2`, CI#45464827106 at `f8558e388`, CI#45512306663 at `923188939`] — `circle_drawers_canvas_reads_its_digest ... ok` on Test (windows) job 138869363501 and Test (macos) job 138869363529; its retire condition met (inputs#I5).
+  - Outcome basis: Setup 4's commit list (the pre-CI commit alone, no fix commit); the final HEAD's CI run CI#45512306663 in `evidence/operator-pass.md`; implement's report for what only it holds. Every other line of implement's Outcome stands.
+- **Decisions & corrections after implement:**
+  - The push was refused twice by the remote with an HTTP 500 and no cause on this side; the operator directed a re-fire, «Re-fire the guarded push now — a server error with no cause on our side is the remote's … No force, no other remote, no change to the commit.» The third firing was accepted (`evidence/operator-pass.md`).
+  - The operator's wrap directive (inputs#I5) names whose word each fork answer is: F1 A the founder's own, F2 A · F3 B · F4 A · F5 A the delegate's; the founder away, the answer card's confirm is a delegate's and its rows land PROVISIONAL.
+  - The same directive: v040-10 is not claimed; every open residual or deferral gets a row and a line in `escher-0.5.0-incubator/deferred-from-0.4.0.md`.
+- **Process hygiene, re-measured:** `gate.py census --comm cargo --comm rustc --comm escher-session --comm seven_guis_nati --args stand_canvas_lint` at this wrap's run dir: `census: none running`.

@@ -1,0 +1,283 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-25T00:26:54Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-25T00-26-07-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap",
+"--marker",
+"2026-11-24-canvas-lint"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--patterns-file: `id` is 1-16 chars of A-Z a-z 0-9 _ . - — 1 outside it: #11 (cd-circles-canvas, 17 chars)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-25T00:27:00Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-25T00-26-07-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap",
+"--marker",
+"2026-11-24-canvas-lint"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline 92318893 (pre-pass — HEAD)",
+"canvas-lint-test · control UNFIRED over the seven masters (bodies and sets) at 92318893",
+"label-region · control UNFIRED over the seven masters (bodies and sets) at 92318893"
+],
+"stderr": "control: canvas-lint-test, label-region never fired over the seven masters' pre-pass text, bodies and sets (92318893) — no master holds them: re-fire with --pattern lint-truncated --pattern lint-finding --pattern lint-verb --pattern skrifa --pattern canvas-crossing --pattern lint-closed --pattern canvas-no-span --pattern cd-pixels-only --pattern cd-circles --pattern lints-clean; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "63d45d09",
+"ts": "2026-11-25T00:27:12Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-25T00-26-07-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T00-26-07-wrap",
+"--marker",
+"2026-11-24-canvas-lint",
+"--pattern",
+"lint-truncated",
+"--pattern",
+"lint-finding",
+"--pattern",
+"lint-verb",
+"--pattern",
+"skrifa",
+"--pattern",
+"canvas-crossing",
+"--pattern",
+"lint-closed",
+"--pattern",
+"canvas-no-span",
+"--pattern",
+"cd-pixels-only",
+"--pattern",
+"cd-circles",
+"--pattern",
+"lints-clean"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline 92318893 (pre-pass — HEAD)",
+"architecture · 9 rows over 1 files · new 0 · standing 9 · 4 patterns",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"layout-templates · 3 rows over 1 files · new 0 · standing 3 · 3 patterns",
+"test-plan · 3 rows over 1 files · new 0 · standing 3 · 1 pattern",
+"obs-plan · 4 rows over 1 files · new 0 · standing 4 · 3 patterns",
+"a11y-plan · 1 rows over 1 files · new 0 · standing 1 · 1 pattern",
+"by line · 0 lines · 0 offsets",
+"total (10 patterns) · 79 rows over 22 files",
+"per class · new 0/0 · standing 22/6 · leaf 57/16 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-25T00-26-07-wrap/sweep-pre-pass-1.1.txt · 102 lines · 11726 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T00-26-07-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "9231889395c2c2f0afd0018ca22ba1b685c9fa89",
+"how": "pre-pass — HEAD",
+"counts": {
+"lint-truncated": {
+"new": 0,
+"standing": 8,
+"leaf": 8,
+"curation": 0,
+"base": 0
+},
+"lint-finding": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lint-verb": {
+"new": 0,
+"standing": 4,
+"leaf": 20,
+"curation": 0,
+"base": 0
+},
+"skrifa": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"canvas-crossing": {
+"new": 0,
+"standing": 1,
+"leaf": 6,
+"curation": 0,
+"base": 0
+},
+"lint-closed": {
+"new": 0,
+"standing": 1,
+"leaf": 17,
+"curation": 0,
+"base": 0
+},
+"canvas-no-span": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"cd-pixels-only": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"cd-circles": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"lints-clean": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 9,
+"files": 1,
+"new": 0,
+"standing": 9,
+"patterns": 4
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"layout-templates": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 3
+},
+"test-plan": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 1
+},
+"obs-plan": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 3
+},
+"a11y-plan": {
+"rows": 1,
+"files": 1,
+"new": 0,
+"standing": 1,
+"patterns": 1
+}
+},
+"per_master": {
+"lint-truncated": {
+"architecture": 3,
+"test-plan": 3,
+"obs-plan": 2
+},
+"lint-finding": {
+"architecture": 1
+},
+"lint-verb": {
+"architecture": 3,
+"obs-plan": 1
+},
+"skrifa": {
+"architecture": 2
+},
+"canvas-crossing": {
+"security-plan": 1
+},
+"lint-closed": {
+"security-plan": 1
+},
+"canvas-no-span": {
+"obs-plan": 1
+},
+"cd-pixels-only": {
+"layout-templates": 1,
+"a11y-plan": 1
+},
+"cd-circles": {
+"layout-templates": 1
+},
+"lints-clean": {
+"layout-templates": 1
+}
+},
+"forms": {
+"lint-finding": [
+{
+"form": "1 finding per defect",
+"from": "one"
+}
+],
+"lints-clean": [
+{
+"form": "zero findings at boot",
+"from": "0"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

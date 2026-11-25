@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-25 — A delegate's answer-card confirm names the founder's answer only where its resolved line does
+At a wrap's Validate, `rec.py rows-land` writes each landed operation's sidecar entry Why from the proposer's `because:` and from its disposition line's `· resolved: …` text. So a row resolved through an answer card that a delegate confirmed — the founder away — carries only the delegate's confirm into its sidecar, and the founder's own answer that the card covers is named nowhere in the entry.
+
+Where a directive asks each entry to give his label and its source, write them into every resolved line after the authority's first `: ` (for example `«Confirm all 7 (Recommended)», confirming the operation inside the founder's own F1 A «…» (inputs#I{n})`). Then read every entry whole in the `rows-land` dry run before the landing.
+
+---
+
 ## 2026-11-22 — A lock move is proven by a locked build, not by the audit leg
 The audit leg reads `Cargo.lock` against advisories and licences alone, so a lock the workspace cannot compile on reads `advisories ok, licenses ok`. A `cargo update -p url` meant to close one advisory also re-resolved two `syn` edges, and the lock it wrote failed to build `bindgen` — measured only at implement, because the plan's lock move had been measured by the audit leg alone.
 
