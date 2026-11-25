@@ -1,0 +1,197 @@
+[[control]]
+id = 'K1'
+entry = 5
+guard = 'the non-empty condition in virtual_node_id'
+case = 'an_empty_key_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/element_id.rs'
+old = "(!key.is_empty() && !key.contains('/'))"
+new = "(!key.contains('/'))"
+
+[[control]]
+id = 'K2'
+entry = 5
+guard = 'the no-slash condition in virtual_node_id'
+case = 'a_key_holding_a_slash_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/element_id.rs'
+old = "(!key.is_empty() && !key.contains('/'))"
+new = "(!key.is_empty())"
+
+[[control]]
+id = 'K3'
+entry = 5
+guard = 'the empty-key arm of the None match, so every None reads KeyHoldsSlash'
+case = 'an_empty_key_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+            None if key.is_empty() => Err(VirtualNodeRefusal::EmptyKey),
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K4'
+entry = 5
+guard = 'the claimed-key check'
+case = 'a_later_duplicate_key_is_refused_and_the_first_kept'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = 'Some(_) if !claimed.insert(key) => Err(VirtualNodeRefusal::DuplicateKey),'
+new = 'Some(_) if !claimed.insert(key) && false => Err(VirtualNodeRefusal::DuplicateKey),'
+
+[[control]]
+id = 'K5'
+entry = 5
+guard = 'the claim of a key whose declaration is refused later: only a taken declaration claims'
+case = 'a_later_duplicate_key_is_refused_and_the_first_kept'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = 'Some(_) if !claimed.insert(key) => Err(VirtualNodeRefusal::DuplicateKey),'
+new = 'Some(_) if claimed.contains(key) => Err(VirtualNodeRefusal::DuplicateKey),'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+            Some(id) => Ok(id),
+'''
+new = '''
+            Some(id) => {
+                claimed.insert(key);
+                Ok(id)
+            }
+'''
+
+[[control]]
+id = 'K6'
+entry = 5
+guard = 'the empty-name check'
+case = 'an_empty_name_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+            Some(_) if declaration.name.is_empty() => Err(VirtualNodeRefusal::EmptyName),
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K7'
+entry = 5
+guard = 'the right-edge region condition'
+case = 'a_region_outside_the_content_box_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        && region.x + region.width <= width
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K8'
+entry = 5
+guard = 'the bottom-edge region condition'
+case = 'a_region_outside_the_content_box_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        && region.y + region.height <= height
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K9'
+entry = 5
+guard = 'the x >= 0 region condition'
+case = 'a_region_outside_the_content_box_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+    region.x >= 0.0
+        && region.y >= 0.0
+'''
+new = '''
+    region.y >= 0.0
+'''
+
+[[control]]
+id = 'K10'
+entry = 5
+guard = 'the y >= 0 region condition'
+case = 'a_region_outside_the_content_box_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        && region.y >= 0.0
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K11'
+entry = 5
+guard = 'the width > 0 region condition'
+case = 'a_region_outside_the_content_box_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        && region.width > 0.0
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K12'
+entry = 5
+guard = 'the height > 0 region condition'
+case = 'a_region_outside_the_content_box_is_refused'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        && region.height > 0.0
+'''
+new = '''
+'''
+
+[[control]]
+id = 'K13'
+entry = 5
+guard = 'the NotLaidOut arm: the layout read through final_layout with no layout-data check'
+case = 'an_unlaid_canvas_reads_not_laid_out'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        let layout = &node
+            .try_layout_data()
+            .ok_or(VirtualNodesUnread::NotLaidOut)?
+            .final_layout;
+'''
+new = '''
+        let layout = node.final_layout();
+'''
+
+[[control]]
+id = 'K14'
+entry = 6
+guard = 'the border and padding subtraction in the content box'
+case = 'the_padded_canvas_reads_its_declared_nodes_in_its_content_box'
+[[control.edit]]
+path = 'packages/dioxus-native-dom/src/virtual_node.rs'
+old = '''
+        let width = layout.size.width
+            - layout.border.left
+            - layout.border.right
+            - layout.padding.left
+            - layout.padding.right;
+        let height = layout.size.height
+            - layout.border.top
+            - layout.border.bottom
+            - layout.padding.top
+            - layout.padding.bottom;
+'''
+new = '''
+        let width = layout.size.width;
+        let height = layout.size.height;
+'''

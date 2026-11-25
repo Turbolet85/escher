@@ -151,11 +151,39 @@ pub trait Widget {
         Scene::new()
     }
 
+    /// The virtual nodes the widget declares inside its content box: targets it serves with
+    /// no element of their own. None by default.
+    ///
+    /// Answered on demand, so an app keeps its list in step with what it paints; nothing in the
+    /// engine calls it. Its reader validates each declaration. An escher addition, flagged
+    /// upstreamable.
+    fn virtual_nodes(&self) -> Vec<VirtualNodeDeclaration> {
+        Vec::new()
+    }
+
     // TODO: allow for multiple nodes per widget
     // fn accessibility_tree(&mut self) -> AccessKitNode;
 
     // TODO: simpler layout mode?
     // fn layout(&mut self, inputs: LayoutInput, styles: &ComputedStyles) -> LayoutOutput;
+}
+
+/// One virtual node a [`Widget`] declares: an author key, an accessibility role, a name and a
+/// region.
+///
+/// The region is in CSS px of the widget's content box, its origin at the content box's top
+/// left: the frame [`Widget::paint`] draws in. Its reader validates the declaration. An escher
+/// addition, flagged upstreamable.
+#[derive(Debug, Clone, PartialEq)]
+pub struct VirtualNodeDeclaration {
+    /// The node's author key, unique among the widget's declarations.
+    pub key: String,
+    /// The node's accessibility role.
+    pub role: accesskit::Role,
+    /// The node's accessible name.
+    pub name: String,
+    /// The node's region in the widget's content box.
+    pub region: crate::BoundingRect,
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]

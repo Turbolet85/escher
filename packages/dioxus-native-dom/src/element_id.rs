@@ -20,8 +20,10 @@
 //! path starts with `/` and has none after it. No `NodeId`, `ElementId`, `ScopeId` or pointer
 //! appears in an id, so the same tree reads the same ids in any process.
 //!
-//! A fifth form is reserved and produced by nothing yet: a **virtual node** — a target an owner
-//! element's own handler serves inside it, with no element of its own — reads its owner's id,
+//! A fifth form is reserved for a **virtual node** — a target an owner element's own handler
+//! serves inside it, with no element of its own. It is produced in process alone, by
+//! [`DioxusDocument::virtual_nodes`](crate::DioxusDocument::virtual_nodes) for a canvas's taken
+//! nodes, written by no walk of this module and served by no carrier. It reads its owner's id,
 //! [`VIRTUAL_KEY_SEPARATOR`] (`///`), then a non-empty key holding no `/`
 //! ([`virtual_node_id`]). No other form can hold `///`, two empty segments in a row: a key
 //! holds no `/`, a component chain joins non-empty names, a segment is never empty, and the only
@@ -40,8 +42,9 @@ use std::rc::Rc;
 pub const VIRTUAL_KEY_SEPARATOR: &str = "///";
 
 /// The reserved id of the virtual node `key` its owner element `owner` serves:
-/// `{owner}///{key}`. `None` for an empty key or one holding `/`. Nothing produces such a node
-/// yet; this is the one spelling its producer is to write.
+/// `{owner}///{key}`. `None` for an empty key or one holding `/`. The one spelling of the form:
+/// [`DioxusDocument::virtual_nodes`](crate::DioxusDocument::virtual_nodes) writes it, in process,
+/// for a canvas's taken nodes; no walk writes it and no carrier serves it.
 pub fn virtual_node_id(owner: &str, key: &str) -> Option<String> {
     (!key.is_empty() && !key.contains('/')).then(|| format!("{owner}{VIRTUAL_KEY_SEPARATOR}{key}"))
 }

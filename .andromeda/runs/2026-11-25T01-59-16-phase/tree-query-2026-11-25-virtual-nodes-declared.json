@@ -1,0 +1,311 @@
+[
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'virtual_node_id' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 6,
+"result": [
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_virtual_node_id_spells_the_reserved_form_and_names_no_element().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 781
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_virtual_node_id_spells_the_reserved_form_and_names_no_element().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 782
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_virtual_node_id_spells_the_reserved_form_and_names_no_element().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 783
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_virtual_node_id_spells_the_reserved_form_and_names_no_element().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 784
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 element_id/tests/a_virtual_node_id_spells_the_reserved_form_and_names_no_element().",
+"file": "packages/dioxus-native-dom/src/element_id.rs",
+"line": 787
+},
+{
+"caller": "rust-analyzer cargo dioxus-native-dom 0.7.0 crate/",
+"file": "packages/dioxus-native-dom/src/lib.rs",
+"line": 44
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT caller, file, line FROM calls WHERE callee_name = 'custom_widget_scene' AND callee_kind = 'fn' ORDER BY file, line",
+"rows": 1,
+"result": [
+{
+"caller": "rust-analyzer cargo blitz-test-harness 0.3.0-beta.4 screenshot/impl#[`Harness<D>`]canvas_scene().",
+"file": "packages/blitz-test-harness/src/screenshot.rs",
+"line": 80
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+},
+{
+"sql": "SELECT callee, file, line FROM refs WHERE callee_name = 'Widget' AND callee_kind = 'type' ORDER BY file, line",
+"rows": 50,
+"result": [
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "apps/browser/src/fps_overlay.rs",
+"line": 3
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "apps/browser/src/fps_overlay.rs",
+"line": 67
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/custom_widget.rs",
+"line": 5
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/custom_widget.rs",
+"line": 98
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/seven_guis/src/tasks/circle_drawer.rs",
+"line": 3
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/seven_guis/src/tasks/circle_drawer.rs",
+"line": 128
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/seven_guis/tests/cli_commands.rs",
+"line": 1111
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/wgpu_texture/src/demo_renderer.rs",
+"line": 5
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "examples/wgpu_texture/src/demo_renderer.rs",
+"line": 20
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/document.rs",
+"line": 1434
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/lib.rs",
+"line": 107
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 658
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/mutator.rs",
+"line": 1889
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/node/custom_widget.rs",
+"line": 169
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/node/custom_widget.rs",
+"line": 178
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/node/element.rs",
+"line": 927
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/blitz-dom/src/node/mod.rs",
+"line": 20
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 2
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native-dom/src/mutation_writer.rs",
+"line": 274
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native-dom/src/write_once_attr.rs",
+"line": 2
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native-dom/src/write_once_attr.rs",
+"line": 25
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native-dom/src/write_once_attr.rs",
+"line": 28
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native-dom/src/write_once_attr.rs",
+"line": 30
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "packages/dioxus-native/src/lib.rs",
+"line": 64
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/custom_widget_layout.rs",
+"line": 6
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/custom_widget_layout.rs",
+"line": 12
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/custom_widget_layout.rs",
+"line": 15
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/custom_widget_layout.rs",
+"line": 25
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/drag_and_drop.rs",
+"line": 6
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/drag_and_drop.rs",
+"line": 278
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/fixtures/mod.rs",
+"line": 10
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/fixtures/mod.rs",
+"line": 118
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/fixtures/mod.rs",
+"line": 193
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_click.rs",
+"line": 12
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_click.rs",
+"line": 34
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_cross_os.rs",
+"line": 15
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_cross_os.rs",
+"line": 70
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_cross_os.rs",
+"line": 95
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_cross_os.rs",
+"line": 133
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_lint.rs",
+"line": 11
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_lint.rs",
+"line": 106
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_placement.rs",
+"line": 13
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_placement.rs",
+"line": 51
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_pointer_frame.rs",
+"line": 11
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_pointer_frame.rs",
+"line": 45
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_shot.rs",
+"line": 9
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_shot.rs",
+"line": 37
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_text.rs",
+"line": 12
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_text.rs",
+"line": 81
+},
+{
+"callee": "rust-analyzer cargo blitz-dom 0.3.0-beta.4 node/custom_widget/Widget#",
+"file": "tests/blitz-tests/tests/stand_canvas_text.rs",
+"line": 113
+}
+],
+"db_state": "fresh",
+"plane": "rust"
+}
+]

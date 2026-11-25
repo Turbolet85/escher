@@ -1,0 +1,1252 @@
+[
+{
+"tool": "gate",
+"v": "1.40",
+"sha8": "f8f95260",
+"ts": "2026-11-25T02:59:02Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-25-virtual-nodes-declared",
+"--run-dir",
+".andromeda/runs/2026-11-25T02-42-47-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-25-virtual-nodes-declared · entries 12",
+"logs $TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta docs 183 · rust 7",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L210-220: **The gates:** - three probes over the diff from the base `b7f61dd0a`, HEAD when P4 wrote … (542 chars)",
+"prose L222-229: **What is absent:** - There is no boot-path touchpoint: no binary's start changes. There i… (619 chars)",
+"prose L231-232: **The controls** are step 7's one-shot runs. The diff adds no OS-conditional site. The CI … (176 chars)",
+"  1 probe       green · exit 0 · 0.0s · 0 B → 1.log · git diff --quiet b7f61dd0afe743249920a38dd596f0c4a620da66 … (179 chars)",
+"  2 probe       green · exit 0 · 0.01s · 2 B → 2.log · git diff --numstat b7f61dd0afe743249920a38dd596f0c4a620da6… (118 chars)",
+"  3 probe       green · exit 0 · 0.0s · 0 B → 3.log · git diff --quiet b7f61dd0afe743249920a38dd596f0c4a620da66 … (713 chars)",
+"  4 build       green · exit 0 · 12.79s · 2125 B → 4.log · bash .github/scripts/ci-leg.sh build",
+"  5 unit        green · exit 0 · 0.77s · 11133 B → 5.log · cargo test -p dioxus-native-dom --locked --lib",
+"  6 integration green · exit 0 · 2.12s · 673 B → 6.log · cargo test -p blitz-tests --locked --test virtual_nodes_de… (64 chars)",
+"  7 integration green · exit 0 · 9.4s · 3354 B → 7.log · cargo test -p blitz-tests --locked --test stand_graph --te… (230 chars)",
+"  8 lint        green · exit 0 · 653.61s · 182582 B → 8.log · bash .github/scripts/ci-leg.sh fast",
+"  9 build       green · exit 0 · 80.45s · 3711 B → 9.log · bash .github/scripts/ci-leg.sh doc",
+" 10 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ga… (71 chars)",
+" 11 probe       not run — leg operator (the letter drives it) · git diff --quiet && git diff --cached --quiet && git push … (83 chars)",
+" 12 probe       not run — leg operator (the letter drives it) · python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci… (95 chars)",
+"entries 12 · green 9 · red 0 · recorded 0 · timeout 0 · not-run 3"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-25-virtual-nodes-declared",
+"plan": "doc:2026-11-25-virtual-nodes-declared/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47",
+"delta": {
+"docs": [
+".andromeda/db/log/2026-11-24T21-29-24-2026-11-24-canvas-lint.ndjson",
+".andromeda/master-route.md",
+".andromeda/runs/2026-11-25T00-26-07-wrap/evolve-2026-11-24-canvas-lint.json",
+".claude/session-handoff.md",
+"escher-0.4.0/working-route.md",
+".andromeda/db/log/2026-11-25T01-56-47-session-2026-11-25.ndjson",
+".andromeda/db/log/2026-11-25T02-00-31-2026-11-25-virtual-nodes-declared.ndjson",
+".andromeda/db/log/2026-11-25T02-40-19-2026-11-25T01-59-16-phase.ndjson",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-pick-p3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/a11y-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p10.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p10.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p10.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p11.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p11.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p11.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p12.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p12.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p12.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p13.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p13.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p13.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p14.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p14.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p14.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p15.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p15.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p15.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p16.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p16.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p16.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p4.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p5.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p6.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p7.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p8.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p8.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p8.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p9.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p9.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-pick-p9.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/arch-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/cascade-tally.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/ci-no-marker.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/control-probes.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/design-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/evolve-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/fanout-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/gate-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/inputs-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/layouts-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/master-desc.txt",
+".andromeda/runs/2026-11-25T01-59-16-phase/matrix-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-pick-p3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/obs-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/p5-card-1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/planlint-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/rec-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/rec-no-marker.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/rec-read-2026-11-25-virtual-nodes-declared.ndjson",
+".andromeda/runs/2026-11-25T01-59-16-phase/relay-1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/relay-2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/relay-3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/route-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/rows-packs.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/scope-cite-1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/scope-pin.json",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p4.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p5.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-pick-p6.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/security-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-history.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-counts.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p1.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p1.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p1.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p2.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p2.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p3.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p3.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p4.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p4.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p4.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p5.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p5.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p5.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p6.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p6.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p6.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p7.d2.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p7.d3.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-pick-p7.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-rows.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-standing.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tests-task.md",
+".andromeda/runs/2026-11-25T01-59-16-phase/tree-query-2026-11-25-virtual-nodes-declared.json",
+".andromeda/runs/2026-11-25T02-42-47-implement/evolve-2026-11-25-virtual-nodes-declared.json"
+],
+"rust": [
+"packages/blitz-dom/src/lib.rs",
+"packages/blitz-dom/src/node/custom_widget.rs",
+"packages/blitz-dom/src/node/mod.rs",
+"packages/dioxus-native-dom/src/element_id.rs",
+"packages/dioxus-native-dom/src/lib.rs",
+"packages/dioxus-native-dom/src/virtual_node.rs",
+"tests/blitz-tests/tests/virtual_nodes_declared.rs"
+]
+},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 190,
+"problem": null
+},
+"prose": [
+{
+"from": 210,
+"to": 220,
+"text": "**The gates:** - three probes over the diff from the base `b7f61dd0a`, HEAD when P4 wrote them:   - no manifest or lock change;   - blitz-dom changed by added lines alone;   - the 15 files holding a `Widget` implementation untouched (research §Graph impact's sweep); - the `--locked` workspace build; - dioxus-native-dom's unit tests; - the new target; - the companions that read the canvas, the reserved form and the stand's ids; - the pre-push gate (`fast`); - the `doc` leg. The chunk edits public doc comments, and `fast` runs no rustdoc."
+},
+{
+"from": 222,
+"to": 229,
+"text": "**What is absent:** - There is no boot-path touchpoint: no binary's start changes. There is no smoke entry. - There is no live leg, and no headful self-verify harness in this project. - There is no `audit` leg: probe 1 holds every manifest and the lock unchanged. - There is no `stand-repeat`. The new target is no `stand_` file, and no stand code changes. - There is no `a11y` leg. The new check reads no accessibility tree (tests · decision/a11y-leg-membership). - The coverage leg is not run locally. CI's coverage job reads dioxus-native-dom's 83 % floor on the pushed tree, and   the CI read asserts green over it."
+},
+{
+"from": 231,
+"to": 232,
+"text": "**The controls** are step 7's one-shot runs. The diff adds no OS-conditional site. The CI read witnesses the windows and macOS test legs and the upstream blitz-dom clippy line."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git diff --quiet b7f61dd0afe743249920a38dd596f0c4a620da66 -- Cargo.lock Cargo.toml packages/blitz-dom/Cargo.toml packages/dioxus-native-dom/Cargo.toml tests/blitz-tests/Cargo.toml",
+"run_sha8": "745d9aff",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/1.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 2,
+"role": "probe",
+"run": "git diff --numstat b7f61dd0afe743249920a38dd596f0c4a620da66 -- packages/blitz-dom | awk '{d += $2} END {print d + 0}' ",
+"run_sha8": "78182948",
+"expect": [
+"exit 0",
+"last line 0"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/2.log",
+"bytes": 2,
+"log_sha8": "9a271f2a",
+"exit": 0,
+"seconds": 0.01,
+"readings": [
+"exit 0 ✓",
+"last line '0' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 3,
+"role": "probe",
+"run": "git diff --quiet b7f61dd0afe743249920a38dd596f0c4a620da66 -- apps/browser/src/fps_overlay.rs examples/custom_widget.rs examples/seven_guis/src/tasks/circle_drawer.rs examples/seven_guis/tests/cli_commands.rs examples/wgpu_texture/src/demo_renderer.rs tests/blitz-tests/tests/custom_widget_layout.rs tests/blitz-tests/tests/drag_and_drop.rs tests/blitz-tests/tests/fixtures/mod.rs tests/blitz-tests/tests/stand_canvas_click.rs tests/blitz-tests/tests/stand_canvas_cross_os.rs tests/blitz-tests/tests/stand_canvas_lint.rs tests/blitz-tests/tests/stand_canvas_placement.rs tests/blitz-tests/tests/stand_canvas_pointer_frame.rs tests/blitz-tests/tests/stand_canvas_shot.rs tests/blitz-tests/tests/stand_canvas_text.rs",
+"run_sha8": "06184a64",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/3.log",
+"bytes": 0,
+"log_sha8": "e3b0c442",
+"exit": 0,
+"seconds": 0.0,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 4,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh build",
+"run_sha8": "32c5cbb0",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/4.log",
+"bytes": 2125,
+"log_sha8": "59a5c7bb",
+"exit": 0,
+"seconds": 12.79,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.log",
+"bytes": 11133,
+"log_sha8": "8e99de75",
+"exit": 0,
+"seconds": 0.77,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_declared",
+"run_sha8": "ce69e722",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/6.log",
+"bytes": 673,
+"log_sha8": "e39ed1f6",
+"exit": 0,
+"seconds": 2.12,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_graph --test stand_element_ids --test stand_canvas_placement --test stand_canvas_pointer_frame --test stand_canvas_click --test stand_circle_drawer_canvas --test custom_widget_layout",
+"run_sha8": "834f3079",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/7.log",
+"bytes": 3354,
+"log_sha8": "aad7f37a",
+"exit": 0,
+"seconds": 9.4,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 8,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/8.log",
+"bytes": 182582,
+"log_sha8": "7e41bd90",
+"exit": 0,
+"seconds": 653.61,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 9,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/9.log",
+"bytes": 3711,
+"log_sha8": "e0d984a5",
+"exit": 0,
+"seconds": 80.45,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 10,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 11,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+},
+{
+"n": 12,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2400",
+"run_sha8": "1e745bf8",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — leg operator (the letter drives it)"
+}
+]
+}
+},
+{
+"tool": "gate",
+"v": "1.40",
+"sha8": "f8f95260",
+"ts": "2026-11-25T03:00:45Z",
+"argv": [
+"control",
+"--chunk",
+"2026-11-25-virtual-nodes-declared",
+"--controls-file",
+".andromeda/runs/2026-11-25T02-42-47-implement/control-1.toml",
+"--run-dir",
+".andromeda/runs/2026-11-25T02-42-47-implement",
+"--timeout",
+"3600"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · marker 2026-11-25-virtual-nodes-declared · controls 14 · entries 2 (5,6)",
+"logs $TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47 · $TMPDIR = /tmp · bound: GNU timeout",
+"clone ~/.cache/andromeda-control/35219654 · HEAD b7f61dd0 · copied 192 · removed 0 · working folder 7 files · free 510.7 G",
+"entry 5 in place green · 31.06s → 5.2.log",
+"entry 6 in place green · 37.19s → 6.2.log",
+"control K1 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 2.21s → 5.without-K1.log",
+"control K2 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.79s → 5.without-K2.log",
+"control K3 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.86s → 5.without-K3.log",
+"control K4 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.8s → 5.without-K4.log",
+"control K5 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 2.01s → 5.without-K5.log",
+"control K6 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.9s → 5.without-K6.log",
+"control K7 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.78s → 5.without-K7.log",
+"control K8 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.74s → 5.without-K8.log",
+"control K9 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.75s → 5.without-K9.log",
+"control K10 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.74s → 5.without-K10.log",
+"control K11 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.76s → 5.without-K11.log",
+"control K12 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.76s → 5.without-K12.log",
+"control K13 · entry 5 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 31.06s · 1.84s → 5.without-K13.log",
+"control K14 · entry 6 · holds — in place green, removed red · exit 0 ✗ (exit 101) · 37.19s · 2.72s → 6.without-K14.log",
+"control: 14 holds · 0 timeout · 0 does not hold · 0 unreproduced · clone removed"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-25-virtual-nodes-declared",
+"plan": "doc:2026-11-25-virtual-nodes-declared/plan",
+"root": ".",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47",
+"clone": "~/.cache/andromeda-control/35219654",
+"head": "b7f61dd0afe743249920a38dd596f0c4a620da66",
+"copied": 192,
+"removed": 0,
+"skipped": 0,
+"in_place": [
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.2.log",
+"bytes": 21585,
+"log_sha8": "4abbfa2c",
+"exit": 0,
+"seconds": 31.06,
+"readings": [
+"exit 0 ✓",
+"contains 'test result: ok' ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_declared",
+"run_sha8": "ce69e722",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/6.2.log",
+"bytes": 13186,
+"log_sha8": "707e7905",
+"exit": 0,
+"seconds": 37.19,
+"readings": [
+"exit 0 ✓",
+"lacks 'test result: FAILED' ✓"
+],
+"survivors": [],
+"outcome": "green"
+}
+],
+"controls": [
+{
+"id": "K1",
+"entry": 5,
+"guard": "the non-empty condition in virtual_node_id",
+"cases": [
+"an_empty_key_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/element_id.rs",
+"before": "7ed17412",
+"after": "14c3b93e"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K1.log",
+"bytes": 12107,
+"log_sha8": "978df3cb",
+"exit": 101,
+"seconds": 2.21,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K2",
+"entry": 5,
+"guard": "the no-slash condition in virtual_node_id",
+"cases": [
+"a_key_holding_a_slash_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/element_id.rs",
+"before": "7ed17412",
+"after": "83a07ff2"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K2.log",
+"bytes": 12137,
+"log_sha8": "137fb8e8",
+"exit": 101,
+"seconds": 1.79,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K3",
+"entry": 5,
+"guard": "the empty-key arm of the None match, so every None reads KeyHoldsSlash",
+"cases": [
+"an_empty_key_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "f7a5e05c"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K3.log",
+"bytes": 11746,
+"log_sha8": "a0a122fe",
+"exit": 101,
+"seconds": 1.86,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K4",
+"entry": 5,
+"guard": "the claimed-key check",
+"cases": [
+"a_later_duplicate_key_is_refused_and_the_first_kept"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "c6e7f802"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K4.log",
+"bytes": 11742,
+"log_sha8": "faee6300",
+"exit": 101,
+"seconds": 1.8,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K5",
+"entry": 5,
+"guard": "the claim of a key whose declaration is refused later: only a taken declaration claims",
+"cases": [
+"a_later_duplicate_key_is_refused_and_the_first_kept"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "6093a3bf"
+},
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "6093a3bf",
+"after": "9d4afc56"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K5.log",
+"bytes": 11742,
+"log_sha8": "68e03b04",
+"exit": 101,
+"seconds": 2.01,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K6",
+"entry": 5,
+"guard": "the empty-name check",
+"cases": [
+"an_empty_name_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "7a850ba3"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K6.log",
+"bytes": 12009,
+"log_sha8": "86c1182e",
+"exit": 101,
+"seconds": 1.9,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K7",
+"entry": 5,
+"guard": "the right-edge region condition",
+"cases": [
+"a_region_outside_the_content_box_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "7ae70901"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K7.log",
+"bytes": 12206,
+"log_sha8": "17a7e8d8",
+"exit": 101,
+"seconds": 1.78,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K8",
+"entry": 5,
+"guard": "the bottom-edge region condition",
+"cases": [
+"a_region_outside_the_content_box_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "2cf319e4"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K8.log",
+"bytes": 12221,
+"log_sha8": "5617e662",
+"exit": 101,
+"seconds": 1.74,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K9",
+"entry": 5,
+"guard": "the x >= 0 region condition",
+"cases": [
+"a_region_outside_the_content_box_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "5492cccc"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K9.log",
+"bytes": 11671,
+"log_sha8": "219e3fd2",
+"exit": 101,
+"seconds": 1.75,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K10",
+"entry": 5,
+"guard": "the y >= 0 region condition",
+"cases": [
+"a_region_outside_the_content_box_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "a8e94a90"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K10.log",
+"bytes": 11671,
+"log_sha8": "1a47717f",
+"exit": 101,
+"seconds": 1.74,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K11",
+"entry": 5,
+"guard": "the width > 0 region condition",
+"cases": [
+"a_region_outside_the_content_box_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "48a9b433"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K11.log",
+"bytes": 11671,
+"log_sha8": "1f0bccd4",
+"exit": 101,
+"seconds": 1.76,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K12",
+"entry": 5,
+"guard": "the height > 0 region condition",
+"cases": [
+"a_region_outside_the_content_box_is_refused"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "25622a11"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K12.log",
+"bytes": 11671,
+"log_sha8": "f6cb293d",
+"exit": 101,
+"seconds": 1.76,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K13",
+"entry": 5,
+"guard": "the NotLaidOut arm: the layout read through final_layout with no layout-data check",
+"cases": [
+"an_unlaid_canvas_reads_not_laid_out"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "60d98ec2"
+}
+],
+"word": "holds",
+"removed": {
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/5.without-K13.log",
+"bytes": 11786,
+"log_sha8": "d73cbca5",
+"exit": 101,
+"seconds": 1.84,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"contains 'test result: ok' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+},
+{
+"id": "K14",
+"entry": 6,
+"guard": "the border and padding subtraction in the content box",
+"cases": [
+"the_padded_canvas_reads_its_declared_nodes_in_its_content_box"
+],
+"edits": [
+{
+"path": "packages/dioxus-native-dom/src/virtual_node.rs",
+"before": "466be463",
+"after": "c221e397"
+}
+],
+"word": "holds",
+"removed": {
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_declared",
+"run_sha8": "ce69e722",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": "$TMPDIR/andromeda-gate/2026-11-25-virtual-nodes-declared/implement-2026-11-25T02-42-47/6.without-K14.log",
+"bytes": 1725,
+"log_sha8": "ca7e13e8",
+"exit": 101,
+"seconds": 2.72,
+"readings": [
+"exit 0 ✗ (exit 101)",
+"lacks 'test result: FAILED' ✗"
+],
+"survivors": [],
+"outcome": "red · exit 0 ✗ (exit 101)"
+}
+}
+],
+"removal": "clone removed",
+"at": "K14"
+}
+},
+{
+"tool": "gate",
+"v": "1.40",
+"sha8": "f8f95260",
+"ts": "2026-11-25T03:01:19Z",
+"argv": [
+"scope",
+"--chunk",
+"2026-11-25-virtual-nodes-declared",
+"--run-dir",
+".andromeda/runs/2026-11-25T02-42-47-implement"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · base HEAD (no pre-CI commit) · lists new 2 · modify 5 · derived 0 · record 0",
+"control: lists · glob · record — each fired on its synthetic known positive; C1 · C2 held",
+"scope-record.md: absent — every out-of-list file reads unrecorded",
+"scope: clean — changed 7 · listed 7 · recorded 0 (companion 0 · mechanical 0 · in-intent 0 · widening 0) · absorbed 0 · excluded 185"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"base": "HEAD",
+"base_why": "no pre-CI commit",
+"counts": {
+"changed": 7,
+"listed": 7,
+"recorded": 0,
+"unrecorded": 0,
+"indet": 0,
+"absorbed": 0
+},
+"by_class": {
+"companion": 0,
+"mechanical": 0,
+"in-intent": 0,
+"widening": 0
+},
+"excluded": 185,
+"unparsed": 0,
+"widening_without_word": 0
+}
+},
+{
+"tool": "gate",
+"v": "1.40",
+"sha8": "f8f95260",
+"ts": "2026-11-25T03:01:19Z",
+"argv": [
+"census",
+"--comm",
+"cargo",
+"--comm",
+"rustc",
+"--comm",
+"escher-session",
+"--run-dir",
+".andromeda/runs/2026-11-25T02-42-47-implement",
+"--marker",
+"2026-11-25-virtual-nodes-declared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"census · ps · comm cargo, rustc, escher-session · args — · own tree excluded: 8",
+"census: none running"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"census": {
+"comm": [
+"cargo",
+"rustc",
+"escher-session"
+],
+"args": [],
+"running": []
+}
+}
+},
+{
+"tool": "gate",
+"v": "1.40",
+"sha8": "f8f95260",
+"ts": "2026-11-25T03:02:55Z",
+"argv": [
+"hygiene",
+"--run-dir",
+".andromeda/runs/2026-11-25T02-42-47-implement",
+"--marker",
+"2026-11-25-virtual-nodes-declared"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"root . · case exact · planes rust · base HEAD (no pre-CI commit)",
+"control: P1 drive · P1 device · P1 home · P1 users · P1 root · P1 msys · P1 wsl · P1 tmp · P1 in-root home · P1 in-root drive · P2 · P3 rust — each fired on its synthetic known positive",
+"hygiene: clean — read 190 (runs 182 · evidence 2 · inputs 6) · trails 15 not read · copies 4 not read by P1 — 0 host paths kept · binary 0 not read by P1"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"root": ".",
+"case": "exact",
+"planes": [
+"rust"
+],
+"rows": [],
+"counts": {
+"P1": 0,
+"P2": 0,
+"P3": 0,
+"runs": 182,
+"evidence": 2,
+"inputs": 6,
+"trails": 15,
+"copies": 4,
+"kept": 0,
+"binary": 0,
+"in_root": 0
+},
+"indeterminate": 0
+}
+}
+]

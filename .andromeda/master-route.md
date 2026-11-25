@@ -134,3 +134,4 @@
 2026-11-24-upstream-sync-ahead-of-inside-the-canvas · complete · Upstream sync ahead of inside the canvas — two-parent merge of upstream/main 29a439e05; left-out commits named with reasons; CI, a11y leg and audit green · → chk:2026-11-24-upstream-sync-ahead-of-inside-the-canvas
 2026-11-24-canvas-draw-commands · complete · a driver read of a canvas's draw commands, summary and full levels, deterministic, diffable, size measured · → chk:2026-11-24-canvas-draw-commands
 2026-11-24-canvas-lint · complete · Canvas lint — lint-like checks inside a canvas, a label overflowing its region among them · → chk:2026-11-24-canvas-lint
+2026-11-25-virtual-nodes-declared · pending · Virtual nodes declared — an app declares keyed, named, role-bearing regions inside a canvas, validated, each given the reserved id `{owner}///{key}` · → chk:2026-11-25-virtual-nodes-declared

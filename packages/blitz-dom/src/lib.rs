@@ -105,6 +105,8 @@ pub use crate::layout_reason::{
     SizeReason,
 };
 #[cfg(feature = "custom-widget")]
+pub use crate::node::VirtualNodeDeclaration;
+#[cfg(feature = "custom-widget")]
 pub use crate::node::Widget;
 
 pub use blitz_traits::node_id::NodeId;

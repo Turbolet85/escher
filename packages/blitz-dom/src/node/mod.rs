@@ -17,6 +17,8 @@ mod text;
 
 pub use attributes::{Attribute, Attributes};
 #[cfg(feature = "custom-widget")]
+pub use custom_widget::VirtualNodeDeclaration;
+#[cfg(feature = "custom-widget")]
 pub use custom_widget::{
     ComputedStyles, CustomWidgetData, CustomWidgetStatus, ProxyRenderContext, Widget,
 };

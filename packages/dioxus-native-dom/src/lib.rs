@@ -35,6 +35,7 @@ mod snapshot;
 mod snapshot_diff;
 #[cfg(feature = "accessibility")]
 mod snapshot_text;
+mod virtual_node;
 mod write_once_attr;
 #[cfg(feature = "accessibility")]
 pub use actionable::{ActionableNode, UnkeyedActionable};
@@ -58,6 +59,9 @@ pub use snapshot::{
 pub use snapshot_diff::{DiffNode, Reading, SnapshotDiff};
 #[cfg(feature = "accessibility")]
 pub use snapshot_text::{SNAPSHOT_TEXT_BUDGET, TextPart};
+pub use virtual_node::{
+    RefusedDeclaration, VirtualNode, VirtualNodeRefusal, VirtualNodes, VirtualNodesUnread,
+};
 pub use write_once_attr::{CustomWidgetAttr, SubDocumentAttr};
 
 pub use blitz_dom::NodeId;
