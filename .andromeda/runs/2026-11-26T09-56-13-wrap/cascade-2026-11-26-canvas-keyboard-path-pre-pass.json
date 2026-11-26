@@ -1,0 +1,355 @@
+[
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "bfc2ec06",
+"ts": "2026-11-26T09:57:05Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-26T09-56-13-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-26T09-56-13-wrap",
+"--marker",
+"2026-11-26-canvas-keyboard-path"
+],
+"cwd": ".",
+"exit": 2,
+"stdout": [],
+"stderr": "--patterns-file: not TOML — Expected newline or end of document after a statement (at line 6, column 65)",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "bfc2ec06",
+"ts": "2026-11-26T09:57:14Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-26T09-56-13-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-26T09-56-13-wrap",
+"--marker",
+"2026-11-26-canvas-keyboard-path"
+],
+"cwd": ".",
+"exit": 3,
+"stdout": [
+"baseline a9c01e3c (pre-pass — HEAD)",
+"retired-reads · control UNFIRED over the seven masters (bodies and sets) at a9c01e3c"
+],
+"stderr": "control: retired-reads never fired over the seven masters' pre-pass text, bodies and sets (a9c01e3c) — no master holds them: re-fire with --pattern a11y-reading --pattern graph-drives --pattern cd-graph-state --pattern covered-later --pattern tab-trap --pattern app-focus-call --pattern circle-close --pattern kbd-virtual --pattern tab-order --pattern pixels-only --pattern vn-selected --pattern circles-apart --pattern canvas-attrs --pattern selected-fill; this refusal, the trail's record, is the basis of each named pattern's master zero",
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "cascade",
+"v": "1.37",
+"sha8": "bfc2ec06",
+"ts": "2026-11-26T09:57:29Z",
+"argv": [
+"sweep",
+"--pre-pass",
+"--patterns-file",
+".andromeda/runs/2026-11-26T09-56-13-wrap/report-patterns.toml",
+"--run-dir",
+".andromeda/runs/2026-11-26T09-56-13-wrap",
+"--marker",
+"2026-11-26-canvas-keyboard-path",
+"--pattern",
+"a11y-reading",
+"--pattern",
+"graph-drives",
+"--pattern",
+"cd-graph-state",
+"--pattern",
+"covered-later",
+"--pattern",
+"tab-trap",
+"--pattern",
+"app-focus-call",
+"--pattern",
+"circle-close",
+"--pattern",
+"kbd-virtual",
+"--pattern",
+"tab-order",
+"--pattern",
+"pixels-only",
+"--pattern",
+"vn-selected",
+"--pattern",
+"circles-apart",
+"--pattern",
+"canvas-attrs",
+"--pattern",
+"selected-fill"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"baseline a9c01e3c (pre-pass — HEAD)",
+"architecture · 9 rows over 1 files · new 0 · standing 9 · 6 patterns",
+"security-plan · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"design-system · 2 rows over 1 files · new 0 · standing 2 · 2 patterns",
+"layout-templates · 4 rows over 1 files · new 0 · standing 4 · 3 patterns",
+"test-plan · 3 rows over 1 files · new 0 · standing 3 · 2 patterns",
+"a11y-plan · 6 rows over 1 files · new 0 · standing 6 · 6 patterns",
+"by line · 0 lines · 0 offsets",
+"total (14 patterns) · 57 rows over 20 files",
+"per class · new 0/0 · standing 26/6 · leaf 31/14 · curation 0/0 · base 0/0",
+"rows 1/1 · .andromeda/runs/2026-11-26T09-56-13-wrap/sweep-pre-pass-1.1.txt · 89 lines · 9720 B"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-26T09-56-13-wrap/sweep-pre-pass-1.1.txt"
+],
+"before": null,
+"after": null,
+"extra": {
+"baseline": "a9c01e3cb03a438c923671997a202947fe003958",
+"how": "pre-pass — HEAD",
+"counts": {
+"a11y-reading": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"graph-drives": {
+"new": 0,
+"standing": 2,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"cd-graph-state": {
+"new": 0,
+"standing": 4,
+"leaf": 7,
+"curation": 0,
+"base": 0
+},
+"covered-later": {
+"new": 0,
+"standing": 2,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"tab-trap": {
+"new": 0,
+"standing": 4,
+"leaf": 4,
+"curation": 0,
+"base": 0
+},
+"app-focus-call": {
+"new": 0,
+"standing": 4,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"circle-close": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"kbd-virtual": {
+"new": 0,
+"standing": 1,
+"leaf": 2,
+"curation": 0,
+"base": 0
+},
+"tab-order": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"pixels-only": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"vn-selected": {
+"new": 0,
+"standing": 1,
+"leaf": 1,
+"curation": 0,
+"base": 0
+},
+"circles-apart": {
+"new": 0,
+"standing": 2,
+"leaf": 3,
+"curation": 0,
+"base": 0
+},
+"canvas-attrs": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+},
+"selected-fill": {
+"new": 0,
+"standing": 1,
+"leaf": 0,
+"curation": 0,
+"base": 0
+}
+},
+"bare": [],
+"masters": {
+"architecture": {
+"rows": 9,
+"files": 1,
+"new": 0,
+"standing": 9,
+"patterns": 6
+},
+"security-plan": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"design-system": {
+"rows": 2,
+"files": 1,
+"new": 0,
+"standing": 2,
+"patterns": 2
+},
+"layout-templates": {
+"rows": 4,
+"files": 1,
+"new": 0,
+"standing": 4,
+"patterns": 3
+},
+"test-plan": {
+"rows": 3,
+"files": 1,
+"new": 0,
+"standing": 3,
+"patterns": 2
+},
+"a11y-plan": {
+"rows": 6,
+"files": 1,
+"new": 0,
+"standing": 6,
+"patterns": 6
+}
+},
+"per_master": {
+"a11y-reading": {
+"security-plan": 1
+},
+"graph-drives": {
+"test-plan": 2
+},
+"cd-graph-state": {
+"architecture": 3,
+"a11y-plan": 1
+},
+"covered-later": {
+"architecture": 1,
+"security-plan": 1
+},
+"tab-trap": {
+"architecture": 1,
+"layout-templates": 2,
+"a11y-plan": 1
+},
+"app-focus-call": {
+"architecture": 2,
+"design-system": 1,
+"a11y-plan": 1
+},
+"circle-close": {
+"layout-templates": 1
+},
+"kbd-virtual": {
+"a11y-plan": 1
+},
+"tab-order": {
+"a11y-plan": 1
+},
+"pixels-only": {
+"a11y-plan": 1
+},
+"vn-selected": {
+"architecture": 1
+},
+"circles-apart": {
+"layout-templates": 1,
+"test-plan": 1
+},
+"canvas-attrs": {
+"architecture": 1
+},
+"selected-fill": {
+"design-system": 1
+}
+},
+"forms": {
+"a11y-reading": [
+{
+"form": "twenty",
+"from": "20"
+},
+{
+"form": "20 · 199 · zero · zero",
+"from": "0 · 0"
+},
+{
+"form": "20 · 201 · zero · zero",
+"from": "0 · 0"
+},
+{
+"form": "199 · zero · zero",
+"from": "0 · 0"
+}
+],
+"graph-drives": [
+{
+"form": "nine drives",
+"from": "9"
+},
+{
+"form": "thirteen drives",
+"from": "13"
+}
+],
+"tab-trap": [
+{
+"form": "1 Tab stop",
+"from": "one"
+}
+]
+},
+"parts": [
+"sweep-pre-pass-1.1.txt"
+]
+}
+}
+]

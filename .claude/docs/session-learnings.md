@@ -8,6 +8,13 @@ _This file is entirely wrap-session's territory. `/setup-project` creates it if 
 
 ---
 
+## 2026-11-26 — The engine focuses a custom-widget element on pointer down
+blitz-dom's widget arm focuses a focusable element that carries a custom widget when a pointer goes down on it, so a click on a canvas focuses it within the click's own settled step — blur and focusout on the prior node, then focus and focusin on the canvas — with no focus call by the app. A `set_focus` an app writes in its canvas's click handler guards nothing: removed, its case stays green. Pin the focus by behaviour (the focus readings after a click), never by a call the engine already makes.
+
+Where it applies: an app widget painted from Rust that takes keys after a click — Circle Drawer's canvas, a later canvas sample.
+
+---
+
 ## 2026-11-25 — A decision resting on a fork's answer carries the trade the forks file measured
 At a wrap's Validate, check 7's fit reader reads a proposed decision row whose `rule` only restates what the code does — a field's type, a mark the read does not write — and whose `why` is empty as code retold (`not_master` type 4), even when the row records a fork's answer the plan expected. The reason exists: the chunk's `evidence/founder-forks.md` measured each option's cost. Raise such a decision as your own operation with the chosen option's trade in its `why` (what the rejected option would have cost), then fit reads it as a choice.
 
@@ -393,7 +400,7 @@ Where it applies: authoring a control. Point the recorded command at a file insi
 ## 2026-10-13 — `gate.py run … --operator {n} --dry-run` writes the run dir's gate trail
 A dry run of an operator entry is not read-only: it appends to the run dir's `gate-{marker}.json` trail. Once that trail is tracked (after the operator pass's pre-CI commit), a dry run fired before the push entry dirties the tree, and the push entry's own `git diff --quiet` guard then fails. Set the trail aside before the dry run and restore it before the push entry runs, or skip the dry run once the trail is tracked (as measured at escher-0.1.0/chunks/2026-10-12-headless-screenshot/evidence/operator-pass.md, entry 20).
 
-Where it applies: an operator pass whose plan carries a push entry guarded by `git diff --quiet`.
+Where it applies: an operator pass whose plan carries a push entry guarded by `git diff --quiet`. Extended 2026-11-26: a real firing of that push entry through `gate.py run --operator` writes the committed trail too, before its own guard reads the tree, so the guard reads red on the tool's write — commit the dirty bookkeeping first and fire the push entry by hand, bare.
 
 ---
 

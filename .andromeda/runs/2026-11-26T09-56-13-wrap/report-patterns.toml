@@ -1,0 +1,62 @@
+# Wrap P1 site sweep — one pattern per moved fact of the report (Counts / qualifiers moved, Spec claims disproved,
+# Expected amendments, Retired), each with its name token.
+
+[[pattern]]
+id = 'a11y-reading'
+regex = '''20 · 199 · 0 · 0|20 · 201 · 0 · 0|199 · 0 · 0|a11y leg's reading'''
+
+[[pattern]]
+id = 'graph-drives'
+regex = 'GRAPH_DRIVES|UNEXERCISED_AFTER_DRIVES|9 drives|13 drives'
+
+[[pattern]]
+id = 'cd-graph-state'
+regex = 'Circle Drawer[^.\n]{0,120}(graph )?state|dialog_idx|dialog_r\b|use_graph_state'
+
+[[pattern]]
+id = 'covered-later'
+regex = 'covered only by|another node of its canvas|never by another node|declares later|later-declared|a later (square|node|circle)|covered_by_later_node'
+
+[[pattern]]
+id = 'tab-trap'
+regex = 'widget_tab_pass_through|Tab pass-through|traps? Tab|keyboard trap|before (every|any) default action|one Tab stop'
+
+[[pattern]]
+id = 'app-focus-call'
+regex = 'set_focus|focus(es|ed)? (the|a) (canvas|custom-widget element) on (pointer ?down|PointerDown)'
+
+[[pattern]]
+id = 'circle-close'
+regex = 'circle-close|Close below the view'
+
+[[pattern]]
+id = 'kbd-virtual'
+regex = 'keyboard-virtual-nodes|no keyboard path|keyboard[^.\n]{0,60}virtual node|virtual node[^.\n]{0,60}keyboard'
+
+[[pattern]]
+id = 'tab-order'
+regex = 'CIRCLE_DRAWER_TAB_ORDER|stated-tab-order|tab order walked|stated Tab order|stated sequence'
+
+[[pattern]]
+id = 'pixels-only'
+regex = 'circle-drawer-canvas-pixels-only|canvas pixels only|pixels only'
+
+[[pattern]]
+id = 'vn-selected'
+regex = 'VirtualNodeDeclaration|virtual node[^.\n]{0,80}selected|selected[^.\n]{0,60}virtual node|declared selected'
+
+[[pattern]]
+id = 'circles-apart'
+regex = 'circles-apart-written-through-attribute|data-circles|write_circles|click_inside'
+
+[[pattern]]
+id = 'canvas-attrs'
+regex = 'data-selected|data-adjusting|700 × 400|700 x 400|flex-shrink'
+
+[[pattern]]
+id = 'selected-fill'
+regex = 'SELECTED_FILL|circle-drawer-canvas-colours-in-code'
+
+[[pattern]]
+id = 'retired-reads'
+regex = '''adds a circle at its centre|a click on a circle's node adds|another circle never covers|circle under another'''
