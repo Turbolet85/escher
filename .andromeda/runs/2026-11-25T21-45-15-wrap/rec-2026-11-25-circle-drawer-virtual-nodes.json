@@ -1,0 +1,1799 @@
+[
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T21:47:49Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-25-circle-drawer-virtual-nodes",
+"--section-file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/after-implement.md",
+"--heading",
+"## After implement",
+"--before",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-25-circle-drawer-virtual-nodes/report rev 4 · 10 new · 0 revised · 0 retired · 42 kept · tx 4019"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T21:47:50Z",
+"argv": [
+"put",
+"--root",
+".",
+"--doc",
+"report",
+"--owner",
+"chk:2026-11-25-circle-drawer-virtual-nodes",
+"--section-file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/new-text.md",
+"--heading",
+"## New text, by line",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 2026-11-25-circle-drawer-virtual-nodes/report rev 5 · 57 new · 0 revised · 0 retired · 52 kept · tx 4020"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T21:48:11Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cites-land-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"--base",
+"a5d18f604a88533232d9164b5db1afd3e6159070",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 0 fact(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T21:48:14Z",
+"argv": [
+"cites-land",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cites-land-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"--base",
+"a5d18f604a88533232d9164b5db1afd3e6159070",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 0 fact(s) · 0 edge(s) · tx 4022"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T21:50:25Z",
+"argv": [
+"rows-packs",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1590 · packs 16 · pack 100 · 412186 B",
+"security-plan: rows 588 · packs 6 · pack 100 · 173404 B",
+"design-system: rows 140 · packs 2 · pack 100 · 39617 B",
+"layout-templates: rows 131 · packs 2 · pack 100 · 33477 B",
+"test-plan: rows 654 · packs 7 · pack 100 · 189997 B",
+"obs-plan: rows 299 · packs 3 · pack 100 · 82835 B",
+"a11y-plan: rows 243 · packs 3 · pack 100 · 78797 B",
+"rows-packs: 7 master(s) · 3645 row(s) · 39 pack(s) · 2 draw(s) a pack · pin 4022"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T21-45-15-wrap/rows-packs.json"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-25T22:02:20Z",
+"argv": [
+"rows-union",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--side",
+"wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"architecture: rows 1590 · packs 16 · picked 53 (36 by every draw) · standing 0 · 209801 B · Established Decisions: by boundary, the rest under `also here:` · Standard Contracts: by boundary, the rest under `also here:`",
+"security-plan: rows 588 · packs 6 · picked 29 (13 by every draw) · standing 0 · 117977 B · Input Validation: by boundary, the rest under `also here:`",
+"design-system: rows 140 · packs 2 · picked 17 (2 by every draw) · standing 0 · 20173 B",
+"layout-templates: rows 131 · packs 2 · picked 10 (7 by every draw) · standing 0 · 29205 B",
+"test-plan: rows 654 · packs 7 · picked 33 (22 by every draw) · standing 0 · 144840 B",
+"obs-plan: rows 299 · packs 3 · picked 26 (5 by every draw) · standing 0 · 63938 B",
+"a11y-plan: rows 243 · packs 3 · picked 27 (16 by every draw) · standing 0 · 56724 B",
+"rows-union: 7 master(s) · picked 195 of 3645 · rule any"
+],
+"stderr": null,
+"wrote": [
+".andromeda/runs/2026-11-25T21-45-15-wrap/arch-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/arch-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/arch-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/security-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/security-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/security-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/design-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/design-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/design-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/layouts-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/layouts-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/layouts-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/tests-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/tests-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/tests-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/obs-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/obs-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/obs-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/a11y-rows.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/a11y-standing.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/a11y-pick-counts.md",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:35Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-verb/node-tag · rejected",
+"absence/virtual-node-keyboard-path · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Standard Contracts: 2 row(s)\n**Section:** Standard Contracts\n**Change:** ~ contract/handler-coverage/canvas · promise: was «Handlers inside a canvas are not counted: a virtual node a canvas declares carries none, and a click on one counts its canvas's own listener under the canvas's id.»; now «A virtual node's click is listed under its {owner}///{key} id, owned by the canvas, exercised where a replayed click named it; a canvas click landing inside a node counts the canvas's own listener under the canvas's id alone.»\n+ contract/blitz-dom-crate-root/virtual-node-role — blitz-dom crate root · VirtualNodeRole\n**Why:** contract/handler-coverage/canvas: The coverage line now lists a virtual node's click under its id, so the row's claim that handlers inside a canvas are not counted is false and must follow. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\ncontract/blitz-dom-crate-root/virtual-node-role: blitz-dom's public surface gains a re-export, which the crate-root rows must register beside its other public re-exports. — on delegate the escher overseer, 2026-11-25, inputs#I9, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"## 2026-11-25-circle-drawer-virtual-nodes — Established Decisions: 1 row(s)\n**Section:** Established Decisions\n**Change:** + decision/canvas-command-grouping — Canvas commands grouped under virtual nodes\n**Why:** decision/canvas-command-grouping: The chunk lands the grouping of draw commands under virtual nodes, a new standing decision no row of the canvas reading holds. — on relayed verbatim by the escher overseer, 2026-11-25, inputs#I10\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-verb/node-tag · rejected",
+"absence/virtual-node-keyboard-path · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Standard Contracts: 2 row(s)\n**Section:** Standard Contracts\n**Change:** ~ contract/handler-coverage/canvas · promise: was «Handlers inside a canvas are not counted: a virtual node a canvas declares carries none, and a click on one counts its canvas's own listener under the canvas's id.»; now «A virtual node's click is listed under its {owner}///{key} id, owned by the canvas, exercised where a replayed click named it; a canvas click landing inside a node counts the canvas's own listener under the canvas's id alone.»\n+ contract/blitz-dom-crate-root/virtual-node-role — blitz-dom crate root · VirtualNodeRole\n**Why:** contract/handler-coverage/canvas: The coverage line now lists a virtual node's click under its id, so the row's claim that handlers inside a canvas are not counted is false and must follow. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\ncontract/blitz-dom-crate-root/virtual-node-role: blitz-dom's public surface gains a re-export, which the crate-root rows must register beside its other public re-exports. — on delegate the escher overseer, 2026-11-25, inputs#I9, PROVISIONAL\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"## 2026-11-25-circle-drawer-virtual-nodes — Established Decisions: 1 row(s)\n**Section:** Established Decisions\n**Change:** + decision/canvas-command-grouping — Canvas commands grouped under virtual nodes\n**Why:** decision/canvas-command-grouping: The chunk lands the grouping of draw commands under virtual nodes, a new standing decision no row of the canvas reading holds. — on relayed verbatim by the escher overseer, 2026-11-25, inputs#I10: «B: номер узла»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:55Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-verb/node-tag · rejected",
+"absence/virtual-node-keyboard-path · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 4024 · 3 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:55Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Established Decisions: 1 row(s)\n**Section:** Established Decisions\n**Change:** ~ decision/canvas-reading-diffable · rule: was «A canvas reading is deterministic and diffable by line: two reads give the same bytes, a changed command reads as one line removed and one added, and a layer's filter is written as a flag only.»; now «A canvas reading is deterministic and diffable by line: two reads give the same bytes, a changed command reads as one line removed and one added, both closing on one node tag where a virtual node groups it, and a layer's filter is written as a flag only.»\n**Why:** decision/canvas-reading-diffable: Each canvas line now closes on the index of the virtual node grouping it, so a changed command's removed and added lines name their node by one shared tag, which the diffable rule must state. — on relayed verbatim by the escher overseer, 2026-11-25, inputs#I10: «B: номер узла»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/coverage-line-virtual-node-id · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** + decision/canvas-answer-node-index — Canvas answer carries a virtual node by its index\n**Why:** decision/canvas-answer-node-index: The canvas answer now tags each command line with a virtual node's index, and canvas-content-crossing's rule cannot take that clause within its bound, so the crossing's new number stands as a row of its own. — on relayed verbatim by the escher overseer, 2026-11-25, inputs#I10: «B: номер узла»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Threat Model Summary: 1 row(s)\n**Section:** Threat Model Summary\n**Change:** ~ decision/virtual-node-crossing · rule: was «A canvas's virtual node id `{owner}///{key}` and its author-declared name cross the accessibility tree, snapshot text, diff, MCP results, kept checks and socket and command-line answer line; the graph, actions and layout answers carry the id, never the name; the lint and canvas answer hold none.»; now «A canvas's virtual node id `{owner}///{key}` and its declared name cross the accessibility tree, snapshot text, diff, MCP results, kept checks and socket and command-line answer line; the graph, actions, layout and coverage answers carry the id, never the name; the lint and canvas answer hold none.»\n**Why:** decision/virtual-node-crossing: The coverage line now carries a virtual node's `{owner}///{key}` id with owner and event click, so the crossing's list of answers carrying the id must name it. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-design-system.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/canvas-line-node-tag · rejected",
+"fit: fits 0 · not_master 0 · stands 0",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 0 operation(s) · 0 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:14:56Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-design-system.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** + decision/canvas-line-node-tag — Canvas line node tag\n**Why:** decision/canvas-line-node-tag: The canvas line form gains a closing node tag, the node's index a number alone on the founder's own F2 B, and the standing line-form row cannot take it within its rule's bound, so the tag stands as a row of its own. — on relayed verbatim by the escher overseer, 2026-11-25, inputs#I10: «B: номер узла»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none — the call sets and retires no row",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:05Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"architecture",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-architecture.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4025 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:05Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/coverage-line-virtual-node-id · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4026 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-security-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4027 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"design-system",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-design-system.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4028 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:06Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/stand-element-ids/circle-canvas-circle-node · rejected",
+"contract/escher-session-canvas/node-tag · rejected",
+"name/other/canvas-line-key-node · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Surface: desktop-native: 1 row(s)\n**Section:** Surface: desktop-native\n**Change:** ~ decision/circle-drawer-circles-painted-on-canvas · rule: was «Circle Drawer's circles are painted by a canvas widget from one data-circles attribute (x,y,d per circle, semicolon-joined, malformed text read as no circle), never as DOM nodes, so they reach no snapshot, tree or graph, cross as shot pixels and canvas draw commands, and lint reads label ink boxes.»; now «Circle Drawer's circles are painted by a canvas widget from one data-circles attribute (x,y,d,id per circle, semicolon-joined, malformed text read as no circle), never as DOM nodes; each also a canvas virtual node, crossing as shot pixels, draw commands and its node, and lint reads label ink boxes.»\n**Why:** decision/circle-drawer-circles-painted-on-canvas: The circles are now declared virtual nodes of the canvas and data-circles reads x,y,d,id per circle, so the row's x,y,d form and its claim that circles reach no snapshot, tree or graph are false. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"## 2026-11-25-circle-drawer-virtual-nodes — Surface: cli: 1 row(s)\n**Section:** Surface: cli\n**Change:** ~ contract/escher-session-coverage/answer · promise: was «Each check replayed on a fresh boot; one uncoloured line {\"unexercised\":[{id,owner,event}],\"checks\",\"held\"}, owner left out when absent; a failed boot is the session error, exit 3.»; now «Each check replayed on a fresh boot; one uncoloured line {\"unexercised\":[{id,owner,event}],\"checks\",\"held\"}, owner left out when absent; a canvas virtual node's click under its {owner}///{key} id, canvas-owned, exercised where a replayed click named it; a failed boot is the session error, exit 3.»\n**Why:** contract/escher-session-coverage/answer: The coverage line now carries a canvas virtual node's click under its {owner}///{key} id, owned by the canvas, so the answer's promise must say what it lists of virtual nodes. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 2 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/stand-boot/boot-circle-drawer · rejected",
+"contract/driver-json/canvas-line-keys · rejected",
+"contract/lint-findings/virtual-nodes · rejected",
+"decision/canvas-node-index-proven-apart · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — 2. Test Strategy: 1 row(s)\n**Section:** 2. Test Strategy\n**Change:** ~ contract/handler-coverage-limits/canvas-handler · promise: was «A handler inside a canvas is not counted.»; now «A canvas's virtual node's click is listed under its `{owner}///{key}` id, owned by its canvas, and exercised where a replayed click named it; a canvas click landing inside a node is counted for the canvas listener alone.»\n**Why:** contract/handler-coverage-limits/canvas-handler: Handler coverage now lists a virtual node's click instead of counting nothing inside a canvas, so the limit row must state what is and is not counted. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"## 2026-11-25-circle-drawer-virtual-nodes — 5. Integration Test Strategy: 2 row(s)\n**Section:** 5. Integration Test Strategy\n**Change:** ~ decision/reserved-graph-id-form · rule: was «No id of the lint answer holds the reserved `{owner}///{key}` form, nor of the stand's UI graph or actions answer while the stand declares no virtual node.»; now «No id of the lint answer holds the reserved `{owner}///{key}` form; the stand's UI graph and actions answer hold it only for the virtual nodes a canvas declares, Circle Drawer's circles.»\n− decision/handler-coverage-canvas-uncounted → contract/handler-coverage-limits/canvas-handler: Handler coverage now lists a canvas's virtual node's click, so a handler inside a canvas is no longer uncounted as a whole.\n**Why:** decision/reserved-graph-id-form: The row's condition «while the stand declares no virtual node» no longer holds, since the stand's Circle Drawer now declares its circles. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\ndecision/handler-coverage-canvas-uncounted: The decision's name and rule state the opposite of what coverage now does, and the limit contract states the new reading. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"## 2026-11-25-circle-drawer-virtual-nodes — 7. Test Data & Fixtures: 1 row(s)\n**Section:** 7. Test Data & Fixtures\n**Change:** + decision/circles-apart-written-through-attribute — Circles apart written through the attribute\n**Why:** decision/circles-apart-written-through-attribute: The chunk sets a fixture convention for Circle Drawer checks that future checks must follow.\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 3 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 4 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-answer/node · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — 8. PII Scrubbing & Compliance: 1 row(s)\n**Section:** 8. PII Scrubbing & Compliance\n**Change:** ~ contract/coverage-line/content · promise: was «Carries stable ids, owner ids, handler event names and two counts only, never a value or typed text; a boundary widening, ratified.»; now «Carries stable ids, owner ids, handler event names and two counts only, never a value or typed text; a canvas virtual node's click is listed under its {owner}///{key} id, owned by its canvas, and a canvas click inside a node is counted for the canvas alone; a boundary widening, ratified.»\n**Why:** contract/coverage-line/content: The coverage line's content now includes a canvas virtual node's click under its owner-keyed id, so the row naming what the line carries must say which owner and id such an entry crosses with. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/circle-drawer-canvas-pixels-only · rejected",
+"decision/circle-drawer-circle-nodes · rejected",
+"contract/canvas-answer/node-tag · rejected",
+"contract/handler-coverage/virtual-node-click · rejected",
+"absence/lint-virtual-nodes · rejected",
+"contract/driver-click-refusals/covered · rejected",
+"decision/ui-graph-one-node-per-snapshot-node · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — 5. Keyboard Navigation: 1 row(s)\n**Section:** 5. Keyboard Navigation\n**Change:** + absence/keyboard-virtual-nodes — A keyboard route to a canvas's virtual nodes; Circle Drawer's circles are reached by click, tree and snapshot alone\n**Why:** absence/keyboard-virtual-nodes: The chunk adds clickable circle nodes with keyboard coverage marked absent by the plan's boundary, so the missing keyboard route is recorded as an absence.\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"## 2026-11-25-circle-drawer-virtual-nodes — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ contract/node-id/reserved-separator · promise: was «The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff, the UI graph, the actions answer and the layout answer, these three never carrying the node's declared name; no element's id holds ///.»; now «The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff, the UI graph, the actions, layout and handler coverage answers, these four never carrying the node's declared name; no element's id holds ///.»\n**Why:** contract/node-id/reserved-separator: The coverage line now carries a virtual node's {owner}///{key} id, so the list of answers serving the form must name it. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:07Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — 7. Screen Reader Support: 1 row(s)\n**Section:** 7. Screen Reader Support\n**Change:** ~ decision/circle-drawer-canvas-pixels-only · rule: was «Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed and clickable; its circles and diameter labels reach no DOM, snapshot, accessibility tree or UI graph, leaving only as shot pixels, canvas verb draw commands and lint truncated boxes, no label's text among them.»; now «Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed and clickable; each circle is one of its virtual nodes; its diameter labels reach no DOM, snapshot, tree or UI graph, leaving only as shot pixels, canvas draw commands and lint truncated boxes, never as text.»\n**Why:** decision/circle-drawer-canvas-pixels-only: Each circle is now a declared virtual node of the canvas, read in the tree, the snapshot and the graph, so the row's claim that the circles reach none of them is false; its labels' reading is unchanged. — resolved by the operator (Q1): relayed verbatim by the escher overseer, 2026-11-26, inputs#I11: «Подтвердить все 10»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:13Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"layout-templates",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-layout-templates.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/stand-element-ids/circle-canvas-circle-node · rejected",
+"contract/escher-session-canvas/node-tag · rejected",
+"name/other/canvas-line-key-node · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 4029 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:14Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/stand-boot/boot-circle-drawer · rejected",
+"contract/driver-json/canvas-line-keys · rejected",
+"contract/lint-findings/virtual-nodes · rejected",
+"decision/canvas-node-index-proven-apart · rejected",
+"fit: fits 3 · not_master 0 · stands 0",
+"landed tx 4030 · 4 operation(s) · 3 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:14Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"obs-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-obs-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"contract/canvas-answer/node · rejected",
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4031 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:15Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"decision/circle-drawer-canvas-pixels-only · rejected",
+"decision/circle-drawer-circle-nodes · rejected",
+"contract/canvas-answer/node-tag · rejected",
+"contract/handler-coverage/virtual-node-click · rejected",
+"absence/lint-virtual-nodes · rejected",
+"contract/driver-click-refusals/covered · rejected",
+"decision/ui-graph-one-node-per-snapshot-node · rejected",
+"fit: fits 2 · not_master 0 · stands 0",
+"landed tx 4032 · 2 operation(s) · 2 entries · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:15:15Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"a11y-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-a11y-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4033 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:25:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-security-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — Input Validation: 1 row(s)\n**Section:** Input Validation\n**Change:** ~ contract/stable-element-id/virtual-node-form · promise: was «The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the accessibility tree and, from it, the snapshot, its diff and the graph, actions and layout answers; no element's id holds `///`.»; now «The id grammar reserves `{owner}///{key}` for a virtual node, spelled for a non-empty key with no `/` and given only to a canvas's taken declared nodes, served in the tree and from it the snapshot, its diff and the graph, actions, layout and coverage answers; no element's id holds `///`.»\n**Why:** contract/stable-element-id/virtual-node-form: The coverage line now carries a virtual node's `{owner}///{key}` id, so the list of reads serving the reserved form must name it, as virtual-node-crossing now does. — resolved by the operator (Q2): relayed verbatim by the escher overseer, 2026-11-26, inputs#I12: «Подтвердить обе»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:25:47Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"## 2026-11-25-circle-drawer-virtual-nodes — 4. Unit Test Strategy: 1 row(s)\n**Section:** 4. Unit Test Strategy\n**Change:** ~ contract/element-id/virtual-form · promise: was «The form `{owner}///{key}` is reserved for a canvas's virtual nodes and served in the accessibility tree, the snapshot and its diff, the UI graph, the actions answer and the layout answer: no id the walk writes holds the virtual separator, and a key that is empty or holds `/` makes no virtual id.»; now «The form `{owner}///{key}` is reserved for a canvas's virtual nodes and served in the accessibility tree, the snapshot and its diff, the UI graph, the actions, layout and coverage answers: no id the walk writes holds the virtual separator, and a key that is empty or holds `/` makes no virtual id.»\n**Why:** contract/element-id/virtual-form: The coverage line now carries a virtual node's `{owner}///{key}` id, so the list of reads serving the reserved form must name it, as virtual-node-crossing now does. — resolved by the operator (Q2): relayed verbatim by the escher overseer, 2026-11-26, inputs#I12: «Подтвердить обе»\n**Ref:** .andromeda/runs/2026-11-25T21-45-15-wrap/",
+"patterns: none: 1 set(s) and retire(s) changed prose alone — no file; step 3's leaves read each changed row's delta",
+"dry-run · would land 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:25:52Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"security-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-security-plan.2.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4035 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:25:52Z",
+"argv": [
+"rows-land",
+"--root",
+".",
+"--doc",
+"test-plan",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/ops-main-test-plan.md",
+"--results",
+".andromeda/runs/2026-11-25T21-45-15-wrap/fanout-results.md",
+"--fit",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"fit: fits 1 · not_master 0 · stands 0",
+"landed tx 4036 · 1 operation(s) · 1 entry · landed before: 0"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+".andromeda/runs/2026-11-25T21-45-15-wrap/cascade-tally.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:13Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/a11y-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__a11y-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/a11y-summary.md rev 28 · 0 new · 2 revised · 0 retired · tx 4037"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/a11y-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:14Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/a11y.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__rules__a11y.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/a11y.md rev 27 · 0 new · 2 revised · 0 retired · tx 4038"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/rules/a11y.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:14Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/blitz-dom.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__services__blitz-dom.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/blitz-dom.md rev 27 · 0 new · 1 revised · 0 retired · tx 4039"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/services/blitz-dom.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:15Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/seven_guis.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__services__seven_guis.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/seven_guis.md rev 29 · 0 new · 1 revised · 0 retired · tx 4040"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/services/seven_guis.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:16Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/services/escher-driver.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__services__escher-driver.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/services/escher-driver.md rev 43 · 0 new · 3 revised · 0 retired · tx 4041"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/services/escher-driver.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:16Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/commands.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__commands.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/commands.md rev 38 · 0 new · 1 revised · 0 retired · tx 4042"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/commands.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:17Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/design-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__design-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/design-summary.md rev 19 · 0 new · 2 revised · 0 retired · tx 4043"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/design-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:17Z",
+"argv": [
+"harness",
+"land",
+"CLAUDE.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-CLAUDE.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 59 · 0 new · 1 revised · 0 retired · tx 4044"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:18Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/obs-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__obs-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/obs-summary.md rev 31 · 0 new · 1 revised · 0 retired · tx 4045"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/obs-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:18Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/observability.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__rules__observability.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/observability.md rev 27 · 0 new · 1 revised · 0 retired · tx 4046"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/rules/observability.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:19Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/security-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__security-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/security-summary.md rev 45 · 0 new · 1 revised · 0 retired · tx 4047"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/security-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:20Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/security.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__rules__security.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/security.md rev 52 · 0 new · 1 revised · 0 retired · tx 4048"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/rules/security.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:20Z",
+"argv": [
+"harness",
+"land",
+".claude/docs/tests-summary.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__docs__tests-summary.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/docs/tests-summary.md rev 49 · 0 new · 1 revised · 0 retired · tx 4049"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/docs/tests-summary.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:30:21Z",
+"argv": [
+"harness",
+"land",
+".claude/rules/testing.md",
+"--file",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap/staged-leaf-.claude__rules__testing.md",
+"--root",
+".",
+"--run-dir",
+"./.andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 54 · 0 new · 1 revised · 0 retired · tx 4050"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:35:55Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 4 record(s) · 4 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:35:55Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land 4 record(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:36:01Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/route-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 4 record(s) · 4 edge(s) · tx 4055 · cry-yr2aexmx … cry-ohadx5qs"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson",
+"./escher-0.4.0/working-route.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:36:01Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/residuals-batch.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 4 record(s) · 0 edge(s) · tx 4056 · res-wto72ffy … res-jx5wf3sg"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:37:23Z",
+"argv": [
+"put",
+"--root",
+".",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/run-node.txt",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--marker",
+"2026-11-25-circle-drawer-virtual-nodes"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed 1 record(s) · 0 edge(s) · tx 4058 · run-wa4w266f … run-wa4w266f"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-25T16-19-21-2026-11-25-circle-drawer-virtual-nodes.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T06:18:27Z",
+"argv": [
+"land",
+"--root",
+".",
+"--chunk",
+"2026-11-25-circle-drawer-virtual-nodes",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"unchanged · 17 file(s) of 2026-11-25-circle-drawer-virtual-nodes"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]

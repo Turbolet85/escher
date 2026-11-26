@@ -1,3 +1,0 @@
-Question (implement P4, hygiene): Hygiene refuses one line in .andromeda/runs/2026-11-25T16-18-13-phase/control-probes.md:32 (the phase run's evidence, cited by the plan). It quotes the CI windows log line `Compiling blitz-tests v0.3.0-beta.4 ({the runner's drive path}\tests\blitz-tests)` [path elided here; the verbatim text is inputs#I6], and the runner's drive path reads as a P1 host path. The chunk's files cannot land until hygiene reads clean. How should that line be handled?
-
-Answer (the operator, in this session): "Elide the path (Recommended)" — Rewrite only that parenthetical to `(…\tests\blitz-tests)`, keeping the `Compiling blitz-tests v` fact and its counts; re-run hygiene, then land.

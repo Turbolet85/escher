@@ -1,0 +1,16 @@
+--- a/.andromeda/a11y-plan.md
++++ b/.andromeda/a11y-plan.md
+@@ -141,2 +141,3 @@
+ contract/ui-graph-state/use-graph-state · UI graph state registration · use_graph_state — Apps register state for the UI graph with authored DeclaredWrite declarations, each naming an element's stable id or a prefix ending in *, and an event named without on.
++absence/keyboard-virtual-nodes — A keyboard route to a canvas's virtual nodes; Circle Drawer's circles are reached by click, tree and snapshot alone
+ ## a11y-plan · 6-visual-design-verification · twin visual-design-verification
+@@ -216,3 +217,3 @@
+ decision/checked-reading · Source of the checked reading — checked is a native checkbox's or radio's state, else on a checkable role its toggled reading, True true and False and Mixed false, nothing where the role states none. · why: ratified
+-decision/circle-drawer-canvas-pixels-only · Circle Drawer's drawing area as one named canvas node — Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed and clickable; its circles and diameter labels reach no DOM, snapshot, accessibility tree or UI graph, leaving only as shot pixels, canvas verb draw commands and lint truncated boxes, no label's text among them. · guard: stand_circle_drawer_canvas
++decision/circle-drawer-canvas-pixels-only · Circle Drawer's drawing area as one named canvas node — Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed and clickable; each circle is one of its virtual nodes; its diameter labels reach no DOM, snapshot, tree or UI graph, leaving only as shot pixels, canvas draw commands and lint truncated boxes, never as text. · guard: stand_circle_drawer_canvas
+ decision/driver-schema-has-no-role-set · Driver schema defines no role or name set — The driver's schema defines no role or name set of its own; role and name are field names of its result nodes.
+@@ -247,3 +248,3 @@
+ contract/mcp-result/snapshot · MCP tool results · snapshot — An accepted snapshot result is the text form itself for a whole screen, and for a screen in parts the JSON line {text, part, parts}; an acting call's result is its JSON line with the diff.
+-contract/node-id/reserved-separator · served node ids · the separator /// — The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff, the UI graph, the actions answer and the layout answer, these three never carrying the node's declared name; no element's id holds ///.
++contract/node-id/reserved-separator · served node ids · the separator /// — The form {owner}///{key} is reserved for a canvas's virtual nodes and served in the accessibility tree and, from it, the snapshot and its diff, the UI graph, the actions, layout and handler coverage answers, these four never carrying the node's declared name; no element's id holds ///.
+ contract/snapshot-diff/differs · the snapshot diff · differs — A changed node names the readings that differ from before the step, in node-key order.

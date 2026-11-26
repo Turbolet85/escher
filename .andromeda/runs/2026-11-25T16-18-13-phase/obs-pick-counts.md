@@ -1,9 +1,0 @@
-@pack_count n=1 doc=obs-plan pack=1 draw=1 rows=100 yes=74 no=26 standing=3 file=obs-pick-p1.md of=5f7e4925d1a48848 rule=any
-@pack_count n=2 doc=obs-plan pack=1 draw=2 rows=100 yes=61 no=39 standing=2 file=obs-pick-p1.d2.md of=6fe90afe4089cece rule=any
-@pack_count n=3 doc=obs-plan pack=1 draw=3 rows=100 yes=68 no=32 standing=2 file=obs-pick-p1.d3.md of=4dde0f94a1db58a7 rule=any
-@pack_count n=4 doc=obs-plan pack=2 draw=1 rows=99 yes=55 no=44 standing=1 file=obs-pick-p2.md of=a917806b47e653af rule=any
-@pack_count n=5 doc=obs-plan pack=2 draw=2 rows=99 yes=61 no=38 standing=0 file=obs-pick-p2.d2.md of=b06bf5914d6de513 rule=any
-@pack_count n=6 doc=obs-plan pack=2 draw=3 rows=99 yes=72 no=27 standing=1 file=obs-pick-p2.d3.md of=a52e41b57a854b76 rule=any
-@pack_count n=7 doc=obs-plan pack=3 draw=1 rows=100 yes=37 no=63 standing=0 file=obs-pick-p3.md of=769bad031f49471f rule=any
-@pack_count n=8 doc=obs-plan pack=3 draw=2 rows=100 yes=34 no=66 standing=0 file=obs-pick-p3.d2.md of=fd51d15ffe1d6647 rule=any
-@pack_count n=9 doc=obs-plan pack=3 draw=3 rows=100 yes=32 no=68 standing=0 file=obs-pick-p3.d3.md of=71f6e5bf98faa4aa rule=any

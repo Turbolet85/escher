@@ -1,0 +1,166 @@
+[
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:32:15Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/rules/testing.md",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/draft-.claude-rules-testing.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land .claude/rules/testing.md rev 55 · 2 node(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:32:15Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/draft-CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap",
+"--dry-run"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"dry-run · would land CLAUDE.md rev 60 · 2 node(s) · 0 edge(s)"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:32:21Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+".claude/rules/testing.md",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/draft-.claude-rules-testing.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed .claude/rules/testing.md rev 55 · 0 new · 1 revised · 0 retired · tx 4052"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-26T05-32-21-2026-11-25T21-45-15-wrap.ndjson",
+"./.claude/rules/testing.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T05:32:21Z",
+"argv": [
+"harness",
+"land",
+"--root",
+".",
+"CLAUDE.md",
+"--file",
+".andromeda/runs/2026-11-25T21-45-15-wrap/draft-CLAUDE.md",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed CLAUDE.md rev 60 · 0 new · 1 revised · 0 retired · tx 4053"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-26T05-32-21-2026-11-25T21-45-15-wrap.ndjson",
+"./CLAUDE.md"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T06:18:31Z",
+"argv": [
+"outputs",
+"land",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"landed tx 4062 · 865 record(s) of 135 payload(s)"
+],
+"stderr": null,
+"wrote": [
+"./.andromeda/db/log/2026-11-26T05-32-21-2026-11-25T21-45-15-wrap.ndjson"
+],
+"before": null,
+"after": null
+},
+{
+"tool": "rec",
+"v": "1.57",
+"sha8": "47332ba4",
+"ts": "2026-11-26T06:18:37Z",
+"argv": [
+"seal",
+"--root",
+".",
+"--run-dir",
+".andromeda/runs/2026-11-25T21-45-15-wrap"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"sealed 2026-11-25T13-41-29-wrap · 179 file(s) · 2026-11-25T13-41-29-wrap.parquet · tx 4063 · 179 removed · 215 set aside",
+"sealed 2026-11-25T16-18-13-phase · 176 file(s) · 2026-11-25T16-18-13-phase.parquet · tx 4064 · 176 removed · 256 set aside",
+"sealed 2026-11-25T17-38-04-implement · 10 file(s) · 2026-11-25T17-38-04-implement.parquet · tx 4065 · 10 removed · 0 set aside",
+"sealed 2026-11-25T19-19-37-phase · 12 file(s) · 2026-11-25T19-19-37-phase.parquet · tx 4066 · 12 removed · 0 set aside",
+"sealed 2026-11-25T19-31-14-implement · 8 file(s) · 2026-11-25T19-31-14-implement.parquet · tx 4067 · 8 removed · 0 set aside",
+"seal · 5 run(s) · own 2026-11-25T21-45-15-wrap left as files"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null
+}
+]
