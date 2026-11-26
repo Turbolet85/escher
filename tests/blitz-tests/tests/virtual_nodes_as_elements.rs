@@ -1,6 +1,7 @@
 //! A canvas's virtual nodes as elements of the screen: each node a canvas declares and its read
 //! takes enters the accessibility tree as a child of its canvas's node, with its reserved id
-//! `{owner}///{key}`, its declared role, name and disabled state and a tree id equal to no DOM
+//! `{owner}///{key}`, its declared role, name, disabled state and selected state (a node stating
+//! none reading no word, a flip reading in a settled diff) and a tree id equal to no DOM
 //! node's; the snapshot reads it from there with its region moved by its canvas's content-box
 //! origin; the driver's `click` takes its id and acts at its region's centre, and refuses it
 //! `disabled`, `off-screen`, `covered`, `not-found` or `stale` in the run path's one order, with
@@ -371,6 +372,136 @@ fn a_kept_check_holds_and_replays_the_virtual_click() {
         assert!(
             replay.holds() && replay.ran() == calls.len(),
             "{at}: the replay holds"
+        );
+    }
+}
+
+/// The selecting canvas's three node ids, in declaration order: `s1` declared selected, `s2`
+/// declared unselected until the flip and `s3` stating nothing.
+const SELECTED_IDS: [&str; 3] = ["sel-canvas///s1", "sel-canvas///s2", "sel-canvas///s3"];
+
+/// A widget declaring three nodes apart, `s2`'s selection read from its `data-flip` attribute.
+struct SelectingCanvas {
+    flipped: bool,
+}
+
+impl blitz_dom::Widget for SelectingCanvas {
+    fn attribute_changed(&mut self, name: &str, _old_value: Option<&str>, new_value: Option<&str>) {
+        if name == "data-flip" {
+            self.flipped = new_value == Some("on");
+        }
+    }
+
+    fn virtual_nodes(&self) -> Vec<blitz_dom::VirtualNodeDeclaration> {
+        let declared =
+            |key: &str, x: f64, selected: Option<bool>| blitz_dom::VirtualNodeDeclaration {
+                key: key.to_string(),
+                role: Role::Image,
+                name: format!("Selecting {key}"),
+                region: blitz_dom::BoundingRect {
+                    x,
+                    y: 10.0,
+                    width: 30.0,
+                    height: 30.0,
+                },
+                disabled: false,
+                selected,
+            };
+        vec![
+            declared("s1", 10.0, Some(true)),
+            declared("s2", 60.0, Some(self.flipped)),
+            declared("s3", 110.0, None),
+        ]
+    }
+}
+
+/// A canvas `sel-canvas` declaring the three nodes of [`SELECTED_IDS`], and a button `sel-flip`
+/// whose click writes the canvas's `data-flip` on, declaring `s2` selected.
+fn selecting_page() -> dioxus::prelude::Element {
+    use dioxus::prelude::*;
+    let canvas =
+        use_hook(|| dioxus_native_dom::CustomWidgetAttr::new(SelectingCanvas { flipped: false }));
+    let mut flip = use_signal(|| "off");
+    rsx! {
+        div { id: "sel-root",
+            object {
+                id: "sel-canvas",
+                style: "display: block; width: 200px; height: 60px;",
+                "data-flip": flip(),
+                "data": canvas,
+            }
+            button { id: "sel-flip", onclick: move |_| flip.set("on"), "Flip" }
+        }
+    }
+}
+
+#[test]
+fn a_declared_selected_reads_in_the_tree_the_snapshot_and_a_diff() {
+    let expected = [Some(true), Some(false), None];
+    let words = [Some(" selected @"), Some(" unselected @"), None];
+    for incremental in [false, true] {
+        let at = mode(incremental);
+        let mut session = fixtures::hold(APP, selecting_page, incremental);
+        let harness = session.harness();
+        let canvas = harness
+            .doc
+            .inner
+            .borrow()
+            .get_element_by_id("sel-canvas")
+            .expect("the fixture's canvas is in the document");
+        let Ok(read) = harness.doc.virtual_nodes(canvas) else {
+            panic!("{at}: the canvas reads its declarations");
+        };
+        let ids: Vec<&str> = read.nodes.iter().map(|n| n.id.as_str()).collect();
+        assert!(
+            ids == SELECTED_IDS && read.refused.is_empty(),
+            "{at}: the fixture declares its three nodes"
+        );
+        let tree = harness.doc.accessibility_tree();
+        for (row, id) in SELECTED_IDS.iter().enumerate() {
+            let Some((_, node)) = tree.nodes.iter().find(|(_, n)| n.author_id() == Some(id)) else {
+                panic!("{at}: row {row}: the tree holds the node");
+            };
+            assert!(
+                node.is_selected() == expected[row],
+                "{at}: row {row}: the tree node is selected as declared"
+            );
+        }
+        let screen = harness.doc.snapshot();
+        let text = screen.to_text();
+        for (row, id) in SELECTED_IDS.iter().enumerate() {
+            let Some(node) = screen.get(id) else {
+                panic!("{at}: row {row}: the snapshot lists the node");
+            };
+            assert!(
+                node.state.selected == expected[row],
+                "{at}: row {row}: the snapshot reads selected as declared"
+            );
+            let Some(line) = text
+                .lines()
+                .find(|line| line.contains(&format!("id=\"{id}\"")))
+            else {
+                panic!("{at}: row {row}: the text holds the node's line");
+            };
+            let written = match words[row] {
+                Some(word) => line.contains(word),
+                None => !line.contains("selected"),
+            };
+            assert!(
+                written,
+                "{at}: row {row}: the text writes its selected word"
+            );
+        }
+        let Some(acted) = act(&mut session, &click("sel-flip")) else {
+            panic!("{at}: the flip's click is accepted");
+        };
+        assert!(acted.settled, "{at}: the flip settles");
+        let Some(changed) = acted.diff.changed.iter().find(|n| n.id == SELECTED_IDS[1]) else {
+            panic!("{at}: the diff names the flipped node changed");
+        };
+        assert!(
+            changed.differs.contains(&Reading::Selected) && changed.state.selected == Some(true),
+            "{at}: the flipped node differs in selected"
         );
     }
 }

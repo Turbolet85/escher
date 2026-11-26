@@ -5,8 +5,9 @@
 //! on a canvas `<object>` fire, and the widget still hears every pointer event. Upstream's widget
 //! arm of `handle_dom_event` returns before that synthesis, so an app's click handlers on a
 //! widget never fire there. Read through the driver's `click` on a component booted alone
-//! through the stand, in both layout modes. A failure message carries a layout mode and an index
-//! only.
+//! through the stand, in both layout modes. A focused widget hears Tab and Shift+Tab, then focus
+//! moves on as from any element, so a focusable canvas traps no keyboard. A failure message
+//! carries a layout mode and an index only.
 
 use std::sync::{Arc, Mutex, PoisonError};
 
@@ -19,7 +20,7 @@ use escher_driver::Session;
 use seven_guis::stand;
 
 mod session_common;
-use session_common::{act, advance, click};
+use session_common::{act, advance, click, focused, press};
 
 /// The id of the canvas the app listens on.
 const CANVAS: &str = "canvas";
@@ -29,7 +30,7 @@ const COUNTS: &str = "canvas-counts";
 
 type Log = Arc<Mutex<Vec<&'static str>>>;
 
-/// A widget that paints nothing and records each pointer down and up it hears.
+/// A widget that paints nothing and records each pointer down and up and each Tab it hears.
 struct PointerLog(Log);
 
 impl Widget for PointerLog {
@@ -37,6 +38,11 @@ impl Widget for PointerLog {
         let heard = match event {
             UiEvent::PointerDown(_) => "down",
             UiEvent::PointerUp(_) => "up",
+            UiEvent::KeyDown(key)
+                if key.key == ::keyboard_types::Key::Named(::keyboard_types::NamedKey::Tab) =>
+            {
+                "tab"
+            }
             _ => return,
         };
         self.0
@@ -175,6 +181,69 @@ fn two_clicks_with_no_advance_reach_the_apps_double_click_handler() {
         assert!(
             counts(&session).as_deref() == Some("clicks 3 dbl 1"),
             "{at}: a click past the double-click window is a single click"
+        );
+    }
+}
+
+/// A focusable canvas carrying the widget between two buttons.
+fn tab_canvas(props: CanvasProps) -> Element {
+    let log = props.log.clone();
+    let attr = use_hook(move || CustomWidgetAttr::new(PointerLog(log)));
+    rsx! {
+        button { id: "tab-before", "Before" }
+        object {
+            id: CANVAS,
+            tabindex: "0",
+            style: "display: block; width: 200px; height: 100px;",
+            "data": attr,
+        }
+        button { id: "tab-after", "After" }
+    }
+}
+
+#[test]
+fn tab_and_shift_tab_leave_a_focused_widget_which_still_hears_them() {
+    for incremental in [false, true] {
+        let at = format!("incremental={incremental}");
+        let log: Log = Arc::new(Mutex::new(Vec::new()));
+        let given = log.clone();
+        let mut session = Session::start("canvas", move || {
+            stand::boot_alone(
+                tab_canvas,
+                move || CanvasProps { log: given.clone() },
+                stand::options(incremental),
+            )
+        })
+        .expect("canvas is a label");
+        // (the key, with Shift, the element focused after it, what the widget has heard)
+        let steps: [(bool, &str, &[&str]); 4] = [
+            (false, "tab-before", &[]),
+            (false, CANVAS, &[]),
+            (false, "tab-after", &["tab"]),
+            (true, CANVAS, &["tab"]),
+        ];
+        assert!(steps.len() == 4, "{at}: the table's row count");
+        for (index, (shift, focus, widget_heard)) in steps.into_iter().enumerate() {
+            assert!(
+                act(&mut session, &press("tab", shift)).is_some(),
+                "{at}: press {index} is accepted"
+            );
+            assert!(
+                focused(&session).0 == [focus],
+                "{at}: press {index} focuses its element"
+            );
+            assert!(
+                heard(&log) == widget_heard,
+                "{at}: press {index}: the widget heard"
+            );
+        }
+        assert!(
+            act(&mut session, &press("tab", true)).is_some(),
+            "{at}: the last press is accepted"
+        );
+        assert!(
+            focused(&session).0 == ["tab-before"] && heard(&log) == ["tab", "tab"],
+            "{at}: Shift+Tab leaves the widget, which heard it"
         );
     }
 }

@@ -301,6 +301,7 @@ fn virtual_declared(
             height,
         },
         disabled,
+        selected: None,
     }
 }
 

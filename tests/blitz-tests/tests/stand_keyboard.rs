@@ -29,7 +29,9 @@
 //! shows the failure, the walk reaches Retry in Submit's place. Cells walks `back-btn` and its one `cells-grid` stop: the arrows move the current
 //! cell, clamped at the grid's ends, and bring it into view, Enter opens its editor focused, a
 //! typed value and Enter commit it with focus back on the grid, and Tab leaving an open editor
-//! commits it.
+//! commits it. Circle Drawer walks `back-btn` and its one `circle-canvas` stop, and an arrow
+//! pressed on the canvas selects a circle while focus stays on the canvas, no circle the tree's
+//! focus.
 //!
 //! A failure message carries a layout mode, a task and an index, never an id or what a screen
 //! reads.
@@ -45,8 +47,8 @@ use seven_guis::stand::{self, LeanTask};
 mod common;
 mod fixtures;
 use common::{
-    CELLS_TAB_ORDER, ENABLED_TAB_ORDER, LOAD_TAB_ORDER, ORDER_TAB_ORDER, boot, controls,
-    editor_text, focused, node, tab_order,
+    CELLS_TAB_ORDER, CIRCLE_DRAWER_TAB_ORDER, ENABLED_TAB_ORDER, LOAD_TAB_ORDER, ORDER_TAB_ORDER,
+    boot, controls, editor_text, focused, node, tab_order,
 };
 
 /// Each stand button in the four Tab sequences, and whether a click on it changes the screen
@@ -211,6 +213,34 @@ fn is_current(harness: &Harness<DioxusDocument>, id: &str) -> bool {
     harness
         .attr(&format!("#{id}"), "class")
         .is_some_and(|class| class.split_whitespace().any(|word| word == "current"))
+}
+
+#[test]
+fn circle_drawer_walks_its_stated_sequence_and_holds_the_canvas_across_an_arrow() {
+    for incremental in [false, true] {
+        let mode = format!("incremental={incremental}");
+        let mut harness = stand::boot_circle_drawer(stand::options(incremental));
+        assert_walk(&mut harness, &CIRCLE_DRAWER_TAB_ORDER, &mode);
+        harness.click("#circle-canvas");
+        assert!(harness.settle().is_ok(), "{mode}: the click settles");
+        assert!(
+            holder(&harness) == ["circle-canvas"],
+            "{mode}: a click adds a circle and focuses the canvas"
+        );
+        harness.press(Key::Named(NamedKey::ArrowRight));
+        assert!(
+            holder(&harness) == ["circle-canvas"],
+            "{mode}: the canvas holds focus across the arrow, no circle the tree's focus"
+        );
+        assert!(
+            harness
+                .doc
+                .snapshot()
+                .get("circle-canvas///c1")
+                .is_some_and(|circle| circle.state.selected == Some(true)),
+            "{mode}: the arrow selects the circle"
+        );
+    }
 }
 
 #[test]

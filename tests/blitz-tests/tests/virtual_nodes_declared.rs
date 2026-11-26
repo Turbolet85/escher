@@ -49,6 +49,7 @@ fn declared(
             height,
         },
         disabled: false,
+        selected: None,
     }
 }
 

@@ -834,6 +834,23 @@ pub(crate) fn widget_click_synthesis(doc: &mut BaseDocument, target: NodeId, dat
     }
 }
 
+/// The Tab a custom widget's element passes on, run after the widget has heard the key: focus
+/// moves to the next or, with Shift, the previous focusable node, as from any element.
+// The widget hears every key, yet Tab still moves focus on: a focusable widget that kept it
+// would trap the keyboard (WCAG 2.1.2).
+#[cfg(feature = "custom-widget")]
+pub(crate) fn widget_tab_pass_through(doc: &mut BaseDocument, target: NodeId, data: &DomEventData) {
+    if let DomEventData::KeyDown(key) = data
+        && key.key == keyboard_types::Key::Named(keyboard_types::NamedKey::Tab)
+    {
+        super::keyboard::handle_key_or_input_event(
+            doc,
+            target,
+            super::keyboard::KeyboardOrTextInputEvent::KeyPress(key.clone()),
+        );
+    }
+}
+
 /// The walk of a click from `target` up through its parents, until an element takes it; reads
 /// whether one did. A disabled form control and a text input take it and do nothing more.
 fn click_walk(doc: &mut BaseDocument, target: NodeId, event: &BlitzPointerEvent) -> bool {

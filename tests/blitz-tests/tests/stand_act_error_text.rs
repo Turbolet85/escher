@@ -24,6 +24,7 @@
 
 use std::fmt;
 use std::sync::{Arc, Mutex};
+#[cfg(unix)]
 use std::time::Duration;
 
 use blitz_test_harness::{Harness, HarnessOptions};

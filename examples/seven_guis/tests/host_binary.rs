@@ -7,6 +7,7 @@
 
 mod common;
 
+#[cfg(unix)]
 use std::process::{Command, Stdio};
 
 #[cfg(unix)]

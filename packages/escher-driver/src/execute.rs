@@ -763,12 +763,21 @@ pub(crate) struct Target {
     /// The element's bounds as the snapshot reads them: x, y, width and height, relative to
     /// the viewport.
     bounds: (f64, f64, f64, f64),
+    /// The virtual node's id where the call names a node a canvas declares; `node` is then its
+    /// canvas.
+    virtual_id: Option<String>,
 }
 
 impl Target {
     /// The element the call names.
     pub(crate) fn node(&self) -> NodeId {
         self.node
+    }
+
+    /// The target as the virtual node `id` a canvas declares, acted on through that canvas.
+    pub(crate) fn into_virtual(mut self, id: &str) -> Self {
+        self.virtual_id = Some(id.to_string());
+        self
     }
 }
 
@@ -812,7 +821,7 @@ fn locate_virtual(
         .element_ids()
         .into_iter()
         .find(|(_, read)| read == owner)?;
-    target_of(harness, listed, canvas)
+    target_of(harness, listed, canvas).map(|target| target.into_virtual(id))
 }
 
 /// The [`Target`] of `node`, which the snapshot lists as `listed`; `None` where the node no
@@ -838,6 +847,7 @@ pub(crate) fn target_of(
             bounds.y + bounds.height / 2.0,
         ),
         bounds: (bounds.x, bounds.y, bounds.width, bounds.height),
+        virtual_id: None,
     })
 }
 
@@ -974,7 +984,7 @@ fn action_point(harness: &Harness<DioxusDocument>, target: &Target) -> Result<(f
         (target.centre.0 + scroll.x) as f32,
         (target.centre.1 + scroll.y) as f32,
     );
-    if covered(harness, target, page) {
+    if covered(harness, target, page) || covered_by_later_node(harness, target) {
         return Err(Refusal::new(Cause::Covered));
     }
     Ok(page)
@@ -1031,6 +1041,32 @@ fn covered(harness: &Harness<DioxusDocument>, target: &Target, page: (f32, f32))
         hit = doc.get_node(node).and_then(|node| node.parent);
     }
     true
+}
+
+/// Whether `target` is a node a canvas declares and a node its canvas declares later holds its
+/// region's centre: the region is the bounding box declared, so a later corner covers where the
+/// shape it paints does not.
+fn covered_by_later_node(harness: &Harness<DioxusDocument>, target: &Target) -> bool {
+    let Some(id) = target.virtual_id.as_deref() else {
+        return false;
+    };
+    let Ok(read) = harness.doc.virtual_nodes(target.node) else {
+        return false;
+    };
+    let Some(at) = read.nodes.iter().position(|node| node.id == id) else {
+        return false;
+    };
+    let Some(region) = read.nodes.get(at).map(|node| &node.declaration.region) else {
+        return false;
+    };
+    let (x, y) = (
+        region.x + region.width / 2.0,
+        region.y + region.height / 2.0,
+    );
+    read.nodes.iter().skip(at + 1).any(|later| {
+        let r = &later.declaration.region;
+        x >= r.x && x <= r.x + r.width && y >= r.y && y <= r.y + r.height
+    })
 }
 
 /// What a step caused: the items kept and those past the count.

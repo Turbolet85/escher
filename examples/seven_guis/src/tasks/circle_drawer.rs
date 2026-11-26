@@ -78,6 +78,12 @@ fn parse_circles(text: &str) -> Vec<Painted> {
         .collect()
 }
 
+/// Reads a `data-selected` or `data-adjusting` value: a circle's id, a whole number from 1, else
+/// none.
+fn parse_id(text: &str) -> Option<u64> {
+    text.trim().parse::<u64>().ok().filter(|id| *id >= 1)
+}
+
 /// The region a circle's virtual node declares: its bounding square cut to the content box, or
 /// none where the cut leaves it empty.
 fn circle_region(c: &Painted) -> Option<BoundingRect> {
@@ -95,15 +101,21 @@ fn circle_region(c: &Painted) -> Option<BoundingRect> {
 type Fonts = Arc<Mutex<parley::FontContext>>;
 
 /// The drawing area: paints the app's circles and each one's diameter at its centre, the
-/// diameter's glyphs shaped from the font context the document hands it.
+/// diameter's glyphs shaped from the font context the document hands it, the selected circle
+/// filled darker.
 #[derive(Default)]
 struct CircleCanvas {
     circles: Vec<Painted>,
+    /// The selected circle's id, from `data-selected`.
+    selected: Option<u64>,
+    /// The id of the circle the open diameter dialog adjusts, from `data-adjusting`.
+    adjusting: Option<u64>,
     fonts: Option<Fonts>,
     layouts: parley::LayoutContext<()>,
 }
 
 const FILL: Color = Color::from_rgba8(58, 92, 229, 38);
+const SELECTED_FILL: Color = Color::from_rgba8(58, 92, 229, 96);
 const STROKE: Color = Color::from_rgb8(0x3a, 0x5c, 0xe5);
 const LABEL: Color = Color::from_rgb8(0x1a, 0x1a, 0x1a);
 const LABEL_SIZE: f32 = 12.0;
@@ -163,8 +175,11 @@ impl CircleCanvas {
 
 impl Widget for CircleCanvas {
     fn attribute_changed(&mut self, name: &str, _old: Option<&str>, new_value: Option<&str>) {
-        if name == "data-circles" {
-            self.circles = new_value.map(parse_circles).unwrap_or_default();
+        match name {
+            "data-circles" => self.circles = new_value.map(parse_circles).unwrap_or_default(),
+            "data-selected" => self.selected = new_value.and_then(parse_id),
+            "data-adjusting" => self.adjusting = new_value.and_then(parse_id),
+            _ => {}
         }
     }
 
@@ -189,10 +204,15 @@ impl Widget for CircleCanvas {
         );
         for c in &self.circles {
             let disc = Disc::new((c.x, c.y), c.d / 2.0);
+            let fill = if self.selected == Some(c.id) {
+                SELECTED_FILL
+            } else {
+                FILL
+            };
             scene.fill(
                 Fill::NonZero,
                 transform,
-                FILL,
+                fill,
                 None,
                 &disc,
                 AntiAliasing::Enabled,
@@ -227,7 +247,8 @@ impl Widget for CircleCanvas {
                     role: VirtualNodeRole::Image,
                     name: format!("Circle {}, {} px", c.id, c.d.round()),
                     region,
-                    disabled: false,
+                    disabled: self.adjusting.is_some_and(|a| a != c.id),
+                    selected: Some(self.selected == Some(c.id)),
                 })
             })
             .collect()
@@ -237,6 +258,10 @@ impl Widget for CircleCanvas {
 #[component]
 pub fn CircleDrawer() -> Element {
     // The canvas's click is async, and its task runs inside the click's own dispatch.
+    const SELECTION: &[dioxus_native::DeclaredWrite] = &[
+        writes("circle-canvas", "click"),
+        writes("circle-canvas", "keydown"),
+    ];
     const HISTORY: &[dioxus_native::DeclaredWrite] = &[
         writes("circle-canvas", "click"),
         writes("circle-undo", "click"),
@@ -255,12 +280,15 @@ pub fn CircleDrawer() -> Element {
         const { &[writes("circle-canvas", "click")] },
         || 1,
     );
+    // the id of the selected circle, if any
+    let mut selected: Signal<Option<u64>> = use_graph_signal("selected", SELECTION, || None);
     // index of circle being resized, if dialog is open
     let mut dialog_idx: Signal<Option<usize>> = use_graph_signal(
         "dialog_idx",
         const {
             &[
                 writes("circle-canvas", "dblclick"),
+                writes("circle-canvas", "keydown"),
                 writes("circle-close", "click"),
             ]
         },
@@ -271,6 +299,7 @@ pub fn CircleDrawer() -> Element {
         const {
             &[
                 writes("circle-canvas", "dblclick"),
+                writes("circle-canvas", "keydown"),
                 writes("circle-diameter", "input"),
             ]
         },
@@ -315,8 +344,13 @@ pub fn CircleDrawer() -> Element {
                 class: "cd-canvas",
                 role: "group",
                 aria_label: "Drawing area",
+                tabindex: "0",
                 "data": canvas,
                 "data-circles": circles_text(&circles()),
+                "data-selected": selected().map(|id| id.to_string()).unwrap_or_default(),
+                "data-adjusting": dialog_idx()
+                    .and_then(|i| circles().get(i).map(|c| c.id.to_string()))
+                    .unwrap_or_default(),
                 onmounted: move |evt: MountedEvent| {
                     canvas_handle.set(Some(evt.data()));
                 },
@@ -330,11 +364,44 @@ pub fn CircleDrawer() -> Element {
                     };
                     let x = raw.x - ox - CANVAS_BORDER;
                     let y = raw.y - oy - CANVAS_BORDER;
-                    undo_stack.write().push(circles());
-                    redo_stack.write().clear();
-                    let id = next_id();
-                    next_id.set(id + 1);
-                    circles.write().push(Circle { x, y, r: 20.0, id });
+                    let hit = circles()
+                        .iter()
+                        .rev()
+                        .find(|c| (c.x - x).powi(2) + (c.y - y).powi(2) <= c.r * c.r)
+                        .map(|c| c.id);
+                    if let Some(id) = hit {
+                        selected.set(Some(id));
+                    } else {
+                        undo_stack.write().push(circles());
+                        redo_stack.write().clear();
+                        let id = next_id();
+                        next_id.set(id + 1);
+                        circles.write().push(Circle { x, y, r: 20.0, id });
+                    }
+                },
+                onkeydown: move |evt| {
+                    if dialog_idx().is_some() {
+                        return;
+                    }
+                    let all = circles();
+                    let at = selected().and_then(|id| all.iter().position(|c| c.id == id));
+                    let last = all.len().saturating_sub(1);
+                    let to = match (evt.key(), at) {
+                        (Key::ArrowLeft | Key::ArrowUp, Some(i)) => i.saturating_sub(1),
+                        (Key::ArrowRight | Key::ArrowDown, Some(i)) => (i + 1).min(last),
+                        (Key::ArrowLeft | Key::ArrowUp | Key::ArrowRight | Key::ArrowDown, None) => 0,
+                        (Key::Enter, Some(i)) => {
+                            if let Some(c) = all.get(i) {
+                                dialog_idx.set(Some(i));
+                                dialog_r.set(c.r);
+                            }
+                            return;
+                        }
+                        _ => return,
+                    };
+                    if let Some(c) = all.get(to) {
+                        selected.set(Some(c.id));
+                    }
                 },
                 ondoubleclick: move |evt| async move {
                     evt.stop_propagation();
@@ -435,6 +502,7 @@ const CSS: &str = r#"
 
 .cd-canvas {
     display: block;
+    flex-shrink: 0;
     position: relative;
     width: 700px;
     height: 400px;
@@ -509,6 +577,64 @@ mod tests {
             let mut canvas = CircleCanvas::default();
             canvas.attribute_changed("data-circles", None, Some(text));
             assert!(canvas.circles.len() == read, "row {index}");
+        }
+    }
+
+    #[test]
+    fn the_selected_and_adjusting_texts_read_an_id_or_none() {
+        let rows: [(&str, Option<u64>); 9] = [
+            ("", None),
+            ("x", None),
+            ("0", None),
+            ("-1", None),
+            ("1.5", None),
+            ("1,2", None),
+            ("1", Some(1)),
+            (" 7 ", Some(7)),
+            ("42", Some(42)),
+        ];
+        assert!(rows.len() == 9, "the table's row count");
+        for (index, (text, read)) in rows.into_iter().enumerate() {
+            let mut canvas = CircleCanvas::default();
+            canvas.attribute_changed("data-selected", None, Some(text));
+            canvas.attribute_changed("data-adjusting", None, Some(text));
+            assert!(
+                canvas.selected == read && canvas.adjusting == read,
+                "row {index}"
+            );
+        }
+    }
+
+    #[test]
+    fn each_circle_declares_its_selected_and_disabled_state() {
+        // (selected text, adjusting text, each circle's (selected, disabled))
+        type Row = (&'static str, &'static str, [(bool, bool); 3]);
+        let rows: [Row; 4] = [
+            ("", "", [(false, false); 3]),
+            ("2", "", [(false, false), (true, false), (false, false)]),
+            ("2", "2", [(false, true), (true, false), (false, true)]),
+            ("", "3", [(false, true), (false, true), (false, false)]),
+        ];
+        assert!(rows.len() == 4, "the table's row count");
+        for (index, (selected, adjusting, expected)) in rows.into_iter().enumerate() {
+            let mut canvas = CircleCanvas::default();
+            canvas.attribute_changed(
+                "data-circles",
+                None,
+                Some("100,100,40,1;200,100,40,2;300,100,40,3"),
+            );
+            canvas.attribute_changed("data-selected", None, Some(selected));
+            canvas.attribute_changed("data-adjusting", None, Some(adjusting));
+            let read: Vec<(Option<bool>, bool)> = canvas
+                .virtual_nodes()
+                .iter()
+                .map(|n| (n.selected, n.disabled))
+                .collect();
+            let expected: Vec<(Option<bool>, bool)> = expected
+                .iter()
+                .map(|(selected, disabled)| (Some(*selected), *disabled))
+                .collect();
+            assert!(read == expected, "row {index}");
         }
     }
 }

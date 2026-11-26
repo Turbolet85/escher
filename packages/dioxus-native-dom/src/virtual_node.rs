@@ -218,6 +218,7 @@ mod tests {
                 height,
             },
             disabled: false,
+            selected: None,
         }
     }
 

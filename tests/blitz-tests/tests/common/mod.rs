@@ -113,6 +113,10 @@ pub const ORDER_TAB_ORDER: [&str; 4] =
 /// The focus sequence of Cells, whose grid is one stop that moves among its cells by its keys.
 pub const CELLS_TAB_ORDER: [&str; 2] = ["back-btn", "cells-grid"];
 
+/// The focus sequence of Circle Drawer at boot, Undo and Redo disabled with no circle: its
+/// canvas is one stop whose keys move the selection among its circles.
+pub const CIRCLE_DRAWER_TAB_ORDER: [&str; 2] = ["back-btn", "circle-canvas"];
+
 /// The ids of the snapshot nodes reading focused, asserted to be the element the
 /// accessibility tree reports as its focus: none when that is the `Window`.
 #[track_caller]
@@ -300,7 +304,10 @@ pub enum Drive {
 /// a registered state, every write its declaration names made by at least one run — a
 /// conditional write by a run that takes it: a Cells cell's click commits an editor open in
 /// another cell, so two cells are clicked in turn, and the grid's editor is left once by Enter and
-/// once by Tab. Circle Drawer's two clicks on one point add a circle and open its dialog.
+/// once by Tab. Circle Drawer's first click adds a circle; its two later clicks on one point
+/// select it and open its dialog; its Close, below the view while the canvas keeps its size, is
+/// reached by Tab from the diameter and pressed by Enter; then a click focuses the canvas, whose
+/// keys move the selection and open the dialog again.
 pub const GRAPH_DRIVES: [(&str, &[Drive]); 8] = [
     ("Counter", &[Drive::Click("counter-increment")]),
     (
@@ -357,7 +364,11 @@ pub const GRAPH_DRIVES: [(&str, &[Drive]); 8] = [
             Drive::Click("circle-canvas"),
             Drive::Click("circle-canvas"),
             Drive::Click("circle-diameter"),
-            Drive::Click("circle-close"),
+            Drive::Press("tab"),
+            Drive::Press("enter"),
+            Drive::Click("circle-canvas"),
+            Drive::Press("arrow-right"),
+            Drive::Press("enter"),
         ],
     ),
     (
@@ -442,8 +453,8 @@ pub const HANDLERS_AT_BOOT: [(&str, &[(&str, &str)]); 7] = [
 
 /// Per stand task with a [`GRAPH_DRIVES`] row, by its title, the handlers a check of exactly
 /// those drives leaves unexercised, each as (id, event), in the order first seen. CRUD's Create
-/// adds the row `crud-person-3`, which no drive clicks; Circle Drawer's drives add three circles,
-/// whose nodes' `click` no drive names. Cells' grid then leaves each of its cells'
+/// adds the row `crud-person-3`, which no drive clicks; Circle Drawer's drives add one circle,
+/// whose node's `click` no drive names. Cells' grid then leaves each of its cells'
 /// `click` but [`CELLS_CLICKED_BY_DRIVES`] after the rows stated here.
 pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 8] = [
     ("Counter", &[("back-btn", "click")]),
@@ -460,12 +471,7 @@ pub const UNEXERCISED_AFTER_DRIVES: [(&str, &[(&str, &str)]); 8] = [
     ("Temperature Converter", &[("back-btn", "click")]),
     (
         "Circle Drawer",
-        &[
-            ("back-btn", "click"),
-            ("circle-canvas///c1", "click"),
-            ("circle-canvas///c2", "click"),
-            ("circle-canvas///c3", "click"),
-        ],
+        &[("back-btn", "click"), ("circle-canvas///c1", "click")],
     ),
     ("Cells", &[("back-btn", "click")]),
     ("Order", &[("back-btn", "click"), ("order-export", "click")]),

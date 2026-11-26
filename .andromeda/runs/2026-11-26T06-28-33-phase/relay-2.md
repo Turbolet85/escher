@@ -1,0 +1,1 @@
+Resume the pending phase of 2026-11-26-canvas-keyboard-path at P4. Read ~/dev/projects/additional/escher-overseer/relays/canvas-keyboard-path-answers-2026-11-26.md whole first: F1 A, F2 A, the side question B (a click focuses the canvas), F3 B, F4 B and F5 B if a run measures it are the operator's answers; no founder option is taken. Then the plan and the P5 card.

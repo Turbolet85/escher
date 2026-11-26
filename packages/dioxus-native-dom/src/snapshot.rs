@@ -180,6 +180,7 @@ impl Builder<'_> {
                     name: self.name(tree_node, &mut HashSet::new()).trim().to_string(),
                     state: NodeState {
                         enabled: Some(!tree_node.is_disabled()),
+                        selected: tree_node.is_selected(),
                         invalid: tree_node.invalid().is_some(),
                         focused: id == self.focus,
                         ..NodeState::default()

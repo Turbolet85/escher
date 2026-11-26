@@ -81,8 +81,10 @@ impl Cause {
                  one axis stops a hit at its whole padding box, so an element lying outside it \
                  along the axis it does not clip can read `covered` though it shows; a box with no \
                  width or no height is hit at its centre on the element that holds it, so it can \
-                 read `covered` though nothing covers it; a node a canvas declares reads covered only by \
-                 an element over its region's centre, never by another node of its canvas"
+                 read `covered` though nothing covers it; a node a canvas declares reads covered by an \
+                 element over its region's centre, or by a node its canvas declares later whose \
+                 region holds that centre — a region is the bounding box its canvas declares, so \
+                 a later corner covers where the shape it paints does not"
             }
             Cause::OffScreen => {
                 "the element lies outside the viewport, or outside the visible part of a \
@@ -268,8 +270,10 @@ mod tests {
                  one axis stops a hit at its whole padding box, so an element lying outside it \
                  along the axis it does not clip can read `covered` though it shows; a box with no \
                  width or no height is hit at its centre on the element that holds it, so it can \
-                 read `covered` though nothing covers it; a node a canvas declares reads covered only by \
-                 an element over its region's centre, never by another node of its canvas",
+                 read `covered` though nothing covers it; a node a canvas declares reads covered by an \
+                 element over its region's centre, or by a node its canvas declares later whose \
+                 region holds that centre — a region is the bounding box its canvas declares, so \
+                 a later corner covers where the shape it paints does not",
                 "another element covers this one: act on the covering element or dismiss it first",
             ),
             (

@@ -2,10 +2,17 @@
 //! `circle-canvas///c{id}`, keyed by the id the app gives the circle, role `Image`, named
 //! `Circle {id}, {d} px`, its region its bounding square cut to the content box. Each reads in
 //! the accessibility tree, the snapshot and its diff, the UI graph, `actions`, `layout` and an
-//! exploration; an undone circle's id reads `stale` and its redo keeps it. A click on a circle's
-//! node adds a circle at its centre, another circle never covers one, the lint reads no circle
-//! and a label wider than its circle reads no `truncated` finding — the stated limits, each
-//! witnessed. The full canvas answer groups each command under the circle that covers it, its
+//! exploration; an undone circle's id reads `stale` and its redo keeps it. A click inside a
+//! circle selects it, the topmost holding the point, and adds none; the circle reads `selected`
+//! and the click focuses the canvas within its own step, firing `blur` and `focusout` on what held
+//! focus and then `focus` and `focusin` on the canvas. The canvas is one Tab stop whose arrows move
+//! the selection in declared order, clamped, and whose Enter opens the diameter dialog on it; the
+//! engine, the tree and the snapshot read focus on the canvas, never on a circle. A circle whose
+//! region centre a later-declared circle's region holds reads `covered`, a later square's corner
+//! covering where its disc does not, the stated limit; with the dialog open every circle but the one
+//! it adjusts reads `disabled`, and the canvas keeps its 700 × 400. The lint reads no circle and a
+//! label wider than its circle reads no `truncated` finding — the stated limits, each witnessed.
+//! The full canvas answer groups each command under the circle that covers it, its
 //! line closed by the node's 1-based index, positional. Handler coverage lists a circle's `click`
 //! under its own id. Booted in process through `stand::boot_circle_drawer`, in both layout modes,
 //! each case's fixture condition asserted first. A failure names a layout mode and a case or row
@@ -23,7 +30,7 @@ use common::{CIRCLE_NODE_CAUSES, CIRCLE_SPILLS};
 use session_common::{
     CIRCLE_CANVAS as CANVAS, act, actioned, actions, advance, canvas, canvas_full, canvas_part,
     canvased, carried, circle_drawer, click, draw, explained, graph, graphed, layout, lint, linted,
-    mcp_result_text, refused, screenshot_of, scroll, type_into,
+    mcp_result_text, press, refused, refused_unchanged, screenshot_of, scroll, type_into,
 };
 
 /// The stated tolerance of a bounds reading, read inclusively.
@@ -74,6 +81,53 @@ fn acts(session: &mut Session, call: &Call, at: &str) -> session_common::Acted {
 fn add_circle(session: &mut Session, at: &str) {
     acts(session, &click(CANVAS), at);
     acts(session, &advance(1000), at);
+}
+
+/// A click through the harness at `(x, y)` in the canvas's content box, where no driver click
+/// lands, then a settle and an `advance` so the next click is no double click.
+#[track_caller]
+fn click_inside(session: &mut Session, (x, y): (f64, f64), at: &str) {
+    let origin = content_origin(session, at);
+    let harness = session.harness_mut();
+    harness.click_at((origin.0 + x) as f32, (origin.1 + y) as f32);
+    assert!(harness.settle().is_ok(), "{at}: the click settles");
+    acts(session, &advance(1000), at);
+}
+
+/// The canvas's `data-{name}` attribute.
+fn attr(session: &Session, name: &str) -> String {
+    session
+        .harness()
+        .attr(&format!("#{CANVAS}"), &format!("data-{name}"))
+        .unwrap_or_default()
+}
+
+/// The ids the snapshot and the tree read focused, then the stable id of the engine's focus.
+fn focus_reads(session: &Session) -> (Vec<String>, Vec<String>, Option<String>) {
+    let (in_snapshot, in_tree) = session_common::focused(session);
+    let harness = session.harness();
+    let engine = harness
+        .focused()
+        .and_then(|node| harness.doc.element_id(node));
+    (in_snapshot, in_tree, engine)
+}
+
+/// Whether the engine, the tree and the snapshot each read focus on the canvas alone.
+fn canvas_focused(session: &Session) -> bool {
+    let (in_snapshot, in_tree, engine) = focus_reads(session);
+    in_snapshot == [CANVAS] && in_tree == [CANVAS] && engine.as_deref() == Some(CANVAS)
+}
+
+/// The circle nodes the snapshot reads selected.
+fn selected_nodes(session: &Session) -> Vec<String> {
+    session
+        .harness()
+        .doc
+        .snapshot()
+        .nodes()
+        .filter(|n| n.id.starts_with("circle-canvas///") && n.state.selected == Some(true))
+        .map(|n| n.id.clone())
+        .collect()
 }
 
 /// The content box's origin on the page: the canvas's snapshot bounds moved by its border.
@@ -256,7 +310,7 @@ fn an_undone_circle_reads_stale_and_its_redo_keeps_its_id() {
         let at = mode(incremental);
         let mut session = circle_drawer(incremental);
         add_circle(&mut session, &at);
-        add_circle(&mut session, &at);
+        click_inside(&mut session, (100.0, 100.0), &at);
         assert!(
             circle_nodes(&session) == [node(1), node(2)],
             "{at}: two clicks read c1 and c2"
@@ -276,7 +330,7 @@ fn an_undone_circle_reads_stale_and_its_redo_keeps_its_id() {
             "{at}: the redo brings c2 back under its id"
         );
         acts(&mut session, &click("circle-undo"), &at);
-        acts(&mut session, &click(CANVAS), &at);
+        click_inside(&mut session, (100.0, 100.0), &at);
         assert!(
             circle_nodes(&session) == [node(1), node(3)],
             "{at}: a click after the undo reads c3, never c2 again"
@@ -322,46 +376,362 @@ fn a_click_and_a_resize_read_in_the_diff() {
 }
 
 #[test]
-fn a_click_on_a_circle_node_adds_a_circle_at_its_centre() {
+fn a_click_on_a_circle_node_selects_it_and_adds_none() {
     for incremental in [false, true] {
         let at = mode(incremental);
         let mut session = circle_drawer(incremental);
         add_circle(&mut session, &at);
+        assert!(
+            carried(&session) == "348,198,40,1" && selected_nodes(&session).is_empty(),
+            "{at}: c1 stands, none selected"
+        );
         let acted = acts(&mut session, &click(FIRST), &at);
         assert!(acted.settled, "{at}: the click settles");
+        assert!(acted.added().is_empty(), "{at}: its diff adds nothing");
+        let Some(changed) = acted.diff.changed.iter().find(|n| n.id == FIRST) else {
+            panic!("{at}: its diff changes c1");
+        };
         assert!(
-            acted.added() == [node(2).as_str()],
-            "{at}: its diff adds c2"
+            changed.differs.contains(&Reading::Selected) && changed.state.selected == Some(true),
+            "{at}: c1 differs in selected"
         );
         assert!(
-            acted.changed().iter().all(|id| *id != FIRST),
-            "{at}: c1 is unchanged"
+            carried(&session) == "348,198,40,1",
+            "{at}: no circle is added"
         );
+        let screen = session.harness().doc.snapshot();
         assert!(
-            carried(&session) == "348,198,40,1;348,198,40,2",
-            "{at}: the new circle stands at c1's centre"
+            screen.get(CANVAS).is_some_and(|n| n.state.focused),
+            "{at}: the canvas reads focused"
         );
     }
 }
 
 #[test]
-fn a_circle_under_another_is_not_refused_covered() {
+fn a_click_focuses_the_canvas_and_a_press_acts_on_its_circle() {
     for incremental in [false, true] {
         let at = mode(incremental);
         let mut session = circle_drawer(incremental);
-        add_circle(&mut session, &at);
-        add_circle(&mut session, &at);
+        click_inside(&mut session, (100.0, 100.0), &at);
+        click_inside(&mut session, (300.0, 100.0), &at);
+        acts(&mut session, &press("tab", true), &at);
         assert!(
-            carried(&session) == "348,198,40,1;348,198,40,2",
-            "{at}: c2 is painted over c1's centre"
+            circle_nodes(&session) == [node(1), node(2)]
+                && selected_nodes(&session).is_empty()
+                && focus_reads(&session).2.as_deref() == Some("circle-undo"),
+            "{at}: two circles apart, none selected, Undo focused"
+        );
+        let acted = acts(&mut session, &click(&node(1)), &at);
+        assert!(acted.settled, "{at}: the click settles");
+        assert!(
+            canvas_focused(&session),
+            "{at}: the engine, the tree and the snapshot read the canvas focused in the click's step"
         );
         assert!(
-            refused(&mut session, &click(FIRST)).is_none(),
-            "{at}: a click on c1 is accepted, not covered"
+            selected_nodes(&session) == [node(1)],
+            "{at}: c1 is selected"
+        );
+        let opened = acts(&mut session, &press("enter", false), &at);
+        assert!(
+            opened.added().contains(&"circle-diameter") && attr(&session, "adjusting") == "1",
+            "{at}: Enter opens the dialog on c1"
+        );
+        acts(&mut session, &scroll("circle-close"), &at);
+        acts(&mut session, &click("circle-close"), &at);
+        assert!(
+            session
+                .harness()
+                .doc
+                .snapshot()
+                .get("circle-diameter")
+                .is_none(),
+            "{at}: Close closes the dialog"
+        );
+        acts(&mut session, &click(&node(1)), &at);
+        acts(&mut session, &press("arrow-right", false), &at);
+        assert!(
+            selected_nodes(&session) == [node(2)] && attr(&session, "selected") == "2",
+            "{at}: the arrow selects c2"
         );
     }
 }
 
+#[test]
+fn a_circle_under_a_later_one_is_refused_covered() {
+    for incremental in [false, true] {
+        let at = mode(incremental);
+        let mut session = circle_drawer(incremental);
+        write_circles(&mut session, "348,198,40,1;348,198,40,2", &at);
+        assert!(
+            circle_nodes(&session) == [node(1), node(2)],
+            "{at}: c2 stands on c1"
+        );
+        let (cause, unchanged) = refused_unchanged(&mut session, &click(FIRST));
+        assert!(
+            cause == Some(Cause::Covered) && unchanged,
+            "{at}: c1 is refused covered, nothing changed"
+        );
+        let Some(nodes) = actioned(&mut session, &actions()) else {
+            panic!("{at}: actions is accepted");
+        };
+        let click_cause = |id: &str| {
+            nodes
+                .iter()
+                .find(|n| n.id == id)
+                .and_then(|n| n.verbs.iter().find(|v| v.verb == "click"))
+                .map(|v| v.cause)
+        };
+        assert!(
+            click_cause(FIRST) == Some(Some(Cause::Covered)),
+            "{at}: actions lists c1's click covered"
+        );
+        assert!(
+            click_cause(&node(2)) == Some(None),
+            "{at}: actions lists c2's click free"
+        );
+        assert!(
+            refused(&mut session, &click(&node(2))).is_none(),
+            "{at}: c2's click is accepted"
+        );
+    }
+}
+
+#[test]
+fn a_later_square_s_corner_covers_where_its_disc_does_not() {
+    for incremental in [false, true] {
+        let at = mode(incremental);
+        let mut session = circle_drawer(incremental);
+        write_circles(&mut session, "300,150,40,1;318,168,40,2", &at);
+        let (dx, dy) = (318.0_f64 - 300.0, 168.0_f64 - 150.0);
+        assert!(
+            circle_nodes(&session) == [node(1), node(2)] && dx.hypot(dy) > 20.0,
+            "{at}: c1's centre lies in c2's square, outside its disc"
+        );
+        assert!(
+            refused(&mut session, &click(FIRST)) == Some(Cause::Covered),
+            "{at}: c1 is refused covered"
+        );
+    }
+}
+
+#[test]
+fn an_open_dialog_disables_every_other_circle() {
+    for incremental in [false, true] {
+        let at = mode(incremental);
+        let mut session = circle_drawer(incremental);
+        add_circle(&mut session, &at);
+        acts(&mut session, &click(FIRST), &at);
+        acts(&mut session, &press("enter", false), &at);
+        assert!(
+            attr(&session, "adjusting") == "1",
+            "{at}: the dialog adjusts c1"
+        );
+        let screen = session.harness().doc.snapshot();
+        let Some(canvas) = screen.get(CANVAS) else {
+            panic!("{at}: the snapshot lists the canvas");
+        };
+        assert!(
+            near(canvas.bounds.width, 700.0) && near(canvas.bounds.height, 400.0),
+            "{at}: the canvas keeps 700 × 400 with the dialog open"
+        );
+        write_circles(&mut session, "348,198,40,1;100,100,40,2", &at);
+        let enabled = |session: &Session, id: &str| {
+            session
+                .harness()
+                .doc
+                .snapshot()
+                .get(id)
+                .and_then(|n| n.state.enabled)
+        };
+        assert!(
+            enabled(&session, &node(2)) == Some(false) && enabled(&session, FIRST) == Some(true),
+            "{at}: c2 reads not enabled, c1 enabled"
+        );
+        let (cause, unchanged) = refused_unchanged(&mut session, &click(&node(2)));
+        assert!(
+            cause == Some(Cause::Disabled) && unchanged,
+            "{at}: c2 is refused disabled, nothing changed"
+        );
+        let Some(nodes) = actioned(&mut session, &actions()) else {
+            panic!("{at}: actions is accepted");
+        };
+        assert!(
+            nodes
+                .iter()
+                .find(|n| n.id == node(2))
+                .and_then(|n| n.verbs.iter().find(|v| v.verb == "click"))
+                .is_some_and(|v| v.cause == Some(Cause::Disabled)),
+            "{at}: actions lists c2's click disabled"
+        );
+        acts(&mut session, &scroll("circle-close"), &at);
+        acts(&mut session, &click("circle-close"), &at);
+        assert!(
+            enabled(&session, &node(2)) == Some(true) && enabled(&session, FIRST) == Some(true),
+            "{at}: after Close both read enabled"
+        );
+    }
+}
+
+#[test]
+fn the_keys_move_the_selection_in_declared_order() {
+    for incremental in [false, true] {
+        let at = mode(incremental);
+        let mut session = circle_drawer(incremental);
+        for x in [100.0, 200.0, 300.0] {
+            click_inside(&mut session, (x, 100.0), &at);
+        }
+        acts(&mut session, &press("tab", true), &at);
+        acts(&mut session, &press("tab", false), &at);
+        assert!(
+            circle_nodes(&session) == [node(1), node(2), node(3)]
+                && canvas_focused(&session)
+                && selected_nodes(&session).is_empty(),
+            "{at}: three circles apart, Tab reaches the canvas, none selected"
+        );
+        let steps: [(&str, u64); 5] = [
+            ("arrow-right", 1),
+            ("arrow-right", 2),
+            ("arrow-down", 3),
+            ("arrow-right", 3),
+            ("arrow-up", 2),
+        ];
+        assert!(steps.len() == 5, "{at}: the table's row count");
+        for (row, (key, k)) in steps.into_iter().enumerate() {
+            acts(&mut session, &press(key, false), &at);
+            assert!(
+                canvas_focused(&session),
+                "{at}: row {row}: the three focus readings agree on the canvas"
+            );
+            assert!(
+                selected_nodes(&session) == [node(k)],
+                "{at}: row {row}: one circle reads selected"
+            );
+        }
+        acts(&mut session, &press("enter", false), &at);
+        assert!(
+            attr(&session, "adjusting") == "2",
+            "{at}: Enter opens the dialog on c2"
+        );
+        let held = acts(&mut session, &press("arrow-left", false), &at);
+        assert!(
+            held.diff.added.is_empty()
+                && held.diff.removed.is_empty()
+                && held.diff.changed.is_empty()
+                && attr(&session, "selected") == "2",
+            "{at}: with the dialog open a press changes nothing"
+        );
+    }
+}
+
+/// A canvas beside a button, each logging its focus events; the engine focuses the canvas on a
+/// press, as on Circle Drawer's.
+mod focus_events {
+    use std::sync::{Arc, Mutex, PoisonError};
+
+    use dioxus::prelude::*;
+    use dioxus_native_dom::CustomWidgetAttr;
+    use escher_driver::Session;
+    use seven_guis::stand;
+
+    pub type Log = Arc<Mutex<Vec<String>>>;
+
+    /// A widget that declares and paints nothing.
+    struct Blank;
+
+    impl blitz_dom::Widget for Blank {}
+
+    #[derive(Props, Clone)]
+    pub struct PageProps {
+        log: Log,
+    }
+
+    impl PartialEq for PageProps {
+        fn eq(&self, other: &Self) -> bool {
+            Arc::ptr_eq(&self.log, &other.log)
+        }
+    }
+
+    fn push(log: &Log, entry: &str) {
+        log.lock()
+            .unwrap_or_else(PoisonError::into_inner)
+            .push(entry.to_string());
+    }
+
+    fn page(props: PageProps) -> Element {
+        let attr = use_hook(|| CustomWidgetAttr::new(Blank));
+        let log = props.log;
+        let (l1, l2, l3, l4) = (log.clone(), log.clone(), log.clone(), log.clone());
+        let (l5, l6, l7, l8) = (log.clone(), log.clone(), log.clone(), log.clone());
+        rsx! {
+            button {
+                id: "fe-button",
+                onfocus: move |_| push(&l1, "button:focus"),
+                onfocusin: move |_| push(&l2, "button:focusin"),
+                onblur: move |_| push(&l3, "button:blur"),
+                onfocusout: move |_| push(&l4, "button:focusout"),
+                "Before"
+            }
+            object {
+                id: "fe-canvas",
+                tabindex: "0",
+                style: "display: block; width: 200px; height: 100px;",
+                "data": attr,
+                onfocus: move |_| push(&l5, "canvas:focus"),
+                onfocusin: move |_| push(&l6, "canvas:focusin"),
+                onblur: move |_| push(&l7, "canvas:blur"),
+                onfocusout: move |_| push(&l8, "canvas:focusout"),
+            }
+        }
+    }
+
+    pub fn session(incremental: bool) -> (Session, Log) {
+        let log: Log = Arc::new(Mutex::new(Vec::new()));
+        let given = log.clone();
+        let session = Session::start("canvas", move || {
+            stand::boot_alone(
+                page,
+                move || PageProps { log: given.clone() },
+                stand::options(incremental),
+            )
+        })
+        .expect("canvas is a label");
+        (session, log)
+    }
+
+    pub fn taken(log: &Log) -> Vec<String> {
+        std::mem::take(&mut *log.lock().unwrap_or_else(PoisonError::into_inner))
+    }
+}
+
+#[test]
+fn the_focus_events_of_a_canvas_click() {
+    for incremental in [false, true] {
+        let at = mode(incremental);
+        let (mut session, log) = focus_events::session(incremental);
+        acts(&mut session, &press("tab", false), &at);
+        assert!(
+            session_common::focused(&session).0 == ["fe-button"],
+            "{at}: Tab focuses the button first"
+        );
+        focus_events::taken(&log);
+        let acted = acts(&mut session, &click("fe-canvas"), &at);
+        assert!(acted.settled, "{at}: the click settles");
+        assert!(
+            focus_events::taken(&log)
+                == [
+                    "button:blur",
+                    "button:focusout",
+                    "canvas:focus",
+                    "canvas:focusin"
+                ],
+            "{at}: blur and focusout on the button, then focus and focusin on the canvas"
+        );
+        assert!(
+            session_common::focused(&session).0 == ["fe-canvas"],
+            "{at}: the canvas holds focus"
+        );
+    }
+}
 /// The call of each target verb naming `id`, in the table's order.
 fn target_calls(id: &str) -> [Call; 6] {
     [
@@ -569,16 +939,12 @@ fn each_circle_s_commands_carry_its_own_index() {
             "{at}: every changed line names circle 1"
         );
 
-        // Every driver click lands at the canvas's centre, so circles it adds share one region and
-        // the tie reads them all under the first: after an undo of c2 and a click, c3 reads 1.
+        // Circles sharing one region tie, and the tie reads them all under the first.
         let mut session = circle_drawer(incremental);
-        add_circle(&mut session, &at);
-        add_circle(&mut session, &at);
-        acts(&mut session, &click("circle-undo"), &at);
-        acts(&mut session, &click(CANVAS), &at);
+        write_circles(&mut session, "348,198,40,1;348,198,40,3", &at);
         assert!(
             circle_nodes(&session) == [node(1), node(3)],
-            "{at}: c3 takes the place c2 held"
+            "{at}: c3 stands on c1"
         );
         assert!(
             fill_nodes(&mut session, &at) == [Some(1), Some(1)],
@@ -641,21 +1007,11 @@ fn a_kept_check_lists_the_unclicked_circle_s_click() {
         // The calls of each check, then the circle clicks it reads unexercised and exercised.
         let rows: [(Vec<Call>, Vec<String>, Vec<String>); 2] = [
             (
-                vec![
-                    click(CANVAS),
-                    advance(1000),
-                    click(CANVAS),
-                    advance(1000),
-                    click(FIRST),
-                ],
-                vec![node(2)],
+                vec![click(CANVAS), advance(1000), click(FIRST)],
+                Vec::new(),
                 vec![node(1)],
             ),
-            (
-                vec![click(CANVAS), advance(1000), click(CANVAS)],
-                vec![node(1), node(2)],
-                Vec::new(),
-            ),
+            (vec![click(CANVAS)], vec![node(1)], Vec::new()),
         ];
         assert_eq!(rows.len(), 2, "{at}: two checks");
         for (row, (calls, unexercised, exercised)) in rows.into_iter().enumerate() {

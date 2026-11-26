@@ -245,6 +245,7 @@ pub(crate) fn handle_dom_event(
         }
 
         pointer::widget_click_synthesis(doc, target_node_id, &event.data);
+        pointer::widget_tab_pass_through(doc, target_node_id, &event.data);
 
         return;
     }

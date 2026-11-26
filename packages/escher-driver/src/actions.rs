@@ -77,7 +77,11 @@ impl Session {
                     .map(|(owner, _)| owner);
                 let target = screen.get(&node.id).and_then(|listed| {
                     let element = elements.get(virtual_owner.unwrap_or(&node.id))?;
-                    target_of(harness, listed, *element)
+                    let target = target_of(harness, listed, *element)?;
+                    Some(match virtual_owner {
+                        Some(_) => target.into_virtual(&node.id),
+                        None => target,
+                    })
                 });
                 let verbs = verbs
                     .iter()

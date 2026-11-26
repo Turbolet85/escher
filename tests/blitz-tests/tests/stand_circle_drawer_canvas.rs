@@ -3,9 +3,10 @@
 //! own fonts, the bundled DejaVu Sans on the stand. The canvas states `role="group"` named
 //! «Drawing area», every control reads its author key and the lint reads nothing at boot; a
 //! click on the canvas paints a circle and its diameter, undo and redo repaint it, and two
-//! clicks at one point open the resize dialog, whose slider resizes the circle. The circles
-//! leave the DOM and cross as shot pixels alone. A driver `click` lands at the canvas's centre,
-//! so every circle stands there. Booted in process through `stand::boot_circle_drawer` and read
+//! clicks at one point — the second selecting the circle the first added — open the resize
+//! dialog, whose slider resizes the circle, and whose Close, below the view while the canvas keeps
+//! its size, is scrolled to and clicked. The circles leave the DOM and cross as shot pixels alone.
+//! A driver `click` lands at the canvas's centre, so the one circle it adds stands there. Booted in process through `stand::boot_circle_drawer` and read
 //! through the driver, in both layout modes. A failure names a layout mode and an index only.
 
 use accesskit::Role;
@@ -13,7 +14,7 @@ use escher_driver::Session;
 use seven_guis::stand;
 
 mod session_common;
-use session_common::{act, advance, click, lint, linted, screenshot_of, shot};
+use session_common::{act, advance, click, lint, linted, screenshot_of, scroll, shot};
 
 const CANVAS: &str = "circle-canvas";
 
@@ -204,15 +205,19 @@ fn two_centre_clicks_open_the_dialog_and_its_slider_resizes_the_circle() {
         );
         let after = (circles(&session), canvas_shot(&mut session));
         assert!(
-            before.0.as_deref() == Some("348,198,40,1;348,198,40,2"),
-            "{at}: both clicks added a circle at the centre"
+            before.0.as_deref() == Some("348,198,40,1"),
+            "{at}: the first click added a circle at the centre, the second selected it"
         );
         assert!(
-            after.0.as_deref() == Some("348,198,53,1;348,198,40,2"),
+            after.0.as_deref() == Some("348,198,53,1"),
             "{at}: the slider resizes the circle the dialog names"
         );
         assert!(after.1 != before.1, "{at}: the canvas repaints the circle");
 
+        assert!(
+            act(&mut session, &scroll("circle-close")).is_some(),
+            "{at}: the scroll to Close is accepted"
+        );
         assert!(
             act(&mut session, &click("circle-close")).is_some(),
             "{at}: Close is accepted"

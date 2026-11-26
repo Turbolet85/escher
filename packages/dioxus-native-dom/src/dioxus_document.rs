@@ -416,6 +416,9 @@ impl DioxusDocument {
                 if declaration.disabled {
                     node.set_disabled();
                 }
+                if let Some(selected) = declaration.selected {
+                    node.set_selected(selected);
+                }
                 tree.nodes[index].1.push_child(id);
                 added.push((id, node));
                 places.insert(id, VirtualPlace { bounds });

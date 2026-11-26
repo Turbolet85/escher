@@ -169,7 +169,7 @@ pub trait Widget {
 }
 
 /// One virtual node a [`Widget`] declares: an author key, an accessibility role, a name, a
-/// region and whether it is disabled.
+/// region, whether it is disabled and whether it is selected.
 ///
 /// The region is in CSS px of the widget's content box, its origin at the content box's top
 /// left: the frame [`Widget::paint`] draws in. Its reader validates the declaration. An escher
@@ -187,6 +187,9 @@ pub struct VirtualNodeDeclaration {
     /// Whether the node is disabled. A disabled node is written disabled on its accessibility
     /// node and read not enabled, and the driver refuses a click on it as `disabled`.
     pub disabled: bool,
+    /// Whether the node is selected. `None` states nothing; `Some(b)` is written as the node's
+    /// selected state on its accessibility node and read as the snapshot's `selected`.
+    pub selected: Option<bool>,
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]

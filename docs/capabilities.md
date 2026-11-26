@@ -155,9 +155,15 @@ Each circle it paints is a virtual node `circle-canvas///c{id}`, keyed by the id
 adds it, from 1 and never reused, which `data-circles` carries as each circle's fourth field (`x,y,d,id`); its role is
 `Image`, its name `Circle {id}, {d} px`, and its region its bounding square cut to the canvas's 696 × 396 content box.
 Undo and redo keep a circle's id, so an undone circle's node reads `stale` and its redo brings it back.
+A click inside a circle selects it, the topmost circle holding the point, and adds none; a click elsewhere adds one.
+The selected circle reads `selected` and is filled darker. The canvas is one Tab stop: its arrows move the selection
+among the circles in declared order, clamped, and Enter opens the diameter dialog on the selected circle; a click
+focuses the canvas within its own settled step, so a `click` then a `press` acts on the clicked circle. With the dialog
+open the canvas keeps its 700 × 400 and every circle but the one it adjusts reads not enabled. A focused element
+carrying a widget hears Tab and Shift+Tab, then focus moves on as from any element.
 
 Witnesses: `stand_bundled_font_families`, `stand_cross_os_readings`, `stand_canvas_cross_os`,
-`stand_circle_drawer_canvas`, `stand_canvas_click`, `stand_circle_nodes`.
+`stand_circle_drawer_canvas`, `stand_canvas_click`, `stand_circle_nodes`, `stand_keyboard`.
 
 ### The visual lint
 
@@ -337,8 +343,7 @@ test-only canvas page. Each of Circle Drawer's circles' fill, stroke and label r
 and at 100 circles. Its stated limits: a layer's filter is read as set or not, its parameters not read; a changed
 command still reads in a line diff as one line removed and one added, the two carrying one ` node=`, which names its
 node; and the index is positional — a node that takes another's place in the list reads that index, and nodes of one
-region read the first's, so Circle Drawer's circles, every one a driver click adds standing at the canvas's centre,
-read index 1 alike.
+region read the first's, so Circle Drawer's circles standing on one region read index 1 alike.
 
 Witnesses: `stand_canvas_commands`, `stand_canvas_carriers`, `stand_circle_nodes`, `stand_mcp_tools`, seven_guis'
 `cli_commands` and `mcp_server`, escher-driver's canvas and JSON tests.
@@ -427,11 +432,14 @@ The driver's own refusal texts state three readings that are off:
   canvas's virtual node `not-found`, and `actions` lists those four so; the lint holds none, Circle Drawer's
   overlapping circles reading no finding at 12 and 100 circles. A virtual node's `keyed` reads false. Pinned by
   `virtual_nodes_in_every_read`, `virtual_nodes_as_elements` and `stand_circle_nodes`.
-- **A virtual node's `covered`.** A virtual node reads `covered` only by an element over its region's centre, never
-  by another node of its canvas: a Circle Drawer circle under another at its centre takes a click. Pinned by
+- **A virtual node's `covered`.** A virtual node reads `covered` by an element over its region's centre, or by a node
+  its canvas declares later whose region holds that centre. A region is the bounding box its canvas declares, so a
+  later Circle Drawer circle's square corner covers a circle its disc does not reach. Pinned by
   `virtual_nodes_as_elements` and `stand_circle_nodes`.
-- **A click on a circle's node adds a circle.** Circle Drawer's canvas adds a circle at every click, so a `click` on a
-  circle's node adds one at that circle's centre; nothing selects a circle. Pinned by `stand_circle_nodes`.
+- **The current circle is read from `selected` alone.** Circle Drawer's canvas holds focus while its arrows move the
+  selection: no circle is the tree's focus and the engine reads no `aria-activedescendant`, so an assistive technology
+  learns the current circle from `selected`, as on the CRUD list. Pinned by `stand_circle_nodes` and
+  `stand_keyboard`.
 - **A canvas label's region is the content box.** The lint reads a canvas label against the content box and the clips
   around it, never against its circle or its virtual node, so a diameter label wider than its circle reads no
   `truncated` finding. Pinned by `stand_circle_nodes`.
@@ -497,9 +505,10 @@ The driver's own refusal texts state three readings that are off:
   on whole device pixels, because the CPU renderer snaps glyph origins differently on Apple hosts (CoreGraphics' grid)
   than elsewhere (Skia's). Circle Drawer places each glyph of a diameter on a whole device pixel; drawn at fractional
   origins its 12 px label read 37 differing pixels on macOS aarch64. Pinned by `stand_canvas_cross_os`.
-- **A click lands at an element's centre.** A driver `click` lands at the centre of its target, so an agent places
-  every Circle Drawer circle at the canvas's centre, and a second click there with no `advance` is a double click,
-  until `drag`. Pinned by `stand_circle_drawer_canvas`.
+- **A click lands at an element's centre.** A driver `click` lands at the centre of its target, so an agent adds
+  Circle Drawer circles only at the canvas's centre: a second click there selects the circle the first added, and with
+  no `advance` it is a double click, until `drag`. `off-screen` is not read on Circle Drawer: with the dialog open the
+  page moves 39 px at most, and no circle's centre leaves the view. Pinned by `stand_circle_drawer_canvas`.
 
 ### Asserted by no check
 
@@ -593,11 +602,11 @@ Witnesses: `stand_act_spans`, `telemetry_scrub`, `telemetry_drop`, `telemetry_st
 
 The target is tier 0: WCAG SC 2.1.1 (keyboard), SC 1.4.3 (contrast) and SC 2.4.3 (focus order). No other criterion
 is claimed as met. The three are proven headless on the stand: by `stand_keyboard` (each lean task's Tab order, and
-Enter and Space on each stand button), `stand_contrast` (every stand control's text and background pair, row for row)
+Enter and Space on each stand button, and Cells' and Circle Drawer's one-stop composites), `stand_contrast` (every stand control's text and background pair, row for row)
 and `stand_accessibility_ids`.
 
-The `a11y` CI leg runs twenty files and read 20 · 199 · 0 · 0 (result lines · passed · failed · ignored) on the
-dev host on 2026-11-25. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
+The `a11y` CI leg runs twenty files and read 20 · 201 · 0 · 0 (result lines · passed · failed · ignored) on the
+dev host on 2026-11-26. It is no required status check. Eleven of its files also run three rounds in `stand-repeat`.
 
 Contrast: the stand's accent controls are white on `#3a5ce5` at 5.47, on its hover shade at 6.83 and on its active
 shade at 8.27, against SC 1.4.3's 4.5. The lint's `contrast` defect uses the same reader and the same exempt rule.
@@ -705,9 +714,10 @@ a `stand_*` file of the same two legs. The layout read is proven by `layout_reas
 `stand_act_errors`, `stand_act_error_text` and, on the order page, `stand_order_served`, seeded randomness by `stand_seeded_randomness`, the bundled fonts by
 `stand_bundled_font_families` and the one reading on every host by `stand_cross_os_readings`, the canvas shot on every host by
 `stand_canvas_cross_os`, Circle Drawer's canvas by `stand_circle_drawer_canvas`, an app's click and double click on a
-canvas by `stand_canvas_click`, a canvas read as data by `stand_canvas_commands` and the `canvas` verb on every carrier
+canvas and Tab passing a focused canvas by `stand_canvas_click`, a canvas read as data by `stand_canvas_commands` and the `canvas` verb on every carrier
 by `stand_canvas_carriers`, a canvas label past its region read by the lint by `stand_canvas_lint`, Circle Drawer's
-circles as virtual nodes and the canvas answer grouped by node by `stand_circle_nodes`, Cells' current
+circles as virtual nodes, the canvas answer grouped by node and their selection, keys, `covered` and `disabled`
+readings by `stand_circle_nodes`, Cells' current
 cell read
 `selected` by `stand_cells_served`, on the `Test (windows)`
 and `Test (macos)` jobs as well, a component alone by `stand_component_alone`, and the masks on the graph, actions and
