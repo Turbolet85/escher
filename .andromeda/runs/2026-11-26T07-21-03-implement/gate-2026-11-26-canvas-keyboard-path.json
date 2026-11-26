@@ -3141,5 +3141,377 @@
 "tripwire": []
 }
 }
+},
+{
+"tool": "gate",
+"v": "1.41",
+"sha8": "29692f8a",
+"ts": "2026-11-26T09:09:22Z",
+"argv": [
+"run",
+"--chunk",
+"2026-11-26-canvas-keyboard-path",
+"--run-dir",
+".andromeda/runs/2026-11-26T07-21-03-implement",
+"--only",
+"13"
+],
+"cwd": ".",
+"exit": 0,
+"stdout": [
+"shell /usr/bin/bash (from $SHELL; -c, non-login)",
+"root . · marker 2026-11-26-canvas-keyboard-path · entries 18",
+"logs $TMPDIR/andromeda-gate/2026-11-26-canvas-keyboard-path/implement-2026-11-26T07-21-03 · $TMPDIR = /tmp · bound: GNU timeout",
+"delta none",
+"walk-class 0 marked (an unmarked walker reads as none)",
+"prose L241-251: **The gates:** - a probe that no manifest or lock changed, from the base; - the `--locked`… (545 chars)",
+"prose L253-259: **What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle … (436 chars)",
+"prose L261-262: **The controls** are step 11's one-shot runs. The diff moves two OS-conditional sites (ste… (148 chars)",
+" 13 lint        green · exit 0 · 650.46s · 185892 B → 13.4.log · bash .github/scripts/ci-leg.sh fast",
+"not run — excluded · 17: 1-12,14-18",
+"entries 18 · green 1 · red 0 · recorded 0 · timeout 0 · not-run 17"
+],
+"stderr": null,
+"wrote": [],
+"before": null,
+"after": null,
+"extra": {
+"marker": "2026-11-26-canvas-keyboard-path",
+"plan": "doc:2026-11-26-canvas-keyboard-path/plan",
+"root": ".",
+"shell": "/usr/bin/bash",
+"out_dir": "$TMPDIR/andromeda-gate/2026-11-26-canvas-keyboard-path/implement-2026-11-26T07-21-03",
+"delta": {},
+"unmapped": [],
+"walk_class": {
+"marked": {},
+"uncommitted": 0,
+"problem": null
+},
+"prose": [
+{
+"from": 241,
+"to": 251,
+"text": "**The gates:** - a probe that no manifest or lock changed, from the base; - the `--locked` workspace build; - the four crates' unit tests; - the Circle Drawer and virtual-node targets; - the stand companions; - the `a11y` leg (`stand_keyboard`, `stand_accessibility_ids`, `virtual_nodes_as_elements` among its targets); - the `stand-repeat` leg; - the pre-push gate (`fast`), which runs `test_capability_statement`; - the `doc` leg, because step 1 adds a public field with a doc; - the operator's hygiene, push, CI read and windows job-log read."
+},
+{
+"from": 253,
+"to": 259,
+"text": "**What is absent:** - There is no boot-path touchpoint (no binary's start changes; Circle Drawer stays served by no role), so no smoke   entry. - There is no live leg, and no headful self-verify harness in this project. - There is no `audit` leg: the probe holds every manifest and the lock unchanged. - The coverage leg is not run locally; CI's coverage job reads the floors on the pushed tree, and the CI read asserts   green over it."
+},
+{
+"from": 261,
+"to": 262,
+"text": "**The controls** are step 11's one-shot runs. The diff moves two OS-conditional sites (step 6), which the CI read and the windows job-log read name."
+}
+],
+"entries": [
+{
+"n": 1,
+"role": "probe",
+"run": "git diff --quiet 255a586fb931c0fc9b26e3e4213d206109390190 -- Cargo.lock Cargo.toml packages/blitz-dom/Cargo.toml packages/dioxus-native-dom/Cargo.toml packages/escher-driver/Cargo.toml tests/blitz-tests/Cargo.toml examples/seven_guis/Cargo.toml",
+"run_sha8": "1bc1d868",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 2,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh build",
+"run_sha8": "32c5cbb0",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 3,
+"role": "unit",
+"run": "cargo test -p escher-driver --locked --lib",
+"run_sha8": "62729176",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 4,
+"role": "unit",
+"run": "cargo test -p seven_guis --locked --lib",
+"run_sha8": "fce03d28",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 5,
+"role": "unit",
+"run": "cargo test -p dioxus-native-dom --locked --lib",
+"run_sha8": "2c35e25a",
+"expect": [
+"exit 0",
+"contains test result: ok"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 6,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_nodes",
+"run_sha8": "3e4486a5",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 7,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test virtual_nodes_as_elements --test virtual_nodes_in_every_read --test virtual_nodes_declared",
+"run_sha8": "c2c19c2b",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 8,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_keyboard --test stand_accessibility_ids",
+"run_sha8": "e6c88eee",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 9,
+"role": "integration",
+"run": "cargo test -p blitz-tests --locked --test stand_circle_drawer_canvas --test stand_canvas_commands --test stand_canvas_cross_os --test stand_canvas_lint --test stand_canvas_carriers --test stand_canvas_click --test stand_non_lean_tasks --test stand_graph --test stand_handler_coverage --test stand_actions --test stand_layout --test stand_explore --test stand_lint --test stand_replay --test stand_mcp_tools --test stand_act_error_text",
+"run_sha8": "b20044bb",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 10,
+"role": "integration",
+"run": "cargo test -p seven_guis --locked --test host_binary",
+"run_sha8": "c9c0e7e7",
+"expect": [
+"exit 0",
+"lacks test result: FAILED"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 11,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh a11y",
+"run_sha8": "0e88f78c",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 12,
+"role": "integration",
+"run": "bash .github/scripts/ci-leg.sh stand-repeat",
+"run_sha8": "4a77feee",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 13,
+"role": "lint",
+"run": "bash .github/scripts/ci-leg.sh fast",
+"run_sha8": "b93c6d21",
+"expect": null,
+"log": "$TMPDIR/andromeda-gate/2026-11-26-canvas-keyboard-path/implement-2026-11-26T07-21-03/13.4.log",
+"bytes": 185892,
+"log_sha8": "8f761f24",
+"exit": 0,
+"seconds": 650.46,
+"readings": [
+"exit 0 ✓"
+],
+"survivors": [],
+"outcome": "green"
+},
+{
+"n": 14,
+"role": "build",
+"run": "bash .github/scripts/ci-leg.sh doc",
+"run_sha8": "5bc2a184",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 15,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/gate.py hygiene",
+"run_sha8": "3c62df70",
+"expect": [
+"exit 0",
+"contains hygiene: clean"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 16,
+"role": "probe",
+"run": "git diff --quiet && git diff --cached --quiet && git push origin build/escher-0.4.0",
+"run_sha8": "6be5c665",
+"expect": null,
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 17,
+"role": "probe",
+"run": "python -X utf8 ~/.claude/skills/andromeda-tools/scripts/ci.py conclusion --sha HEAD --wait 2700",
+"run_sha8": "d04716c7",
+"expect": [
+"exit 0",
+"contains verdict: green"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+},
+{
+"n": 18,
+"role": "probe",
+"run": "gh api repos/Turbolet85/escher/actions/runs/<id>/jobs --paginate --jq '.jobs[] | select(.name == \"Test (windows)\") | .id' | while read j; do gh api --allow-escape-sequences repos/Turbolet85/escher/actions/jobs/$j/logs; done | sed -E 's/(\\x1b|\\^\\[)\\[[0-9;]*m//g' | awk '/Compiling blitz-tests v/ {b++} /Compiling seven_guis v/ {g++} /unused import: `std::time::Duration`/ {d++} /unused imports: `Command` and `Stdio`/ {c++} END {if (b < 1 || g < 1) {print \"log unread\"; exit 2} print \"warnings \" d+c; exit (d + c > 0)}' ",
+"run_sha8": "4ad0d4eb",
+"expect": [
+"exit 0",
+"last line warnings 0"
+],
+"log": null,
+"bytes": null,
+"log_sha8": null,
+"exit": null,
+"seconds": null,
+"readings": [],
+"survivors": null,
+"outcome": "not run — excluded"
+}
+]
+}
 }
 ]
