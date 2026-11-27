@@ -1,0 +1,7 @@
+--- a/.andromeda/a11y-plan.md
++++ b/.andromeda/a11y-plan.md
+@@ -221,3 +221,3 @@
+ decision/circle-drawer-canvas-pixels-only · Circle Drawer's drawing area as one named canvas node — Circle Drawer's drawing area is one canvas node, role group, named Drawing area, keyed, clickable and one Tab stop; each circle is one of its virtual nodes; its diameter labels reach no DOM, snapshot, tree or UI graph, leaving only as shot pixels, draw commands and lint truncated boxes, never text. · guard: stand_circle_drawer_canvas
+-decision/current-circle-read-from-selected · Circle Drawer's current circle read from selected alone — On Circle Drawer the canvas keeps focus and no circle is the tree's focus, so an assistive technology learns the current circle from its selected state alone. · why: A stated residual, beside the CRUD list's unread active descendant. · guard: circle_drawer_walks_its_stated_sequence_and_holds_the_canvas_across_an_arrow · provisional
++decision/current-circle-read-from-selected · Circle Drawer's current circle read from selected alone — On Circle Drawer the canvas keeps focus and no circle is the tree's focus, so an assistive technology learns the current circle from its selected state alone. · why: A stated residual, beside the CRUD list's unread active descendant. · guard: circle_drawer_walks_its_stated_sequence_and_holds_the_canvas_across_an_arrow
+ decision/driver-schema-has-no-role-set · Driver schema defines no role or name set — The driver's schema defines no role or name set of its own; role and name are field names of its result nodes.

@@ -1,5 +1,0 @@
-RULED by the orchestrator:
-Your group's leaf `.claude/docs/security-summary.md` omits two standing security-plan rows that the route carried to this whole-mode pass (CARRY `cry-d3tqol54`), and your file answers neither:
-1. `dec-5vvljfpf` decision/os-drag-and-drop-untrusted — «The local desktop's drag-and-drop is an untrusted input source to the engine and to a Dioxus app's handlers, carrying strings and file paths chosen by the user's OS session.»
-2. `dec-fjqcv7ai` decision/dropped-file-read-unrestricted — «The Dioxus native bridge's dropped-file reader reads a dropped file's metadata and bytes through std::fs with no path restriction.» (why: upstream's design, ratified.)
-A reader of the summary who does not know drops are an untrusted source, read with no path restriction, would act against the plan. Read each row (`rec.py get --root . {id}`), then answer each one with an `omission` finding at the leaf line where the summary's untrusted-input sources or the input-validation decisions stand, or a `@leaf_stands … because:` record if the leaf already states it in other words. Keep your standing finding n=1 (line 23, `covered`) as it is.
